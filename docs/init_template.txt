@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+
+"""
+{} {}
+~~~~~~~~~~~~~~~~~~~
+
+{}
+
+:copyright: (c) {} {}
+:license: {}
+
+"""
+
+__title__ = '{}'
+__author__ = '{}'
+__license__ = '{}'
+__copyright__ = '{}'
+__version__ = '{}'
+
+from collections import namedtuple
+
+VersionInfo = namedtuple('VersionInfo', 'major minor micro')
+
+version_info = VersionInfo(major={}, minor={}, micro={})
