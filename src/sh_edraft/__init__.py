@@ -1,24 +1,25 @@
 # -*- coding: utf-8 -*-
 
 """
-sh_edraft python common lib
+sh_edraft common python library
 ~~~~~~~~~~~~~~~~~~~
 
-Common python functions and classes for sh-edraft.de ecosystem
+Library to share common classes and models used at sh-edraft.de
 
-:copyright: (c) 2020 edraft
+:copyright: (c) 2020 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = 'sh_edraft.de'
+__title__ = 'sh_edraft'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
-__copyright__ = 'Copyright 2020 sh-edraft.de'
+__copyright__ = 'Copyright (c) 2020 sh-edraft.de'
 __version__ = '2020.12.0.1'
 
 from collections import namedtuple
 
-VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 
+
+VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2020, minor=12, micro=0.1)
