@@ -5,7 +5,7 @@ from sh_edraft.publish.model import Template
 if __name__ == '__main__':
     templates = [
         Template(
-            '../publish_templates/*_template.txt',
+            '../../publish_templates/*_template.txt',
             '*',
             '',
             '',
@@ -18,7 +18,7 @@ if __name__ == '__main__':
             Version(2020, 12, 0.1).to_dict()
         ),
         Template(
-            '../publish_templates/*_template.txt',
+            '../../publish_templates/*_template.txt',
             'sh_edraft',
             'common python library',
             'Library to share common classes and models used at sh-edraft.de',
@@ -32,11 +32,11 @@ if __name__ == '__main__':
         )
     ]
 
-    publisher = Publisher('./', '../dist', templates)
+    publisher = Publisher('../', '../../dist', templates)
 
-    publisher.exclude('./test.py')
-    publisher.include('../LICENSE')
-    publisher.include('../README.md')
+    publisher.exclude('../tests/')
+    publisher.include('../../LICENSE')
+    publisher.include('../../README.md')
 
     publisher.create()
     publisher.publish()

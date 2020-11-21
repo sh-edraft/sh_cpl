@@ -153,10 +153,18 @@ class Publisher(PublisherBase):
             dist_path = dist_path[:len(dist_path) - 1]
 
             for file in self._included_files:
-                if file not in self._excluded_files:
+                is_file_excluded = False
+                if file in self._excluded_files:
+                    is_file_excluded = True
+                else:
+                    for excluded in self._excluded_files:
+                        if file.__contains__(excluded):
+                            is_file_excluded = True
+
+                if not is_file_excluded:
                     output_file = ''
                     if file.startswith('..'):
-                        output_file = file.replace('..', '', 1)
+                        output_file = file.replace('..', '')
 
                     elif file.startswith('.'):
                         output_file = file.replace('.', '', 1)
