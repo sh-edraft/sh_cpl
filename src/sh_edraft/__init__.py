@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 """
-sh_edraft 
+sh_edraft common python library
 ~~~~~~~~~~~~~~~~~~~
 
-
+Library to share common classes and models used at sh-edraft.de
 
 :copyright: (c) 2020 sh-edraft.de
 :license: MIT, see LICENSE for more details.

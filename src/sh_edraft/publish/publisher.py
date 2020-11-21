@@ -107,11 +107,11 @@ class Publisher(PublisherBase):
 
                         if name.__contains__('.'):
                             if template.name != name.split('.')[len(name.split('.')) - 1]:
-                                break
+                                continue
 
                         else:
                             if template.name != name:
-                                break
+                                continue
 
                     try:
                         module_file_lines: list[str] = []
