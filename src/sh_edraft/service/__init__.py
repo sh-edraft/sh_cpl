@@ -15,12 +15,12 @@ __title__ = 'sh_edraft.service'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'
-__version__ = '2020.12.0.1'
+__version__ = '2020.12.5'
 
 from collections import namedtuple
 
 # imports:
-from sh_edraft.service.service_provider import ServiceProvider
+from .service_provider import ServiceProvider
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major=2020, minor=12, micro=0.1)
+version_info = VersionInfo(major=2020, minor=12, micro=5)

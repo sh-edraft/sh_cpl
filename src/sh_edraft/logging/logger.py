@@ -4,8 +4,6 @@ import traceback
 from string import Template
 from typing import Optional
 
-from termcolor import colored
-
 from sh_edraft.configuration.application_host import ApplicationHost
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.logging.model.log_level import LoggingLevel
