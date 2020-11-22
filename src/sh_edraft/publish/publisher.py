@@ -1,15 +1,23 @@
 import os
 import shutil
 from string import Template as stringTemplate
+from typing import Optional
 
 from sh_edraft.publish.base.publisher_base import PublisherBase
 from sh_edraft.publish.model.template import Template
+from sh_edraft.service.base import ServiceBase
 
 
-class Publisher(PublisherBase):
+class Publisher(ServiceBase, PublisherBase):
 
-    def __init__(self, source_path: str, dist_path: str, settings: list[Template]):
-        super().__init__(source_path, dist_path, settings)
+    def __init__(self):
+        ServiceBase.__init__(self)
+        PublisherBase.__init__(self)
+
+        self._logger: Optional[None] = None
+        self._source_path: Optional[str] = None
+        self._dist_path: Optional[str] = None
+        self._settings: Optional[list[Template]] = None
 
         self._included_files: list[str] = []
         self._excluded_files: list[str] = []
@@ -24,7 +32,8 @@ class Publisher(PublisherBase):
     def dist_path(self):
         return self._dist_path
 
-    def _get_template_output(self, t: Template, name: str, imports: str) -> str:
+    @staticmethod
+    def _get_template_output(t: Template, name: str, imports: str) -> str:
         try:
             if t.file_content == '':
                 raise Exception(f'Template is empty: {t.template_path}')
@@ -84,7 +93,8 @@ class Publisher(PublisherBase):
                 print(e)
                 # todo: log error
 
-    def _get_template_name_from_dirs(self, file: str) -> str:
+    @staticmethod
+    def _get_template_name_from_dirs(file: str) -> str:
         dirs = os.path.dirname(file).split('/')
         for d in dirs:
             if d.__contains__('.'):
@@ -107,11 +117,11 @@ class Publisher(PublisherBase):
 
                         if name.__contains__('.'):
                             if template.name != name.split('.')[len(name.split('.')) - 1]:
-                                break
+                                continue
 
                         else:
                             if template.name != name:
-                                break
+                                continue
 
                     try:
                         module_file_lines: list[str] = []
@@ -153,10 +163,18 @@ class Publisher(PublisherBase):
             dist_path = dist_path[:len(dist_path) - 1]
 
             for file in self._included_files:
-                if file not in self._excluded_files:
+                is_file_excluded = False
+                if file in self._excluded_files:
+                    is_file_excluded = True
+                else:
+                    for excluded in self._excluded_files:
+                        if file.__contains__(excluded):
+                            is_file_excluded = True
+
+                if not is_file_excluded:
                     output_file = ''
                     if file.startswith('..'):
-                        output_file = file.replace('..', '', 1)
+                        output_file = file.replace('..', '')
 
                     elif file.startswith('.'):
                         output_file = file.replace('.', '', 1)
@@ -185,6 +203,12 @@ class Publisher(PublisherBase):
 
     def exclude(self, path: str):
         self._excluded_files.append(path)
+
+    def init(self, args: tuple):
+        self._logger = args[0]
+        self._source_path = args[1]
+        self._dist_path = args[2]
+        self._settings = args[3]
 
     def create(self):
         if not self._dist_path.endswith('/'):
