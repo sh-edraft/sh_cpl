@@ -5,14 +5,12 @@ from typing import Optional
 
 from sh_edraft.publish.base.publisher_base import PublisherBase
 from sh_edraft.publish.model.template import Template
-from sh_edraft.service.base import ServiceBase
 
 
-class Publisher(ServiceBase, PublisherBase):
+class Publisher(PublisherBase):
 
     def __init__(self):
-        ServiceBase.__init__(self)
-        PublisherBase.__init__(self)
+        super().__init__()
 
         self._logger: Optional[None] = None
         self._source_path: Optional[str] = None

@@ -1,6 +1,7 @@
 import os
 
-from sh_edraft.service import ServiceProvider
+from sh_edraft.publish.base import PublisherBase
+from sh_edraft.service.base import ServiceProviderBase
 from sh_edraft.source_code.model import Version
 from sh_edraft.publish import Publisher
 from sh_edraft.publish.model import Template
@@ -9,7 +10,7 @@ from sh_edraft.publish.model import Template
 class PublisherTest:
 
     @staticmethod
-    def start(services: ServiceProvider):
+    def start(services: ServiceProviderBase):
         templates = [
             Template(
                 '../../publish_templates/*_template.txt',
@@ -43,7 +44,7 @@ class PublisherTest:
         dist = '../../dist'
 
         services.add_singleton(Publisher, None, source, dist, templates)
-        publisher: Publisher = services.get_service(Publisher)
+        publisher: Publisher = services.get_service(PublisherBase)
 
         publisher.exclude('../tests/')
         publisher.include('../../LICENSE')

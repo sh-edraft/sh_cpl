@@ -19,7 +19,8 @@ __version__ = '2020.12.0.1'
 
 from collections import namedtuple
 
-
+# imports:
+from sh_edraft.configuration.application_host import ApplicationHost
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2020, minor=12, micro=0.1)
