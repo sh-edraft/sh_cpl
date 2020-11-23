@@ -1,6 +1,4 @@
-import os
 import unittest
-from string import Template
 
 from sh_edraft.configuration import ApplicationHost
 from sh_edraft.logging import Logger
@@ -8,11 +6,12 @@ from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.publish import Publisher
 from sh_edraft.publish.base import PublisherBase
+from sh_edraft.service import ServiceProvider
 from sh_edraft.service.base import ServiceBase
 from sh_edraft.time.model import TimeFormatSettings
 
 
-class ServiceProviderServices(unittest.TestCase):
+class ServiceProviderTest(unittest.TestCase):
 
     def setUp(self):
         self._app_host = ApplicationHost()
@@ -42,6 +41,13 @@ class ServiceProviderServices(unittest.TestCase):
     def _check_logger_requirements(self):
         self.assertIsNotNone(self._log_settings)
         self.assertIsNotNone(self._time_format_settings)
+
+    def test_create(self):
+        provider = ServiceProvider()
+        self.assertIsNotNone(provider)
+        provider.init(())
+        provider.create()
+        self.assertIsNotNone(provider)
 
     def test_add_singleton(self):
         print(f'{__name__}.test_add_singleton:')
