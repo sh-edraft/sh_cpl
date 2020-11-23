@@ -14,7 +14,7 @@ class Version(ConfigurationModelBase):
     ):
         self._major: Optional[int] = major
         self._minor: Optional[int] = minor
-        self._micro: Optional[float] = micro
+        self._micro: Optional[int] = micro
 
     @property
     def major(self) -> int:
@@ -34,7 +34,7 @@ class Version(ConfigurationModelBase):
     def from_dict(self, settings: dict):
         self._major = int(settings[VersionEnum.Major.value])
         self._minor = int(settings[VersionEnum.Minor.value])
-        self._micro = float(settings[VersionEnum.Micro.value])
+        self._micro = int(settings[VersionEnum.Micro.value])
 
     def to_dict(self) -> dict:
         return {

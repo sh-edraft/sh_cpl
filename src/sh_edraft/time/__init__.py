@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-sh_edraft.configuration 
+sh_edraft.time 
 ~~~~~~~~~~~~~~~~~~~
 
 
@@ -11,7 +11,7 @@ sh_edraft.configuration
 
 """
 
-__title__ = 'sh_edraft.configuration'
+__title__ = 'sh_edraft.time'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'
@@ -20,7 +20,6 @@ __version__ = '2020.12.5'
 from collections import namedtuple
 
 # imports:
-from .application_host import ApplicationHost
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2020, minor=12, micro=5)

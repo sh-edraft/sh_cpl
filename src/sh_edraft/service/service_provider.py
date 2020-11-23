@@ -3,18 +3,19 @@ from typing import Type
 
 from termcolor import colored
 
-from sh_edraft.service.base.provider_base import ProviderBase
+from sh_edraft.service.base.service_provider_base import ServiceProviderBase
 from sh_edraft.service.base.service_base import ServiceBase
 from sh_edraft.service.model.provide_state import ProvideState
 
 
-class ServiceProvider(ProviderBase):
+class ServiceProvider(ServiceProviderBase):
 
     def __init__(self):
-        ProviderBase.__init__(self)
+        super().__init__()
 
-    def create(self):
-        pass
+    def init(self, args: tuple): pass
+
+    def create(self): pass
 
     @staticmethod
     def _create_instance(service: type[ServiceBase], args: tuple) -> ServiceBase:
@@ -38,31 +39,31 @@ class ServiceProvider(ProviderBase):
 
         self._singleton_services.append(self._create_instance(service, args))
 
-    def get_service(self, instance_type: type) -> Callable[ServiceBase]:
+    def get_service(self, instance_type: Type[ServiceBase]) -> Callable[ServiceBase]:
         for state in self._transient_services:
-            if state.service == instance_type:
+            if isinstance(state.service, type(instance_type)):
                 return self._create_instance(state.service, state.args)
 
         for state in self._scoped_services:
-            if type(state.service) == instance_type:
+            if isinstance(state.service, type(instance_type)):
                 return self._create_instance(state.service, state.args)
 
         for service in self._singleton_services:
-            if type(service) == instance_type:
+            if isinstance(service, instance_type):
                 return service
 
     def remove_service(self, instance_type: type):
         for state in self._transient_services:
-            if state.service == instance_type:
+            if isinstance(state.service, type(instance_type)):
                 self._transient_services.remove(state)
                 return
 
         for state in self._scoped_services:
-            if type(state.service) == instance_type:
+            if isinstance(state.service, type(instance_type)):
                 self._scoped_services.remove(state)
                 return
 
         for service in self._singleton_services:
-            if type(service) == instance_type:
+            if isinstance(service, instance_type):
                 self._singleton_services.remove(service)
                 return

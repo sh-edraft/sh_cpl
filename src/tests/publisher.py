@@ -1,6 +1,8 @@
 import os
 
-from sh_edraft.service import ServiceProvider
+from sh_edraft.logging.base.logger_base import LoggerBase
+from sh_edraft.publish.base import PublisherBase
+from sh_edraft.service.base import ServiceProviderBase
 from sh_edraft.source_code.model import Version
 from sh_edraft.publish import Publisher
 from sh_edraft.publish.model import Template
@@ -9,7 +11,8 @@ from sh_edraft.publish.model import Template
 class PublisherTest:
 
     @staticmethod
-    def start(services: ServiceProvider):
+    def start(services: ServiceProviderBase):
+        version = Version(2020, 12, 5).to_dict()
         templates = [
             Template(
                 '../../publish_templates/*_template.txt',
@@ -22,7 +25,7 @@ class PublisherTest:
                 ', see LICENSE for more details.',
                 '',
                 'Sven Heidemann',
-                Version(2020, 12, 0.1).to_dict()
+                version
             ),
             Template(
                 '../../publish_templates/*_template.txt',
@@ -35,15 +38,15 @@ class PublisherTest:
                 ', see LICENSE for more details.',
                 '',
                 'Sven Heidemann',
-                Version(2020, 12, 0.1).to_dict()
+                version
             )
         ]
 
         source = '../'
         dist = '../../dist'
 
-        services.add_singleton(Publisher, None, source, dist, templates)
-        publisher: Publisher = services.get_service(Publisher)
+        services.add_transient(Publisher, services.get_service(LoggerBase), source, dist, templates)
+        publisher: Publisher = services.get_service(PublisherBase)
 
         publisher.exclude('../tests/')
         publisher.include('../../LICENSE')

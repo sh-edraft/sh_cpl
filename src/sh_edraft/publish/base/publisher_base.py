@@ -1,10 +1,13 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+
+from sh_edraft.service.base import ServiceBase
 
 
-class PublisherBase(ABC):
+class PublisherBase(ServiceBase):
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        ServiceBase.__init__(self)
 
     @property
     @abstractmethod
