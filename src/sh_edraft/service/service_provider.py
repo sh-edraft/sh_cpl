@@ -30,7 +30,7 @@ class ServiceProvider(ServiceProviderBase):
         self._transient_services.append(ProvideState(service, args))
 
     def add_scoped(self, service: Type[ServiceBase], *args):
-        self._transient_services.append(ProvideState(service, args))
+        self._scoped_services.append(ProvideState(service, args))
 
     def add_singleton(self, service: Type[ServiceBase], *args):
         for known_service in self._singleton_services:

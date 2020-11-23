@@ -1,7 +1,6 @@
 import os
 import shutil
 from string import Template as stringTemplate
-from typing import Optional
 
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.publish.base.publisher_base import PublisherBase
@@ -12,11 +11,6 @@ class Publisher(PublisherBase):
 
     def __init__(self):
         super().__init__()
-
-        self._logger: Optional[LoggerBase] = None
-        self._source_path: Optional[str] = None
-        self._dist_path: Optional[str] = None
-        self._settings: Optional[list[Template]] = None
 
         self._included_files: list[str] = []
         self._excluded_files: list[str] = []

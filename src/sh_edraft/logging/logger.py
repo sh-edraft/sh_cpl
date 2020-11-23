@@ -4,11 +4,8 @@ import traceback
 from string import Template
 from typing import Optional
 
-from sh_edraft.configuration.application_host import ApplicationHost
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.logging.model.log_level import LoggingLevel
-from sh_edraft.logging.model.log_settings import LoggingSettings
-from sh_edraft.time.model.time_format_settings import TimeFormatSettings
 from sh_edraft.utils.console import Console
 
 
@@ -16,10 +13,6 @@ class Logger(LoggerBase):
 
     def __init__(self):
         LoggerBase.__init__(self)
-
-        self._log_settings: Optional[LoggingSettings] = None
-        self._time_format_settings: Optional[TimeFormatSettings] = None
-        self._app_host: Optional[ApplicationHost] = None
 
         self._log: Optional[str] = None
         self._path: Optional[str] = None
