@@ -23,11 +23,18 @@ class Tester:
         self._suite.addTest(LoggerTest('test_create'))
         self._suite.addTest(LoggerTest('test_header'))
         self._suite.addTest(LoggerTest('test_trace'))
+        self._suite.addTest(LoggerTest('test_debug'))
+        self._suite.addTest(LoggerTest('test_info'))
+        self._suite.addTest(LoggerTest('test_warn'))
+        self._suite.addTest(LoggerTest('test_error'))
+        self._suite.addTest(LoggerTest('test_fatal'))
 
         # publishing
 
     def start(self):
-        unittest.main()
+        runner = unittest.TextTestRunner()
+        runner.run(self._suite)
+        # unittest.main()
 
 
 if __name__ == '__main__':
