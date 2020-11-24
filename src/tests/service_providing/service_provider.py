@@ -4,8 +4,8 @@ from sh_edraft.configuration import ApplicationHost
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
-from sh_edraft.publish import Publisher
-from sh_edraft.publish.base import PublisherBase
+from sh_edraft.publishing import Publisher
+from sh_edraft.publishing.base import PublisherBase
 from sh_edraft.service import ServiceProvider
 from sh_edraft.service.base import ServiceBase
 from sh_edraft.time.model import TimeFormatSettings
@@ -41,6 +41,11 @@ class ServiceProviderTest(unittest.TestCase):
     def _check_logger_requirements(self):
         self.assertIsNotNone(self._log_settings)
         self.assertIsNotNone(self._time_format_settings)
+
+    def _add_logger(self):
+        self._services.add_singleton(Logger, self._log_settings, self._time_format_settings, self._app_host)
+        logger: Logger = self._services.get_service(LoggerBase)
+        logger.create()
 
     def test_create(self):
         provider = ServiceProvider()
@@ -88,14 +93,13 @@ class ServiceProviderTest(unittest.TestCase):
 
         self._services.add_singleton(Logger, self._log_settings, self._time_format_settings, self._app_host)
         self._services.add_scoped(Publisher, self._services.get_service(LoggerBase), '../', '../../dist', [])
-        self.assertGreater(len(self._services._scoped_services), 0)
 
     def test_get_scoped(self):
         print(f'{__name__}.test_get_scoped:')
         self._check_general_requirements()
         self._check_logger_requirements()
+        self._add_logger()
 
-        self._services.add_singleton(Logger, self._log_settings, self._time_format_settings, self._app_host)
         self._services.add_scoped(Publisher, self._services.get_service(LoggerBase), '../', '../../dist', [])
         publisher: Publisher = self._services.get_service(PublisherBase)
         self.assertIsNotNone(publisher)
@@ -111,8 +115,8 @@ class ServiceProviderTest(unittest.TestCase):
         print(f'{__name__}.test_add_transient:')
         self._check_general_requirements()
         self._check_logger_requirements()
+        self._add_logger()
 
-        self._services.add_singleton(Logger, self._log_settings, self._time_format_settings, self._app_host)
         self._services.add_transient(Publisher, self._services.get_service(LoggerBase), '../', '../../dist', [])
         self.assertGreater(len(self._services._transient_services), 0)
 

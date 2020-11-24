@@ -2,7 +2,7 @@ from typing import Optional
 
 from sh_edraft.source_code.model.version import Version
 from sh_edraft.configuration.model import ConfigurationModelBase
-from sh_edraft.publish.model.template_enum import TemplateEnum
+from sh_edraft.publishing.model.template_enum import TemplateEnum
 
 
 class Template(ConfigurationModelBase):

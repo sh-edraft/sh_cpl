@@ -3,8 +3,8 @@ import shutil
 from string import Template as stringTemplate
 
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publish.base.publisher_base import PublisherBase
-from sh_edraft.publish.model.template import Template
+from sh_edraft.publishing.base.publisher_base import PublisherBase
+from sh_edraft.publishing.model.template import Template
 
 
 class Publisher(PublisherBase):
@@ -66,13 +66,13 @@ class Publisher(PublisherBase):
         for t in self._settings:
             output_template: str = ''
             if not os.path.isfile(t.template_path):
-                raise Exception(f'Template not found: {t.template_path}')
+                self._logger.fatal(__name__, f'Template not found: {t.template_path}')
 
             with open(t.template_path) as template:
                 t.file_content = template.read()
                 template.close()
                 if t.file_content == '':
-                    raise Exception(f'Template is empty: {t.template_path}')
+                    self._logger.fatal(__name__, f'Template is empty: {t.template_path}')
 
         self._logger.trace(__name__, f'Stopped {__name__}._read_templates')
 

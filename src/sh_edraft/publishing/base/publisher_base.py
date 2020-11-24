@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import Optional
 
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publish.model.template import Template
+from sh_edraft.publishing.model.template import Template
 from sh_edraft.service.base.service_base import ServiceBase
 
 

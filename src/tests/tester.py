@@ -1,6 +1,7 @@
 import unittest
 
 from tests.logging.logger import LoggerTest
+from tests.publishing.publisher import PublisherTest
 from tests.service_providing.service_provider import ServiceProviderTest
 
 
@@ -30,6 +31,7 @@ class Tester:
         self._suite.addTest(LoggerTest('test_fatal'))
 
         # publishing
+        self._suite.addTest(PublisherTest('test_create'))
 
     def start(self):
         runner = unittest.TextTestRunner()
