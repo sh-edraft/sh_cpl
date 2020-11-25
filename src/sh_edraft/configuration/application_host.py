@@ -1,11 +1,13 @@
 from datetime import datetime
 
-from sh_edraft.service import ServiceProvider
+from sh_edraft.configuration.model.application_host_base import ApplicationHostBase
+from sh_edraft.service.service_provider import ServiceProvider
 
 
-class ApplicationHost:
+class ApplicationHost(ApplicationHostBase):
     
     def __init__(self):
+        ApplicationHostBase.__init__(self)
         self._services = ServiceProvider()
         self._end_time: datetime = datetime.now()
         self._start_time: datetime = datetime.now()

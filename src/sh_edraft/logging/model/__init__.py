@@ -20,8 +20,8 @@ __version__ = '2020.12.5'
 from collections import namedtuple
 
 # imports:
-from .log_level import LoggingLevel
-from .log_settings import LoggingSettings
+from .logging_level import LoggingLevel
+from .logging_settings import LoggingSettings
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2020, minor=12, micro=5)

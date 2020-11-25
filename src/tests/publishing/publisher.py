@@ -9,6 +9,7 @@ from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.publishing import Publisher
 from sh_edraft.publishing.base import PublisherBase
 from sh_edraft.publishing.model import Template
+from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
 from sh_edraft.source_code.model import Version
 from sh_edraft.time.model import TimeFormatSettings
 
@@ -33,7 +34,7 @@ class PublisherTest(unittest.TestCase):
         })
 
         self._version = Version(2020, 12, 5).to_dict()
-        self._templates = [
+        templates = [
             Template(
                 '../../publish_templates/*_template.txt',
                 '*',
@@ -62,29 +63,33 @@ class PublisherTest(unittest.TestCase):
             )
         ]
 
-        self._source = '../'
-        self._dist = '../../dist'
+        self._source_path = '../'
+        self._dist_path = '../../dist'
+
+        self._publish_settings_model = PublishSettingsModel()
+        self._publish_settings_model.from_dict({
+            "SourcePath": self._source_path,
+            "DistPath": self._dist_path,
+            "Templates": templates,
+            "IncludedFiles": [],
+            "ExcludedFiles": [],
+            "TemplateEnding": "_template.txt",
+        })
 
     def setUp(self):
         self._config()
 
         self._app_host = ApplicationHost()
-        self._services = self._app_host.services
-        self._services.init(())
-        self._services.create()
-
-        self._services.add_singleton(Logger, self._log_settings, self._time_format_settings, self._app_host)
-        logger: Logger = self._services.get_service(LoggerBase)
-        logger.create()
+        self._logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
+        self._logger.create()
 
     def tearDown(self):
         if os.path.isdir(self._log_settings.path):
             shutil.rmtree(self._log_settings.path)
 
     def test_create(self):
-        self._services.add_transient(Publisher, self._services.get_service(LoggerBase), self._source, self._dist, self._templates)
-        publisher: Publisher = self._services.get_service(PublisherBase)
+        publisher: Publisher = Publisher(self._logger, self._publish_settings_model)
         self.assertIsNotNone(publisher)
 
         publisher.create()
-        self.assertTrue(os.path.isdir(self._dist))
+        self.assertTrue(os.path.isdir(self._dist_path))

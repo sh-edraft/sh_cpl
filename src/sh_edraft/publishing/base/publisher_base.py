@@ -1,24 +1,18 @@
 from abc import abstractmethod
-from typing import Optional
 
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publishing.model.template import Template
+from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
 from sh_edraft.service.base.service_base import ServiceBase
 
 
 class PublisherBase(ServiceBase):
 
     @abstractmethod
-    def __init__(self):
+    def __init__(self, logger: LoggerBase, publish_settings: PublishSettingsModel):
         ServiceBase.__init__(self)
 
-        self._logger: Optional[LoggerBase] = None
-        self._source_path: Optional[str] = None
-        self._dist_path: Optional[str] = None
-        self._settings: Optional[list[Template]] = None
-
-        self._included_files: list[str] = []
-        self._excluded_files: list[str] = []
+        self._logger: LoggerBase = logger
+        self._publish_settings: PublishSettingsModel = publish_settings
 
     @property
     @abstractmethod
@@ -27,6 +21,12 @@ class PublisherBase(ServiceBase):
     @property
     @abstractmethod
     def dist_path(self) -> str: pass
+
+    @abstractmethod
+    def include(self, path: str): pass
+
+    @abstractmethod
+    def exclude(self, path: str): pass
 
     @abstractmethod
     def publish(self) -> str: pass

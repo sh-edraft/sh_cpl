@@ -16,7 +16,6 @@ class LoggerTest(unittest.TestCase):
     def setUp(self):
         self._app_host = ApplicationHost()
         self._services = self._app_host.services
-        self._services.init(())
         self._services.create()
 
         self._log_settings = LoggingSettings()
@@ -35,8 +34,6 @@ class LoggerTest(unittest.TestCase):
             "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
         })
 
-        self._services.add_singleton(Logger, self._log_settings, self._time_format_settings, self._app_host)
-
     def tearDown(self):
         if os.path.isdir(self._log_settings.path):
             shutil.rmtree(self._log_settings.path)
@@ -48,9 +45,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_create(self):
         print(f'{__name__}.test_create:')
-        logger: Logger = self._services.get_service(LoggerBase)
-        self.assertIsNotNone(logger)
-
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         self.assertTrue(os.path.isdir(self._log_settings.path))
 
@@ -62,7 +57,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_header(self):
         print(f'{__name__}.test_header:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         logger.header('HeaderTest:')
 
@@ -84,7 +79,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_trace(self):
         print(f'{__name__}.test_trace:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         logger.trace(__name__, f'{__name__}.test_trace:')
 
@@ -106,7 +101,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_debug(self):
         print(f'{__name__}.test_debug:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         logger.debug(__name__, f'{__name__}.test_debug:')
 
@@ -128,7 +123,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_info(self):
         print(f'{__name__}.test_info:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         logger.info(__name__, f'{__name__}.test_info:')
 
@@ -150,7 +145,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_warn(self):
         print(f'{__name__}.test_warn:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         logger.warn(__name__, f'{__name__}.test_warn:')
 
@@ -172,7 +167,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_error(self):
         print(f'{__name__}.test_error:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         logger.error(__name__, f'{__name__}.test_error:')
 
@@ -194,7 +189,7 @@ class LoggerTest(unittest.TestCase):
 
     def test_fatal(self):
         print(f'{__name__}.test_fatal:')
-        logger: Logger = self._services.get_service(LoggerBase)
+        logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         logger.create()
         with self.assertRaises(SystemExit):
             logger.fatal(__name__, f'{__name__}.test_fatal:')

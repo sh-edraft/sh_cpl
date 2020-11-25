@@ -4,26 +4,22 @@ from string import Template as stringTemplate
 
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.publishing.base.publisher_base import PublisherBase
+from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
 from sh_edraft.publishing.model.template import Template
 
 
 class Publisher(PublisherBase):
 
-    def __init__(self):
-        super().__init__()
-
-        self._included_files: list[str] = []
-        self._excluded_files: list[str] = []
-
-        self._template_ending = '_template.txt'
+    def __init__(self, logger: LoggerBase, publish_settings: PublishSettingsModel):
+        super().__init__(logger, publish_settings)
 
     @property
     def source_path(self) -> str:
-        return self._source_path
+        return self._publish_settings.source_path
 
     @property
     def dist_path(self):
-        return self._dist_path
+        return self._publish_settings.dist_path
 
     def _get_template_output(self, t: Template, name: str, imports: str) -> str:
         self._logger.trace(__name__, f'Started {__name__}._get_template_output')
@@ -54,16 +50,16 @@ class Publisher(PublisherBase):
 
     def _read_source_path(self):
         self._logger.trace(__name__, f'Started {__name__}._read_source_path')
-        for r, d, f in os.walk(self._source_path):
+        for r, d, f in os.walk(self._publish_settings.source_path):
             for file in f:
-                if file.endswith('.py') or file in self._included_files:
-                    self._included_files.append(os.path.join(r, file))
+                if file.endswith('.py') or file in self._publish_settings.included_files:
+                    self._publish_settings.included_files.append(os.path.join(r, file))
 
         self._logger.trace(__name__, f'Stopped {__name__}._read_source_path')
 
     def _read_templates(self):
         self._logger.trace(__name__, f'Started {__name__}._read_templates')
-        for t in self._settings:
+        for t in self._publish_settings.templates:
             output_template: str = ''
             if not os.path.isfile(t.template_path):
                 self._logger.fatal(__name__, f'Template not found: {t.template_path}')
@@ -78,17 +74,17 @@ class Publisher(PublisherBase):
 
     def _create_dist_path(self):
         self._logger.trace(__name__, f'Started {__name__}._create_dist_path')
-        if os.path.isdir(self._dist_path):
+        if os.path.isdir(self._publish_settings.dist_path):
             try:
-                shutil.rmtree(self._dist_path)
-                self._logger.info(__name__, f'Deleted {self._dist_path}')
+                shutil.rmtree(self._publish_settings.dist_path)
+                self._logger.info(__name__, f'Deleted {self._publish_settings.dist_path}')
             except Exception as e:
                 self._logger.fatal(__name__, f'Cannot delete old dist directory', e)
 
-        if not os.path.isdir(self._dist_path):
+        if not os.path.isdir(self._publish_settings.dist_path):
             try:
-                os.makedirs(self._dist_path)
-                self._logger.debug(__name__, f'Created directories: {self._dist_path}')
+                os.makedirs(self._publish_settings.dist_path)
+                self._logger.debug(__name__, f'Created directories: {self._publish_settings.dist_path}')
                 self._logger.info(__name__, f'Created dist directory')
             except Exception as e:
                 self._logger.fatal(__name__, f'Cannot create dist directory', e)
@@ -109,9 +105,9 @@ class Publisher(PublisherBase):
 
     def _write_templates(self):
         self._logger.trace(__name__, f'Started {__name__}._write_templates')
-        for template in self._settings:
-            for file in self._included_files:
-                if os.path.basename(file) == '__init__.py' and file not in self._excluded_files:
+        for template in self._publish_settings.templates:
+            for file in self._publish_settings.included_files:
+                if os.path.basename(file) == '__init__.py' and file not in self._publish_settings.excluded_files:
                     template_name = template.name
                     if template.name == '*' or template.name == '':
                         template_name = self._get_template_name_from_dirs(file)
@@ -164,16 +160,16 @@ class Publisher(PublisherBase):
 
     def _copy_all_included_files(self):
         self._logger.trace(__name__, f'Started {__name__}._copy_all_included_files')
-        dist_path = self._dist_path
-        if self._dist_path.endswith('/'):
+        dist_path = self._publish_settings.dist_path
+        if self._publish_settings.dist_path.endswith('/'):
             dist_path = dist_path[:len(dist_path) - 1]
 
-        for file in self._included_files:
+        for file in self._publish_settings.included_files:
             is_file_excluded = False
-            if file in self._excluded_files:
+            if file in self._publish_settings.excluded_files:
                 is_file_excluded = True
             else:
-                for excluded in self._excluded_files:
+                for excluded in self._publish_settings.excluded_files:
                     if file.__contains__(excluded):
                         is_file_excluded = True
 
@@ -206,26 +202,18 @@ class Publisher(PublisherBase):
 
     def include(self, path: str):
         self._logger.trace(__name__, f'Started {__name__}.include')
-        self._included_files.append(path)
+        self._publish_settings.included_files.append(path)
         self._logger.trace(__name__, f'Stopped {__name__}.include')
 
     def exclude(self, path: str):
         self._logger.trace(__name__, f'Started {__name__}.exclude')
-        self._excluded_files.append(path)
+        self._publish_settings.excluded_files.append(path)
         self._logger.trace(__name__, f'Stopped {__name__}.exclude')
-
-    def init(self, args: tuple):
-        self._logger: LoggerBase = args[0]
-        self._source_path: str = args[1]
-        self._dist_path: str = args[2]
-        self._settings: list[Template] = args[3]
-
-        self._logger.header(f'{__name__}:')
 
     def create(self):
         self._logger.trace(__name__, f'Started {__name__}.create')
-        if not self._dist_path.endswith('/'):
-            self._dist_path += '/'
+        if not self._publish_settings.dist_path.endswith('/'):
+            self._publish_settings.dist_path += '/'
 
         self._read_source_path()
         self._read_templates()

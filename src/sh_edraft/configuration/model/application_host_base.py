@@ -1,10 +1,8 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 
-class ServiceBase(ABC):
+class ApplicationHostBase(ABC):
 
     @abstractmethod
     def __init__(self): pass
-
-    @abstractmethod
-    def create(self): pass
