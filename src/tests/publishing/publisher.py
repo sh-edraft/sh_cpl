@@ -36,8 +36,8 @@ class PublisherTest(unittest.TestCase):
         self._version = Version(2020, 12, 5).to_dict()
         templates = [
             Template(
-                '../../publish_templates/*_template.txt',
-                '*',
+                '../../publish_templates/all_template.txt',
+                'all',
                 '',
                 '',
                 '2020',
@@ -49,7 +49,7 @@ class PublisherTest(unittest.TestCase):
                 self._version
             ),
             Template(
-                '../../publish_templates/*_template.txt',
+                '../../publish_templates/all_template.txt',
                 'sh_edraft',
                 'common python library',
                 'Library to share common classes and models used at sh-edraft.de',

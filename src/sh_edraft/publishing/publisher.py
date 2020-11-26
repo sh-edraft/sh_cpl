@@ -109,7 +109,7 @@ class Publisher(PublisherBase):
             for file in self._publish_settings.included_files:
                 if os.path.basename(file) == '__init__.py' and file not in self._publish_settings.excluded_files:
                     template_name = template.name
-                    if template.name == '*' or template.name == '':
+                    if template.name == 'all' or template.name == '':
                         template_name = self._get_template_name_from_dirs(file)
                     else:
                         name = self._get_template_name_from_dirs(file)
