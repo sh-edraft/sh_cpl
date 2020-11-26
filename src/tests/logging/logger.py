@@ -14,8 +14,6 @@ class LoggerTest(unittest.TestCase):
 
     def setUp(self):
         self._app_host = ApplicationHost('CPL_Test', HostingEnvironment(EnvironmentName.testing, './'))
-        self._services = self._app_host.services
-        self._services.create()
 
         self._log_settings = LoggingSettings()
         self._log_settings.from_dict({
@@ -38,7 +36,6 @@ class LoggerTest(unittest.TestCase):
             shutil.rmtree(self._log_settings.path)
 
     def _check_general_requirements(self):
-        self.assertIsNotNone(self._services)
         self.assertIsNotNone(self._log_settings)
         self.assertIsNotNone(self._time_format_settings)
 
