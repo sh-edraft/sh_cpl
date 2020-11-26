@@ -7,6 +7,9 @@ class ApplicationBase(ABC):
     def __init__(self): pass
 
     @abstractmethod
+    def create_application_host(self): pass
+
+    @abstractmethod
     def create_configuration(self): pass
 
     @abstractmethod

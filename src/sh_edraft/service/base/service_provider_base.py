@@ -11,10 +11,6 @@ class ServiceProviderBase(ServiceBase):
     def __init__(self):
         ServiceBase.__init__(self)
 
-    @property
-    @abstractmethod
-    def config(self): pass
-
     @abstractmethod
     def add_transient(self, service_type: Type[ServiceBase], service: Type[ServiceBase]): pass
 
