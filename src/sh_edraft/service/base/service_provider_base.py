@@ -18,7 +18,7 @@ class ServiceProviderBase(ServiceBase):
     def add_scoped(self, service_type: Type[ServiceBase], service: Type[ServiceBase]): pass
 
     @abstractmethod
-    def add_singleton(self, service_type: Type[ServiceBase], service: ServiceBase): pass
+    def add_singleton(self, service_type: Type[ServiceBase], service: Callable[ServiceBase]): pass
 
     @abstractmethod
     def get_service(self, instance_type: Type[ServiceBase]) -> Callable[ServiceBase]: pass

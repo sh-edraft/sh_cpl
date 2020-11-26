@@ -1,13 +1,18 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
-from sh_edraft.configuration.base import ConfigurationBase
+from sh_edraft.configuration.base.configuration_base import ConfigurationBase
+from sh_edraft.hosting.base.environment_base import EnvironmentBase
 
 
 class ApplicationRuntimeBase(ABC):
 
     @abstractmethod
     def __init__(self): pass
+
+    @property
+    @abstractmethod
+    def environment(self) -> EnvironmentBase: pass
 
     @property
     @abstractmethod

@@ -43,7 +43,7 @@ class ServiceProvider(ServiceProviderBase):
     def add_scoped(self, service_type: Type[ServiceBase], service: Type[ServiceBase]):
         self._scoped_services[service_type] = service
 
-    def add_singleton(self, service_type: Type[ServiceBase], service: ServiceBase):
+    def add_singleton(self, service_type: Type[ServiceBase], service: Callable[ServiceBase]):
         for known_service in self._singleton_services:
             if type(known_service) == type(service_type):
                 raise Exception(f'Service with type {type(service_type)} already exists')

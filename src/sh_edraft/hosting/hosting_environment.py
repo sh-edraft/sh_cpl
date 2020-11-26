@@ -6,7 +6,7 @@ from sh_edraft.hosting.model.environment_name import EnvironmentName
 
 class HostingEnvironment(EnvironmentBase):
 
-    def __init__(self, name: EnvironmentName = None, crp: str = './'):
+    def __init__(self, name: EnvironmentName = EnvironmentName.production, crp: str = './'):
         EnvironmentBase.__init__(self)
 
         self._name: Optional[EnvironmentName] = name
