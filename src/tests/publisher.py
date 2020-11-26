@@ -1,11 +1,11 @@
 import os
 
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publish.base import PublisherBase
+from sh_edraft.publishing.base import PublisherBase
 from sh_edraft.service.base import ServiceProviderBase
-from sh_edraft.source_code.model import Version
-from sh_edraft.publish import Publisher
-from sh_edraft.publish.model import Template
+from sh_edraft.coding.model import Version
+from sh_edraft.publishing import Publisher
+from sh_edraft.publishing.model import Template
 
 
 class PublisherTest:

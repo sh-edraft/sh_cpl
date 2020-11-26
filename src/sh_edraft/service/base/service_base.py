@@ -7,7 +7,4 @@ class ServiceBase(ABC):
     def __init__(self): pass
 
     @abstractmethod
-    def init(self, args: tuple): pass
-
-    @abstractmethod
     def create(self): pass

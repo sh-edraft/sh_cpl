@@ -1,14 +1,16 @@
 from datetime import datetime
 
-from sh_edraft.service import ServiceProvider
+from sh_edraft.hosting.base.application_host_base import ApplicationHostBase
+from sh_edraft.service.service_provider import ServiceProvider
 
 
-class ApplicationHost:
+class ApplicationHost(ApplicationHostBase):
     
     def __init__(self):
+        ApplicationHostBase.__init__(self)
         self._services = ServiceProvider()
-        self._end_time: datetime = datetime.now()
         self._start_time: datetime = datetime.now()
+        self._end_time: datetime = datetime.now()
 
     @property
     def services(self):
@@ -19,7 +21,7 @@ class ApplicationHost:
         return self._end_time
 
     @end_time.setter
-    def end_time(self, end_time: datetime) -> None:
+    def end_time(self, end_time: datetime):
         self._end_time = end_time
 
     @property
@@ -27,7 +29,7 @@ class ApplicationHost:
         return self._start_time
 
     @start_time.setter
-    def start_time(self, start_time: datetime) -> None:
+    def start_time(self, start_time: datetime):
         self._start_time = start_time
 
     @property

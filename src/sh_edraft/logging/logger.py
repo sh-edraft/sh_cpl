@@ -1,35 +1,23 @@
 import datetime
 import os
 import traceback
+from collections import Callable
 from string import Template
-from typing import Optional
 
-from sh_edraft.configuration.application_host import ApplicationHost
+from sh_edraft.hosting.application_host import ApplicationHost
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.logging.model.log_level import LoggingLevel
-from sh_edraft.logging.model.log_settings import LoggingSettings
-from sh_edraft.time.model.time_format_settings import TimeFormatSettings
+from sh_edraft.logging.model import LoggingSettings
+from sh_edraft.logging.model.logging_level import LoggingLevel
+from sh_edraft.time.model import TimeFormatSettings
 from sh_edraft.utils.console import Console
 
 
 class Logger(LoggerBase):
 
-    def __init__(self):
-        LoggerBase.__init__(self)
+    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_host: ApplicationHost):
+        LoggerBase.__init__(self, logging_settings, time_format)
 
-        self._log_settings: Optional[LoggingSettings] = None
-        self._time_format_settings: Optional[TimeFormatSettings] = None
-        self._app_host: Optional[ApplicationHost] = None
-
-        self._log: Optional[str] = None
-        self._path: Optional[str] = None
-        self._level: Optional[LoggingLevel] = None
-        self._console: Optional[LoggingLevel] = None
-
-    def init(self, args: tuple):
-        self._log_settings = args[0]
-        self._time_format_settings = args[1]
-        self._app_host = args[2]
+        self._app_host: ApplicationHost = app_host
 
         self._log = Template(self._log_settings.filename).substitute(
             date_time_now=self._app_host.date_time_now.strftime(self._time_format_settings.date_time_format),

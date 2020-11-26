@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-sh_edraft.service.model 
+sh_edraft.service.base
 ~~~~~~~~~~~~~~~~~~~
 
 
@@ -11,7 +11,7 @@ sh_edraft.service.model
 
 """
 
-__title__ = 'sh_edraft.service.model'
+__title__ = 'sh_edraft.service.base'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'
