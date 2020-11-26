@@ -11,10 +11,6 @@ class ServiceProviderBase(ServiceBase):
     def __init__(self):
         ServiceBase.__init__(self)
 
-        self._transient_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
-        self._scoped_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
-        self._singleton_services: dict[Type[ServiceBase], ServiceBase] = {}
-
     @property
     @abstractmethod
     def config(self): pass

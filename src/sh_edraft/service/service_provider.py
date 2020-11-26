@@ -16,6 +16,10 @@ class ServiceProvider(ServiceProviderBase):
         self._app_host: ApplicationHostBase = app_host
         self._config = Configuration()
 
+        self._transient_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
+        self._scoped_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
+        self._singleton_services: dict[Type[ServiceBase], ServiceBase] = {}
+
     @property
     def config(self):
         return self._config
