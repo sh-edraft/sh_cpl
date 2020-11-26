@@ -1,18 +1,13 @@
 from abc import abstractmethod
 
-from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
 from sh_edraft.service.base.service_base import ServiceBase
 
 
 class PublisherBase(ServiceBase):
 
     @abstractmethod
-    def __init__(self, logger: LoggerBase, publish_settings: PublishSettingsModel):
+    def __init__(self):
         ServiceBase.__init__(self)
-
-        self._logger: LoggerBase = logger
-        self._publish_settings: PublishSettingsModel = publish_settings
 
     @property
     @abstractmethod

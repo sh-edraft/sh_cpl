@@ -11,7 +11,10 @@ from sh_edraft.publishing.model.template import Template
 class Publisher(PublisherBase):
 
     def __init__(self, logger: LoggerBase, publish_settings: PublishSettingsModel):
-        super().__init__(logger, publish_settings)
+        PublisherBase.__init__(self)
+
+        self._logger: LoggerBase = logger
+        self._publish_settings: PublishSettingsModel = publish_settings
 
     @property
     def source_path(self) -> str:

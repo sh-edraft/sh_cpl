@@ -11,8 +11,9 @@ from sh_edraft.service.base.service_base import ServiceBase
 
 class ServiceProvider(ServiceProviderBase):
 
-    def __init__(self):
+    def __init__(self, app_host: ApplicationHostBase):
         super().__init__()
+        self._app_host: ApplicationHostBase = app_host
         self._config = Configuration()
 
     @property
@@ -27,10 +28,13 @@ class ServiceProvider(ServiceProviderBase):
         for param in sig.parameters.items():
             parameter = param[1]
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
-                if issubclass(parameter.annotation, ServiceBase):
+                if issubclass(parameter.annotation, ApplicationHostBase):
+                    params.append(self._app_host)
+
+                elif issubclass(parameter.annotation, ServiceBase):
                     params.append(self.get_service(parameter.annotation))
 
-                elif issubclass(parameter.annotation, ConfigurationModelBase) or issubclass(parameter.annotation, ApplicationHostBase):
+                elif issubclass(parameter.annotation, ConfigurationModelBase):
                     params.append(self._config.get_config_by_type(parameter.annotation))
 
         return service(*params)

@@ -9,6 +9,8 @@ class Configuration(ConfigurationBase):
     def __init__(self):
         super().__init__()
 
+        self._config: dict[type, object] = {}
+
     @property
     def config(self):
         return self._config

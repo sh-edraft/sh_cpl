@@ -10,7 +10,6 @@ class ConfigurationBase(ServiceBase):
     @abstractmethod
     def __init__(self):
         ServiceBase.__init__(self)
-        self._config: dict[type, object] = {}
 
     @property
     @abstractmethod

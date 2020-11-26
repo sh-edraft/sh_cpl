@@ -1,12 +1,14 @@
 import unittest
 
 from sh_edraft.hosting import ApplicationHost
+from sh_edraft.hosting import HostingEnvironment
+from sh_edraft.hosting.model import EnvironmentName
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.publishing import Publisher
 from sh_edraft.publishing.base import PublisherBase
-from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
+from sh_edraft.publishing.model import PublishSettingsModel
 from sh_edraft.service import ServiceProvider
 from sh_edraft.service.base import ServiceBase
 from sh_edraft.time.model import TimeFormatSettings
@@ -15,7 +17,7 @@ from sh_edraft.time.model import TimeFormatSettings
 class ServiceProviderTest(unittest.TestCase):
 
     def setUp(self):
-        self._app_host = ApplicationHost()
+        self._app_host = ApplicationHost('CPL_Test', HostingEnvironment(EnvironmentName.testing, './'))
         self._services = self._app_host.services
         self._services.create()
 
@@ -59,7 +61,7 @@ class ServiceProviderTest(unittest.TestCase):
 
     def test_create(self):
         print(f'{__name__}.test_create:')
-        provider = ServiceProvider()
+        provider = ServiceProvider(self._app_host)
         self.assertIsNotNone(provider)
         provider.create()
         self.assertIsNotNone(provider)

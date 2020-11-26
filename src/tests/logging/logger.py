@@ -1,10 +1,10 @@
 import os
 import shutil
 import unittest
-from datetime import datetime
 from string import Template
 
-from sh_edraft.hosting import ApplicationHost
+from sh_edraft.hosting import ApplicationHost, HostingEnvironment
+from sh_edraft.hosting.model import EnvironmentName
 from sh_edraft.logging import Logger
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.time.model import TimeFormatSettings
@@ -13,7 +13,7 @@ from sh_edraft.time.model import TimeFormatSettings
 class LoggerTest(unittest.TestCase):
 
     def setUp(self):
-        self._app_host = ApplicationHost()
+        self._app_host = ApplicationHost('CPL_Test', HostingEnvironment(EnvironmentName.testing, './'))
         self._services = self._app_host.services
         self._services.create()
 

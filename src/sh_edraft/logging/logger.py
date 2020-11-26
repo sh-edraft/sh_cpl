@@ -1,10 +1,9 @@
 import datetime
 import os
 import traceback
-from collections import Callable
 from string import Template
 
-from sh_edraft.hosting.application_host import ApplicationHost
+from sh_edraft.hosting.base import ApplicationHostBase
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.logging.model.logging_level import LoggingLevel
@@ -14,10 +13,12 @@ from sh_edraft.utils.console import Console
 
 class Logger(LoggerBase):
 
-    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_host: ApplicationHost):
-        LoggerBase.__init__(self, logging_settings, time_format)
+    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_host: ApplicationHostBase):
+        LoggerBase.__init__(self)
 
-        self._app_host: ApplicationHost = app_host
+        self._log_settings: LoggingSettings = logging_settings
+        self._time_format_settings: TimeFormatSettings = time_format
+        self._app_host = app_host
 
         self._log = Template(self._log_settings.filename).substitute(
             date_time_now=self._app_host.date_time_now.strftime(self._time_format_settings.date_time_format),

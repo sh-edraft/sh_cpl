@@ -2,14 +2,13 @@ import os
 import shutil
 import unittest
 
-from sh_edraft.hosting import ApplicationHost
+from sh_edraft.hosting import ApplicationHost, HostingEnvironment
+from sh_edraft.hosting.model import EnvironmentName
 from sh_edraft.logging import Logger
-from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.publishing import Publisher
-from sh_edraft.publishing.base import PublisherBase
 from sh_edraft.publishing.model import Template
-from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
+from sh_edraft.publishing.model import PublishSettingsModel
 from sh_edraft.coding.model import Version
 from sh_edraft.time.model import TimeFormatSettings
 
@@ -79,7 +78,7 @@ class PublisherTest(unittest.TestCase):
     def setUp(self):
         self._config()
 
-        self._app_host = ApplicationHost()
+        self._app_host = ApplicationHost('CPL_Test', HostingEnvironment(EnvironmentName.testing, './'))
         self._logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
         self._logger.create()
 
