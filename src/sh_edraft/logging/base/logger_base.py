@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from sh_edraft.configuration import ApplicationHost
+from sh_edraft.hosting.application_host import ApplicationHost
 from sh_edraft.logging.model.logging_settings import LoggingSettings
 from sh_edraft.service.base.service_base import ServiceBase
 from sh_edraft.time.model.time_format_settings import TimeFormatSettings

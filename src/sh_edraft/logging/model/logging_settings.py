@@ -1,7 +1,7 @@
 import traceback
 from typing import Optional
 
-from sh_edraft.configuration.model.configuration_model_base import ConfigurationModelBase
+from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.logging.model.logging_settings_name import LogSettingsName
 from sh_edraft.utils.console import Console
 from sh_edraft.logging.model.logging_level import LoggingLevel

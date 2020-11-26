@@ -1,7 +1,7 @@
 from collections import Callable
 
-from sh_edraft.configuration.model.configuration_model_base import ConfigurationModelBase
-from sh_edraft.configuration.model.configuration_base import ConfigurationBase
+from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
+from sh_edraft.configuration.base.configuration_base import ConfigurationBase
 
 
 class Configuration(ConfigurationBase):

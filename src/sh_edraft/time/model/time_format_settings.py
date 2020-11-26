@@ -1,7 +1,7 @@
 import traceback
 from typing import Optional
 
-from sh_edraft.configuration.model import ConfigurationModelBase
+from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.time.model.time_format_settings_names import TimeFormatSettingsNames
 from sh_edraft.utils.console import Console
 

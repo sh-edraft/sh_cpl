@@ -4,7 +4,7 @@ import traceback
 from collections import Callable
 from string import Template
 
-from sh_edraft.configuration import ApplicationHost
+from sh_edraft.hosting.application_host import ApplicationHost
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.logging.model.logging_level import LoggingLevel

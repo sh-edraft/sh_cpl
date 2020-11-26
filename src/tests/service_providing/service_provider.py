@@ -1,7 +1,6 @@
 import unittest
 
-from sh_edraft.configuration import ApplicationHost
-from sh_edraft.configuration.model.application_host_base import ApplicationHostBase
+from sh_edraft.hosting import ApplicationHost
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings

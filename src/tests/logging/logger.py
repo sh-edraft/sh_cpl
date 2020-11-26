@@ -4,9 +4,8 @@ import unittest
 from datetime import datetime
 from string import Template
 
-from sh_edraft.configuration import ApplicationHost
+from sh_edraft.hosting import ApplicationHost
 from sh_edraft.logging import Logger
-from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.time.model import TimeFormatSettings
 

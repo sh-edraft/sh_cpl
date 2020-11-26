@@ -3,11 +3,10 @@ from inspect import signature, Parameter
 from typing import Type
 
 from sh_edraft.configuration.configuration import Configuration
-from sh_edraft.configuration.model.application_host_base import ApplicationHostBase
-from sh_edraft.configuration.model.configuration_model_base import ConfigurationModelBase
+from sh_edraft.hosting.base.application_host_base import ApplicationHostBase
+from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.service.base.service_provider_base import ServiceProviderBase
 from sh_edraft.service.base.service_base import ServiceBase
-from sh_edraft.service.model.provide_state import ProvideState
 
 
 class ServiceProvider(ServiceProviderBase):

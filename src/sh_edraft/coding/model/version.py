@@ -1,7 +1,7 @@
 from typing import Optional
 
-from sh_edraft.source_code.model.version_enum import VersionEnum
-from sh_edraft.configuration.model.configuration_model_base import ConfigurationModelBase
+from sh_edraft.coding.model.version_enum import VersionEnum
+from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 
 
 class Version(ConfigurationModelBase):
