@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 
 from sh_edraft.hosting.hosting_environment import HostingEnvironment
@@ -9,12 +10,12 @@ from sh_edraft.service.service_provider import ServiceProvider
 
 class ApplicationHost(ApplicationHostBase):
 
-    def __init__(self, name: str, args: list[str]):
+    def __init__(self, name: str):
         ApplicationHostBase.__init__(self)
         self._name: str = name
         self._environment = HostingEnvironment()
 
-        self._args: list[str] = args
+        self._args: list[str] = sys.argv
         self._services = ServiceProvider(self)
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()

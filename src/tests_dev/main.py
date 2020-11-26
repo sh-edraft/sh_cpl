@@ -1,5 +1,3 @@
-import sys
-
 from sh_edraft.hosting import ApplicationHost
 from sh_edraft.hosting.base.application_base import ApplicationBase
 
@@ -9,7 +7,7 @@ class Program(ApplicationBase):
     def __init__(self):
         ApplicationBase.__init__(self)
 
-        self._app_host = ApplicationHost('CPL_DEV_Test', sys.argv)
+        self._app_host = ApplicationHost('CPL_DEV_Test')
         self._config = self._app_host.services.config
         self._services = self._app_host.services
 
