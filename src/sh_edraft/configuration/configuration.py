@@ -11,10 +11,6 @@ class Configuration(ConfigurationBase):
 
         self._config: dict[type, object] = {}
 
-    @property
-    def config(self):
-        return self._config
-
     def create(self): pass
 
     def add_config_by_type(self, key_type: type, value: object):

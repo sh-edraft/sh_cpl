@@ -1,8 +1,8 @@
 import unittest
+from collections import Callable
+from typing import Type, cast
 
 from sh_edraft.hosting import ApplicationHost
-from sh_edraft.hosting import HostingEnvironment
-from sh_edraft.hosting.model import EnvironmentName
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
@@ -17,8 +17,10 @@ from sh_edraft.time.model import TimeFormatSettings
 class ServiceProviderTest(unittest.TestCase):
 
     def setUp(self):
-        self._app_host = ApplicationHost('CPL_Test', HostingEnvironment(EnvironmentName.testing, './'))
-        self._services = self._app_host.services
+        self._app_host = ApplicationHost('CPL_Test')
+        self._config = self._app_host.configuration
+        self._config.create()
+        self._services: ServiceProvider = cast(ServiceProvider, self._app_host.services)
         self._services.create()
 
         self._log_settings = LoggingSettings()
@@ -28,7 +30,7 @@ class ServiceProviderTest(unittest.TestCase):
             "ConsoleLogLevel": "TRACE",
             "FileLogLevel": "TRACE"
         })
-        self._services.config.add_config_by_type(LoggingSettings, self._log_settings)
+        self._config.add_config_by_type(LoggingSettings, self._log_settings)
 
         self._time_format_settings = TimeFormatSettings()
         self._time_format_settings.from_dict({
@@ -37,8 +39,8 @@ class ServiceProviderTest(unittest.TestCase):
             "DateTimeFormat": "%Y-%m-%d %H:%M:%S.%f",
             "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
         })
-        self._services.config.add_config_by_type(TimeFormatSettings, self._time_format_settings)
-        self._services.config.add_config_by_type(ApplicationHost, self._app_host)
+        self._config.add_config_by_type(TimeFormatSettings, self._time_format_settings)
+        self._config.add_config_by_type(ApplicationHost, self._app_host)
 
         self._publish_settings_model = PublishSettingsModel()
         self._publish_settings_model.from_dict({
@@ -49,7 +51,7 @@ class ServiceProviderTest(unittest.TestCase):
             "ExcludedFiles": [],
             "TemplateEnding": "_template.txt",
         })
-        self._services.config.add_config_by_type(PublishSettingsModel, self._publish_settings_model)
+        self._config.add_config_by_type(PublishSettingsModel, self._publish_settings_model)
 
     def _check_general_requirements(self):
         self.assertIsNotNone(self._services)
@@ -61,7 +63,7 @@ class ServiceProviderTest(unittest.TestCase):
 
     def test_create(self):
         print(f'{__name__}.test_create:')
-        provider = ServiceProvider(self._app_host)
+        provider = ServiceProvider(self._app_host.application_runtime)
         self.assertIsNotNone(provider)
         provider.create()
         self.assertIsNotNone(provider)
@@ -108,7 +110,7 @@ class ServiceProviderTest(unittest.TestCase):
 
         self.assertEqual(logger._log_settings, self._log_settings)
         self.assertEqual(logger._time_format_settings, self._time_format_settings)
-        self.assertEqual(logger._app_host, self._app_host)
+        self.assertEqual(logger._app_runtime, self._app_host.application_runtime)
 
     def test_add_scoped(self):
         print(f'{__name__}.test_add_scoped:')

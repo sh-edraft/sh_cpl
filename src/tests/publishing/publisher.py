@@ -15,7 +15,7 @@ from sh_edraft.time.model import TimeFormatSettings
 
 class PublisherTest(unittest.TestCase):
 
-    def _config(self):
+    def _configure(self):
         self._log_settings = LoggingSettings()
         self._log_settings.from_dict({
             "Path": "logs/",
@@ -76,10 +76,12 @@ class PublisherTest(unittest.TestCase):
         })
 
     def setUp(self):
-        self._config()
+        self._configure()
 
-        self._app_host = ApplicationHost('CPL_Test', HostingEnvironment(EnvironmentName.testing, './'))
-        self._logger = Logger(self._log_settings, self._time_format_settings, self._app_host)
+        app_host = ApplicationHost('CPL_Test')
+        self._app_runtime = app_host.application_runtime
+
+        self._logger = Logger(self._log_settings, self._time_format_settings, app_host.application_runtime)
         self._logger.create()
 
     def tearDown(self):
@@ -92,3 +94,4 @@ class PublisherTest(unittest.TestCase):
 
         publisher.create()
         self.assertTrue(os.path.isdir(self._dist_path))
+        self.assertEqual(publisher._publish_settings, self._publish_settings_model)

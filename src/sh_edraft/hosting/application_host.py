@@ -3,6 +3,7 @@ from datetime import datetime
 
 from sh_edraft.configuration.configuration import Configuration
 from sh_edraft.configuration.base.configuration_base import ConfigurationBase
+from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 from sh_edraft.hosting.base.environment_base import EnvironmentBase
 from sh_edraft.hosting.hosting_environment import HostingEnvironment
 from sh_edraft.hosting.application_runtime import ApplicationRuntime
@@ -31,12 +32,16 @@ class ApplicationHost(ApplicationHostBase):
         return self._name
 
     @property
+    def configuration(self) -> ConfigurationBase:
+        return self._config
+
+    @property
     def environment(self) -> EnvironmentBase:
         return self._environment
 
     @property
-    def configuration(self) -> ConfigurationBase:
-        return self._config
+    def application_runtime(self) -> ApplicationRuntimeBase:
+        return self._app_runtime
 
     @property
     def services(self) -> ServiceProviderBase:

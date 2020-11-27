@@ -10,10 +10,6 @@ class ConfigurationBase(ABC):
     @abstractmethod
     def __init__(self): pass
 
-    @property
-    @abstractmethod
-    def config(self) -> dict[type, object]: pass
-
     @abstractmethod
     def add_config_by_type(self, key_type: type, value: object): pass
 
