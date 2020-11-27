@@ -146,9 +146,9 @@ class Logger(LoggerBase):
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevel.ERROR, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevel.FATAL, f'{ex} -> {tb}')
         else:
-            output = self._get_string(name, LoggingLevel.ERROR, message)
+            output = self._get_string(name, LoggingLevel.FATAL, message)
 
         # check if message can be written to log
         if self._level.value >= LoggingLevel.FATAL.value:

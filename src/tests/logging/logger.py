@@ -210,4 +210,4 @@ class LoggerTest(unittest.TestCase):
             print('Cannot open log file', e)
 
         self.assertGreater(len(log_content), 0)
-        self.assertTrue(log_content[len(log_content) - 1].endswith(f'[ ERROR ] [ {__name__} ]: {__name__}.test_fatal:\n'))
+        self.assertTrue(log_content[len(log_content) - 1].endswith(f'[ FATAL ] [ {__name__} ]: {__name__}.test_fatal:\n'))
