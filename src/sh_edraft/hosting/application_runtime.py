@@ -7,22 +7,22 @@ from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBa
 
 class ApplicationRuntime(ApplicationRuntimeBase):
 
-    def __init__(self, config: ConfigurationBase, runtime: EnvironmentBase):
+    def __init__(self, config: ConfigurationBase, environment: EnvironmentBase):
         ApplicationRuntimeBase.__init__(self)
 
-        self._app_runtime = runtime
+        self._environment = environment
         self._app_configuration = config
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
 
     @property
     def environment(self) -> EnvironmentBase:
-        return self._app_runtime
-    
+        return self._environment
+
     @property
     def configuration(self) -> ConfigurationBase:
         return self._app_configuration
-    
+
     @property
     def start_time(self) -> datetime:
         return self._start_time
