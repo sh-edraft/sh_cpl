@@ -9,6 +9,7 @@ from sh_edraft.utils.console import Console
 class TimeFormatSettings(ConfigurationModelBase):
 
     def __init__(self):
+        ConfigurationModelBase.__init__(self)
         self._date_format: Optional[str] = None
         self._time_format: Optional[str] = None
         self._date_time_format: Optional[str] = None
@@ -55,5 +56,5 @@ class TimeFormatSettings(ConfigurationModelBase):
             self._date_time_format = settings[TimeFormatSettingsNames.date_time_format.value]
             self._date_time_log_format = settings[TimeFormatSettingsNames.date_time_log_format.value]
         except Exception as e:
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {TimeFormatSettingsNames.formats.value} settings')
+            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}', 'red')

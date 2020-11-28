@@ -33,7 +33,7 @@ class ServiceProvider(ServiceProviderBase):
                     params.append(self.get_service(parameter.annotation))
 
                 elif issubclass(parameter.annotation, ConfigurationModelBase):
-                    params.append(self._app_runtime.configuration.get_config_by_type(parameter.annotation))
+                    params.append(self._app_runtime.configuration.get_configuration(parameter.annotation))
 
         return service(*params)
 

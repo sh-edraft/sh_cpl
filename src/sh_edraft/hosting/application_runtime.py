@@ -1,23 +1,17 @@
 from datetime import datetime
 
 from sh_edraft.configuration.base.configuration_base import ConfigurationBase
-from sh_edraft.hosting.base.environment_base import EnvironmentBase
 from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 
 
 class ApplicationRuntime(ApplicationRuntimeBase):
 
-    def __init__(self, config: ConfigurationBase, environment: EnvironmentBase):
+    def __init__(self, config: ConfigurationBase):
         ApplicationRuntimeBase.__init__(self)
 
-        self._environment = environment
         self._app_configuration = config
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
-
-    @property
-    def environment(self) -> EnvironmentBase:
-        return self._environment
 
     @property
     def configuration(self) -> ConfigurationBase:

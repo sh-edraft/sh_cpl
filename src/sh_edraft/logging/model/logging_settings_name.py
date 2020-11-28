@@ -1,9 +1,8 @@
 from enum import Enum
 
 
-class LogSettingsName(Enum):
+class LoggingSettingsName(Enum):
 
-    log = 'Log'
     path = 'Path'
     filename = 'Filename'
     console_level = 'ConsoleLogLevel'
