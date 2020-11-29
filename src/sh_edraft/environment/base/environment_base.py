@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-from sh_edraft.environment.model.environment_name import EnvironmentName
-
 
 class EnvironmentBase(ABC):
 
@@ -10,11 +8,11 @@ class EnvironmentBase(ABC):
     
     @property
     @abstractmethod
-    def environment_name(self) -> EnvironmentName: pass
+    def environment_name(self) -> str: pass
     
     @environment_name.setter
     @abstractmethod
-    def environment_name(self, environment_name: EnvironmentName): pass
+    def environment_name(self, environment_name: str): pass
     
     @property
     @abstractmethod

@@ -14,14 +14,14 @@ class Program(ApplicationBase):
         ApplicationBase.__init__(self)
 
         self._app_host: Optional[ApplicationHost] = None
-
         self._services: Optional[ServiceProviderBase] = None
         self._configuration: Optional[ConfigurationBase] = None
+        self._logger: Optional[LoggerBase] = None
 
     def create_application_host(self):
         self._app_host = ApplicationHost()
-        self._services = self._app_host.services
         self._configuration = self._app_host.configuration
+        self._services = self._app_host.services
 
     def create_configuration(self):
         self._configuration.create()
@@ -35,12 +35,11 @@ class Program(ApplicationBase):
     def create_services(self):
         self._services.create()
         self._services.add_singleton(LoggerBase, Logger)
-        logger: Logger = self._services.get_service(LoggerBase)
-        logger.create()
-        logger.header(f'{self._configuration.environment.application_name}:')
-        logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
-        logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
-        logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
+        self._logger = self._services.get_service(LoggerBase)
+        self._logger.create()
 
     def main(self):
-        print('RUN')
+        self._logger.header(f'{self._configuration.environment.application_name}:')
+        self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
+        self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
+        self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')

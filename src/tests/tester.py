@@ -1,7 +1,9 @@
 import unittest
 
-from tests.logging.logger import LoggerTest
-from tests.publishing.publisher import PublisherTest
+from tests.configuration.config import ConfigTest
+from tests.hosting.app_host import AppHostTest
+from tests.services.logging.logger import LoggerTest
+from tests.services.publishing.publisher import PublisherTest
 from tests.service_providing.service_provider import ServiceProviderTest
 
 
@@ -11,6 +13,18 @@ class Tester:
         self._suite = unittest.TestSuite()
 
     def create(self):
+        # hosting app host
+        self._suite.addTest(AppHostTest('test_create'))
+
+        # configuration
+        self._suite.addTest(ConfigTest('test_create'))
+        self._suite.addTest(ConfigTest('test_env_vars'))
+        self._suite.addTest(ConfigTest('test_arguments'))
+        self._suite.addTest(ConfigTest('test_appsettings'))
+        self._suite.addTest(ConfigTest('test_appsettings_environment'))
+        self._suite.addTest(ConfigTest('test_appsettings_host'))
+        self._suite.addTest(ConfigTest('test_appsettings_customer'))
+
         # providing
         self._suite.addTest(ServiceProviderTest('test_create'))
         self._suite.addTest(ServiceProviderTest('test_add_singleton'))

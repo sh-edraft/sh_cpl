@@ -16,12 +16,12 @@ class HostingEnvironment(EnvironmentBase):
         self._content_root_path: Optional[str] = crp
 
     @property
-    def environment_name(self) -> EnvironmentName:
-        return self._environment_name
+    def environment_name(self) -> str:
+        return str(self._environment_name.value)
 
     @environment_name.setter
-    def environment_name(self, environment_name: EnvironmentName):
-        self._environment_name = environment_name
+    def environment_name(self, environment_name: str):
+        self._environment_name = EnvironmentName(environment_name)
 
     @property
     def application_name(self) -> str:

@@ -83,6 +83,7 @@ class PublisherTest(unittest.TestCase):
             shutil.rmtree(self._log_settings.path)
 
     def test_create(self):
+        print(f'{__name__}.test_create:')
         publisher: Publisher = Publisher(self._logger, self._publish_settings_model)
         self.assertIsNotNone(publisher)
 
