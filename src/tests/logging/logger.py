@@ -14,28 +14,21 @@ from sh_edraft.time.model import TimeFormatSettings
 class LoggerTest(unittest.TestCase):
 
     def setUp(self):
-        app_host = ApplicationHost('CPL_Test')
-        self._app_runtime = app_host.application_runtime
-        self._config = app_host.configuration
+        self._app_host = ApplicationHost()
+        self._config = self._app_host.configuration
         self._config.create()
-        self._services: ServiceProvider = cast(ServiceProvider, app_host.services)
+        self._config.add_environment_variables('PYTHON_')
+        self._config.add_environment_variables('CPL_')
+        self._config.add_argument_variables()
+        self._config.add_json_file(f'appsettings.json')
+        self._config.add_json_file(f'appsettings.{self._config.environment.environment_name}.json')
+        self._config.add_json_file(f'appsettings.{self._config.environment.host_name}.json', optional=True)
+        self._services: ServiceProvider = cast(ServiceProvider, self._app_host.services)
         self._services.create()
 
-        self._log_settings = LoggingSettings()
-        self._log_settings.from_dict({
-            "Path": "logs/",
-            "Filename": "log_$start_time.log",
-            "ConsoleLogLevel": "TRACE",
-            "FileLogLevel": "TRACE"
-        })
-
-        self._time_format_settings = TimeFormatSettings()
-        self._time_format_settings.from_dict({
-            "DateFormat": "%Y-%m-%d",
-            "TimeFormat": "%H:%M:%S",
-            "DateTimeFormat": "%Y-%m-%d %H:%M:%S.%f",
-            "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
-        })
+        self._app_runtime = self._app_host.application_runtime
+        self._log_settings: LoggingSettings = self._config.get_configuration(LoggingSettings)
+        self._time_format_settings: TimeFormatSettings = self._config.get_configuration(TimeFormatSettings)
 
     def tearDown(self):
         if os.path.isdir(self._log_settings.path):
