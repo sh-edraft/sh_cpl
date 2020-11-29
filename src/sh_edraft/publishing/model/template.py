@@ -21,6 +21,7 @@ class Template(ConfigurationModelBase):
             author: Optional[str] = None,
             version: Optional[dict] = None
     ):
+        ConfigurationModelBase.__init__(self)
         self._template_path: Optional[str] = template_path
         self._name: Optional[str] = name
         self._description: Optional[str] = description

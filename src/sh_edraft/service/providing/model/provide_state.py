@@ -1,6 +1,6 @@
 from typing import Type
 
-from sh_edraft.service.base import ServiceBase
+from sh_edraft.service.base.service_base import ServiceBase
 
 
 class ProvideState:

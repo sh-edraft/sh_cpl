@@ -5,9 +5,9 @@ from string import Template
 
 from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.logging.model import LoggingSettings
+from sh_edraft.logging.model.logging_settings import LoggingSettings
 from sh_edraft.logging.model.logging_level import LoggingLevel
-from sh_edraft.time.model import TimeFormatSettings
+from sh_edraft.time.model.time_format_settings import TimeFormatSettings
 from sh_edraft.utils.console import Console
 
 

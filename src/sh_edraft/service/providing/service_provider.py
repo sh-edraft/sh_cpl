@@ -4,7 +4,7 @@ from typing import Type
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
-from sh_edraft.service.base.service_provider_base import ServiceProviderBase
+from sh_edraft.service.providing.base.service_provider_base import ServiceProviderBase
 from sh_edraft.service.base.service_base import ServiceBase
 
 
@@ -45,8 +45,8 @@ class ServiceProvider(ServiceProviderBase):
 
     def add_singleton(self, service_type: Type[ServiceBase], service: Callable[ServiceBase]):
         for known_service in self._singleton_services:
-            if type(known_service) == type(service_type):
-                raise Exception(f'Service with type {type(service_type)} already exists')
+            if type(known_service) == service_type:
+                raise Exception(f'Service with type {service_type} already exists')
 
         self._singleton_services[service_type] = self._create_instance(service)
 
