@@ -1,10 +1,9 @@
 import datetime
 import os
 import traceback
-from collections import Callable
 from string import Template
 
-from sh_edraft.hosting.application_host import ApplicationHost
+from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.logging.model.logging_level import LoggingLevel
@@ -14,14 +13,16 @@ from sh_edraft.utils.console import Console
 
 class Logger(LoggerBase):
 
-    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_host: ApplicationHost):
-        LoggerBase.__init__(self, logging_settings, time_format)
+    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_runtime: ApplicationRuntimeBase):
+        LoggerBase.__init__(self)
 
-        self._app_host: ApplicationHost = app_host
+        self._app_runtime = app_runtime
+        self._log_settings: LoggingSettings = logging_settings
+        self._time_format_settings: TimeFormatSettings = time_format
 
         self._log = Template(self._log_settings.filename).substitute(
-            date_time_now=self._app_host.date_time_now.strftime(self._time_format_settings.date_time_format),
-            start_time=self._app_host.start_time.strftime(self._time_format_settings.date_time_log_format)
+            date_time_now=self._app_runtime.date_time_now.strftime(self._time_format_settings.date_time_format),
+            start_time=self._app_runtime.start_time.strftime(self._time_format_settings.date_time_log_format)
         )
         self._path = self._log_settings.path
         self._level = self._log_settings.level
@@ -46,7 +47,7 @@ class Logger(LoggerBase):
             if not os.path.exists(self._path):
                 os.mkdir(self._path)
         except Exception as e:
-            self.fatal(__name__, 'Cannot create log dir', ex=e)
+            self._fatal_console(__name__, 'Cannot create log dir', ex=e)
 
         """ create new log file """
         try:
@@ -56,16 +57,19 @@ class Logger(LoggerBase):
             Console.write_line(f'[{__name__}]: Using log file: {path}')
             f.close()
         except Exception as e:
-            self.fatal(__name__, 'Cannot open log file', ex=e)
+            self._fatal_console(__name__, 'Cannot open log file', ex=e)
 
     def _append_log(self, string):
         try:
             # open log file and append always
+            if not os.path.isdir(self._path):
+                self._fatal_console(__name__, 'Log directory not found')
+
             with open(self._path + self._log, "a+", encoding="utf-8") as f:
                 f.write(string + '\n')
                 f.close()
         except Exception as e:
-            self.error(__name__, f'Cannot append log file, message: {string}', ex=e)
+            self._fatal_console(__name__, f'Cannot append log file, message: {string}', ex=e)
 
     def _get_string(self, name: str, level: LoggingLevel, message: str) -> str:
         log_level = level.name
@@ -142,13 +146,28 @@ class Logger(LoggerBase):
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevel.ERROR, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevel.FATAL, f'{ex} -> {tb}')
         else:
-            output = self._get_string(name, LoggingLevel.ERROR, message)
+            output = self._get_string(name, LoggingLevel.FATAL, message)
 
         # check if message can be written to log
         if self._level.value >= LoggingLevel.FATAL.value:
             self._append_log(output)
+
+        # check if message can be shown in console
+        if self._console.value >= LoggingLevel.FATAL.value:
+            Console.write_line(output, 'red')
+
+        exit()
+
+    def _fatal_console(self, name: str, message: str, ex: Exception = None):
+        output = ''
+        if ex is not None:
+            tb = traceback.format_exc()
+            self.error(name, message)
+            output = self._get_string(name, LoggingLevel.ERROR, f'{ex} -> {tb}')
+        else:
+            output = self._get_string(name, LoggingLevel.ERROR, message)
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.FATAL.value:

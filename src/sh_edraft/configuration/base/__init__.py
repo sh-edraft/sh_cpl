@@ -20,6 +20,7 @@ __version__ = '2020.12.5'
 from collections import namedtuple
 
 # imports:
+from .configuration_base import ConfigurationBase
 from .configuration_model_base import ConfigurationModelBase
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

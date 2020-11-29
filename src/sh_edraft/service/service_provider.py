@@ -2,22 +2,21 @@ from collections import Callable
 from inspect import signature, Parameter
 from typing import Type
 
-from sh_edraft.configuration.configuration import Configuration
-from sh_edraft.hosting.base.application_host_base import ApplicationHostBase
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
+from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 from sh_edraft.service.base.service_provider_base import ServiceProviderBase
 from sh_edraft.service.base.service_base import ServiceBase
 
 
 class ServiceProvider(ServiceProviderBase):
 
-    def __init__(self):
-        super().__init__()
-        self._config = Configuration()
+    def __init__(self, app_runtime: ApplicationRuntimeBase):
+        ServiceProviderBase.__init__(self)
+        self._app_runtime: ApplicationRuntimeBase = app_runtime
 
-    @property
-    def config(self):
-        return self._config
+        self._transient_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
+        self._scoped_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
+        self._singleton_services: dict[Type[ServiceBase], ServiceBase] = {}
 
     def create(self): pass
 
@@ -27,18 +26,16 @@ class ServiceProvider(ServiceProviderBase):
         for param in sig.parameters.items():
             parameter = param[1]
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
-                if issubclass(parameter.annotation, ServiceBase):
+                if issubclass(parameter.annotation, ApplicationRuntimeBase):
+                    params.append(self._app_runtime)
+
+                elif issubclass(parameter.annotation, ServiceBase):
                     params.append(self.get_service(parameter.annotation))
 
-                elif issubclass(parameter.annotation, ConfigurationModelBase) or issubclass(parameter.annotation, ApplicationHostBase):
-                    params.append(self._config.get_config_by_type(parameter.annotation))
+                elif issubclass(parameter.annotation, ConfigurationModelBase):
+                    params.append(self._app_runtime.configuration.get_configuration(parameter.annotation))
 
         return service(*params)
-        # try:
-        #    instance.init(args)
-        #    return instance
-        # except Exception as e:
-        #    print(colored(f'Argument error\n{e}', 'red'))
 
     def add_transient(self, service_type: Type[ServiceBase], service: Type[ServiceBase]):
         self._transient_services[service_type] = service
@@ -46,7 +43,7 @@ class ServiceProvider(ServiceProviderBase):
     def add_scoped(self, service_type: Type[ServiceBase], service: Type[ServiceBase]):
         self._scoped_services[service_type] = service
 
-    def add_singleton(self, service_type: Type[ServiceBase], service: ServiceBase):
+    def add_singleton(self, service_type: Type[ServiceBase], service: Callable[ServiceBase]):
         for known_service in self._singleton_services:
             if type(known_service) == type(service_type):
                 raise Exception(f'Service with type {type(service_type)} already exists')

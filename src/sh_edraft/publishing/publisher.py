@@ -4,14 +4,17 @@ from string import Template as stringTemplate
 
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.publishing.base.publisher_base import PublisherBase
-from sh_edraft.publishing.model.publish_settings_model import PublishSettingsModel
+from sh_edraft.publishing.model.publish_settings_model import PublishSettings
 from sh_edraft.publishing.model.template import Template
 
 
 class Publisher(PublisherBase):
 
-    def __init__(self, logger: LoggerBase, publish_settings: PublishSettingsModel):
-        super().__init__(logger, publish_settings)
+    def __init__(self, logger: LoggerBase, publish_settings: PublishSettings):
+        PublisherBase.__init__(self)
+
+        self._logger: LoggerBase = logger
+        self._publish_settings: PublishSettings = publish_settings
 
     @property
     def source_path(self) -> str:

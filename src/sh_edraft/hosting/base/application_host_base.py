@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
-from datetime import datetime
+
+from sh_edraft.configuration.base.configuration_base import ConfigurationBase
+from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
+from sh_edraft.service.base.service_provider_base import ServiceProviderBase
 
 
 class ApplicationHostBase(ABC):
@@ -9,14 +12,15 @@ class ApplicationHostBase(ABC):
 
     @property
     @abstractmethod
-    def start_time(self) -> datetime: pass
-
-    @start_time.setter
-    def start_time(self, start_time: datetime): pass
+    def configuration(self) -> ConfigurationBase: pass
 
     @property
     @abstractmethod
-    def end_time(self): pass
+    def application_runtime(self) -> ApplicationRuntimeBase: pass
 
-    @end_time.setter
-    def end_time(self, end_time: datetime): pass
+    @property
+    @abstractmethod
+    def services(self) -> ServiceProviderBase: pass
+
+    @abstractmethod
+    def create(self): pass

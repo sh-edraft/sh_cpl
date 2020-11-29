@@ -2,7 +2,7 @@ import traceback
 from typing import Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
-from sh_edraft.logging.model.logging_settings_name import LogSettingsName
+from sh_edraft.logging.model.logging_settings_name import LoggingSettingsName
 from sh_edraft.utils.console import Console
 from sh_edraft.logging.model.logging_level import LoggingLevel
 
@@ -11,7 +11,6 @@ class LoggingSettings(ConfigurationModelBase):
 
     def __init__(self):
         ConfigurationModelBase.__init__(self)
-
         self._path: Optional[str] = None
         self._filename: Optional[str] = None
         self._console: Optional[LoggingLevel] = None
@@ -51,10 +50,10 @@ class LoggingSettings(ConfigurationModelBase):
 
     def from_dict(self, settings: dict):
         try:
-            self._path = settings[LogSettingsName.path.value]
-            self._filename = settings[LogSettingsName.filename.value]
-            self._console = LoggingLevel[settings[LogSettingsName.console_level.value]]
-            self._level = LoggingLevel[settings[LogSettingsName.file_level.value]]
+            self._path = settings[LoggingSettingsName.path.value]
+            self._filename = settings[LoggingSettingsName.filename.value]
+            self._console = LoggingLevel[settings[LoggingSettingsName.console_level.value]]
+            self._level = LoggingLevel[settings[LoggingSettingsName.file_level.value]]
         except Exception as e:
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {LogSettingsName.log.value} settings', 'red')
+            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings', 'red')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}', 'red')
