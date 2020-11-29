@@ -98,7 +98,7 @@ class Configuration(ConfigurationBase):
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
 
-    def add_configuration(self, key_type: type, value: object):
+    def add_configuration(self, key_type: type, value: ConfigurationModelBase):
         self._config[key_type] = value
 
     def get_configuration(self, search_type: type) -> ConfigurationModelBase:

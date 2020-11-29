@@ -22,7 +22,7 @@ from collections import namedtuple
 # imports:
 from .template import Template
 from .template_enum import TemplateEnum
-from .publish_settings_model import PublishSettingsModel
+from .publish_settings_model import PublishSettings
 from .publish_settings_name import PublishSettingsName
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

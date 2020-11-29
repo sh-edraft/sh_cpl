@@ -1,57 +1,29 @@
 import unittest
-from collections import Callable
-from typing import Type, cast
+from typing import cast
 
 from sh_edraft.hosting import ApplicationHost
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
-from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.publishing import Publisher
 from sh_edraft.publishing.base import PublisherBase
-from sh_edraft.publishing.model import PublishSettingsModel
 from sh_edraft.service import ServiceProvider
 from sh_edraft.service.base import ServiceBase
-from sh_edraft.time.model import TimeFormatSettings
 
 
 class ServiceProviderTest(unittest.TestCase):
 
     def setUp(self):
-        self._app_host = ApplicationHost('CPL_Test')
+        self._app_host = ApplicationHost()
         self._config = self._app_host.configuration
         self._config.create()
+        self._config.add_environment_variables('PYTHON_')
+        self._config.add_environment_variables('CPL_')
+        self._config.add_argument_variables()
+        self._config.add_json_file(f'appsettings.json')
+        self._config.add_json_file(f'appsettings.{self._config.environment.environment_name}.json')
+        self._config.add_json_file(f'appsettings.{self._config.environment.host_name}.json', optional=True)
         self._services: ServiceProvider = cast(ServiceProvider, self._app_host.services)
         self._services.create()
-
-        self._log_settings = LoggingSettings()
-        self._log_settings.from_dict({
-            "Path": "logs/",
-            "Filename": "log_$start_time.log",
-            "ConsoleLogLevel": "TRACE",
-            "FileLogLevel": "TRACE"
-        })
-        self._config.add_config_by_type(LoggingSettings, self._log_settings)
-
-        self._time_format_settings = TimeFormatSettings()
-        self._time_format_settings.from_dict({
-            "DateFormat": "%Y-%m-%d",
-            "TimeFormat": "%H:%M:%S",
-            "DateTimeFormat": "%Y-%m-%d %H:%M:%S.%f",
-            "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
-        })
-        self._config.add_config_by_type(TimeFormatSettings, self._time_format_settings)
-        self._config.add_config_by_type(ApplicationHost, self._app_host)
-
-        self._publish_settings_model = PublishSettingsModel()
-        self._publish_settings_model.from_dict({
-            "SourcePath": "../",
-            "DistPath": "../../dist",
-            "Templates": [],
-            "IncludedFiles": [],
-            "ExcludedFiles": [],
-            "TemplateEnding": "_template.txt",
-        })
-        self._config.add_config_by_type(PublishSettingsModel, self._publish_settings_model)
 
     def _check_general_requirements(self):
         self.assertIsNotNone(self._services)
@@ -79,7 +51,9 @@ class ServiceProviderTest(unittest.TestCase):
         for service_type in self._services._singleton_services:
             service = self._services._singleton_services[service_type]
             if service_type == LoggerBase and (
-                    isinstance(service, Logger) and isinstance(service, LoggerBase) and isinstance(service, ServiceBase)
+                    isinstance(service, Logger) and
+                    isinstance(service, LoggerBase) and
+                    isinstance(service, ServiceBase)
             ):
                 if not found:
                     found = True
@@ -90,7 +64,9 @@ class ServiceProviderTest(unittest.TestCase):
         for service_type in self._services._singleton_services:
             service = self._services._singleton_services[service_type]
             if service_type == PublisherBase and (
-                    isinstance(service, Publisher) and isinstance(service, PublisherBase) and isinstance(service, ServiceBase)
+                    isinstance(service, Publisher) and
+                    isinstance(service, PublisherBase) and
+                    isinstance(service, ServiceBase)
             ):
                 if not found:
                     found = True
@@ -108,8 +84,6 @@ class ServiceProviderTest(unittest.TestCase):
         self.assertTrue(isinstance(logger, LoggerBase))
         self.assertTrue(isinstance(logger, ServiceBase))
 
-        self.assertEqual(logger._log_settings, self._log_settings)
-        self.assertEqual(logger._time_format_settings, self._time_format_settings)
         self.assertEqual(logger._app_runtime, self._app_host.application_runtime)
 
     def test_add_scoped(self):

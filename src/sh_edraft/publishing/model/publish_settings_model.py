@@ -7,7 +7,7 @@ from sh_edraft.publishing.model.publish_settings_name import PublishSettingsName
 from sh_edraft.utils import Console
 
 
-class PublishSettingsModel(ConfigurationModelBase):
+class PublishSettings(ConfigurationModelBase):
 
     def __init__(self):
         ConfigurationModelBase.__init__(self)

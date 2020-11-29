@@ -8,7 +8,7 @@ from sh_edraft.logging import Logger
 from sh_edraft.logging.model import LoggingSettings
 from sh_edraft.publishing import Publisher
 from sh_edraft.publishing.model import Template
-from sh_edraft.publishing.model import PublishSettingsModel
+from sh_edraft.publishing.model import PublishSettings
 from sh_edraft.coding.model import Version
 from sh_edraft.time.model import TimeFormatSettings
 
@@ -65,7 +65,7 @@ class PublisherTest(unittest.TestCase):
         self._source_path = '../'
         self._dist_path = '../../dist'
 
-        self._publish_settings_model = PublishSettingsModel()
+        self._publish_settings_model = PublishSettings()
         self._publish_settings_model.from_dict({
             "SourcePath": self._source_path,
             "DistPath": self._dist_path,

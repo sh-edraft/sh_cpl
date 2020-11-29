@@ -1,7 +1,7 @@
 import unittest
 
-from tests.logging.logger import LoggerTest
-from tests.publishing.publisher import PublisherTest
+# from tests.logging.logger import LoggerTest
+# from tests.publishing.publisher import PublisherTest
 from tests.service_providing.service_provider import ServiceProviderTest
 
 
@@ -21,17 +21,17 @@ class Tester:
         self._suite.addTest(ServiceProviderTest('test_get_transient'))
 
         # logging
-        self._suite.addTest(LoggerTest('test_create'))
-        self._suite.addTest(LoggerTest('test_header'))
-        self._suite.addTest(LoggerTest('test_trace'))
-        self._suite.addTest(LoggerTest('test_debug'))
-        self._suite.addTest(LoggerTest('test_info'))
-        self._suite.addTest(LoggerTest('test_warn'))
-        self._suite.addTest(LoggerTest('test_error'))
-        self._suite.addTest(LoggerTest('test_fatal'))
+        # self._suite.addTest(LoggerTest('test_create'))
+        # self._suite.addTest(LoggerTest('test_header'))
+        # self._suite.addTest(LoggerTest('test_trace'))
+        # self._suite.addTest(LoggerTest('test_debug'))
+        # self._suite.addTest(LoggerTest('test_info'))
+        # self._suite.addTest(LoggerTest('test_warn'))
+        # self._suite.addTest(LoggerTest('test_error'))
+        # self._suite.addTest(LoggerTest('test_fatal'))
 
         # publishing
-        self._suite.addTest(PublisherTest('test_create'))
+        # self._suite.addTest(PublisherTest('test_create'))
 
     def start(self):
         runner = unittest.TextTestRunner()
