@@ -5,6 +5,7 @@ from sqlalchemy.orm import session, sessionmaker
 
 from sh_edraft.database.base.database_connection_base import DatabaseConnectionBase
 from sh_edraft.database.model.database_settings import DatabaseSettings
+from sh_edraft.utils.console import Console
 
 
 class DatabaseConnection(DatabaseConnectionBase):
@@ -19,17 +20,24 @@ class DatabaseConnection(DatabaseConnectionBase):
         self._credentials: Optional[str] = None
 
     def create(self):
-        self._engine = create_engine(self._db_settings.decrypted_connection_string)
+        try:
+            self._engine = create_engine(self._db_settings.decrypted_connection_string)
 
-        if self._db_settings.encoding is not None:
-            self._engine.encoding = self._db_settings.encoding
+            if self._db_settings.encoding is not None:
+                self._engine.encoding = self._db_settings.encoding
 
-        if self._db_settings.case_sensitive is not None:
-            self._engine.case_sensitive = self._db_settings.case_sensitive
+            if self._db_settings.case_sensitive is not None:
+                self._engine.case_sensitive = self._db_settings.case_sensitive
 
-        if self._db_settings.echo is not None:
-            self._engine.echo = self._db_settings.echo
+            if self._db_settings.echo is not None:
+                self._engine.echo = self._db_settings.echo
 
-        db_session = sessionmaker(bind=self._engine)
-        self._session = db_session()
+            self._engine.connect()
+
+            db_session = sessionmaker(bind=self._engine)
+            self._session = db_session()
+            Console.write_line(f'[{__name__}] Connected to database', 'green')
+        except Exception as e:
+            Console.write_line(f'[{__name__}] Database connection failed -> {e}', 'red')
+            exit()
 
