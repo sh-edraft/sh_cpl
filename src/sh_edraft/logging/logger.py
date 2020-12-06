@@ -54,7 +54,7 @@ class Logger(LoggerBase):
             # open log file, create if not exists
             path = f'{self._path}{self._log}'
             f = open(path, "w+")
-            Console.write_line(f'[{__name__}]: Using log file: {path}', 'green')
+            Console.write_line(f'[{__name__}]: Using log file: {path}')
             f.close()
         except Exception as e:
             self._fatal_console(__name__, 'Cannot open log file', ex=e)
