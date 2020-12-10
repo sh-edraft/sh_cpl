@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy import engine, create_engine
 from sqlalchemy.orm import session, sessionmaker
 
-from sh_edraft.database.base.database_connection_base import DatabaseConnectionBase
+from sh_edraft.database.connection.base.database_connection_base import DatabaseConnectionBase
 from sh_edraft.database.model.database_settings import DatabaseSettings
 from sh_edraft.utils.console import Console
 
@@ -19,9 +19,13 @@ class DatabaseConnection(DatabaseConnectionBase):
         self._session: Optional[session] = None
         self._credentials: Optional[str] = None
 
-    def create(self):
+        self.create()
+
+    def create(self): pass
+
+    def use_mysql(self, connection_string: str):
         try:
-            self._engine = create_engine(self._db_settings.decrypted_connection_string)
+            self._engine = create_engine(connection_string)
 
             if self._db_settings.encoding is not None:
                 self._engine.encoding = self._db_settings.encoding

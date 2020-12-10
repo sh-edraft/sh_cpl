@@ -3,7 +3,6 @@ from typing import Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.database.model.database_settings_name import DatabaseSettingsName
-from sh_edraft.utils.credential_manager import CredentialManager
 from sh_edraft.utils.console import Console
 
 
@@ -25,10 +24,6 @@ class DatabaseSettings(ConfigurationModelBase):
     @connection_string.setter
     def connection_string(self, connection_string: str):
         self._connection_string = connection_string
-        
-    @property
-    def decrypted_connection_string(self) -> str:
-        return CredentialManager.build_string(self._connection_string, self._credentials)
         
     @property
     def credentials(self) -> str:

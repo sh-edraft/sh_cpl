@@ -28,6 +28,8 @@ class Logger(LoggerBase):
         self._level = self._log_settings.level
         self._console = self._log_settings.console
 
+        self.create()
+
     def _get_datetime_now(self) -> str:
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_time_format)
