@@ -40,7 +40,7 @@ class Program(ApplicationBase):
         db_settings: DatabaseSettings = self._configuration.get_configuration(DatabaseSettings)
         self._services.add_singleton(DatabaseConnectionBase, DatabaseConnection)
         db: DatabaseConnectionBase = self._services.get_service(DatabaseConnectionBase)
-        db.use_mysql(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
+        db.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
 
         # Add and create logger
         self._services.add_singleton(LoggerBase, Logger)

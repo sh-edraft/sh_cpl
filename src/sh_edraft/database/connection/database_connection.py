@@ -21,9 +21,17 @@ class DatabaseConnection(DatabaseConnectionBase):
 
         self.create()
 
+    @property
+    def engine(self) -> engine:
+        return self._engine
+
+    @property
+    def session(self) -> session:
+        return self._session
+
     def create(self): pass
 
-    def use_mysql(self, connection_string: str):
+    def connect(self, connection_string: str):
         try:
             self._engine = create_engine(connection_string)
 
