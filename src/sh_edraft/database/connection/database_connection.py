@@ -19,8 +19,6 @@ class DatabaseConnection(DatabaseConnectionBase):
         self._session: Optional[session] = None
         self._credentials: Optional[str] = None
 
-        self.create()
-
     @property
     def engine(self) -> engine:
         return self._engine
@@ -28,8 +26,6 @@ class DatabaseConnection(DatabaseConnectionBase):
     @property
     def session(self) -> session:
         return self._session
-
-    def create(self): pass
 
     def connect(self, connection_string: str):
         try:

@@ -1,15 +1,17 @@
 from typing import Optional
 
 from sh_edraft.configuration.base import ConfigurationBase
-from sh_edraft.database.connection import DatabaseConnection
-from sh_edraft.database.connection.base import DatabaseConnectionBase
+from sh_edraft.database.context import DatabaseContext
 from sh_edraft.database.model import DatabaseSettings
 from sh_edraft.hosting import ApplicationHost
 from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.service.providing.base import ServiceProviderBase
-from sh_edraft.utils.credential_manager import CredentialManager
+from sh_edraft.utils import CredentialManager
+
+from tests_dev.db.user_repo import UserRepo
+from tests_dev.db.user_repo_base import UserRepoBase
 
 
 class Program(ApplicationBase):
@@ -38,9 +40,11 @@ class Program(ApplicationBase):
     def create_services(self):
         # Create and connect to database
         db_settings: DatabaseSettings = self._configuration.get_configuration(DatabaseSettings)
-        self._services.add_singleton(DatabaseConnectionBase, DatabaseConnection)
-        db: DatabaseConnectionBase = self._services.get_service(DatabaseConnectionBase)
+        self._services.add_db_context(DatabaseContext)
+        db: DatabaseContext = self._services.get_db_context()
         db.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
+
+        self._services.add_scoped(UserRepoBase, UserRepo)
 
         # Add and create logger
         self._services.add_singleton(LoggerBase, Logger)
@@ -51,3 +55,4 @@ class Program(ApplicationBase):
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
+        self._services.get_service(UserRepoBase).add_test_user()

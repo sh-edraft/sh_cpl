@@ -1,13 +1,16 @@
-from abc import abstractmethod, ABC
+from abc import abstractmethod
 
 from sqlalchemy import engine
 from sqlalchemy.orm import session
 
+from sh_edraft.service.base.service_base import ServiceBase
 
-class DatabaseConnectionBase(ABC):
+
+class DatabaseContextBase(ServiceBase):
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        ServiceBase.__init__(self)
 
     @property
     @abstractmethod
@@ -19,3 +22,6 @@ class DatabaseConnectionBase(ABC):
 
     @abstractmethod
     def connect(self, connection_string: str): pass
+
+    @abstractmethod
+    def _create_tables(self): pass
