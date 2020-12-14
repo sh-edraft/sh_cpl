@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 
 from sqlalchemy import engine
-from sqlalchemy.orm import session
+from sqlalchemy.orm import Session
 
 
 class DatabaseConnectionBase(ABC):
@@ -15,7 +15,7 @@ class DatabaseConnectionBase(ABC):
 
     @property
     @abstractmethod
-    def session(self) -> session: pass
+    def session(self) -> Session: pass
 
     @abstractmethod
     def connect(self, connection_string: str): pass

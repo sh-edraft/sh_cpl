@@ -1,7 +1,7 @@
 from typing import Optional
 
 from sqlalchemy import engine, create_engine
-from sqlalchemy.orm import session, sessionmaker
+from sqlalchemy.orm import Session, sessionmaker
 
 from sh_edraft.database.connection.base.database_connection_base import DatabaseConnectionBase
 from sh_edraft.database.model.database_settings import DatabaseSettings
@@ -16,7 +16,7 @@ class DatabaseConnection(DatabaseConnectionBase):
         self._db_settings = database_settings
 
         self._engine: Optional[engine] = None
-        self._session: Optional[session] = None
+        self._session: Optional[Session] = None
         self._credentials: Optional[str] = None
 
     @property
@@ -24,7 +24,7 @@ class DatabaseConnection(DatabaseConnectionBase):
         return self._engine
 
     @property
-    def session(self) -> session:
+    def session(self) -> Session:
         return self._session
 
     def connect(self, connection_string: str):

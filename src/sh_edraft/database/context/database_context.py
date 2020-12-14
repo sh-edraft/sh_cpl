@@ -1,5 +1,5 @@
 from sqlalchemy import engine, Table
-from sqlalchemy.orm import session
+from sqlalchemy.orm import Session
 
 from sh_edraft.database.connection.database_connection import DatabaseConnection
 from sh_edraft.database.connection.base.database_connection_base import DatabaseConnectionBase
@@ -22,7 +22,7 @@ class DatabaseContext(DatabaseContextBase):
         return self._db.engine
 
     @property
-    def session(self) -> session:
+    def session(self) -> Session:
         return self._db.session
 
     def create(self):

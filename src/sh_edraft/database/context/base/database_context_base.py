@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 from sqlalchemy import engine
-from sqlalchemy.orm import session
+from sqlalchemy.orm import Session
 
 from sh_edraft.service.base.service_base import ServiceBase
 
@@ -18,7 +18,7 @@ class DatabaseContextBase(ServiceBase):
 
     @property
     @abstractmethod
-    def session(self) -> session: pass
+    def session(self) -> Session: pass
 
     @abstractmethod
     def connect(self, connection_string: str): pass
