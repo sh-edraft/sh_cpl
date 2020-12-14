@@ -12,6 +12,8 @@ class Version(ConfigurationModelBase):
             minor: int = None,
             micro: float = None
     ):
+        ConfigurationModelBase.__init__(self)
+
         self._major: Optional[int] = major
         self._minor: Optional[int] = minor
         self._micro: Optional[int] = micro

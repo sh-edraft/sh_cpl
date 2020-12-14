@@ -5,9 +5,9 @@ from string import Template
 
 from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.logging.model import LoggingSettings
+from sh_edraft.logging.model.logging_settings import LoggingSettings
 from sh_edraft.logging.model.logging_level import LoggingLevel
-from sh_edraft.time.model import TimeFormatSettings
+from sh_edraft.time.model.time_format_settings import TimeFormatSettings
 from sh_edraft.utils.console import Console
 
 
@@ -27,6 +27,8 @@ class Logger(LoggerBase):
         self._path = self._log_settings.path
         self._level = self._log_settings.level
         self._console = self._log_settings.console
+
+        self.create()
 
     def _get_datetime_now(self) -> str:
         try:

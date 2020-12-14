@@ -1,10 +1,11 @@
 from collections import Callable
 from inspect import signature, Parameter
-from typing import Type
+from typing import Type, Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
+from sh_edraft.database.context.base.database_context_base import DatabaseContextBase
 from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
-from sh_edraft.service.base.service_provider_base import ServiceProviderBase
+from sh_edraft.service.providing.base.service_provider_base import ServiceProviderBase
 from sh_edraft.service.base.service_base import ServiceBase
 
 
@@ -13,6 +14,7 @@ class ServiceProvider(ServiceProviderBase):
     def __init__(self, app_runtime: ApplicationRuntimeBase):
         ServiceProviderBase.__init__(self)
         self._app_runtime: ApplicationRuntimeBase = app_runtime
+        self._database_context: Optional[DatabaseContextBase] = None
 
         self._transient_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
         self._scoped_services: dict[Type[ServiceBase], Type[ServiceBase]] = {}
@@ -29,6 +31,9 @@ class ServiceProvider(ServiceProviderBase):
                 if issubclass(parameter.annotation, ApplicationRuntimeBase):
                     params.append(self._app_runtime)
 
+                elif issubclass(parameter.annotation, DatabaseContextBase):
+                    params.append(self._database_context)
+
                 elif issubclass(parameter.annotation, ServiceBase):
                     params.append(self.get_service(parameter.annotation))
 
@@ -36,6 +41,12 @@ class ServiceProvider(ServiceProviderBase):
                     params.append(self._app_runtime.configuration.get_configuration(parameter.annotation))
 
         return service(*params)
+
+    def add_db_context(self, db_context: Type[DatabaseContextBase]):
+        self._database_context = self._create_instance(db_context)
+
+    def get_db_context(self) -> Callable[DatabaseContextBase]:
+        return self._database_context
 
     def add_transient(self, service_type: Type[ServiceBase], service: Type[ServiceBase]):
         self._transient_services[service_type] = service
@@ -45,8 +56,8 @@ class ServiceProvider(ServiceProviderBase):
 
     def add_singleton(self, service_type: Type[ServiceBase], service: Callable[ServiceBase]):
         for known_service in self._singleton_services:
-            if type(known_service) == type(service_type):
-                raise Exception(f'Service with type {type(service_type)} already exists')
+            if type(known_service) == service_type:
+                raise Exception(f'Service with type {service_type} already exists')
 
         self._singleton_services[service_type] = self._create_instance(service)
 

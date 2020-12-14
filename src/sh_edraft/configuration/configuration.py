@@ -7,8 +7,8 @@ from sh_edraft.configuration.base.configuration_base import ConfigurationBase
 from sh_edraft.configuration.model.configuration_variable_name import ConfigurationVariableName
 from sh_edraft.environment.base.environment_base import EnvironmentBase
 from sh_edraft.environment.hosting_environment import HostingEnvironment
-from sh_edraft.environment.model import EnvironmentName
-from sh_edraft.utils import Console
+from sh_edraft.environment.model.environment_name import EnvironmentName
+from sh_edraft.utils.console import Console
 
 
 class Configuration(ConfigurationBase):
