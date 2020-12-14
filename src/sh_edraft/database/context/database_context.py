@@ -6,7 +6,8 @@ from sh_edraft.database.connection.base.database_connection_base import Database
 from sh_edraft.database.context.base.database_context_base import DatabaseContextBase
 from sh_edraft.database.model.dbmodel import DBModel
 from sh_edraft.database.model.database_settings import DatabaseSettings
-from sh_edraft.utils.console import Console
+from sh_edraft.utils.console.console import Console
+from sh_edraft.utils.console.model.foreground_color import ForegroundColor
 
 
 class DatabaseContext(DatabaseContextBase):
@@ -39,7 +40,11 @@ class DatabaseContext(DatabaseContextBase):
 
             DBModel.metadata.drop_all(self._db.engine, self._tables)
             DBModel.metadata.create_all(self._db.engine, self._tables, checkfirst=True)
-            Console.write_line(f'[{__name__}] Created tables', 'green')
+            Console.set_foreground_color(ForegroundColor.green)
+            Console.write_line(f'[{__name__}] Created tables')
+            Console.set_foreground_color(ForegroundColor.default)
         except Exception as e:
-            Console.write_line(f'[{__name__}] Creating tables failed -> {e}', 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(f'[{__name__}] Creating tables failed -> {e}')
+            Console.set_foreground_color(ForegroundColor.default)
             exit()

@@ -5,7 +5,8 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from sh_edraft.database.connection.base.database_connection_base import DatabaseConnectionBase
 from sh_edraft.database.model.database_settings import DatabaseSettings
-from sh_edraft.utils.console import Console
+from sh_edraft.utils.console.console import Console
+from sh_edraft.utils.console.model.foreground_color import ForegroundColor
 
 
 class DatabaseConnection(DatabaseConnectionBase):
@@ -44,8 +45,12 @@ class DatabaseConnection(DatabaseConnectionBase):
 
             db_session = sessionmaker(bind=self._engine)
             self._session = db_session()
-            Console.write_line(f'[{__name__}] Connected to database', 'green')
+            Console.set_foreground_color(ForegroundColor.green)
+            Console.write_line(f'[{__name__}] Connected to database')
+            Console.set_foreground_color(ForegroundColor.default)
         except Exception as e:
-            Console.write_line(f'[{__name__}] Database connection failed -> {e}', 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(f'[{__name__}] Database connection failed -> {e}')
+            Console.set_foreground_color(ForegroundColor.default)
             exit()
 

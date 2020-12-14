@@ -8,7 +8,8 @@ from sh_edraft.configuration.model.configuration_variable_name import Configurat
 from sh_edraft.environment.base.environment_base import EnvironmentBase
 from sh_edraft.environment.hosting_environment import HostingEnvironment
 from sh_edraft.environment.model.environment_name import EnvironmentName
-from sh_edraft.utils.console import Console
+from sh_edraft.utils.console.console import Console
+from sh_edraft.utils.console.model.foreground_color import ForegroundColor
 
 
 class Configuration(ConfigurationBase):
@@ -25,15 +26,21 @@ class Configuration(ConfigurationBase):
 
     @staticmethod
     def _print_info(name: str, message: str):
-        Console.write_line(f'[{name}] {message}', 'green')
+        Console.set_foreground_color(ForegroundColor.green)
+        Console.write_line(f'[{name}] {message}')
+        Console.set_foreground_color(ForegroundColor.default)
 
     @staticmethod
     def _print_warn(name: str, message: str):
-        Console.write_line(f'[{name}] {message}', 'yellow')
+        Console.set_foreground_color(ForegroundColor.yellow)
+        Console.write_line(f'[{name}] {message}')
+        Console.set_foreground_color(ForegroundColor.default)
 
     @staticmethod
     def _print_error(name: str, message: str):
-        Console.write_line(f'[{name}] {message}', 'red')
+        Console.set_foreground_color(ForegroundColor.red)
+        Console.write_line(f'[{name}] {message}')
+        Console.set_foreground_color(ForegroundColor.default)
 
     def _set_variable(self, name: str, value: str):
         if name == ConfigurationVariableName.environment.value:

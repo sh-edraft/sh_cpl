@@ -3,7 +3,8 @@ from typing import Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.database.model.database_settings_name import DatabaseSettingsName
-from sh_edraft.utils.console import Console
+from sh_edraft.utils.console.console import Console
+from sh_edraft.utils.console.model.foreground_color import ForegroundColor
 
 
 class DatabaseSettings(ConfigurationModelBase):
@@ -71,5 +72,7 @@ class DatabaseSettings(ConfigurationModelBase):
             if DatabaseSettingsName.echo.value in settings:
                 self._echo = bool(settings[DatabaseSettingsName.echo.value])
         except Exception as e:
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings', 'red')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}', 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
+            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.set_foreground_color(ForegroundColor.default)
