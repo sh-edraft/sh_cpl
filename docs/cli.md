@@ -2,5 +2,8 @@ prefix: cpl
 commands:
     new:
         app
+        base
         class
-        model
+        configmodel
+        enum
+        service
