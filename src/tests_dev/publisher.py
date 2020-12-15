@@ -1,7 +1,6 @@
 from typing import Optional
 
 from sh_edraft.configuration.base import ConfigurationBase
-from sh_edraft.console import Console
 from sh_edraft.hosting import ApplicationHost
 from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
@@ -51,6 +50,9 @@ class Program(ApplicationBase):
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
         self._publisher.exclude('../tests')
         self._publisher.exclude('../tests_dev')
+        self._publisher.include('../../LICENSE')
+        self._publisher.include('../../README.MD')
+        self._publisher.include('../../requirements.txt')
         self._publisher.create()
         self._publisher.publish()
 
