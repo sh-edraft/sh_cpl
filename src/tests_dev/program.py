@@ -1,6 +1,7 @@
 from typing import Optional
 
 from sh_edraft.configuration.base import ConfigurationBase
+from sh_edraft.console import Console
 from sh_edraft.database.context import DatabaseContext
 from sh_edraft.database.model import DatabaseSettings
 from sh_edraft.hosting import ApplicationHost
@@ -8,7 +9,7 @@ from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.service.providing.base import ServiceProviderBase
-from sh_edraft.utils import CredentialManager, Console
+from sh_edraft.utils import CredentialManager
 
 from tests_dev.db.user_repo import UserRepo
 from tests_dev.db.user_repo_base import UserRepoBase
@@ -65,10 +66,13 @@ class Program(ApplicationBase):
         Console.set_background_color('green')
         Console.set_cursor_position(5, 5)
         Console.write_line('Error')
-        Console.write_line_at(10, 10, 'Error')
+        Console.write_line_at(10, 5, 'Error')
+        Console.write_at(15, 5, 'Error')
         Console.reset_cursor_position()
         Console.set_foreground_color('green')
         Console.set_background_color('default')
-        Console.write('Test')
-        Console.write_line('1')
+        Console.write_line('Test')
+        Console.write('1')
+        # Console.write('x: ')
+        # Console.read_line('Test> ')
         Console.write_line(Console.foreground_color)

@@ -1,12 +1,9 @@
-import contextlib
-import io
 import os
-import sys
 from typing import Union, Optional
 from termcolor import colored
 
-from sh_edraft.utils.console.model.background_color import BackgroundColor
-from sh_edraft.utils.console.model.foreground_color import ForegroundColor
+from sh_edraft.console.model.background_color import BackgroundColor
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class Console:
@@ -93,17 +90,24 @@ class Console:
 
     @staticmethod
     def close():
-        Console.read_line('\nPress any key to continue...')
+        Console.reset()
+        Console.write('\n\n\nPress any key to continue...')
+        Console.read_line()
         exit()
 
-    @staticmethod
-    def read(output: str = None) -> str:
-        user_input = input(output if output else '')
-        return user_input[0]
+    @classmethod
+    def read(cls, output: str = None) -> str:
+        if output is not None:
+            cls.write(output)
 
-    @staticmethod
-    def read_line(output: str = None) -> str:
-        return input(output if output else '')
+        return input()[0]
+
+    @classmethod
+    def read_line(cls, output: str = None) -> str:
+        if output is not None:
+            cls.write(output)
+
+        return input()
 
     @classmethod
     def reset(cls):
@@ -118,14 +122,16 @@ class Console:
     @classmethod
     def write_at(cls, x: int, y: int, *args):
         string = ' '.join(map(str, args))
-        cls._output(string, x, y)
+        cls._output(string, x, y, end='')
 
     @classmethod
     def write_line(cls, *args):
         string = ' '.join(map(str, args))
-        cls._output(string)
+        cls._output('')
+        cls._output(string, end='')
 
     @classmethod
     def write_line_at(cls, x: int, y: int, *args):
         string = ' '.join(map(str, args))
-        cls._output(string, x, y)
+        cls._output('', end='')
+        cls._output(string, x, y, end='')

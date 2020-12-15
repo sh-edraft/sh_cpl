@@ -8,8 +8,8 @@ from sh_edraft.configuration.model.configuration_variable_name import Configurat
 from sh_edraft.environment.base.environment_base import EnvironmentBase
 from sh_edraft.environment.hosting_environment import HostingEnvironment
 from sh_edraft.environment.model.environment_name import EnvironmentName
-from sh_edraft.utils.console.console import Console
-from sh_edraft.utils.console.model.foreground_color import ForegroundColor
+from sh_edraft.console.console import Console
+from sh_edraft.console.model import ForegroundColor
 
 
 class Configuration(ConfigurationBase):

@@ -6,8 +6,8 @@ from sh_edraft.database.connection.base.database_connection_base import Database
 from sh_edraft.database.context.base.database_context_base import DatabaseContextBase
 from sh_edraft.database.model.dbmodel import DBModel
 from sh_edraft.database.model.database_settings import DatabaseSettings
-from sh_edraft.utils.console.console import Console
-from sh_edraft.utils.console.model.foreground_color import ForegroundColor
+from sh_edraft.console.console import Console
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class DatabaseContext(DatabaseContextBase):

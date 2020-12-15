@@ -8,7 +8,7 @@ from sh_edraft.hosting.application_runtime import ApplicationRuntime
 from sh_edraft.hosting.base.application_host_base import ApplicationHostBase
 from sh_edraft.service.providing.service_provider import ServiceProvider
 from sh_edraft.service.providing.base.service_provider_base import ServiceProviderBase
-from sh_edraft.utils.console import Console
+from sh_edraft.console import Console
 
 
 class ApplicationHost(ApplicationHostBase):

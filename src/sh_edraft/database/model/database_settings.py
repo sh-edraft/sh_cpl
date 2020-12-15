@@ -3,8 +3,8 @@ from typing import Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.database.model.database_settings_name import DatabaseSettingsName
-from sh_edraft.utils.console.console import Console
-from sh_edraft.utils.console.model.foreground_color import ForegroundColor
+from sh_edraft.console.console import Console
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class DatabaseSettings(ConfigurationModelBase):
