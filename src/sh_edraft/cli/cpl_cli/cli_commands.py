@@ -5,7 +5,8 @@ class CLICommands:
 
     @classmethod
     def new(cls, args: list[str]):
-        if not os.path.isdir(f'./templates/{args[0]}'):
+        rel_path = os.path.dirname(__file__)
+        if not os.path.isdir(f'{rel_path}/templates/{args[0]}'):
             cls.unexpected_command(args[0])
 
         sub_args = args[1:]
@@ -13,7 +14,11 @@ class CLICommands:
         if len(sub_args) != 1:
             cls.unexpected_argument(sub_args[1])
 
-        full_path = sub_args[0]
+        if not (sub_args[0].startswith('.') or sub_args[0].startswith('/')):
+            full_path = f'./{sub_args[0]}'
+        else:
+            full_path = sub_args[0]
+
         name = os.path.basename(full_path)
         path = os.path.dirname(full_path)
 
@@ -24,7 +29,7 @@ class CLICommands:
             if not os.path.isdir(full_path):
                 os.makedirs(full_path)
 
-        for r, d, f in os.walk(f'./templates/{args[0]}'):
+        for r, d, f in os.walk(f'{rel_path}/templates/{args[0]}'):
             for file in f:
                 template_content = ''
                 with open(f'{r}/{file}') as template:
@@ -71,7 +76,7 @@ class CLICommands:
                     pyfile.close()
 
     @staticmethod
-    def help():
+    def help(*args):
         print('Commands:')
 
     @classmethod

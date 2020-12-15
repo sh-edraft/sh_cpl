@@ -10,6 +10,7 @@ class CLI:
 
     def setup(self):
         self._commands[CLICommands.new.__name__] = CLICommands.new
+        self._commands[CLICommands.help.__name__] = CLICommands.help
 
     def main(self):
         args = sys.argv[1:]

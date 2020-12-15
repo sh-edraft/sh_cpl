@@ -8,6 +8,7 @@ setuptools.setup(
     license='MIT',
     author='Sven Heidemann',
     author_email='edraft.sh@gmail.com',
+    include_package_data=True,
     description='sh-edraft python common lib',
     python_requires='>=3.8',
     install_requires=[
