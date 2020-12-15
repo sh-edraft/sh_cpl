@@ -74,7 +74,7 @@ class PublishSettings(ConfigurationModelBase):
         try:
             self._source_path = settings[PublishSettingsName.source_path.value]
             self._dist_path = settings[PublishSettingsName.dist_path.value]
-            self._templates = settings[PublishSettingsName.templates.value]
+            self._templates = Template().from_dict(settings[PublishSettingsName.templates.value])
             self._included_files = settings[PublishSettingsName.included_files.value]
             self._excluded_files = settings[PublishSettingsName.excluded_files.value]
             self._template_ending = settings[PublishSettingsName.template_ending.value]
