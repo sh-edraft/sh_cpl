@@ -4,7 +4,8 @@ from typing import Optional
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.publishing.model.template import Template
 from sh_edraft.publishing.model.publish_settings_name import PublishSettingsName
-from sh_edraft.utils.console import Console
+from sh_edraft.console.console import Console
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class PublishSettings(ConfigurationModelBase):
@@ -14,10 +15,10 @@ class PublishSettings(ConfigurationModelBase):
 
         self._source_path: Optional[str] = None
         self._dist_path: Optional[str] = None
-        self._templates: Optional[list[Template]] = None
+        self._templates: list[Template] = []
 
-        self._included_files: Optional[list[str]] = None
-        self._excluded_files: Optional[list[str]] = None
+        self._included_files: list[str] = []
+        self._excluded_files: list[str] = []
 
         self._template_ending: Optional[str] = None
 
@@ -73,11 +74,17 @@ class PublishSettings(ConfigurationModelBase):
         try:
             self._source_path = settings[PublishSettingsName.source_path.value]
             self._dist_path = settings[PublishSettingsName.dist_path.value]
-            self._templates = settings[PublishSettingsName.templates.value]
+            for template in settings[PublishSettingsName.templates.value]:
+                temp = Template()
+                temp.from_dict(template)
+                self._templates.append(temp)
+
             self._included_files = settings[PublishSettingsName.included_files.value]
             self._excluded_files = settings[PublishSettingsName.excluded_files.value]
             self._template_ending = settings[PublishSettingsName.template_ending.value]
         except Exception as e:
+            Console.set_foreground_color(ForegroundColor.red)
             Console.write_line(
-                f'[ ERROR ] [ {__name__} ]: Reading error in {PublishSettingsName.publish.value} settings', 'red')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}', 'red')
+                f'[ ERROR ] [ {__name__} ]: Reading error in {PublishSettingsName.publish.value} settings')
+            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.set_foreground_color(ForegroundColor.default)

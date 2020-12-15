@@ -3,7 +3,8 @@ from typing import Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.time.model.time_format_settings_names import TimeFormatSettingsNames
-from sh_edraft.utils.console import Console
+from sh_edraft.console.console import Console
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class TimeFormatSettings(ConfigurationModelBase):
@@ -56,5 +57,7 @@ class TimeFormatSettings(ConfigurationModelBase):
             self._date_time_format = settings[TimeFormatSettingsNames.date_time_format.value]
             self._date_time_log_format = settings[TimeFormatSettingsNames.date_time_log_format.value]
         except Exception as e:
+            Console.set_foreground_color(ForegroundColor.red)
             Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}', 'red')
+            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.set_foreground_color(ForegroundColor.default)

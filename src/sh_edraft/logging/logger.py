@@ -8,7 +8,8 @@ from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.logging.model.logging_settings import LoggingSettings
 from sh_edraft.logging.model.logging_level import LoggingLevel
 from sh_edraft.time.model.time_format_settings import TimeFormatSettings
-from sh_edraft.utils.console import Console
+from sh_edraft.console.console import Console
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class Logger(LoggerBase):
@@ -80,7 +81,9 @@ class Logger(LoggerBase):
     def header(self, string: str):
         # append log and print message
         self._append_log(string)
-        Console.write_line(string, 'white')
+        Console.set_foreground_color(ForegroundColor.default)
+        Console.write_line(string)
+        Console.set_foreground_color(ForegroundColor.default)
 
     def trace(self, name: str, message: str):
         output = self._get_string(name, LoggingLevel.TRACE, message)
@@ -91,7 +94,9 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.TRACE.value:
-            Console.write_line(output, 'green')
+            Console.set_foreground_color(ForegroundColor.green)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
     def debug(self, name: str, message: str):
         output = self._get_string(name, LoggingLevel.DEBUG, message)
@@ -102,7 +107,9 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.DEBUG.value:
-            Console.write_line(output, 'green')
+            Console.set_foreground_color(ForegroundColor.green)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
     def info(self, name: str, message: str):
         output = self._get_string(name, LoggingLevel.INFO, message)
@@ -113,7 +120,9 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.INFO.value:
-            Console.write_line(output, 'green')
+            Console.set_foreground_color(ForegroundColor.green)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
     def warn(self, name: str, message: str):
         output = self._get_string(name, LoggingLevel.WARN, message)
@@ -124,7 +133,9 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.WARN.value:
-            Console.write_line(output, 'yellow')
+            Console.set_foreground_color(ForegroundColor.yellow)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
     def error(self, name: str, message: str, ex: Exception = None):
         output = ''
@@ -141,7 +152,9 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.ERROR.value:
-            Console.write_line(output, 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
     def fatal(self, name: str, message: str, ex: Exception = None):
         output = ''
@@ -158,7 +171,9 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.FATAL.value:
-            Console.write_line(output, 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
         exit()
 
@@ -173,6 +188,8 @@ class Logger(LoggerBase):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevel.FATAL.value:
-            Console.write_line(output, 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(output)
+            Console.set_foreground_color(ForegroundColor.default)
 
         exit()

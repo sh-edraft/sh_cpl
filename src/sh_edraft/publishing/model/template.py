@@ -19,7 +19,7 @@ class Template(ConfigurationModelBase):
             license_description: Optional[str] = None,
             title: Optional[str] = None,
             author: Optional[str] = None,
-            version: Optional[dict] = None
+            version: Optional[Version] = Version()
     ):
         ConfigurationModelBase.__init__(self)
         self._template_path: Optional[str] = template_path
@@ -33,8 +33,7 @@ class Template(ConfigurationModelBase):
         self._title: Optional[str] = title
         self._author: Optional[str] = author
 
-        self._version: Optional[Version] = Version()
-        self._version.from_dict(version)
+        self._version: Optional[Version] = version
         
         self._file_content: Optional[str] = None
 

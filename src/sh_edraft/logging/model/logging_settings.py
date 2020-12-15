@@ -3,8 +3,9 @@ from typing import Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.logging.model.logging_settings_name import LoggingSettingsName
-from sh_edraft.utils.console import Console
 from sh_edraft.logging.model.logging_level import LoggingLevel
+from sh_edraft.console.console import Console
+from sh_edraft.console.model.foreground_color import ForegroundColor
 
 
 class LoggingSettings(ConfigurationModelBase):
@@ -55,5 +56,7 @@ class LoggingSettings(ConfigurationModelBase):
             self._console = LoggingLevel[settings[LoggingSettingsName.console_level.value]]
             self._level = LoggingLevel[settings[LoggingSettingsName.file_level.value]]
         except Exception as e:
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings', 'red')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}', 'red')
+            Console.set_foreground_color(ForegroundColor.red)
+            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
+            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.set_foreground_color(ForegroundColor.default)
