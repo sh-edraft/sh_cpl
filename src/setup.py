@@ -19,7 +19,7 @@ setuptools.setup(
     ],
     entry_points={
         'console_scripts': [
-            'cpl = sh_edraft.cli.cpl_cli:main'
+            'cpl = sh_edraft.cli.cpl_cli:CPLCli.main'
         ]
     }
 )

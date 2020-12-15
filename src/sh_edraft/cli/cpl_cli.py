@@ -1,8 +1,5 @@
 class CPLCli:
-    def main(self):
+
+    @staticmethod
+    def main():
         print('Hello world')
-
-
-def main():
-    cli = CPLCli()
-    cli.main()
