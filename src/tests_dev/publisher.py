@@ -21,7 +21,6 @@ class Program(ApplicationBase):
         self._configuration: Optional[ConfigurationBase] = None
         self._logger: Optional[LoggerBase] = None
         self._publisher: Optional[PublisherBase] = None
-        # Console.disable()
 
     def create_application_host(self):
         self._app_host = ApplicationHost()
@@ -38,7 +37,6 @@ class Program(ApplicationBase):
 
     def create_services(self):
         # Add and create logger
-        Console.enable()
         self._services.add_singleton(LoggerBase, Logger)
         self._logger = self._services.get_service(LoggerBase)
 
@@ -53,8 +51,6 @@ class Program(ApplicationBase):
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
         self._publisher.exclude('../tests')
         self._publisher.exclude('../tests_dev')
-        # self._publisher.include()
-        # self._publisher.create()
         self._publisher.create()
         self._publisher.publish()
 
