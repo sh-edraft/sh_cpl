@@ -1,6 +1,8 @@
+import contextlib
+import io
 import os
-import subprocess
-from typing import Union
+import sys
+from typing import Union, Optional
 from termcolor import colored
 
 from sh_edraft.utils.console.model.background_color import BackgroundColor
@@ -10,14 +12,26 @@ from sh_edraft.utils.console.model.foreground_color import ForegroundColor
 class Console:
     _background_color: BackgroundColor = BackgroundColor.default
     _foreground_color: ForegroundColor = ForegroundColor.default
+    _x: Optional[int] = None
+    _y: Optional[int] = None
 
-    @property
-    def background_color(self) -> BackgroundColor:
-        return self._background_color
+    """
+        Properties
+    """
 
+    @classmethod
     @property
-    def foreground_color(self) -> ForegroundColor:
-        return self._foreground_color
+    def background_color(cls) -> str:
+        return str(cls._background_color.value)
+
+    @classmethod
+    @property
+    def foreground_color(cls) -> str:
+        return str(cls._foreground_color.value)
+
+    """
+        Settings
+    """
 
     @classmethod
     def set_background_color(cls, color: Union[BackgroundColor, str]):
@@ -33,18 +47,54 @@ class Console:
         else:
             cls._foreground_color = color
 
-    # useful methods
+    @classmethod
+    def reset_cursor_position(cls):
+        cls._x = None
+        cls._y = None
+
+    @classmethod
+    def set_cursor_position(cls, x: int, y: int):
+        cls._x = x
+        cls._y = y
+
+    """
+        Useful protected methods
+    """
+
+    @classmethod
+    def _output(cls, string: str, x: int = None, y: int = None, end='\n'):
+        args = []
+        colored_args = []
+
+        if x is not None and y is not None:
+            args.append(f'\033[{x};{y}H')
+        elif cls._x is not None and cls._y is not None:
+            args.append(f'\033[{cls._x};{cls._y}H')
+
+        colored_args.append(string)
+        if cls._foreground_color != ForegroundColor.default and cls._background_color == BackgroundColor.default:
+            colored_args.append(cls._foreground_color.value)
+        elif cls._foreground_color == ForegroundColor.default and cls._background_color != BackgroundColor.default:
+            colored_args.append(cls._background_color.value)
+        elif cls._foreground_color != ForegroundColor.default and cls._background_color != BackgroundColor.default:
+            colored_args.append(cls._foreground_color.value)
+            colored_args.append(cls._background_color.value)
+
+        args.append(colored(*colored_args))
+        print(*args, end=end)
+
+    """
+        Useful public methods
+    """
+
     @staticmethod
     def clear():
         os.system('cls' if os.name == 'nt' else 'clear')
 
     @staticmethod
-    def new():
-        if os.name == 'nt':
-            os.system("start /wait cmd")
-        else:
-            p = subprocess.Popen(args=["gnome-terminal"])
-            p.communicate()
+    def close():
+        Console.read_line('\nPress any key to continue...')
+        exit()
 
     @staticmethod
     def read(output: str = None) -> str:
@@ -61,16 +111,21 @@ class Console:
         cls._foreground_color = ForegroundColor.default
 
     @classmethod
-    def write(cls, string: str):
-        if cls._foreground_color == ForegroundColor.default:
-            print(colored(string), end='')
-        else:
-            print(colored(string, cls._foreground_color.value), end='')
+    def write(cls, *args):
+        string = ' '.join(map(str, args))
+        cls._output(string, end='')
+
+    @classmethod
+    def write_at(cls, x: int, y: int, *args):
+        string = ' '.join(map(str, args))
+        cls._output(string, x, y)
 
     @classmethod
     def write_line(cls, *args):
         string = ' '.join(map(str, args))
-        if cls._foreground_color == ForegroundColor.default:
-            print(colored(string))
-        else:
-            print(colored(string, cls._foreground_color.value))
+        cls._output(string)
+
+    @classmethod
+    def write_line_at(cls, x: int, y: int, *args):
+        string = ' '.join(map(str, args))
+        cls._output(string, x, y)

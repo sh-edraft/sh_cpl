@@ -1,3 +1,4 @@
+import atexit
 from datetime import datetime
 
 from sh_edraft.configuration.configuration import Configuration
@@ -7,6 +8,7 @@ from sh_edraft.hosting.application_runtime import ApplicationRuntime
 from sh_edraft.hosting.base.application_host_base import ApplicationHostBase
 from sh_edraft.service.providing.service_provider import ServiceProvider
 from sh_edraft.service.providing.base.service_provider_base import ServiceProviderBase
+from sh_edraft.utils.console import Console
 
 
 class ApplicationHost(ApplicationHostBase):
@@ -26,6 +28,8 @@ class ApplicationHost(ApplicationHostBase):
         # Set vars
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
+
+        atexit.register(Console.close)
 
     @property
     def configuration(self) -> ConfigurationBase:

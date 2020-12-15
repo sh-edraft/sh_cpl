@@ -8,7 +8,7 @@ from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
 from sh_edraft.service.providing.base import ServiceProviderBase
-from sh_edraft.utils import CredentialManager
+from sh_edraft.utils import CredentialManager, Console
 
 from tests_dev.db.user_repo import UserRepo
 from tests_dev.db.user_repo_base import UserRepoBase
@@ -56,3 +56,19 @@ class Program(ApplicationBase):
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
         self._services.get_service(UserRepoBase).add_test_user()
+
+        Console.clear()
+        Console.write_line('Hello', 'World')
+        # name = Console.read_line('Name: ')
+        # Console.write_line('Hello', name)
+        Console.set_foreground_color('red')
+        Console.set_background_color('green')
+        Console.set_cursor_position(5, 5)
+        Console.write_line('Error')
+        Console.write_line_at(10, 10, 'Error')
+        Console.reset_cursor_position()
+        Console.set_foreground_color('green')
+        Console.set_background_color('default')
+        Console.write('Test')
+        Console.write_line('1')
+        Console.write_line(Console.foreground_color)
