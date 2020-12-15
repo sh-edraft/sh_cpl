@@ -11,6 +11,7 @@ class Console:
     _foreground_color: ForegroundColor = ForegroundColor.default
     _x: Optional[int] = None
     _y: Optional[int] = None
+    _disabled: bool = False
 
     """
         Properties
@@ -60,6 +61,9 @@ class Console:
 
     @classmethod
     def _output(cls, string: str, x: int = None, y: int = None, end='\n'):
+        if cls._disabled:
+            return
+
         args = []
         colored_args = []
 
@@ -94,6 +98,14 @@ class Console:
         Console.write('\n\n\nPress any key to continue...')
         Console.read_line()
         exit()
+
+    @classmethod
+    def disable(cls):
+        cls._disabled = True
+
+    @classmethod
+    def enable(cls):
+        cls._disabled = False
 
     @classmethod
     def read(cls, output: str = None) -> str:

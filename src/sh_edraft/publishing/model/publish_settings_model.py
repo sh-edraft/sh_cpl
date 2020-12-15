@@ -15,10 +15,10 @@ class PublishSettings(ConfigurationModelBase):
 
         self._source_path: Optional[str] = None
         self._dist_path: Optional[str] = None
-        self._templates: Optional[list[Template]] = None
+        self._templates: list[Template] = []
 
-        self._included_files: Optional[list[str]] = None
-        self._excluded_files: Optional[list[str]] = None
+        self._included_files: list[str] = []
+        self._excluded_files: list[str] = []
 
         self._template_ending: Optional[str] = None
 
@@ -74,7 +74,11 @@ class PublishSettings(ConfigurationModelBase):
         try:
             self._source_path = settings[PublishSettingsName.source_path.value]
             self._dist_path = settings[PublishSettingsName.dist_path.value]
-            self._templates = Template().from_dict(settings[PublishSettingsName.templates.value])
+            for template in settings[PublishSettingsName.templates.value]:
+                temp = Template()
+                temp.from_dict(template)
+                self._templates.append(temp)
+
             self._included_files = settings[PublishSettingsName.included_files.value]
             self._excluded_files = settings[PublishSettingsName.excluded_files.value]
             self._template_ending = settings[PublishSettingsName.template_ending.value]

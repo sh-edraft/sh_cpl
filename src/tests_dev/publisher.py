@@ -1,6 +1,7 @@
 from typing import Optional
 
 from sh_edraft.configuration.base import ConfigurationBase
+from sh_edraft.console import Console
 from sh_edraft.hosting import ApplicationHost
 from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
@@ -20,6 +21,7 @@ class Program(ApplicationBase):
         self._configuration: Optional[ConfigurationBase] = None
         self._logger: Optional[LoggerBase] = None
         self._publisher: Optional[PublisherBase] = None
+        # Console.disable()
 
     def create_application_host(self):
         self._app_host = ApplicationHost()
@@ -36,6 +38,7 @@ class Program(ApplicationBase):
 
     def create_services(self):
         # Add and create logger
+        Console.enable()
         self._services.add_singleton(LoggerBase, Logger)
         self._logger = self._services.get_service(LoggerBase)
 
@@ -48,10 +51,12 @@ class Program(ApplicationBase):
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
-        #self._publisher.exclude()
-        #self._publisher.include()
+        self._publisher.exclude('../tests')
+        self._publisher.exclude('../tests_dev')
+        # self._publisher.include()
         # self._publisher.create()
-        print(self._publisher)
+        self._publisher.create()
+        self._publisher.publish()
 
 
 if __name__ == '__main__':

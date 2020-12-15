@@ -15,7 +15,7 @@ from sh_edraft.time.model import TimeFormatSettings
 class PublisherTest(unittest.TestCase):
 
     def _configure(self):
-        self._version = Version(2020, 12, 5).to_dict()
+        self._version = Version(2020, 12, 5)
         templates = [
             Template(
                 '../../publish_templates/all_template.txt',
