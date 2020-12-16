@@ -20,6 +20,7 @@ __version__ = '2020.12.9'
 from collections import namedtuple
 
 # imports:
+from .cli import CLI
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2020, minor=12, micro=9)
