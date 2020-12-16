@@ -9,8 +9,8 @@ class Publish(CommandBase):
         CommandBase.__init__(self)
         self._app = PublishApp()
 
-        self._aliases.append('-b')
-        self._aliases.append('-B')
+        self._aliases.append('-p')
+        self._aliases.append('-P')
 
     def run(self, args: list[str]):
         if len(args) > 0:

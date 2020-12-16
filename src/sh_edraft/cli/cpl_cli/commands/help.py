@@ -12,9 +12,10 @@ class Help(CommandBase):
     def run(self, args: list[str]):
         Console.write_line('Available Commands:')
         commands = [
-            ['build (-b|-B)', 'Prepares files for publishing into an output directory named dist/ at the given output path.Must be executed from within a workspace directory.'],
+            ['build (-b|-B)', 'Prepares files for publishing into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.'],
             ['help (-h|-H)', 'Lists available commands and their short descriptions.'],
             ['new', 'Creates a new file or package.'],
+            ['publish (-p|-P)', 'Prepares files for publishing into an output directory named dist/ at the given output path and executes setup.py. Must be executed from within a workspace directory.'],
             ['version (-v|-V)', 'Outputs CPL CLI version.']
         ]
         for name, description in commands:
