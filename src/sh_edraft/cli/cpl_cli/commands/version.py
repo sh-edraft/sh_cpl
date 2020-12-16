@@ -2,6 +2,8 @@ import pkgutil
 import sys
 import platform
 
+import pkg_resources
+
 import sh_edraft
 from sh_edraft import cli
 from sh_edraft.cli.command.base.command_base import CommandBase
@@ -25,6 +27,14 @@ class Version(CommandBase):
         packages = []
         for importer, modname, is_pkg in pkgutil.iter_modules(sh_edraft.__path__):
             module = importer.find_module(modname).load_module(modname)
-            packages.append([f'{modname}:', module.__version__])
+            packages.append([f'{modname}', module.__version__])
+
+        Console.table(['Name', 'Version'], packages)
+
+        Console.write_line('\nPython Packages:')
+        packages = []
+        deps = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
+        for p in deps:
+            packages.append([p, deps[p]])
 
         Console.table(['Name', 'Version'], packages)
