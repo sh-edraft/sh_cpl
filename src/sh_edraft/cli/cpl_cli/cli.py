@@ -1,10 +1,10 @@
 import sys
 import traceback
-from typing import Optional
 
 from sh_edraft.cli.cpl_cli.commands.build.build import Build
 from sh_edraft.cli.cpl_cli.commands.help import Help
 from sh_edraft.cli.cpl_cli.commands.new import New
+from sh_edraft.cli.cpl_cli.commands.publish.publish import Publish
 from sh_edraft.cli.cpl_cli.commands.version import Version
 from sh_edraft.cli.interpreter.interpreter import Interpreter
 from sh_edraft.console.console import Console
@@ -19,6 +19,7 @@ class CLI:
         self._interpreter.add_command(Build())
         self._interpreter.add_command(Help())
         self._interpreter.add_command(New())
+        self._interpreter.add_command(Publish())
         self._interpreter.add_command(Version())
 
     def main(self):

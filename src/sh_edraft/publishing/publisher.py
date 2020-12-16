@@ -2,6 +2,8 @@ import os
 import shutil
 from string import Template as stringTemplate
 
+from setuptools import sandbox
+
 from sh_edraft.logging.base.logger_base import LoggerBase
 from sh_edraft.publishing.base.publisher_base import PublisherBase
 from sh_edraft.publishing.model.publish_settings_model import PublishSettings
@@ -255,8 +257,17 @@ class Publisher(PublisherBase):
         self._create_dist_path()
         self._logger.trace(__name__, f'Stopped {__name__}.create')
 
-    def publish(self):
-        self._logger.trace(__name__, f'Started {__name__}.publish')
+    def build(self):
+        self._logger.trace(__name__, f'Started {__name__}.build')
         self._write_templates()
         self._copy_all_included_files()
+        self._logger.trace(__name__, f'Stopped {__name__}.build')
+
+    def publish(self):
+        self._logger.trace(__name__, f'Started {__name__}.publish')
+        setup_py = os.path.join(self._publish_settings.dist_path, 'setup.py')
+        if not os.path.isfile(setup_py):
+            self._logger.fatal(__name__, f'setup.py not found in {self._publish_settings.dist_path}')
+
+        sandbox.run_setup(os.path.abspath(setup_py), ['sdist', 'bdist_wheel'])
         self._logger.trace(__name__, f'Stopped {__name__}.publish')

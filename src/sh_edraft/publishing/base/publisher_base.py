@@ -24,4 +24,7 @@ class PublisherBase(ServiceBase):
     def exclude(self, path: str): pass
 
     @abstractmethod
-    def publish(self) -> str: pass
+    def build(self): pass
+
+    @abstractmethod
+    def publish(self): pass
