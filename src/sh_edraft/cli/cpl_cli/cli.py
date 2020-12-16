@@ -1,8 +1,11 @@
 import sys
+import traceback
 
 from sh_edraft.cli.cpl_cli.commands.help import Help
 from sh_edraft.cli.cpl_cli.commands.new import New
+from sh_edraft.cli.cpl_cli.commands.version import Version
 from sh_edraft.cli.interpreter.interpreter import Interpreter
+from sh_edraft.console.console import Console
 
 
 class CLI:
@@ -13,14 +16,15 @@ class CLI:
     def setup(self):
         self._interpreter.add_command(New())
         self._interpreter.add_command(Help())
+        self._interpreter.add_command(Version())
 
     def main(self):
-        print('CPL CLI:')
         string = ' '.join(sys.argv[1:])
         try:
             self._interpreter.interpret(string)
         except Exception as e:
-            print(e)
+            tb = traceback.format_exc()
+            Console.error(str(e), tb)
 
 
 def main():

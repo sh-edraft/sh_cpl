@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from sh_edraft.console.console import Console
+
 
 class CommandBase(ABC):
 

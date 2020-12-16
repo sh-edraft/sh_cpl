@@ -1,6 +1,7 @@
 import os
 
 from sh_edraft.cli.command.base.command_base import CommandBase
+from sh_edraft.console.console import Console
 
 
 class New(CommandBase):
@@ -10,13 +11,21 @@ class New(CommandBase):
 
     def run(self, args: list[str]):
         rel_path = f'{os.path.dirname(__file__)}/../'
+        if len(args) == 0:
+            Console.error(f'Expected arguments {args}')
+            return
+
+        elif len(args) != 2:
+            Console.error(f'Invalid arguments {args}')
+            return
+
         if not os.path.isdir(f'{rel_path}/templates/{args[0]}'):
-            print(f'Unexpected argument {args[0]}')
+            Console.error(f'Unexpected argument {args[0]}')
 
         sub_args = args[1:]
 
         if len(sub_args) != 1:
-            print(f'Unexpected argument {sub_args[1]}')
+            Console.error(f'Unexpected argument {sub_args[1]}')
 
         if not (sub_args[0].startswith('.') or sub_args[0].startswith('/')):
             full_path = f'./{sub_args[0]}'

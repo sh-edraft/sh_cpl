@@ -1,4 +1,5 @@
 from sh_edraft.cli.command.base.command_base import CommandBase
+from sh_edraft.console.console import Console
 
 
 class Help(CommandBase):
@@ -7,4 +8,4 @@ class Help(CommandBase):
         CommandBase.__init__(self)
 
     def run(self, args: list[str]):
-        print('Commands:')
+        Console.write_line('Available Commands:')
