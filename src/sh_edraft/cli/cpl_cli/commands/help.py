@@ -23,3 +23,5 @@ class Help(CommandBase):
             Console.write(f'\n\t{name} ')
             Console.set_foreground_color('default')
             Console.write(f'{description}')
+
+        Console.write('\n')
