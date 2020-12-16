@@ -1,18 +1,22 @@
 import os
 
+from sh_edraft.cli.command.base.command_base import CommandBase
 
-class CLICommands:
 
-    @classmethod
-    def new(cls, args: list[str]):
-        rel_path = os.path.dirname(__file__)
+class New(CommandBase):
+
+    def __init__(self):
+        CommandBase.__init__(self)
+
+    def run(self, args: list[str]):
+        rel_path = f'{os.path.dirname(__file__)}/../'
         if not os.path.isdir(f'{rel_path}/templates/{args[0]}'):
-            cls.unexpected_command(args[0])
+            print(f'Unexpected argument {args[0]}')
 
         sub_args = args[1:]
 
         if len(sub_args) != 1:
-            cls.unexpected_argument(sub_args[1])
+            print(f'Unexpected argument {sub_args[1]}')
 
         if not (sub_args[0].startswith('.') or sub_args[0].startswith('/')):
             full_path = f'./{sub_args[0]}'
@@ -78,19 +82,3 @@ class CLICommands:
                         pyfile.write(template_content)
 
                     pyfile.close()
-
-    @staticmethod
-    def help(*args):
-        print('Commands:')
-
-    @classmethod
-    def unexpected_command(cls, command: str):
-        print(f'Unexpected command {command}')
-        cls.help()
-        exit()
-
-    @classmethod
-    def unexpected_argument(cls, argument: str):
-        print(f'Unexpected argument {argument}')
-        cls.help()
-        exit()

@@ -1,25 +1,24 @@
 import sys
 
-from sh_edraft.cli.cpl_cli.cli_commands import CLICommands
+from sh_edraft.cli.cpl_cli.commands.help import Help
+from sh_edraft.cli.cpl_cli.commands.new import New
+from sh_edraft.cli.interpreter.interpreter import Interpreter
 
 
 class CLI:
 
     def __init__(self):
-        self._commands: dict = {}
+        self._interpreter = Interpreter()
 
     def setup(self):
-        self._commands[CLICommands.new.__name__] = CLICommands.new
-        self._commands[CLICommands.help.__name__] = CLICommands.help
+        self._interpreter.add_command(New())
+        self._interpreter.add_command(Help())
 
     def main(self):
-        args = sys.argv[1:]
-
+        print('CPL CLI:')
+        string = ' '.join(sys.argv[1:])
         try:
-            cmd = self._commands[args[0]]
-            cmd(args[1:])
-        except KeyError:
-            CLICommands.unexpected_command(args[0])
+            self._interpreter.interpret(string)
         except Exception as e:
             print(e)
 
