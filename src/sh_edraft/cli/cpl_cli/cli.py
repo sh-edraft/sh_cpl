@@ -25,6 +25,7 @@ class CLI:
         except Exception as e:
             tb = traceback.format_exc()
             Console.error(str(e), tb)
+            Console.error('Run \'cpl help\'')
 
 
 def main():

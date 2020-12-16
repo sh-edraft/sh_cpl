@@ -13,19 +13,23 @@ class New(CommandBase):
         rel_path = f'{os.path.dirname(__file__)}/../'
         if len(args) == 0:
             Console.error(f'Expected arguments {args}')
+            Console.error('Run \'cpl help\'')
             return
 
         elif len(args) != 2:
             Console.error(f'Invalid arguments {args}')
+            Console.error('Run \'cpl help\'')
             return
 
         if not os.path.isdir(f'{rel_path}/templates/{args[0]}'):
             Console.error(f'Unexpected argument {args[0]}')
+            Console.error('Run \'cpl help\'')
 
         sub_args = args[1:]
 
         if len(sub_args) != 1:
             Console.error(f'Unexpected argument {sub_args[1]}')
+            Console.error('Run \'cpl help\'')
 
         if not (sub_args[0].startswith('.') or sub_args[0].startswith('/')):
             full_path = f'./{sub_args[0]}'

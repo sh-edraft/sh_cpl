@@ -24,5 +24,7 @@ class Interpreter:
                 cmd.run(args)
             else:
                 Console.error(f'Unexpected command {command}')
+                Console.error('Run \'cpl help\'')
         else:
             Console.error(f'Unexpected command {command}')
+            Console.error('Run \'cpl help\'')
