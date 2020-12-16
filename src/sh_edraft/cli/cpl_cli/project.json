@@ -1,0 +1,22 @@
+{
+  "TimeFormatSettings": {
+    "DateFormat": "%Y-%m-%d",
+    "TimeFormat": "%H:%M:%S",
+    "DateTimeFormat": "%Y-%m-%d %H:%M:%S.%f",
+    "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
+  },
+  "LoggingSettings": {
+    "Path": "logs/",
+    "Filename": "log_$start_time.log",
+    "ConsoleLogLevel": "INFO",
+    "FileLogLevel": "TRACE"
+  },
+  "PublishSettings": {
+    "SourcePath": "../",
+    "DistPath": "../../../../dist",
+    "Templates": [],
+    "IncludedFiles": [],
+    "ExcludedFiles": [],
+    "TemplateEnding": "_template.txt"
+  }
+}

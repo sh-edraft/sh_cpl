@@ -14,6 +14,8 @@ class Version(CommandBase):
 
     def __init__(self):
         CommandBase.__init__(self)
+        self._aliases.append('-v')
+        self._aliases.append('-V')
 
     def run(self, args: list[str]):
         Console.set_foreground_color('yellow')

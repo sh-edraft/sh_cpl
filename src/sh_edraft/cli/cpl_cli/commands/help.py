@@ -6,13 +6,16 @@ class Help(CommandBase):
 
     def __init__(self):
         CommandBase.__init__(self)
+        self._aliases.append('-h')
+        self._aliases.append('-H')
 
     def run(self, args: list[str]):
         Console.write_line('Available Commands:')
         commands = [
-            ['help', 'Lists available commands and their short descriptions.'],
+            ['build (-b|-B)', 'Prepares files for publishing into an output directory named dist/ at the given output path.Must be executed from within a workspace directory.'],
+            ['help (-h|-H)', 'Lists available commands and their short descriptions.'],
             ['new', 'Creates a new file or package.'],
-            ['version', 'Outputs CPL CLI version.']
+            ['version (-v|-V)', 'Outputs CPL CLI version.']
         ]
         for name, description in commands:
             Console.set_foreground_color('blue')
