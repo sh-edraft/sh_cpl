@@ -153,6 +153,7 @@ class Console:
         table = tabulate(values, headers=header)
 
         Console.write_line(table)
+        Console.write('\n')
 
     @classmethod
     def write(cls, *args):

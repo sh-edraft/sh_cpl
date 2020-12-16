@@ -25,7 +25,7 @@ class Version(CommandBase):
         Console.write_line(f'Python: {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')
         Console.write_line(f'OS: {platform.system()} {platform.processor()}')
 
-        Console.write_line('\nCPL:')
+        Console.write_line('CPL:')
         packages = []
         for importer, modname, is_pkg in pkgutil.iter_modules(sh_edraft.__path__):
             module = importer.find_module(modname).load_module(modname)
