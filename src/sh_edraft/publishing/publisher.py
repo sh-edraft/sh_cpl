@@ -68,6 +68,11 @@ class Publisher(PublisherBase):
                         else:
                             self._logger.fatal(__name__, f'File not found: {file}')
 
+            elif os.path.isfile(included):
+                self._included_files.append(os.path.join(self._publish_settings.source_path, included))
+            else:
+                self._logger.fatal(__name__, f'File not found: {included}')
+
         for r, d, f in os.walk(self._publish_settings.source_path):
             for file in f:
                 is_file_excluded = False
@@ -207,7 +212,11 @@ class Publisher(PublisherBase):
                 elif file.startswith('.'):
                     output_file = file.replace('.', '', 1)
 
-                output_file = f'{dist_path}{output_file}'
+                if output_file.__contains__('..'):
+                    output_file = os.path.join(dist_path, os.path.basename(file))
+                else:
+                    output_file = f'{dist_path}{output_file}'
+
                 output_path = os.path.dirname(output_file)
 
                 try:

@@ -51,6 +51,7 @@
       }
     ],
     "IncludedFiles": [
+      "./MANIFEST.in",
       "../LICENSE",
       "../README.md",
       "../requirements.txt",
