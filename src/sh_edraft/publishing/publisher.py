@@ -16,6 +16,8 @@ class Publisher(PublisherBase):
         self._logger: LoggerBase = logger
         self._publish_settings: PublishSettings = publish_settings
 
+        self._included_files: list[str] = []
+
     @property
     def source_path(self) -> str:
         return self._publish_settings.source_path
@@ -53,10 +55,31 @@ class Publisher(PublisherBase):
 
     def _read_source_path(self):
         self._logger.trace(__name__, f'Started {__name__}._read_source_path')
+        included_files = self._publish_settings.included_files
+        for included in included_files:
+            if os.path.isdir(included):
+                self._publish_settings.included_files.remove(included)
+
+                for r, d, f in os.walk(included):
+                    for file in f:
+                        file_path = os.path.join(self._publish_settings.source_path, r, file)
+                        if os.path.isfile(file_path):
+                            self._included_files.append(file_path)
+                        else:
+                            self._logger.fatal(__name__, f'File not found: {file}')
+
         for r, d, f in os.walk(self._publish_settings.source_path):
             for file in f:
-                if file.endswith('.py') or file in self._publish_settings.included_files:
-                    self._publish_settings.included_files.append(os.path.join(r, file))
+                is_file_excluded = False
+                if os.path.join(r, file) in self._publish_settings.excluded_files:
+                    is_file_excluded = True
+                else:
+                    for excluded in self._publish_settings.excluded_files:
+                        if os.path.join(r, file).__contains__(excluded):
+                            is_file_excluded = True
+
+                if not is_file_excluded and file.endswith('.py') or file in self._publish_settings.included_files:
+                    self._included_files.append(os.path.join(r, file))
 
         self._logger.trace(__name__, f'Stopped {__name__}._read_source_path')
 
@@ -109,7 +132,7 @@ class Publisher(PublisherBase):
     def _write_templates(self):
         self._logger.trace(__name__, f'Started {__name__}._write_templates')
         for template in self._publish_settings.templates:
-            for file in self._publish_settings.included_files:
+            for file in self._included_files:
                 if os.path.basename(file) == '__init__.py' and file not in self._publish_settings.excluded_files:
                     template_name = template.name
                     if template.name == 'all' or template.name == '':
@@ -167,7 +190,7 @@ class Publisher(PublisherBase):
         if self._publish_settings.dist_path.endswith('/'):
             dist_path = dist_path[:len(dist_path) - 1]
 
-        for file in self._publish_settings.included_files:
+        for file in self._included_files:
             is_file_excluded = False
             if file in self._publish_settings.excluded_files:
                 is_file_excluded = True
