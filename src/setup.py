@@ -16,7 +16,9 @@ setuptools.setup(
         'flask',
         'mysql-connector',
         'SQLAlchemy',
-        'termcolor'
+        'termcolor',
+        'pyfiglet',
+        'tabulate'
     ],
     entry_points={
         'console_scripts': [
