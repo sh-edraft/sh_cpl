@@ -16,6 +16,11 @@ class Interpreter:
     def interpret(self, input_string: str):
         input_list = input_string.split(' ')
         command = input_list[0]
+        if command is None or command == '':
+            Console.error(f'Expected command')
+            Console.error('Run \'cpl help\'')
+            return
+
         args = input_list[1:] if len(input_list) > 1 else []
 
         cmd = next(
