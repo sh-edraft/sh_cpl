@@ -1,0 +1,2 @@
+include ../ README
+recursive-include sh_edraft *.txt

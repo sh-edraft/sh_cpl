@@ -48,7 +48,7 @@ class Logger(LoggerBase):
         try:
             # check if log file path exists
             if not os.path.exists(self._path):
-                os.mkdir(self._path)
+                os.makedirs(self._path)
         except Exception as e:
             self._fatal_console(__name__, 'Cannot create log dir', ex=e)
 
