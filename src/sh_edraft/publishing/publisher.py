@@ -64,14 +64,20 @@ class Publisher(PublisherBase):
 
                 for r, d, f in os.walk(included):
                     for file in f:
+                        rel_path = os.path.relpath(r)
+                        if not rel_path.startswith('.'):
+                            rel_path = f'./{rel_path}'
+
                         file_path = os.path.join(self._publish_settings.source_path, r, file)
                         if os.path.isfile(file_path):
                             self._included_files.append(file_path)
+                        elif os.path.isfile(os.path.join(rel_path, file)):
+                            self._included_files.append(os.path.join(rel_path, file))
                         else:
                             self._logger.fatal(__name__, f'File not found: {file}')
 
             elif os.path.isfile(included):
-                self._included_files.append(os.path.join(self._publish_settings.source_path, included))
+                self._included_files.append(included)
             else:
                 self._logger.fatal(__name__, f'File not found: {included}')
 

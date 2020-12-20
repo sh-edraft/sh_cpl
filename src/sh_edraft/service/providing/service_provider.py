@@ -4,6 +4,7 @@ from typing import Type, Optional
 
 from sh_edraft.configuration.base.configuration_model_base import ConfigurationModelBase
 from sh_edraft.database.context.base.database_context_base import DatabaseContextBase
+from sh_edraft.environment.base import EnvironmentBase
 from sh_edraft.hosting.base.application_runtime_base import ApplicationRuntimeBase
 from sh_edraft.service.providing.base.service_provider_base import ServiceProviderBase
 from sh_edraft.service.base.service_base import ServiceBase
@@ -30,6 +31,9 @@ class ServiceProvider(ServiceProviderBase):
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
                 if issubclass(parameter.annotation, ApplicationRuntimeBase):
                     params.append(self._app_runtime)
+
+                elif issubclass(parameter.annotation, EnvironmentBase):
+                    params.append(self._app_runtime.configuration.environment)
 
                 elif issubclass(parameter.annotation, DatabaseContextBase):
                     params.append(self._database_context)
