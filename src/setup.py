@@ -18,7 +18,8 @@ setuptools.setup(
         'SQLAlchemy',
         'termcolor',
         'pyfiglet',
-        'tabulate'
+        'tabulate',
+        'smtplib'
     ],
     entry_points={
         'console_scripts': [

@@ -1,13 +1,15 @@
 from typing import Optional
 
 from sh_edraft.configuration.base import ConfigurationBase
-from sh_edraft.console import Console
 from sh_edraft.database.context import DatabaseContext
 from sh_edraft.database.model import DatabaseSettings
 from sh_edraft.hosting import ApplicationHost
 from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
+from sh_edraft.mailing.base.email_client_base import EMailClientBase
+from sh_edraft.mailing.email_client import EMailClient
+from sh_edraft.mailing.model.email import EMail
 from sh_edraft.service.providing.base import ServiceProviderBase
 from sh_edraft.utils import CredentialManager
 
@@ -24,6 +26,7 @@ class Program(ApplicationBase):
         self._services: Optional[ServiceProviderBase] = None
         self._configuration: Optional[ConfigurationBase] = None
         self._logger: Optional[LoggerBase] = None
+        self._mailer: Optional[EMailClientBase] = None
 
     def create_application_host(self):
         self._app_host = ApplicationHost()
@@ -51,28 +54,21 @@ class Program(ApplicationBase):
         self._services.add_singleton(LoggerBase, Logger)
         self._logger = self._services.get_service(LoggerBase)
 
+        self._services.add_singleton(EMailClientBase, EMailClient)
+        self._mailer = self._services.get_service(EMailClientBase)
+
     def main(self):
         self._logger.header(f'{self._configuration.environment.application_name}:')
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
         self._services.get_service(UserRepoBase).add_test_user()
-
-        Console.clear()
-        Console.write_line('Hello', 'World')
-        # name = Console.read_line('Name: ')
-        # Console.write_line('Hello', name)
-        Console.set_foreground_color('red')
-        Console.set_background_color('green')
-        Console.set_cursor_position(5, 5)
-        Console.write_line('Error')
-        Console.write_line_at(10, 5, 'Error')
-        Console.write_at(15, 5, 'Error')
-        Console.reset_cursor_position()
-        Console.set_foreground_color('green')
-        Console.set_background_color('default')
-        Console.write_line('Test')
-        Console.write('1')
-        # Console.write('x: ')
-        # Console.read_line('Test> ')
-        Console.write_line(Console.foreground_color)
+        mail = EMail()
+        mail.add_header('Mime-Version: 1.0')
+        mail.add_header('Content-Type: text/plain; charset=utf-8')
+        mail.add_header('Content-Transfer-Encoding: quoted-printable')
+        mail.add_receiver('edraft.sh@gmail.com')
+        mail.add_receiver('edraft@sh-edraft.de')
+        mail.subject = f'Test - {self._configuration.environment.host_name}'
+        mail.body = 'Dies ist ein Test :D'
+        self._mailer.send_mail(mail)
