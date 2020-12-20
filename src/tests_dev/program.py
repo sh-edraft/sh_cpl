@@ -7,9 +7,9 @@ from sh_edraft.hosting import ApplicationHost
 from sh_edraft.hosting.base import ApplicationBase
 from sh_edraft.logging import Logger
 from sh_edraft.logging.base import LoggerBase
-from sh_edraft.mailing.base.email_client_base import EMailClientBase
-from sh_edraft.mailing.email_client import EMailClient
-from sh_edraft.mailing.model.email import EMail
+from sh_edraft.mailing.base import EMailClientBase
+from sh_edraft.mailing import EMailClient
+from sh_edraft.mailing.model import EMail
 from sh_edraft.service.providing.base import ServiceProviderBase
 from sh_edraft.utils import CredentialManager
 
