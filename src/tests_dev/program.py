@@ -1,6 +1,7 @@
 from typing import Optional
 
 from sh_edraft.configuration.base import ConfigurationBase
+from sh_edraft.console import Console
 from sh_edraft.database.context import DatabaseContext
 from sh_edraft.database.model import DatabaseSettings
 from sh_edraft.hosting import ApplicationHost
@@ -57,12 +58,7 @@ class Program(ApplicationBase):
         self._services.add_singleton(EMailClientBase, EMailClient)
         self._mailer = self._services.get_service(EMailClientBase)
 
-    def main(self):
-        self._logger.header(f'{self._configuration.environment.application_name}:')
-        self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
-        self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
-        self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
-        self._services.get_service(UserRepoBase).add_test_user()
+    def test_send_mail(self):
         mail = EMail()
         mail.add_header('Mime-Version: 1.0')
         mail.add_header('Content-Type: text/plain; charset=utf-8')
@@ -72,3 +68,21 @@ class Program(ApplicationBase):
         mail.subject = f'Test - {self._configuration.environment.host_name}'
         mail.body = 'Dies ist ein Test :D'
         self._mailer.send_mail(mail)
+
+    def test_console(self):
+        self._logger.debug(__name__, 'Started console test')
+        Console.write_line('Hello World')
+        Console.write('\nName: ')
+        Console.write_line('Hello', Console.read_line())
+        Console
+        Console.clear()
+        Console.write_at(5, 5, 'at 5, 5')
+        Console.write_at(10, 10, 'at 10, 10')
+
+    def main(self):
+        self._logger.header(f'{self._configuration.environment.application_name}:')
+        self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
+        self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
+        self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
+        self._services.get_service(UserRepoBase).add_test_user()
+        self.test_console()
