@@ -15,6 +15,7 @@ class ProviderTest(unittest.TestCase):
         self._configuration = self._app_host.configuration
         self._services = self._app_host.services
 
+        self._configuration.add_environment_variables('CPL_')
         self._configuration.add_argument_variables()
         self._configuration.add_json_file(f'appsettings.json')
         self._configuration.add_json_file(f'appsettings.{self._configuration.environment.environment_name}.json')

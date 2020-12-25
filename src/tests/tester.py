@@ -2,8 +2,8 @@ import unittest
 from typing import Type
 
 from tests.cases.service.provider_test import ProviderTest
-from tests.cases.time.time_format_settings import TimeFormatSettingsTest
-from tests.cases.utils.credential_manager import CredentialManagerTest
+from tests.cases.time.time_format_settings_test import TimeFormatSettingsTest
+from tests.cases.utils.credential_manager_test import CredentialManagerTest
 
 
 class Tester:
