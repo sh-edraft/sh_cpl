@@ -1,5 +1,7 @@
 import unittest
+from typing import Type
 
+from tests.cases.service.provider_test import ProviderTest
 from tests.cases.time.time_format_settings import TimeFormatSettingsTest
 from tests.cases.utils.credential_manager import CredentialManagerTest
 
@@ -8,7 +10,7 @@ class Tester:
 
     def __init__(self):
         self._suite = unittest.TestSuite()
-        self._cases = []
+        self._cases: list[Type[unittest.TestCase]] = []
 
     def _build_cases(self):
         for case in self._cases:
@@ -17,6 +19,7 @@ class Tester:
                 self._suite.addTest(case(function))
 
     def create(self):
+        self._cases.append(ProviderTest)
         self._cases.append(CredentialManagerTest)
         self._cases.append(TimeFormatSettingsTest)
 
