@@ -74,7 +74,6 @@ class Program(ApplicationBase):
         Console.write_line('Hello World')
         Console.write('\nName: ')
         Console.write_line('Hello', Console.read_line())
-        Console
         Console.clear()
         Console.write_at(5, 5, 'at 5, 5')
         Console.write_at(10, 10, 'at 10, 10')
