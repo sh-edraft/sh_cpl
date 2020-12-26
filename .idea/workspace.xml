@@ -81,7 +81,7 @@
       <recent name="$PROJECT_DIR$/src/sh_edraft/cli/cpl_cli/model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in tests">
+  <component name="RunManager" selected="Python tests.Unittests">
     <configuration name="cli build" type="PythonConfigurationType" factoryName="Python">
       <module name="sh_common_py_lib" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -378,25 +378,22 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tester" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="sh_common_py_lib" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="CPL_ENVIRONMENT" value="testing" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/tests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/tests/tester.py" />
-      <option name="PARAMETERS" value="--environment=testing" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="_new_pattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;discover -s $PROJECT_DIR$/src/tests -p \u0027*_test.py\u0027&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;CUSTOM&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Unittests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -432,13 +429,12 @@
       <item itemvalue="Python.cli version" />
       <item itemvalue="Python.cli" />
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.tester" />
-      <item itemvalue="Python tests.Unittests in tests" />
+      <item itemvalue="Python tests.Unittests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests" />
         <item itemvalue="Python tests.Unittests in tests" />
-        <item itemvalue="Python.tester" />
       </list>
     </recent_temporary>
   </component>
