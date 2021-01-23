@@ -6,17 +6,17 @@
     "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
   },
   "LoggingSettings": {
-    "Path": "../build/logs/",
+    "Path": "../../build_test/logs/",
     "Filename": "log_$start_time.log",
     "ConsoleLogLevel": "INFO",
     "FileLogLevel": "TRACE"
   },
   "PublishSettings": {
     "SourcePath": "./",
-    "DistPath": "../build/dist",
+    "DistPath": "../../build_test/dist",
     "Templates": [
       {
-        "TemplatePath": "../publish_templates/all_template.txt",
+        "TemplatePath": "../../publish_templates/all_template.txt",
         "Name": "all",
         "Description": "",
         "LongDescription": "",
@@ -33,7 +33,7 @@
         }
       },
       {
-        "TemplatePath": "../publish_templates/all_template.txt",
+        "TemplatePath": "../../publish_templates/all_template.txt",
         "Name": "sh_edraft",
         "Description": "common python library",
         "LongDescription": "Library to share common classes and models used at sh-edraft.de",

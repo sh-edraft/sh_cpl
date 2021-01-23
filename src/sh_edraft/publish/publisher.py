@@ -5,9 +5,9 @@ from string import Template as stringTemplate
 from setuptools import sandbox
 
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publishing.base.publisher_base import PublisherBase
-from sh_edraft.publishing.model.publish_settings_model import PublishSettings
-from sh_edraft.publishing.model.template import Template
+from sh_edraft.publish.base.publisher_base import PublisherBase
+from sh_edraft.publish.model.publish_settings_model import PublishSettings
+from sh_edraft.publish.model.template import Template
 
 
 class Publisher(PublisherBase):
@@ -229,7 +229,7 @@ class Publisher(PublisherBase):
 
                 try:
                     if not os.path.isdir(output_path):
-                        os.makedirs(output_path)
+                        os.makedirs(output_path, exist_ok=True)
                 except Exception as e:
                     self._logger.error(__name__, f'Cannot create directories: {output_path}', e)
 
