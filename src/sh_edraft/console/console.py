@@ -45,6 +45,7 @@ class Console:
 
     @classmethod
     def set_foreground_color(cls, color: Union[ForegroundColor, str]):
+
         if type(color) is str:
             cls._foreground_color = ForegroundColor[color]
         else:
@@ -66,9 +67,6 @@ class Console:
 
     @classmethod
     def _output(cls, string: str, x: int = None, y: int = None, end='\n'):
-        if cls._disabled:
-            return
-
         if cls._is_first_write:
             cls._is_first_write = False
 
@@ -98,15 +96,21 @@ class Console:
 
     @classmethod
     def banner(cls, string: str):
+        if cls._disabled:
+            return
+
         ascii_banner = pyfiglet.figlet_format(string)
         cls.write_line(ascii_banner)
 
-    @staticmethod
-    def clear():
+    @classmethod
+    def clear(cls):
         os.system('cls' if os.name == 'nt' else 'clear')
 
-    @staticmethod
-    def close():
+    @classmethod
+    def close(cls):
+        if cls._disabled:
+            return
+
         Console.reset()
         Console.write('\n\n\nPress any key to continue...')
         Console.read_line()
@@ -118,6 +122,9 @@ class Console:
 
     @classmethod
     def error(cls, string: str, tb: str = None):
+        if cls._disabled:
+            return
+
         cls.set_foreground_color('red')
         if tb is not None:
             cls.write_line(f'{string} -> {tb}')
@@ -138,6 +145,9 @@ class Console:
 
     @classmethod
     def read_line(cls, output: str = None) -> str:
+        if cls._disabled:
+            return ''
+
         if output is not None:
             cls.write(output)
 
@@ -150,6 +160,9 @@ class Console:
 
     @classmethod
     def table(cls, header: list[str], values: list[list[str]]):
+        if cls._disabled:
+            return
+
         table = tabulate(values, headers=header)
 
         Console.write_line(table)
@@ -157,16 +170,25 @@ class Console:
 
     @classmethod
     def write(cls, *args):
+        if cls._disabled:
+            return
+
         string = ' '.join(map(str, args))
         cls._output(string, end='')
 
     @classmethod
     def write_at(cls, x: int, y: int, *args):
+        if cls._disabled:
+            return
+
         string = ' '.join(map(str, args))
         cls._output(string, x, y, end='')
 
     @classmethod
     def write_line(cls, *args):
+        if cls._disabled:
+            return
+
         string = ' '.join(map(str, args))
         if not cls._is_first_write:
             cls._output('')
@@ -174,6 +196,9 @@ class Console:
 
     @classmethod
     def write_line_at(cls, x: int, y: int, *args):
+        if cls._disabled:
+            return
+
         string = ' '.join(map(str, args))
         if not cls._is_first_write:
             cls._output('', end='')

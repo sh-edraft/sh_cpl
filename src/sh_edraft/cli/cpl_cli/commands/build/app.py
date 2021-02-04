@@ -5,8 +5,8 @@ from sh_edraft.hosting.application_host import ApplicationHost
 from sh_edraft.hosting.base.application_base import ApplicationBase
 from sh_edraft.logging.logger import Logger
 from sh_edraft.logging.base.logger_base import LoggerBase
-from sh_edraft.publishing.publisher import Publisher
-from sh_edraft.publishing.base.publisher_base import PublisherBase
+from sh_edraft.publish.publisher import Publisher
+from sh_edraft.publish.base.publisher_base import PublisherBase
 from sh_edraft.service.providing.base.service_provider_base import ServiceProviderBase
 
 

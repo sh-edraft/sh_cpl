@@ -80,16 +80,16 @@ class ServiceProvider(ServiceProviderBase):
 
     def remove_service(self, instance_type: Type[ServiceBase]):
         for service in self._transient_services:
-            if isinstance(service, type(instance_type)):
+            if service == instance_type and isinstance(self._transient_services[service], type(instance_type)):
                 del self._transient_services[service]
                 return
 
         for service in self._scoped_services:
-            if isinstance(service, type(instance_type)):
+            if service == instance_type and isinstance(self._scoped_services[service], type(instance_type)):
                 del self._scoped_services[service]
                 return
 
         for service in self._singleton_services:
-            if isinstance(service, instance_type):
+            if service == instance_type and isinstance(self._singleton_services[service], instance_type):
                 del self._singleton_services[service]
                 return

@@ -15,8 +15,6 @@ class TimeFormatSettings(ConfigurationModelBase):
         self._time_format: Optional[str] = None
         self._date_time_format: Optional[str] = None
         self._date_time_log_format: Optional[str] = None
-        self._os_name: Optional[str] = None
-        self._hostname: Optional[str] = None
 
     @property
     def date_format(self) -> str:
