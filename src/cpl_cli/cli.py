@@ -18,11 +18,7 @@ class CLI(ApplicationABC):
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
 
-        # self._command_handler.add_command(Command('build', ['b', 'B']))
-        # self._command_handler.add_command(Command('generate', ['g', 'G']))
         self._command_handler.add_command(Command('help', ['h', 'H'], self._services.get_service(Help)))
-        # self._command_handler.add_command(Command('new', ['n', 'N']))
-        # self._command_handler.add_command(Command('publish', ['p', 'P']))
         self._command_handler.add_command(Command('version', ['v', 'V'], self._services.get_service(Version)))
 
     def main(self):

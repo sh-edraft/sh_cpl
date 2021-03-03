@@ -22,10 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added version and help cli command">
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Improved help command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl_cli/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/commands/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/commands/help.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -486,13 +485,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00038" summary="Improved console">
-      <created>1608047595029</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1608047595029</updated>
-    </task>
     <task id="LOCAL-00039" summary="Improved ApplicationHost">
       <created>1608047655667</created>
       <option name="number" value="00039" />
@@ -829,7 +821,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614796655760</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Improved help command">
+      <created>1614797275948</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1614797275948</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -845,7 +844,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added first steps of database command" />
     <MESSAGE value="Improved error handling" />
     <MESSAGE value="Improved service providing" />
     <MESSAGE value="Added email client" />
@@ -870,7 +868,8 @@
     <MESSAGE value="Improved gitignore" />
     <MESSAGE value="Improved application" />
     <MESSAGE value="Added version and help cli command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added version and help cli command" />
+    <MESSAGE value="Improved help command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved help command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
