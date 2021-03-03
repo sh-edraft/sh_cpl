@@ -1,4 +1,4 @@
-from tests.Application import Application
+from tests.application import Application
 from tests.startup import Startup
 
 if __name__ == '__main__':
