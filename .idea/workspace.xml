@@ -22,18 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Improved gitignore">
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/command.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/command_handler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/commands/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/commands/help.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/commands/version.py" afterDir="false" />
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added version and help cli command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_abc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl_cli/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/startup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/Application.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/commands/help.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/commands/help.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -494,20 +486,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00036" summary="Added console module">
-      <created>1607976626173</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1607976626173</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Improved console">
-      <created>1608037411172</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1608037411172</updated>
-    </task>
     <task id="LOCAL-00038" summary="Improved console">
       <created>1608047595029</created>
       <option name="number" value="00038" />
@@ -837,7 +815,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614793114078</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Improved application">
+      <created>1614796638499</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1614796638499</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Added version and help cli command">
+      <created>1614796655760</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1614796655760</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -853,8 +845,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed deps" />
-    <MESSAGE value="Removed publisher.py" />
     <MESSAGE value="Added first steps of database command" />
     <MESSAGE value="Improved error handling" />
     <MESSAGE value="Improved service providing" />
@@ -878,7 +868,9 @@
     <MESSAGE value="Improved configuration" />
     <MESSAGE value="Added cli application" />
     <MESSAGE value="Improved gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved gitignore" />
+    <MESSAGE value="Improved application" />
+    <MESSAGE value="Added version and help cli command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added version and help cli command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
