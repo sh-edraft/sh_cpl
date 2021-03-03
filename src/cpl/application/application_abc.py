@@ -20,13 +20,17 @@ class ApplicationABC(ABC):
         self._startup = startup()
 
     def build(self):
-        if self._startup is None:
-            print('Startup is empty')
-            exit()
+        if self._startup is not None:
+            self._app_host = self._startup.create_application_host()
+            self._configuration = self._startup.create_configuration()
+            self._services = self._startup.create_services()
 
-        self._app_host = self._startup.create_application_host()
-        self._configuration = self._startup.create_configuration()
-        self._services = self._startup.create_services()
+    def run(self):
+        self.configure()
+        self.main()
 
     @abstractmethod
-    def run(self): pass
+    def configure(self): pass
+
+    @abstractmethod
+    def main(self): pass

@@ -1,10 +1,13 @@
 import json
 import os
 import sys
+from collections import Callable
+from typing import Union, Type
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.configuration.configuration_variable_name import ConfigurationVariableName
+from cpl.configuration.console_argument import ConsoleArgument
 from cpl.console.console import Console
 from cpl.console.foreground_color import ForegroundColor
 from cpl.environment.hosting_environment import HostingEnvironment
@@ -18,11 +21,18 @@ class Configuration(ConfigurationABC):
         ConfigurationABC.__init__(self)
 
         self._hosting_environment = HostingEnvironment()
-        self._config: dict[type, ConfigurationModelABC] = {}
+        self._config: dict[Union[type, str], Union[ConfigurationModelABC, str]] = {}
+
+        self._argument_types: list[ConsoleArgument] = []
+        self._additional_arguments: list[str] = []
 
     @property
     def environment(self) -> EnvironmentABC:
         return self._hosting_environment
+
+    @property
+    def additional_arguments(self) -> list[str]:
+        return self._additional_arguments
 
     @staticmethod
     def _print_info(name: str, message: str):
@@ -52,22 +62,52 @@ class Configuration(ConfigurationABC):
         elif name == ConfigurationVariableName.customer.value:
             self._hosting_environment.customer = value
 
+        else:
+            self._config[name] = value
+
     def add_environment_variables(self, prefix: str):
         for variable in ConfigurationVariableName.to_list():
             var_name = f'{prefix}{variable}'
             if var_name in [key.upper() for key in os.environ.keys()]:
                 self._set_variable(variable, os.environ[var_name])
 
-    def add_argument_variables(self):
+    def add_console_argument(self, token: str, name: str, aliases: list[str], value_token: str):
+        self._argument_types.append(ConsoleArgument(token, name, aliases, value_token))
+
+    def add_console_arguments(self):
+        for arg_name in ConfigurationVariableName.to_list():
+            self.add_console_argument('--', arg_name, [], '')
+
         for arg in sys.argv[1:]:
             try:
-                argument = arg.split('--')[1].split('=')[0].upper()
-                value = arg.split('=')[1]
+                is_done = False
+                for argument_type in self._argument_types:
+                    # check prefix
+                    if argument_type.token != '' and arg.startswith(argument_type.token):
+                        name = arg.split(argument_type.token)[1]
 
-                if argument not in ConfigurationVariableName.to_list():
-                    raise Exception(f'Invalid argument name: {argument}')
+                        if argument_type.value_token == '':
+                            if name == argument_type.name or name in argument_type.aliases:
+                                self._additional_arguments.append(argument_type.name)
+                                is_done = True
+                                break
 
-                self._set_variable(argument, value)
+                        if argument_type.value_token != '' and arg.__contains__(argument_type.value_token):
+                            name = name.split(argument_type.value_token)[0]
+                            if name == argument_type.name or name in argument_type.aliases:
+                                value = arg.split(argument_type.value_token)[1]
+                                self._set_variable(argument_type.name, value)
+                                is_done = True
+                                break
+
+                    elif argument_type.value_token == '' and arg == argument_type.name or arg in argument_type.aliases:
+                        is_done = True
+                        self._additional_arguments.append(argument_type.name)
+                        break
+
+                if not is_done:
+                    self._print_error(__name__, f'Invalid argument: {arg}')
+                    exit()
             except Exception as e:
                 self._print_error(__name__, f'Invalid argument: {arg} -> {e}')
                 exit()
@@ -109,7 +149,7 @@ class Configuration(ConfigurationABC):
     def add_configuration(self, key_type: type, value: ConfigurationModelABC):
         self._config[key_type] = value
 
-    def get_configuration(self, search_type: type) -> ConfigurationModelABC:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
         if search_type not in self._config:
             raise Exception(f'Config model by type {search_type} not found')
 

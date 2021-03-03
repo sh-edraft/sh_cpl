@@ -33,13 +33,14 @@ class Application(ApplicationABC):
         Console.write_at(5, 5, 'at 5, 5')
         Console.write_at(10, 10, 'at 10, 10')
 
-    def run(self):
+    def configure(self):
         self._logger = self._services.get_service(LoggerABC)
         self._mailer = self._services.get_service(EMailClientABC)
 
+    def main(self):
         self._logger.header(f'{self._configuration.environment.application_name}:')
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
-        self.test_send_mail()
+        # self.test_send_mail()
         # self.test_console()

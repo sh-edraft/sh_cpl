@@ -1,5 +1,5 @@
 from tests.Application import Application
-from tests.Startup import Startup
+from tests.startup import Startup
 
 if __name__ == '__main__':
     app = Application()

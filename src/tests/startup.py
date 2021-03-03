@@ -32,7 +32,7 @@ class Startup(StartupABC):
     def create_configuration(self) -> ConfigurationABC:
         self._configuration.add_environment_variables('PYTHON_')
         self._configuration.add_environment_variables('CPL_')
-        self._configuration.add_argument_variables()
+        self._configuration.add_console_arguments()
         self._configuration.add_json_file(f'appsettings.json')
         self._configuration.add_json_file(f'appsettings.{self._configuration.environment.environment_name}.json')
         self._configuration.add_json_file(f'appsettings.{self._configuration.environment.host_name}.json', optional=True)
