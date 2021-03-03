@@ -22,19 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Refactored code">
-      <change afterPath="$PROJECT_DIR$/src/cpl/configuration/console_argument.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/cli.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/startup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/configuration/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/configuration/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/configuration/configuration_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/configuration/configuration_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/Application.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/Application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/Startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/startup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/main.py" afterDir="false" />
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added cli application">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -495,20 +484,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00033" summary="Changed DatabaseConnection">
-      <created>1607712129507</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1607712129507</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Improved session reference">
-      <created>1607971885250</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1607971885250</updated>
-    </task>
     <task id="LOCAL-00035" summary="Added console module">
       <created>1607976456889</created>
       <option name="number" value="00035" />
@@ -838,7 +813,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614764872108</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Improved configuration">
+      <created>1614793059335</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1614793059340</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Added cli application">
+      <created>1614793074976</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1614793074976</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -854,8 +843,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added publish command to cli" />
-    <MESSAGE value="Added imports to cli module" />
     <MESSAGE value="Improved help command" />
     <MESSAGE value="Changed deps" />
     <MESSAGE value="Removed publisher.py" />
@@ -879,7 +866,9 @@
     <MESSAGE value="Removed unused packages" />
     <MESSAGE value="Removed publish package" />
     <MESSAGE value="Refactored code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored code" />
+    <MESSAGE value="Improved configuration" />
+    <MESSAGE value="Added cli application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added cli application" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
