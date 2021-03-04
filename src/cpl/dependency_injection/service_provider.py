@@ -19,8 +19,8 @@ class ServiceProvider(ServiceProviderABC):
         self._app_runtime: ApplicationRuntimeABC = app_runtime
         self._database_context: Optional[DatabaseContextABC] = None
 
-        self._transient_services: dict[Type[ServiceABC], Type[ServiceABC]] = {}
-        self._scoped_services: dict[Type[ServiceABC], Type[ServiceABC]] = {}
+        self._transient_services: dict[Type[ServiceABC], Callable[ServiceABC]] = {}
+        self._scoped_services: dict[Type[ServiceABC], Callable[ServiceABC]] = {}
         self._singleton_services: dict[Type[ServiceABC], Callable[ServiceABC], ServiceABC] = {}
 
     def _create_instance(self, service: Union[Callable[ServiceABC], ServiceABC]) -> Callable[ServiceABC]:
@@ -52,10 +52,10 @@ class ServiceProvider(ServiceProviderABC):
     def get_db_context(self) -> Callable[DatabaseContextABC]:
         return self._database_context
 
-    def add_transient(self, service_type: Type[ServiceABC], service: Type[ServiceABC]):
+    def add_transient(self, service_type: Type[ServiceABC], service: Callable[ServiceABC]):
         self._transient_services[service_type] = service
 
-    def add_scoped(self, service_type: Type[ServiceABC], service: Type[ServiceABC]):
+    def add_scoped(self, service_type: Type[ServiceABC], service: Callable[ServiceABC]):
         self._scoped_services[service_type] = service
 
     def add_singleton(self, service_type: Type[ServiceABC], service: Callable[ServiceABC]):

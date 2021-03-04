@@ -18,10 +18,10 @@ class ServiceProviderABC(ABC):
     def get_db_context(self) -> Callable[DatabaseContextABC]: pass
 
     @abstractmethod
-    def add_transient(self, service_type: Type, service: Type): pass
+    def add_transient(self, service_type: Type, service: Callable): pass
 
     @abstractmethod
-    def add_scoped(self, service_type: Type, service: Type): pass
+    def add_scoped(self, service_type: Type, service: Callable): pass
 
     @abstractmethod
     def add_singleton(self, service_type: Type, service: Callable): pass
