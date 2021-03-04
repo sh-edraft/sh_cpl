@@ -22,14 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Smaller bugfixes">
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Improved application host">
+      <change afterPath="$PROJECT_DIR$/src/cpl.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_host.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_host.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_host_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_host_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/configuration/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/configuration/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/configuration/configuration_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/configuration/configuration_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/startup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/cpl.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/cpl.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -490,13 +486,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00041" summary="Improved publisher">
-      <created>1608049672925</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1608049672925</updated>
-    </task>
     <task id="LOCAL-00042" summary="Published for 2020.12.9">
       <created>1608049772153</created>
       <option name="number" value="00042" />
@@ -833,7 +822,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614836560514</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Improved application host">
+      <created>1614837218919</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1614837218919</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -849,7 +845,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added email client" />
     <MESSAGE value="Published" />
     <MESSAGE value="Improved publisher" />
     <MESSAGE value="Added imports" />
@@ -874,7 +869,8 @@
     <MESSAGE value="Improved help command" />
     <MESSAGE value="Improved cli" />
     <MESSAGE value="Smaller bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Smaller bugfixes" />
+    <MESSAGE value="Improved application host" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved application host" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
