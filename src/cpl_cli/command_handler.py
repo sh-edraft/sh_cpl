@@ -1,11 +1,14 @@
+from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.dependency_injection.service_abc import ServiceABC
 from cpl_cli.command import Command
 
 
 class CommandHandler(ServiceABC):
 
-    def __init__(self):
+    def __init__(self, runtime: ApplicationRuntimeABC):
         ServiceABC.__init__(self)
+
+        self._runtime = runtime
 
         self._commands: list[Command] = []
 
