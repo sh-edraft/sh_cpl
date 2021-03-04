@@ -1,14 +1,12 @@
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
-from cpl.console.console import Console
 from cpl_cli.command.build import Build
 from cpl_cli.command_handler import CommandHandler
 from cpl_cli.command_model import CommandModel
 from cpl_cli.error import Error
 from cpl_cli.command.help import Help
 from cpl_cli.command.version import Version
-from cpl_cli.publish.project_settings import ProjectSettings
 
 
 class CLI(ApplicationABC):
