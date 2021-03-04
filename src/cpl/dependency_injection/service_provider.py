@@ -1,11 +1,9 @@
-from abc import ABC
 from collections import Callable
 from inspect import signature, Parameter
 from typing import Type, Optional, Union
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.console.console import Console
 from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.dependency_injection.service_provider_base import ServiceProviderABC
@@ -41,6 +39,9 @@ class ServiceProvider(ServiceProviderABC):
                 elif issubclass(parameter.annotation, ConfigurationModelABC):
                     params.append(self._app_runtime.configuration.get_configuration(parameter.annotation))
 
+                elif issubclass(parameter.annotation, ServiceProviderABC):
+                    params.append(self)
+
                 else:
                     params.append(self.get_service(parameter.annotation))
 
@@ -75,6 +76,9 @@ class ServiceProvider(ServiceProviderABC):
             self._singleton_services[service_type] = self._create_instance(service)
 
     def get_service(self, instance_type: Type) -> Callable[ServiceABC]:
+        if issubclass(instance_type, ServiceProviderABC):
+            return self
+
         for service in self._transient_services:
             if service == instance_type and isinstance(self._transient_services[service], type(instance_type)):
                 return self._create_instance(self._transient_services[service])

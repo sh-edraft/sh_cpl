@@ -134,7 +134,7 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
-    def add_json_file(self, name: str, optional: bool = None, output: bool = False):
+    def add_json_file(self, name: str, optional: bool = None, output: bool = True):
         if self._hosting_environment.content_root_path.endswith('/') and not name.startswith('/'):
             file_path = f'{self._hosting_environment.content_root_path}{name}'
         else:
@@ -177,8 +177,7 @@ class Configuration(ConfigurationABC):
     def add_configuration(self, key_type: type, value: ConfigurationModelABC):
         self._config[key_type] = value
 
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
-        str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
         if search_type not in self._config:
             raise Exception(f'Config model by type {search_type} not found')
 

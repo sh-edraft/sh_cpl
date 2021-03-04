@@ -1,1 +1,11 @@
-{}
+{
+  "ProjectSettings": {
+    "Version": {
+      "major": "2021",
+      "minor": "04",
+      "micro": "01"
+    },
+    "ExcludedFiles": [],
+    "DistPath": "../../dist"
+  }
+}
