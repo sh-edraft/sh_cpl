@@ -97,7 +97,7 @@
       <recent name="$PROJECT_DIR$/src/cpl/database" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.cli help">
+  <component name="RunManager" selected="Python.cli build">
     <configuration name="cli build" type="PythonConfigurationType" factoryName="Python">
       <module name="sh_common_py_lib" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,8 +110,8 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/sh_edraft/cli/cpl_cli/cli.py" />
-      <option name="PARAMETERS" value="build test" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/cpl_cli/main.py" />
+      <option name="PARAMETERS" value="build" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
