@@ -2,7 +2,7 @@ import json
 import os
 import sys
 from collections import Callable
-from typing import Union, Type
+from typing import Union, Type, Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
@@ -26,6 +26,8 @@ class Configuration(ConfigurationABC):
         self._argument_types: list[ConsoleArgument] = []
         self._additional_arguments: list[str] = []
 
+        self._argument_error_function: Optional[Callable] = None
+
     @property
     def environment(self) -> EnvironmentABC:
         return self._hosting_environment
@@ -33,6 +35,14 @@ class Configuration(ConfigurationABC):
     @property
     def additional_arguments(self) -> list[str]:
         return self._additional_arguments
+
+    @property
+    def argument_error_function(self) -> Optional[Callable]:
+        return self._argument_error_function
+
+    @argument_error_function.setter
+    def argument_error_function(self, argument_error_function: Callable):
+        self._argument_error_function = argument_error_function
 
     @staticmethod
     def _print_info(name: str, message: str):
@@ -106,10 +116,22 @@ class Configuration(ConfigurationABC):
                         break
 
                 if not is_done:
-                    self._print_error(__name__, f'Invalid argument: {arg}')
+                    message = f'Invalid argument: {arg}'
+
+                    if self._argument_error_function is not None:
+                        self._argument_error_function(message)
+                    else:
+                        self._print_error(__name__, message)
+
                     exit()
             except Exception as e:
-                self._print_error(__name__, f'Invalid argument: {arg} -> {e}')
+                message = f'Invalid argument: {arg} -> {e}'
+
+                if self._argument_error_function is not None:
+                    self._argument_error_function(message)
+                else:
+                    self._print_error(__name__, message)
+
                 exit()
 
     def add_json_file(self, name: str, optional: bool = None):
@@ -149,7 +171,8 @@ class Configuration(ConfigurationABC):
     def add_configuration(self, key_type: type, value: ConfigurationModelABC):
         self._config[key_type] = value
 
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
+        str, Callable[ConfigurationModelABC]]:
         if search_type not in self._config:
             raise Exception(f'Config model by type {search_type} not found')
 

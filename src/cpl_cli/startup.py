@@ -8,6 +8,7 @@ from cpl.dependency_injection.service_provider_base import ServiceProviderABC
 from cpl_cli.command_handler import CommandHandler
 from cpl_cli.commands.help import Help
 from cpl_cli.commands.version import Version
+from cpl_cli.error import Error
 
 
 class Startup(StartupABC):
@@ -23,6 +24,9 @@ class Startup(StartupABC):
         self._app_host = ApplicationHost()
         self._configuration = self._app_host.configuration
         self._services = self._app_host.services
+
+        self._app_host.console_argument_error_function(Error.error)
+
         return self._app_host
 
     def create_configuration(self) -> ConfigurationABC:

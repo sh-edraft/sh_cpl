@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from collections import Callable
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -21,3 +22,10 @@ class ApplicationHostABC(ABC):
     @property
     @abstractmethod
     def services(self) -> ServiceProviderABC: pass
+
+    @staticmethod
+    @abstractmethod
+    def output_at_exit(): pass
+
+    @abstractmethod
+    def console_argument_error_function(self, function: Callable): pass

@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABC
 from collections import Callable
-from typing import Type, Union
+from typing import Type, Union, Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.environment.environment_abc import EnvironmentABC
@@ -18,6 +18,14 @@ class ConfigurationABC(ABC):
     @property
     @abstractmethod
     def additional_arguments(self) -> list[str]: pass
+
+    @property
+    @abstractmethod
+    def argument_error_function(self) -> Optional[Callable]: pass
+
+    @argument_error_function.setter
+    @abstractmethod
+    def argument_error_function(self, argument_error_function: Callable): pass
 
     @abstractmethod
     def add_environment_variables(self, prefix: str): pass
