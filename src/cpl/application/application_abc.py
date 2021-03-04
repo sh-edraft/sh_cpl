@@ -1,3 +1,4 @@
+import atexit
 from abc import ABC, abstractmethod
 from typing import Type, Optional
 
@@ -19,6 +20,10 @@ class ApplicationABC(ABC):
 
     def use_startup(self, startup: Type[StartupABC]):
         self._startup = startup()
+
+    @staticmethod
+    def output_at_exit():
+        atexit.register(Console.close)
 
     def build(self):
         if self._startup is not None:

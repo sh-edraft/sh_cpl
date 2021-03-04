@@ -18,5 +18,4 @@ class CommandHandler(ServiceABC):
     def handle(self, cmd: str, args: list[str]):
         for command in self._commands:
             if cmd == command.name or cmd in command.aliases:
-                print(command.command)
                 command.command.run(args)
