@@ -7,13 +7,13 @@ import pkg_resources
 import cpl
 import cpl_cli
 from cpl.console.console import Console
-from cpl.dependency_injection.service_abc import ServiceABC
+from cpl_cli.command_abc import CommandABC
 
 
-class Version(ServiceABC):
+class Version(CommandABC):
 
     def __init__(self):
-        ServiceABC.__init__(self)
+        CommandABC.__init__(self)
 
     def run(self, args: list[str]):
         Console.set_foreground_color('yellow')
