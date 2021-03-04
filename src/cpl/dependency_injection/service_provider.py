@@ -52,18 +52,27 @@ class ServiceProvider(ServiceProviderABC):
     def get_db_context(self) -> Callable[DatabaseContextABC]:
         return self._database_context
 
-    def add_transient(self, service_type: Type[ServiceABC], service: Callable[ServiceABC]):
-        self._transient_services[service_type] = service
+    def add_transient(self, service_type: Type[ServiceABC], service: Callable[ServiceABC] = None):
+        if service is None:
+            self._transient_services[service_type] = service_type
+        else:
+            self._transient_services[service_type] = service
 
-    def add_scoped(self, service_type: Type[ServiceABC], service: Callable[ServiceABC]):
-        self._scoped_services[service_type] = service
+    def add_scoped(self, service_type: Type[ServiceABC], service: Callable[ServiceABC] = None):
+        if service is None:
+            self._scoped_services[service_type] = service_type
+        else:
+            self._scoped_services[service_type] = service
 
-    def add_singleton(self, service_type: Type[ServiceABC], service: Callable[ServiceABC]):
+    def add_singleton(self, service_type: Type[ServiceABC], service: Callable[ServiceABC] = None):
         for known_service in self._singleton_services:
             if type(known_service) == service_type:
                 raise Exception(f'Service with type {service_type} already exists')
 
-        self._singleton_services[service_type] = self._create_instance(service)
+        if service is None:
+            self._singleton_services[service_type] = self._create_instance(service_type)
+        else:
+            self._singleton_services[service_type] = self._create_instance(service)
 
     def get_service(self, instance_type: Type) -> Callable[ServiceABC]:
         for service in self._transient_services:
