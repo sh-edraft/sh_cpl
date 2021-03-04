@@ -1,11 +1,14 @@
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
-from cpl_cli.command import Command
+from cpl.console.console import Console
+from cpl_cli.command.build import Build
 from cpl_cli.command_handler import CommandHandler
+from cpl_cli.command_model import CommandModel
 from cpl_cli.error import Error
-from cpl_cli.commands.help import Help
-from cpl_cli.commands.version import Version
+from cpl_cli.command.help import Help
+from cpl_cli.command.version import Version
+from cpl_cli.publish.project_settings import ProjectSettings
 
 
 class CLI(ApplicationABC):
@@ -18,8 +21,9 @@ class CLI(ApplicationABC):
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
 
-        self._command_handler.add_command(Command('help', ['h', 'H'], self._services.get_service(Help)))
-        self._command_handler.add_command(Command('version', ['v', 'V'], self._services.get_service(Version)))
+        self._command_handler.add_command(CommandModel('build', ['h', 'B'], Build))
+        self._command_handler.add_command(CommandModel('help', ['h', 'H'], Help))
+        self._command_handler.add_command(CommandModel('version', ['v', 'V'], Version))
 
     def main(self):
         if len(self._configuration.additional_arguments) < 1:
