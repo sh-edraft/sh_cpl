@@ -134,7 +134,7 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
-    def add_json_file(self, name: str, optional: bool = None):
+    def add_json_file(self, name: str, optional: bool = None, output: bool = False):
         if self._hosting_environment.content_root_path.endswith('/') and not name.startswith('/'):
             file_path = f'{self._hosting_environment.content_root_path}{name}'
         else:
@@ -142,13 +142,17 @@ class Configuration(ConfigurationABC):
 
         if not os.path.isfile(file_path):
             if not optional:
-                self._print_error(__name__, f'File not found: {file_path}')
+                if output:
+                    self._print_error(__name__, f'File not found: {file_path}')
+
                 exit()
 
-            self._print_warn(__name__, f'Not Loaded config file: {file_path}')
+            if output:
+                self._print_warn(__name__, f'Not Loaded config file: {file_path}')
+
             return None
 
-        config_from_file = self._load_json_file(file_path)
+        config_from_file = self._load_json_file(file_path, output)
         for sub in ConfigurationModelABC.__subclasses__():
             for key, value in config_from_file.items():
                 if sub.__name__ == key:
@@ -156,13 +160,15 @@ class Configuration(ConfigurationABC):
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
 
-    def _load_json_file(self, file: str) -> dict:
+    def _load_json_file(self, file: str, output: bool) -> dict:
         try:
             # open config file, create if not exists
             with open(file, encoding='utf-8') as cfg:
                 # load json
                 json_cfg = json.load(cfg)
-                self._print_info(__name__, f'Loaded config file: {file}')
+                if output:
+                    self._print_info(__name__, f'Loaded config file: {file}')
+
                 return json_cfg
         except Exception as e:
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')

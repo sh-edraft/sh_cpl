@@ -37,7 +37,7 @@ class ConfigurationABC(ABC):
     def add_console_arguments(self): pass
 
     @abstractmethod
-    def add_json_file(self, name: str, optional: bool = None): pass
+    def add_json_file(self, name: str, optional: bool = None, output: bool = False): pass
 
     @abstractmethod
     def add_configuration(self, key_type: type, value: object): pass
