@@ -22,12 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added cpl.json">
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Improved application">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_host.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_host.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_runtime.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_runtime.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_runtime_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_runtime_abc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/startup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_abc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/cli.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -488,13 +486,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00043" summary="Publish improvements for pip install">
-      <created>1608059323858</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1608059323858</updated>
-    </task>
     <task id="LOCAL-00044" summary="Improved setup.py">
       <created>1608059501153</created>
       <option name="number" value="00044" />
@@ -831,7 +822,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614837337289</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Improved application">
+      <created>1614838148219</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1614838148219</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -864,7 +862,6 @@
     <MESSAGE value="Improved configuration" />
     <MESSAGE value="Added cli application" />
     <MESSAGE value="Improved gitignore" />
-    <MESSAGE value="Improved application" />
     <MESSAGE value="Added version and help cli command" />
     <MESSAGE value="Improved help command" />
     <MESSAGE value="Improved cli" />
@@ -872,7 +869,8 @@
     <MESSAGE value="Improved application host" />
     <MESSAGE value="Improved cpl.json" />
     <MESSAGE value="Added cpl.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cpl.json" />
+    <MESSAGE value="Improved application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved application" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
