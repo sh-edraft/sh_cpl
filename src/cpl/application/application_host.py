@@ -1,6 +1,5 @@
 import atexit
 from collections import Callable
-from datetime import datetime
 
 from cpl.application.application_host_abc import ApplicationHostABC
 from cpl.application.application_runtime import ApplicationRuntime
@@ -21,10 +20,6 @@ class ApplicationHost(ApplicationHostABC):
         self._config = Configuration()
         self._app_runtime = ApplicationRuntime(self._config)
         self._services = ServiceProvider(self._app_runtime)
-
-        # Set vars
-        self._start_time: datetime = datetime.now()
-        self._end_time: datetime = datetime.now()
 
     @property
     def configuration(self) -> ConfigurationABC:

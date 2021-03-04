@@ -32,3 +32,14 @@ class ApplicationRuntimeABC(ABC):
     @property
     @abstractmethod
     def date_time_now(self) -> datetime: pass
+
+    @property
+    @abstractmethod
+    def working_directory(self) -> str: pass
+
+    @property
+    @abstractmethod
+    def runtime_directory(self) -> str: pass
+
+    @abstractmethod
+    def set_runtime_directory(self, runtime_directory: str): pass
