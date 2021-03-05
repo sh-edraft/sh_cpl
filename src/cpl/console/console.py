@@ -206,12 +206,14 @@ class Console:
         cls._output(string, x, y, end='')
 
     @classmethod
-    def spinner(cls, message: str, call: Callable):
+    def spinner(cls, message: str, call: Callable) -> any:
         cls.write_line(message)
         spinner = SpinnerThread(cls)
         spinner.start()
-        call()
+        return_value = call()
         spinner.stop_spinning()
+
+        return return_value
 
     @classmethod
     def flush(cls):
