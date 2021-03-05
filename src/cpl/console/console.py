@@ -1,4 +1,6 @@
 import os
+import sys
+from collections import Callable
 from typing import Union, Optional
 
 import pyfiglet
@@ -7,6 +9,7 @@ from termcolor import colored
 
 from cpl.console.background_color import BackgroundColor
 from cpl.console.foreground_color import ForegroundColor
+from cpl.console.spinner_thread import SpinnerThread
 
 
 class Console:
@@ -203,3 +206,16 @@ class Console:
         if not cls._is_first_write:
             cls._output('', end='')
         cls._output(string, x, y, end='')
+
+    @classmethod
+    def spinner(cls, message: str, call: Callable):
+        cls.write(message)
+        spinner = SpinnerThread(cls)
+        spinner.start()
+        call()
+        spinner.stop_spinning()
+        cls.write_line()
+
+    @classmethod
+    def flush(cls):
+        sys.stdout.flush()
