@@ -75,11 +75,10 @@ class Console:
 
         args = []
         colored_args = []
-
         if x is not None and y is not None:
-            args.append(f'\033[{x};{y}H')
+            args.append(f'\033[{y};{x}H')
         elif cls._x is not None and cls._y is not None:
-            args.append(f'\033[{cls._x};{cls._y}H')
+            args.append(f'\033[{cls._y};{cls._x}H')
 
         colored_args.append(string)
         if cls._foreground_color != ForegroundColor.default and cls._background_color == BackgroundColor.default:
@@ -96,7 +95,6 @@ class Console:
     """
         Useful public methods
     """
-
     @classmethod
     def banner(cls, string: str):
         if cls._disabled:
