@@ -251,7 +251,7 @@ class Console:
         cls._output(string, x, y, end='')
 
     @classmethod
-    def spinner(cls, message: str, call: Callable) -> any:
+    def spinner(cls, message: str, call: Callable, *args) -> any:
         if cls._hold_back:
             cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call))
             return
@@ -260,7 +260,7 @@ class Console:
         cls.set_hold_back(True)
         spinner = SpinnerThread()
         spinner.start()
-        return_value = call()
+        return_value = call(*args)
         spinner.stop_spinning()
         cls.set_hold_back(False)
         for call in cls._hold_back_calls:
