@@ -1,5 +1,6 @@
 import os
 import shutil
+import time
 from string import Template as stringTemplate
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
@@ -59,6 +60,7 @@ class Publisher(PublisherABC):
                 exit()
 
     def _read_sources(self):
+        time.sleep(2)
         for file in self._project.included:
             rel_path = os.path.relpath(file)
             if os.path.isdir(rel_path):
@@ -168,15 +170,14 @@ class Publisher(PublisherABC):
                 Console.error(__name__, f'Cannot copy file: {file} to {output_path} -> {e}')
 
     def include(self, path: str):
-        pass
+        self._project.included.append(path)
 
     def exclude(self, path: str):
-        pass
+        self._project.excluded.append(path)
 
     def build(self):
-        self._read_sources()
-        Console.write_line('Creating internal packages:')
-        self._create_packages()
+        Console.spinner('Reading source files:', self._read_sources)
+        Console.spinner('Creating internal packages:', self._create_packages)
         Console.write_line('Building application:')
         self._dist_files()
 
