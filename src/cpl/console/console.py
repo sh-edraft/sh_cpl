@@ -8,6 +8,7 @@ from tabulate import tabulate
 from termcolor import colored
 
 from cpl.console.background_color import BackgroundColor
+from cpl.console.console_call import ConsoleCall
 from cpl.console.foreground_color import ForegroundColor
 from cpl.console.spinner_thread import SpinnerThread
 
@@ -20,6 +21,9 @@ class Console:
     _x: Optional[int] = None
     _y: Optional[int] = None
     _disabled: bool = False
+
+    _hold_back = False
+    _hold_back_calls: list[ConsoleCall] = []
 
     """
         Properties
@@ -38,6 +42,10 @@ class Console:
     """
         Settings
     """
+
+    @classmethod
+    def set_hold_back(cls, value: bool):
+        cls._hold_back = value
 
     @classmethod
     def set_background_color(cls, color: Union[BackgroundColor, str]):
@@ -95,9 +103,14 @@ class Console:
     """
         Useful public methods
     """
+
     @classmethod
     def banner(cls, string: str):
         if cls._disabled:
+            return
+
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.banner, string))
             return
 
         ascii_banner = pyfiglet.figlet_format(string)
@@ -105,11 +118,19 @@ class Console:
 
     @classmethod
     def clear(cls):
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.clear))
+            return
+
         os.system('cls' if os.name == 'nt' else 'clear')
 
     @classmethod
     def close(cls):
         if cls._disabled:
+            return
+
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.close))
             return
 
         Console.reset()
@@ -126,6 +147,10 @@ class Console:
         if cls._disabled:
             return
 
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.error, string, tb))
+            return
+
         cls.set_foreground_color('red')
         if tb is not None:
             cls.write_line(f'{string} -> {tb}')
@@ -139,14 +164,14 @@ class Console:
 
     @classmethod
     def read(cls, output: str = None) -> str:
-        if output is not None:
+        if output is not None and not cls._hold_back:
             cls.write(output)
 
         return input()[0]
 
     @classmethod
     def read_line(cls, output: str = None) -> str:
-        if cls._disabled:
+        if cls._disabled and not cls._hold_back:
             return ''
 
         if output is not None:
@@ -164,6 +189,10 @@ class Console:
         if cls._disabled:
             return
 
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.table, header, values))
+            return
+
         table = tabulate(values, headers=header)
 
         Console.write_line(table)
@@ -174,6 +203,10 @@ class Console:
         if cls._disabled:
             return
 
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.write, args))
+            return
+
         string = ' '.join(map(str, args))
         cls._output(string, end='')
 
@@ -182,12 +215,20 @@ class Console:
         if cls._disabled:
             return
 
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.write_at, x, y, args))
+            return
+
         string = ' '.join(map(str, args))
         cls._output(string, x, y, end='')
 
     @classmethod
     def write_line(cls, *args):
         if cls._disabled:
+            return
+
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.write_line, args))
             return
 
         string = ' '.join(map(str, args))
@@ -200,6 +241,10 @@ class Console:
         if cls._disabled:
             return
 
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.write_line_at, x, y, args))
+            return
+
         string = ' '.join(map(str, args))
         if not cls._is_first_write:
             cls._output('', end='')
@@ -207,14 +252,18 @@ class Console:
 
     @classmethod
     def spinner(cls, message: str, call: Callable) -> any:
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call))
+            return
+
         cls.write_line(message)
-        spinner = SpinnerThread(cls)
+        cls.set_hold_back(True)
+        spinner = SpinnerThread()
         spinner.start()
         return_value = call()
         spinner.stop_spinning()
+        cls.set_hold_back(False)
+        for call in cls._hold_back_calls:
+            call.function(*call.args)
 
         return return_value
-
-    @classmethod
-    def flush(cls):
-        sys.stdout.flush()

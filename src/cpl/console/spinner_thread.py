@@ -1,13 +1,13 @@
+import sys
 import threading
 import time
 
 
 class SpinnerThread(threading.Thread):
 
-    def __init__(self, console):
+    def __init__(self):
         threading.Thread.__init__(self)
 
-        self._console = console
         self._is_spinning = True
 
     @staticmethod
@@ -17,16 +17,19 @@ class SpinnerThread(threading.Thread):
                 yield cursor
 
     def run(self) -> None:
-        self._console.write('\t')
+        print('\t', end='')
         spinner = self._spinner()
         while self._is_spinning:
-            self._console.write(next(spinner))
+            # self._console.write(next(spinner))
+            print(next(spinner), end='')
             time.sleep(0.1)
-            self._console.write('\b')
+            # self._console.write('\b')
+            print('\b', end='')
 
-            self._console.flush()
+            sys.stdout.flush()
 
-        self._console.write(' ')
+        # self._console.write(' ')
+        print(' ', end='')
 
     def stop_spinning(self):
         self._is_spinning = False
