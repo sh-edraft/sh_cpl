@@ -207,12 +207,11 @@ class Console:
 
     @classmethod
     def spinner(cls, message: str, call: Callable):
-        cls.write(message)
+        cls.write_line(message)
         spinner = SpinnerThread(cls)
         spinner.start()
         call()
         spinner.stop_spinning()
-        cls.write_line()
 
     @classmethod
     def flush(cls):
