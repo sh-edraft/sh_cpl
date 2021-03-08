@@ -7,7 +7,7 @@ $Name $Description
 $LongDescription
 
 :copyright: (c) $CopyrightDate $CopyrightName
-:license: $LicenseName$LicenseDescription
+:license: $LicenseDescription
 
 """
 

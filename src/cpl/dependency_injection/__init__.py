@@ -7,7 +7,7 @@ sh_cpl sh-edraft Common Python library
 sh-edraft Common Python library
 
 :copyright: (c) 2020 sh-edraft.de
-:license: MITMIT, see LICENSE for more details.
+:license: MIT, see LICENSE for more details.
 
 """
 

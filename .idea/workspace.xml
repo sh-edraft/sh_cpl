@@ -22,50 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added argument handling to spinner">
-      <change afterPath="$PROJECT_DIR$/docs/project_structure.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/__main__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/build_settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/build_settings_name.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/version_settings_name.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cpl_cli/templates/publish/setup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/cli.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/install.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/install.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/structure.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/todo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/publish_templates/all_template.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl.json" beforeDir="false" afterPath="$PROJECT_DIR$/cpl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/application/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/configuration/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/configuration/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/console/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/console/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/database/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/database/connection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/database/connection/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/database/context/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/database/context/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/dependency_injection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/dependency_injection/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/environment/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/environment/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/logging/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/logging/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/mailing/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/mailing/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/time/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/time/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/version/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/version/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/version/version_enum.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/command/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/command/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/command/publish.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/command/publish.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/publish/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/project_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/project_settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/project_settings_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/project_settings_name.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/startup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/db/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/db/__init__.py" afterDir="false" />
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added publish logic">
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/templates/build/init.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/templates/build/init.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +95,7 @@
       <recent name="$PROJECT_DIR$/src/cpl/database/context" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.cli publish">
+  <component name="RunManager" selected="Python.cli build">
     <configuration name="cli build" type="PythonConfigurationType" factoryName="Python">
       <module name="sh_common_py_lib" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -504,13 +462,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00053" summary="Improved publish process">
-      <created>1608136663213</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1608136663213</updated>
-    </task>
     <task id="LOCAL-00054" summary="Improved publish process">
       <created>1608137669182</created>
       <option name="number" value="00054" />
@@ -847,7 +798,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614960859459</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Added publish logic">
+      <created>1615231748656</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1615231748656</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -863,7 +821,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bugfixes" />
     <MESSAGE value="Improved tests" />
     <MESSAGE value="Bugfixes and improved tests" />
     <MESSAGE value="Removed unused packages" />
@@ -888,7 +845,8 @@
     <MESSAGE value="Bugfix" />
     <MESSAGE value="Fixed output when console is spinning" />
     <MESSAGE value="Added argument handling to spinner" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added argument handling to spinner" />
+    <MESSAGE value="Added publish logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added publish logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
