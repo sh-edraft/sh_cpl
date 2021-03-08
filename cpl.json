@@ -21,20 +21,17 @@
       "SQLAlchemy",
       "termcolor",
       "pyfiglet",
-      "tabulate",
-      "smtplib"
+      "tabulate"
     ],
     "PythonVersion": ">=3.8"
   },
   "BuildSettings": {
-    "SourcePath": "src/cpl",
+    "SourcePath": "src",
     "OutputPath": "dist",
     "Main": "cpl_cli.main",
     "EntryPoint": "cpl",
     "IncludePackageData": "False",
-    "Included": [
-      "src/cpl_cli"
-    ],
+    "Included": [],
     "Excluded": [
       "*/__pycache__",
       "*/logs"
