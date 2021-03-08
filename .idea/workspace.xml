@@ -22,9 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Bugfixes in build process">
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Changed copyright date">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cpl.json" beforeDir="false" afterPath="$PROJECT_DIR$/cpl.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/configuration/build_settings_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/build_settings_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/configuration/project_settings_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/project_settings_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/configuration/version_settings_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/version_settings_name.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +77,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sh_python_line_counter" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="ReaderModeSettings">
@@ -463,13 +466,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00056" summary="Added imports to cli module">
-      <created>1608138986801</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1608138986801</updated>
-    </task>
     <task id="LOCAL-00057" summary="Improved help command">
       <created>1608139067953</created>
       <option name="number" value="00057" />
@@ -806,7 +802,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615231929106</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Changed copyright date">
+      <created>1615232454844</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1615232454844</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -822,7 +825,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bugfixes and improved tests" />
     <MESSAGE value="Removed unused packages" />
     <MESSAGE value="Removed publish package" />
     <MESSAGE value="Refactored code" />
@@ -847,7 +849,8 @@
     <MESSAGE value="Added argument handling to spinner" />
     <MESSAGE value="Added publish logic" />
     <MESSAGE value="Bugfixes in build process" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bugfixes in build process" />
+    <MESSAGE value="Changed copyright date" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed copyright date" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
