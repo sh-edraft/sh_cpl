@@ -20,10 +20,10 @@ class CLI(ApplicationABC):
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
 
-        self._command_handler.add_command(CommandModel('build', ['h', 'B'], Build))
-        self._command_handler.add_command(CommandModel('help', ['h', 'H'], Help))
-        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], Publish))
-        self._command_handler.add_command(CommandModel('version', ['v', 'V'], Version))
+        self._command_handler.add_command(CommandModel('build', ['h', 'B'], Build, True))
+        self._command_handler.add_command(CommandModel('help', ['h', 'H'], Help, False))
+        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], Publish, True))
+        self._command_handler.add_command(CommandModel('version', ['v', 'V'], Version, False))
 
     def main(self):
         if len(self._configuration.additional_arguments) < 1:
