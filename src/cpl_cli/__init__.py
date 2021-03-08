@@ -20,6 +20,13 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .cli import CLI
+from .command_abc import CommandABC
+from .command_handler import CommandHandler
+from .command_model import CommandModel
+from .error import Error
+from .main import main
+from .startup import Startup
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)
