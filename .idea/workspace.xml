@@ -22,31 +22,30 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Changed configuration to upper case">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Bugfixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpl.json" beforeDir="false" afterPath="$PROJECT_DIR$/cpl.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/application/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_abc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_host.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_host.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/application/application_host_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/application_host_abc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/application/startup_abc.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/application/startup_abc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/configuration/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/configuration/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/console/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/console/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/database/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/database/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/database/connection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/database/connection/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/database/context/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/database/context/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/dependency_injection/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/dependency_injection/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/dependency_injection/provide_state.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/dependency_injection/service_provider.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/dependency_injection/service_provider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl/dependency_injection/service_provider_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/dependency_injection/service_provider_abc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/environment/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/environment/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/logging/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/logging/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/mailing/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/mailing/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/time/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/time/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cpl/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/init.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/command/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/command/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/configuration/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/configuration/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/publish/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/templates/publish/setup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/templates/publish/setup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/db/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/db/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/command_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/command_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/startup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/startup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -484,13 +483,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00058" summary="Changed deps">
-      <created>1608139239527</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1608139239527</updated>
-    </task>
     <task id="LOCAL-00059" summary="Bugfixes">
       <created>1608139414722</created>
       <option name="number" value="00059" />
@@ -827,7 +819,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615232966232</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="Bugfixes">
+      <created>1615236731026</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1615236731026</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -843,7 +842,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed publish package" />
     <MESSAGE value="Refactored code" />
     <MESSAGE value="Improved configuration" />
     <MESSAGE value="Added cli application" />
@@ -868,7 +866,8 @@
     <MESSAGE value="Bugfixes in build process" />
     <MESSAGE value="Changed copyright date" />
     <MESSAGE value="Changed configuration to upper case" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed configuration to upper case" />
+    <MESSAGE value="Bugfixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugfixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -20,6 +20,9 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .service_abc import ServiceABC
+from .service_provider import ServiceProvider
+from .service_provider_abc import ServiceProviderABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

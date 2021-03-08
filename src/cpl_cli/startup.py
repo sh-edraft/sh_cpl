@@ -4,7 +4,7 @@ from cpl.application.application_host import ApplicationHost
 from cpl.application.application_host_abc import ApplicationHostABC
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.build import Build
 from cpl_cli.command.publish import Publish
 from cpl_cli.command_handler import CommandHandler

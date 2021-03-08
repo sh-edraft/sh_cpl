@@ -20,6 +20,11 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .configuration import Configuration
+from .configuration_abc import ConfigurationABC
+from .configuration_model_abc import ConfigurationModelABC
+from .configuration_variable_name import ConfigurationVariableName
+from .console_argument import ConsoleArgument
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

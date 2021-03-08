@@ -20,6 +20,9 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .environment_abc import EnvironmentABC
+from .environment_name import EnvironmentName
+from .hosting_environment import HostingEnvironment
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

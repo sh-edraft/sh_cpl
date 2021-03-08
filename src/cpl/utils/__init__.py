@@ -20,6 +20,7 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .credential_manager import CredentialManager
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

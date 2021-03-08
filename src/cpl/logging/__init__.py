@@ -20,6 +20,11 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .logger import Logger
+from .logger_abc import LoggerABC
+from .logging_level import LoggingLevel
+from .logging_settings import LoggingSettings
+from .logging_settings_name import LoggingSettingsName
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

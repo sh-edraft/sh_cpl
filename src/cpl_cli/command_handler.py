@@ -1,6 +1,6 @@
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.dependency_injection.service_abc import ServiceABC
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command_model import CommandModel
 
 

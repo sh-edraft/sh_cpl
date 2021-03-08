@@ -6,7 +6,7 @@ from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_abc import ServiceABC
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.environment.environment_abc import EnvironmentABC
 
 

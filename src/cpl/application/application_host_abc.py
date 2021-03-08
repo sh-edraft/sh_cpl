@@ -3,7 +3,7 @@ from collections import Callable
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class ApplicationHostABC(ABC):

@@ -20,6 +20,8 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .database_connection import DatabaseConnection
+from .database_connection_abc import DatabaseConnectionABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

@@ -20,6 +20,11 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .email import EMail
+from .email_client import EMailClient
+from .email_client_abc import EMailClientABC
+from .email_client_settings import EMailClientSettings
+from .email_client_settings_name import EMailClientSettingsName
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

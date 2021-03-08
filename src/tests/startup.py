@@ -6,7 +6,7 @@ from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.database.context.database_context import DatabaseContext
 from cpl.database.database_settings import DatabaseSettings
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.logging.logger import Logger
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email_client import EMailClient

@@ -6,7 +6,7 @@ from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class ApplicationABC(ABC):

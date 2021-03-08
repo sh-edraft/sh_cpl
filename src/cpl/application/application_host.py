@@ -8,7 +8,7 @@ from cpl.configuration.configuration import Configuration
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.dependency_injection.service_provider import ServiceProvider
-from cpl.dependency_injection.service_provider_base import ServiceProviderABC
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class ApplicationHost(ApplicationHostABC):
