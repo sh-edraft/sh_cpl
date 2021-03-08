@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'src.cpl_cli'
+__title__ = 'sh_cpl.cpl_cli'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'

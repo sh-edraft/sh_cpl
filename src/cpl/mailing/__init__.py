@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'src.cpl.mailing'
+__title__ = 'cpl.mailing'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'

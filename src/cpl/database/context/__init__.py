@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'src.cpl.database.context'
+__title__ = 'cpl.database.context'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'

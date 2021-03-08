@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'src.cpl.dependency_injection'
+__title__ = 'cpl.dependency_injection'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'

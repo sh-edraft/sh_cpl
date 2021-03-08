@@ -22,8 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Added publish logic">
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/templates/build/init.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/templates/build/init.txt" afterDir="false" />
+    <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Bugfixes in build process">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -462,13 +463,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00054" summary="Improved publish process">
-      <created>1608137669182</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1608137669182</updated>
-    </task>
     <task id="LOCAL-00055" summary="Added publish command to cli">
       <created>1608138851088</created>
       <option name="number" value="00055" />
@@ -805,7 +799,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615231748656</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Bugfixes in build process">
+      <created>1615231794961</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1615231794961</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -821,7 +822,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Improved tests" />
     <MESSAGE value="Bugfixes and improved tests" />
     <MESSAGE value="Removed unused packages" />
     <MESSAGE value="Removed publish package" />
@@ -846,7 +846,8 @@
     <MESSAGE value="Fixed output when console is spinning" />
     <MESSAGE value="Added argument handling to spinner" />
     <MESSAGE value="Added publish logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added publish logic" />
+    <MESSAGE value="Bugfixes in build process" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugfixes in build process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

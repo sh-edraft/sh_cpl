@@ -38,6 +38,9 @@ class Publisher(PublisherABC):
 
     @staticmethod
     def _get_module_name_from_dirs(file: str) -> str:
+        if 'src/' in file:
+            file = file.replace('src/', '')
+
         dirs = os.path.dirname(file).split('/')
         for d in dirs:
             if d.__contains__('.'):
@@ -225,7 +228,8 @@ class Publisher(PublisherABC):
             setup_string = stringTemplate(template_string).substitute(
                 Name=self._project_settings.name,
                 Version=self._project_settings.version.to_str(),
-                Packages=setuptools.find_packages(where=self._build_settings.source_path, exclude=self._build_settings.excluded),
+                Packages=setuptools.find_packages(where=self._build_settings.source_path,
+                                                  exclude=self._build_settings.excluded),
                 URL=self._project_settings.url,
                 LicenseName=self._project_settings.license_name,
                 Author=self._project_settings.author,
