@@ -1,25 +1,32 @@
+import importlib
 import os
 import shutil
-import time
 from string import Template as stringTemplate
+
+import setuptools
+from setuptools import sandbox
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
-from cpl_cli.publish.project_settings import ProjectSettings
+from cpl_cli.configuration.build_settings import BuildSettings
+from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.publish.publisher_abc import PublisherABC
 
 
 class Publisher(PublisherABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, project: ProjectSettings):
+    def __init__(self, runtime: ApplicationRuntimeABC, project: ProjectSettings, build: BuildSettings):
         PublisherABC.__init__(self)
 
         self._runtime = runtime
-        self._project = project
-        self._project.source_path = os.path.join(self._runtime.working_directory, self._project.source_path)
-        self._project.dist_path = os.path.join(self._runtime.working_directory, self._project.dist_path)
+        self._project_settings = project
+        self._build_settings = build
+
+        self._source_path = os.path.join(self._runtime.working_directory, self._build_settings.source_path)
+        self._output_path = os.path.join(self._runtime.working_directory, self._build_settings.output_path)
 
         self._included_files: list[str] = []
+        self._distributed_files: list[str] = []
 
     @property
     def source_path(self) -> str:
@@ -59,9 +66,18 @@ class Publisher(PublisherABC):
                 Console.error(f'{e}')
                 exit()
 
+    def _is_path_excluded(self, path: str) -> bool:
+        for excluded in self._build_settings.excluded:
+            if excluded.startswith('*'):
+                excluded = excluded.replace('*', '')
+
+            if excluded in path:
+                return True
+
+        return False
+
     def _read_sources(self):
-        time.sleep(2)
-        for file in self._project.included:
+        for file in self._build_settings.included:
             rel_path = os.path.relpath(file)
             if os.path.isdir(rel_path):
                 for r, d, f in os.walk(rel_path):
@@ -69,15 +85,7 @@ class Publisher(PublisherABC):
                         relative_path = os.path.relpath(r)
                         file_path = os.path.join(relative_path, os.path.relpath(sub_file))
 
-                        is_excluded = False
-                        for excluded in self._project.excluded:
-                            if excluded in relative_path:
-                                is_excluded = True
-
-                            if relative_path in excluded:
-                                is_excluded = True
-
-                        if not is_excluded:
+                        if not self._is_path_excluded(relative_path):
                             self._included_files.append(os.path.relpath(file_path))
 
             elif os.path.isfile(rel_path):
@@ -86,12 +94,12 @@ class Publisher(PublisherABC):
             else:
                 Console.error(f'Path not found: {rel_path}')
 
-        for r, d, f in os.walk(self._project.source_path):
+        for r, d, f in os.walk(self._build_settings.source_path):
             for file in f:
                 relative_path = os.path.relpath(r)
                 file_path = os.path.join(relative_path, os.path.relpath(file))
 
-                if relative_path not in self._project.excluded:
+                if not self._is_path_excluded(relative_path):
                     self._included_files.append(os.path.relpath(file_path))
 
     def _create_packages(self):
@@ -102,9 +110,9 @@ class Publisher(PublisherABC):
 
                 title = self._get_module_name_from_dirs(file)
                 if title == '':
-                    title = self._project.name
+                    title = self._project_settings.name
                 elif not title.__contains__('.'):
-                    title = f'{self._project.name}.{title}'
+                    title = f'{self._project_settings.name}.{title}'
 
                 module_py_lines: list[str] = []
                 imports = ''
@@ -129,19 +137,19 @@ class Publisher(PublisherABC):
 
                 with open(os.path.join(self._runtime.runtime_directory, 'templates/build/init.txt'), 'r') as template:
                     template_content = stringTemplate(template.read()).substitute(
-                        Name=self._project.name,
-                        Description=self._project.description,
-                        LongDescription=self._project.long_description,
-                        CopyrightDate=self._project.copyright_date,
-                        CopyrightName=self._project.copyright_name,
-                        LicenseName=self._project.license_name,
-                        LicenseDescription=self._project.license_description,
-                        Title=title if title is not None and title != '' else self._project.name,
-                        Author=self._project.author,
-                        Version=self._project.version.to_str(),
-                        Major=self._project.version.major,
-                        Minor=self._project.version.minor,
-                        Micro=self._project.version.micro,
+                        Name=self._project_settings.name,
+                        Description=self._project_settings.description,
+                        LongDescription=self._project_settings.long_description,
+                        CopyrightDate=self._project_settings.copyright_date,
+                        CopyrightName=self._project_settings.copyright_name,
+                        LicenseName=self._project_settings.license_name,
+                        LicenseDescription=self._project_settings.license_description,
+                        Title=title if title is not None and title != '' else self._project_settings.name,
+                        Author=self._project_settings.author,
+                        Version=self._project_settings.version.to_str(),
+                        Major=self._project_settings.version.major,
+                        Minor=self._project_settings.version.minor,
+                        Micro=self._project_settings.version.micro,
                         Imports=imports
                     )
 
@@ -150,36 +158,132 @@ class Publisher(PublisherABC):
                     py_file.close()
 
     def _dist_files(self):
-        build_path = os.path.join(self._project.dist_path, 'build')
+        build_path = os.path.join(self._output_path)
         self._delete_path(build_path)
         self._create_path(build_path)
 
         for file in self._included_files:
-            output_path = os.path.join(build_path, os.path.dirname(file))
-            output_file = os.path.join(build_path, file)
+            dist_file = file
+            if 'src/' in dist_file:
+                dist_file = dist_file.replace('src/', '')
+
+            output_path = os.path.join(build_path, os.path.dirname(dist_file))
+            output_file = os.path.join(build_path, dist_file)
 
             try:
                 if not os.path.isdir(output_path):
                     os.makedirs(output_path, exist_ok=True)
             except Exception as e:
                 Console.error(__name__, f'Cannot create directories: {output_path} -> {e}')
+                return
 
             try:
+                self._distributed_files.append(output_file)
                 shutil.copy(os.path.abspath(file), output_file)
             except Exception as e:
                 Console.error(__name__, f'Cannot copy file: {file} to {output_path} -> {e}')
+                return
+
+    def _clean_dist_files(self):
+        paths: list[str] = []
+        for file in self._distributed_files:
+            paths.append(os.path.dirname(file))
+
+            if os.path.isfile(file):
+                os.remove(file)
+
+        for path in paths:
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+
+    def _create_setup(self):
+        setup_file = os.path.join(self._output_path, 'setup.py')
+        if os.path.isfile(setup_file):
+            os.remove(setup_file)
+
+        template_path = os.path.join(self._runtime.runtime_directory, 'templates/publish/setup.txt')
+        if not os.path.isfile(template_path):
+            Console.error(__name__, f'setup.py template not found in {template_path}')
+            return
+
+        template_string = ''
+        with open(template_path, 'r') as template_file:
+            template_string = template_file.read()
+            template_file.close()
+
+        main = None
+        try:
+            main = importlib.import_module(self._build_settings.main)
+        except Exception as e:
+            Console.error('Could not find entry point', str(e))
+
+        if main is None:
+            Console.error('Could not find entry point')
+            return
+
+        with open(setup_file, 'w+') as setup_py:
+            setup_string = stringTemplate(template_string).substitute(
+                Name=self._project_settings.name,
+                Version=self._project_settings.version.to_str(),
+                Packages=setuptools.find_packages(where=self._build_settings.source_path, exclude=self._build_settings.excluded),
+                URL=self._project_settings.url,
+                LicenseName=self._project_settings.license_name,
+                Author=self._project_settings.author,
+                AuthorMail=self._project_settings.author_email,
+                InstallPackageData=self._build_settings.include_package_data,
+                Description=self._project_settings.description,
+                PyRequires=self._project_settings.python_version,
+                Dependencies=self._project_settings.dependencies,
+                EntryPoints={
+                    'console_scripts': [
+                        f'{self._build_settings.entry_point} = {main.__name__}:{main.main.__name__}'
+                    ]
+                }
+            )
+            setup_py.write(setup_string)
+            setup_py.close()
+
+    def _run_setup(self):
+        setup_py = os.path.join(self._output_path, 'setup.py')
+        if not os.path.isfile(setup_py):
+            Console.error(__name__, f'setup.py not found in {self._output_path}')
+            return
+
+        try:
+            sandbox.run_setup(os.path.abspath(setup_py), [
+                'sdist',
+                f'--dist-dir={os.path.join(self._output_path, "setup")}',
+                'bdist_wheel',
+                f'--bdist-dir={os.path.join(self._output_path, "bdist")}',
+                f'--dist-dir={os.path.join(self._output_path, "setup")}'
+            ])
+            os.remove(setup_py)
+        except Exception as e:
+            Console.error('Executing setup.py failed', str(e))
 
     def include(self, path: str):
-        self._project.included.append(path)
+        self._build_settings.included.append(path)
 
     def exclude(self, path: str):
-        self._project.excluded.append(path)
+        self._build_settings.excluded.append(path)
 
     def build(self):
+        self._output_path = os.path.join(self._output_path, 'build')
+
         Console.spinner('Reading source files:', self._read_sources)
         Console.spinner('Creating internal packages:', self._create_packages)
-        Console.write_line('Building application:')
-        self._dist_files()
+        Console.spinner('Building application:', self._dist_files)
 
     def publish(self):
-        pass
+        self._output_path = os.path.join(self._output_path, 'publish')
+
+        Console.write_line('Build:')
+        Console.spinner('Reading source files:', self._read_sources)
+        Console.spinner('Creating internal packages:', self._create_packages)
+        Console.spinner('Building application:', self._dist_files)
+
+        Console.write_line('\nPublish:')
+        Console.spinner('Generating setup.py:', self._create_setup)
+        Console.write_line('Running setup.py:\n')
+        self._run_setup()
+        Console.spinner('Cleaning dist path:', self._clean_dist_files)

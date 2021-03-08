@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """
-sh_cpl Common Python Library
+sh_cpl sh-edraft Common Python library
 ~~~~~~~~~~~~~~~~~~~
 
-Common Python Library
+sh-edraft Common Python library
 
 :copyright: (c) 2020 sh-edraft.de
-:license: MIT, see LICENSE for more details.
+:license: MITMIT, see LICENSE for more details.
 
 """
 
-__title__ = 'cpl.console'
+__title__ = 'src.cpl.console'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'

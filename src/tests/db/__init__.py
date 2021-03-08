@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """
-sh_cpl.tests Common Python Library CLI
+sh_cpl Common Python Library
 ~~~~~~~~~~~~~~~~~~~
 
-Common Python Library CLI
+Common Python Library
 
 :copyright: (c) 2020 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = 'sh_cpl.tests.db'
+__title__ = 'src.tests.db'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 sh-edraft.de'

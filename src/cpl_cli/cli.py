@@ -2,6 +2,7 @@ from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
 from cpl_cli.command.build import Build
+from cpl_cli.command.publish import Publish
 from cpl_cli.command_handler import CommandHandler
 from cpl_cli.command_model import CommandModel
 from cpl_cli.error import Error
@@ -21,6 +22,7 @@ class CLI(ApplicationABC):
 
         self._command_handler.add_command(CommandModel('build', ['h', 'B'], Build))
         self._command_handler.add_command(CommandModel('help', ['h', 'H'], Help))
+        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], Publish))
         self._command_handler.add_command(CommandModel('version', ['v', 'V'], Version))
 
     def main(self):

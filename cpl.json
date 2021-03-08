@@ -1,0 +1,43 @@
+{
+  "ProjectSettings": {
+    "name": "sh_cpl",
+    "version": {
+      "major": "2021",
+      "minor": "04",
+      "micro": "01"
+    },
+    "author": "Sven Heidemann",
+    "authorEmail": "sven.heidemann@sh-edraft.de",
+    "description": "sh-edraft Common Python library",
+    "longDescription": "sh-edraft Common Python library",
+    "url": "https://www.sh-edraft.de",
+    "copyrightDate": "2020",
+    "copyrightName": "sh-edraft.de",
+    "licenseName": "MIT",
+    "licenseDescription": "MIT, see LICENSE for more details.",
+    "dependencies": [
+      "discord.py",
+      "mysql-connector",
+      "SQLAlchemy",
+      "termcolor",
+      "pyfiglet",
+      "tabulate",
+      "smtplib"
+    ],
+    "pythonVersion": ">=3.8"
+  },
+  "BuildSettings": {
+    "sourcePath": "src/cpl",
+    "outputPath": "dist",
+    "main": "cpl_cli.main",
+    "entryPoint": "cpl",
+    "includePackageData": "False",
+    "included": [
+      "src/cpl_cli"
+    ],
+    "excluded": [
+      "*/__pycache__",
+      "*/logs"
+    ]
+  }
+}

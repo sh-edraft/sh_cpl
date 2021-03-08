@@ -6,6 +6,7 @@ from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_provider_base import ServiceProviderABC
 from cpl_cli.command.build import Build
+from cpl_cli.command.publish import Publish
 from cpl_cli.command_handler import CommandHandler
 from cpl_cli.command.help import Help
 from cpl_cli.command.version import Version
@@ -40,6 +41,7 @@ class Startup(StartupABC):
         self._configuration.add_json_file('cpl.json', optional=True, output=False)
         self._configuration.add_console_argument('', 'build', ['-b', '-B'], '')
         self._configuration.add_console_argument('', 'help', ['-h', '-H'], '')
+        self._configuration.add_console_argument('', 'publish', ['-p', '-P'], '')
         self._configuration.add_console_argument('', 'version', ['-v', '-V'], '')
         self._configuration.add_console_arguments()
 
@@ -52,6 +54,7 @@ class Startup(StartupABC):
 
         self._services.add_transient(Build)
         self._services.add_transient(Help)
+        self._services.add_transient(Publish)
         self._services.add_transient(Version)
 
         return self._services
