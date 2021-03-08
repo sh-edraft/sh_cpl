@@ -24,7 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e2256bc-a6b8-4880-83a6-8b0e3372d0a4" name="Default Changelist" comment="Bugfixes in build process">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cpl_cli/publish/publisher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cpl.json" beforeDir="false" afterPath="$PROJECT_DIR$/cpl.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -463,13 +463,6 @@
       <option name="presentableId" value="Default" />
       <updated>1605881914521</updated>
     </task>
-    <task id="LOCAL-00055" summary="Added publish command to cli">
-      <created>1608138851088</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1608138851088</updated>
-    </task>
     <task id="LOCAL-00056" summary="Added imports to cli module">
       <created>1608138986801</created>
       <option name="number" value="00056" />
@@ -806,7 +799,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615231794961</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Bugfixes in build process">
+      <created>1615231929105</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1615231929106</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

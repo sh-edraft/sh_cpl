@@ -6,7 +6,7 @@ sh_cpl sh-edraft Common Python library
 
 sh-edraft Common Python library
 
-:copyright: (c) 2020 sh-edraft.de
+:copyright: (c) 2020 - 2021 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
@@ -14,7 +14,7 @@ sh-edraft Common Python library
 __title__ = 'cpl.configuration'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2020 sh-edraft.de'
+__copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
 __version__ = '2021.4.1'
 
 from collections import namedtuple
