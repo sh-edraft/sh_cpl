@@ -166,7 +166,6 @@ class Configuration(ConfigurationABC):
             self.add_console_argument(ConsoleArgument('--', arg_name, [], ''))
 
         arg_list = sys.argv[1:]
-        print(arg_list)
         for i in range(0, len(arg_list)):
             argument = arg_list[i]
             next_arguments = []
