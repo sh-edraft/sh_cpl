@@ -1,8 +1,6 @@
-/docs/
 /src/
-/src/assets
 /src/tests
-/.gitignore
+/src/tests/__init__.py
 /cpl.json
 /LICENSE
 /README.md
