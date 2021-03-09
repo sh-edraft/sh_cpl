@@ -184,7 +184,6 @@ class Configuration(ConfigurationABC):
                 except Exception as e:
                     error_message = e
 
-            print('\nerror')
             if not found and error_message == '':
                 error_message = f'Invalid argument: {argument}'
 
