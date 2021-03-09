@@ -3,6 +3,7 @@ from inspect import signature, Parameter
 from typing import Type, Optional, Union
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_abc import ServiceABC
@@ -38,6 +39,9 @@ class ServiceProvider(ServiceProviderABC):
 
                 elif issubclass(parameter.annotation, ConfigurationModelABC):
                     params.append(self._app_runtime.configuration.get_configuration(parameter.annotation))
+
+                elif issubclass(parameter.annotation, ConfigurationABC):
+                    params.append(self._app_runtime.configuration)
 
                 elif issubclass(parameter.annotation, ServiceProviderABC):
                     params.append(self)

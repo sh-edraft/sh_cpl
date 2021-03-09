@@ -2,6 +2,7 @@ from abc import abstractmethod, ABC
 from collections import Callable
 from typing import Type, Union, Optional
 
+from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.environment.environment_abc import EnvironmentABC
 
@@ -28,10 +29,13 @@ class ConfigurationABC(ABC):
     def argument_error_function(self, argument_error_function: Callable): pass
 
     @abstractmethod
+    def allow_multiple_args(self): pass
+
+    @abstractmethod
     def add_environment_variables(self, prefix: str): pass
 
     @abstractmethod
-    def add_console_argument(self, token: str, name: str, aliases: list[str], value_token: str): pass
+    def add_console_argument(self, argument: ConsoleArgument): pass
 
     @abstractmethod
     def add_console_arguments(self): pass

@@ -28,6 +28,8 @@ class Configuration(ConfigurationABC):
 
         self._argument_error_function: Optional[Callable] = None
 
+        self._is_multiple_args_allowed = False
+
     @property
     def environment(self) -> EnvironmentABC:
         return self._hosting_environment
@@ -43,6 +45,9 @@ class Configuration(ConfigurationABC):
     @argument_error_function.setter
     def argument_error_function(self, argument_error_function: Callable):
         self._argument_error_function = argument_error_function
+
+    def allow_multiple_args(self):
+        self._is_multiple_args_allowed = True
 
     @staticmethod
     def _print_info(name: str, message: str):
@@ -81,14 +86,16 @@ class Configuration(ConfigurationABC):
             if var_name in [key.upper() for key in os.environ.keys()]:
                 self._set_variable(variable, os.environ[var_name])
 
-    def add_console_argument(self, token: str, name: str, aliases: list[str], value_token: str):
-        self._argument_types.append(ConsoleArgument(token, name, aliases, value_token))
+    def add_console_argument(self, argument: ConsoleArgument):
+        self._argument_types.append(argument)
 
     def add_console_arguments(self):
         for arg_name in ConfigurationVariableName.to_list():
-            self.add_console_argument('--', arg_name, [], '')
+            self.add_console_argument(ConsoleArgument('--', arg_name, [], ''))
 
-        for arg in sys.argv[1:]:
+        old_is_arg = None
+        arg_list = sys.argv[1:]
+        for arg in arg_list:
             try:
                 is_done = False
                 for argument_type in self._argument_types:
@@ -98,22 +105,83 @@ class Configuration(ConfigurationABC):
 
                         if argument_type.value_token == '':
                             if name == argument_type.name or name in argument_type.aliases:
+                                if not self._is_multiple_args_allowed:
+                                    if old_is_arg is None:
+                                        self._additional_arguments.append(argument_type.name)
+                                        is_done = True
+                                        old_is_arg = argument_type
+                                        break
+                                    break
+
                                 self._additional_arguments.append(argument_type.name)
                                 is_done = True
+                                old_is_arg = argument_type
                                 break
 
                         if argument_type.value_token != '' and arg.__contains__(argument_type.value_token):
                             name = name.split(argument_type.value_token)[0]
                             if name == argument_type.name or name in argument_type.aliases:
+                                if not self._is_multiple_args_allowed:
+                                    if old_is_arg is None:
+                                        value = arg.split(argument_type.value_token)[1]
+                                        self._set_variable(argument_type.name, value)
+                                        is_done = True
+                                        old_is_arg = argument_type
+                                        break
+                                    break
+
                                 value = arg.split(argument_type.value_token)[1]
                                 self._set_variable(argument_type.name, value)
                                 is_done = True
+                                old_is_arg = argument_type
                                 break
 
-                    elif argument_type.value_token == '' and arg == argument_type.name or arg in argument_type.aliases:
-                        is_done = True
+                    elif arg == argument_type.name or arg in argument_type.aliases:
+                        if not self._is_multiple_args_allowed:
+                            if old_is_arg is None:
+                                self._additional_arguments.append(argument_type.name)
+                                is_done = True
+                                old_is_arg = argument_type
+                                break
+                            break
+
                         self._additional_arguments.append(argument_type.name)
+                        is_done = True
+                        old_is_arg = argument_type
                         break
+
+                    elif old_is_arg is not None and old_is_arg.arg_types is not None:
+                        for arg_type in old_is_arg.arg_types:
+                            if is_done:
+                                break
+
+                            if arg_type.name == arg:
+                                if arg_type.value_token != '' and arg_type.value_token in arg:
+                                    value = arg.split(arg_type.value_token)[1]
+                                    self._set_variable(arg_type.name, value)
+                                    self._additional_arguments.append(arg_type.name)
+                                    is_done = True
+                                    old_is_arg = arg_type
+                                    break
+
+                                elif arg_type.value_token == ' ':
+                                    for i in range(0, len(arg_list)):
+                                        if arg_list[i] == arg and i+1 < len(arg_list):
+                                            value = arg_list[i+1]
+                                            self._set_variable(arg_type.name, value)
+                                            self._additional_arguments.append(arg_type.name)
+                                            arg_list.remove(value)
+                                            is_done = True
+                                            old_is_arg = arg_type
+                                            break
+
+                                    if is_done:
+                                        break
+
+                                self._additional_arguments.append(arg_type.name)
+                                is_done = True
+                                old_is_arg = arg_type
+                                break
 
                 if not is_done:
                     message = f'Invalid argument: {arg}'
@@ -177,7 +245,8 @@ class Configuration(ConfigurationABC):
     def add_configuration(self, key_type: type, value: ConfigurationModelABC):
         self._config[key_type] = value
 
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
+        str, Callable[ConfigurationModelABC]]:
         if search_type not in self._config:
             raise Exception(f'Config model by type {search_type} not found')
 
