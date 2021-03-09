@@ -32,13 +32,23 @@
     "EntryPoint": "cpl",
     "IncludePackageData": "False",
     "Included": [
-      "src/cpl_cli/templates/new/console/src/tests"
+      "src/cpl_cli/templates/new/console/src/tests/"
     ],
     "Excluded": [
       "*/__pycache__",
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {}
+    "PackageData": {
+      "cpl_cli": [
+        "templates/*",
+        "templates/build/*",
+        "templates/new/*",
+        "templates/new/console/*",
+        "templates/new/console/src/*",
+        "templates/new/console/src/tests/*",
+        "templates/publish/*"
+      ]
+    }
   }
 }

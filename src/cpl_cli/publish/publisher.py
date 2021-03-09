@@ -40,7 +40,7 @@ class Publisher(PublisherABC):
     @staticmethod
     def _get_module_name_from_dirs(file: str) -> str:
         if 'src/' in file:
-            file = file.replace('src/', '')
+            file = file.replace('src/', '', 1)
 
         dirs = os.path.dirname(file).split('/')
         for d in dirs:
@@ -89,8 +89,7 @@ class Publisher(PublisherABC):
                         relative_path = os.path.relpath(r)
                         file_path = os.path.join(relative_path, os.path.relpath(sub_file))
 
-                        if not self._is_path_excluded(relative_path):
-                            self._included_files.append(os.path.relpath(file_path))
+                        self._included_files.append(os.path.relpath(file_path))
 
             elif os.path.isfile(rel_path):
                 self._included_files.append(rel_path)
@@ -114,7 +113,7 @@ class Publisher(PublisherABC):
 
     def _create_packages(self):
         for file in self._included_files:
-            if file.endswith('__init__.py'):
+            if file.endswith('console_src_tests.__init__.py'):
                 template_content = ''
                 module_file_lines: list[str] = []
 
@@ -175,7 +174,7 @@ class Publisher(PublisherABC):
         for file in self._included_files:
             dist_file = file
             if 'src/' in dist_file:
-                dist_file = dist_file.replace('src/', '')
+                dist_file = dist_file.replace('src/', '', 1)
 
             output_path = os.path.join(build_path, os.path.dirname(dist_file))
             output_file = os.path.join(build_path, dist_file)
@@ -214,6 +213,14 @@ class Publisher(PublisherABC):
         for path in paths:
             if os.path.isdir(path):
                 shutil.rmtree(path)
+
+    @staticmethod
+    def _package_files(directory):
+        paths = []
+        for (path, directories, filenames) in os.walk(directory):
+            for filename in filenames:
+                paths.append(os.path.join('..', path, filename))
+        return paths
 
     def _create_setup(self):
         setup_file = os.path.join(self._output_path, 'setup.py')
