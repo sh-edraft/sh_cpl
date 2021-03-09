@@ -1,4 +1,7 @@
+/docs/
 /src/
+/src/assets
+/src/tests
 /.gitignore
 /cpl.json
 /LICENSE

@@ -1,9 +1,19 @@
 prefix: cpl
 commands:
-    new:
-        app
-        base
-        class
-        configmodel
-        enum
-        service
+    build
+
+    generate:
+        abc             | a
+        class           | c
+        configmodel     | cm
+        enum            | e
+        service         | s
+
+    help
+    new
+        console
+
+    start
+    publish
+    update
+    version

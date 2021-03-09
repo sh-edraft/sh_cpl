@@ -7,3 +7,7 @@ def main():
     cli.use_startup(Startup)
     cli.build()
     cli.run()
+
+
+if __name__ == '__main__':
+    main()
