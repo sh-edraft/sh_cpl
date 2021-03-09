@@ -3,10 +3,11 @@ from enum import Enum
 
 class BuildSettingsName(Enum):
 
-    sourcePath = 'SourcePath'
-    outputPath = 'OutputPath'
+    source_path = 'SourcePath'
+    output_path = 'OutputPath'
     main = 'Main'
     entry_point = 'EntryPoint'
     include_package_data = 'IncludePackageData'
     included = 'Included'
     excluded = 'Excluded'
+    package_data = 'PackageData'

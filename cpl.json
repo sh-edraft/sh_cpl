@@ -31,10 +31,14 @@
     "Main": "cpl_cli.main",
     "EntryPoint": "cpl",
     "IncludePackageData": "False",
-    "Included": [],
+    "Included": [
+      "src/cpl_cli/templates/new/console/src/tests"
+    ],
     "Excluded": [
       "*/__pycache__",
-      "*/logs"
-    ]
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {}
   }
 }

@@ -26,6 +26,7 @@ class Publisher(PublisherABC):
         self._output_path = os.path.join(self._runtime.working_directory, self._build_settings.output_path)
 
         self._included_files: list[str] = []
+        self._included_dirs: list[str] = []
         self._distributed_files: list[str] = []
 
     @property
@@ -74,7 +75,7 @@ class Publisher(PublisherABC):
             if excluded.startswith('*'):
                 excluded = excluded.replace('*', '')
 
-            if excluded in path:
+            if excluded in path and path not in self._build_settings.included:
                 return True
 
         return False
@@ -101,6 +102,12 @@ class Publisher(PublisherABC):
             for file in f:
                 relative_path = os.path.relpath(r)
                 file_path = os.path.join(relative_path, os.path.relpath(file))
+
+                if len(d) > 0:
+                    for directory in d:
+                        empty_dir = os.path.join(os.path.dirname(file_path), directory)
+                        if len(os.listdir(empty_dir)) == 0:
+                            self._included_dirs.append(empty_dir)
 
                 if not self._is_path_excluded(relative_path):
                     self._included_files.append(os.path.relpath(file_path))
@@ -187,6 +194,15 @@ class Publisher(PublisherABC):
                 Console.error(__name__, f'Cannot copy file: {file} to {output_path} -> {e}')
                 return
 
+        for empty_dir in self._included_dirs:
+            dist_dir = empty_dir
+            if 'src/' in dist_dir:
+                dist_dir = dist_dir.replace('src/', '', 1)
+
+            output_path = os.path.join(build_path, dist_dir)
+            if not os.path.isdir(output_path):
+                os.makedirs(output_path)
+
     def _clean_dist_files(self):
         paths: list[str] = []
         for file in self._distributed_files:
@@ -228,12 +244,12 @@ class Publisher(PublisherABC):
             setup_string = stringTemplate(template_string).substitute(
                 Name=self._project_settings.name,
                 Version=self._project_settings.version.to_str(),
-                Packages=setuptools.find_packages(where=self._build_settings.source_path, exclude=self._build_settings.excluded),
+                Packages=setuptools.find_packages(where=self._output_path, exclude=self._build_settings.excluded),
                 URL=self._project_settings.url,
                 LicenseName=self._project_settings.license_name,
                 Author=self._project_settings.author,
                 AuthorMail=self._project_settings.author_email,
-                InstallPackageData=self._build_settings.include_package_data,
+                IncludePackageData=self._build_settings.include_package_data,
                 Description=self._project_settings.description,
                 PyRequires=self._project_settings.python_version,
                 Dependencies=self._project_settings.dependencies,
@@ -241,7 +257,8 @@ class Publisher(PublisherABC):
                     'console_scripts': [
                         f'{self._build_settings.entry_point} = {main.__name__}:{main.main.__name__}'
                     ]
-                }
+                },
+                PackageData=self._build_settings.package_data
             )
             setup_py.write(setup_string)
             setup_py.close()

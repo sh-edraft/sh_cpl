@@ -12,9 +12,10 @@ setuptools.setup(
     license='$LicenseName',
     author='$Author',
     author_email='$AuthorMail',
-    include_package_data=$InstallPackageData,
+    include_package_data=$IncludePackageData,
     description='$Description',
     python_requires='$PyRequires',
     install_requires=$Dependencies,
-    entry_points=$EntryPoints
+    entry_points=$EntryPoints,
+    package_data=$PackageData
 )

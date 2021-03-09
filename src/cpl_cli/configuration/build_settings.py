@@ -19,6 +19,7 @@ class BuildSettings(ConfigurationModelABC):
         self._include_package_data: Optional[bool] = None
         self._included: Optional[list[str]] = None
         self._excluded: Optional[list[str]] = None
+        self._package_data: Optional[dict[str, list[str]]] = None
 
     @property
     def source_path(self) -> str:
@@ -48,15 +49,20 @@ class BuildSettings(ConfigurationModelABC):
     def excluded(self) -> list[str]:
         return self._excluded
 
+    @property
+    def package_data(self) -> dict[str, list[str]]:
+        return self._package_data
+
     def from_dict(self, settings: dict):
         try:
-            self._source_path = settings[BuildSettingsName.sourcePath.value]
-            self._output_path = settings[BuildSettingsName.outputPath.value]
+            self._source_path = settings[BuildSettingsName.source_path.value]
+            self._output_path = settings[BuildSettingsName.output_path.value]
             self._include_package_data = bool(settings[BuildSettingsName.include_package_data.value])
             self._main = settings[BuildSettingsName.main.value]
             self._entry_point = settings[BuildSettingsName.entry_point.value]
             self._included = settings[BuildSettingsName.included.value]
             self._excluded = settings[BuildSettingsName.excluded.value]
+            self._package_data = settings[BuildSettingsName.package_data.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColor.red)
             Console.write_line(
