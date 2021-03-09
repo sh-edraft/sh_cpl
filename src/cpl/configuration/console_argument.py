@@ -1,11 +1,11 @@
 class ConsoleArgument:
 
-    def __init__(self, token: str, name: str, aliases: list[str], value_token: str, arg_types: list['ConsoleArgument'] = None):
+    def __init__(self, token: str, name: str, aliases: list[str], value_token: str, console_arguments: list['ConsoleArgument'] = None):
         self._token = token
         self._name = name
         self._aliases = aliases
         self._value_token = value_token
-        self._arg_types = arg_types
+        self._console_arguments = console_arguments
 
     @property
     def token(self) -> str:
@@ -24,5 +24,5 @@ class ConsoleArgument:
         return self._value_token
 
     @property
-    def arg_types(self) -> list['ConsoleArgument']:
-        return self._arg_types
+    def console_arguments(self) -> list['ConsoleArgument']:
+        return self._console_arguments
