@@ -39,16 +39,6 @@
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {
-      "cpl_cli": [
-        "templates/*",
-        "templates/build/*",
-        "templates/new/*",
-        "templates/new/console/*",
-        "templates/new/console/src/*",
-        "templates/new/console/src/tests/*",
-        "templates/publish/*"
-      ]
-    }
+    "PackageData": {}
   }
 }

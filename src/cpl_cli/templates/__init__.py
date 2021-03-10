@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'cpl_cli.templates.new.console.src.tests'
+__title__ = 'cpl_cli.templates'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'

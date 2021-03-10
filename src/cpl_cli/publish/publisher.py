@@ -11,6 +11,8 @@ from cpl.console.console import Console
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.publish.publisher_abc import PublisherABC
+from cpl_cli.templates.build.init import Init
+from cpl_cli.templates.publish.setup import Setup
 
 
 class Publisher(PublisherABC):
@@ -113,7 +115,7 @@ class Publisher(PublisherABC):
 
     def _create_packages(self):
         for file in self._included_files:
-            if file.endswith('console_src_tests.__init__.py'):
+            if file.endswith('__init__.py'):
                 template_content = ''
                 module_file_lines: list[str] = []
 
@@ -144,23 +146,22 @@ class Publisher(PublisherABC):
                     if len(module_py_lines) > 0:
                         imports = '\n'.join(module_py_lines)
 
-                with open(os.path.join(self._runtime.runtime_directory, 'templates/build/init.txt'), 'r') as template:
-                    template_content = stringTemplate(template.read()).substitute(
-                        Name=self._project_settings.name,
-                        Description=self._project_settings.description,
-                        LongDescription=self._project_settings.long_description,
-                        CopyrightDate=self._project_settings.copyright_date,
-                        CopyrightName=self._project_settings.copyright_name,
-                        LicenseName=self._project_settings.license_name,
-                        LicenseDescription=self._project_settings.license_description,
-                        Title=title if title is not None and title != '' else self._project_settings.name,
-                        Author=self._project_settings.author,
-                        Version=self._project_settings.version.to_str(),
-                        Major=self._project_settings.version.major,
-                        Minor=self._project_settings.version.minor,
-                        Micro=self._project_settings.version.micro,
-                        Imports=imports
-                    )
+                template_content = stringTemplate(Init.get_init_py()).substitute(
+                    Name=self._project_settings.name,
+                    Description=self._project_settings.description,
+                    LongDescription=self._project_settings.long_description,
+                    CopyrightDate=self._project_settings.copyright_date,
+                    CopyrightName=self._project_settings.copyright_name,
+                    LicenseName=self._project_settings.license_name,
+                    LicenseDescription=self._project_settings.license_description,
+                    Title=title if title is not None and title != '' else self._project_settings.name,
+                    Author=self._project_settings.author,
+                    Version=self._project_settings.version.to_str(),
+                    Major=self._project_settings.version.major,
+                    Minor=self._project_settings.version.minor,
+                    Micro=self._project_settings.version.micro,
+                    Imports=imports
+                )
 
                 with open(file, 'w+') as py_file:
                     py_file.write(template_content)
@@ -227,16 +228,6 @@ class Publisher(PublisherABC):
         if os.path.isfile(setup_file):
             os.remove(setup_file)
 
-        template_path = os.path.join(self._runtime.runtime_directory, 'templates/publish/setup.txt')
-        if not os.path.isfile(template_path):
-            Console.error(__name__, f'setup.py template not found in {template_path}')
-            return
-
-        template_string = ''
-        with open(template_path, 'r') as template_file:
-            template_string = template_file.read()
-            template_file.close()
-
         main = None
         try:
             main = importlib.import_module(self._build_settings.main)
@@ -248,7 +239,7 @@ class Publisher(PublisherABC):
             return
 
         with open(setup_file, 'w+') as setup_py:
-            setup_string = stringTemplate(template_string).substitute(
+            setup_string = stringTemplate(Setup.get_setup_py()).substitute(
                 Name=self._project_settings.name,
                 Version=self._project_settings.version.to_str(),
                 Packages=setuptools.find_packages(where=self._output_path, exclude=self._build_settings.excluded),
