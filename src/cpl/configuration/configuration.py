@@ -136,7 +136,7 @@ class Configuration(ConfigurationABC):
             if argument_name != argument_type.name and argument_name not in argument_type.aliases:
                 return False
 
-            self._set_variable(argument_name, value)
+            self._set_variable(argument_type.name, value)
             result = True
 
         elif argument_type.name == argument or argument in argument_type.aliases:
