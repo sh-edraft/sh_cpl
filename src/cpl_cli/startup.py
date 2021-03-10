@@ -7,6 +7,7 @@ from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.build import Build
+from cpl_cli.command.generate import Generate
 from cpl_cli.command.new import New
 from cpl_cli.command.publish import Publish
 from cpl_cli.command_handler import CommandHandler
@@ -42,6 +43,13 @@ class Startup(StartupABC):
         self._configuration.add_environment_variables('CPL_')
         self._configuration.add_json_file('cpl.json', optional=True, output=False)
         self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
+        self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', [
+            ConsoleArgument('', 'abc', ['a', 'A'], ' '),
+            ConsoleArgument('', 'class', ['c', 'C'], ' '),
+            ConsoleArgument('', 'configmodel', ['cm', 'CM'], ' '),
+            ConsoleArgument('', 'enum', ['e', 'E'], ' '),
+            ConsoleArgument('', 'service', ['s', 'S'], ' ')
+        ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'help', ['h', 'H'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', [
             ConsoleArgument('', 'console', ['c', 'C'], ' ')
@@ -58,6 +66,7 @@ class Startup(StartupABC):
         self._services.add_transient(PublisherABC, Publisher)
 
         self._services.add_transient(Build)
+        self._services.add_transient(Generate)
         self._services.add_transient(Help)
         self._services.add_transient(New)
         self._services.add_transient(Publish)
