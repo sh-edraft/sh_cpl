@@ -165,7 +165,7 @@ class Console:
     @classmethod
     def read(cls, output: str = None) -> str:
         if output is not None and not cls._hold_back:
-            cls.write(output)
+            cls.write_line(output)
 
         return input()[0]
 
@@ -176,6 +176,8 @@ class Console:
 
         if output is not None:
             cls.write_line(output)
+
+        cls._output('\n', end='')
 
         return input()
 
