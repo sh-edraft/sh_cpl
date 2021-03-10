@@ -1,10 +1,12 @@
 import json
 import os
 import sys
+import time
 from typing import Optional
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
+from cpl.console.foreground_color import ForegroundColor
 from cpl.console.console import Console
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
@@ -95,6 +97,7 @@ class New(CommandABC):
         return project_path
 
     def _get_project_informations(self):
+        Console.set_foreground_color(ForegroundColor.green)
         result = Console.read('Do you want to use application host? (y/n) ')
         if result.lower() == 'y':
             self._use_application_api = True
@@ -103,6 +106,8 @@ class New(CommandABC):
             result = Console.read('Do you want to use startup? (y/n) ')
             if result.lower() == 'y':
                 self._use_startup = True
+
+        Console.set_foreground_color(ForegroundColor.default)
 
         # else:
         #     result = Console.read('Do you want to use service providing? (y/n) ')
@@ -133,7 +138,14 @@ class New(CommandABC):
             templates.append(MainWithoutApplicationHostTemplate())
 
         for template in templates:
-            Console.spinner(f'Creating {template.path}{template.name}', self._create_template, project_path, template)
+            Console.spinner(
+                f'Creating {self._project.name}/{template.path}{template.name}',
+                self._create_template,
+                project_path,
+                template,
+                text_foreground_color=ForegroundColor.green,
+                spinner_foreground_color=ForegroundColor.cyan
+            )
 
     @staticmethod
     def _create_template(project_path: str, template: TemplateFileABC):
@@ -150,14 +162,12 @@ class New(CommandABC):
     def _console(self, args: list[str]):
         name = self._config.get_configuration(self._command)
 
-        Console.spinner('Creating project settings', self._create_project_settings, name)
-        Console.spinner('Creating build settings', self._create_build_settings)
+        self._create_project_settings(name)
+        self._create_build_settings()
         path = self._get_project_path()
         if path is None:
             return
 
-        Console.spinner('Creating project file', self._create_project_json)
-        Console.write_line('Building project directory:')
         self._get_project_informations()
         try:
             self._build_project_dir(path)
