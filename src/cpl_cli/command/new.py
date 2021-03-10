@@ -168,3 +168,5 @@ class New(CommandABC):
         self._command = args[0]
         if self._command == 'console':
             self._console(args)
+
+        Console.write('\n')
