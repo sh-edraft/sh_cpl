@@ -253,7 +253,7 @@ class Configuration(ConfigurationABC):
                 return self._hosting_environment.customer
 
         if search_type not in self._config:
-            raise Exception(f'Config model by type {search_type} not found')
+            return None
 
         for config_model in self._config:
             if config_model == search_type:
