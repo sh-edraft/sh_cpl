@@ -15,7 +15,7 @@ class Help(CommandABC):
             ['help (h|H)', 'Lists available command and their short descriptions.'],
             ['new (n|N)', 'Creates new CPL project.'],
             ['start (s|S)', 'Starts CPL project, restarting on file changes'],
-            ['publish (p|P)', 'Prepares files for publish into an output directory named dist/ at the given output path and executes setup.py. Must be executed from within a workspace directory.'],
+            ['publish (p|P)', 'Prepares files for publish into an output directory named dist/ at the given output path and executes setup_template.py. Must be executed from within a workspace directory.'],
             ['update (u|u)', 'Update CPL and project dependencies.'],
             ['version (v|V)', 'Outputs CPL CLI version.']
         ]

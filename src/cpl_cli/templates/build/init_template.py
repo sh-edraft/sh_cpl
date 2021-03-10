@@ -1,7 +1,7 @@
 import textwrap
 
 
-class Init:
+class InitTemplate:
 
     @staticmethod
     def get_init_py() -> str:

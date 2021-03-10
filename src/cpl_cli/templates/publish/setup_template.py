@@ -1,7 +1,7 @@
 import textwrap
 
 
-class Setup:
+class SetupTemplate:
 
     @staticmethod
     def get_setup_py() -> str:

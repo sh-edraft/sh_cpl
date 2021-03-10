@@ -11,8 +11,8 @@ from cpl.console.console import Console
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.publish.publisher_abc import PublisherABC
-from cpl_cli.templates.build.init import Init
-from cpl_cli.templates.publish.setup import Setup
+from cpl_cli.templates.build.init_template import InitTemplate
+from cpl_cli.templates.publish.setup_template import SetupTemplate
 
 
 class Publisher(PublisherABC):
@@ -146,7 +146,7 @@ class Publisher(PublisherABC):
                     if len(module_py_lines) > 0:
                         imports = '\n'.join(module_py_lines)
 
-                template_content = stringTemplate(Init.get_init_py()).substitute(
+                template_content = stringTemplate(InitTemplate.get_init_py()).substitute(
                     Name=self._project_settings.name,
                     Description=self._project_settings.description,
                     LongDescription=self._project_settings.long_description,
@@ -224,7 +224,7 @@ class Publisher(PublisherABC):
         return paths
 
     def _create_setup(self):
-        setup_file = os.path.join(self._output_path, 'setup.py')
+        setup_file = os.path.join(self._output_path, 'setup_template.py')
         if os.path.isfile(setup_file):
             os.remove(setup_file)
 
@@ -239,7 +239,7 @@ class Publisher(PublisherABC):
             return
 
         with open(setup_file, 'w+') as setup_py:
-            setup_string = stringTemplate(Setup.get_setup_py()).substitute(
+            setup_string = stringTemplate(SetupTemplate.get_setup_py()).substitute(
                 Name=self._project_settings.name,
                 Version=self._project_settings.version.to_str(),
                 Packages=setuptools.find_packages(where=self._output_path, exclude=self._build_settings.excluded),
@@ -262,9 +262,9 @@ class Publisher(PublisherABC):
             setup_py.close()
 
     def _run_setup(self):
-        setup_py = os.path.join(self._output_path, 'setup.py')
+        setup_py = os.path.join(self._output_path, 'setup_template.py')
         if not os.path.isfile(setup_py):
-            Console.error(__name__, f'setup.py not found in {self._output_path}')
+            Console.error(__name__, f'setup_template.py not found in {self._output_path}')
             return
 
         try:
@@ -277,7 +277,7 @@ class Publisher(PublisherABC):
             ])
             os.remove(setup_py)
         except Exception as e:
-            Console.error('Executing setup.py failed', str(e))
+            Console.error('Executing setup_template.py failed', str(e))
 
     def include(self, path: str):
         self._build_settings.included.append(path)
@@ -301,7 +301,7 @@ class Publisher(PublisherABC):
         Console.spinner('Building application:', self._dist_files)
 
         Console.write_line('\nPublish:')
-        Console.spinner('Generating setup.py:', self._create_setup)
-        Console.write_line('Running setup.py:\n')
+        Console.spinner('Generating setup_template.py:', self._create_setup)
+        Console.write_line('Running setup_template.py:\n')
         self._run_setup()
         Console.spinner('Cleaning dist path:', self._clean_dist_files)

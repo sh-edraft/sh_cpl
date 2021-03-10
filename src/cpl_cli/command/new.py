@@ -104,9 +104,10 @@ class New(CommandABC):
             if result.lower() == 'y':
                 self._use_startup = True
 
-        # result = Console.read('Do you want to use service providing? (y/n) ')
-        # if result.lower() == 'y':
-        #     self._use_service_providing = True
+        # else:
+        #     result = Console.read('Do you want to use service providing? (y/n) ')
+        #     if result.lower() == 'y':
+        #         self._use_service_providing = True
 
     def _build_project_dir(self, project_path: str):
         if not os.path.isdir(project_path):
