@@ -1,5 +1,4 @@
 import os
-import sys
 from collections import Callable
 from typing import Union, Optional
 
@@ -253,18 +252,28 @@ class Console:
         cls._output(string, x, y, end='')
 
     @classmethod
-    def spinner(cls, message: str, call: Callable, *args) -> any:
+    def spinner(cls, message: str, call: Callable, *args, text_foreground_color: ForegroundColor = None, spinner_foreground_color: ForegroundColor = None, text_background_color: BackgroundColor = None, spinner_background_color: BackgroundColor = None) -> any:
         if cls._hold_back:
             cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
             return
 
+        if text_foreground_color is not None:
+            cls.set_foreground_color(text_foreground_color)
+
+        if text_background_color is not None:
+            cls.set_background_color(text_background_color)
+
         cls.write_line(message)
         cls.set_hold_back(True)
-        spinner = SpinnerThread()
+        spinner = SpinnerThread(spinner_foreground_color, spinner_background_color)
         spinner.start()
         return_value = call(*args)
         spinner.stop_spinning()
         cls.set_hold_back(False)
+
+        cls.set_foreground_color(ForegroundColor.default)
+        cls.set_background_color(BackgroundColor.default)
+
         for call in cls._hold_back_calls:
             call.function(*call.args)
 
