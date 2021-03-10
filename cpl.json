@@ -31,7 +31,9 @@
     "Main": "cpl_cli.main",
     "EntryPoint": "cpl",
     "IncludePackageData": "False",
-    "Included": [],
+    "Included": [
+      "*/templates"
+    ],
     "Excluded": [
       "*/__pycache__",
       "*/logs",

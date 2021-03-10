@@ -72,12 +72,22 @@ class Publisher(PublisherABC):
                 Console.error(f'{e}')
                 exit()
 
+    def _is_path_included(self, path: str) -> bool:
+        for included in self._build_settings.included:
+            if included.startswith('*'):
+                included = included.replace('*', '')
+
+            if included in path and path not in self._build_settings.excluded:
+                return True
+
+        return False
+
     def _is_path_excluded(self, path: str) -> bool:
         for excluded in self._build_settings.excluded:
             if excluded.startswith('*'):
                 excluded = excluded.replace('*', '')
 
-            if excluded in path and path not in self._build_settings.included:
+            if excluded in path and not self._is_path_included(path):
                 return True
 
         return False
@@ -96,8 +106,8 @@ class Publisher(PublisherABC):
             elif os.path.isfile(rel_path):
                 self._included_files.append(rel_path)
 
-            else:
-                Console.error(f'Path not found: {rel_path}')
+            #else:
+            #    Console.error(f'Path not found: {rel_path}')
 
         for r, d, f in os.walk(self._build_settings.source_path):
             for file in f:
@@ -304,4 +314,4 @@ class Publisher(PublisherABC):
         Console.spinner('Generating setup_template.py:', self._create_setup)
         Console.write_line('Running setup_template.py:\n')
         self._run_setup()
-        Console.spinner('Cleaning dist path:', self._clean_dist_files)
+        # Console.spinner('Cleaning dist path:', self._clean_dist_files)
