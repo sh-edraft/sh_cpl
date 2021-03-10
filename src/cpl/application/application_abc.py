@@ -5,7 +5,6 @@ from cpl.application.application_host_abc import ApplicationHostABC
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
@@ -30,18 +29,6 @@ class ApplicationABC(ABC):
             self._services = self._startup.create_services()
 
     def run(self):
-        if self._app_host is None:
-            Console.error('Application host is empty')
-            exit()
-
-        if self._configuration is None:
-            Console.error('Configuration is empty')
-            exit()
-
-        if self._services is None:
-            Console.error('Service provider is empty')
-            exit()
-
         self.configure()
         self.main()
 
