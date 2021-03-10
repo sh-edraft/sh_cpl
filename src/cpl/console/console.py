@@ -175,7 +175,7 @@ class Console:
             return ''
 
         if output is not None:
-            cls.write(output)
+            cls.write_line(output)
 
         return input()
 
@@ -253,7 +253,7 @@ class Console:
     @classmethod
     def spinner(cls, message: str, call: Callable, *args) -> any:
         if cls._hold_back:
-            cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call))
+            cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
             return
 
         cls.write_line(message)
