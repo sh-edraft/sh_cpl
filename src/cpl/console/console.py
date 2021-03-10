@@ -265,7 +265,7 @@ class Console:
 
         cls.write_line(message)
         cls.set_hold_back(True)
-        spinner = SpinnerThread(spinner_foreground_color, spinner_background_color)
+        spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
         spinner.start()
         return_value = call(*args)
         spinner.stop_spinning()

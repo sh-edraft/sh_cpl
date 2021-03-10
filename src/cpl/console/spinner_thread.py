@@ -1,3 +1,4 @@
+import os
 import sys
 import threading
 import time
@@ -10,12 +11,14 @@ from cpl.console.foreground_color import ForegroundColor
 
 class SpinnerThread(threading.Thread):
 
-    def __init__(self, foreground_color: ForegroundColor, background_color: BackgroundColor):
+    def __init__(self, msg_len: int, foreground_color: ForegroundColor, background_color: BackgroundColor):
         threading.Thread.__init__(self)
 
-        self._is_spinning = True
+        self._msg_len = msg_len
         self._foreground_color = foreground_color
         self._background_color = background_color
+
+        self._is_spinning = True
 
     @staticmethod
     def _spinner():
@@ -34,15 +37,22 @@ class SpinnerThread(threading.Thread):
         return color_args
 
     def run(self) -> None:
-        print('\t', end='')
+        rows, columns = os.popen('stty size', 'r').read().split()
+        end_msg = 'done'
+        columns = int(columns) - self._msg_len - len(end_msg)
+        print(f'{"" : >{columns}}', end='')
         spinner = self._spinner()
         while self._is_spinning:
-            print(colored(next(spinner), *self._get_color_args()), end='')
+            print(colored(f'{next(spinner): >{len(end_msg)}}', *self._get_color_args()), end='')
             time.sleep(0.1)
-            print('\b', end='')
+            back = ''
+            for i in range(0, len(end_msg)):
+                back += '\b'
+
+            print(back, end='')
             sys.stdout.flush()
 
-        print(colored('done', *self._get_color_args()), end='')
+        print(colored(end_msg, *self._get_color_args()), end='')
 
     def stop_spinning(self):
         self._is_spinning = False
