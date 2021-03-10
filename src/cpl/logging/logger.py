@@ -92,7 +92,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevel.TRACE.value:
             self._append_log(output)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.TRACE.value:
             Console.set_foreground_color(ForegroundColor.green)
             Console.write_line(output)
@@ -105,7 +105,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevel.DEBUG.value:
             self._append_log(output)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.DEBUG.value:
             Console.set_foreground_color(ForegroundColor.green)
             Console.write_line(output)
@@ -118,7 +118,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevel.INFO.value:
             self._append_log(output)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.INFO.value:
             Console.set_foreground_color(ForegroundColor.green)
             Console.write_line(output)
@@ -131,7 +131,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevel.WARN.value:
             self._append_log(output)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.WARN.value:
             Console.set_foreground_color(ForegroundColor.yellow)
             Console.write_line(output)
@@ -150,7 +150,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevel.ERROR.value:
             self._append_log(output)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.ERROR.value:
             Console.set_foreground_color(ForegroundColor.red)
             Console.write_line(output)
@@ -169,7 +169,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevel.FATAL.value:
             self._append_log(output)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.FATAL.value:
             Console.set_foreground_color(ForegroundColor.red)
             Console.write_line(output)
@@ -186,7 +186,7 @@ class Logger(LoggerABC):
         else:
             output = self._get_string(name, LoggingLevel.ERROR, message)
 
-        # check if message can be shown in console
+        # check if message can be shown in console_old
         if self._console.value >= LoggingLevel.FATAL.value:
             Console.set_foreground_color(ForegroundColor.red)
             Console.write_line(output)
