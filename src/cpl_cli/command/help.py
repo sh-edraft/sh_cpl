@@ -1,4 +1,5 @@
 from cpl.console.console import Console
+from cpl.console.foreground_color import ForegroundColor
 from cpl_cli.command_abc import CommandABC
 
 
@@ -20,9 +21,9 @@ class Help(CommandABC):
             ['version (v|V)', 'Outputs CPL CLI version.']
         ]
         for name, description in commands:
-            Console.set_foreground_color('blue')
+            Console.set_foreground_color(ForegroundColor.blue)
             Console.write(f'\n\t{name} ')
-            Console.set_foreground_color('default')
+            Console.set_foreground_color(ForegroundColor.default)
             Console.write(f'{description}')
 
         Console.write('\n')

@@ -7,6 +7,7 @@ import setuptools
 from setuptools import sandbox
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
+from cpl.console.foreground_color import ForegroundColor
 from cpl.console.console import Console
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
@@ -298,20 +299,20 @@ class Publisher(PublisherABC):
     def build(self):
         self._output_path = os.path.join(self._output_path, 'build')
 
-        Console.spinner('Reading source files:', self._read_sources)
-        Console.spinner('Creating internal packages:', self._create_packages)
-        Console.spinner('Building application:', self._dist_files)
+        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
+        Console.spinner('Creating internal packages:', self._create_packages, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
+        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
 
     def publish(self):
         self._output_path = os.path.join(self._output_path, 'publish')
 
         Console.write_line('Build:')
-        Console.spinner('Reading source files:', self._read_sources)
-        Console.spinner('Creating internal packages:', self._create_packages)
-        Console.spinner('Building application:', self._dist_files)
+        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
+        Console.spinner('Creating internal packages:', self._create_packages, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
+        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
 
         Console.write_line('\nPublish:')
-        Console.spinner('Generating setup_template.py:', self._create_setup)
+        Console.spinner('Generating setup_template.py:', self._create_setup, text_foreground_color=ForegroundColor.green, spinner_foreground_color=ForegroundColor.blue)
         Console.write_line('Running setup_template.py:\n')
         self._run_setup()
         # Console.spinner('Cleaning dist path:', self._clean_dist_files)

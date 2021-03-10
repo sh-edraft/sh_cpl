@@ -97,7 +97,6 @@ class New(CommandABC):
         return project_path
 
     def _get_project_informations(self):
-        Console.set_foreground_color(ForegroundColor.green)
         result = Console.read('Do you want to use application host? (y/n) ')
         if result.lower() == 'y':
             self._use_application_api = True
