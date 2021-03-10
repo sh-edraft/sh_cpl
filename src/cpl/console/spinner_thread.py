@@ -20,16 +20,13 @@ class SpinnerThread(threading.Thread):
         print('\t', end='')
         spinner = self._spinner()
         while self._is_spinning:
-            # self._console.write(next(spinner))
             print(next(spinner), end='')
             time.sleep(0.1)
-            # self._console.write('\b')
             print('\b', end='')
 
             sys.stdout.flush()
 
-        # self._console.write(' ')
-        print(' ', end='')
+        print('done', end='')
 
     def stop_spinning(self):
         self._is_spinning = False
