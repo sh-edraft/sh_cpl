@@ -46,7 +46,6 @@ class Generate(CommandABC):
             name = parts[len(parts) - 1]
 
         file_path = os.path.join(self._runtime.working_directory, rel_path, f'{String.convert_to_snake_case(name)}.py')
-        print(file_path)
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
@@ -81,19 +80,19 @@ class Generate(CommandABC):
             self._generate_abc(name)
 
         elif schematic == 'class':
-            print(schematic)
+            pass
 
         elif schematic == 'configmodel':
-            print(schematic)
+            pass
 
         elif schematic == 'enum':
-            print(schematic)
+            pass
 
         elif schematic == 'service':
-            print(schematic)
+            pass
 
         else:
-            Console.error('')
+            self._help('Usage: cpl generate <schematic> [options]')
             exit()
 
         Console.write('\n')
