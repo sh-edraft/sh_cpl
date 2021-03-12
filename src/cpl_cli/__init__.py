@@ -22,7 +22,7 @@ from collections import namedtuple
 # imports:
 from .cli import CLI
 from .command_abc import CommandABC
-from .command_handler import CommandHandler
+from .command_handler_service import CommandHandler
 from .command_model import CommandModel
 from .error import Error
 from .main import main

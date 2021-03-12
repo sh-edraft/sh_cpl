@@ -3,9 +3,9 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
-from cpl_cli.configuration.version import Version
-from cpl_cli.configuration.project_settings_name import ProjectSettingsName
+from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl_cli.configuration.version_settings import VersionSettings
+from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsName
 
 
 class ProjectSettings(ConfigurationModelABC):
@@ -14,7 +14,7 @@ class ProjectSettings(ConfigurationModelABC):
         ConfigurationModelABC.__init__(self)
 
         self._name: Optional[str] = None
-        self._version: Optional[Version] = Version()
+        self._version: Optional[VersionSettings] = VersionSettings()
         self._author: Optional[str] = None
         self._author_email: Optional[str] = None
         self._description: Optional[str] = None
@@ -32,7 +32,7 @@ class ProjectSettings(ConfigurationModelABC):
         return self._name
 
     @property
-    def version(self) -> Version:
+    def version(self) -> VersionSettings:
         return self._version
 
     @property
@@ -95,8 +95,8 @@ class ProjectSettings(ConfigurationModelABC):
             self._dependencies = settings[ProjectSettingsName.dependencies.value]
             self._python_version = settings[ProjectSettingsName.python_version.value]
         except Exception as e:
-            Console.set_foreground_color(ForegroundColor.red)
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(
                 f'[ ERROR ] [ {__name__} ]: Reading error in {ProjectSettings.__name__} settings')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)

@@ -3,7 +3,7 @@ from cpl_cli.command_abc import CommandABC
 from cpl_cli.publish.publisher_abc import PublisherABC
 
 
-class Publish(CommandABC):
+class BuildService(CommandABC):
 
     def __init__(self, publisher: PublisherABC):
         CommandABC.__init__(self)
@@ -11,5 +11,5 @@ class Publish(CommandABC):
         self._publisher = publisher
 
     def run(self, args: list[str]):
-        self._publisher.publish()
+        self._publisher.build()
         Console.write('\n')

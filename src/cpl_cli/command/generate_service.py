@@ -3,7 +3,7 @@ from collections import Callable
 
 from cpl.application.application_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
@@ -16,7 +16,7 @@ from cpl_cli.templates.generate.thread_template import ThreadTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
-class Generate(CommandABC):
+class GenerateService(CommandABC):
 
     def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
         CommandABC.__init__(self)
@@ -99,8 +99,8 @@ class Generate(CommandABC):
             self._create_file,
             file_path,
             template.value,
-            text_foreground_color=ForegroundColor.green,
-            spinner_foreground_color=ForegroundColor.cyan
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.cyan
         )
 
     def run(self, args: list[str]):

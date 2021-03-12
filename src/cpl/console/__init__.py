@@ -23,7 +23,7 @@ from collections import namedtuple
 from .background_color_enum import BackgroundColorEnum
 from .console import Console
 from .console_call import ConsoleCall
-from .foreground_color_enum import ForegroundColor
+from .foreground_color_enum import ForegroundColorEnum
 from .spinner_thread import SpinnerThread
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

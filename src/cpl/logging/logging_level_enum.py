@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class LoggingLevel(Enum):
+class LoggingLevelEnum(Enum):
 
     OFF = 0         # Nothing
     FATAL = 1       # Error that cause exit

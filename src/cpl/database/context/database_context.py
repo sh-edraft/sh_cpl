@@ -2,7 +2,7 @@ from sqlalchemy import engine, Table
 from sqlalchemy.orm import Session
 
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.database.connection.database_connection import DatabaseConnection
 from cpl.database.connection.database_connection_abc import DatabaseConnectionABC
 from cpl.database.context.database_context_abc import DatabaseContextABC
@@ -40,11 +40,11 @@ class DatabaseContext(DatabaseContextABC):
 
             DatabaseModel.metadata.drop_all(self._db.engine, self._tables)
             DatabaseModel.metadata.create_all(self._db.engine, self._tables, checkfirst=True)
-            Console.set_foreground_color(ForegroundColor.green)
+            Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(f'[{__name__}] Created tables')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
         except Exception as e:
-            Console.set_foreground_color(ForegroundColor.red)
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(f'[{__name__}] Creating tables failed -> {e}')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
             exit()

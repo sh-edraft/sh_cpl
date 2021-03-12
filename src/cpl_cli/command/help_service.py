@@ -1,9 +1,9 @@
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.command_abc import CommandABC
 
 
-class Help(CommandABC):
+class HelpService(CommandABC):
 
     def __init__(self):
         CommandABC.__init__(self)
@@ -21,9 +21,9 @@ class Help(CommandABC):
             ['version (v|V)', 'Outputs CPL CLI version.']
         ]
         for name, description in commands:
-            Console.set_foreground_color(ForegroundColor.blue)
+            Console.set_foreground_color(ForegroundColorEnum.blue)
             Console.write(f'\n\t{name} ')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
             Console.write(f'{description}')
 
         Console.write('\n')

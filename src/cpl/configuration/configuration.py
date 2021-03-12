@@ -9,10 +9,10 @@ from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.environment.hosting_environment import HostingEnvironment
 from cpl.environment.environment_abc import EnvironmentABC
-from cpl.environment.environment_name_enum import EnvironmentName
+from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 
 class Configuration(ConfigurationABC):
@@ -52,21 +52,21 @@ class Configuration(ConfigurationABC):
 
     @staticmethod
     def _print_info(name: str, message: str):
-        Console.set_foreground_color(ForegroundColor.green)
+        Console.set_foreground_color(ForegroundColorEnum.green)
         Console.write_line(f'[{name}] {message}')
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
     @staticmethod
     def _print_warn(name: str, message: str):
-        Console.set_foreground_color(ForegroundColor.yellow)
+        Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.write_line(f'[{name}] {message}')
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
     @staticmethod
     def _print_error(name: str, message: str):
-        Console.set_foreground_color(ForegroundColor.red)
+        Console.set_foreground_color(ForegroundColorEnum.red)
         Console.write_line(f'[{name}] {message}')
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _set_variable(self, name: str, value: str):
         if name == ConfigurationVariableNameEnum.environment.value:

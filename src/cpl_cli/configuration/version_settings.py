@@ -1,10 +1,10 @@
 from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_cli.configuration.version_settings_name import VersionSettingsName
+from cpl_cli.configuration.version_settings_name_enum import VersionSettingsName
 
 
-class Version(ConfigurationModelABC):
+class VersionSettings(ConfigurationModelABC):
 
     def __init__(
             self,

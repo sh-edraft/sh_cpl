@@ -6,14 +6,14 @@ from typing import Optional
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
-from cpl_cli.configuration.build_settings_name import BuildSettingsName
+from cpl_cli.configuration.build_settings_name_enum import BuildSettingsName
 from cpl_cli.configuration.project_settings import ProjectSettings
-from cpl_cli.configuration.project_settings_name import ProjectSettingsName
-from cpl_cli.configuration.version_settings_name import VersionSettingsName
+from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsName
+from cpl_cli.configuration.version_settings_name_enum import VersionSettingsName
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
 from cpl_cli.templates.new.console.src.application import ApplicationTemplate
@@ -23,7 +23,7 @@ from cpl_cli.templates.new.console.src.tests.init import TestsInitTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
-class New(CommandABC):
+class NewService(CommandABC):
 
     def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
         CommandABC.__init__(self)
@@ -106,7 +106,7 @@ class New(CommandABC):
             if result.lower() == 'y':
                 self._use_startup = True
 
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
         # else:
         #     result = Console.read('Do you want to use service providing? (y/n) ')
@@ -142,8 +142,8 @@ class New(CommandABC):
                 self._create_template,
                 project_path,
                 template,
-                text_foreground_color=ForegroundColor.green,
-                spinner_foreground_color=ForegroundColor.cyan
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
             )
 
     @staticmethod

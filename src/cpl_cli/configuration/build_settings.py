@@ -3,8 +3,8 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
-from cpl_cli.configuration.build_settings_name import BuildSettingsName
+from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl_cli.configuration.build_settings_name_enum import BuildSettingsName
 
 
 class BuildSettings(ConfigurationModelABC):
@@ -64,8 +64,8 @@ class BuildSettings(ConfigurationModelABC):
             self._excluded = settings[BuildSettingsName.excluded.value]
             self._package_data = settings[BuildSettingsName.package_data.value]
         except Exception as e:
-            Console.set_foreground_color(ForegroundColor.red)
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(
                 f'[ ERROR ] [ {__name__} ]: Reading error in {BuildSettings.__name__} settings')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)

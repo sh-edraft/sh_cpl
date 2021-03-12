@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ForegroundColor(Enum):
+class ForegroundColorEnum(Enum):
 
     default = 'default'
     grey = 'grey'

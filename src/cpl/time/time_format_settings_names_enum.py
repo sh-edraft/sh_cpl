@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class TimeFormatSettingsNames(Enum):
+class TimeFormatSettingsNamesEnum(Enum):
 
     date_format = 'DateFormat'
     time_format = 'TimeFormat'

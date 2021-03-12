@@ -5,9 +5,9 @@ from string import Template
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.logging.logger_abc import LoggerABC
-from cpl.logging.logging_level_enum import LoggingLevel
+from cpl.logging.logging_level_enum import LoggingLevelEnum
 from cpl.logging.logging_settings import LoggingSettings
 from cpl.time.time_format_settings import TimeFormatSettings
 
@@ -74,106 +74,106 @@ class Logger(LoggerABC):
         except Exception as e:
             self._fatal_console(__name__, f'Cannot append log file, message: {string}', ex=e)
 
-    def _get_string(self, name: str, level: LoggingLevel, message: str) -> str:
+    def _get_string(self, name: str, level: LoggingLevelEnum, message: str) -> str:
         log_level = level.name
         return f'<{self._get_datetime_now()}> [ {log_level} ] [ {name} ]: {message}'
 
     def header(self, string: str):
         # append log and print message
         self._append_log(string)
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
         Console.write_line(string)
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
     def trace(self, name: str, message: str):
-        output = self._get_string(name, LoggingLevel.TRACE, message)
+        output = self._get_string(name, LoggingLevelEnum.TRACE, message)
 
         # check if message can be written to log
-        if self._level.value >= LoggingLevel.TRACE.value:
+        if self._level.value >= LoggingLevelEnum.TRACE.value:
             self._append_log(output)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.TRACE.value:
-            Console.set_foreground_color(ForegroundColor.green)
+        if self._console.value >= LoggingLevelEnum.TRACE.value:
+            Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
     def debug(self, name: str, message: str):
-        output = self._get_string(name, LoggingLevel.DEBUG, message)
+        output = self._get_string(name, LoggingLevelEnum.DEBUG, message)
 
         # check if message can be written to log
-        if self._level.value >= LoggingLevel.DEBUG.value:
+        if self._level.value >= LoggingLevelEnum.DEBUG.value:
             self._append_log(output)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.DEBUG.value:
-            Console.set_foreground_color(ForegroundColor.green)
+        if self._console.value >= LoggingLevelEnum.DEBUG.value:
+            Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
     def info(self, name: str, message: str):
-        output = self._get_string(name, LoggingLevel.INFO, message)
+        output = self._get_string(name, LoggingLevelEnum.INFO, message)
 
         # check if message can be written to log
-        if self._level.value >= LoggingLevel.INFO.value:
+        if self._level.value >= LoggingLevelEnum.INFO.value:
             self._append_log(output)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.INFO.value:
-            Console.set_foreground_color(ForegroundColor.green)
+        if self._console.value >= LoggingLevelEnum.INFO.value:
+            Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
     def warn(self, name: str, message: str):
-        output = self._get_string(name, LoggingLevel.WARN, message)
+        output = self._get_string(name, LoggingLevelEnum.WARN, message)
 
         # check if message can be written to log
-        if self._level.value >= LoggingLevel.WARN.value:
+        if self._level.value >= LoggingLevelEnum.WARN.value:
             self._append_log(output)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.WARN.value:
-            Console.set_foreground_color(ForegroundColor.yellow)
+        if self._console.value >= LoggingLevelEnum.WARN.value:
+            Console.set_foreground_color(ForegroundColorEnum.yellow)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
     def error(self, name: str, message: str, ex: Exception = None):
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevel.ERROR, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevelEnum.ERROR, f'{ex} -> {tb}')
         else:
-            output = self._get_string(name, LoggingLevel.ERROR, message)
+            output = self._get_string(name, LoggingLevelEnum.ERROR, message)
 
         # check if message can be written to log
-        if self._level.value >= LoggingLevel.ERROR.value:
+        if self._level.value >= LoggingLevelEnum.ERROR.value:
             self._append_log(output)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.ERROR.value:
-            Console.set_foreground_color(ForegroundColor.red)
+        if self._console.value >= LoggingLevelEnum.ERROR.value:
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
     def fatal(self, name: str, message: str, ex: Exception = None):
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevel.FATAL, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevelEnum.FATAL, f'{ex} -> {tb}')
         else:
-            output = self._get_string(name, LoggingLevel.FATAL, message)
+            output = self._get_string(name, LoggingLevelEnum.FATAL, message)
 
         # check if message can be written to log
-        if self._level.value >= LoggingLevel.FATAL.value:
+        if self._level.value >= LoggingLevelEnum.FATAL.value:
             self._append_log(output)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.FATAL.value:
-            Console.set_foreground_color(ForegroundColor.red)
+        if self._console.value >= LoggingLevelEnum.FATAL.value:
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
         exit()
 
@@ -182,14 +182,14 @@ class Logger(LoggerABC):
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevel.ERROR, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevelEnum.ERROR, f'{ex} -> {tb}')
         else:
-            output = self._get_string(name, LoggingLevel.ERROR, message)
+            output = self._get_string(name, LoggingLevelEnum.ERROR, message)
 
         # check if message can be shown in console_old
-        if self._console.value >= LoggingLevel.FATAL.value:
-            Console.set_foreground_color(ForegroundColor.red)
+        if self._console.value >= LoggingLevelEnum.FATAL.value:
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(output)
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
         exit()

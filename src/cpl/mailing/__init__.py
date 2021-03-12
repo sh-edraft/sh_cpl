@@ -24,7 +24,7 @@ from .email import EMail
 from .email_client_service import EMailClient
 from .email_client_abc import EMailClientABC
 from .email_client_settings import EMailClientSettings
-from .email_client_settings_name_enum import EMailClientSettingsName
+from .email_client_settings_name_enum import EMailClientSettingsNameEnum
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

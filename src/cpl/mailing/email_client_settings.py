@@ -2,7 +2,7 @@ import traceback
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.mailing.email_client_settings_name_enum import EMailClientSettingsName
+from cpl.mailing.email_client_settings_name_enum import EMailClientSettingsNameEnum
 
 
 class EMailClientSettings(ConfigurationModelABC):
@@ -49,10 +49,10 @@ class EMailClientSettings(ConfigurationModelABC):
 
     def from_dict(self, settings: dict):
         try:
-            self._host = settings[EMailClientSettingsName.host.value]
-            self._port = settings[EMailClientSettingsName.port.value]
-            self._user_name = settings[EMailClientSettingsName.user_name.value]
-            self._credentials = settings[EMailClientSettingsName.credentials.value]
+            self._host = settings[EMailClientSettingsNameEnum.host.value]
+            self._port = settings[EMailClientSettingsNameEnum.port.value]
+            self._user_name = settings[EMailClientSettingsNameEnum.user_name.value]
+            self._credentials = settings[EMailClientSettingsNameEnum.credentials.value]
         except Exception as e:
             Console.error(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
             Console.error(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')

@@ -4,7 +4,7 @@ from sqlalchemy import engine, create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.database.connection.database_connection_abc import DatabaseConnectionABC
 from cpl.database.database_settings import DatabaseSettings
 
@@ -48,11 +48,11 @@ class DatabaseConnection(DatabaseConnectionABC):
 
             db_session = sessionmaker(bind=self._engine)
             self._session = db_session()
-            Console.set_foreground_color(ForegroundColor.green)
+            Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(f'[{__name__}] Connected to database')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
         except Exception as e:
-            Console.set_foreground_color(ForegroundColor.red)
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(f'[{__name__}] Database connection failed -> {e}')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)
             exit()

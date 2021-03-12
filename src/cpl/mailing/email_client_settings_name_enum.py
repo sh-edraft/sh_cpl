@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class EMailClientSettingsName(Enum):
+class EMailClientSettingsNameEnum(Enum):
 
     host = 'Host'
     port = 'Port'

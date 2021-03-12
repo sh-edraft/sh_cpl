@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class DatabaseSettingsName(Enum):
+class DatabaseSettingsNameEnum(Enum):
 
     connection_string = 'ConnectionString'
     credentials = 'Credentials'

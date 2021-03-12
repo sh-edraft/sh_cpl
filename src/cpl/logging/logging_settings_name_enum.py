@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class LoggingSettingsName(Enum):
+class LoggingSettingsNameEnum(Enum):
 
     path = 'Path'
     filename = 'Filename'

@@ -3,8 +3,8 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
-from cpl.database.database_settings_name_enum import DatabaseSettingsName
+from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl.database.database_settings_name_enum import DatabaseSettingsNameEnum
 
 
 class DatabaseSettings(ConfigurationModelABC):
@@ -69,22 +69,22 @@ class DatabaseSettings(ConfigurationModelABC):
 
     def from_dict(self, settings: dict):
         try:
-            self._connection_string = settings[DatabaseSettingsName.connection_string.value]
-            self._credentials = settings[DatabaseSettingsName.credentials.value]
+            self._connection_string = settings[DatabaseSettingsNameEnum.connection_string.value]
+            self._credentials = settings[DatabaseSettingsNameEnum.credentials.value]
 
-            if DatabaseSettingsName.auth_plugin.value in settings:
-                self._auth_plugin = settings[DatabaseSettingsName.auth_plugin.value]
+            if DatabaseSettingsNameEnum.auth_plugin.value in settings:
+                self._auth_plugin = settings[DatabaseSettingsNameEnum.auth_plugin.value]
 
-            if DatabaseSettingsName.encoding.value in settings:
-                self._encoding = settings[DatabaseSettingsName.encoding.value]
+            if DatabaseSettingsNameEnum.encoding.value in settings:
+                self._encoding = settings[DatabaseSettingsNameEnum.encoding.value]
 
-            if DatabaseSettingsName.case_sensitive.value in settings:
-                self._case_sensitive = bool(settings[DatabaseSettingsName.case_sensitive.value])
+            if DatabaseSettingsNameEnum.case_sensitive.value in settings:
+                self._case_sensitive = bool(settings[DatabaseSettingsNameEnum.case_sensitive.value])
 
-            if DatabaseSettingsName.echo.value in settings:
-                self._echo = bool(settings[DatabaseSettingsName.echo.value])
+            if DatabaseSettingsNameEnum.echo.value in settings:
+                self._echo = bool(settings[DatabaseSettingsNameEnum.echo.value])
         except Exception as e:
-            Console.set_foreground_color(ForegroundColor.red)
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)

@@ -6,15 +6,15 @@ from cpl.application.startup_abc import StartupABC
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl_cli.command.build import Build
-from cpl_cli.command.generate import Generate
-from cpl_cli.command.new import New
-from cpl_cli.command.publish import Publish
-from cpl_cli.command_handler import CommandHandler
-from cpl_cli.command.help import Help
-from cpl_cli.command.version import Version
+from cpl_cli.command.build_service import BuildService
+from cpl_cli.command.generate_service import GenerateService
+from cpl_cli.command.new_service import NewService
+from cpl_cli.command.publish_service import PublishService
+from cpl_cli.command_handler_service import CommandHandler
+from cpl_cli.command.help_service import HelpService
+from cpl_cli.command.version_service import VersionService
 from cpl_cli.error import Error
-from cpl_cli.publish.publisher import Publisher
+from cpl_cli.publish.publisher_service import Publisher
 from cpl_cli.publish.publisher_abc import PublisherABC
 
 
@@ -66,11 +66,11 @@ class Startup(StartupABC):
 
         self._services.add_transient(PublisherABC, Publisher)
 
-        self._services.add_transient(Build)
-        self._services.add_transient(Generate)
-        self._services.add_transient(Help)
-        self._services.add_transient(New)
-        self._services.add_transient(Publish)
-        self._services.add_transient(Version)
+        self._services.add_transient(BuildService)
+        self._services.add_transient(GenerateService)
+        self._services.add_transient(HelpService)
+        self._services.add_transient(NewService)
+        self._services.add_transient(PublishService)
+        self._services.add_transient(VersionService)
 
         return self._services

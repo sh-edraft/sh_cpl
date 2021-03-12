@@ -22,9 +22,9 @@ from collections import namedtuple
 # imports:
 from .logger_service import Logger
 from .logger_abc import LoggerABC
-from .logging_level_enum import LoggingLevel
+from .logging_level_enum import LoggingLevelEnum
 from .logging_settings import LoggingSettings
-from .logging_settings_name_enum import LoggingSettingsName
+from .logging_settings_name_enum import LoggingSettingsNameEnum
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

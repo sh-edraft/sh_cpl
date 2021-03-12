@@ -3,8 +3,8 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
-from cpl.time.time_format_settings_names_enum import TimeFormatSettingsNames
+from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl.time.time_format_settings_names_enum import TimeFormatSettingsNamesEnum
 
 
 class TimeFormatSettings(ConfigurationModelABC):
@@ -50,12 +50,12 @@ class TimeFormatSettings(ConfigurationModelABC):
 
     def from_dict(self, settings: dict):
         try:
-            self._date_format = settings[TimeFormatSettingsNames.date_format.value]
-            self._time_format = settings[TimeFormatSettingsNames.time_format.value]
-            self._date_time_format = settings[TimeFormatSettingsNames.date_time_format.value]
-            self._date_time_log_format = settings[TimeFormatSettingsNames.date_time_log_format.value]
+            self._date_format = settings[TimeFormatSettingsNamesEnum.date_format.value]
+            self._time_format = settings[TimeFormatSettingsNamesEnum.time_format.value]
+            self._date_time_format = settings[TimeFormatSettingsNamesEnum.date_time_format.value]
+            self._date_time_log_format = settings[TimeFormatSettingsNamesEnum.date_time_log_format.value]
         except Exception as e:
-            Console.set_foreground_color(ForegroundColor.red)
+            Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
-            Console.set_foreground_color(ForegroundColor.default)
+            Console.set_foreground_color(ForegroundColorEnum.default)

@@ -7,19 +7,19 @@ import pkg_resources
 import cpl
 import cpl_cli
 from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.command_abc import CommandABC
 
 
-class Version(CommandABC):
+class VersionService(CommandABC):
 
     def __init__(self):
         CommandABC.__init__(self)
 
     def run(self, args: list[str]):
-        Console.set_foreground_color(ForegroundColor.yellow)
+        Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.banner('CPL CLI')
-        Console.set_foreground_color(ForegroundColor.default)
+        Console.set_foreground_color(ForegroundColorEnum.default)
         if '__version__' in dir(cpl_cli):
             Console.write_line(f'Common Python library CLI: ')
             Console.write(cpl_cli.__version__)
