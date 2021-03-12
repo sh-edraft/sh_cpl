@@ -16,12 +16,12 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "discord.py",
       "mysql-connector",
       "SQLAlchemy",
       "termcolor",
       "pyfiglet",
-      "tabulate"
+      "tabulate",
+      "pynput"
     ],
     "PythonVersion": ">=3.8"
   },

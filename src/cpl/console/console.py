@@ -3,6 +3,8 @@ from collections import Callable
 from typing import Union, Optional
 
 import pyfiglet
+from pynput import keyboard
+from pynput.keyboard import Key
 from tabulate import tabulate
 from termcolor import colored
 
@@ -23,6 +25,15 @@ class Console:
 
     _hold_back = False
     _hold_back_calls: list[ConsoleCall] = []
+
+    _select_menu_items: list[str] = []
+    _is_first_select_menu_output = True
+    _selected_menu_item_index: int = 0
+    _selected_menu_item_char: str = ''
+    _selected_menu_option_foreground_color: ForegroundColorEnum = ForegroundColorEnum.default
+    _selected_menu_option_background_color: BackgroundColorEnum = BackgroundColorEnum.default
+    _selected_menu_cursor_foreground_color: ForegroundColorEnum = ForegroundColorEnum.default
+    _selected_menu_cursor_background_color: BackgroundColorEnum = BackgroundColorEnum.default
 
     """
         Properties
@@ -99,6 +110,41 @@ class Console:
         args.append(colored(*colored_args))
         print(*args, end=end)
 
+    @classmethod
+    def _show_select_menu(cls):
+        if not cls._is_first_select_menu_output:
+            for _ in range(0, len(cls._select_menu_items) + 1):
+                print('\b', end="\r")
+        else:
+            cls._is_first_select_menu_output = False
+
+        for i in range(0, len(cls._select_menu_items)):
+            Console.set_foreground_color(cls._selected_menu_cursor_foreground_color)
+            Console.set_background_color(cls._selected_menu_cursor_background_color)
+            Console.write_line(f'{cls._selected_menu_item_char if cls._selected_menu_item_index == i else " "} ')
+            Console.set_foreground_color(cls._selected_menu_option_foreground_color)
+            Console.set_background_color(cls._selected_menu_option_background_color)
+            Console.write(f'{cls._select_menu_items[i]}')
+
+        Console.write_line()
+
+    @classmethod
+    def _select_menu_key_press(cls, key: Key):
+        if key == Key.down:
+            if cls._selected_menu_item_index == len(cls._select_menu_items) - 1:
+                return
+            cls._selected_menu_item_index += 1
+            cls._show_select_menu()
+
+        elif key == Key.up:
+            if cls._selected_menu_item_index == 0:
+                return
+            cls._selected_menu_item_index -= 1
+            cls._show_select_menu()
+
+        elif key == Key.enter:
+            return False
+
     """
         Useful public methods
     """
@@ -132,7 +178,7 @@ class Console:
             cls._hold_back_calls.append(ConsoleCall(cls.close))
             return
 
-        Console.reset()
+        Console.color_reset()
         Console.write('\n\n\nPress any key to continue...')
         Console.read_line()
         exit()
@@ -181,7 +227,7 @@ class Console:
         return input()
 
     @classmethod
-    def reset(cls):
+    def color_reset(cls):
         cls._background_color = BackgroundColorEnum.default
         cls._foreground_color = ForegroundColorEnum.default
 
@@ -198,6 +244,72 @@ class Console:
 
         Console.write_line(table)
         Console.write('\n')
+
+    @classmethod
+    def select(cls, char: str, message: str, options: list[str],
+               header_foreground_color: Union[str, ForegroundColorEnum] = ForegroundColorEnum.default,
+               header_background_color: Union[str, BackgroundColorEnum] = BackgroundColorEnum.default,
+               option_foreground_color: Union[str, ForegroundColorEnum] = ForegroundColorEnum.default,
+               option_background_color: Union[str, BackgroundColorEnum] = BackgroundColorEnum.default,
+               cursor_foreground_color: Union[str, ForegroundColorEnum] = ForegroundColorEnum.default,
+               cursor_background_color: Union[str, BackgroundColorEnum] = BackgroundColorEnum.default
+               ) -> str:
+
+        cls._selected_menu_item_char = char
+        cls._select_menu_items = options
+
+        if option_foreground_color is not None:
+            cls._selected_menu_option_foreground_color = option_foreground_color
+        if option_background_color is not None:
+            cls._selected_menu_option_background_color = option_background_color
+
+        if cursor_foreground_color is not None:
+            cls._selected_menu_cursor_foreground_color = cursor_foreground_color
+        if cursor_background_color is not None:
+            cls._selected_menu_cursor_background_color = cursor_background_color
+
+        Console.set_foreground_color(header_foreground_color)
+        Console.set_background_color(header_background_color)
+        Console.write_line(message)
+        cls._show_select_menu()
+
+        with keyboard.Listener(
+                on_press=cls._select_menu_key_press, suppress=True) as listener:
+            listener.join()
+
+        Console.color_reset()
+        return cls._select_menu_items[cls._selected_menu_item_index]
+
+    @classmethod
+    def spinner(cls, message: str, call: Callable, *args, text_foreground_color: Union[str, ForegroundColorEnum] = None,
+                spinner_foreground_color: Union[str, ForegroundColorEnum] = None,
+                text_background_color: Union[str, BackgroundColorEnum] = None,
+                spinner_background_color: Union[str, BackgroundColorEnum] = None) -> any:
+        if cls._hold_back:
+            cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
+            return
+
+        if text_foreground_color is not None:
+            cls.set_foreground_color(text_foreground_color)
+
+        if text_background_color is not None:
+            cls.set_background_color(text_background_color)
+
+        cls.write_line(message)
+        cls.set_hold_back(True)
+        spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
+        spinner.start()
+        return_value = call(*args)
+        spinner.stop_spinning()
+        cls.set_hold_back(False)
+
+        cls.set_foreground_color(ForegroundColorEnum.default)
+        cls.set_background_color(BackgroundColorEnum.default)
+
+        for call in cls._hold_back_calls:
+            call.function(*call.args)
+
+        return return_value
 
     @classmethod
     def write(cls, *args):
@@ -250,34 +362,3 @@ class Console:
         if not cls._is_first_write:
             cls._output('', end='')
         cls._output(string, x, y, end='')
-
-    @classmethod
-    def spinner(cls, message: str, call: Callable, *args, text_foreground_color: Union[str, ForegroundColorEnum] = None,
-                spinner_foreground_color: Union[str, ForegroundColorEnum] = None,
-                text_background_color: Union[str, BackgroundColorEnum] = None,
-                spinner_background_color: Union[str, BackgroundColorEnum] = None) -> any:
-        if cls._hold_back:
-            cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
-            return
-
-        if text_foreground_color is not None:
-            cls.set_foreground_color(text_foreground_color)
-
-        if text_background_color is not None:
-            cls.set_background_color(text_background_color)
-
-        cls.write_line(message)
-        cls.set_hold_back(True)
-        spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
-        spinner.start()
-        return_value = call(*args)
-        spinner.stop_spinning()
-        cls.set_hold_back(False)
-
-        cls.set_foreground_color(ForegroundColorEnum.default)
-        cls.set_background_color(BackgroundColorEnum.default)
-
-        for call in cls._hold_back_calls:
-            call.function(*call.args)
-
-        return return_value
