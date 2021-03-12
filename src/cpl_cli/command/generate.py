@@ -5,7 +5,7 @@ from cpl.application.application_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.foreground_color import ForegroundColor
 from cpl.console.console import Console
-from cpl.utils.string import String
+from cpl.utils.string_class import String
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.templates.generate.abc_template import ABCTemplate
 from cpl_cli.templates.generate.class_template import ClassTemplate
