@@ -254,9 +254,9 @@ class Console:
                cursor_foreground_color: Union[str, ForegroundColorEnum] = ForegroundColorEnum.default,
                cursor_background_color: Union[str, BackgroundColorEnum] = BackgroundColorEnum.default
                ) -> str:
-
         cls._selected_menu_item_char = char
-        cls._select_menu_items = options
+        cls.options = options
+        cls._select_menu_items = cls.options
 
         if option_foreground_color is not None:
             cls._selected_menu_option_foreground_color = option_foreground_color
