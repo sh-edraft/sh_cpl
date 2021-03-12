@@ -10,7 +10,7 @@ from cpl.configuration.configuration_variable_name_enum import ConfigurationVari
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.environment.hosting_environment import HostingEnvironment
+from cpl.environment.application_environment import ApplicationEnvironment
 from cpl.environment.environment_abc import EnvironmentABC
 from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
@@ -20,7 +20,7 @@ class Configuration(ConfigurationABC):
     def __init__(self):
         ConfigurationABC.__init__(self)
 
-        self._hosting_environment = HostingEnvironment()
+        self._hosting_environment = ApplicationEnvironment()
         self._config: dict[Union[type, str], Union[ConfigurationModelABC, str]] = {}
 
         self._argument_types: list[ConsoleArgument] = []
@@ -70,7 +70,7 @@ class Configuration(ConfigurationABC):
 
     def _set_variable(self, name: str, value: str):
         if name == ConfigurationVariableNameEnum.environment.value:
-            self._hosting_environment.environment_name = EnvironmentName(value)
+            self._hosting_environment.environment_name = EnvironmentNameEnum(value)
 
         elif name == ConfigurationVariableNameEnum.name.value:
             self._hosting_environment.application_name = value

@@ -8,8 +8,7 @@ def test_spinner():
 
 if __name__ == '__main__':
     Console.write_line('Hello World')
-    # Console.spinner('Test:', test_spinner, spinner_foreground_color=ForegroundColorEnum.cyan,
-    #                text_foreground_color='green')
+    Console.spinner('Test:', test_spinner, spinner_foreground_color=ForegroundColorEnum.cyan, text_foreground_color='green')
     opts = [
         'Option 1',
         'Option 2',

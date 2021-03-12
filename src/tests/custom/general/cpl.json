@@ -1,24 +1,44 @@
 {
   "ProjectSettings": {
     "Name": "sh_cpl.tests",
-    "Author": "Sven Heidemann",
-    "Description": "Common Python Library CLI",
-    "LongDescription": "Common Python Library CLI",
-    "CopyrightDate": "2020",
-    "CopyrightName": "sh-edraft.de",
-    "LicenseName": "MIT",
-    "LicenseDescription": ", see LICENSE for more details.",
     "Version": {
       "Major": "2021",
       "Minor": "04",
       "Micro": "01"
     },
-    "SourcePath": "./",
-    "DistPath": "../../dist",
-    "Included": [],
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "sh-edraft Common Python library",
+    "LongDescription": "sh-edraft Common Python library",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2020 - 2021",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
+    "Dependencies": [
+      "mysql-connector",
+      "SQLAlchemy",
+      "termcolor",
+      "pyfiglet",
+      "tabulate",
+      "pynput"
+    ],
+    "PythonVersion": ">=3.8"
+  },
+  "BuildSettings": {
+    "SourcePath": "",
+    "OutputPath": "dist",
+    "Main": "main",
+    "EntryPoint": "cpl",
+    "IncludePackageData": "False",
+    "Included": [
+      "*/templates"
+    ],
     "Excluded": [
-      "__pycache__",
-      "logs"
-    ]
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {}
   }
 }

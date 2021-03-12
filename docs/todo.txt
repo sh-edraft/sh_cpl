@@ -1,3 +1,2 @@
-- create console select with up & down arrows
 - add command start
 - add command update

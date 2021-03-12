@@ -22,7 +22,7 @@ from collections import namedtuple
 # imports:
 from .environment_abc import EnvironmentABC
 from .environment_name_enum import EnvironmentNameEnum
-from .hosting_environment import HostingEnvironment
+from .application_environment import ApplicationEnvironment
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

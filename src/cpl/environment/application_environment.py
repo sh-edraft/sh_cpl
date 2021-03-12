@@ -5,7 +5,7 @@ from cpl.environment.environment_abc import EnvironmentABC
 from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 
-class HostingEnvironment(EnvironmentABC):
+class ApplicationEnvironment(EnvironmentABC):
 
     def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production, crp: str = './'):
         EnvironmentABC.__init__(self)
@@ -21,7 +21,7 @@ class HostingEnvironment(EnvironmentABC):
 
     @environment_name.setter
     def environment_name(self, environment_name: str):
-        self._environment_name = EnvironmentName(environment_name)
+        self._environment_name = EnvironmentNameEnum(environment_name)
 
     @property
     def application_name(self) -> str:
