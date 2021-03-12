@@ -1,18 +1,47 @@
 import os
+from collections import Callable
 
 from cpl.application.application_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console import ForegroundColor
+from cpl.console.foreground_color import ForegroundColor
 from cpl.console.console import Console
 from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.templates.generate.abc_template import ABCTemplate
+from cpl_cli.templates.generate.class_template import ClassTemplate
+from cpl_cli.templates.generate.configmodel_template import ConfigModelTemplate
+from cpl_cli.templates.generate.enum_template import EnumTemplate
+from cpl_cli.templates.generate.service_template import ServiceTemplate
+from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
 class Generate(CommandABC):
 
     def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
         CommandABC.__init__(self)
+
+        self._schematics = {
+            "abc": {
+                "Upper": "ABC",
+                "Template": ABCTemplate
+            },
+            "class": {
+                "Upper": "Class",
+                "Template": ClassTemplate
+            },
+            "configmodel": {
+                "Upper": "Settings",
+                "Template": ConfigModelTemplate
+            },
+            "enum": {
+                "Upper": "Enum",
+                "Template": EnumTemplate
+            },
+            "service": {
+                "Upper": "Service",
+                "Template": ServiceTemplate
+            }
+        }
 
         self._config = configuration
         self._runtime = runtime
@@ -38,30 +67,33 @@ class Generate(CommandABC):
             template.write(value)
             template.close()
 
-    def _generate_abc(self, name: str):
+    def _generate(self, schematic: str, name: str, template: Callable[TemplateFileABC]):
+        class_name = name
         rel_path = ''
         if '/' in name:
             parts = name.split('/')
             rel_path = '/'.join(parts[:-1])
-            name = parts[len(parts) - 1]
+            class_name = parts[len(parts) - 1]
 
-        file_path = os.path.join(self._runtime.working_directory, rel_path, f'{String.convert_to_snake_case(name)}.py')
+        template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
+
+        file_path = os.path.join(self._runtime.working_directory, template.path, template.name)
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
         if os.path.isfile(file_path):
-            Console.error('ABC already exists!')
+            Console.error(f'{String.first_to_upper(schematic)} already exists!')
             exit()
 
-        message = f'Creating {self._runtime.working_directory}/{rel_path}/{String.convert_to_snake_case(name)}.py'
-        if rel_path == '':
-            message = f'Creating {self._runtime.working_directory}/{String.convert_to_snake_case(name)}.py'
+        message = f'Creating {self._runtime.working_directory}/{template.path}/{template.name}'
+        if template.path == '':
+            message = f'Creating {self._runtime.working_directory}/{template.name}'
 
         Console.spinner(
             message,
             self._create_file,
             file_path,
-            ABCTemplate.get_abc_py(name),
+            template.value,
             text_foreground_color=ForegroundColor.green,
             spinner_foreground_color=ForegroundColor.cyan
         )
@@ -76,20 +108,9 @@ class Generate(CommandABC):
         if name is None:
             name = Console.read(f'Name for the {args[0]}: ')
 
-        if schematic == 'abc':
-            self._generate_abc(name)
-
-        elif schematic == 'class':
-            pass
-
-        elif schematic == 'configmodel':
-            pass
-
-        elif schematic == 'enum':
-            pass
-
-        elif schematic == 'service':
-            pass
+        if schematic in self._schematics:
+            s = self._schematics[schematic]
+            self._generate(schematic, name, s["Template"])
 
         else:
             self._help('Usage: cpl generate <schematic> [options]')

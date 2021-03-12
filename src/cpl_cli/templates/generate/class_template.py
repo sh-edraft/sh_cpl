@@ -5,7 +5,7 @@ from cpl.utils.string import String
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
-class ABCTemplate(TemplateFileABC):
+class ClassTemplate(TemplateFileABC):
 
     def __init__(self, name: str, schematic: str, schematic_upper: str, path: str):
         TemplateFileABC.__init__(self)
@@ -14,13 +14,10 @@ class ABCTemplate(TemplateFileABC):
         self._class_name = f'{String.first_to_upper(name)}{schematic_upper}'
         self._path = path
         self._value = textwrap.dedent("""\
-        from abc import ABC, abstractmethod
+        class $Name:
 
-
-        class $Name(ABC):
-        
-            @abstractmethod
-            def __init__(self): pass
+            def __init__(self):
+                pass
         """)
 
     @property
