@@ -48,7 +48,8 @@ class Startup(StartupABC):
             ConsoleArgument('', 'class', ['c', 'C'], ' '),
             ConsoleArgument('', 'enum', ['e', 'E'], ' '),
             ConsoleArgument('', 'service', ['s', 'S'], ' '),
-            ConsoleArgument('', 'settings', ['st', 'ST'], ' ')
+            ConsoleArgument('', 'settings', ['st', 'ST'], ' '),
+            ConsoleArgument('', 'thread', ['t', 't'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'help', ['h', 'H'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', [

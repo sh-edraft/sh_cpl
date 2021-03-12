@@ -12,6 +12,7 @@ from cpl_cli.templates.generate.class_template import ClassTemplate
 from cpl_cli.templates.generate.configmodel_template import ConfigModelTemplate
 from cpl_cli.templates.generate.enum_template import EnumTemplate
 from cpl_cli.templates.generate.service_template import ServiceTemplate
+from cpl_cli.templates.generate.thread_template import ThreadTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
@@ -40,6 +41,10 @@ class Generate(CommandABC):
             "settings": {
                 "Upper": "Settings",
                 "Template": ConfigModelTemplate
+            },
+            "thread": {
+                "Upper": "Thread",
+                "Template": ThreadTemplate
             }
         }
 
