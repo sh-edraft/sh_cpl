@@ -29,10 +29,6 @@ class Generate(CommandABC):
                 "Upper": "Class",
                 "Template": ClassTemplate
             },
-            "configmodel": {
-                "Upper": "Settings",
-                "Template": ConfigModelTemplate
-            },
             "enum": {
                 "Upper": "Enum",
                 "Template": EnumTemplate
@@ -40,6 +36,10 @@ class Generate(CommandABC):
             "service": {
                 "Upper": "Service",
                 "Template": ServiceTemplate
+            },
+            "settings": {
+                "Upper": "Settings",
+                "Template": ConfigModelTemplate
             }
         }
 
@@ -51,11 +51,11 @@ class Generate(CommandABC):
         Console.error(message)
 
         schematics = [
-            ['abc (a|A)'],
-            ['class (c|C)'],
-            ['configmodel (cm|CM)'],
-            ['enum (e|E)'],
-            ['service (s|S)'],
+            'abc (a|A)',
+            'class (c|C)',
+            'enum (e|E)',
+            'service (s|S)',
+            'settings (st|ST)'
         ]
         Console.write_line('Available Schematics:')
         for name in schematics:

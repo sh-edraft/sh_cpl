@@ -46,9 +46,9 @@ class Startup(StartupABC):
         self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', [
             ConsoleArgument('', 'abc', ['a', 'A'], ' '),
             ConsoleArgument('', 'class', ['c', 'C'], ' '),
-            ConsoleArgument('', 'configmodel', ['cm', 'CM'], ' '),
             ConsoleArgument('', 'enum', ['e', 'E'], ' '),
-            ConsoleArgument('', 'service', ['s', 'S'], ' ')
+            ConsoleArgument('', 'service', ['s', 'S'], ' '),
+            ConsoleArgument('', 'settings', ['st', 'ST'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'help', ['h', 'H'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', [

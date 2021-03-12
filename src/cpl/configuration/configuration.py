@@ -219,7 +219,7 @@ class Configuration(ConfigurationABC):
         config_from_file = self._load_json_file(file_path, output)
         for sub in ConfigurationModelABC.__subclasses__():
             for key, value in config_from_file.items():
-                if sub.__name__ == key:
+                if sub.__name__ == key or sub.__name__.replace('Settings', '') == key:
                     configuration = sub()
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
