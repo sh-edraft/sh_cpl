@@ -295,6 +295,12 @@ class Console:
         if text_background_color is not None:
             cls.set_background_color(text_background_color)
 
+        if type(spinner_foreground_color) is str:
+            spinner_foreground_color = ForegroundColorEnum[spinner_foreground_color]
+
+        if type(spinner_background_color) is str:
+            spinner_background_color = BackgroundColorEnum[spinner_background_color]
+
         cls.write_line(message)
         cls.set_hold_back(True)
         spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
