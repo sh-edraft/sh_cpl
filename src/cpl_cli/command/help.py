@@ -1,5 +1,5 @@
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl_cli.command_abc import CommandABC
 
 

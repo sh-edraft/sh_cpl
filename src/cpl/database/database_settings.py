@@ -3,8 +3,8 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
-from cpl.database.database_settings_name import DatabaseSettingsName
+from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.database.database_settings_name_enum import DatabaseSettingsName
 
 
 class DatabaseSettings(ConfigurationModelABC):

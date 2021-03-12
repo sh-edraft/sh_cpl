@@ -21,7 +21,7 @@ from collections import namedtuple
 
 # imports:
 from .time_format_settings import TimeFormatSettings
-from .time_format_settings_names import TimeFormatSettingsNames
+from .time_format_settings_names_enum import TimeFormatSettingsNames
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

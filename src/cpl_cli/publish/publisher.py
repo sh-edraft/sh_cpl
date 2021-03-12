@@ -7,7 +7,7 @@ import setuptools
 from setuptools import sandbox
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.console.console import Console
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings

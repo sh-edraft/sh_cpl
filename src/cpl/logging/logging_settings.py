@@ -3,9 +3,9 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
-from cpl.logging.logging_level import LoggingLevel
-from cpl.logging.logging_settings_name import LoggingSettingsName
+from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.logging.logging_level_enum import LoggingLevel
+from cpl.logging.logging_settings_name_enum import LoggingSettingsName
 
 
 class LoggingSettings(ConfigurationModelABC):

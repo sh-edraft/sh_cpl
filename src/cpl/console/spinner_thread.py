@@ -5,13 +5,13 @@ import time
 
 from termcolor import colored
 
-from cpl.console.background_color import BackgroundColor
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.background_color_enum import BackgroundColorEnum
+from cpl.console.foreground_color_enum import ForegroundColor
 
 
 class SpinnerThread(threading.Thread):
 
-    def __init__(self, msg_len: int, foreground_color: ForegroundColor, background_color: BackgroundColor):
+    def __init__(self, msg_len: int, foreground_color: ForegroundColor, background_color: BackgroundColorEnum):
         threading.Thread.__init__(self)
 
         self._msg_len = msg_len

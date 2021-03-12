@@ -3,7 +3,7 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl_cli.configuration.version import Version
 from cpl_cli.configuration.project_settings_name import ProjectSettingsName
 

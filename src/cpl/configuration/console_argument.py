@@ -1,6 +1,7 @@
 class ConsoleArgument:
 
-    def __init__(self, token: str, name: str, aliases: list[str], value_token: str, console_arguments: list['ConsoleArgument'] = None):
+    def __init__(self, token: str, name: str, aliases: list[str], value_token: str, console_arguments: list[
+        'ConsoleArgument'] = None):
         self._token = token
         self._name = name
         self._aliases = aliases

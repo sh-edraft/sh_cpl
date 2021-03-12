@@ -23,7 +23,7 @@ from collections import namedtuple
 from .configuration import Configuration
 from .configuration_abc import ConfigurationABC
 from .configuration_model_abc import ConfigurationModelABC
-from .configuration_variable_name import ConfigurationVariableName
+from .configuration_variable_name_enum import ConfigurationVariableNameEnum
 from .console_argument import ConsoleArgument
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

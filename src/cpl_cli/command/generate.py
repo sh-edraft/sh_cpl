@@ -3,7 +3,7 @@ from collections import Callable
 
 from cpl.application.application_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.console.console import Console
 from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
@@ -26,7 +26,7 @@ class Generate(CommandABC):
                 "Template": ABCTemplate
             },
             "class": {
-                "Upper": "Class",
+                "Upper": "",
                 "Template": ClassTemplate
             },
             "enum": {

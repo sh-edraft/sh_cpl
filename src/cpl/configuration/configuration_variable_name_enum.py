@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ConfigurationVariableName(Enum):
+class ConfigurationVariableNameEnum(Enum):
 
     environment = 'ENVIRONMENT'
     name = 'NAME'
@@ -9,4 +9,4 @@ class ConfigurationVariableName(Enum):
 
     @staticmethod
     def to_list():
-        return [var.value for var in ConfigurationVariableName]
+        return [var.value for var in ConfigurationVariableNameEnum]

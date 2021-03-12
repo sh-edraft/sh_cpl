@@ -6,7 +6,7 @@ from typing import Optional
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.console.console import Console
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings

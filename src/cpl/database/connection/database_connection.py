@@ -4,7 +4,7 @@ from sqlalchemy import engine, create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.database.connection.database_connection_abc import DatabaseConnectionABC
 from cpl.database.database_settings import DatabaseSettings
 

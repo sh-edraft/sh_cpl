@@ -6,16 +6,16 @@ import pyfiglet
 from tabulate import tabulate
 from termcolor import colored
 
-from cpl.console.background_color import BackgroundColor
+from cpl.console.background_color_enum import BackgroundColorEnum
 from cpl.console.console_call import ConsoleCall
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.console.spinner_thread import SpinnerThread
 
 
 class Console:
     _is_first_write = True
 
-    _background_color: BackgroundColor = BackgroundColor.default
+    _background_color: BackgroundColorEnum = BackgroundColorEnum.default
     _foreground_color: ForegroundColor = ForegroundColor.default
     _x: Optional[int] = None
     _y: Optional[int] = None
@@ -47,9 +47,9 @@ class Console:
         cls._hold_back = value
 
     @classmethod
-    def set_background_color(cls, color: Union[BackgroundColor, str]):
+    def set_background_color(cls, color: Union[BackgroundColorEnum, str]):
         if type(color) is str:
-            cls._background_color = BackgroundColor[color]
+            cls._background_color = BackgroundColorEnum[color]
         else:
             cls._background_color = color
 
@@ -88,11 +88,11 @@ class Console:
             args.append(f'\033[{cls._y};{cls._x}H')
 
         colored_args.append(string)
-        if cls._foreground_color != ForegroundColor.default and cls._background_color == BackgroundColor.default:
+        if cls._foreground_color != ForegroundColor.default and cls._background_color == BackgroundColorEnum.default:
             colored_args.append(cls._foreground_color.value)
-        elif cls._foreground_color == ForegroundColor.default and cls._background_color != BackgroundColor.default:
+        elif cls._foreground_color == ForegroundColor.default and cls._background_color != BackgroundColorEnum.default:
             colored_args.append(cls._background_color.value)
-        elif cls._foreground_color != ForegroundColor.default and cls._background_color != BackgroundColor.default:
+        elif cls._foreground_color != ForegroundColor.default and cls._background_color != BackgroundColorEnum.default:
             colored_args.append(cls._foreground_color.value)
             colored_args.append(cls._background_color.value)
 
@@ -182,7 +182,7 @@ class Console:
 
     @classmethod
     def reset(cls):
-        cls._background_color = BackgroundColor.default
+        cls._background_color = BackgroundColorEnum.default
         cls._foreground_color = ForegroundColor.default
 
     @classmethod
@@ -252,7 +252,7 @@ class Console:
         cls._output(string, x, y, end='')
 
     @classmethod
-    def spinner(cls, message: str, call: Callable, *args, text_foreground_color: ForegroundColor = None, spinner_foreground_color: ForegroundColor = None, text_background_color: BackgroundColor = None, spinner_background_color: BackgroundColor = None) -> any:
+    def spinner(cls, message: str, call: Callable, *args, text_foreground_color: ForegroundColor = None, spinner_foreground_color: ForegroundColor = None, text_background_color: BackgroundColorEnum = None, spinner_background_color: BackgroundColorEnum = None) -> any:
         if cls._hold_back:
             cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
             return
@@ -272,7 +272,7 @@ class Console:
         cls.set_hold_back(False)
 
         cls.set_foreground_color(ForegroundColor.default)
-        cls.set_background_color(BackgroundColor.default)
+        cls.set_background_color(BackgroundColorEnum.default)
 
         for call in cls._hold_back_calls:
             call.function(*call.args)

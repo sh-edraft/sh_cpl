@@ -3,8 +3,8 @@ from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
-from cpl.time.time_format_settings_names import TimeFormatSettingsNames
+from cpl.console.foreground_color_enum import ForegroundColor
+from cpl.time.time_format_settings_names_enum import TimeFormatSettingsNames
 
 
 class TimeFormatSettings(ConfigurationModelABC):

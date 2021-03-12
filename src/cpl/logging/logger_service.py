@@ -5,9 +5,9 @@ from string import Template
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.logging.logger_abc import LoggerABC
-from cpl.logging.logging_level import LoggingLevel
+from cpl.logging.logging_level_enum import LoggingLevel
 from cpl.logging.logging_settings import LoggingSettings
 from cpl.time.time_format_settings import TimeFormatSettings
 

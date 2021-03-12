@@ -6,13 +6,13 @@ from typing import Union, Type, Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.configuration.configuration_variable_name import ConfigurationVariableName
+from cpl.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.console.console import Console
-from cpl.console.foreground_color import ForegroundColor
+from cpl.console.foreground_color_enum import ForegroundColor
 from cpl.environment.hosting_environment import HostingEnvironment
 from cpl.environment.environment_abc import EnvironmentABC
-from cpl.environment.environment_name import EnvironmentName
+from cpl.environment.environment_name_enum import EnvironmentName
 
 
 class Configuration(ConfigurationABC):
@@ -69,13 +69,13 @@ class Configuration(ConfigurationABC):
         Console.set_foreground_color(ForegroundColor.default)
 
     def _set_variable(self, name: str, value: str):
-        if name == ConfigurationVariableName.environment.value:
+        if name == ConfigurationVariableNameEnum.environment.value:
             self._hosting_environment.environment_name = EnvironmentName(value)
 
-        elif name == ConfigurationVariableName.name.value:
+        elif name == ConfigurationVariableNameEnum.name.value:
             self._hosting_environment.application_name = value
 
-        elif name == ConfigurationVariableName.customer.value:
+        elif name == ConfigurationVariableNameEnum.customer.value:
             self._hosting_environment.customer = value
 
         else:
@@ -155,7 +155,7 @@ class Configuration(ConfigurationABC):
         return result
 
     def add_environment_variables(self, prefix: str):
-        for variable in ConfigurationVariableName.to_list():
+        for variable in ConfigurationVariableNameEnum.to_list():
             var_name = f'{prefix}{variable}'
             if var_name in [key.upper() for key in os.environ.keys()]:
                 self._set_variable(variable, os.environ[var_name])
@@ -164,7 +164,7 @@ class Configuration(ConfigurationABC):
         self._argument_types.append(argument)
 
     def add_console_arguments(self):
-        for arg_name in ConfigurationVariableName.to_list():
+        for arg_name in ConfigurationVariableNameEnum.to_list():
             self.add_console_argument(ConsoleArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
 
         arg_list = sys.argv[1:]
@@ -243,13 +243,13 @@ class Configuration(ConfigurationABC):
 
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
         if type(search_type) is str:
-            if search_type == ConfigurationVariableName.environment.value:
+            if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._hosting_environment.environment_name
 
-            elif search_type == ConfigurationVariableName.name.value:
+            elif search_type == ConfigurationVariableNameEnum.name.value:
                 return self._hosting_environment.application_name
 
-            elif search_type == ConfigurationVariableName.customer.value:
+            elif search_type == ConfigurationVariableNameEnum.customer.value:
                 return self._hosting_environment.customer
 
         if search_type not in self._config:

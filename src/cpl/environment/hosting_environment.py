@@ -2,7 +2,7 @@ from socket import gethostname
 from typing import Optional
 
 from cpl.environment.environment_abc import EnvironmentABC
-from cpl.environment.environment_name import EnvironmentName
+from cpl.environment.environment_name_enum import EnvironmentName
 
 
 class HostingEnvironment(EnvironmentABC):

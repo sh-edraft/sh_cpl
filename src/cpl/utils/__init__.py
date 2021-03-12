@@ -21,6 +21,7 @@ from collections import namedtuple
 
 # imports:
 from .credential_manager import CredentialManager
+from .string import String
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

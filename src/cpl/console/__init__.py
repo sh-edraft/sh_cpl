@@ -20,10 +20,10 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
-from .background_color import BackgroundColor
+from .background_color_enum import BackgroundColorEnum
 from .console import Console
 from .console_call import ConsoleCall
-from .foreground_color import ForegroundColor
+from .foreground_color_enum import ForegroundColor
 from .spinner_thread import SpinnerThread
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

@@ -22,7 +22,7 @@ from collections import namedtuple
 # imports:
 from .database_model import DatabaseModel
 from .database_settings import DatabaseSettings
-from .database_settings_name import DatabaseSettingsName
+from .database_settings_name_enum import DatabaseSettingsName
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

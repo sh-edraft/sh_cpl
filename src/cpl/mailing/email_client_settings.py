@@ -2,7 +2,7 @@ import traceback
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
-from cpl.mailing.email_client_settings_name import EMailClientSettingsName
+from cpl.mailing.email_client_settings_name_enum import EMailClientSettingsName
 
 
 class EMailClientSettings(ConfigurationModelABC):
