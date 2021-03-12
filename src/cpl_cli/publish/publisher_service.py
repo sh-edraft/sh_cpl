@@ -16,7 +16,7 @@ from cpl_cli.templates.build.init_template import InitTemplate
 from cpl_cli.templates.publish.setup_template import SetupTemplate
 
 
-class Publisher(PublisherABC):
+class PublisherService(PublisherABC):
 
     def __init__(self, runtime: ApplicationRuntimeABC, project: ProjectSettings, build: BuildSettings):
         PublisherABC.__init__(self)

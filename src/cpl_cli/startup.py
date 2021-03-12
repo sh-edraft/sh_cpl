@@ -14,7 +14,7 @@ from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command.help_service import HelpService
 from cpl_cli.command.version_service import VersionService
 from cpl_cli.error import Error
-from cpl_cli.publish.publisher_service import Publisher
+from cpl_cli.publish.publisher_service import PublisherService
 from cpl_cli.publish.publisher_abc import PublisherABC
 
 
@@ -64,7 +64,7 @@ class Startup(StartupABC):
     def create_services(self) -> ServiceProviderABC:
         self._services.add_singleton(CommandHandler)
 
-        self._services.add_transient(PublisherABC, Publisher)
+        self._services.add_transient(PublisherABC, PublisherService)
 
         self._services.add_transient(BuildService)
         self._services.add_transient(GenerateService)

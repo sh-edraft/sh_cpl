@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class VersionSettingsName(Enum):
+class VersionSettingsNameEnum(Enum):
 
     major = 'Major'
     minor = 'Minor'

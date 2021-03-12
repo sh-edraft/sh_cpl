@@ -20,6 +20,12 @@ __version__ = '2021.4.1'
 from collections import namedtuple
 
 # imports:
+from .build_settings import BuildSettings
+from .build_settings_name_enum import BuildSettingsName
+from .project_settings import ProjectSettings
+from .project_settings_name_enum import ProjectSettingsName
+from .version_settings import VersionSettings
+from .version_settings_name_enum import VersionSettingsNameEnum
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major=2021, minor=4, micro=1)

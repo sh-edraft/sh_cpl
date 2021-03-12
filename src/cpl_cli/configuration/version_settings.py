@@ -1,7 +1,7 @@
 from typing import Optional
 
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_cli.configuration.version_settings_name_enum import VersionSettingsName
+from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 
 
 class VersionSettings(ConfigurationModelABC):
@@ -34,13 +34,13 @@ class VersionSettings(ConfigurationModelABC):
         return f'{self._major}.{self._minor}.{self._micro}'
 
     def from_dict(self, settings: dict):
-        self._major = int(settings[VersionSettingsName.major.value])
-        self._minor = int(settings[VersionSettingsName.minor.value])
-        self._micro = int(settings[VersionSettingsName.micro.value])
+        self._major = int(settings[VersionSettingsNameEnum.major.value])
+        self._minor = int(settings[VersionSettingsNameEnum.minor.value])
+        self._micro = int(settings[VersionSettingsNameEnum.micro.value])
 
     def to_dict(self) -> dict:
         return {
-            VersionSettingsName.major.value: self._major,
-            VersionSettingsName.minor.value: self._minor,
-            VersionSettingsName.micro.value: self._micro
+            VersionSettingsNameEnum.major.value: self._major,
+            VersionSettingsNameEnum.minor.value: self._minor,
+            VersionSettingsNameEnum.micro.value: self._micro
         }

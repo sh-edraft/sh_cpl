@@ -13,7 +13,7 @@ from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsName
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsName
-from cpl_cli.configuration.version_settings_name_enum import VersionSettingsName
+from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
 from cpl_cli.templates.new.console.src.application import ApplicationTemplate
@@ -46,9 +46,9 @@ class NewService(CommandABC):
         self._project_dict = {
             ProjectSettingsName.name.value: name,
             ProjectSettingsName.version.value: {
-                VersionSettingsName.major.value: '0',
-                VersionSettingsName.minor.value: '0',
-                VersionSettingsName.micro.value: '0'
+                VersionSettingsNameEnum.major.value: '0',
+                VersionSettingsNameEnum.minor.value: '0',
+                VersionSettingsNameEnum.micro.value: '0'
             },
             ProjectSettingsName.author.value: '',
             ProjectSettingsName.author_email.value: '',
