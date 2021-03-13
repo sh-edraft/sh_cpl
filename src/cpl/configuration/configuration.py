@@ -81,7 +81,8 @@ class Configuration(ConfigurationABC):
         else:
             self._config[name] = value
 
-    def _validate_argument_child(self, argument: str, argument_type: ConsoleArgument, next_arguments: Optional[list[str]]) -> bool:
+    def _validate_argument_child(self, argument: str, argument_type: ConsoleArgument,
+                                 next_arguments: Optional[list[str]]) -> bool:
         if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
             found = False
             for child_argument_type in argument_type.console_arguments:
@@ -96,7 +97,8 @@ class Configuration(ConfigurationABC):
 
         return True
 
-    def _validate_argument_by_argument_type(self, argument: str, argument_type: ConsoleArgument, next_arguments: list[str] = None) -> bool:
+    def _validate_argument_by_argument_type(self, argument: str, argument_type: ConsoleArgument,
+                                            next_arguments: list[str] = None) -> bool:
         argument_name = ''
         value = ''
         result = False
@@ -104,19 +106,35 @@ class Configuration(ConfigurationABC):
         if argument_type.value_token != '' and argument_type.value_token in argument:
             # ?new=value
             if argument_type.is_value_token_optional is not None and argument_type.is_value_token_optional:
-                self._additional_arguments.append(argument_type.name)
-                result = True
+                if argument_type.name not in self._additional_arguments:
+                    self._additional_arguments.append(argument_type.name)
+                    result = True
+
+            if argument_type.token != '' and argument.startswith(argument_type.token):
+                # --new=value
+                argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
+            else:
+                # new=value
+                argument_name = argument.split(argument_type.token)[1]
+
+            if argument_type.is_value_token_optional is True:
+                is_valid = False
+
+                name_list = argument.split(argument_type.token)
+                if len(name_list) > 1:
+                    value_list = name_list[1].split(argument_type.value_token)
+                    if len(value_list) > 1:
+                        is_valid = True
+                        value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
+
+                if not is_valid:
+                    if argument_type.name not in self._additional_arguments:
+                        self._additional_arguments.append(argument_type.name)
+                        result = True
+            else:
+                value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
 
             if not result:
-                if argument_type.token != '' and argument.startswith(argument_type.token):
-                    # --new=value
-                    argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
-                    value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
-                else:
-                    # new=value
-                    argument_name = argument.split(argument_type.token)[1]
-                    value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
-
                 if argument_name != argument_type.name and argument_name not in argument_type.aliases:
                     return False
 
@@ -125,28 +143,33 @@ class Configuration(ConfigurationABC):
 
         elif argument_type.value_token == ' ':
             # ?new value
-            if argument_type.is_value_token_optional is not None and argument_type.is_value_token_optional:
-                self._additional_arguments.append(argument_type.name)
-                result = True
+            if (next_arguments is None or len(next_arguments) == 0) and \
+                    argument_type.is_value_token_optional is not True:
+                raise Exception(f'Invalid argument: {argument}')
 
-            if not result:
-                if next_arguments is None or len(next_arguments) == 0:
-                    raise Exception(f'Invalid argument: {argument}')
-
+            if (next_arguments is None or len(next_arguments) == 0) and argument_type.is_value_token_optional is True:
+                value = ''
+            else:
                 value = next_arguments[0]
+                self._handled_args.append(value)
 
-                if argument_type.token != '' and argument.startswith(argument_type.token):
-                    # --new value
-                    argument_name = argument.split(argument_type.token)[1]
-                else:
-                    # new value
-                    argument_name = argument
+            if argument_type.token != '' and argument.startswith(argument_type.token):
+                # --new value
+                argument_name = argument.split(argument_type.token)[1]
+            else:
+                # new value
+                argument_name = argument
 
-                if argument_name != argument_type.name and argument_name not in argument_type.aliases:
-                    return False
+            if argument_name != argument_type.name and argument_name not in argument_type.aliases:
+                return False
 
+            if value == '':
+                if argument_type.name not in self._additional_arguments:
+                    self._additional_arguments.append(argument_type.name)
+            else:
                 self._set_variable(argument_type.name, value)
-                result = True
+
+            result = True
 
         elif argument_type.name == argument or argument in argument_type.aliases:
             # new
@@ -185,8 +208,8 @@ class Configuration(ConfigurationABC):
             if argument in self._handled_args:
                 break
 
-            if i+1 < len(arg_list):
-                next_arguments = arg_list[i+1:]
+            if i + 1 < len(arg_list):
+                next_arguments = arg_list[i + 1:]
 
             found = False
             for argument_type in self._argument_types:
@@ -198,7 +221,7 @@ class Configuration(ConfigurationABC):
                     error_message = e
 
             if not found and error_message == '':
-                error_message = f'1 Invalid argument: {argument}'
+                error_message = f'Invalid argument: {argument}'
 
                 if self._argument_error_function is not None:
                     self._argument_error_function(error_message)
@@ -250,7 +273,8 @@ class Configuration(ConfigurationABC):
     def add_configuration(self, key_type: type, value: ConfigurationModelABC):
         self._config[key_type] = value
 
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
+        str, Callable[ConfigurationModelABC]]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._hosting_environment.environment_name
