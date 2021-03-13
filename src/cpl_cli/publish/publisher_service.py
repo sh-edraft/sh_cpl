@@ -235,7 +235,7 @@ class PublisherService(PublisherABC):
         return paths
 
     def _create_setup(self):
-        setup_file = os.path.join(self._output_path, 'setup_template.py')
+        setup_file = os.path.join(self._output_path, 'setup.py')
         if os.path.isfile(setup_file):
             os.remove(setup_file)
 
@@ -273,9 +273,9 @@ class PublisherService(PublisherABC):
             setup_py.close()
 
     def _run_setup(self):
-        setup_py = os.path.join(self._output_path, 'setup_template.py')
+        setup_py = os.path.join(self._output_path, 'setup.py')
         if not os.path.isfile(setup_py):
-            Console.error(__name__, f'setup_template.py not found in {self._output_path}')
+            Console.error(__name__, f'setup.py not found in {self._output_path}')
             return
 
         try:
@@ -288,7 +288,7 @@ class PublisherService(PublisherABC):
             ])
             os.remove(setup_py)
         except Exception as e:
-            Console.error('Executing setup_template.py failed', str(e))
+            Console.error('Executing setup.py failed', str(e))
 
     def include(self, path: str):
         self._build_settings.included.append(path)
@@ -312,7 +312,7 @@ class PublisherService(PublisherABC):
         Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
 
         Console.write_line('\nPublish:')
-        Console.spinner('Generating setup_template.py:', self._create_setup, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.write_line('Running setup_template.py:\n')
+        Console.spinner('Generating setup.py:', self._create_setup, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.write_line('Running setup.py:\n')
         self._run_setup()
         # Console.spinner('Cleaning dist path:', self._clean_dist_files)
