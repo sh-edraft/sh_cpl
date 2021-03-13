@@ -118,7 +118,7 @@ class NewService(CommandABC):
             os.makedirs(project_path)
 
         with open(os.path.join(project_path, 'cpl.json'), 'w') as project_json:
-            project_json.write(json.dumps(self._project_json, indent=4))
+            project_json.write(json.dumps(self._project_json, indent=2))
             project_json.close()
 
         templates: list[TemplateFileABC] = [

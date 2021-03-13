@@ -284,7 +284,7 @@ class Console:
     def spinner(cls, message: str, call: Callable, *args, text_foreground_color: Union[str, ForegroundColorEnum] = None,
                 spinner_foreground_color: Union[str, ForegroundColorEnum] = None,
                 text_background_color: Union[str, BackgroundColorEnum] = None,
-                spinner_background_color: Union[str, BackgroundColorEnum] = None) -> any:
+                spinner_background_color: Union[str, BackgroundColorEnum] = None, **kwargs) -> any:
         if cls._hold_back:
             cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
             return
@@ -305,7 +305,7 @@ class Console:
         cls.set_hold_back(True)
         spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
         spinner.start()
-        return_value = call(*args)
+        return_value = call(*args, **kwargs)
         spinner.stop_spinning()
         cls.set_hold_back(False)
 
