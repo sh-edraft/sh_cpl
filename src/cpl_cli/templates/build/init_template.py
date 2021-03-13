@@ -30,7 +30,7 @@ class InitTemplate:
             $Imports
             
             VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-            version_info = VersionInfo(major=$Major, minor=$Minor, micro=$Micro)
+            version_info = VersionInfo(major='$Major', minor='$Minor', micro='$Micro')
         """)
 
         return string

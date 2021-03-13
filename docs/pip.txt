@@ -1,0 +1,6 @@
+upload:
+    twine upload --repository-url https://pip.sh-edraft.de dist/publish/setup/*
+    twine upload -r pip.sh-edraft.de dist/publish/setup/*
+
+install:
+    pip install --extra-index-url https://pip.sh-edraft.de/ sh_cpl
