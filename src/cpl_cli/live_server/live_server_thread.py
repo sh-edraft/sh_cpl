@@ -27,7 +27,7 @@ class LiveServerThread(threading.Thread):
     def run(self):
         self._main = os.path.join(self._path, 'main.py')
         if not os.path.isfile(self._main):
-            Console.error('Entry point main.py does not exist')
+            Console.error('Entry point main.py not found')
             return
 
         Console.write_line('Read successfully')
