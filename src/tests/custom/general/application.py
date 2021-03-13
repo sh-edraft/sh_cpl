@@ -2,6 +2,7 @@ import time
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
+from cpl.console import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email import EMail
@@ -47,6 +48,6 @@ class Application(ApplicationABC):
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
-        Console.spinner('Test', self._wait, 999999, spinner_foreground_color='red')
+        Console.spinner('Test', self._wait, 20, spinner_foreground_color='red')
         # self.test_send_mail()
         # self.test_console()

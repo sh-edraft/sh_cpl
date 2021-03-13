@@ -23,7 +23,7 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         self._build_settings = build_settings
 
         self._src_dir = os.path.join(self._runtime.working_directory, self._build_settings.source_path)
-        self._live_server = LiveServerThread(self._src_dir)
+        self._ls_thread = LiveServerThread(self._src_dir)
         self._observer = None
 
     def _start_observer(self):
@@ -34,15 +34,15 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
     def _restart(self):
         for proc in psutil.process_iter():
             with suppress(Exception):
-                if proc.cmdline() == self._live_server.command:
-                    os.system(f'pkill -f {self._live_server.main}')
+                if proc.cmdline() == self._ls_thread.command:
+                    os.system(f'pkill -f {self._ls_thread.main}')
 
         Console.write_line('Restart\n')
-        while self._live_server.is_alive():
+        while self._ls_thread.is_alive():
             time.sleep(1)
 
-        self._live_server = LiveServerThread(self._src_dir)
-        self._live_server.start()
+        self._ls_thread = LiveServerThread(self._src_dir)
+        self._ls_thread.start()
 
         self._start_observer()
 
@@ -58,7 +58,7 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
     def start(self):
         Console.write_line('** CPL live development server is running **')
         self._start_observer()
-        self._live_server.start()
+        self._ls_thread.start()
 
         Console.close()
         Console.write('\n')
