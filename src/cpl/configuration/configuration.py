@@ -103,41 +103,50 @@ class Configuration(ConfigurationABC):
 
         if argument_type.value_token != '' and argument_type.value_token in argument:
             # ?new=value
+            if argument_type.is_value_token_optional is not None and argument_type.is_value_token_optional:
+                self._additional_arguments.append(argument_type.name)
+                result = True
 
-            if argument_type.token != '' and argument.startswith(argument_type.token):
-                # --new=value
-                argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
-                value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
-            else:
-                # new=value
-                argument_name = argument.split(argument_type.token)[1]
-                value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
+            if not result:
+                if argument_type.token != '' and argument.startswith(argument_type.token):
+                    # --new=value
+                    argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
+                    value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
+                else:
+                    # new=value
+                    argument_name = argument.split(argument_type.token)[1]
+                    value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
 
-            if argument_name != argument_type.name and argument_name not in argument_type.aliases:
-                return False
+                if argument_name != argument_type.name and argument_name not in argument_type.aliases:
+                    return False
 
-            self._set_variable(argument_type.name, value)
-            result = True
+                self._set_variable(argument_type.name, value)
+                result = True
 
         elif argument_type.value_token == ' ':
             # ?new value
-            if next_arguments is None or len(next_arguments) == 0:
-                raise Exception(f'Invalid argument: {argument}')
+            if argument_type.is_value_token_optional is not None and argument_type.is_value_token_optional:
+                self._additional_arguments.append(argument_type.name)
+                result = True
 
-            value = next_arguments[0]
+            if not result:
+                if next_arguments is None or len(next_arguments) == 0:
+                    raise Exception(f'Invalid argument: {argument}')
 
-            if argument_type.token != '' and argument.startswith(argument_type.token):
-                # --new value
-                argument_name = argument.split(argument_type.token)[1]
-            else:
-                # new value
-                argument_name = argument
+                value = next_arguments[0]
 
-            if argument_name != argument_type.name and argument_name not in argument_type.aliases:
-                return False
+                if argument_type.token != '' and argument.startswith(argument_type.token):
+                    # --new value
+                    argument_name = argument.split(argument_type.token)[1]
+                else:
+                    # new value
+                    argument_name = argument
 
-            self._set_variable(argument_type.name, value)
-            result = True
+                if argument_name != argument_type.name and argument_name not in argument_type.aliases:
+                    return False
+
+                self._set_variable(argument_type.name, value)
+                result = True
 
         elif argument_type.name == argument or argument in argument_type.aliases:
             # new
