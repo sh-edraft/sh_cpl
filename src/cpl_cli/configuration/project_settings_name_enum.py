@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ProjectSettingsName(Enum):
+class ProjectSettingsNameEnum(Enum):
 
     name = 'Name'
     version = 'Version'

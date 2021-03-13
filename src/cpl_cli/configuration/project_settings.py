@@ -5,7 +5,7 @@ from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.configuration.version_settings import VersionSettings
-from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsName
+from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 
 
 class ProjectSettings(ConfigurationModelABC):
@@ -81,19 +81,19 @@ class ProjectSettings(ConfigurationModelABC):
 
     def from_dict(self, settings: dict):
         try:
-            self._name = settings[ProjectSettingsName.name.value]
-            self._version.from_dict(settings[ProjectSettingsName.version.value])
-            self._author = settings[ProjectSettingsName.author.value]
-            self._author_email = settings[ProjectSettingsName.author_email.value]
-            self._description = settings[ProjectSettingsName.description.value]
-            self._long_description = settings[ProjectSettingsName.long_description.value]
-            self._url = settings[ProjectSettingsName.url.value]
-            self._copyright_date = settings[ProjectSettingsName.copyright_date.value]
-            self._copyright_name = settings[ProjectSettingsName.copyright_name.value]
-            self._license_name = settings[ProjectSettingsName.license_name.value]
-            self._license_description = settings[ProjectSettingsName.license_description.value]
-            self._dependencies = settings[ProjectSettingsName.dependencies.value]
-            self._python_version = settings[ProjectSettingsName.python_version.value]
+            self._name = settings[ProjectSettingsNameEnum.name.value]
+            self._version.from_dict(settings[ProjectSettingsNameEnum.version.value])
+            self._author = settings[ProjectSettingsNameEnum.author.value]
+            self._author_email = settings[ProjectSettingsNameEnum.author_email.value]
+            self._description = settings[ProjectSettingsNameEnum.description.value]
+            self._long_description = settings[ProjectSettingsNameEnum.long_description.value]
+            self._url = settings[ProjectSettingsNameEnum.url.value]
+            self._copyright_date = settings[ProjectSettingsNameEnum.copyright_date.value]
+            self._copyright_name = settings[ProjectSettingsNameEnum.copyright_name.value]
+            self._license_name = settings[ProjectSettingsNameEnum.license_name.value]
+            self._license_description = settings[ProjectSettingsNameEnum.license_description.value]
+            self._dependencies = settings[ProjectSettingsNameEnum.dependencies.value]
+            self._python_version = settings[ProjectSettingsNameEnum.python_version.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(

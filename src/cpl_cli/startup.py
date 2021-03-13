@@ -8,6 +8,7 @@ from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
+from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
 from cpl_cli.command.start_service import StartService
@@ -46,7 +47,7 @@ class Startup(StartupABC):
         self._configuration.add_environment_variables('CPL_')
         self._configuration.add_json_file('cpl.json', optional=True, output=False)
         self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
-        self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', [
+        self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
             ConsoleArgument('', 'abc', ['a', 'A'], ' '),
             ConsoleArgument('', 'class', ['c', 'C'], ' '),
             ConsoleArgument('', 'enum', ['e', 'E'], ' '),
@@ -55,7 +56,10 @@ class Startup(StartupABC):
             ConsoleArgument('', 'thread', ['t', 't'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'help', ['h', 'H'], ''))
-        self._configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', [
+        self._configuration.add_console_argument(
+            ConsoleArgument('', 'install', ['i', 'I'], ' ', is_value_token_optional=True)
+        )
+        self._configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', console_arguments=[
             ConsoleArgument('', 'console', ['c', 'C'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
@@ -75,6 +79,7 @@ class Startup(StartupABC):
         self._services.add_transient(BuildService)
         self._services.add_transient(GenerateService)
         self._services.add_transient(HelpService)
+        self._services.add_transient(InstallService)
         self._services.add_transient(NewService)
         self._services.add_transient(PublishService)
         self._services.add_transient(StartService)

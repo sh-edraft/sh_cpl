@@ -4,7 +4,7 @@ from typing import Optional
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl_cli.configuration.build_settings_name_enum import BuildSettingsName
+from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 
 
 class BuildSettings(ConfigurationModelABC):
@@ -55,14 +55,14 @@ class BuildSettings(ConfigurationModelABC):
 
     def from_dict(self, settings: dict):
         try:
-            self._source_path = settings[BuildSettingsName.source_path.value]
-            self._output_path = settings[BuildSettingsName.output_path.value]
-            self._include_package_data = bool(settings[BuildSettingsName.include_package_data.value])
-            self._main = settings[BuildSettingsName.main.value]
-            self._entry_point = settings[BuildSettingsName.entry_point.value]
-            self._included = settings[BuildSettingsName.included.value]
-            self._excluded = settings[BuildSettingsName.excluded.value]
-            self._package_data = settings[BuildSettingsName.package_data.value]
+            self._source_path = settings[BuildSettingsNameEnum.source_path.value]
+            self._output_path = settings[BuildSettingsNameEnum.output_path.value]
+            self._include_package_data = bool(settings[BuildSettingsNameEnum.include_package_data.value])
+            self._main = settings[BuildSettingsNameEnum.main.value]
+            self._entry_point = settings[BuildSettingsNameEnum.entry_point.value]
+            self._included = settings[BuildSettingsNameEnum.included.value]
+            self._excluded = settings[BuildSettingsNameEnum.excluded.value]
+            self._package_data = settings[BuildSettingsNameEnum.package_data.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(

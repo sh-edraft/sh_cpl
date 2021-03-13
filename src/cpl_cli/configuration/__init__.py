@@ -21,9 +21,9 @@ from collections import namedtuple
 
 # imports:
 from .build_settings import BuildSettings
-from .build_settings_name_enum import BuildSettingsName
+from .build_settings_name_enum import BuildSettingsNameEnum
 from .project_settings import ProjectSettings
-from .project_settings_name_enum import ProjectSettingsName
+from .project_settings_name_enum import ProjectSettingsNameEnum
 from .version_settings import VersionSettings
 from .version_settings_name_enum import VersionSettingsNameEnum
 

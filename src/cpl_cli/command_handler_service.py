@@ -17,6 +17,10 @@ class CommandHandler(ServiceABC):
 
         self._commands: list[CommandModel] = []
 
+    @property
+    def commands(self) -> list[CommandModel]:
+        return self._commands
+
     def add_command(self, cmd: CommandModel):
         self._commands.append(cmd)
 

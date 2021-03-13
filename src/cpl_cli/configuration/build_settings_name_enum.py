@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class BuildSettingsName(Enum):
+class BuildSettingsNameEnum(Enum):
 
     source_path = 'SourcePath'
     output_path = 'OutputPath'

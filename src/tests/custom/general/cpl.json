@@ -25,7 +25,7 @@
     "OutputPath": "dist",
     "Main": "main",
     "EntryPoint": "cpl",
-    "IncludePackageData": "False",
+    "IncludePackageData": true,
     "Included": [
       "*/templates"
     ],

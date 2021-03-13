@@ -6,6 +6,7 @@ import sys
 from cpl.application import ApplicationRuntimeABC
 from cpl.console import ForegroundColorEnum
 from cpl.console.console import Console
+from cpl.utils.pip import Pip
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.project_settings import ProjectSettings
 
@@ -19,35 +20,8 @@ class UpdateService(CommandABC):
         self._project_settings = project_settings
 
     @staticmethod
-    def _install(package: str, *args, source: str = None, stdout=None, stderr=None):
-        pip_args = [sys.executable, "-m", "pip", "install"]
-
-        for arg in args:
-            pip_args.append(arg)
-
-        if source is not None:
-            pip_args.append(f'--extra-index-url')
-            pip_args.append(source)
-
-        pip_args.append(package)
-        subprocess.run(pip_args, stdout=stdout, stderr=stderr)
-
-    @staticmethod
     def _get_outdated() -> bytes:
         return subprocess.check_output([sys.executable, "-m", "pip", "list", "--outdated"])
-
-    @staticmethod
-    def _get_package(package: str) -> str:
-        result = subprocess.check_output([sys.executable, "-m", "pip", "show", package])
-
-        new_package: list[str] = str(result, 'utf-8').lower().split('\n')
-        new_version = ''
-
-        for atr in new_package:
-            if 'version' in atr:
-                new_version = atr.split(': ')[1]
-
-        return f'{package}=={new_version}'
 
     def _check_outdated(self):
         table_str: bytes = Console.spinner(
@@ -84,7 +58,7 @@ class UpdateService(CommandABC):
             name = package
             if '==' in package:
                 name = package.split('==')[0]
-            self._install(
+            Pip.install(
                 name,
                 '--upgrade',
                 '--upgrade-strategy',
@@ -93,7 +67,7 @@ class UpdateService(CommandABC):
                 stderr=subprocess.DEVNULL
             )
 
-            self._project_json_update_dependency(package, self._get_package(name))
+            self._project_json_update_dependency(package, Pip.get_package(name))
 
     def _check_project_dependencies(self):
         Console.spinner(
@@ -109,7 +83,10 @@ class UpdateService(CommandABC):
 
         Console.spinner(
             'Checking update for sh_cpl',
-            self._install, 'sh_cpl', source='https://pip.sh-edraft.de', stdout=subprocess.DEVNULL,
+            Pip.install, 'sh_cpl',
+            source='https://pip.sh-edraft.de',
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )

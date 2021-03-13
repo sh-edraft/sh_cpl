@@ -10,9 +10,9 @@ from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
-from cpl_cli.configuration.build_settings_name_enum import BuildSettingsName
+from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_settings import ProjectSettings
-from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsName
+from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
@@ -44,41 +44,41 @@ class NewService(CommandABC):
 
     def _create_project_settings(self, name: str):
         self._project_dict = {
-            ProjectSettingsName.name.value: name,
-            ProjectSettingsName.version.value: {
+            ProjectSettingsNameEnum.name.value: name,
+            ProjectSettingsNameEnum.version.value: {
                 VersionSettingsNameEnum.major.value: '0',
                 VersionSettingsNameEnum.minor.value: '0',
                 VersionSettingsNameEnum.micro.value: '0'
             },
-            ProjectSettingsName.author.value: '',
-            ProjectSettingsName.author_email.value: '',
-            ProjectSettingsName.description.value: '',
-            ProjectSettingsName.long_description.value: '',
-            ProjectSettingsName.url.value: '',
-            ProjectSettingsName.copyright_date.value: '',
-            ProjectSettingsName.copyright_name.value: '',
-            ProjectSettingsName.license_name.value: '',
-            ProjectSettingsName.license_description.value: '',
-            ProjectSettingsName.dependencies.value: [],
-            ProjectSettingsName.python_version.value: f'>={sys.version.split(" ")[0]}'
+            ProjectSettingsNameEnum.author.value: '',
+            ProjectSettingsNameEnum.author_email.value: '',
+            ProjectSettingsNameEnum.description.value: '',
+            ProjectSettingsNameEnum.long_description.value: '',
+            ProjectSettingsNameEnum.url.value: '',
+            ProjectSettingsNameEnum.copyright_date.value: '',
+            ProjectSettingsNameEnum.copyright_name.value: '',
+            ProjectSettingsNameEnum.license_name.value: '',
+            ProjectSettingsNameEnum.license_description.value: '',
+            ProjectSettingsNameEnum.dependencies.value: [],
+            ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}'
         }
 
         self._project.from_dict(self._project_dict)
 
     def _create_build_settings(self):
         self._build_dict = {
-            BuildSettingsName.source_path.value: 'src',
-            BuildSettingsName.output_path.value: 'dist',
-            BuildSettingsName.main.value: 'main',
-            BuildSettingsName.entry_point.value: self._project.name,
-            BuildSettingsName.include_package_data.value: 'False',
-            BuildSettingsName.included.value: [],
-            BuildSettingsName.excluded.value: [
+            BuildSettingsNameEnum.source_path.value: 'src',
+            BuildSettingsNameEnum.output_path.value: 'dist',
+            BuildSettingsNameEnum.main.value: 'main',
+            BuildSettingsNameEnum.entry_point.value: self._project.name,
+            BuildSettingsNameEnum.include_package_data.value: 'False',
+            BuildSettingsNameEnum.included.value: [],
+            BuildSettingsNameEnum.excluded.value: [
                 '*/__pycache__',
                 '*/logs',
                 '*/tests'
             ],
-            BuildSettingsName.package_data.value: {}
+            BuildSettingsNameEnum.package_data.value: {}
         }
         self._build.from_dict(self._build_dict)
 
