@@ -6,6 +6,7 @@ from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
 from cpl_cli.command.start_service import StartService
+from cpl_cli.command.update_service import UpdateService
 from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command_model import CommandModel
 from cpl_cli.error import Error
@@ -29,6 +30,7 @@ class CLI(ApplicationABC):
         self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False))
         self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, True))
         self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, True))
+        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, True))
         self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False))
 
     def main(self):

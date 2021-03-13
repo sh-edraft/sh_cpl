@@ -11,6 +11,7 @@ from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
 from cpl_cli.command.start_service import StartService
+from cpl_cli.command.update_service import UpdateService
 from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command.help_service import HelpService
 from cpl_cli.command.version_service import VersionService
@@ -59,6 +60,7 @@ class Startup(StartupABC):
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
+        self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))
         self._configuration.add_console_arguments()
 
@@ -76,6 +78,7 @@ class Startup(StartupABC):
         self._services.add_transient(NewService)
         self._services.add_transient(PublishService)
         self._services.add_transient(StartService)
+        self._services.add_transient(UpdateService)
         self._services.add_transient(VersionService)
 
         return self._services
