@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2021",
       "Minor": "04",
-      "Micro": "01-1"
+      "Micro": "01-2"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -27,6 +27,7 @@
       "watchdog==2.0.2"
     ],
     "PythonVersion": ">=3.8",
+    "PythonPath": "",
     "Classifiers": []
   },
   "BuildSettings": {

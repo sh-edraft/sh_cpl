@@ -1,3 +1,5 @@
+import os
+import sys
 import traceback
 from typing import Optional
 
@@ -26,8 +28,9 @@ class ProjectSettings(ConfigurationModelABC):
         self._license_description: Optional[str] = None
         self._dependencies: Optional[list[str]] = None
         self._python_version: Optional[str] = None
+        self._python_path: Optional[str] = None
         self._classifiers: Optional[list[str]] = None
-        
+
     @property
     def name(self):
         return self._name
@@ -43,31 +46,31 @@ class ProjectSettings(ConfigurationModelABC):
     @property
     def author_email(self) -> str:
         return self._author_email
-    
+
     @property
     def description(self) -> str:
         return self._description
-    
+
     @property
     def long_description(self) -> str:
         return self._long_description
-    
+
     @property
     def url(self) -> str:
         return self._url
-    
+
     @property
     def copyright_date(self) -> str:
         return self._copyright_date
-    
+
     @property
     def copyright_name(self) -> str:
         return self._copyright_name
-    
+
     @property
     def license_name(self) -> str:
         return self._license_name
-    
+
     @property
     def license_description(self) -> str:
         return self._license_description
@@ -75,10 +78,14 @@ class ProjectSettings(ConfigurationModelABC):
     @property
     def dependencies(self) -> list[str]:
         return self._dependencies
-    
+
     @property
     def python_version(self) -> str:
         return self._python_version
+
+    @property
+    def python_path(self) -> str:
+        return self._python_path
 
     @property
     def classifiers(self) -> list[str]:
@@ -99,6 +106,15 @@ class ProjectSettings(ConfigurationModelABC):
             self._license_description = settings[ProjectSettingsNameEnum.license_description.value]
             self._dependencies = settings[ProjectSettingsNameEnum.dependencies.value]
             self._python_version = settings[ProjectSettingsNameEnum.python_version.value]
+
+            path = os.path.abspath(settings[ProjectSettingsNameEnum.python_path.value])
+            if os.path.isfile(path) or os.path.islink(path):
+                path = os.path.abspath(path)
+            else:
+                path = sys.executable
+
+            self._python_path = path
+
             self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)

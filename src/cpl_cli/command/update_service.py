@@ -20,8 +20,26 @@ class UpdateService(CommandABC):
         self._project_settings = project_settings
 
     @staticmethod
-    def _get_outdated() -> bytes:
-        return subprocess.check_output([sys.executable, "-m", "pip", "list", "--outdated"])
+    def _install_package(name: str):
+        if 'sh_cpl' in name:
+            Pip.install(
+                name,
+                '--upgrade',
+                '--upgrade-strategy',
+                'eager',
+                source='https://pip.sh-edraft.de',
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        else:
+            Pip.install(
+                name,
+                '--upgrade',
+                '--upgrade-strategy',
+                'eager',
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
 
     def _update_project_dependencies(self):
         for package in self._project_settings.dependencies:
@@ -29,29 +47,11 @@ class UpdateService(CommandABC):
             if '==' in package:
                 name = package.split('==')[0]
 
-            if 'sh_cpl' in name:
-                Pip.install(
-                    name,
-                    '--upgrade',
-                    '--upgrade-strategy',
-                    'eager',
-                    source='https://pip.sh-edraft.de',
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                )
-            else:
-                Pip.install(
-                    name,
-                    '--upgrade',
-                    '--upgrade-strategy',
-                    'eager',
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                )
+            self._install_package(name)
 
             new_package = Pip.get_package(name)
             if new_package is None:
-                Console.error(f'Invalid name: {name}')
+                Console.error(f'Update for package {package} failed')
                 return
 
             self._project_json_update_dependency(package, new_package)
@@ -64,9 +64,10 @@ class UpdateService(CommandABC):
         )
         Console.write_line(f'Found {len(self._project_settings.dependencies)} dependencies.')
 
-    def _check_outdated(self):
+    @staticmethod
+    def _check_outdated():
         table_str: bytes = Console.spinner(
-            'Analyzing for available package updates', self._get_outdated,
+            'Analyzing for available package updates', Pip.get_outdated,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
@@ -78,7 +79,7 @@ class UpdateService(CommandABC):
                 Console.write_line(f'\t{row}')
 
             Console.set_foreground_color(ForegroundColorEnum.yellow)
-            Console.write_line(f'\tUpdate with {sys.executable} -m pip install --upgrade <package>')
+            Console.write_line(f'\tUpdate with {Pip.get_executable()} -m pip install --upgrade <package>')
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _project_json_update_dependency(self, old_package: str, new_package: str):
@@ -98,8 +99,9 @@ class UpdateService(CommandABC):
             project.close()
 
     def run(self, args: list[str]):
-        # target update discord 1.5.1 to discord 1.6.0
+        Pip.set_executable(self._project_settings.python_path)
         self._check_project_dependencies()
         self._check_outdated()
+        Pip.reset_executable()
 
         Console.write('\n')

@@ -5,12 +5,38 @@ from typing import Optional
 
 
 class Pip:
+    _executable = sys.executable
 
-    @staticmethod
-    def get_package(package: str) -> Optional[str]:
+    """
+        Getter
+    """
+
+    @classmethod
+    def get_executable(cls) -> str:
+        return cls._executable
+
+    """
+        Setter
+    """
+
+    @classmethod
+    def set_executable(cls, executable: str):
+        if executable is not None:
+            cls._executable = executable
+
+    @classmethod
+    def reset_executable(cls):
+        cls._executable = sys.executable
+
+    """
+        Public utils functions
+    """
+
+    @classmethod
+    def get_package(cls, package: str) -> Optional[str]:
         result = None
         with suppress(Exception):
-            result = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
+            result = subprocess.check_output([cls._executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
 
         if result is None:
             return None
@@ -24,9 +50,13 @@ class Pip:
 
         return f'{package}=={new_version}'
 
-    @staticmethod
-    def install(package: str, *args, source: str = None, stdout=None, stderr=None):
-        pip_args = [sys.executable, "-m", "pip", "install"]
+    @classmethod
+    def get_outdated(cls) -> bytes:
+        return subprocess.check_output([cls._executable, "-m", "pip", "list", "--outdated"])
+
+    @classmethod
+    def install(cls, package: str, *args, source: str = None, stdout=None, stderr=None, admin=None):
+        pip_args = [cls._executable, "-m", "pip", "install"]
 
         for arg in args:
             pip_args.append(arg)
@@ -38,6 +68,6 @@ class Pip:
         pip_args.append(package)
         subprocess.run(pip_args, stdout=stdout, stderr=stderr)
 
-    @staticmethod
-    def uninstall(package: str, stdout=None, stderr=None):
-        subprocess.run([sys.executable, "-m", "pip", "uninstall", "--yes", package], stdout=stdout, stderr=stderr)
+    @classmethod
+    def uninstall(cls, package: str, stdout=None, stderr=None):
+        subprocess.run([cls._executable, "-m", "pip", "uninstall", "--yes", package], stdout=stdout, stderr=stderr)

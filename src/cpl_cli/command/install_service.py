@@ -1,8 +1,6 @@
 import json
 import os
 import subprocess
-import sys
-from typing import Optional
 
 from cpl.application import ApplicationRuntimeABC
 from cpl.configuration import ConfigurationABC
@@ -85,6 +83,7 @@ class InstallService(CommandABC):
         is_already_in_project = False
         project: ProjectSettings = self._config.get_configuration(ProjectSettings)
         build: BuildSettings = self._config.get_configuration(BuildSettings)
+        Pip.set_executable(project.python_path)
 
         if project is None or build is None:
             Error.error('The command requires to be run in an CPL project, but a project could not be found.')
@@ -127,6 +126,8 @@ class InstallService(CommandABC):
             with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
                 project_file.write(json.dumps(config, indent=2))
                 project_file.close()
+
+        Pip.reset_executable()
 
     def run(self, args: list[str]):
         if len(args) == 0:

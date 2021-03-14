@@ -15,4 +15,5 @@ class ProjectSettingsNameEnum(Enum):
     license_description = 'LicenseDescription'
     dependencies = 'Dependencies'
     python_version = 'PythonVersion'
+    python_path = 'PythonPath'
     classifiers = 'Classifiers'
