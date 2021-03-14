@@ -15,7 +15,7 @@ __title__ = 'cpl.console'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.4.1'
+__version__ = '2021.4.1.post1'
 
 from collections import namedtuple
 
@@ -27,4 +27,4 @@ from .foreground_color_enum import ForegroundColorEnum
 from .spinner_thread import SpinnerThread
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='04', micro='01')
+version_info = VersionInfo(major='2021', minor='04', micro='01-1')
