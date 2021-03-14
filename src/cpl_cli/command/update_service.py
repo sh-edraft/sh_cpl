@@ -49,7 +49,12 @@ class UpdateService(CommandABC):
                     stderr=subprocess.DEVNULL
                 )
 
-            self._project_json_update_dependency(package, Pip.get_package(name))
+            new_package = Pip.get_package(name)
+            if new_package is None:
+                Console.error(f'Invalid name: {name}')
+                return
+
+            self._project_json_update_dependency(package, new_package)
 
     def _check_project_dependencies(self):
         Console.spinner(
@@ -66,14 +71,15 @@ class UpdateService(CommandABC):
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
 
-        Console.write_line('\tAvailable updates for packages:')
         table = str(table_str, 'utf-8').split('\n')
-        for row in table:
-            Console.write_line(f'\t{row}')
+        if len(table) > 1 and table[0] != '':
+            Console.write_line('\tAvailable updates for packages:')
+            for row in table:
+                Console.write_line(f'\t{row}')
 
-        Console.set_foreground_color(ForegroundColorEnum.yellow)
-        Console.write_line(f'\tUpdate with {sys.executable} -m pip install --upgrade <package>')
-        Console.set_foreground_color(ForegroundColorEnum.default)
+            Console.set_foreground_color(ForegroundColorEnum.yellow)
+            Console.write_line(f'\tUpdate with {sys.executable} -m pip install --upgrade <package>')
+            Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _project_json_update_dependency(self, old_package: str, new_package: str):
         content = ''
