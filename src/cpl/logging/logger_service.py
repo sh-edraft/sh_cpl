@@ -15,6 +15,12 @@ from cpl.time.time_format_settings import TimeFormatSettings
 class Logger(LoggerABC):
 
     def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_runtime: ApplicationRuntimeABC):
+        """
+        Service for logging
+        :param logging_settings:
+        :param time_format:
+        :param app_runtime:
+        """
         LoggerABC.__init__(self)
 
         self._app_runtime = app_runtime
@@ -32,18 +38,31 @@ class Logger(LoggerABC):
         self.create()
 
     def _get_datetime_now(self) -> str:
+        """
+        Returns the date and time by given format
+        :return:
+        """
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_time_format)
         except Exception as e:
             self.error(__name__, 'Cannot get time', ex=e)
 
     def _get_date(self) -> str:
+        """
+        Returns the date by given format
+        :return:
+        """
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_format)
         except Exception as e:
             self.error(__name__, 'Cannot get date', ex=e)
 
     def create(self) -> None:
+        """
+        Creates path tree and logfile
+        :return:
+        """
+
         """ path """
         try:
             # check if log file path exists
@@ -63,6 +82,11 @@ class Logger(LoggerABC):
             self._fatal_console(__name__, 'Cannot open log file', ex=e)
 
     def _append_log(self, string):
+        """
+        Writes to logfile
+        :param string:
+        :return:
+        """
         try:
             # open log file and append always
             if not os.path.isdir(self._path):
@@ -75,10 +99,22 @@ class Logger(LoggerABC):
             self._fatal_console(__name__, f'Cannot append log file, message: {string}', ex=e)
 
     def _get_string(self, name: str, level: LoggingLevelEnum, message: str) -> str:
+        """
+        Returns input as log entry format
+        :param name:
+        :param level:
+        :param message:
+        :return:
+        """
         log_level = level.name
         return f'<{self._get_datetime_now()}> [ {log_level} ] [ {name} ]: {message}'
 
     def header(self, string: str):
+        """
+        Writes a header message
+        :param string:
+        :return:
+        """
         # append log and print message
         self._append_log(string)
         Console.set_foreground_color(ForegroundColorEnum.default)
@@ -86,6 +122,12 @@ class Logger(LoggerABC):
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     def trace(self, name: str, message: str):
+        """
+        Writes a trace message
+        :param name:
+        :param message:
+        :return:
+        """
         output = self._get_string(name, LoggingLevelEnum.TRACE, message)
 
         # check if message can be written to log
@@ -99,6 +141,12 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def debug(self, name: str, message: str):
+        """
+        Writes a debug message
+        :param name:
+        :param message:
+        :return:
+        """
         output = self._get_string(name, LoggingLevelEnum.DEBUG, message)
 
         # check if message can be written to log
@@ -112,6 +160,12 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def info(self, name: str, message: str):
+        """
+        Writes an information
+        :param name:
+        :param message:
+        :return:
+        """
         output = self._get_string(name, LoggingLevelEnum.INFO, message)
 
         # check if message can be written to log
@@ -125,6 +179,12 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def warn(self, name: str, message: str):
+        """
+        Writes an warning
+        :param name:
+        :param message:
+        :return:
+        """
         output = self._get_string(name, LoggingLevelEnum.WARN, message)
 
         # check if message can be written to log
@@ -138,6 +198,13 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def error(self, name: str, message: str, ex: Exception = None):
+        """
+        Writes an error
+        :param name:
+        :param message:
+        :param ex:
+        :return:
+        """
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
@@ -157,6 +224,13 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def fatal(self, name: str, message: str, ex: Exception = None):
+        """
+        Writes an error and exits
+        :param name:
+        :param message:
+        :param ex:
+        :return:
+        """
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
@@ -178,6 +252,13 @@ class Logger(LoggerABC):
         exit()
 
     def _fatal_console(self, name: str, message: str, ex: Exception = None):
+        """
+        Writes an error to console only
+        :param name:
+        :param message:
+        :param ex:
+        :return:
+        """
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
