@@ -4,6 +4,7 @@ import shutil
 from string import Template as stringTemplate
 
 import setuptools
+from packaging import version
 from setuptools import sandbox
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
@@ -107,9 +108,6 @@ class PublisherService(PublisherABC):
             elif os.path.isfile(rel_path):
                 self._included_files.append(rel_path)
 
-            #else:
-            #    Console.error(f'Path not found: {rel_path}')
-
         for r, d, f in os.walk(self._build_settings.source_path):
             for file in f:
                 relative_path = os.path.relpath(r)
@@ -167,7 +165,7 @@ class PublisherService(PublisherABC):
                     LicenseDescription=self._project_settings.license_description,
                     Title=title if title is not None and title != '' else self._project_settings.name,
                     Author=self._project_settings.author,
-                    Version=self._project_settings.version.to_str(),
+                    Version=version.parse(self._project_settings.version.to_str()),
                     Major=self._project_settings.version.major,
                     Minor=self._project_settings.version.minor,
                     Micro=self._project_settings.version.micro,

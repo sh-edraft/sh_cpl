@@ -4,6 +4,10 @@ import sys
 import time
 from typing import Optional
 
+from packaging import version
+
+import cpl
+
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.foreground_color_enum import ForegroundColorEnum
@@ -59,7 +63,9 @@ class NewService(CommandABC):
             ProjectSettingsNameEnum.copyright_name.value: '',
             ProjectSettingsNameEnum.license_name.value: '',
             ProjectSettingsNameEnum.license_description.value: '',
-            ProjectSettingsNameEnum.dependencies.value: [],
+            ProjectSettingsNameEnum.dependencies.value: [
+                f'sh_cpl=={version.parse(cpl.__version__)}'
+            ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}'
         }
 
@@ -163,6 +169,7 @@ class NewService(CommandABC):
 
         self._create_project_settings(name)
         self._create_build_settings()
+        self._create_project_json()
         path = self._get_project_path()
         if path is None:
             return
