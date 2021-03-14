@@ -2,7 +2,7 @@ import ssl
 from smtplib import SMTP
 from typing import Optional
 
-from cpl.environment.environment_abc import EnvironmentABC
+from cpl.environment.environment_abc import ApplicationEnvironmentABC
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email import EMail
 from cpl.mailing.email_client_abc import EMailClientABC
@@ -12,7 +12,7 @@ from cpl.utils.credential_manager import CredentialManager
 
 class EMailClient(EMailClientABC):
 
-    def __init__(self, environment: EnvironmentABC, logger: LoggerABC, mail_settings: EMailClientSettings):
+    def __init__(self, environment: ApplicationEnvironmentABC, logger: LoggerABC, mail_settings: EMailClientSettings):
         """
         Service to send emails
         :param environment:

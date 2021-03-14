@@ -1,14 +1,19 @@
 from socket import gethostname
 from typing import Optional
 
-from cpl.environment.environment_abc import EnvironmentABC
+from cpl.environment.environment_abc import ApplicationEnvironmentABC
 from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 
-class ApplicationEnvironment(EnvironmentABC):
+class ApplicationEnvironment(ApplicationEnvironmentABC):
 
     def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production, crp: str = './'):
-        EnvironmentABC.__init__(self)
+        """
+        Represents environment of the application
+        :param name:
+        :param crp:
+        """
+        ApplicationEnvironmentABC.__init__(self)
 
         self._environment_name: Optional[EnvironmentNameEnum] = name
         self._app_name: Optional[str] = None

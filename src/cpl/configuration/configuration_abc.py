@@ -4,7 +4,7 @@ from typing import Type, Union, Optional
 
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.environment.environment_abc import EnvironmentABC
+from cpl.environment.environment_abc import ApplicationEnvironmentABC
 
 
 class ConfigurationABC(ABC):
@@ -14,7 +14,7 @@ class ConfigurationABC(ABC):
 
     @property
     @abstractmethod
-    def environment(self) -> EnvironmentABC: pass
+    def environment(self) -> ApplicationEnvironmentABC: pass
 
     @property
     @abstractmethod

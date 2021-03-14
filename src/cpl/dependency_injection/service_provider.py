@@ -8,7 +8,7 @@ from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.environment.environment_abc import EnvironmentABC
+from cpl.environment.environment_abc import ApplicationEnvironmentABC
 
 
 class ServiceProvider(ServiceProviderABC):
@@ -31,7 +31,7 @@ class ServiceProvider(ServiceProviderABC):
                 if issubclass(parameter.annotation, ApplicationRuntimeABC):
                     params.append(self._app_runtime)
 
-                elif issubclass(parameter.annotation, EnvironmentABC):
+                elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
                     params.append(self._app_runtime.configuration.environment)
 
                 elif issubclass(parameter.annotation, DatabaseContextABC):
