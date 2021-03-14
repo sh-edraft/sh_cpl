@@ -26,7 +26,7 @@ class Pip:
 
     @staticmethod
     def install(package: str, *args, source: str = None, stdout=None, stderr=None):
-        pip_args = [sys.executable, "-m", "pip", "install"]
+        pip_args = [sys.executable, "-m", "pip", "install", "--yes"]
 
         for arg in args:
             pip_args.append(arg)
@@ -37,3 +37,7 @@ class Pip:
 
         pip_args.append(package)
         subprocess.run(pip_args, stdout=stdout, stderr=stderr)
+
+    @staticmethod
+    def uninstall(package: str, stdout=None, stderr=None):
+        subprocess.run([sys.executable, "-m", "pip", "uninstall", "--yes", package], stdout=stdout, stderr=stderr)

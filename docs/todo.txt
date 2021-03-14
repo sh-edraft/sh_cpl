@@ -1,3 +1,0 @@
-- add command install
-    - no args install deps from proj
-    - args install packages

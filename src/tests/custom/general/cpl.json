@@ -15,9 +15,7 @@
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
-    "Dependencies": [
-      "discord.py==1.6.0"
-    ],
+    "Dependencies": [],
     "PythonVersion": ">=3.8"
   },
   "BuildSettings": {
