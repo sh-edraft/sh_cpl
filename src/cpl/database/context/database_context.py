@@ -26,9 +26,6 @@ class DatabaseContext(DatabaseContextABC):
     def session(self) -> Session:
         return self._db.session
 
-    def create(self):
-        pass
-
     def connect(self, connection_string: str):
         self._db.connect(connection_string)
         self._create_tables()
