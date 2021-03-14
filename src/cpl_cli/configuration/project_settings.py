@@ -26,6 +26,7 @@ class ProjectSettings(ConfigurationModelABC):
         self._license_description: Optional[str] = None
         self._dependencies: Optional[list[str]] = None
         self._python_version: Optional[str] = None
+        self._classifiers: Optional[list[str]] = None
         
     @property
     def name(self):
@@ -79,6 +80,10 @@ class ProjectSettings(ConfigurationModelABC):
     def python_version(self) -> str:
         return self._python_version
 
+    @property
+    def classifiers(self) -> list[str]:
+        return self._classifiers
+
     def from_dict(self, settings: dict):
         try:
             self._name = settings[ProjectSettingsNameEnum.name.value]
@@ -94,6 +99,7 @@ class ProjectSettings(ConfigurationModelABC):
             self._license_description = settings[ProjectSettingsNameEnum.license_description.value]
             self._dependencies = settings[ProjectSettingsNameEnum.dependencies.value]
             self._python_version = settings[ProjectSettingsNameEnum.python_version.value]
+            self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(

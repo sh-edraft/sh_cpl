@@ -2,7 +2,6 @@ from enum import Enum
 
 
 class ProjectSettingsNameEnum(Enum):
-
     name = 'Name'
     version = 'Version'
     author = 'Author'
@@ -16,3 +15,4 @@ class ProjectSettingsNameEnum(Enum):
     license_description = 'LicenseDescription'
     dependencies = 'Dependencies'
     python_version = 'PythonVersion'
+    classifiers = 'Classifiers'

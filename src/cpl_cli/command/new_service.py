@@ -66,7 +66,8 @@ class NewService(CommandABC):
             ProjectSettingsNameEnum.dependencies.value: [
                 f'sh_cpl=={version.parse(cpl.__version__)}'
             ],
-            ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}'
+            ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
+            ProjectSettingsNameEnum.classifiers.value: []
         }
 
         self._project.from_dict(self._project_dict)

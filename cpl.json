@@ -26,7 +26,8 @@
       "termcolor==1.1.0",
       "watchdog==2.0.2"
     ],
-    "PythonVersion": ">=3.8"
+    "PythonVersion": ">=3.8",
+    "Classifiers": []
   },
   "BuildSettings": {
     "SourcePath": "src",

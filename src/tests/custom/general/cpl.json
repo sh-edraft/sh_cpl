@@ -18,7 +18,8 @@
     "Dependencies": [
       "sh_cpl==2021.4.1"
     ],
-    "PythonVersion": ">=3.8"
+    "PythonVersion": ">=3.8",
+    "Classifiers": []
   },
   "BuildSettings": {
     "SourcePath": "",
