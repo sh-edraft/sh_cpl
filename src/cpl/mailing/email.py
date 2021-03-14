@@ -4,6 +4,14 @@ import re
 class EMail:
 
     def __init__(self, header: list[str] = None, subject: str = None, body: str = None, transceiver: str = None, receiver: list[str] = None):
+        """
+        Represents an email
+        :param header:
+        :param subject:
+        :param body:
+        :param transceiver:
+        :param receiver:
+        """
         self._header: list[str] = header
 
         self._subject: str = subject
@@ -65,15 +73,30 @@ class EMail:
 
     @staticmethod
     def check_mail(address: str) -> bool:
+        """
+        Checks if an email is valid
+        :param address:
+        :return:
+        """
         return bool(re.search('^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(.\\w{2,3})+$', address))
 
     def add_header(self, header: str):
+        """
+        Adds header
+        :param header:
+        :return:
+        """
         if self._header is None:
             self._header = []
 
         self._header.append(header)
 
     def add_receiver(self, receiver: str):
+        """
+        Adds receiver
+        :param receiver:
+        :return:
+        """
         if self._receiver is None:
             self._receiver = []
 
@@ -83,4 +106,9 @@ class EMail:
             raise Exception(f'Invalid email: {receiver}')
 
     def get_content(self, transceiver: str):
+        """
+        Returns the mail as string
+        :param transceiver:
+        :return:
+        """
         return str(f'From: {transceiver}\r\nTo: {self.receiver}\r\n{self.header}\r\nSubject: {self.subject}\r\n{self.body}').encode('utf-8')
