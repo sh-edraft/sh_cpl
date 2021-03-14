@@ -110,11 +110,6 @@ class Logger(LoggerABC):
         return f'<{self._get_datetime_now()}> [ {log_level} ] [ {name} ]: {message}'
 
     def header(self, string: str):
-        """
-        Writes a header message
-        :param string:
-        :return:
-        """
         # append log and print message
         self._append_log(string)
         Console.set_foreground_color(ForegroundColorEnum.default)
@@ -122,12 +117,6 @@ class Logger(LoggerABC):
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     def trace(self, name: str, message: str):
-        """
-        Writes a trace message
-        :param name:
-        :param message:
-        :return:
-        """
         output = self._get_string(name, LoggingLevelEnum.TRACE, message)
 
         # check if message can be written to log
@@ -141,12 +130,6 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def debug(self, name: str, message: str):
-        """
-        Writes a debug message
-        :param name:
-        :param message:
-        :return:
-        """
         output = self._get_string(name, LoggingLevelEnum.DEBUG, message)
 
         # check if message can be written to log
@@ -160,12 +143,6 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def info(self, name: str, message: str):
-        """
-        Writes an information
-        :param name:
-        :param message:
-        :return:
-        """
         output = self._get_string(name, LoggingLevelEnum.INFO, message)
 
         # check if message can be written to log
@@ -179,12 +156,6 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def warn(self, name: str, message: str):
-        """
-        Writes an warning
-        :param name:
-        :param message:
-        :return:
-        """
         output = self._get_string(name, LoggingLevelEnum.WARN, message)
 
         # check if message can be written to log
@@ -198,13 +169,6 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def error(self, name: str, message: str, ex: Exception = None):
-        """
-        Writes an error
-        :param name:
-        :param message:
-        :param ex:
-        :return:
-        """
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
@@ -224,13 +188,6 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def fatal(self, name: str, message: str, ex: Exception = None):
-        """
-        Writes an error and exits
-        :param name:
-        :param message:
-        :param ex:
-        :return:
-        """
         output = ''
         if ex is not None:
             tb = traceback.format_exc()
