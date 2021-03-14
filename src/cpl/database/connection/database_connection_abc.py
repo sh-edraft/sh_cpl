@@ -18,4 +18,10 @@ class DatabaseConnectionABC(ABC):
     def session(self) -> Session: pass
 
     @abstractmethod
-    def connect(self, connection_string: str): pass
+    def connect(self, connection_string: str):
+        """
+        Connects to a database by connection string
+        :param connection_string:
+        :return:
+        """
+        pass

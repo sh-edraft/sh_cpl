@@ -12,6 +12,10 @@ from cpl.database.database_settings import DatabaseSettings
 class DatabaseConnection(DatabaseConnectionABC):
 
     def __init__(self, database_settings: DatabaseSettings):
+        """
+        Represents an connection to a database
+        :param database_settings:
+        """
         DatabaseConnectionABC.__init__(self)
 
         self._db_settings = database_settings
