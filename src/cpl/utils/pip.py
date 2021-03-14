@@ -26,7 +26,7 @@ class Pip:
 
     @staticmethod
     def install(package: str, *args, source: str = None, stdout=None, stderr=None):
-        pip_args = [sys.executable, "-m", "pip", "install", "--yes"]
+        pip_args = [sys.executable, "-m", "pip", "install"]
 
         for arg in args:
             pip_args.append(arg)

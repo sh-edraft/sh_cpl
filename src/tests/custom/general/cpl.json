@@ -15,7 +15,9 @@
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
-    "Dependencies": [],
+    "Dependencies": [
+      "sh_cpl==2021.4.1"
+    ],
     "PythonVersion": ">=3.8"
   },
   "BuildSettings": {

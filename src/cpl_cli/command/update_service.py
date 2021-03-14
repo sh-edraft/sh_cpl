@@ -23,6 +23,34 @@ class UpdateService(CommandABC):
     def _get_outdated() -> bytes:
         return subprocess.check_output([sys.executable, "-m", "pip", "list", "--outdated"])
 
+    def _update_project_dependencies(self):
+        for package in self._project_settings.dependencies:
+            name = package
+            if '==' in package:
+                name = package.split('==')[0]
+
+            if 'sh_cpl' in name:
+                Pip.install(
+                    name,
+                    '--upgrade',
+                    '--upgrade-strategy',
+                    'eager',
+                    source='https://pip.sh-edraft.de',
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+            else:
+                Pip.install(
+                    name,
+                    '--upgrade',
+                    '--upgrade-strategy',
+                    'eager',
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+
+            self._project_json_update_dependency(package, Pip.get_package(name))
+
     def _check_project_dependencies(self):
         Console.spinner(
             'Collecting installed dependencies', self._update_project_dependencies,
@@ -63,36 +91,9 @@ class UpdateService(CommandABC):
             project.write(json.dumps(json.loads(content), indent=2))
             project.close()
 
-    def _update_project_dependencies(self):
-        for package in self._project_settings.dependencies:
-            name = package
-            if '==' in package:
-                name = package.split('==')[0]
-            Pip.install(
-                name,
-                '--upgrade',
-                '--upgrade-strategy',
-                'eager',
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
-
-            self._project_json_update_dependency(package, Pip.get_package(name))
-
     def run(self, args: list[str]):
         # target update discord 1.5.1 to discord 1.6.0
         self._check_project_dependencies()
-
-        Console.spinner(
-            'Checking update for sh_cpl',
-            Pip.install, 'sh_cpl',
-            source='https://pip.sh-edraft.de',
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.cyan
-        )
-
         self._check_outdated()
 
         Console.write('\n')
