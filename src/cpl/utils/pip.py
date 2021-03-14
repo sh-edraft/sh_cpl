@@ -1,12 +1,19 @@
 import subprocess
 import sys
+from contextlib import suppress
+from typing import Optional
 
 
 class Pip:
 
     @staticmethod
-    def get_package(package: str) -> str:
-        result = subprocess.check_output([sys.executable, "-m", "pip", "show", package])
+    def get_package(package: str) -> Optional[str]:
+        result = None
+        with suppress(Exception):
+            result = subprocess.check_output([sys.executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
+
+        if result is None:
+            return None
 
         new_package: list[str] = str(result, 'utf-8').lower().split('\n')
         new_version = ''

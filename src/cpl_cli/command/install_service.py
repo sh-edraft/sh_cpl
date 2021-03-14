@@ -25,7 +25,26 @@ class InstallService(CommandABC):
         self._config = configuration
 
     def _install_project(self):
-        pass
+        project: ProjectSettings = self._config.get_configuration(ProjectSettings)
+        build: BuildSettings = self._config.get_configuration(BuildSettings)
+
+        if project is None or build is None:
+            Error.error('The command requires to be run in an CPL project, but a project could not be found.')
+            return
+
+        if project.dependencies is None:
+            Error.error('Found invalid dependencies in cpl.json.')
+            return
+
+        for dependency in project.dependencies:
+            Console.spinner(
+                f'Installing: {dependency}',
+                Pip.install, dependency,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
+            )
 
     @staticmethod
     def _get_project_settings_dict(project: ProjectSettings) -> dict:
@@ -63,6 +82,28 @@ class InstallService(CommandABC):
         }
 
     def _install_package(self, package: str):
+        is_already_in_project = False
+        project: ProjectSettings = self._config.get_configuration(ProjectSettings)
+        build: BuildSettings = self._config.get_configuration(BuildSettings)
+
+        if project is None or build is None:
+            Error.error('The command requires to be run in an CPL project, but a project could not be found.')
+            return
+
+        if project.dependencies is None:
+            Error.error('Found invalid dependencies in cpl.json.')
+            return
+
+        old_package = Pip.get_package(package)
+
+        for dependency in project.dependencies:
+            if package in dependency:
+                is_already_in_project = True
+
+        if old_package is not None and old_package in project.dependencies or is_already_in_project:
+            Error.warn(f'Package {old_package} is already installed.')
+            return
+
         Console.spinner(
             f'Installing: {package}',
             Pip.install, package,
@@ -72,25 +113,22 @@ class InstallService(CommandABC):
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
 
-        new_package = Pip.get_package(package)
-        project: ProjectSettings = self._config.get_configuration(ProjectSettings)
-        build: BuildSettings = self._config.get_configuration(BuildSettings)
-        if project is None or build is None:
-            Error.error('The command requires to be run in an CPL project, but a project could not be found.')
-            return
+        if not is_already_in_project:
+            new_package = Pip.get_package(package)
+            if new_package is None:
+                new_package = package
 
-        project.dependencies.append(new_package)
+            project.dependencies.append(new_package)
 
-        config = {
-            ProjectSettings.__name__: self._get_project_settings_dict(project),
-            BuildSettings.__name__: self._get_build_settings_dict(build)
-        }
-        with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
-            project_file.write(json.dumps(config, indent=2))
-            project_file.close()
+            config = {
+                ProjectSettings.__name__: self._get_project_settings_dict(project),
+                BuildSettings.__name__: self._get_build_settings_dict(build)
+            }
+            with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
+                project_file.write(json.dumps(config, indent=2))
+                project_file.close()
 
     def run(self, args: list[str]):
-
         if len(args) == 0:
             self._install_project()
         else:
