@@ -1,6 +1,0 @@
-/src/
-/src/tests
-/src/tests/__init__.py
-/cpl.json
-/LICENSE
-/README.md
