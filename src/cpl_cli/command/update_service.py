@@ -23,6 +23,14 @@ class UpdateService(CommandABC):
     def _get_outdated() -> bytes:
         return subprocess.check_output([sys.executable, "-m", "pip", "list", "--outdated"])
 
+    def _check_project_dependencies(self):
+        Console.spinner(
+            'Collecting installed dependencies', self._update_project_dependencies,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.cyan
+        )
+        Console.write_line(f'Found {len(self._project_settings.dependencies)} dependencies.')
+
     def _check_outdated(self):
         table_str: bytes = Console.spinner(
             'Analyzing for available package updates', self._get_outdated,
@@ -35,7 +43,9 @@ class UpdateService(CommandABC):
         for row in table:
             Console.write_line(f'\t{row}')
 
+        Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.write_line(f'\tUpdate with {sys.executable} -m pip install --upgrade <package>')
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _project_json_update_dependency(self, old_package: str, new_package: str):
         content = ''
@@ -68,14 +78,6 @@ class UpdateService(CommandABC):
             )
 
             self._project_json_update_dependency(package, Pip.get_package(name))
-
-    def _check_project_dependencies(self):
-        Console.spinner(
-            'Collecting installed dependencies', self._update_project_dependencies,
-            text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.cyan
-        )
-        Console.write_line(f'Found {len(self._project_settings.dependencies)} dependencies.')
 
     def run(self, args: list[str]):
         # target update discord 1.5.1 to discord 1.6.0
