@@ -55,7 +55,7 @@ class Pip:
         return subprocess.check_output([cls._executable, "-m", "pip", "list", "--outdated"])
 
     @classmethod
-    def install(cls, package: str, *args, source: str = None, stdout=None, stderr=None, admin=None):
+    def install(cls, package: str, *args, source: str = None, stdout=None, stderr=None):
         pip_args = [cls._executable, "-m", "pip", "install"]
 
         for arg in args:

@@ -317,4 +317,4 @@ class PublisherService(PublisherABC):
         Console.spinner('Generating setup.py:', self._create_setup, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
         Console.write_line('Running setup.py:\n')
         self._run_setup()
-        Console.spinner('Cleaning dist path:', self._clean_dist_files)
+        Console.spinner('Cleaning dist path:', self._clean_dist_files, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)

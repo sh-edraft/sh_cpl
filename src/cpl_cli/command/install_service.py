@@ -2,6 +2,8 @@ import json
 import os
 import subprocess
 
+from packaging import version
+
 from cpl.application import ApplicationRuntimeABC
 from cpl.configuration import ConfigurationABC
 from cpl.console.console import Console
@@ -63,7 +65,9 @@ class InstallService(CommandABC):
             ProjectSettingsNameEnum.license_name.value: project.license_name,
             ProjectSettingsNameEnum.license_description.value: project.license_description,
             ProjectSettingsNameEnum.dependencies.value: project.dependencies,
-            ProjectSettingsNameEnum.python_version.value: project.python_version
+            ProjectSettingsNameEnum.python_version.value: project.python_version,
+            ProjectSettingsNameEnum.python_path.value: project.python_path,
+            ProjectSettingsNameEnum.classifiers.value: project.classifiers
         }
 
     @staticmethod
@@ -93,24 +97,51 @@ class InstallService(CommandABC):
             Error.error('Found invalid dependencies in cpl.json.')
             return
 
-        old_package = Pip.get_package(package)
+        package_version = ''
+        name = ''
+        if '==' in package:
+            name = package.split('==')[0]
+            package_version = package.split('==')[1]
 
+        to_remove_list = []
         for dependency in project.dependencies:
+            dependency_version = ''
+
+            if '==' in dependency:
+                dependency_version = dependency.split('==')[1]
+
+            if version.parse(package_version) != version.parse(dependency_version):
+                to_remove_list.append(dependency)
+                break
+
             if package in dependency:
                 is_already_in_project = True
 
-        if old_package is not None and old_package in project.dependencies or is_already_in_project:
-            Error.warn(f'Package {old_package} is already installed.')
+        for to_remove in to_remove_list:
+            project.dependencies.remove(to_remove)
+
+        local_package = Pip.get_package(package)
+        if local_package is not None and local_package in project.dependencies:
+            Error.warn(f'Package {local_package} is already installed.')
+            return
+
+        elif is_already_in_project:
+            Error.warn(f'Package {package} is already installed.')
             return
 
         Console.spinner(
             f'Installing: {package}',
             Pip.install, package,
+            source='https://pip.sh-edraft.de' if 'sh_cpl' in package else None,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
+        new_package = Pip.get_package(name)
+        if new_package is None:
+            Console.error(f'Installation of package {package} failed')
+            return
 
         if not is_already_in_project:
             new_package = Pip.get_package(package)

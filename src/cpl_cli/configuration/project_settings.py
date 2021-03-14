@@ -8,6 +8,7 @@ from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.configuration.version_settings import VersionSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
+from cpl_cli.error import Error
 
 
 class ProjectSettings(ConfigurationModelABC):
@@ -107,11 +108,16 @@ class ProjectSettings(ConfigurationModelABC):
             self._dependencies = settings[ProjectSettingsNameEnum.dependencies.value]
             self._python_version = settings[ProjectSettingsNameEnum.python_version.value]
 
-            path = os.path.abspath(settings[ProjectSettingsNameEnum.python_path.value])
-            if os.path.isfile(path) or os.path.islink(path):
-                path = os.path.abspath(path)
+            if ProjectSettingsNameEnum.python_path.value in settings:
+                path = os.path.abspath(settings[ProjectSettingsNameEnum.python_path.value])
+                if os.path.isfile(path) or os.path.islink(path):
+                    path = os.path.abspath(path)
+                else:
+                    path = sys.executable
+                    Error.warn(f'{ProjectSettingsNameEnum.python_path.value} not found')
             else:
                 path = sys.executable
+                Error.warn(f'{ProjectSettingsNameEnum.python_path.value} not found')
 
             self._python_path = path
 
