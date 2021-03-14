@@ -14,6 +14,10 @@ from cpl.environment.environment_abc import ApplicationEnvironmentABC
 class ServiceProvider(ServiceProviderABC):
 
     def __init__(self, app_runtime: ApplicationRuntimeABC):
+        """
+        Service for service providing
+        :param app_runtime:
+        """
         ServiceProviderABC.__init__(self)
         self._app_runtime: ApplicationRuntimeABC = app_runtime
         self._database_context: Optional[DatabaseContextABC] = None
@@ -23,6 +27,11 @@ class ServiceProvider(ServiceProviderABC):
         self._singleton_services: dict[Type[ServiceABC], Callable[ServiceABC], ServiceABC] = {}
 
     def _create_instance(self, service: Union[Callable[ServiceABC], ServiceABC]) -> Callable[ServiceABC]:
+        """
+        Creates an instance of given type
+        :param service:
+        :return:
+        """
         sig = signature(service.__init__)
         params = []
         for param in sig.parameters.items():
