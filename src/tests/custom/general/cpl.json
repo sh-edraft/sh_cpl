@@ -19,7 +19,7 @@
       "sh_cpl==2021.4.1"
     ],
     "PythonVersion": ">=3.8",
-    "PythonPath": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_common_py_lib/cpl-env/bin/python3.9",
+    "PythonPath": "../../../../cpl-env/bin/python3.9",
     "Classifiers": []
   },
   "BuildSettings": {

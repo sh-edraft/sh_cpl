@@ -36,15 +36,19 @@ class InstallService(CommandABC):
             Error.error('Found invalid dependencies in cpl.json.')
             return
 
+        Pip.set_executable(project.python_path)
         for dependency in project.dependencies:
             Console.spinner(
                 f'Installing: {dependency}',
                 Pip.install, dependency,
+                source='https://pip.sh-edraft.de' if 'sh_cpl' in dependency else None,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
                 spinner_foreground_color=ForegroundColorEnum.cyan
             )
+
+        Pip.reset_executable()
 
     @staticmethod
     def _get_project_settings_dict(project: ProjectSettings) -> dict:

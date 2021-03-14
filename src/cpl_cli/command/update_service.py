@@ -21,25 +21,15 @@ class UpdateService(CommandABC):
 
     @staticmethod
     def _install_package(name: str):
-        if 'sh_cpl' in name:
-            Pip.install(
-                name,
-                '--upgrade',
-                '--upgrade-strategy',
-                'eager',
-                source='https://pip.sh-edraft.de',
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
-        else:
-            Pip.install(
-                name,
-                '--upgrade',
-                '--upgrade-strategy',
-                'eager',
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
-            )
+        Pip.install(
+            name,
+            '--upgrade',
+            '--upgrade-strategy',
+            'eager',
+            source='https://pip.sh-edraft.de' if 'sh_cpl' in name else None,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+        )
 
     def _update_project_dependencies(self):
         for package in self._project_settings.dependencies:
