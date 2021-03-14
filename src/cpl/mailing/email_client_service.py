@@ -39,10 +39,6 @@ class EMailClient(EMailClientABC):
         self._logger.trace(__name__, f'Stopped {__name__}.create')
 
     def connect(self):
-        """
-        Connects to server
-        :return:
-        """
         self._logger.trace(__name__, f'Started {__name__}.connect')
         try:
             self._logger.debug(__name__, f'Try to connect to {self._mail_settings.host}:{self._mail_settings.port}')
@@ -73,11 +69,6 @@ class EMailClient(EMailClientABC):
         self._logger.trace(__name__, f'Stopped {__name__}.login')
 
     def send_mail(self, email: EMail):
-        """
-        Sends email
-        :param email:
-        :return:
-        """
         self._logger.trace(__name__, f'Started {__name__}.send_mail')
         try:
             self.login()
