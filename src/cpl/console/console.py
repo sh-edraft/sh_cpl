@@ -15,6 +15,9 @@ from cpl.console.spinner_thread import SpinnerThread
 
 
 class Console:
+    """
+    Useful functions for handling with input and output
+    """
     _is_first_write = True
 
     _background_color: BackgroundColorEnum = BackgroundColorEnum.default
@@ -59,6 +62,11 @@ class Console:
 
     @classmethod
     def set_background_color(cls, color: Union[BackgroundColorEnum, str]):
+        """
+        Sets the background color
+        :param color:
+        :return:
+        """
         if type(color) is str:
             cls._background_color = BackgroundColorEnum[color]
         else:
@@ -66,7 +74,11 @@ class Console:
 
     @classmethod
     def set_foreground_color(cls, color: Union[ForegroundColorEnum, str]):
-
+        """
+        Sets the foreground color
+        :param color:
+        :return:
+        """
         if type(color) is str:
             cls._foreground_color = ForegroundColorEnum[color]
         else:
@@ -74,11 +86,21 @@ class Console:
 
     @classmethod
     def reset_cursor_position(cls):
+        """
+        Resets cursor position
+        :return:
+        """
         cls._x = None
         cls._y = None
 
     @classmethod
     def set_cursor_position(cls, x: int, y: int):
+        """
+        Sets cursor position
+        :param x:
+        :param y:
+        :return:
+        """
         cls._x = x
         cls._y = y
 
@@ -88,6 +110,14 @@ class Console:
 
     @classmethod
     def _output(cls, string: str, x: int = None, y: int = None, end='\n'):
+        """
+        Prints given output with given format
+        :param string:
+        :param x:
+        :param y:
+        :param end:
+        :return:
+        """
         if cls._is_first_write:
             cls._is_first_write = False
 
@@ -112,6 +142,10 @@ class Console:
 
     @classmethod
     def _show_select_menu(cls):
+        """
+        Shows the select menu
+        :return:
+        """
         if not cls._is_first_select_menu_output:
             for _ in range(0, len(cls._select_menu_items) + 1):
                 print('\b', end="\r")
@@ -130,6 +164,11 @@ class Console:
 
     @classmethod
     def _select_menu_key_press(cls, key: Key):
+        """
+        Event function when key press is detected
+        :param key:
+        :return:
+        """
         if key == Key.down:
             if cls._selected_menu_item_index == len(cls._select_menu_items) - 1:
                 return
@@ -151,6 +190,11 @@ class Console:
 
     @classmethod
     def banner(cls, string: str):
+        """
+        Prints the string as a banner
+        :param string:
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -162,7 +206,20 @@ class Console:
         cls.write_line(ascii_banner)
 
     @classmethod
+    def color_reset(cls):
+        """
+        Resets color
+        :return:
+        """
+        cls._background_color = BackgroundColorEnum.default
+        cls._foreground_color = ForegroundColorEnum.default
+
+    @classmethod
     def clear(cls):
+        """
+        Clears the console
+        :return:
+        """
         if cls._hold_back:
             cls._hold_back_calls.append(ConsoleCall(cls.clear))
             return
@@ -171,6 +228,10 @@ class Console:
 
     @classmethod
     def close(cls):
+        """
+        Close the application
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -185,10 +246,20 @@ class Console:
 
     @classmethod
     def disable(cls):
+        """
+        Disable console interaction
+        :return:
+        """
         cls._disabled = True
 
     @classmethod
     def error(cls, string: str, tb: str = None):
+        """
+        Prints an error with traceback
+        :param string:
+        :param tb:
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -205,10 +276,19 @@ class Console:
 
     @classmethod
     def enable(cls):
+        """
+        Enable console interaction
+        :return:
+        """
         cls._disabled = False
 
     @classmethod
     def read(cls, output: str = None) -> str:
+        """
+        Read in line
+        :param output:
+        :return:
+        """
         if output is not None and not cls._hold_back:
             cls.write_line(output)
 
@@ -216,6 +296,11 @@ class Console:
 
     @classmethod
     def read_line(cls, output: str = None) -> str:
+        """
+        Reads in next line
+        :param output:
+        :return:
+        """
         if cls._disabled and not cls._hold_back:
             return ''
 
@@ -227,12 +312,13 @@ class Console:
         return input()
 
     @classmethod
-    def color_reset(cls):
-        cls._background_color = BackgroundColorEnum.default
-        cls._foreground_color = ForegroundColorEnum.default
-
-    @classmethod
     def table(cls, header: list[str], values: list[list[str]]):
+        """
+        Prints a table with header and values
+        :param header:
+        :param values:
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -254,6 +340,19 @@ class Console:
                cursor_foreground_color: Union[str, ForegroundColorEnum] = ForegroundColorEnum.default,
                cursor_background_color: Union[str, BackgroundColorEnum] = BackgroundColorEnum.default
                ) -> str:
+        """
+        Prints select menu
+        :param char:
+        :param message:
+        :param options:
+        :param header_foreground_color:
+        :param header_background_color:
+        :param option_foreground_color:
+        :param option_background_color:
+        :param cursor_foreground_color:
+        :param cursor_background_color:
+        :return: Selected option as str
+        """
         cls._selected_menu_item_char = char
         cls.options = options
         cls._select_menu_items = cls.options
@@ -285,6 +384,19 @@ class Console:
                 spinner_foreground_color: Union[str, ForegroundColorEnum] = None,
                 text_background_color: Union[str, BackgroundColorEnum] = None,
                 spinner_background_color: Union[str, BackgroundColorEnum] = None, **kwargs) -> any:
+        """
+        Shows spinner and calls given function
+        When function has ended the spinner stops
+        :param message:
+        :param call:
+        :param args:
+        :param text_foreground_color:
+        :param spinner_foreground_color:
+        :param text_background_color:
+        :param spinner_background_color:
+        :param kwargs:
+        :return: Return value of call
+        """
         if cls._hold_back:
             cls._hold_back_calls.append(ConsoleCall(cls.spinner, message, call, *args))
             return
@@ -319,6 +431,11 @@ class Console:
 
     @classmethod
     def write(cls, *args):
+        """
+        Prints in active line
+        :param args:
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -331,6 +448,13 @@ class Console:
 
     @classmethod
     def write_at(cls, x: int, y: int, *args):
+        """
+        Prints at given position
+        :param x:
+        :param y:
+        :param args:
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -343,6 +467,11 @@ class Console:
 
     @classmethod
     def write_line(cls, *args):
+        """
+        Prints to new line
+        :param args:
+        :return:
+        """
         if cls._disabled:
             return
 
@@ -357,6 +486,13 @@ class Console:
 
     @classmethod
     def write_line_at(cls, x: int, y: int, *args):
+        """
+        Prints new line at given position
+        :param x:
+        :param y:
+        :param args:
+        :return:
+        """
         if cls._disabled:
             return
 
