@@ -7,6 +7,9 @@ class LoggerABC(ServiceABC):
 
     @abstractmethod
     def __init__(self):
+        """
+        ABC for logging
+        """
         ServiceABC.__init__(self)
 
     @abstractmethod
