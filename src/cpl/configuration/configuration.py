@@ -105,6 +105,14 @@ class Configuration(ConfigurationABC):
 
         if argument_type.value_token != '' and argument_type.value_token in argument:
             # ?new=value
+            found = False
+            for alias in argument_type.aliases:
+                if alias in argument:
+                    found = True
+
+            if argument_type.name not in argument_name and not found:
+                return False
+
             if argument_type.is_value_token_optional is not None and argument_type.is_value_token_optional:
                 if argument_type.name not in self._additional_arguments:
                     self._additional_arguments.append(argument_type.name)
@@ -116,6 +124,8 @@ class Configuration(ConfigurationABC):
             else:
                 # new=value
                 argument_name = argument.split(argument_type.token)[1]
+
+            result = True
 
             if argument_type.is_value_token_optional is True:
                 is_valid = False
@@ -134,15 +144,22 @@ class Configuration(ConfigurationABC):
             else:
                 value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
 
-            if not result:
-                if argument_name != argument_type.name and argument_name not in argument_type.aliases:
-                    return False
+            if argument_name != argument_type.name and argument_name not in argument_type.aliases:
+                return False
 
-                self._set_variable(argument_type.name, value)
-                result = True
+            self._set_variable(argument_type.name, value)
+            result = True
 
         elif argument_type.value_token == ' ':
             # ?new value
+            found = False
+            for alias in argument_type.aliases:
+                if alias in argument:
+                    found = True
+
+            if argument_type.name not in argument_name and not found:
+                return False
+
             if (next_arguments is None or len(next_arguments) == 0) and \
                     argument_type.is_value_token_optional is not True:
                 raise Exception(f'Invalid argument: {argument}')
