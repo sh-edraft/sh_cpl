@@ -5,6 +5,9 @@ from typing import Optional
 
 
 class Pip:
+    """
+    Executes pip commands
+    """
     _executable = sys.executable
 
     """
@@ -21,11 +24,20 @@ class Pip:
 
     @classmethod
     def set_executable(cls, executable: str):
+        """
+        Sets the executable
+        :param executable:
+        :return:
+        """
         if executable is not None:
             cls._executable = executable
 
     @classmethod
     def reset_executable(cls):
+        """
+        Resets the executable to system standard
+        :return:
+        """
         cls._executable = sys.executable
 
     """
@@ -34,6 +46,11 @@ class Pip:
 
     @classmethod
     def get_package(cls, package: str) -> Optional[str]:
+        """
+        Gets given package py local pip list
+        :param package:
+        :return:
+        """
         result = None
         with suppress(Exception):
             result = subprocess.check_output([cls._executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
@@ -52,10 +69,23 @@ class Pip:
 
     @classmethod
     def get_outdated(cls) -> bytes:
+        """
+        Gets table of outdated packages
+        :return:
+        """
         return subprocess.check_output([cls._executable, "-m", "pip", "list", "--outdated"])
 
     @classmethod
     def install(cls, package: str, *args, source: str = None, stdout=None, stderr=None):
+        """
+        Installs given package
+        :param package:
+        :param args:
+        :param source:
+        :param stdout:
+        :param stderr:
+        :return:
+        """
         pip_args = [cls._executable, "-m", "pip", "install"]
 
         for arg in args:
@@ -70,4 +100,11 @@ class Pip:
 
     @classmethod
     def uninstall(cls, package: str, stdout=None, stderr=None):
+        """
+        Uninstalls given package
+        :param package:
+        :param stdout:
+        :param stderr:
+        :return:
+        """
         subprocess.run([cls._executable, "-m", "pip", "uninstall", "--yes", package], stdout=stdout, stderr=stderr)
