@@ -16,6 +16,11 @@ from cpl_cli.live_server.live_server_thread import LiveServerThread
 class LiveServerService(ServiceABC, FileSystemEventHandler):
 
     def __init__(self, runtime: ApplicationRuntimeABC, build_settings: BuildSettings):
+        """
+        Service for the live development server
+        :param runtime:
+        :param build_settings:
+        """
         ServiceABC.__init__(self)
         FileSystemEventHandler.__init__(self)
 
@@ -27,11 +32,19 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         self._observer = None
 
     def _start_observer(self):
+        """
+        Starts the file changes observer
+        :return:
+        """
         self._observer = Observer()
         self._observer.schedule(self, path=self._src_dir, recursive=True)
         self._observer.start()
 
     def _restart(self):
+        """
+        Restarts the CPL project
+        :return:
+        """
         for proc in psutil.process_iter():
             with suppress(Exception):
                 if proc.cmdline() == self._ls_thread.command:
@@ -47,6 +60,11 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         self._start_observer()
 
     def on_modified(self, event):
+        """
+        Triggers when source file is modified
+        :param event:
+        :return:
+        """
         if event.is_directory:
             return None
 
@@ -56,6 +74,10 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
             self._restart()
 
     def start(self):
+        """
+        Starts the CPL live development server
+        :return:
+        """
         Console.write_line('** CPL live development server is running **')
         self._start_observer()
         self._ls_thread.start()

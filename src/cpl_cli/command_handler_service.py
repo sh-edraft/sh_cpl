@@ -10,6 +10,11 @@ from cpl_cli.command_model import CommandModel
 class CommandHandler(ServiceABC):
 
     def __init__(self, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+        """
+        Service to handle incoming commands and args
+        :param runtime:
+        :param services:
+        """
         ServiceABC.__init__(self)
 
         self._runtime = runtime
@@ -28,6 +33,12 @@ class CommandHandler(ServiceABC):
         self._commands.remove(cmd)
 
     def handle(self, cmd: str, args: list[str]):
+        """
+        Handles incoming commands and args
+        :param cmd:
+        :param args:
+        :return:
+        """
         for command in self._commands:
             if cmd == command.name or cmd in command.aliases:
                 if command.is_project_needed and not os.path.isfile(os.path.join(self._runtime.working_directory, 'cpl.json')):

@@ -20,6 +20,12 @@ from cpl_cli.templates.publish.setup_template import SetupTemplate
 class PublisherService(PublisherABC):
 
     def __init__(self, runtime: ApplicationRuntimeABC, project: ProjectSettings, build: BuildSettings):
+        """
+        Service to build or publish files for distribution
+        :param runtime:
+        :param project:
+        :param build:
+        """
         PublisherABC.__init__(self)
 
         self._runtime = runtime
@@ -43,6 +49,11 @@ class PublisherService(PublisherABC):
 
     @staticmethod
     def _get_module_name_from_dirs(file: str) -> str:
+        """
+        Extracts module name from directories
+        :param file:
+        :return:
+        """
         if 'src/' in file:
             file = file.replace('src/', '', 1)
 
@@ -58,6 +69,11 @@ class PublisherService(PublisherABC):
 
     @staticmethod
     def _delete_path(path: str):
+        """
+        Deletes full path tree
+        :param path:
+        :return:
+        """
         if os.path.isdir(path):
             try:
                 shutil.rmtree(path)
@@ -67,6 +83,11 @@ class PublisherService(PublisherABC):
 
     @staticmethod
     def _create_path(path: str):
+        """
+        Creates full path tree
+        :param path:
+        :return:
+        """
         if not os.path.isdir(path):
             try:
                 os.makedirs(path)
@@ -75,6 +96,11 @@ class PublisherService(PublisherABC):
                 exit()
 
     def _is_path_included(self, path: str) -> bool:
+        """
+        Checks if the path is included
+        :param path:
+        :return:
+        """
         for included in self._build_settings.included:
             if included.startswith('*'):
                 included = included.replace('*', '')
@@ -85,6 +111,11 @@ class PublisherService(PublisherABC):
         return False
 
     def _is_path_excluded(self, path: str) -> bool:
+        """
+        Checks if the path is excluded
+        :param path:
+        :return:
+        """
         for excluded in self._build_settings.excluded:
             if excluded.startswith('*'):
                 excluded = excluded.replace('*', '')
@@ -95,6 +126,10 @@ class PublisherService(PublisherABC):
         return False
 
     def _read_sources(self):
+        """
+        Reads all source files and save included files
+        :return:
+        """
         for file in self._build_settings.included:
             rel_path = os.path.relpath(file)
             if os.path.isdir(rel_path):
@@ -127,6 +162,10 @@ class PublisherService(PublisherABC):
                     self._included_files.append(os.path.relpath(file_path))
 
     def _create_packages(self):
+        """
+        Writes information from template to all included __init__.py
+        :return:
+        """
         for file in self._included_files:
             if file.endswith('__init__.py'):
                 template_content = ''
@@ -181,6 +220,10 @@ class PublisherService(PublisherABC):
                     py_file.close()
 
     def _dist_files(self):
+        """
+        Copies all included source files to dist_path
+        :return:
+        """
         build_path = os.path.join(self._output_path)
         self._delete_path(build_path)
         self._create_path(build_path)
@@ -217,6 +260,10 @@ class PublisherService(PublisherABC):
                 os.makedirs(output_path)
 
     def _clean_dist_files(self):
+        """
+        Deletes all included source files from dist_path
+        :return:
+        """
         paths: list[str] = []
         for file in self._distributed_files:
             paths.append(os.path.dirname(file))
@@ -228,15 +275,13 @@ class PublisherService(PublisherABC):
             if os.path.isdir(path):
                 shutil.rmtree(path)
 
-    @staticmethod
-    def _package_files(directory):
-        paths = []
-        for (path, directories, filenames) in os.walk(directory):
-            for filename in filenames:
-                paths.append(os.path.join('..', path, filename))
-        return paths
-
     def _create_setup(self):
+        """
+        Generates setup.py
+
+        Dependencies: ProjectSettings, BuildSettings
+        :return:
+        """
         setup_file = os.path.join(self._output_path, 'setup.py')
         if os.path.isfile(setup_file):
             os.remove(setup_file)
@@ -275,6 +320,10 @@ class PublisherService(PublisherABC):
             setup_py.close()
 
     def _run_setup(self):
+        """
+        Starts setup.py
+        :return:
+        """
         setup_py = os.path.join(self._output_path, 'setup.py')
         if not os.path.isfile(setup_py):
             Console.error(__name__, f'setup.py not found in {self._output_path}')
@@ -293,12 +342,30 @@ class PublisherService(PublisherABC):
             Console.error('Executing setup.py failed', str(e))
 
     def include(self, path: str):
+        """
+        Includes given path from sources
+        :param path:
+        :return:
+        """
         self._build_settings.included.append(path)
 
     def exclude(self, path: str):
+        """
+        Excludes given path from sources
+        :param path:
+        :return:
+        """
         self._build_settings.excluded.append(path)
 
     def build(self):
+        """
+        Build the CPL project to dist_path/build
+
+        1. Reads all included source files
+        2. Writes informations from template to all included __init__.py
+        3. Copies all included source files to dist_path/build
+        :return:
+        """
         self._output_path = os.path.join(self._output_path, 'build')
 
         Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
@@ -306,6 +373,15 @@ class PublisherService(PublisherABC):
         Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
 
     def publish(self):
+        """
+        Publishes the CPL project to dist_path/publish
+
+        1. Builds the project
+        2. Generates setup.py
+        3. Start setup.py
+        4. Remove all included source from dist_path/publish
+        :return:
+        """
         self._output_path = os.path.join(self._output_path, 'publish')
 
         Console.write_line('Build:')

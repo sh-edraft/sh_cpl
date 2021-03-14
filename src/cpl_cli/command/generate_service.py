@@ -19,6 +19,11 @@ from cpl_cli.templates.template_file_abc import TemplateFileABC
 class GenerateService(CommandABC):
 
     def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
+        """
+        Service for the CLI command generate
+        :param configuration:
+        :param runtime:
+        """
         CommandABC.__init__(self)
 
         self._schematics = {
@@ -53,6 +58,11 @@ class GenerateService(CommandABC):
 
     @staticmethod
     def _help(message: str):
+        """
+        Internal help output
+        :param message:
+        :return:
+        """
         Console.error(message)
 
         schematics = [
@@ -68,11 +78,24 @@ class GenerateService(CommandABC):
 
     @staticmethod
     def _create_file(file_path: str, value: str):
+        """
+        Creates the given file with content
+        :param file_path:
+        :param value:
+        :return:
+        """
         with open(file_path, 'w') as template:
             template.write(value)
             template.close()
 
     def _generate(self, schematic: str, name: str, template: Callable[TemplateFileABC]):
+        """
+        Generates files by given schematic, name and template
+        :param schematic:
+        :param name:
+        :param template:
+        :return:
+        """
         class_name = name
         rel_path = ''
         if '/' in name:
@@ -104,6 +127,11 @@ class GenerateService(CommandABC):
         )
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         if len(args) == 0:
             self._help('Usage: cpl generate <schematic> [options]')
             exit()

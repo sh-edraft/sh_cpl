@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-import time
 from typing import Optional
 
 from packaging import version
@@ -30,6 +29,11 @@ from cpl_cli.templates.template_file_abc import TemplateFileABC
 class NewService(CommandABC):
 
     def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
+        """
+        Service for the CLI command new
+        :param configuration:
+        :param runtime:
+        """
         CommandABC.__init__(self)
 
         self._config = configuration
@@ -90,12 +94,20 @@ class NewService(CommandABC):
         self._build.from_dict(self._build_dict)
 
     def _create_project_json(self):
+        """
+        Creates cpl.json content
+        :return:
+        """
         self._project_json = {
             ProjectSettings.__name__: self._project_dict,
             BuildSettings.__name__: self._build_dict
         }
 
     def _get_project_path(self) -> Optional[str]:
+        """
+        Gets project path
+        :return:
+        """
         project_path = os.path.join(self._runtime.working_directory, self._project.name)
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
             Console.error('Project path is not empty\n')
@@ -104,6 +116,10 @@ class NewService(CommandABC):
         return project_path
 
     def _get_project_informations(self):
+        """
+        Gets project informations from user
+        :return:
+        """
         result = Console.read('Do you want to use application host? (y/n) ')
         if result.lower() == 'y':
             self._use_application_api = True
@@ -121,6 +137,11 @@ class NewService(CommandABC):
         #         self._use_service_providing = True
 
     def _build_project_dir(self, project_path: str):
+        """
+        Builds the project files
+        :param project_path:
+        :return:
+        """
         if not os.path.isdir(project_path):
             os.makedirs(project_path)
 
@@ -155,6 +176,12 @@ class NewService(CommandABC):
 
     @staticmethod
     def _create_template(project_path: str, template: TemplateFileABC):
+        """
+        Creates template
+        :param project_path:
+        :param template:
+        :return:
+        """
         file_path = os.path.join(project_path, template.path, template.name)
         file_rel_path = os.path.join(project_path, template.path)
 
@@ -166,6 +193,11 @@ class NewService(CommandABC):
             license_file.close()
 
     def _console(self, args: list[str]):
+        """
+        Generates new console project
+        :param args:
+        :return:
+        """
         name = self._config.get_configuration(self._command)
 
         self._create_project_settings(name)
@@ -182,6 +214,11 @@ class NewService(CommandABC):
             Console.error('Could not create project', str(e))
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         self._command = args[0]
         if self._command == 'console':
             self._console(args)

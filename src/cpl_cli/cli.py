@@ -19,6 +19,9 @@ from cpl_cli.command.version_service import VersionService
 class CLI(ApplicationABC):
 
     def __init__(self):
+        """
+        CPL CLI
+        """
         ApplicationABC.__init__(self)
 
         self._command_handler: Optional[CommandHandler] = None
@@ -38,6 +41,10 @@ class CLI(ApplicationABC):
         self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False))
 
     def main(self):
+        """
+        Entry point of the CPL CLI
+        :return:
+        """
         command = None
         args = []
         if len(self._configuration.additional_arguments) > 0:

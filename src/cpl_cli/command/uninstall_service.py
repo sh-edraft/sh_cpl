@@ -16,6 +16,12 @@ class UninstallService(CommandABC):
 
     def __init__(self, runtime: ApplicationRuntimeABC, build_settings: BuildSettings,
                  project_settings: ProjectSettings):
+        """
+        Service for the CLI command uninstall
+        :param runtime:
+        :param build_settings:
+        :param project_settings:
+        """
         CommandABC.__init__(self)
 
         self._runtime = runtime
@@ -59,6 +65,11 @@ class UninstallService(CommandABC):
         }
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         if len(args) == 0:
             Console.error(f'Expected package')
             Console.error(f'Usage: cpl uninstall <package>')

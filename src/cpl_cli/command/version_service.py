@@ -1,4 +1,3 @@
-import os
 import pkgutil
 import sys
 import platform
@@ -14,9 +13,17 @@ from cpl_cli.command_abc import CommandABC
 class VersionService(CommandABC):
 
     def __init__(self):
+        """
+        Service for the CLI command version
+        """
         CommandABC.__init__(self)
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.banner('CPL CLI')
         Console.set_foreground_color(ForegroundColorEnum.default)

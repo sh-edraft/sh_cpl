@@ -19,12 +19,21 @@ from cpl_cli.error import Error
 class InstallService(CommandABC):
 
     def __init__(self, runtime: ApplicationRuntimeABC, configuration: ConfigurationABC):
+        """
+        Service for the CLI command install
+        :param runtime:
+        :param configuration:
+        """
         CommandABC.__init__(self)
 
         self._runtime = runtime
         self._config = configuration
 
     def _install_project(self):
+        """
+        Installs dependencies of CPl project
+        :return:
+        """
         project: ProjectSettings = self._config.get_configuration(ProjectSettings)
         build: BuildSettings = self._config.get_configuration(BuildSettings)
 
@@ -88,6 +97,11 @@ class InstallService(CommandABC):
         }
 
     def _install_package(self, package: str):
+        """
+        Installs given package
+        :param package:
+        :return:
+        """
         is_already_in_project = False
         project: ProjectSettings = self._config.get_configuration(ProjectSettings)
         build: BuildSettings = self._config.get_configuration(BuildSettings)
@@ -165,6 +179,11 @@ class InstallService(CommandABC):
         Pip.reset_executable()
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         if len(args) == 0:
             self._install_project()
         else:

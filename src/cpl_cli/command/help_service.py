@@ -6,9 +6,17 @@ from cpl_cli.command_abc import CommandABC
 class HelpService(CommandABC):
 
     def __init__(self):
+        """
+        Service for CLI command help
+        """
         CommandABC.__init__(self)
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         Console.write_line('Available Commands:')
         commands = [
             ['build (b|B)', 'Prepares files for publish into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.'],

@@ -10,6 +10,10 @@ from cpl.console import Console
 class LiveServerThread(threading.Thread):
 
     def __init__(self, path: str):
+        """
+        Thread to start the CPL project for the live development server
+        :param path:
+        """
         threading.Thread.__init__(self)
 
         self._path = path
@@ -25,6 +29,10 @@ class LiveServerThread(threading.Thread):
         return self._main
 
     def run(self):
+        """
+        Starts the CPL project
+        :return:
+        """
         self._main = os.path.join(self._path, 'main.py')
         if not os.path.isfile(self._main):
             Console.error('Entry point main.py not found')

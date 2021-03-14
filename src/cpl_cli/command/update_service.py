@@ -1,7 +1,6 @@
 import json
 import os
 import subprocess
-import sys
 
 from cpl.application import ApplicationRuntimeABC
 from cpl.console import ForegroundColorEnum
@@ -14,30 +13,35 @@ from cpl_cli.configuration.project_settings import ProjectSettings
 class UpdateService(CommandABC):
 
     def __init__(self, runtime: ApplicationRuntimeABC, project_settings: ProjectSettings):
+        """
+        Service for the CLI command update
+        :param runtime:
+        :param project_settings:
+        """
         CommandABC.__init__(self)
 
         self._runtime = runtime
         self._project_settings = project_settings
 
-    @staticmethod
-    def _install_package(name: str):
-        Pip.install(
-            name,
-            '--upgrade',
-            '--upgrade-strategy',
-            'eager',
-            source='https://pip.sh-edraft.de' if 'sh_cpl' in name else None,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
-        )
-
     def _update_project_dependencies(self):
+        """
+        Updates project dependencies
+        :return:
+        """
         for package in self._project_settings.dependencies:
             name = package
             if '==' in package:
                 name = package.split('==')[0]
 
-            self._install_package(name)
+            Pip.install(
+                name,
+                '--upgrade',
+                '--upgrade-strategy',
+                'eager',
+                source='https://pip.sh-edraft.de' if 'sh_cpl' in name else None,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
 
             new_package = Pip.get_package(name)
             if new_package is None:
@@ -47,6 +51,10 @@ class UpdateService(CommandABC):
             self._project_json_update_dependency(package, new_package)
 
     def _check_project_dependencies(self):
+        """
+        Checks project dependencies for updates
+        :return:
+        """
         Console.spinner(
             'Collecting installed dependencies', self._update_project_dependencies,
             text_foreground_color=ForegroundColorEnum.green,
@@ -56,6 +64,10 @@ class UpdateService(CommandABC):
 
     @staticmethod
     def _check_outdated():
+        """
+        Checks for outdated packages in project
+        :return:
+        """
         table_str: bytes = Console.spinner(
             'Analyzing for available package updates', Pip.get_outdated,
             text_foreground_color=ForegroundColorEnum.green,
@@ -73,6 +85,12 @@ class UpdateService(CommandABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _project_json_update_dependency(self, old_package: str, new_package: str):
+        """
+        Writes new package version to cpl.json
+        :param old_package:
+        :param new_package:
+        :return:
+        """
         content = ''
         with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'r') as project:
             content = project.read()
@@ -89,6 +107,11 @@ class UpdateService(CommandABC):
             project.close()
 
     def run(self, args: list[str]):
+        """
+        Entry point of command
+        :param args:
+        :return:
+        """
         Pip.set_executable(self._project_settings.python_path)
         self._check_project_dependencies()
         self._check_outdated()
