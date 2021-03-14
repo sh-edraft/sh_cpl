@@ -8,6 +8,10 @@ from cpl.configuration.configuration_abc import ConfigurationABC
 class ApplicationRuntime(ApplicationRuntimeABC):
 
     def __init__(self, config: ConfigurationABC):
+        """
+        Representation of the application runtime
+        :param config:
+        """
         ApplicationRuntimeABC.__init__(self)
 
         self._app_configuration = config

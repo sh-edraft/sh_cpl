@@ -12,6 +12,9 @@ class ApplicationABC(ABC):
 
     @abstractmethod
     def __init__(self):
+        """
+        ABC of application
+        """
         self._startup: Optional[StartupABC] = None
         self._app_host: Optional[ApplicationHostABC] = None
         self._configuration: Optional[ConfigurationABC] = None
@@ -19,9 +22,18 @@ class ApplicationABC(ABC):
         self._services: Optional[ServiceProviderABC] = None
 
     def use_startup(self, startup: Type[StartupABC]):
+        """
+        Sets the used startup class
+        :param startup:
+        :return:
+        """
         self._startup = startup()
 
     def build(self):
+        """
+        Creates application host and runtime
+        :return:
+        """
         if self._startup is not None:
             self._app_host = self._startup.create_application_host()
             self._runtime = self._app_host.application_runtime
@@ -29,11 +41,25 @@ class ApplicationABC(ABC):
             self._services = self._startup.create_services()
 
     def run(self):
+        """
+        Entry point
+        :return:
+        """
         self.configure()
         self.main()
 
     @abstractmethod
-    def configure(self): pass
+    def configure(self):
+        """
+        Prepare the application
+        :return:
+        """
+        pass
 
     @abstractmethod
-    def main(self): pass
+    def main(self):
+        """
+        Custom entry point
+        :return:
+        """
+        pass

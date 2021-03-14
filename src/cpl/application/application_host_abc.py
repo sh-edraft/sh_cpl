@@ -9,7 +9,11 @@ from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 class ApplicationHostABC(ABC):
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        """
+        ABC for application host
+        """
+        pass
 
     @property
     @abstractmethod
@@ -23,9 +27,11 @@ class ApplicationHostABC(ABC):
     @abstractmethod
     def services(self) -> ServiceProviderABC: pass
 
-    @staticmethod
     @abstractmethod
-    def output_at_exit(): pass
-
-    @abstractmethod
-    def console_argument_error_function(self, function: Callable): pass
+    def console_argument_error_function(self, function: Callable):
+        """
+        Defines function to call when a argument error is detected
+        :param function:
+        :return:
+        """
+        pass

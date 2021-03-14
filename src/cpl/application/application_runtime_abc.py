@@ -7,7 +7,11 @@ from cpl.configuration.configuration_abc import ConfigurationABC
 class ApplicationRuntimeABC(ABC):
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        """
+        ABC for application runtime
+        """
+        pass
 
     @property
     @abstractmethod
@@ -42,4 +46,10 @@ class ApplicationRuntimeABC(ABC):
     def runtime_directory(self) -> str: pass
 
     @abstractmethod
-    def set_runtime_directory(self, runtime_directory: str): pass
+    def set_runtime_directory(self, runtime_directory: str):
+        """
+        Sets the current runtime directory
+        :param runtime_directory:
+        :return:
+        """
+        pass
