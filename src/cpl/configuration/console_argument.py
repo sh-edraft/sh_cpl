@@ -8,6 +8,15 @@ class ConsoleArgument:
                  is_value_token_optional: bool = None,
                  console_arguments: list['ConsoleArgument'] = None
                  ):
+        """
+        Representation of an console argument
+        :param token:
+        :param name:
+        :param aliases:
+        :param value_token:
+        :param is_value_token_optional:
+        :param console_arguments:
+        """
         self._token = token
         self._name = name
         self._aliases = aliases

@@ -10,7 +10,11 @@ from cpl.environment.environment_abc import ApplicationEnvironmentABC
 class ConfigurationABC(ABC):
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        """
+        ABC of configuration
+        """
+        pass
 
     @property
     @abstractmethod
@@ -29,22 +33,58 @@ class ConfigurationABC(ABC):
     def argument_error_function(self, argument_error_function: Callable): pass
 
     @abstractmethod
-    def allow_multiple_args(self): pass
+    def add_environment_variables(self, prefix: str):
+        """
+        Reads the environment variables
+        :param prefix:
+        :return:
+        """
+        pass
 
     @abstractmethod
-    def add_environment_variables(self, prefix: str): pass
+    def add_console_argument(self, argument: ConsoleArgument):
+        """
+        Adds console argument to known console arguments
+        :param argument:
+        :return:
+        """
+        pass
 
     @abstractmethod
-    def add_console_argument(self, argument: ConsoleArgument): pass
+    def add_console_arguments(self):
+        """
+        Reads the console arguments
+        :return:
+        """
+        pass
 
     @abstractmethod
-    def add_console_arguments(self): pass
+    def add_json_file(self, name: str, optional: bool = None, output: bool = True):
+        """
+        Reads and saves settings from given json file
+        :param name:
+        :param optional:
+        :param output:
+        :return:
+        """
+        pass
 
     @abstractmethod
-    def add_json_file(self, name: str, optional: bool = None, output: bool = True): pass
+    def add_configuration(self, key_type: type, value: object):
+        """
+        Add configuration object
+        :param key_type:
+        :param value:
+        :return:
+        """
+        pass
 
     @abstractmethod
-    def add_configuration(self, key_type: type, value: object): pass
-
-    @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]: pass
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
+        str, Callable[ConfigurationModelABC]]:
+        """
+        Returns value in configuration by given type
+        :param search_type:
+        :return:
+        """
+        pass

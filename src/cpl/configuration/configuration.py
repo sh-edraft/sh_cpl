@@ -18,6 +18,9 @@ from cpl.environment.environment_name_enum import EnvironmentNameEnum
 class Configuration(ConfigurationABC):
 
     def __init__(self):
+        """
+        Representation of configuration
+        """
         ConfigurationABC.__init__(self)
 
         self._hosting_environment = ApplicationEnvironment()
@@ -28,7 +31,6 @@ class Configuration(ConfigurationABC):
 
         self._argument_error_function: Optional[Callable] = None
 
-        self._is_multiple_args_allowed = False
         self._handled_args = []
 
     @property
@@ -47,28 +49,49 @@ class Configuration(ConfigurationABC):
     def argument_error_function(self, argument_error_function: Callable):
         self._argument_error_function = argument_error_function
 
-    def allow_multiple_args(self):
-        self._is_multiple_args_allowed = True
-
     @staticmethod
     def _print_info(name: str, message: str):
+        """
+        Prints an info message
+        :param name:
+        :param message:
+        :return:
+        """
         Console.set_foreground_color(ForegroundColorEnum.green)
         Console.write_line(f'[{name}] {message}')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     @staticmethod
     def _print_warn(name: str, message: str):
+        """
+        Prints a warning
+        :param name:
+        :param message:
+        :return:
+        """
         Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.write_line(f'[{name}] {message}')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     @staticmethod
     def _print_error(name: str, message: str):
+        """
+        Prints an error
+        :param name:
+        :param message:
+        :return:
+        """
         Console.set_foreground_color(ForegroundColorEnum.red)
         Console.write_line(f'[{name}] {message}')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _set_variable(self, name: str, value: str):
+        """
+        Sets variable to given value
+        :param name:
+        :param value:
+        :return:
+        """
         if name == ConfigurationVariableNameEnum.environment.value:
             self._hosting_environment.environment_name = EnvironmentNameEnum(value)
 
@@ -83,6 +106,13 @@ class Configuration(ConfigurationABC):
 
     def _validate_argument_child(self, argument: str, argument_type: ConsoleArgument,
                                  next_arguments: Optional[list[str]]) -> bool:
+        """
+        Validates the child arguments of argument
+        :param argument:
+        :param argument_type:
+        :param next_arguments:
+        :return:
+        """
         if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
             found = False
             for child_argument_type in argument_type.console_arguments:
@@ -99,6 +129,13 @@ class Configuration(ConfigurationABC):
 
     def _validate_argument_by_argument_type(self, argument: str, argument_type: ConsoleArgument,
                                             next_arguments: list[str] = None) -> bool:
+        """
+        Validate argument by argument type
+        :param argument:
+        :param argument_type:
+        :param next_arguments:
+        :return:
+        """
         argument_name = ''
         value = ''
         result = False
@@ -274,6 +311,12 @@ class Configuration(ConfigurationABC):
                     self.add_configuration(sub, configuration)
 
     def _load_json_file(self, file: str, output: bool) -> dict:
+        """
+        Reads the json file
+        :param file:
+        :param output:
+        :return:
+        """
         try:
             # open config file, create if not exists
             with open(file, encoding='utf-8') as cfg:
