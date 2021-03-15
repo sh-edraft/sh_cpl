@@ -27,7 +27,7 @@ class Application(ApplicationABC):
         self._mailer.send_mail(mail)
 
     def test_console(self):
-        self._logger.debug(__name__, 'Started console_old test')
+        self._logger.debug(__name__, 'Started console_old model')
         Console.write_line('Hello World')
         Console.write('\nName: ')
         Console.write_line(' Hello', Console.read_line())

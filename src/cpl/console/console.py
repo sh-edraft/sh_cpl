@@ -155,7 +155,11 @@ class Console:
         for i in range(0, len(cls._select_menu_items)):
             Console.set_foreground_color(cls._selected_menu_cursor_foreground_color)
             Console.set_background_color(cls._selected_menu_cursor_background_color)
-            Console.write_line(f'{cls._selected_menu_item_char if cls._selected_menu_item_index == i else " "} ')
+            placeholder = ''
+            for _ in cls._selected_menu_item_char:
+                placeholder += ' '
+
+            Console.write_line(f'{cls._selected_menu_item_char if cls._selected_menu_item_index == i else placeholder} ')
             Console.set_foreground_color(cls._selected_menu_option_foreground_color)
             Console.set_background_color(cls._selected_menu_option_background_color)
             Console.write(f'{cls._select_menu_items[i]}')
