@@ -424,7 +424,14 @@ class Console:
         cls.set_hold_back(True)
         spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
         spinner.start()
-        return_value = call(*args, **kwargs)
+
+        return_value = None
+        try:
+            return_value = call(*args, **kwargs)
+        except KeyboardInterrupt:
+            spinner.exit()
+            exit()
+
         spinner.stop_spinning()
         cls.set_hold_back(False)
 

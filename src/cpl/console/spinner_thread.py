@@ -25,6 +25,7 @@ class SpinnerThread(threading.Thread):
         self._background_color = background_color
 
         self._is_spinning = True
+        self._exit = False
 
     @staticmethod
     def _spinner():
@@ -57,14 +58,20 @@ class SpinnerThread(threading.Thread):
         """
         rows, columns = os.popen('stty size', 'r').read().split()
         end_msg = 'done'
-        columns = int(columns) - self._msg_len - len(end_msg)
-        if columns > 0:
-            print(f'{"" : >{columns}}', end='')
+        end_msg_pos = int(columns) - self._msg_len - len(end_msg)
+        if end_msg_pos > 0:
+            print(f'{"" : >{end_msg_pos}}', end='')
         else:
             print('', end='')
+
+        first = True
         spinner = self._spinner()
         while self._is_spinning:
-            print(colored(f'{next(spinner): >{len(end_msg)}}', *self._get_color_args()), end='')
+            if first:
+                first = False
+                print(colored(f'{next(spinner): >{len(end_msg) - 1}}', *self._get_color_args()), end='')
+            else:
+                print(colored(f'{next(spinner): >{len(end_msg)}}', *self._get_color_args()), end='')
             time.sleep(0.1)
             back = ''
             for i in range(0, len(end_msg)):
@@ -73,7 +80,8 @@ class SpinnerThread(threading.Thread):
             print(back, end='')
             sys.stdout.flush()
 
-        print(colored(end_msg, *self._get_color_args()), end='')
+        if not self._exit:
+            print(colored(end_msg, *self._get_color_args()), end='')
 
     def stop_spinning(self):
         """
@@ -81,4 +89,13 @@ class SpinnerThread(threading.Thread):
         :return:
         """
         self._is_spinning = False
+        time.sleep(0.1)
+
+    def exit(self):
+        """
+        Stops the spinner
+        :return:
+        """
+        self._is_spinning = False
+        self._exit = True
         time.sleep(0.1)
