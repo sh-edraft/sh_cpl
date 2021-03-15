@@ -241,7 +241,7 @@ class Console:
 
         Console.color_reset()
         Console.write('\n\n\nPress any key to continue...')
-        Console.read_line()
+        Console.read()
         exit()
 
     @classmethod
@@ -292,7 +292,7 @@ class Console:
         if output is not None and not cls._hold_back:
             cls.write_line(output)
 
-        return input()[0]
+        return input()
 
     @classmethod
     def read_line(cls, output: str = None) -> str:

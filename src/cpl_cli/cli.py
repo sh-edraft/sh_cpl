@@ -1,6 +1,8 @@
+import threading
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
+from cpl.console.console import Console
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
@@ -45,21 +47,24 @@ class CLI(ApplicationABC):
         Entry point of the CPL CLI
         :return:
         """
-        command = None
-        args = []
-        if len(self._configuration.additional_arguments) > 0:
-            command = self._configuration.additional_arguments[0]
-            if len(self._configuration.additional_arguments) > 1:
-                args = self._configuration.additional_arguments[1:]
-        else:
-            for cmd in self._command_handler.commands:
-                result = self._configuration.get_configuration(cmd.name)
-                if result is not None:
-                    command = cmd.name
-                    args.append(result)
+        try:
+            command = None
+            args = []
+            if len(self._configuration.additional_arguments) > 0:
+                command = self._configuration.additional_arguments[0]
+                if len(self._configuration.additional_arguments) > 1:
+                    args = self._configuration.additional_arguments[1:]
+            else:
+                for cmd in self._command_handler.commands:
+                    result = self._configuration.get_configuration(cmd.name)
+                    if result is not None:
+                        command = cmd.name
+                        args.append(result)
 
-        if command is None:
-            Error.error(f'Expected command')
-            return
+            if command is None:
+                Error.error(f'Expected command')
+                return
 
-        self._command_handler.handle(command, args)
+            self._command_handler.handle(command, args)
+        except KeyboardInterrupt:
+            exit()

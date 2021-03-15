@@ -1,0 +1,38 @@
+{
+  "ProjectSettings": {
+    "Name": "cpl-test",
+    "Version": {
+      "Major": "0",
+      "Minor": "0",
+      "Micro": "0"
+    },
+    "Author": "",
+    "AuthorEmail": "",
+    "Description": "",
+    "LongDescription": "",
+    "URL": "",
+    "CopyrightDate": "",
+    "CopyrightName": "",
+    "LicenseName": "",
+    "LicenseDescription": "",
+    "Dependencies": [
+      "sh_cpl==2021.4.1.post2"
+    ],
+    "PythonVersion": ">=3.9.2",
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "SourcePath": "src",
+    "OutputPath": "dist",
+    "Main": "main",
+    "EntryPoint": "cpl-test",
+    "IncludePackageData": "False",
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {}
+  }
+}

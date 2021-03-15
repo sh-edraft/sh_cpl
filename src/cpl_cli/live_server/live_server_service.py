@@ -28,7 +28,7 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         self._build_settings = build_settings
 
         self._src_dir = os.path.join(self._runtime.working_directory, self._build_settings.source_path)
-        self._ls_thread = LiveServerThread(self._src_dir)
+        self._ls_thread = None
         self._observer = None
 
     def _start_observer(self):
@@ -54,10 +54,7 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         while self._ls_thread.is_alive():
             time.sleep(1)
 
-        self._ls_thread = LiveServerThread(self._src_dir)
-        self._ls_thread.start()
-
-        self._start_observer()
+        self._start()
 
     def on_modified(self, event):
         """
@@ -73,14 +70,17 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
             self._observer.stop()
             self._restart()
 
+    def _start(self):
+        self._start_observer()
+        self._ls_thread = LiveServerThread(self._src_dir)
+        self._ls_thread.start()
+        self._ls_thread.join()
+        Console.close()
+
     def start(self):
         """
         Starts the CPL live development server
         :return:
         """
         Console.write_line('** CPL live development server is running **')
-        self._start_observer()
-        self._ls_thread.start()
-
-        Console.close()
-        Console.write('\n')
+        self._start()

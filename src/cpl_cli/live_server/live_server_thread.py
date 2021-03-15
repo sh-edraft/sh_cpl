@@ -4,7 +4,8 @@ import sys
 import threading
 from datetime import datetime
 
-from cpl.console import Console
+from cpl.console.console import Console
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 
 
 class LiveServerThread(threading.Thread):
@@ -38,9 +39,12 @@ class LiveServerThread(threading.Thread):
             Console.error('Entry point main.py not found')
             return
 
+        Console.set_foreground_color(ForegroundColorEnum.green)
         Console.write_line('Read successfully')
+        Console.set_foreground_color(ForegroundColorEnum.cyan)
         now = datetime.now()
         Console.write_line(f'Started at {now.strftime("%Y-%m-%d %H:%M:%S")}\n\n')
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
         self._command = [sys.executable, self._main, ''.join(sys.argv[2:])]
         subprocess.run(self._command)
