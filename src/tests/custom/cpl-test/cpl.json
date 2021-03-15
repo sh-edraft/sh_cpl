@@ -16,7 +16,7 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "sh_cpl==2021.4.1.post4"
+      "sh_cpl==2021.4.1.post5"
     ],
     "PythonVersion": ">=3.9.2",
     "Classifiers": []

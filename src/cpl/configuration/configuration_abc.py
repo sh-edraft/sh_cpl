@@ -51,9 +51,10 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_console_arguments(self):
+    def add_console_arguments(self, error: bool = None):
         """
         Reads the console arguments
+        :param error: defines is invalid argument error will be shown or not
         :return:
         """
         pass

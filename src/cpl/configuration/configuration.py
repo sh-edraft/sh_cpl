@@ -249,7 +249,7 @@ class Configuration(ConfigurationABC):
     def add_console_argument(self, argument: ConsoleArgument):
         self._argument_types.append(argument)
 
-    def add_console_arguments(self):
+    def add_console_arguments(self, error: bool = None):
         for arg_name in ConfigurationVariableNameEnum.to_list():
             self.add_console_argument(ConsoleArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
 
@@ -274,7 +274,7 @@ class Configuration(ConfigurationABC):
                 except Exception as e:
                     error_message = e
 
-            if not found and error_message == '':
+            if not found and error_message == '' and error is not False:
                 error_message = f'Invalid argument: {argument}'
 
                 if self._argument_error_function is not None:
