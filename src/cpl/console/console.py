@@ -1,4 +1,6 @@
 import os
+import sys
+import time
 from collections import Callable
 from typing import Union, Optional
 
@@ -148,7 +150,7 @@ class Console:
         """
         if not cls._is_first_select_menu_output:
             for _ in range(0, len(cls._select_menu_items) + 1):
-                print('\b', end="\r")
+                sys.stdout.write('\x1b[1A\x1b[2K')
         else:
             cls._is_first_select_menu_output = False
 
@@ -159,7 +161,8 @@ class Console:
             for _ in cls._selected_menu_item_char:
                 placeholder += ' '
 
-            Console.write_line(f'{cls._selected_menu_item_char if cls._selected_menu_item_index == i else placeholder} ')
+            Console.write_line(
+                f'{cls._selected_menu_item_char if cls._selected_menu_item_index == i else placeholder} ')
             Console.set_foreground_color(cls._selected_menu_option_foreground_color)
             Console.set_background_color(cls._selected_menu_option_background_color)
             Console.write(f'{cls._select_menu_items[i]}')
@@ -373,7 +376,7 @@ class Console:
 
         Console.set_foreground_color(header_foreground_color)
         Console.set_background_color(header_background_color)
-        Console.write_line(message)
+        Console.write_line(message, '\n')
         cls._show_select_menu()
 
         with keyboard.Listener(
@@ -434,10 +437,11 @@ class Console:
         return return_value
 
     @classmethod
-    def write(cls, *args):
+    def write(cls, *args, end=''):
         """
         Prints in active line
         :param args:
+        :param end:
         :return:
         """
         if cls._disabled:
@@ -448,7 +452,7 @@ class Console:
             return
 
         string = ' '.join(map(str, args))
-        cls._output(string, end='')
+        cls._output(string, end=end)
 
     @classmethod
     def write_at(cls, x: int, y: int, *args):

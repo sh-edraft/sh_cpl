@@ -7,7 +7,7 @@ def test_spinner():
 
 
 if __name__ == '__main__':
-    Console.write_line('Hello World')
+    Console.write_line('Hello World\n')
     Console.spinner('Test:', test_spinner, spinner_foreground_color=ForegroundColorEnum.cyan, text_foreground_color='green')
     opts = [
         'Option 1',
@@ -23,4 +23,4 @@ if __name__ == '__main__':
         option_foreground_color=ForegroundColorEnum.green,
         cursor_foreground_color=ForegroundColorEnum.red
     )
-    Console.write_line(f'You selected: {selected}')
+    Console.write_line(f'You selected: {selected}\n')

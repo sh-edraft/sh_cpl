@@ -58,7 +58,10 @@ class SpinnerThread(threading.Thread):
         rows, columns = os.popen('stty size', 'r').read().split()
         end_msg = 'done'
         columns = int(columns) - self._msg_len - len(end_msg)
-        print(f'{"" : >{columns}}', end='')
+        if columns > 0:
+            print(f'{"" : >{columns}}', end='')
+        else:
+            print('', end='')
         spinner = self._spinner()
         while self._is_spinning:
             print(colored(f'{next(spinner): >{len(end_msg)}}', *self._get_color_args()), end='')
