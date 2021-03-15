@@ -67,4 +67,5 @@ class CLI(ApplicationABC):
 
             self._command_handler.handle(command, args)
         except KeyboardInterrupt:
+            Console.write_line()
             exit()
