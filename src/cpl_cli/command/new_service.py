@@ -50,6 +50,22 @@ class NewService(CommandABC):
         self._use_startup: bool = False
         self._use_service_providing: bool = False
 
+    @staticmethod
+    def _help(message: str):
+        """
+        Internal help output
+        :param message:
+        :return:
+        """
+        Console.error(message)
+
+        schematics = [
+            'console (c|C) <name>',
+        ]
+        Console.write_line('Available Schematics:')
+        for name in schematics:
+            Console.write(f'\n\t{name} ')
+
     def _create_project_settings(self, name: str):
         self._project_dict = {
             ProjectSettingsNameEnum.name.value: name,
@@ -219,8 +235,16 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
+        if len(args) == 0:
+            self._help('Usage: cpl new <schematic> [options]')
+            exit()
+
         self._command = args[0]
         if self._command == 'console':
             self._console(args)
+
+        else:
+            self._help('Usage: cpl new <schematic> [options]')
+            exit()
 
         Console.write('\n')
