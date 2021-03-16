@@ -11,9 +11,9 @@ from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.utils.pip import Pip
 from cpl_cli.cli_settings import CLISettings
 from cpl_cli.command_abc import CommandABC
-from cpl_cli.configuration import ProjectSettingsNameEnum, VersionSettingsNameEnum, BuildSettingsNameEnum
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
+from cpl_cli.configuration.settings_helper import SettingsHelper
 from cpl_cli.error import Error
 
 
@@ -60,43 +60,6 @@ class InstallService(CommandABC):
             )
 
         Pip.reset_executable()
-
-    @staticmethod
-    def _get_project_settings_dict(project: ProjectSettings) -> dict:
-        return {
-            ProjectSettingsNameEnum.name.value: project.name,
-            ProjectSettingsNameEnum.version.value: {
-                VersionSettingsNameEnum.major.value: project.version.major,
-                VersionSettingsNameEnum.minor.value: project.version.minor,
-                VersionSettingsNameEnum.micro.value: project.version.micro
-            },
-            ProjectSettingsNameEnum.author.value: project.author,
-            ProjectSettingsNameEnum.author_email.value: project.author_email,
-            ProjectSettingsNameEnum.description.value: project.description,
-            ProjectSettingsNameEnum.long_description.value: project.long_description,
-            ProjectSettingsNameEnum.url.value: project.url,
-            ProjectSettingsNameEnum.copyright_date.value: project.copyright_date,
-            ProjectSettingsNameEnum.copyright_name.value: project.copyright_name,
-            ProjectSettingsNameEnum.license_name.value: project.license_name,
-            ProjectSettingsNameEnum.license_description.value: project.license_description,
-            ProjectSettingsNameEnum.dependencies.value: project.dependencies,
-            ProjectSettingsNameEnum.python_version.value: project.python_version,
-            ProjectSettingsNameEnum.python_path.value: project.python_path,
-            ProjectSettingsNameEnum.classifiers.value: project.classifiers
-        }
-
-    @staticmethod
-    def _get_build_settings_dict(build: BuildSettings) -> dict:
-        return {
-            BuildSettingsNameEnum.source_path.value: build.source_path,
-            BuildSettingsNameEnum.output_path.value: build.output_path,
-            BuildSettingsNameEnum.main.value: build.main,
-            BuildSettingsNameEnum.entry_point.value: build.entry_point,
-            BuildSettingsNameEnum.include_package_data.value: build.include_package_data,
-            BuildSettingsNameEnum.included.value: build.included,
-            BuildSettingsNameEnum.excluded.value: build.excluded,
-            BuildSettingsNameEnum.package_data.value: build.package_data
-        }
 
     def _install_package(self, package: str):
         """
@@ -171,8 +134,8 @@ class InstallService(CommandABC):
             project.dependencies.append(new_package)
 
             config = {
-                ProjectSettings.__name__: self._get_project_settings_dict(project),
-                BuildSettings.__name__: self._get_build_settings_dict(build)
+                ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(project),
+                BuildSettings.__name__: SettingsHelper.get_build_settings_dict(build)
             }
             with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
                 project_file.write(json.dumps(config, indent=2))

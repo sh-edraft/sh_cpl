@@ -16,6 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
+      "colorama==0.4.4",
       "mysql-connector==2.2.9",
       "psutil==5.8.0",
       "packaging==20.9",

@@ -8,20 +8,29 @@ from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.utils.pip import Pip
 from cpl_cli.cli_settings import CLISettings
 from cpl_cli.command_abc import CommandABC
+from cpl_cli.configuration import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
+from cpl_cli.configuration.settings_helper import SettingsHelper
 
 
 class UpdateService(CommandABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, project_settings: ProjectSettings, cli_settings: CLISettings):
+    def __init__(self,
+                 runtime: ApplicationRuntimeABC,
+                 build_settings: BuildSettings,
+                 project_settings: ProjectSettings,
+                 cli_settings: CLISettings):
         """
         Service for the CLI command update
         :param runtime:
+        :param build_settings:
         :param project_settings:
+        :param cli_settings:
         """
         CommandABC.__init__(self)
 
         self._runtime = runtime
+        self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
 
@@ -93,19 +102,17 @@ class UpdateService(CommandABC):
         :param new_package:
         :return:
         """
-        content = ''
-        with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'r') as project:
-            content = project.read()
-            project.close()
+        if old_package in self._project_settings.dependencies:
+            index = self._project_settings.dependencies.index(old_package)
+            self._project_settings.dependencies[index] = new_package
 
-        if content == '' or content == '{}':
-            return
-
-        if old_package in content:
-            content = content.replace(old_package, new_package)
+        config = {
+            ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
+            BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
+        }
 
         with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project:
-            project.write(json.dumps(json.loads(content), indent=2))
+            project.write(json.dumps(config, indent=2))
             project.close()
 
     def run(self, args: list[str]):
