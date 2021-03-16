@@ -1,9 +1,9 @@
 import os
 import sys
-import time
 from collections import Callable
 from typing import Union, Optional
 
+import colorama
 import pyfiglet
 from pynput import keyboard
 from pynput.keyboard import Key
@@ -20,6 +20,7 @@ class Console:
     """
     Useful functions for handling with input and output
     """
+    colorama.init()
     _is_first_write = True
 
     _background_color: BackgroundColorEnum = BackgroundColorEnum.default

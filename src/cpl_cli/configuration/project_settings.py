@@ -111,7 +111,7 @@ class ProjectSettings(ConfigurationModelABC):
             if ProjectSettingsNameEnum.python_path.value in settings:
                 path = settings[ProjectSettingsNameEnum.python_path.value]
                 if not os.path.isfile(path) or not os.path.islink(path):
-                    if path != '':
+                    if path != '' and path is not None:
                         Error.warn(f'{ProjectSettingsNameEnum.python_path.value} not found')
 
                     path = sys.executable
