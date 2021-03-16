@@ -60,12 +60,13 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_json_file(self, name: str, optional: bool = None, output: bool = True):
+    def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         """
         Reads and saves settings from given json file
         :param name:
         :param optional:
         :param output:
+        :param path:
         :return:
         """
         pass
