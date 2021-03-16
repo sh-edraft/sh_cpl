@@ -34,7 +34,7 @@ class CLI(ApplicationABC):
         self._command_handler.add_command(CommandModel('build', ['h', 'B'], BuildService, True))
         self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, True))
         self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False))
-        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, False))
+        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, True))
         self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False))
         self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, True))
         self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, True))

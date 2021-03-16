@@ -5,7 +5,6 @@ import subprocess
 from packaging import version
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
-from cpl.configuration import ConfigurationABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.utils.pip import Pip
@@ -19,16 +18,20 @@ from cpl_cli.error import Error
 
 class InstallService(CommandABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, configuration: ConfigurationABC, cli_settings: CLISettings):
+    def __init__(self, runtime: ApplicationRuntimeABC, build_settings: BuildSettings, project_settings: ProjectSettings,
+                 cli_settings: CLISettings):
         """
         Service for the CLI command install
         :param runtime:
-        :param configuration:
+        :param build_settings:
+        :param project_settings:
+        :param cli_settings:
         """
         CommandABC.__init__(self)
 
         self._runtime = runtime
-        self._config = configuration
+        self._build_settings = build_settings
+        self._project_settings = project_settings
         self._cli_settings = cli_settings
 
     def _install_project(self):
@@ -36,19 +39,17 @@ class InstallService(CommandABC):
         Installs dependencies of CPl project
         :return:
         """
-        project: ProjectSettings = self._config.get_configuration(ProjectSettings)
-        build: BuildSettings = self._config.get_configuration(BuildSettings)
 
-        if project is None or build is None:
+        if self._project_settings is None or self._build_settings is None:
             Error.error('The command requires to be run in an CPL project, but a project could not be found.')
             return
 
-        if project.dependencies is None:
+        if self._project_settings.dependencies is None:
             Error.error('Found invalid dependencies in cpl.json.')
             return
 
-        Pip.set_executable(project.python_path)
-        for dependency in project.dependencies:
+        Pip.set_executable(self._project_settings.python_path)
+        for dependency in self._project_settings.dependencies:
             Console.spinner(
                 f'Installing: {dependency}',
                 Pip.install, dependency,
@@ -68,15 +69,13 @@ class InstallService(CommandABC):
         :return:
         """
         is_already_in_project = False
-        project: ProjectSettings = self._config.get_configuration(ProjectSettings)
-        build: BuildSettings = self._config.get_configuration(BuildSettings)
-        Pip.set_executable(project.python_path)
+        Pip.set_executable(self._project_settings.python_path)
 
-        if project is None or build is None:
+        if self._project_settings is None or self._build_settings is None:
             Error.error('The command requires to be run in an CPL project, but a project could not be found.')
             return
 
-        if project.dependencies is None:
+        if self._project_settings.dependencies is None:
             Error.error('Found invalid dependencies in cpl.json.')
             return
 
@@ -87,7 +86,7 @@ class InstallService(CommandABC):
             package_version = package.split('==')[1]
 
         to_remove_list = []
-        for dependency in project.dependencies:
+        for dependency in self._project_settings.dependencies:
             dependency_version = ''
 
             if '==' in dependency:
@@ -101,10 +100,10 @@ class InstallService(CommandABC):
                 is_already_in_project = True
 
         for to_remove in to_remove_list:
-            project.dependencies.remove(to_remove)
+            self._project_settings.dependencies.remove(to_remove)
 
         local_package = Pip.get_package(package)
-        if local_package is not None and local_package in project.dependencies:
+        if local_package is not None and local_package in self._project_settings.dependencies:
             Error.warn(f'Package {local_package} is already installed.')
             return
 
@@ -131,11 +130,11 @@ class InstallService(CommandABC):
             if new_package is None:
                 new_package = package
 
-            project.dependencies.append(new_package)
+            self._project_settings.dependencies.append(new_package)
 
             config = {
-                ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(project),
-                BuildSettings.__name__: SettingsHelper.get_build_settings_dict(build)
+                ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
+                BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
             }
             with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
                 project_file.write(json.dumps(config, indent=2))
