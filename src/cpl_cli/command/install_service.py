@@ -128,7 +128,10 @@ class InstallService(CommandABC):
         if not is_already_in_project:
             new_package = Pip.get_package(package)
             if new_package is not None:
-                new_package = name
+                if '==' in package:
+                    new_package = package
+                else:
+                    new_package = name
 
             if '/' in new_package:
                 new_package = new_package.split('/')[0]
