@@ -1,6 +1,7 @@
 import os
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.error import Error
@@ -9,7 +10,7 @@ from cpl_cli.command_model import CommandModel
 
 class CommandHandler(ServiceABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+    def __init__(self, runtime: ApplicationRuntimeABC, config: ConfigurationABC, services: ServiceProviderABC):
         """
         Service to handle incoming commands and args
         :param runtime:
@@ -18,6 +19,7 @@ class CommandHandler(ServiceABC):
         ServiceABC.__init__(self)
 
         self._runtime = runtime
+        self._config = config
         self._services = services
 
         self._commands: list[CommandModel] = []
@@ -44,5 +46,8 @@ class CommandHandler(ServiceABC):
                 if command.is_project_needed and not os.path.isfile(os.path.join(self._runtime.working_directory, 'cpl.json')):
                     Error.error('The command requires to be run in an CPL project, but a project could not be found.')
                     return
+
+                if command.is_project_needed:
+                    self._config.add_json_file('cpl.json', optional=True, output=False)
 
                 self._services.get_service(command.command).run(args)
