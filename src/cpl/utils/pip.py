@@ -65,7 +65,10 @@ class Pip:
             if 'version' in atr:
                 new_version = atr.split(': ')[1]
 
-        return f'{package}=={new_version}'
+        if new_version != '':
+            return f'{package}=={new_version}'
+
+        return package
 
     @classmethod
     def get_outdated(cls) -> bytes:
