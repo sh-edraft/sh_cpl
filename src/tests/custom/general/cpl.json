@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl==2021.4.1.post7"
+      "sh_cpl==2021.4.1.post9"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": "../../../../cpl-env/bin/python3.9",

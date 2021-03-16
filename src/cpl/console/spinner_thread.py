@@ -53,12 +53,18 @@ class SpinnerThread(threading.Thread):
 
     def run(self) -> None:
         """
-        Entry point ohf thread, shows the spinner
+        Entry point of thread, shows the spinner
         :return:
         """
-        rows, columns = os.popen('stty size', 'r').read().split()
+        columns = 0
+        if sys.platform == 'win32':
+            columns = os.get_terminal_size().columns
+        else:
+            term_rows, term_columns = os.popen('stty size', 'r').read().split()
+            columns = int(term_columns)
+
         end_msg = 'done'
-        end_msg_pos = int(columns) - self._msg_len - len(end_msg)
+        end_msg_pos = columns - self._msg_len - len(end_msg)
         if end_msg_pos > 0:
             print(f'{"" : >{end_msg_pos}}', end='')
         else:
