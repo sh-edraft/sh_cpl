@@ -92,12 +92,12 @@ class InstallService(CommandABC):
             if '==' in dependency:
                 dependency_version = dependency.split('==')[1]
 
-            if version.parse(package_version) != version.parse(dependency_version):
-                to_remove_list.append(dependency)
-                break
-
             if package in dependency:
-                is_already_in_project = True
+                if version.parse(package_version) != version.parse(dependency_version):
+                    to_remove_list.append(dependency)
+                    break
+                else:
+                    is_already_in_project = True
 
         for to_remove in to_remove_list:
             self._project_settings.dependencies.remove(to_remove)
