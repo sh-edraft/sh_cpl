@@ -9,6 +9,7 @@ from cpl.configuration import ConfigurationABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.utils.pip import Pip
+from cpl_cli.cli_settings import CLISettings
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration import ProjectSettingsNameEnum, VersionSettingsNameEnum, BuildSettingsNameEnum
 from cpl_cli.configuration.build_settings import BuildSettings
@@ -18,7 +19,7 @@ from cpl_cli.error import Error
 
 class InstallService(CommandABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, configuration: ConfigurationABC):
+    def __init__(self, runtime: ApplicationRuntimeABC, configuration: ConfigurationABC, cli_settings: CLISettings):
         """
         Service for the CLI command install
         :param runtime:
@@ -28,6 +29,7 @@ class InstallService(CommandABC):
 
         self._runtime = runtime
         self._config = configuration
+        self._cli_settings = cli_settings
 
     def _install_project(self):
         """
@@ -50,7 +52,7 @@ class InstallService(CommandABC):
             Console.spinner(
                 f'Installing: {dependency}',
                 Pip.install, dependency,
-                source='https://pip.sh-edraft.de' if 'sh_cpl' in dependency else None,
+                source=self._cli_settings.pip_path if 'sh_cpl' in dependency else None,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
@@ -150,7 +152,7 @@ class InstallService(CommandABC):
         Console.spinner(
             f'Installing: {package}',
             Pip.install, package,
-            source='https://pip.sh-edraft.de' if 'sh_cpl' in package else None,
+            source=self._cli_settings.pip_path if 'sh_cpl' in package else None,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,

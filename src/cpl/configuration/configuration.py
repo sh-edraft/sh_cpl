@@ -23,7 +23,7 @@ class Configuration(ConfigurationABC):
         """
         ConfigurationABC.__init__(self)
 
-        self._hosting_environment = ApplicationEnvironment()
+        self._application_environment = ApplicationEnvironment()
         self._config: dict[Union[type, str], Union[ConfigurationModelABC, str]] = {}
 
         self._argument_types: list[ConsoleArgument] = []
@@ -35,7 +35,7 @@ class Configuration(ConfigurationABC):
 
     @property
     def environment(self) -> ApplicationEnvironmentABC:
-        return self._hosting_environment
+        return self._application_environment
 
     @property
     def additional_arguments(self) -> list[str]:
@@ -93,13 +93,13 @@ class Configuration(ConfigurationABC):
         :return:
         """
         if name == ConfigurationVariableNameEnum.environment.value:
-            self._hosting_environment.environment_name = EnvironmentNameEnum(value)
+            self._application_environment.environment_name = EnvironmentNameEnum(value)
 
         elif name == ConfigurationVariableNameEnum.name.value:
-            self._hosting_environment.application_name = value
+            self._application_environment.application_name = value
 
         elif name == ConfigurationVariableNameEnum.customer.value:
-            self._hosting_environment.customer = value
+            self._application_environment.customer = value
 
         else:
             self._config[name] = value
@@ -284,14 +284,18 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
-    def add_json_file(self, name: str, optional: bool = None, output: bool = True):
-        if self._hosting_environment.content_root_path.endswith('/') and not name.startswith('/'):
-            file_path = f'{self._hosting_environment.content_root_path}{name}'
+    def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
+        path_root = self._application_environment.content_root_path
+        if path is not None:
+            path_root = path
+
+        if str(path_root).endswith('/') and not name.startswith('/'):
+            file_path = f'{path_root}{name}'
         else:
-            file_path = f'{self._hosting_environment.content_root_path}/{name}'
+            file_path = f'{path_root}/{name}'
 
         if not os.path.isfile(file_path):
-            if not optional:
+            if optional is not True:
                 if output:
                     self._print_error(__name__, f'File not found: {file_path}')
 
@@ -337,13 +341,13 @@ class Configuration(ConfigurationABC):
         str, Callable[ConfigurationModelABC]]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
-                return self._hosting_environment.environment_name
+                return self._application_environment.environment_name
 
             elif search_type == ConfigurationVariableNameEnum.name.value:
-                return self._hosting_environment.application_name
+                return self._application_environment.application_name
 
             elif search_type == ConfigurationVariableNameEnum.customer.value:
-                return self._hosting_environment.customer
+                return self._application_environment.customer
 
         if search_type not in self._config:
             return None

@@ -6,13 +6,14 @@ from cpl.application import ApplicationRuntimeABC
 from cpl.console import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.utils.pip import Pip
+from cpl_cli.cli_settings import CLISettings
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.project_settings import ProjectSettings
 
 
 class UpdateService(CommandABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, project_settings: ProjectSettings):
+    def __init__(self, runtime: ApplicationRuntimeABC, project_settings: ProjectSettings, cli_settings: CLISettings):
         """
         Service for the CLI command update
         :param runtime:
@@ -22,6 +23,7 @@ class UpdateService(CommandABC):
 
         self._runtime = runtime
         self._project_settings = project_settings
+        self._cli_settings = cli_settings
 
     def _update_project_dependencies(self):
         """
@@ -38,7 +40,7 @@ class UpdateService(CommandABC):
                 '--upgrade',
                 '--upgrade-strategy',
                 'eager',
-                source='https://pip.sh-edraft.de' if 'sh_cpl' in name else None,
+                source=self._cli_settings.pip_path if 'sh_cpl' in name else None,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
