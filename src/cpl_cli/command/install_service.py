@@ -80,7 +80,7 @@ class InstallService(CommandABC):
             return
 
         package_version = ''
-        name = ''
+        name = package
         if '==' in package:
             name = package.split('==')[0]
             package_version = package.split('==')[1]
