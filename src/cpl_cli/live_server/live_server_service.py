@@ -48,7 +48,7 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         for proc in psutil.process_iter():
             with suppress(Exception):
                 if proc.cmdline() == self._ls_thread.command:
-                    os.system(f'pkill -f {self._ls_thread.main}')
+                    proc.kill()
 
         Console.write_line('Restart\n')
         while self._ls_thread.is_alive():

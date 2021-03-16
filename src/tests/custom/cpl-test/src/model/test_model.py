@@ -6,7 +6,7 @@ from cpl.console import Console
 class TestModel:
 
     def __init__(self):
-        Console.spinner('Waiting: ', self._wait, 3)
+        Console.spinner('Waiting: ', self._wait, 10)
         option = Console.select('->', 'Select option: ', [
             'Option 1',
             'Option 2',
