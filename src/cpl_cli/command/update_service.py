@@ -106,7 +106,10 @@ class UpdateService(CommandABC):
             index = self._project_settings.dependencies.index(old_package)
             if '/' in new_package:
                 new_package = new_package.split('/')[0]
-            
+
+            if '\\' in new_package:
+                new_package = new_package.split('\\')[0]
+
             self._project_settings.dependencies[index] = new_package
 
         config = {
