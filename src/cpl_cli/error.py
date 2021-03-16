@@ -1,4 +1,4 @@
-from cpl.console import ForegroundColorEnum
+from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 
 

@@ -6,10 +6,10 @@ import psutil as psutil
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-from cpl.application import ApplicationRuntimeABC
+from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
-from cpl.dependency_injection import ServiceABC
-from cpl_cli.configuration import BuildSettings
+from cpl.dependency_injection.service_abc import ServiceABC
+from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 

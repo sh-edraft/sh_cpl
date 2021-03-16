@@ -2,7 +2,7 @@ import json
 import os
 import subprocess
 
-from cpl.application import ApplicationRuntimeABC
+from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.utils.pip import Pip
