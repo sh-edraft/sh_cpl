@@ -136,8 +136,8 @@ class InstallService(CommandABC):
             if '/' in new_package:
                 new_package = new_package.split('/')[0]
 
-            if '\\' in new_package:
-                new_package = new_package.split('\\')[0]
+            if '\r' in new_package:
+                new_package = new_package.replace('\r', '')
 
             self._project_settings.dependencies.append(new_package)
 
