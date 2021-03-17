@@ -29,7 +29,7 @@
       "watchdog==2.0.2"
     ],
     "PythonVersion": ">=3.8",
-    "PythonPath": "",
+    "PythonPath": {},
     "Classifiers": []
   },
   "BuildSettings": {

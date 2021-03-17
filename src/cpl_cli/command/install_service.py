@@ -48,7 +48,7 @@ class InstallService(CommandABC):
             Error.error('Found invalid dependencies in cpl.json.')
             return
 
-        Pip.set_executable(self._project_settings.python_path)
+        Pip.set_executable(self._project_settings.python_executable)
         for dependency in self._project_settings.dependencies:
             Console.spinner(
                 f'Installing: {dependency}',
@@ -69,7 +69,7 @@ class InstallService(CommandABC):
         :return:
         """
         is_already_in_project = False
-        Pip.set_executable(self._project_settings.python_path)
+        Pip.set_executable(self._project_settings.python_executable)
 
         if self._project_settings is None or self._build_settings is None:
             Error.error('The command requires to be run in an CPL project, but a project could not be found.')

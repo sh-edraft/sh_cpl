@@ -127,7 +127,7 @@ class UpdateService(CommandABC):
         :param args:
         :return:
         """
-        Pip.set_executable(self._project_settings.python_path)
+        Pip.set_executable(self._project_settings.python_executable)
         self._check_project_dependencies()
         self._check_outdated()
         Pip.reset_executable()

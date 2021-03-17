@@ -30,6 +30,7 @@ class ProjectSettings(ConfigurationModelABC):
         self._dependencies: Optional[list[str]] = None
         self._python_version: Optional[str] = None
         self._python_path: Optional[str] = None
+        self._python_executable: Optional[str] = None
         self._classifiers: Optional[list[str]] = None
 
     @property
@@ -89,6 +90,10 @@ class ProjectSettings(ConfigurationModelABC):
         return self._python_path
 
     @property
+    def python_executable(self) -> str:
+        return self._python_executable
+
+    @property
     def classifiers(self) -> list[str]:
         return self._classifiers
 
@@ -107,9 +112,11 @@ class ProjectSettings(ConfigurationModelABC):
             self._license_description = settings[ProjectSettingsNameEnum.license_description.value]
             self._dependencies = settings[ProjectSettingsNameEnum.dependencies.value]
             self._python_version = settings[ProjectSettingsNameEnum.python_version.value]
+            self._python_path = settings[ProjectSettingsNameEnum.python_path.value]
 
-            if ProjectSettingsNameEnum.python_path.value in settings:
-                path = settings[ProjectSettingsNameEnum.python_path.value]
+            if ProjectSettingsNameEnum.python_path.value in settings and \
+                    sys.platform in settings[ProjectSettingsNameEnum.python_path.value]:
+                path = settings[ProjectSettingsNameEnum.python_path.value][sys.platform]
                 if not os.path.isfile(path) and not os.path.islink(path):
                     if path != '' and path is not None:
                         Error.warn(f'{ProjectSettingsNameEnum.python_path.value} not found')
@@ -118,7 +125,7 @@ class ProjectSettings(ConfigurationModelABC):
             else:
                 path = sys.executable
 
-            self._python_path = path
+            self._python_executable = path
 
             self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
         except Exception as e:

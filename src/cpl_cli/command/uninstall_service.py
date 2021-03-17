@@ -40,7 +40,7 @@ class UninstallService(CommandABC):
             Console.error(f'Usage: cpl uninstall <package>')
             return
 
-        Pip.set_executable(self._project_settings.python_path)
+        Pip.set_executable(self._project_settings.python_executable)
 
         package = args[0]
         is_in_dependencies = False

@@ -20,7 +20,9 @@
       "discord.py==1.6.0"
     ],
     "PythonVersion": ">=3.8",
-    "PythonPath": "../../../../cpl-env/bin/python3.9",
+    "PythonPath": {
+      "linux": "../../../../cpl-env/bin/python3.9"
+    },
     "Classifiers": []
   },
   "BuildSettings": {

@@ -87,6 +87,9 @@ class NewService(CommandABC):
                 f'sh_cpl=={version.parse(cpl.__version__)}'
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
+            ProjectSettingsNameEnum.python_path.value: {
+                sys.platform: ''
+            },
             ProjectSettingsNameEnum.classifiers.value: []
         }
 
