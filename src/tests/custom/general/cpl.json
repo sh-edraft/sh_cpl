@@ -21,7 +21,8 @@
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {
-      "linux": "../../../../cpl-env/bin/python3.9"
+      "linux": "../../../../cpl-env/bin/python3.9",
+      "win32": ""
     },
     "Classifiers": []
   },
