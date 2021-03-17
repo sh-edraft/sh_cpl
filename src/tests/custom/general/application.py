@@ -2,7 +2,6 @@ import time
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
-from cpl.console import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email import EMail

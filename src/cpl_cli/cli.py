@@ -1,4 +1,3 @@
-import threading
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
