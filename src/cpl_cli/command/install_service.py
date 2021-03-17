@@ -121,7 +121,9 @@ class InstallService(CommandABC):
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
         new_package = Pip.get_package(name)
-        if new_package is None:
+        if new_package is None \
+                or '==' in package and \
+                version.parse(package.split('==')[1]) != version.parse(new_package.split('==')[1]):
             Console.error(f'Installation of package {package} failed')
             return
 

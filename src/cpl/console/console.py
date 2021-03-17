@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from collections import Callable
 from typing import Union, Optional
 
@@ -441,6 +442,8 @@ class Console:
 
         for call in cls._hold_back_calls:
             call.function(*call.args)
+
+        time.sleep(0.1)
 
         return return_value
 
