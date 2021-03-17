@@ -92,8 +92,8 @@ class InstallService(CommandABC):
             if '==' in dependency:
                 dependency_version = dependency.split('==')[1]
 
-            if package in dependency:
-                if version.parse(package_version) != version.parse(dependency_version):
+            if name in dependency:
+                if package_version != '' and version.parse(package_version) != version.parse(dependency_version):
                     to_remove_list.append(dependency)
                     break
                 else:
@@ -145,9 +145,9 @@ class InstallService(CommandABC):
                 BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
             }
 
-            #with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
-            #    project_file.write(json.dumps(config, indent=2))
-            #    project_file.close()
+            with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
+                project_file.write(json.dumps(config, indent=2))
+                project_file.close()
 
         Pip.reset_executable()
 

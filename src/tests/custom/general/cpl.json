@@ -16,7 +16,8 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl==2021.4.1.post11"
+      "sh_cpl==2021.4.1.post11",
+      "discord.py==1.6.0"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": "../../../../cpl-env/bin/python3.9",
