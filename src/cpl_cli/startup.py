@@ -66,8 +66,7 @@ class Startup(StartupABC):
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
-        self._configuration.add_console_argument(
-            ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' ', is_value_token_optional=True))
+        self._configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))
         self._configuration.add_console_arguments(error=False)

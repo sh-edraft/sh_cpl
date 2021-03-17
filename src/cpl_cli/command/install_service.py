@@ -126,28 +126,28 @@ class InstallService(CommandABC):
             return
 
         if not is_already_in_project:
-            new_package = Pip.get_package(package)
-            if new_package is not None:
-                if '==' in package:
-                    new_package = package
-                else:
-                    new_package = name
+            new_name = package
+            if '==' in new_package:
+                new_name = new_package
+            elif '==' in name:
+                new_name = name
 
-            if '/' in new_package:
-                new_package = new_package.split('/')[0]
+            if '/' in new_name:
+                new_name = new_name.split('/')[0]
 
-            if '\r' in new_package:
-                new_package = new_package.replace('\r', '')
+            if '\r' in new_name:
+                new_name = new_name.replace('\r', '')
 
-            self._project_settings.dependencies.append(new_package)
+            self._project_settings.dependencies.append(new_name)
 
             config = {
                 ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
                 BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
             }
-            with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
-                project_file.write(json.dumps(config, indent=2))
-                project_file.close()
+
+            #with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
+            #    project_file.write(json.dumps(config, indent=2))
+            #    project_file.close()
 
         Pip.reset_executable()
 
