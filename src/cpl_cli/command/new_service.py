@@ -101,7 +101,7 @@ class NewService(CommandABC):
             BuildSettingsNameEnum.output_path.value: 'dist',
             BuildSettingsNameEnum.main.value: 'main',
             BuildSettingsNameEnum.entry_point.value: self._project.name,
-            BuildSettingsNameEnum.include_package_data.value: 'False',
+            BuildSettingsNameEnum.include_package_data.value: False,
             BuildSettingsNameEnum.included.value: [],
             BuildSettingsNameEnum.excluded.value: [
                 '*/__pycache__',
