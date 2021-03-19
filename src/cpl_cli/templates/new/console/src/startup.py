@@ -20,7 +20,11 @@ class StartupTemplate(TemplateFileABC):
             class Startup(StartupABC):
             
                 def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
-                    StartupABC.__init__(self, config, runtime, services)
+                    StartupABC.__init__(self)
+
+                    self._configuration = config
+                    self._application_runtime = runtime
+                    self._services = services
             
                 def configure_configuration(self) -> ConfigurationABC:
                     return self._configuration

@@ -14,7 +14,8 @@ class ApplicationBuilder(ApplicationBuilderABC):
         """
         Builder class for application
         """
-        ApplicationBuilderABC.__init__(self, app)
+        ApplicationBuilderABC.__init__(self)
+        self._app = app
         self._startup: Optional[StartupABC] = None
 
         self._configuration = Configuration()

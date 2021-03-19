@@ -23,7 +23,11 @@ from cpl_cli.publish.publisher_abc import PublisherABC
 class Startup(StartupABC):
 
     def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
-        StartupABC.__init__(self, config, runtime, services)
+        StartupABC.__init__(self)
+
+        self._configuration = config
+        self._application_runtime = runtime
+        self._services = services
 
         self._application_runtime.set_runtime_directory(__file__)
 

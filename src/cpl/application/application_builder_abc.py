@@ -7,11 +7,10 @@ from cpl.application.startup_abc import StartupABC
 
 class ApplicationBuilderABC(ABC):
 
-    def __init__(self, app: Type[ApplicationABC]):
+    def __init__(self, *args):
         """
         ABC of application builder
         """
-        self._app = app
 
     @abstractmethod
     def use_startup(self, startup: Type[StartupABC]):
