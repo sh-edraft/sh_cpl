@@ -11,15 +11,16 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from startup import Startup
+            from cpl.application.application_builder import ApplicationBuilder
+            
             from application import Application
+            from startup import Startup
             
             
             def main():
-                app = Application()
-                app.use_startup(Startup)
-                app.build()
-                app.run()
+                app_builder = ApplicationBuilder(Application)
+                app_builder.use_startup(Startup)
+                app_builder.build().run()
             
             
             if __name__ == '__main__':
@@ -47,13 +48,14 @@ class MainWithApplicationHostTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
+            from cpl.application.application_builder import ApplicationBuilder
+            
             from application import Application
             
             
             def main():
-                app = Application()
-                app.build()
-                app.run()
+                app_builder = ApplicationBuilder(Application)
+                app_builder.build().run()
             
             
             if __name__ == '__main__':

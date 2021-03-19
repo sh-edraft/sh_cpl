@@ -1,7 +1,10 @@
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
+from cpl.application.application_runtime_abc import ApplicationRuntimeABC
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
+from cpl.dependency_injection import ServiceProviderABC
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
@@ -19,11 +22,11 @@ from cpl_cli.command.version_service import VersionService
 
 class CLI(ApplicationABC):
 
-    def __init__(self):
+    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
         """
         CPL CLI
         """
-        ApplicationABC.__init__(self)
+        ApplicationABC.__init__(self, config, runtime, services)
 
         self._command_handler: Optional[CommandHandler] = None
 

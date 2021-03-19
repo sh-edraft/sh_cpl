@@ -432,7 +432,7 @@ class Console:
             return_value = call(*args, **kwargs)
         except KeyboardInterrupt:
             spinner.exit()
-            exit()
+            cls.close()
 
         spinner.stop_spinning()
         cls.set_hold_back(False)

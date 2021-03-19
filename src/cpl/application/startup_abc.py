@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from cpl.application.application_host_abc import ApplicationHostABC
+from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
@@ -8,22 +8,17 @@ from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 class StartupABC(ABC):
 
     @abstractmethod
-    def __init__(self):
+    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
         """
         ABC for a startup class
         """
-        pass
+
+        self._configuration = config
+        self._application_runtime = runtime
+        self._services = services
 
     @abstractmethod
-    def create_application_host(self) -> ApplicationHostABC:
-        """
-        Creates application host with specific attributes
-        :return: application host
-        """
-        pass
-
-    @abstractmethod
-    def create_configuration(self) -> ConfigurationABC:
+    def configure_configuration(self) -> ConfigurationABC:
         """
         Creates configuration of application
         :return: configuration
@@ -31,7 +26,7 @@ class StartupABC(ABC):
         pass
 
     @abstractmethod
-    def create_services(self) -> ServiceProviderABC:
+    def configure_services(self) -> ServiceProviderABC:
         """
         Creates service provider
         :return: service provider

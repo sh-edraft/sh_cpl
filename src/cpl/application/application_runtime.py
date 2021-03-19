@@ -2,27 +2,20 @@ import pathlib
 from datetime import datetime
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
-from cpl.configuration.configuration_abc import ConfigurationABC
 
 
 class ApplicationRuntime(ApplicationRuntimeABC):
 
-    def __init__(self, config: ConfigurationABC):
+    def __init__(self):
         """
         Representation of the application runtime
-        :param config:
         """
         ApplicationRuntimeABC.__init__(self)
 
-        self._app_configuration = config
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
         self._working_directory = pathlib.Path().absolute()
         self._runtime_directory = pathlib.Path(__file__).parent.absolute()
-
-    @property
-    def configuration(self) -> ConfigurationABC:
-        return self._app_configuration
 
     @property
     def start_time(self) -> datetime:

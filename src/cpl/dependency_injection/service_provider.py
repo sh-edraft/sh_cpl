@@ -13,13 +13,14 @@ from cpl.environment.environment_abc import ApplicationEnvironmentABC
 
 class ServiceProvider(ServiceProviderABC):
 
-    def __init__(self, app_runtime: ApplicationRuntimeABC):
+    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC):
         """
         Service for service providing
-        :param app_runtime:
+        :param runtime:
         """
         ServiceProviderABC.__init__(self)
-        self._app_runtime: ApplicationRuntimeABC = app_runtime
+        self._configuration: ConfigurationABC = config
+        self._runtime: ApplicationRuntimeABC = runtime
         self._database_context: Optional[DatabaseContextABC] = None
 
         self._transient_services: dict[Type[ServiceABC], Callable[ServiceABC]] = {}
@@ -38,19 +39,19 @@ class ServiceProvider(ServiceProviderABC):
             parameter = param[1]
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
                 if issubclass(parameter.annotation, ApplicationRuntimeABC):
-                    params.append(self._app_runtime)
+                    params.append(self._runtime)
 
                 elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
-                    params.append(self._app_runtime.configuration.environment)
+                    params.append(self._configuration.environment)
 
                 elif issubclass(parameter.annotation, DatabaseContextABC):
                     params.append(self._database_context)
 
                 elif issubclass(parameter.annotation, ConfigurationModelABC):
-                    params.append(self._app_runtime.configuration.get_configuration(parameter.annotation))
+                    params.append(self._configuration.get_configuration(parameter.annotation))
 
                 elif issubclass(parameter.annotation, ConfigurationABC):
-                    params.append(self._app_runtime.configuration)
+                    params.append(self._configuration)
 
                 elif issubclass(parameter.annotation, ServiceProviderABC):
                     params.append(self)

@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-
 
 class ApplicationRuntimeABC(ABC):
 
@@ -12,10 +10,6 @@ class ApplicationRuntimeABC(ABC):
         ABC for application runtime
         """
         pass
-
-    @property
-    @abstractmethod
-    def configuration(self) -> ConfigurationABC: pass
 
     @property
     @abstractmethod

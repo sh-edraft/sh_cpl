@@ -2,7 +2,10 @@ import time
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
+from cpl.application.application_runtime_abc import ApplicationRuntimeABC
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email import EMail
 from cpl.mailing.email_client_abc import EMailClientABC
@@ -10,8 +13,8 @@ from cpl.mailing.email_client_abc import EMailClientABC
 
 class Application(ApplicationABC):
 
-    def __init__(self):
-        ApplicationABC.__init__(self)
+    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+        ApplicationABC.__init__(self, config, runtime, services)
         self._logger: Optional[LoggerABC] = None
         self._mailer: Optional[EMailClientABC] = None
 
