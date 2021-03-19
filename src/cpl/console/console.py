@@ -113,7 +113,7 @@ class Console:
     """
 
     @classmethod
-    def _output(cls, string: str, x: int = None, y: int = None, end='\n'):
+    def _output(cls, string: str, x: int = None, y: int = None, end: str = None):
         """
         Prints given output with given format
         :param string:
@@ -124,6 +124,9 @@ class Console:
         """
         if cls._is_first_write:
             cls._is_first_write = False
+
+        if end is None:
+            end = '\n'
 
         args = []
         colored_args = []
