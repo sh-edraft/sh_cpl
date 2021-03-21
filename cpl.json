@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2021",
       "Minor": "04",
-      "Micro": "01-14"
+      "Micro": "01-15"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -26,7 +26,8 @@
       "setuptools==54.1.2",
       "tabulate==0.8.9",
       "termcolor==1.1.0",
-      "watchdog==2.0.2"
+      "watchdog==2.0.2",
+      "wheel==0.36.2"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {},
