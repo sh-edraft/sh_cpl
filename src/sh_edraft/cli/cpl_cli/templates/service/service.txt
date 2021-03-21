@@ -1,6 +1,0 @@
-class $Name($Base):
-
-    def __init__(self):
-        TestBase.__init__(self)
-
-        self.create()

@@ -1,0 +1,39 @@
+{
+  "ProjectSettings": {
+    "Name": "cpl-test",
+    "Version": {
+      "Major": "0",
+      "Minor": "0",
+      "Micro": "0"
+    },
+    "Author": "",
+    "AuthorEmail": "",
+    "Description": "",
+    "LongDescription": "",
+    "URL": "",
+    "CopyrightDate": "",
+    "CopyrightName": "",
+    "LicenseName": "",
+    "LicenseDescription": "",
+    "Dependencies": [
+      "sh_cpl==2021.4.1.post13"
+    ],
+    "PythonVersion": ">=3.9.2",
+    "PythonPath": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_common_py_lib/src/tests/custom/general/../../../../cpl-env/bin/python3.9",
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "SourcePath": "src",
+    "OutputPath": "dist",
+    "Main": "main",
+    "EntryPoint": "cpl-test",
+    "IncludePackageData": true,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {}
+  }
+}

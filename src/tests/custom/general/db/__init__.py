@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'sh_cpl.tests'
+__title__ = 'tests.db'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'

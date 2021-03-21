@@ -11,15 +11,20 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'sh_cpl.tests'
+__title__ = 'cpl.configuration'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.4.1'
+__version__ = '2021.4.1.post15'
 
 from collections import namedtuple
 
 # imports:
+from .configuration import Configuration
+from .configuration_abc import ConfigurationABC
+from .configuration_model_abc import ConfigurationModelABC
+from .configuration_variable_name_enum import ConfigurationVariableNameEnum
+from .console_argument import ConsoleArgument
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major=2021, minor=4, micro=1)
+version_info = VersionInfo(major='2021', minor='04', micro='01-15')
