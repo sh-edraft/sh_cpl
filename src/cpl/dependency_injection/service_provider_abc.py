@@ -15,7 +15,13 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def build_service(self, service_type: type) -> object: pass
+    def build_service(self, service_type: type) -> object:
+        """
+        Creates instance of given type
+        :param service_type:
+        :return:
+        """
+        pass
 
     @abstractmethod
     def get_service(self, instance_type: Type) -> Callable[ServiceABC]:
