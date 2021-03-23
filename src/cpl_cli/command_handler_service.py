@@ -2,6 +2,7 @@ import os
 
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
+from cpl.console.console import Console
 from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.error import Error
@@ -51,3 +52,4 @@ class CommandHandler(ServiceABC):
                     self._config.add_json_file('cpl.json', optional=True, output=False)
 
                 self._services.get_service(command.command).run(args)
+                Console.write('\n')

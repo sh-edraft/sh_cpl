@@ -163,5 +163,3 @@ class InstallService(CommandABC):
             self._install_project()
         else:
             self._install_package(args[0])
-
-        Console.write('\n')

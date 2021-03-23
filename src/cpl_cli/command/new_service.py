@@ -20,7 +20,8 @@ from cpl_cli.configuration.version_settings_name_enum import VersionSettingsName
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
 from cpl_cli.templates.new.console.src.application import ApplicationTemplate
-from cpl_cli.templates.new.console.src.main import MainWithApplicationHostAndStartupTemplate, MainWithoutApplicationHostTemplate, MainWithApplicationHostTemplate
+from cpl_cli.templates.new.console.src.main import MainWithApplicationHostAndStartupTemplate, \
+    MainWithoutApplicationHostTemplate, MainWithApplicationHostTemplate
 from cpl_cli.templates.new.console.src.startup import StartupTemplate
 from cpl_cli.templates.new.console.src.tests.init import TestsInitTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
@@ -249,5 +250,3 @@ class NewService(CommandABC):
         else:
             self._help('Usage: cpl new <schematic> [options]')
             exit()
-
-        Console.write('\n')

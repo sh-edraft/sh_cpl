@@ -148,5 +148,3 @@ class GenerateService(CommandABC):
         else:
             self._help('Usage: cpl generate <schematic> [options]')
             exit()
-
-        Console.write('\n')

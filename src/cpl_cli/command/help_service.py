@@ -35,5 +35,3 @@ class HelpService(CommandABC):
             Console.write(f'\n\t{name} ')
             Console.set_foreground_color(ForegroundColorEnum.default)
             Console.write(f'{description}')
-
-        Console.write('\n')

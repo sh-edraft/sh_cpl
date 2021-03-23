@@ -131,5 +131,3 @@ class UpdateService(CommandABC):
         self._check_project_dependencies()
         self._check_outdated()
         Pip.reset_executable()
-
-        Console.write('\n')
