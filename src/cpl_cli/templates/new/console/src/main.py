@@ -11,7 +11,7 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.application.application_builder import ApplicationBuilder
+            from cpl.application import ApplicationBuilder
             
             from application import Application
             from startup import Startup
@@ -48,7 +48,7 @@ class MainWithApplicationHostTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.application.application_builder import ApplicationBuilder
+            from cpl.application import ApplicationBuilder
             
             from application import Application
             
@@ -83,7 +83,7 @@ class MainWithoutApplicationHostTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.console.console import Console
+            from cpl.console import Console
             
             
             def main():
