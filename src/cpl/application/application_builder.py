@@ -6,6 +6,7 @@ from cpl.application.application_runtime import ApplicationRuntime
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration import Configuration
 from cpl.dependency_injection import ServiceProvider
+from cpl.dependency_injection.service_collection import ServiceCollection
 
 
 class ApplicationBuilder(ApplicationBuilderABC):
@@ -20,7 +21,7 @@ class ApplicationBuilder(ApplicationBuilderABC):
 
         self._configuration = Configuration()
         self._runtime = ApplicationRuntime()
-        self._services = ServiceProvider(self._configuration, self._runtime)
+        self._services = ServiceCollection(self._configuration, self._runtime)
 
     def use_startup(self, startup: Type[StartupABC]):
         """
@@ -39,4 +40,4 @@ class ApplicationBuilder(ApplicationBuilderABC):
             self._startup.configure_configuration()
             self._startup.configure_services()
 
-        return self._app(self._configuration, self._runtime, self._services)
+        return self._app(self._configuration, self._runtime, self._services.build_service_provider())

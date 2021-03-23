@@ -3,6 +3,7 @@ from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.database.context.database_context import DatabaseContext
 from cpl.database.database_settings import DatabaseSettings
+from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.logging.logger_service import Logger
 from cpl.logging.logger_abc import LoggerABC
@@ -13,12 +14,13 @@ from cpl.utils.credential_manager import CredentialManager
 
 class Startup(StartupABC):
 
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceCollectionABC):
         StartupABC.__init__(self)
 
         self._configuration = config
         self._application_runtime = runtime
         self._services = services
+        print(self._services)
 
     def configure_configuration(self) -> ConfigurationABC:
         self._configuration.add_environment_variables('PYTHON_')
@@ -32,12 +34,11 @@ class Startup(StartupABC):
 
     def configure_services(self) -> ServiceProviderABC:
         # Create and connect to database
-        db_settings: DatabaseSettings = self._configuration.get_configuration(DatabaseSettings)
-        self._services.add_db_context(DatabaseContext)
-        db: DatabaseContext = self._services.get_db_context()
-        db.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
+        # db_settings: DatabaseSettings = self._configuration.get_configuration(DatabaseSettings)
+        # self._services.add_db_context(DatabaseContext)
+        # db.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
 
         self._services.add_singleton(LoggerABC, Logger)
         self._services.add_singleton(EMailClientABC, EMailClient)
 
-        return self._services
+        return self._services.build_service_provider()

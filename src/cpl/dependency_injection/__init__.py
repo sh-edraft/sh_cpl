@@ -21,7 +21,7 @@ from collections import namedtuple
 
 # imports:
 from .service_abc import ServiceABC
-from .service_provider import ServiceProvider
+from .service_provider_old import ServiceProvider
 from .service_provider_abc import ServiceProviderABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
