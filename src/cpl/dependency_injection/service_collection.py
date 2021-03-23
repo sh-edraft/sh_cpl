@@ -3,8 +3,6 @@ from typing import Union, Type, Callable, Optional
 from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.database.context import DatabaseContextABC
-from cpl.dependency_injection.service_factory import ServiceFactory
-from cpl.dependency_injection.service_factory_abc import ServiceFactoryABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_descriptor import ServiceDescriptor
@@ -46,12 +44,12 @@ class ServiceCollection(ServiceCollectionABC):
     def add_singleton(self, service_type: Union[type, object], service: Union[type, object] = None):
         if service is not None:
             if isinstance(service, type):
-                service = service()
+                service = self.build_service_provider().build_service(service)
 
             self._add_descriptor(service, ServiceLifetimeEnum.singleton)
         else:
             if isinstance(service_type, type):
-                service_type = service_type()
+                service_type = self.build_service_provider().build_service(service_type)
 
             self._add_descriptor(service_type, ServiceLifetimeEnum.singleton)
 
@@ -64,8 +62,5 @@ class ServiceCollection(ServiceCollectionABC):
         else:
             self._add_descriptor(service_type, ServiceLifetimeEnum.transient)
 
-    def build_service_factory(self) -> ServiceFactoryABC:
-        return ServiceFactory(self._service_descriptors, self._configuration, self._runtime)
-
     def build_service_provider(self) -> ServiceProviderABC:
-        return ServiceProvider(self.build_service_factory())
+        return ServiceProvider(self._service_descriptors, self._configuration, self._runtime)

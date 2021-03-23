@@ -11,7 +11,7 @@ from cpl.configuration.console_argument import ConsoleArgument
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.environment.application_environment import ApplicationEnvironment
-from cpl.environment.environment_abc import ApplicationEnvironmentABC
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 

@@ -1,7 +1,7 @@
 from socket import gethostname
 from typing import Optional
 
-from cpl.environment.environment_abc import ApplicationEnvironmentABC
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 

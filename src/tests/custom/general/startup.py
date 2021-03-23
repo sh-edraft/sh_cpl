@@ -10,6 +10,7 @@ from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email_client_service import EMailClient
 from cpl.mailing.email_client_abc import EMailClientABC
 from cpl.utils.credential_manager import CredentialManager
+from tests.custom.general.test_service import TestService
 
 
 class Startup(StartupABC):
@@ -20,7 +21,6 @@ class Startup(StartupABC):
         self._configuration = config
         self._application_runtime = runtime
         self._services = services
-        print(self._services)
 
     def configure_configuration(self) -> ConfigurationABC:
         self._configuration.add_environment_variables('PYTHON_')
@@ -40,5 +40,6 @@ class Startup(StartupABC):
 
         self._services.add_singleton(LoggerABC, Logger)
         self._services.add_singleton(EMailClientABC, EMailClient)
+        self._services.add_singleton(TestService)
 
         return self._services.build_service_provider()

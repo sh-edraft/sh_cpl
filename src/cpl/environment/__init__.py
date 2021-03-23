@@ -20,7 +20,7 @@ __version__ = '2021.4.2'
 from collections import namedtuple
 
 # imports:
-from .environment_abc import ApplicationEnvironmentABC
+from .application_environment_abc import ApplicationEnvironmentABC
 from .environment_name_enum import EnvironmentNameEnum
 from .application_environment import ApplicationEnvironment
 
