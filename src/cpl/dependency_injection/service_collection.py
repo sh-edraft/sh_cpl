@@ -4,6 +4,7 @@ from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.database.context import DatabaseContextABC
 from cpl.dependency_injection.service_factory import ServiceFactory
+from cpl.dependency_injection.service_factory_abc import ServiceFactoryABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_descriptor import ServiceDescriptor
@@ -63,5 +64,8 @@ class ServiceCollection(ServiceCollectionABC):
         else:
             self._add_descriptor(service_type, ServiceLifetimeEnum.transient)
 
+    def build_service_factory(self) -> ServiceFactoryABC:
+        return ServiceFactory(self._service_descriptors, self._configuration, self._runtime)
+
     def build_service_provider(self) -> ServiceProviderABC:
-        return ServiceProvider(ServiceFactory(self._service_descriptors, self._configuration, self._runtime))
+        return ServiceProvider(self.build_service_factory())
