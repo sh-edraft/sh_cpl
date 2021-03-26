@@ -49,6 +49,8 @@ class ServiceProvider(ServiceProviderABC):
                 else:
                     service_type = descriptor.service_type
 
+                break
+
         sig = signature(service_type.__init__)
         params = []
         for param in sig.parameters.items():

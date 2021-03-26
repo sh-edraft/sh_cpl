@@ -21,7 +21,11 @@ from collections import namedtuple
 
 # imports:
 from .service_abc import ServiceABC
-from .service_provider_old import ServiceProvider
+from .service_collection import ServiceCollection
+from .service_collection_abc import ServiceCollectionABC
+from .service_descriptor import ServiceDescriptor
+from .service_lifetime_enum import ServiceLifetimeEnum
+from .service_provider import ServiceProvider
 from .service_provider_abc import ServiceProviderABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

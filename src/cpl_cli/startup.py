@@ -2,6 +2,7 @@ from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
+from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
@@ -22,7 +23,7 @@ from cpl_cli.publish.publisher_abc import PublisherABC
 
 class Startup(StartupABC):
 
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceCollectionABC):
         StartupABC.__init__(self)
 
         self._configuration = config
@@ -80,4 +81,4 @@ class Startup(StartupABC):
         self._services.add_transient(UpdateService)
         self._services.add_transient(VersionService)
 
-        return self._services
+        return self._services.build_service_provider()
