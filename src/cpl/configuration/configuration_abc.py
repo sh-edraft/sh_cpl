@@ -82,8 +82,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
-        str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
         """
         Returns value in configuration by given type
         :param search_type:

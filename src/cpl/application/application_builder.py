@@ -5,7 +5,6 @@ from cpl.application.application_builder_abc import ApplicationBuilderABC
 from cpl.application.application_runtime import ApplicationRuntime
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration import Configuration
-from cpl.dependency_injection import ServiceProvider
 from cpl.dependency_injection.service_collection import ServiceCollection
 
 
