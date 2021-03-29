@@ -25,18 +25,17 @@ class ServiceProvider(ServiceProviderABC):
 
         return None
 
-    def _get_service(self, service_type: type, parameter: Parameter) -> object:
+    def _get_service(self, parameter: Parameter) -> object:
         for descriptor in self._service_descriptors:
-            if descriptor.service_type == parameter.annotation or issubclass(descriptor.service_type,
-                                                                             parameter.annotation):
+            if descriptor.service_type == parameter.annotation or issubclass(descriptor.service_type, parameter.annotation):
                 if descriptor.implementation is not None:
                     return descriptor.implementation
 
-                implementation = self.build_service(service_type)
+                implementation = self.build_service(descriptor.service_type)
                 if descriptor.lifetime == ServiceLifetimeEnum.singleton:
                     descriptor.implementation = implementation
 
-                return descriptor.implementation
+                return implementation
 
     def build_service(self, service_type: type) -> object:
         for descriptor in self._service_descriptors:
@@ -69,7 +68,7 @@ class ServiceProvider(ServiceProviderABC):
                     params.append(self._configuration)
 
                 else:
-                    params.append(self._get_service(service_type, parameter))
+                    params.append(self._get_service(parameter))
 
         return service_type(*params)
 
