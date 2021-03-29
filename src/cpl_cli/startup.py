@@ -1,7 +1,7 @@
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
+from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
@@ -22,21 +22,21 @@ from cpl_cli.publish.publisher_abc import PublisherABC
 
 class Startup(StartupABC):
 
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+    def __init__(self, config: ConfigurationABC, services: ServiceCollectionABC):
         StartupABC.__init__(self)
 
         self._configuration = config
-        self._application_runtime = runtime
+        self._env = self._configuration.environment
         self._services = services
 
-        self._application_runtime.set_runtime_directory(__file__)
+        self._env.set_runtime_directory(__file__)
 
     def configure_configuration(self) -> ConfigurationABC:
         self._configuration.argument_error_function = Error.error
 
         self._configuration.add_environment_variables('PYTHON_')
         self._configuration.add_environment_variables('CPL_')
-        self._configuration.add_json_file('appsettings.json', path=self._application_runtime.runtime_directory,
+        self._configuration.add_json_file('appsettings.json', path=self._env.runtime_directory,
                                           optional=False, output=False)
         self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
@@ -80,4 +80,4 @@ class Startup(StartupABC):
         self._services.add_transient(UpdateService)
         self._services.add_transient(VersionService)
 
-        return self._services
+        return self._services.build_service_provider()

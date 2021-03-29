@@ -2,7 +2,7 @@ import ssl
 from smtplib import SMTP
 from typing import Optional
 
-from cpl.environment.environment_abc import ApplicationEnvironmentABC
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email import EMail
 from cpl.mailing.email_client_abc import EMailClientABC

@@ -3,9 +3,9 @@ import os
 import traceback
 from string import Template
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl.logging.logger_abc import LoggerABC
 from cpl.logging.logging_level_enum import LoggingLevelEnum
 from cpl.logging.logging_settings import LoggingSettings
@@ -14,7 +14,7 @@ from cpl.time.time_format_settings import TimeFormatSettings
 
 class Logger(LoggerABC):
 
-    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, app_runtime: ApplicationRuntimeABC):
+    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, env: ApplicationEnvironmentABC):
         """
         Service for logging
         :param logging_settings:
@@ -23,13 +23,13 @@ class Logger(LoggerABC):
         """
         LoggerABC.__init__(self)
 
-        self._app_runtime = app_runtime
+        self._env = env
         self._log_settings: LoggingSettings = logging_settings
         self._time_format_settings: TimeFormatSettings = time_format
 
         self._log = Template(self._log_settings.filename).substitute(
-            date_time_now=self._app_runtime.date_time_now.strftime(self._time_format_settings.date_time_format),
-            start_time=self._app_runtime.start_time.strftime(self._time_format_settings.date_time_log_format)
+            date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
+            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
         )
         self._path = self._log_settings.path
         self._level = self._log_settings.level

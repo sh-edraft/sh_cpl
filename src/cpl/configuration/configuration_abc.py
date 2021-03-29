@@ -4,7 +4,7 @@ from typing import Type, Union, Optional
 
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.environment.environment_abc import ApplicationEnvironmentABC
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
 class ConfigurationABC(ABC):
@@ -82,8 +82,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
-        str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
         """
         Returns value in configuration by given type
         :param search_type:

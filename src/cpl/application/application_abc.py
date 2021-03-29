@@ -1,21 +1,21 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl.environment import ApplicationEnvironmentABC
 
 
 class ApplicationABC(ABC):
 
     @abstractmethod
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+    def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         """
         ABC of application
         """
         self._configuration: Optional[ConfigurationABC] = config
-        self._runtime: Optional[ApplicationRuntimeABC] = runtime
+        self._environment: Optional[ApplicationEnvironmentABC] = self._configuration.environment
         self._services: Optional[ServiceProviderABC] = services
 
     def run(self):

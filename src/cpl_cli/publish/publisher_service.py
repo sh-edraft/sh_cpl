@@ -7,9 +7,9 @@ import setuptools
 from packaging import version
 from setuptools import sandbox
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.publish.publisher_abc import PublisherABC
@@ -19,21 +19,21 @@ from cpl_cli.templates.publish.setup_template import SetupTemplate
 
 class PublisherService(PublisherABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, project: ProjectSettings, build: BuildSettings):
+    def __init__(self, env: ApplicationEnvironmentABC, project: ProjectSettings, build: BuildSettings):
         """
         Service to build or publish files for distribution
-        :param runtime:
+        :param env:
         :param project:
         :param build:
         """
         PublisherABC.__init__(self)
 
-        self._runtime = runtime
+        self._env = env
         self._project_settings = project
         self._build_settings = build
 
-        self._source_path = os.path.join(self._runtime.working_directory, self._build_settings.source_path)
-        self._output_path = os.path.join(self._runtime.working_directory, self._build_settings.output_path)
+        self._source_path = os.path.join(self._env.working_directory, self._build_settings.source_path)
+        self._output_path = os.path.join(self._env.working_directory, self._build_settings.output_path)
 
         self._included_files: list[str] = []
         self._included_dirs: list[str] = []

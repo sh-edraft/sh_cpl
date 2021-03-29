@@ -21,4 +21,3 @@ class PublishService(CommandABC):
         :return:
         """
         self._publisher.publish()
-        Console.write('\n')

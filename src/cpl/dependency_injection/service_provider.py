@@ -1,45 +1,61 @@
 from collections import Callable
 from inspect import signature, Parameter
-from typing import Type, Optional, Union
+from typing import Optional
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.database.context.database_context_abc import DatabaseContextABC
-from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.environment.environment_abc import ApplicationEnvironmentABC
+from cpl.dependency_injection.service_descriptor import ServiceDescriptor
+from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
 class ServiceProvider(ServiceProviderABC):
 
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC):
-        """
-        Service for service providing
-        :param runtime:
-        """
+    def __init__(self, service_descriptors: list[ServiceDescriptor], config: ConfigurationABC, db_context: Optional[DatabaseContextABC]):
         ServiceProviderABC.__init__(self)
+
+        self._service_descriptors: list[ServiceDescriptor] = service_descriptors
         self._configuration: ConfigurationABC = config
-        self._runtime: ApplicationRuntimeABC = runtime
-        self._database_context: Optional[DatabaseContextABC] = None
+        self._database_context = db_context
 
-        self._transient_services: dict[Type[ServiceABC], Callable[ServiceABC]] = {}
-        self._scoped_services: dict[Type[ServiceABC], Callable[ServiceABC]] = {}
-        self._singleton_services: dict[Type[ServiceABC], Callable[ServiceABC], ServiceABC] = {}
+    def _find_service(self, service_type: type) -> [ServiceDescriptor]:
+        for descriptor in self._service_descriptors:
+            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+                return descriptor
 
-    def _create_instance(self, service: Union[Callable[ServiceABC], ServiceABC]) -> Callable[ServiceABC]:
-        """
-        Creates an instance of given type
-        :param service:
-        :return:
-        """
-        sig = signature(service.__init__)
+        return None
+
+    def _get_service(self, parameter: Parameter) -> object:
+        for descriptor in self._service_descriptors:
+            if descriptor.service_type == parameter.annotation or issubclass(descriptor.service_type, parameter.annotation):
+                if descriptor.implementation is not None:
+                    return descriptor.implementation
+
+                implementation = self.build_service(descriptor.service_type)
+                if descriptor.lifetime == ServiceLifetimeEnum.singleton:
+                    descriptor.implementation = implementation
+
+                return implementation
+
+    def build_service(self, service_type: type) -> object:
+        for descriptor in self._service_descriptors:
+            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+                if descriptor.implementation is not None:
+                    service_type = type(descriptor.implementation)
+                else:
+                    service_type = descriptor.service_type
+
+                break
+
+        sig = signature(service_type.__init__)
         params = []
         for param in sig.parameters.items():
             parameter = param[1]
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
-                if issubclass(parameter.annotation, ApplicationRuntimeABC):
-                    params.append(self._runtime)
+                if issubclass(parameter.annotation, ServiceProviderABC):
+                    params.append(self)
 
                 elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
                     params.append(self._configuration.environment)
@@ -53,70 +69,22 @@ class ServiceProvider(ServiceProviderABC):
                 elif issubclass(parameter.annotation, ConfigurationABC):
                     params.append(self._configuration)
 
-                elif issubclass(parameter.annotation, ServiceProviderABC):
-                    params.append(self)
-
                 else:
-                    params.append(self.get_service(parameter.annotation))
+                    params.append(self._get_service(parameter))
 
-        return service(*params)
+        return service_type(*params)
 
-    def add_db_context(self, db_context: Type[DatabaseContextABC]):
-        self._database_context = self._create_instance(db_context)
+    def get_service(self, service_type: type) -> Optional[Callable[object]]:
+        result = self._find_service(service_type)
 
-    def get_db_context(self) -> Callable[DatabaseContextABC]:
-        return self._database_context
+        if result is None:
+            return None
 
-    def add_transient(self, service_type: Type[ServiceABC], service: Callable[ServiceABC] = None):
-        if service is None:
-            self._transient_services[service_type] = service_type
-        else:
-            self._transient_services[service_type] = service
+        if result.implementation is not None:
+            return result.implementation
 
-    def add_scoped(self, service_type: Type[ServiceABC], service: Callable[ServiceABC] = None):
-        if service is None:
-            self._scoped_services[service_type] = service_type
-        else:
-            self._scoped_services[service_type] = service
+        implementation = self.build_service(service_type)
+        if result.lifetime == ServiceLifetimeEnum.singleton:
+            result.implementation = implementation
 
-    def add_singleton(self, service_type: Type[ServiceABC], service: Callable[ServiceABC] = None):
-        for known_service in self._singleton_services:
-            if type(known_service) == service_type:
-                raise Exception(f'Service with type {service_type} already exists')
-
-        if service is None:
-            self._singleton_services[service_type] = self._create_instance(service_type)
-        else:
-            self._singleton_services[service_type] = self._create_instance(service)
-
-    def get_service(self, instance_type: Type) -> Callable[ServiceABC]:
-        if issubclass(instance_type, ServiceProviderABC):
-            return self
-
-        for service in self._transient_services:
-            if service == instance_type and isinstance(self._transient_services[service], type(instance_type)):
-                return self._create_instance(self._transient_services[service])
-
-        for service in self._scoped_services:
-            if service == instance_type and isinstance(self._scoped_services[service], type(instance_type)):
-                return self._create_instance(self._scoped_services[service])
-
-        for service in self._singleton_services:
-            if service == instance_type and isinstance(self._singleton_services[service], instance_type):
-                return self._singleton_services[service]
-
-    def remove_service(self, instance_type: Type[ServiceABC]):
-        for service in self._transient_services:
-            if service == instance_type and isinstance(self._transient_services[service], type(instance_type)):
-                del self._transient_services[service]
-                return
-
-        for service in self._scoped_services:
-            if service == instance_type and isinstance(self._scoped_services[service], type(instance_type)):
-                del self._scoped_services[service]
-                return
-
-        for service in self._singleton_services:
-            if service == instance_type and isinstance(self._singleton_services[service], instance_type):
-                del self._singleton_services[service]
-                return
+        return implementation

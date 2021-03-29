@@ -11,7 +11,7 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.application.application_builder import ApplicationBuilder
+            from cpl.application import ApplicationBuilder
             
             from application import Application
             from startup import Startup
@@ -40,7 +40,7 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         return self._value
 
 
-class MainWithApplicationHostTemplate(TemplateFileABC):
+class MainWithApplicationBaseTemplate(TemplateFileABC):
 
     def __init__(self):
         TemplateFileABC.__init__(self)
@@ -48,7 +48,7 @@ class MainWithApplicationHostTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.application.application_builder import ApplicationBuilder
+            from cpl.application import ApplicationBuilder
             
             from application import Application
             
@@ -75,7 +75,7 @@ class MainWithApplicationHostTemplate(TemplateFileABC):
         return self._value
 
 
-class MainWithoutApplicationHostTemplate(TemplateFileABC):
+class MainWithoutApplicationBaseTemplate(TemplateFileABC):
 
     def __init__(self):
         TemplateFileABC.__init__(self)
@@ -83,10 +83,56 @@ class MainWithoutApplicationHostTemplate(TemplateFileABC):
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.console.console import Console
+            from cpl.console import Console
             
             
             def main():
+                Console.write_line('Hello World')
+            
+            
+            if __name__ == '__main__':
+                main()
+        """)
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @property
+    def path(self) -> str:
+        return self._path
+
+    @property
+    def value(self) -> str:
+        return self._value
+
+
+class MainWithDependencyInjection(TemplateFileABC):
+
+    def __init__(self):
+        TemplateFileABC.__init__(self)
+
+        self._name = 'main.py'
+        self._path = 'src/'
+        self._value = textwrap.dedent("""\
+            from cpl.configuration import Configuration, ConfigurationABC
+            from cpl.console import Console
+            from cpl.dependency_injection import ServiceCollection, ServiceProviderABC
+            
+            
+            def configure_configuration() -> ConfigurationABC:
+                config = Configuration()
+                return config
+            
+            
+            def configure_services(config: ConfigurationABC) -> ServiceProviderABC:
+                services = ServiceCollection(config)
+                return services.build_service_provider()
+            
+            
+            def main():
+                config = configure_configuration()
+                provider = configure_services(config)
                 Console.write_line('Hello World')
             
             

@@ -1,7 +1,6 @@
 import os
 from collections import Callable
 
-from cpl.application.application_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
@@ -18,11 +17,10 @@ from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 class GenerateService(CommandABC):
 
-    def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
+    def __init__(self, configuration: ConfigurationABC):
         """
         Service for the CLI command generate
         :param configuration:
-        :param runtime:
         """
         CommandABC.__init__(self)
 
@@ -54,7 +52,7 @@ class GenerateService(CommandABC):
         }
 
         self._config = configuration
-        self._runtime = runtime
+        self._env = self._config.environment
 
     @staticmethod
     def _help(message: str):
@@ -105,7 +103,7 @@ class GenerateService(CommandABC):
 
         template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
 
-        file_path = os.path.join(self._runtime.working_directory, template.path, template.name)
+        file_path = os.path.join(self._env.working_directory, template.path, template.name)
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
@@ -113,9 +111,9 @@ class GenerateService(CommandABC):
             Console.error(f'{String.first_to_upper(schematic)} already exists!')
             exit()
 
-        message = f'Creating {self._runtime.working_directory}/{template.path}/{template.name}'
+        message = f'Creating {self._env.working_directory}/{template.path}/{template.name}'
         if template.path == '':
-            message = f'Creating {self._runtime.working_directory}/{template.name}'
+            message = f'Creating {self._env.working_directory}/{template.name}'
 
         Console.spinner(
             message,
@@ -148,5 +146,3 @@ class GenerateService(CommandABC):
         else:
             self._help('Usage: cpl generate <schematic> [options]')
             exit()
-
-        Console.write('\n')

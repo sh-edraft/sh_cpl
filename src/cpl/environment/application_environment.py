@@ -1,7 +1,9 @@
+import pathlib
+from datetime import datetime
 from socket import gethostname
 from typing import Optional
 
-from cpl.environment.environment_abc import ApplicationEnvironmentABC
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 
@@ -19,6 +21,11 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
         self._app_name: Optional[str] = None
         self._customer: Optional[str] = None
         self._content_root_path: Optional[str] = crp
+
+        self._start_time: datetime = datetime.now()
+        self._end_time: datetime = datetime.now()
+        self._working_directory = pathlib.Path().absolute()
+        self._runtime_directory = pathlib.Path(__file__).parent.absolute()
 
     @property
     def environment_name(self) -> str:
@@ -55,3 +62,37 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
     @property
     def host_name(self):
         return gethostname()
+
+    @property
+    def start_time(self) -> datetime:
+        return self._start_time
+
+    @property
+    def end_time(self) -> datetime:
+        return self._end_time
+
+    @end_time.setter
+    def end_time(self, end_time: datetime):
+        self._end_time = end_time
+
+    @property
+    def date_time_now(self) -> datetime:
+        return datetime.now()
+
+    @property
+    def working_directory(self) -> str:
+        return self._working_directory
+
+    def set_working_directory(self, path: str = ''):
+        if path != '':
+            self._working_directory = path
+            return
+
+        self._working_directory = pathlib.Path().absolute()
+
+    @property
+    def runtime_directory(self) -> str:
+        return self._runtime_directory
+
+    def set_runtime_directory(self, file: str):
+        self._runtime_directory = pathlib.Path(file).parent.absolute()

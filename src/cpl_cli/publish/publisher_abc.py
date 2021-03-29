@@ -1,13 +1,11 @@
-from abc import abstractmethod
-
-from cpl.dependency_injection.service_abc import ServiceABC
+from abc import abstractmethod, ABC
 
 
-class PublisherABC(ServiceABC):
+class PublisherABC(ABC):
 
     @abstractmethod
     def __init__(self):
-        ServiceABC.__init__(self)
+        ABC.__init__(self)
 
     @property
     @abstractmethod

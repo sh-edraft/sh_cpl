@@ -6,6 +6,10 @@ from sqlalchemy.orm import Session
 
 class DatabaseContextABC(ABC):
 
+    @abstractmethod
+    def __init__(self, *args):
+        pass
+
     @property
     @abstractmethod
     def engine(self) -> engine: pass
