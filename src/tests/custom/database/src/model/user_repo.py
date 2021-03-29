@@ -21,3 +21,9 @@ class UserRepo(UserRepoABC):
         user = UserModel('TestUser', city)
         self._session.add(user)
         self._session.commit()
+
+    def get_users(self) -> list[UserModel]:
+        return self._session.query(UserModel).all()
+
+    def get_cities(self) -> list[CityModel]:
+        return self._session.query(CityModel).all()
