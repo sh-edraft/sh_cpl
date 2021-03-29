@@ -4,6 +4,7 @@ from typing import Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
@@ -12,11 +13,12 @@ from cpl.environment.application_environment_abc import ApplicationEnvironmentAB
 
 class ServiceProvider(ServiceProviderABC):
 
-    def __init__(self, service_descriptors: list[ServiceDescriptor], config: ConfigurationABC):
+    def __init__(self, service_descriptors: list[ServiceDescriptor], config: ConfigurationABC, db_context: Optional[DatabaseContextABC]):
         ServiceProviderABC.__init__(self)
 
         self._service_descriptors: list[ServiceDescriptor] = service_descriptors
         self._configuration: ConfigurationABC = config
+        self._database_context = db_context
 
     def _find_service(self, service_type: type) -> [ServiceDescriptor]:
         for descriptor in self._service_descriptors:
@@ -58,8 +60,8 @@ class ServiceProvider(ServiceProviderABC):
                 elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
                     params.append(self._configuration.environment)
 
-                # elif issubclass(parameter.annotation, DatabaseContextABC):
-                #    params.append(self._database_context)
+                elif issubclass(parameter.annotation, DatabaseContextABC):
+                    params.append(self._database_context)
 
                 elif issubclass(parameter.annotation, ConfigurationModelABC):
                     params.append(self._configuration.get_configuration(parameter.annotation))

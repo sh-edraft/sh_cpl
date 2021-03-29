@@ -5,6 +5,7 @@ from cpl.configuration import ConfigurationABC
 from cpl.console import Console
 from cpl.dependency_injection import ServiceProviderABC
 from cpl.logging import LoggerABC
+from model.user_repo_abc import UserRepoABC
 
 
 class Application(ApplicationABC):
@@ -22,3 +23,4 @@ class Application(ApplicationABC):
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
+        self._services.get_service(UserRepoABC).add_test_user()

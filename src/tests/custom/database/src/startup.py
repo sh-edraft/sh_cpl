@@ -4,6 +4,8 @@ from cpl.database import DatabaseSettings
 from cpl.dependency_injection import ServiceProviderABC, ServiceCollectionABC
 from cpl.logging import LoggerABC, Logger
 from model.db_context import DBContext
+from model.user_repo import UserRepo
+from model.user_repo_abc import UserRepoABC
 
 
 class Startup(StartupABC):
@@ -29,6 +31,8 @@ class Startup(StartupABC):
         # Create and connect to database
         db_settings: DatabaseSettings = self._configuration.get_configuration(DatabaseSettings)
         self._services.add_db_context(DBContext, db_settings)
+
+        self._services.add_singleton(UserRepoABC, UserRepo)
 
         self._services.add_singleton(LoggerABC, Logger)
         return self._services.build_service_provider()
