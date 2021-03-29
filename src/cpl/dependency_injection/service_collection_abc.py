@@ -2,6 +2,7 @@ from abc import abstractmethod, ABC
 from collections import Callable
 from typing import Type
 
+from cpl.database.database_settings import DatabaseSettings
 from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
@@ -16,10 +17,11 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_db_context(self, db_context: Type[DatabaseContextABC]):
+    def add_db_context(self, db_context: Type[DatabaseContextABC], db_settings: DatabaseSettings):
         """
         Adds database context
         :param db_context:
+        :param db_settings:
         :return:
         """
         pass

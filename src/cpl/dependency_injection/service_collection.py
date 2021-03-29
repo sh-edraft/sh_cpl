@@ -1,12 +1,14 @@
 from typing import Union, Type, Callable, Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.database.context import DatabaseContextABC
+from cpl.database.database_settings import DatabaseSettings
+from cpl.database.context.database_context_abc import DatabaseContextABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 from cpl.dependency_injection.service_provider import ServiceProvider
+from cpl.utils.credential_manager import CredentialManager
 
 
 class ServiceCollection(ServiceCollectionABC):
@@ -36,8 +38,9 @@ class ServiceCollection(ServiceCollectionABC):
 
         self._service_descriptors.append(ServiceDescriptor(service, lifetime))
 
-    def add_db_context(self, db_context: Type[DatabaseContextABC]):
-        pass
+    def add_db_context(self, db_context_type: Type[DatabaseContextABC], db_settings: DatabaseSettings):
+        db_context = db_context_type(db_settings)
+        db_context.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
 
     def add_singleton(self, service_type: Union[type, object], service: Union[type, object] = None):
         if service is not None:

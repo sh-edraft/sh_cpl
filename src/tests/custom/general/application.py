@@ -28,15 +28,6 @@ class Application(ApplicationABC):
         mail.body = 'Dies ist ein Test :D'
         self._mailer.send_mail(mail)
 
-    def test_console(self):
-        self._logger.debug(__name__, 'Started console_old model')
-        Console.write_line('Hello World')
-        Console.write('\nName: ')
-        Console.write_line(' Hello', Console.read_line())
-        Console.clear()
-        Console.write_at(5, 5, 'at 5, 5')
-        Console.write_at(10, 10, 'at 10, 10')
-
     @staticmethod
     def _wait(time_ms: int):
         time.sleep(time_ms)
@@ -54,4 +45,3 @@ class Application(ApplicationABC):
         test: TestService = self._services.get_service(TestService)
         test.run()
         # self.test_send_mail()
-        # self.test_console()

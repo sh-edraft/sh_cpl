@@ -1,12 +1,9 @@
-from cpl.application.startup_abc import StartupABC
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.logging.logger_service import Logger
-from cpl.logging.logger_abc import LoggerABC
-from cpl.mailing.email_client_service import EMailClient
-from cpl.mailing.email_client_abc import EMailClientABC
-from tests.custom.general.test_service import TestService
+from cpl.application import StartupABC
+from cpl.configuration import ConfigurationABC
+from cpl.database import DatabaseSettings
+from cpl.dependency_injection import ServiceProviderABC, ServiceCollectionABC
+from cpl.logging import LoggerABC, Logger
+from model.db_context import DBContext
 
 
 class Startup(StartupABC):
@@ -15,6 +12,7 @@ class Startup(StartupABC):
         StartupABC.__init__(self)
 
         self._configuration = config
+        self._environment = self._configuration.environment
         self._services = services
 
     def configure_configuration(self) -> ConfigurationABC:
@@ -28,8 +26,10 @@ class Startup(StartupABC):
         return self._configuration
 
     def configure_services(self) -> ServiceProviderABC:
-        self._services.add_singleton(LoggerABC, Logger)
-        self._services.add_singleton(EMailClientABC, EMailClient)
-        self._services.add_singleton(TestService)
+        # Create and connect to database
+        db_settings: DatabaseSettings = self._configuration.get_configuration(DatabaseSettings)
+        self._services.add_db_context(DBContext, db_settings)
 
+        self._services.add_singleton(LoggerABC, Logger)
         return self._services.build_service_provider()
+
