@@ -34,16 +34,27 @@ class UpdateService(CommandABC):
         self._project_settings = project_settings
         self._cli_settings = cli_settings
 
-    def _update_project_dependencies(self):
+    def _collect_project_dependencies(self) -> list[tuple]:
         """
-        Updates project dependencies
+        Collects project dependencies
         :return:
         """
+        dependencies = []
         for package in self._project_settings.dependencies:
             name = package
             if '==' in package:
                 name = package.split('==')[0]
 
+            dependencies.append((package, name))
+
+        return dependencies
+
+    def _update_project_dependencies(self, dependencies):
+        """
+        Updates project dependencies
+        :return:
+        """
+        for package, name in dependencies:
             Pip.install(
                 name,
                 '--upgrade',
@@ -66,11 +77,18 @@ class UpdateService(CommandABC):
         Checks project dependencies for updates
         :return:
         """
-        Console.spinner(
-            'Collecting installed dependencies', self._update_project_dependencies,
+        dependencies = Console.spinner(
+            'Collecting installed dependencies', self._collect_project_dependencies,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
+
+        Console.spinner(
+            'Updating installed dependencies', self._update_project_dependencies, dependencies,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.cyan
+        )
+
         Console.write_line(f'Found {len(self._project_settings.dependencies)} dependencies.')
 
     @staticmethod
