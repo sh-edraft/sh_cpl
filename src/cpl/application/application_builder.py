@@ -3,7 +3,7 @@ from typing import Type, Optional
 from cpl.application.application_abc import ApplicationABC
 from cpl.application.application_builder_abc import ApplicationBuilderABC
 from cpl.application.startup_abc import StartupABC
-from cpl.configuration import Configuration
+from cpl.configuration.configuration import Configuration
 from cpl.dependency_injection.service_collection import ServiceCollection
 
 
