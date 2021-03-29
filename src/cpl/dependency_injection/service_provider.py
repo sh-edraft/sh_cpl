@@ -2,7 +2,6 @@ from collections import Callable
 from inspect import signature, Parameter
 from typing import Optional
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
@@ -13,13 +12,11 @@ from cpl.environment.application_environment_abc import ApplicationEnvironmentAB
 
 class ServiceProvider(ServiceProviderABC):
 
-    def __init__(self, service_descriptors: list[ServiceDescriptor], config: ConfigurationABC,
-                 runtime: ApplicationRuntimeABC):
+    def __init__(self, service_descriptors: list[ServiceDescriptor], config: ConfigurationABC):
         ServiceProviderABC.__init__(self)
 
         self._service_descriptors: list[ServiceDescriptor] = service_descriptors
         self._configuration: ConfigurationABC = config
-        self._runtime: ApplicationRuntimeABC = runtime
 
     def _find_service(self, service_type: type) -> [ServiceDescriptor]:
         for descriptor in self._service_descriptors:
@@ -58,9 +55,6 @@ class ServiceProvider(ServiceProviderABC):
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
                 if issubclass(parameter.annotation, ServiceProviderABC):
                     params.append(self)
-
-                elif issubclass(parameter.annotation, ApplicationRuntimeABC):
-                    params.append(self._runtime)
 
                 elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
                     params.append(self._configuration.environment)

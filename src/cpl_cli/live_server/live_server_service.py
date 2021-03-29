@@ -6,28 +6,28 @@ import psutil as psutil
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
 from cpl.dependency_injection.service_abc import ServiceABC
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 
 class LiveServerService(ServiceABC, FileSystemEventHandler):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, build_settings: BuildSettings):
+    def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings):
         """
         Service for the live development server
-        :param runtime:
+        :param env:
         :param build_settings:
         """
         ServiceABC.__init__(self)
         FileSystemEventHandler.__init__(self)
 
-        self._runtime = runtime
+        self._env = env
         self._build_settings = build_settings
 
-        self._src_dir = os.path.join(self._runtime.working_directory, self._build_settings.source_path)
+        self._src_dir = os.path.join(self._env.working_directory, self._build_settings.source_path)
         self._ls_thread = None
         self._observer = None
 

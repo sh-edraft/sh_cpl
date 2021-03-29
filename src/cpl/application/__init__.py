@@ -23,8 +23,6 @@ from collections import namedtuple
 from .application_abc import ApplicationABC
 from .application_builder import ApplicationBuilder
 from .application_builder_abc import ApplicationBuilderABC
-from .application_runtime import ApplicationRuntime
-from .application_runtime_abc import ApplicationRuntimeABC
 from .startup_abc import StartupABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

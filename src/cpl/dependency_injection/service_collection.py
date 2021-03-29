@@ -1,6 +1,5 @@
 from typing import Union, Type, Callable, Optional
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.database.context import DatabaseContextABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
@@ -12,10 +11,9 @@ from cpl.dependency_injection.service_provider import ServiceProvider
 
 class ServiceCollection(ServiceCollectionABC):
 
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC):
+    def __init__(self, config: ConfigurationABC):
         ServiceCollectionABC.__init__(self)
         self._configuration: ConfigurationABC = config
-        self._runtime: ApplicationRuntimeABC = runtime
 
         self._database_context: Optional[DatabaseContextABC] = None
         self._service_descriptors: list[ServiceDescriptor] = []
@@ -63,4 +61,4 @@ class ServiceCollection(ServiceCollectionABC):
             self._add_descriptor(service_type, ServiceLifetimeEnum.transient)
 
     def build_service_provider(self) -> ServiceProviderABC:
-        return ServiceProvider(self._service_descriptors, self._configuration, self._runtime)
+        return ServiceProvider(self._service_descriptors, self._configuration)

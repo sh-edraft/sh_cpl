@@ -1,4 +1,3 @@
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.database.context.database_context import DatabaseContext
@@ -15,11 +14,10 @@ from tests.custom.general.test_service import TestService
 
 class Startup(StartupABC):
 
-    def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceCollectionABC):
+    def __init__(self, config: ConfigurationABC, services: ServiceCollectionABC):
         StartupABC.__init__(self)
 
         self._configuration = config
-        self._application_runtime = runtime
         self._services = services
 
     def configure_configuration(self) -> ConfigurationABC:

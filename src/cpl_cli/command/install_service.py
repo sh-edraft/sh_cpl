@@ -4,9 +4,9 @@ import subprocess
 
 from packaging import version
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl.utils.pip import Pip
 from cpl_cli.cli_settings import CLISettings
 from cpl_cli.command_abc import CommandABC
@@ -18,18 +18,18 @@ from cpl_cli.error import Error
 
 class InstallService(CommandABC):
 
-    def __init__(self, runtime: ApplicationRuntimeABC, build_settings: BuildSettings, project_settings: ProjectSettings,
+    def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings, project_settings: ProjectSettings,
                  cli_settings: CLISettings):
         """
         Service for the CLI command install
-        :param runtime:
+        :param env:
         :param build_settings:
         :param project_settings:
         :param cli_settings:
         """
         CommandABC.__init__(self)
 
-        self._runtime = runtime
+        self._env = env
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
@@ -147,7 +147,7 @@ class InstallService(CommandABC):
                 BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
             }
 
-            with open(os.path.join(self._runtime.working_directory, 'cpl.json'), 'w') as project_file:
+            with open(os.path.join(self._env.working_directory, 'cpl.json'), 'w') as project_file:
                 project_file.write(json.dumps(config, indent=2))
                 project_file.close()
 

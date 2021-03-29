@@ -7,7 +7,6 @@ from packaging import version
 
 import cpl
 
-from cpl.application.application_runtime_abc import ApplicationRuntimeABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
@@ -29,16 +28,15 @@ from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 class NewService(CommandABC):
 
-    def __init__(self, configuration: ConfigurationABC, runtime: ApplicationRuntimeABC):
+    def __init__(self, configuration: ConfigurationABC):
         """
         Service for the CLI command new
         :param configuration:
-        :param runtime:
         """
         CommandABC.__init__(self)
 
         self._config = configuration
-        self._runtime = runtime
+        self._env = self._config.environment
 
         self._project: ProjectSettings = ProjectSettings()
         self._project_dict = {}
@@ -128,7 +126,7 @@ class NewService(CommandABC):
         Gets project path
         :return:
         """
-        project_path = os.path.join(self._runtime.working_directory, self._project.name)
+        project_path = os.path.join(self._env.working_directory, self._project.name)
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
             Console.error('Project path is not empty\n')
             return None
