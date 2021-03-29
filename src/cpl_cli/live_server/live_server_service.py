@@ -1,5 +1,6 @@
 import os
 import time
+from abc import ABC
 from contextlib import suppress
 
 import psutil as psutil
@@ -7,13 +8,12 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 from cpl.console.console import Console
-from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 
-class LiveServerService(ServiceABC, FileSystemEventHandler):
+class LiveServerService(ABC, FileSystemEventHandler):
 
     def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings):
         """
@@ -21,7 +21,7 @@ class LiveServerService(ServiceABC, FileSystemEventHandler):
         :param env:
         :param build_settings:
         """
-        ServiceABC.__init__(self)
+        ABC.__init__(self)
         FileSystemEventHandler.__init__(self)
 
         self._env = env

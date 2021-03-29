@@ -1,8 +1,6 @@
 from abc import abstractmethod, ABC
 from collections import Callable
-from typing import Type
-
-from cpl.dependency_injection.service_abc import ServiceABC
+from typing import Type, Optional
 
 
 class ServiceProviderABC(ABC):
@@ -24,7 +22,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: Type) -> Callable[ServiceABC]:
+    def get_service(self, instance_type: Type) -> Optional[Callable[object]]:
         """
         Returns instance of given type
         :param instance_type:

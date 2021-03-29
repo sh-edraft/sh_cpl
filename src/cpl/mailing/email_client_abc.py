@@ -1,17 +1,16 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABC
 
-from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.mailing.email import EMail
 
 
-class EMailClientABC(ServiceABC):
+class EMailClientABC(ABC):
 
     @abstractmethod
     def __init__(self):
         """
         ABC to send emails
         """
-        ServiceABC.__init__(self)
+        ABC.__init__(self)
 
     @abstractmethod
     def connect(self):

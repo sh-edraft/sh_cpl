@@ -1,11 +1,13 @@
+from abc import ABC
+
 from cpl.console.console import Console
-from cpl.dependency_injection import ServiceABC, ServiceProviderABC
+from cpl.dependency_injection import ServiceProviderABC
 
 
-class TestService(ServiceABC):
+class TestService(ABC):
 
     def __init__(self, provider: ServiceProviderABC):
-        ServiceABC.__init__(self)
+        ABC.__init__(self)
 
         self._provider = provider
 

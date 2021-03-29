@@ -20,7 +20,6 @@ __version__ = '2021.4.2.dev1'
 from collections import namedtuple
 
 # imports:
-from .service_abc import ServiceABC
 from .service_collection import ServiceCollection
 from .service_collection_abc import ServiceCollectionABC
 from .service_descriptor import ServiceDescriptor

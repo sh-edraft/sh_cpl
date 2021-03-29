@@ -1,14 +1,14 @@
 import os
+from abc import ABC
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
-from cpl.dependency_injection.service_abc import ServiceABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.error import Error
 from cpl_cli.command_model import CommandModel
 
 
-class CommandHandler(ServiceABC):
+class CommandHandler(ABC):
 
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         """
@@ -16,7 +16,7 @@ class CommandHandler(ServiceABC):
         :param config:
         :param services:
         """
-        ServiceABC.__init__(self)
+        ABC.__init__(self)
 
         self._config = config
         self._env = self._config.environment

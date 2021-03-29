@@ -1,16 +1,14 @@
-from abc import abstractmethod
-
-from cpl.dependency_injection.service_abc import ServiceABC
+from abc import abstractmethod, ABC
 
 
-class LoggerABC(ServiceABC):
+class LoggerABC(ABC):
 
     @abstractmethod
     def __init__(self):
         """
         ABC for logging
         """
-        ServiceABC.__init__(self)
+        ABC.__init__(self)
 
     @abstractmethod
     def header(self, string: str):
