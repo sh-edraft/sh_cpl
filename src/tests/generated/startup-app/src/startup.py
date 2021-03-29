@@ -1,11 +1,11 @@
 from cpl.application import StartupABC
 from cpl.configuration import ConfigurationABC
-from cpl.dependency_injection import ServiceProviderABC
+from cpl.dependency_injection import ServiceProviderABC, ServiceCollectionABC
 
 
 class Startup(StartupABC):
 
-    def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
+    def __init__(self, config: ConfigurationABC, services: ServiceCollectionABC):
         StartupABC.__init__(self)
 
         self._configuration = config
@@ -16,5 +16,5 @@ class Startup(StartupABC):
         return self._configuration
 
     def configure_services(self) -> ServiceProviderABC:
-        return self._services
+        return self._services.build_service_provider()
 
