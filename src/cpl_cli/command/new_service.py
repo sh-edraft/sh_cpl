@@ -20,7 +20,7 @@ from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
 from cpl_cli.templates.new.console.src.application import ApplicationTemplate
 from cpl_cli.templates.new.console.src.main import MainWithApplicationHostAndStartupTemplate, \
-    MainWithoutApplicationHostTemplate, MainWithApplicationHostTemplate
+    MainWithoutApplicationBaseTemplate, MainWithApplicationBaseTemplate, MainWithDependencyInjection
 from cpl_cli.templates.new.console.src.startup import StartupTemplate
 from cpl_cli.templates.new.console.src.tests.init import TestsInitTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
@@ -133,26 +133,25 @@ class NewService(CommandABC):
 
         return project_path
 
-    def _get_project_informations(self):
+    def _get_project_information(self):
         """
-        Gets project informations from user
+        Gets project information's from user
         :return:
         """
-        result = Console.read('Do you want to use application host? (y/n) ')
+        result = Console.read('Do you want to use application base? (y/n) ')
         if result.lower() == 'y':
             self._use_application_api = True
 
-        if self._use_application_api:
-            result = Console.read('Do you want to use startup? (y/n) ')
-            if result.lower() == 'y':
-                self._use_startup = True
+        result = Console.read('Do you want to use service providing? (y/n) ')
+        if result.lower() == 'y':
+            self._use_service_providing = True
+
+            if self._use_application_api:
+                result = Console.read('Do you want to use startup? (y/n) ')
+                if result.lower() == 'y':
+                    self._use_startup = True
 
         Console.set_foreground_color(ForegroundColorEnum.default)
-
-        # else:
-        #     result = Console.read('Do you want to use service providing? (y/n) ')
-        #     if result.lower() == 'y':
-        #         self._use_service_providing = True
 
     def _build_project_dir(self, project_path: str):
         """
@@ -172,15 +171,20 @@ class NewService(CommandABC):
             ReadmeTemplate(),
             TestsInitTemplate()
         ]
+
         if self._use_application_api:
             templates.append(ApplicationTemplate())
+
             if self._use_startup:
                 templates.append(StartupTemplate())
                 templates.append(MainWithApplicationHostAndStartupTemplate())
             else:
-                templates.append(MainWithApplicationHostTemplate())
+                templates.append(MainWithApplicationBaseTemplate())
         else:
-            templates.append(MainWithoutApplicationHostTemplate())
+            if self._use_service_providing:
+                templates.append(MainWithDependencyInjection())
+            else:
+                templates.append(MainWithoutApplicationBaseTemplate())
 
         for template in templates:
             Console.spinner(
@@ -225,7 +229,7 @@ class NewService(CommandABC):
         if path is None:
             return
 
-        self._get_project_informations()
+        self._get_project_information()
         try:
             self._build_project_dir(path)
         except Exception as e:

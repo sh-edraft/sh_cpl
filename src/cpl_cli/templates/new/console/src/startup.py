@@ -11,18 +11,18 @@ class StartupTemplate(TemplateFileABC):
         self._name = 'startup.py'
         self._path = 'src/'
         self._value = textwrap.dedent("""\
-            from cpl.application import ApplicationRuntimeABC, StartupABC
+            from cpl.application import StartupABC
             from cpl.configuration import ConfigurationABC
             from cpl.dependency_injection import ServiceProviderABC
             
             
             class Startup(StartupABC):
             
-                def __init__(self, config: ConfigurationABC, runtime: ApplicationRuntimeABC, services: ServiceProviderABC):
+                def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
                     StartupABC.__init__(self)
 
                     self._configuration = config
-                    self._application_runtime = runtime
+                    self._environment = self._configuration.environment
                     self._services = services
             
                 def configure_configuration(self) -> ConfigurationABC:
