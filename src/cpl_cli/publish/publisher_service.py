@@ -1,6 +1,9 @@
 import importlib
 import os
 import shutil
+import sys
+import traceback
+from importlib import util
 from string import Template as stringTemplate
 
 import setuptools
@@ -289,14 +292,29 @@ class PublisherService(PublisherABC):
 
         main = None
         try:
-            main = importlib.import_module(self._build_settings.main)
+            main_name = ''
+
+            if '.' in self._build_settings.main:
+                length = len(self._build_settings.main.split('.'))
+                main_name = self._build_settings.main.split('.')[length-1]
+
+            sys.path.insert(0, self._source_path)
+            main_mod = __import__(self._build_settings.main)
+            main = getattr(main_mod, main_name)
         except Exception as e:
             Console.error('Could not find entry point', str(e))
             return
 
-        if main is None or not hasattr(main, 'main'):
+        if main is None or not callable(main) and not hasattr(main, 'main'):
             Console.error('Could not find entry point')
             return
+
+        if callable(main):
+            mod_name = main.__module__
+            func_name = main.__name__
+        else:
+            mod_name = main.__name__
+            func_name = main.main.__name__
 
         with open(setup_file, 'w+') as setup_py:
             setup_string = stringTemplate(SetupTemplate.get_setup_py()).substitute(
@@ -313,7 +331,7 @@ class PublisherService(PublisherABC):
                 Dependencies=self._project_settings.dependencies,
                 EntryPoints={
                     'console_scripts': [
-                        f'{self._build_settings.entry_point} = {main.__name__}:{main.main.__name__}'
+                        f'{self._build_settings.entry_point} = {mod_name}:{func_name}'
                     ]
                 },
                 PackageData=self._build_settings.package_data
