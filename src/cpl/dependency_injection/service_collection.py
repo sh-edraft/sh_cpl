@@ -8,6 +8,8 @@ from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 from cpl.dependency_injection.service_provider import ServiceProvider
+from cpl.logging.logger_service import Logger
+from cpl.logging.logger_abc import LoggerABC
 from cpl.utils.credential_manager import CredentialManager
 
 
@@ -38,6 +40,9 @@ class ServiceCollection(ServiceCollectionABC):
     def add_db_context(self, db_context_type: Type[DatabaseContextABC], db_settings: DatabaseSettings):
         self._database_context = db_context_type(db_settings)
         self._database_context.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
+
+    def add_logging(self):
+        self.add_singleton(LoggerABC, Logger)
 
     def add_singleton(self, service_type: Union[type, object], service: Union[type, object] = None):
         impl = None

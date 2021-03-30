@@ -27,6 +27,13 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
+    def add_logging(self):
+        """
+        Adds the CPL internal logger
+        """
+        pass
+
+    @abstractmethod
     def add_transient(self, service_type: Type, service: Callable = None):
         """
         Adds a service with transient lifetime
