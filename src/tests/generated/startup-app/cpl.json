@@ -25,6 +25,7 @@
     "Classifiers": []
   },
   "BuildSettings": {
+    "ProjectType": "console",
     "SourcePath": "src",
     "OutputPath": "dist",
     "Main": "main",
