@@ -287,12 +287,14 @@ class PublisherService(PublisherABC):
             os.remove(setup_file)
 
         main = None
+        main_not_found = False
         try:
             main = importlib.import_module(self._build_settings.main)
         except Exception as e:
             Console.error('Could not find entry point', str(e))
+            main_not_found = True
 
-        if main is None or not hasattr(main, 'main'):
+        if (main is None or not hasattr(main, 'main')) and not main_not_found:
             Console.error('Could not find entry point')
             return
 
