@@ -6,6 +6,7 @@ from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
+from cpl_cli.templates.generate.init_template import InitTemplate
 from cpl_cli.templates.generate.abc_template import ABCTemplate
 from cpl_cli.templates.generate.class_template import ClassTemplate
 from cpl_cli.templates.generate.configmodel_template import ConfigModelTemplate
@@ -106,6 +107,19 @@ class GenerateService(CommandABC):
         file_path = os.path.join(self._env.working_directory, template.path, template.name)
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
+            directory = ''
+            for subdir in template.path.split('/'):
+                directory = os.path.join(directory, subdir)
+                if subdir != 'src':
+                    file = InitTemplate(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
+                    Console.spinner(
+                        f'Creating {os.path.abspath(directory)}/{file.name}',
+                        self._create_file,
+                        os.path.join(os.path.abspath(directory), file.name),
+                        file.value,
+                        text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.cyan
+                    )
 
         if os.path.isfile(file_path):
             Console.error(f'{String.first_to_upper(schematic)} already exists!')
