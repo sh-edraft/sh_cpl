@@ -1,6 +1,5 @@
 import os
 import time
-from abc import ABC
 from contextlib import suppress
 
 import psutil as psutil
@@ -13,7 +12,7 @@ from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 
-class LiveServerService(ABC, FileSystemEventHandler):
+class LiveServerService(FileSystemEventHandler):
 
     def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings):
         """
@@ -21,7 +20,6 @@ class LiveServerService(ABC, FileSystemEventHandler):
         :param env:
         :param build_settings:
         """
-        ABC.__init__(self)
         FileSystemEventHandler.__init__(self)
 
         self._env = env

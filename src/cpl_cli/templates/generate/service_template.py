@@ -14,13 +14,10 @@ class ServiceTemplate(TemplateFileABC):
         self._class_name = f'{String.first_to_upper(name)}{schematic_upper}'
         self._path = path
         self._value = textwrap.dedent("""\
-        from cpl.dependency_injection import ServiceABC
-        
-        
-        class $Name(ServiceABC):
+        class $Name:
 
             def __init__(self):
-                ServiceABC.__init__(self)
+                pass
         """)
 
     @property
