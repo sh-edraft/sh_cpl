@@ -15,16 +15,10 @@ from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
+from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
-from cpl_cli.templates.new.console.appsettings_json import AppsettingsTemplate
-from cpl_cli.templates.new.console.license import LicenseTemplate
-from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
-from cpl_cli.templates.new.console.src.application import ApplicationTemplate
-from cpl_cli.templates.new.console.src.main import MainWithApplicationHostAndStartupTemplate, \
-    MainWithoutApplicationBaseTemplate, MainWithApplicationBaseTemplate, MainWithDependencyInjection
-from cpl_cli.templates.new.console.src.startup import StartupTemplate
-from cpl_cli.templates.new.console.src.tests.init import TestsInitTemplate
-from cpl_cli.templates.template_file_abc import TemplateFileABC
+from cpl_cli.source_creator.console_builder import ConsoleBuilder
+from cpl_cli.source_creator.library_builder import LibraryBuilder
 
 
 class NewService(CommandABC):
@@ -96,11 +90,15 @@ class NewService(CommandABC):
         self._project.from_dict(self._project_dict)
 
     def _create_build_settings(self):
+        main = 'main'
+        if self._command == ProjectTypeEnum.library.value:
+            main = f'{self._project.name}_cli.main'
+
         self._build_dict = {
             BuildSettingsNameEnum.project_type.value: self._command,
             BuildSettingsNameEnum.source_path.value: 'src',
             BuildSettingsNameEnum.output_path.value: 'dist',
-            BuildSettingsNameEnum.main.value: 'main',
+            BuildSettingsNameEnum.main.value: main,
             BuildSettingsNameEnum.entry_point.value: self._project.name,
             BuildSettingsNameEnum.include_package_data.value: False,
             BuildSettingsNameEnum.included.value: [],
@@ -154,68 +152,6 @@ class NewService(CommandABC):
 
         Console.set_foreground_color(ForegroundColorEnum.default)
 
-    def _build_project_dir(self, project_path: str):
-        """
-        Builds the project files
-        :param project_path:
-        :return:
-        """
-        if not os.path.isdir(project_path):
-            os.makedirs(project_path)
-
-        with open(os.path.join(project_path, 'cpl.json'), 'w') as project_json:
-            project_json.write(json.dumps(self._project_json, indent=2))
-            project_json.close()
-
-        templates: list[TemplateFileABC] = [
-            LicenseTemplate(),
-            ReadmeTemplate(),
-            TestsInitTemplate(),
-            AppsettingsTemplate()
-        ]
-
-        if self._use_application_api:
-            templates.append(ApplicationTemplate())
-
-            if self._use_startup:
-                templates.append(StartupTemplate())
-                templates.append(MainWithApplicationHostAndStartupTemplate())
-            else:
-                templates.append(MainWithApplicationBaseTemplate())
-        else:
-            if self._use_service_providing:
-                templates.append(MainWithDependencyInjection())
-            else:
-                templates.append(MainWithoutApplicationBaseTemplate())
-
-        for template in templates:
-            Console.spinner(
-                f'Creating {self._project.name}/{template.path}{template.name}',
-                self._create_template,
-                project_path,
-                template,
-                text_foreground_color=ForegroundColorEnum.green,
-                spinner_foreground_color=ForegroundColorEnum.cyan
-            )
-
-    @staticmethod
-    def _create_template(project_path: str, template: TemplateFileABC):
-        """
-        Creates template
-        :param project_path:
-        :param template:
-        :return:
-        """
-        file_path = os.path.join(project_path, template.path, template.name)
-        file_rel_path = os.path.join(project_path, template.path)
-
-        if not os.path.isdir(file_rel_path):
-            os.makedirs(file_rel_path)
-
-        with open(file_path, 'w') as license_file:
-            license_file.write(template.value)
-            license_file.close()
-
     def _console(self, args: list[str]):
         """
         Generates new console project
@@ -233,7 +169,42 @@ class NewService(CommandABC):
 
         self._get_project_information()
         try:
-            self._build_project_dir(path)
+            ConsoleBuilder.build(
+                path,
+                self._use_application_api,
+                self._use_startup,
+                self._use_service_providing,
+                self._project.name,
+                self._project_json
+            )
+        except Exception as e:
+            Console.error('Could not create project', str(e))
+
+    def _library(self, args: list[str]):
+        """
+        Generates new library project
+        :param args:
+        :return:
+        """
+        name = self._config.get_configuration(self._command)
+
+        self._create_project_settings(name)
+        self._create_build_settings()
+        self._create_project_json()
+        path = self._get_project_path()
+        if path is None:
+            return
+
+        self._get_project_information()
+        try:
+            LibraryBuilder.build(
+                path,
+                self._use_application_api,
+                self._use_startup,
+                self._use_service_providing,
+                self._project.name,
+                self._project_json
+            )
         except Exception as e:
             Console.error('Could not create project', str(e))
 
@@ -247,9 +218,12 @@ class NewService(CommandABC):
             self._help('Usage: cpl new <schematic> [options]')
             return
 
-        self._command = args[0]
-        if self._command == 'console':
+        self._command = str(args[0]).lower()
+        if self._command == ProjectTypeEnum.console.value:
             self._console(args)
+
+        elif self._command == ProjectTypeEnum.library.value:
+            self._library(args)
 
         else:
             self._help('Usage: cpl new <schematic> [options]')

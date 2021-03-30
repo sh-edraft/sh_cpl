@@ -9,6 +9,7 @@ from watchdog.observers import Observer
 from cpl.console.console import Console
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
+from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 
@@ -80,5 +81,9 @@ class LiveServerService(FileSystemEventHandler):
         Starts the CPL live development server
         :return:
         """
+        if self._build_settings.project_type == ProjectTypeEnum.library.value:
+            Console.error(f'Project cannot be a {ProjectTypeEnum.library.value} to be started')
+            return
+
         Console.write_line('** CPL live development server is running **')
         self._start()
