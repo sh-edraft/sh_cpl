@@ -27,6 +27,12 @@ class DatabaseContextABC(ABC):
         """
         pass
 
+    def save_changes(self):
+        """
+        Saves changes of the database
+        """
+        pass
+
     @abstractmethod
     def _create_tables(self):
         """

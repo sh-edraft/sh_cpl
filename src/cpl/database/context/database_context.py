@@ -30,6 +30,9 @@ class DatabaseContext(DatabaseContextABC):
         self._db.connect(connection_string)
         self._create_tables()
 
+    def save_changes(self):
+        self._db.session.commit()
+
     def _create_tables(self):
         try:
             for subclass in DatabaseModel.__subclasses__():
