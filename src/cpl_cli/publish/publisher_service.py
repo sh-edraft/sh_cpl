@@ -41,11 +41,11 @@ class PublisherService(PublisherABC):
 
     @property
     def source_path(self) -> str:
-        return ''
+        return self._source_path
 
     @property
     def dist_path(self) -> str:
-        return ''
+        return self._output_path
 
     @staticmethod
     def _get_module_name_from_dirs(file: str) -> str:
@@ -272,7 +272,7 @@ class PublisherService(PublisherABC):
                 os.remove(file)
 
         for path in paths:
-            if os.path.isdir(path):
+            if path != self._output_path and os.path.isdir(path):
                 shutil.rmtree(path)
 
     def _create_setup(self):
@@ -370,9 +370,13 @@ class PublisherService(PublisherABC):
         """
         self._output_path = os.path.join(self._output_path, 'build')
 
-        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Creating internal packages:', self._create_packages, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Creating internal packages:', self._create_packages,
+                        text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
 
     def publish(self):
         """
@@ -387,12 +391,18 @@ class PublisherService(PublisherABC):
         self._output_path = os.path.join(self._output_path, 'publish')
 
         Console.write_line('Build:')
-        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Creating internal packages:', self._create_packages, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Creating internal packages:', self._create_packages,
+                        text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
 
         Console.write_line('\nPublish:')
-        Console.spinner('Generating setup.py:', self._create_setup, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Generating setup.py:', self._create_setup, text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
         Console.write_line('Running setup.py:\n')
         self._run_setup()
-        Console.spinner('Cleaning dist path:', self._clean_dist_files, text_foreground_color=ForegroundColorEnum.green, spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner('Cleaning dist path:', self._clean_dist_files, text_foreground_color=ForegroundColorEnum.green,
+                        spinner_foreground_color=ForegroundColorEnum.blue)
