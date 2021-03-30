@@ -3,6 +3,7 @@ from enum import Enum
 
 class BuildSettingsNameEnum(Enum):
 
+    project_type = 'ProjectType'
     source_path = 'SourcePath'
     output_path = 'OutputPath'
     main = 'Main'

@@ -1,6 +1,7 @@
 import importlib
 import os
 import shutil
+import sys
 from string import Template as stringTemplate
 
 import setuptools
@@ -12,7 +13,6 @@ from cpl.console.console import Console
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
-from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.publish.publisher_abc import PublisherABC
 from cpl_cli.templates.build.init_template import InitTemplate
 from cpl_cli.templates.publish.setup_template import SetupTemplate
@@ -287,14 +287,25 @@ class PublisherService(PublisherABC):
         if os.path.isfile(setup_file):
             os.remove(setup_file)
 
-        main = None
+        main_mod = None
         try:
-            main = importlib.import_module(self._build_settings.main)
+            # main = importlib.import_module(self._build_settings.main)
+            file_name = f'{str(self._build_settings.main).replace(".", "/")}.py'
+            print()
+            spec = importlib.util.spec_from_file_location(self._build_settings.main, os.path.join(self._env.working_directory, 'src', file_name))
+            print(1, spec)
+            test = importlib.util.module_from_spec(spec)
+            print(2, test)
+            # spec.loader.exec_module(test)
+            sys.path.append(os.path.join(self._env.working_directory, 'src'))
+            import main
+            print(3, main)
+            main_mod = main
         except Exception as e:
             Console.error('Could not find entry point', str(e))
             return
 
-        if main is None or not hasattr(main, 'main'):
+        if main_mod is None or not hasattr(main_mod, 'main'):
             Console.error('Could not find entry point')
             return
 
@@ -313,7 +324,7 @@ class PublisherService(PublisherABC):
                 Dependencies=self._project_settings.dependencies,
                 EntryPoints={
                     'console_scripts': [
-                        f'{self._build_settings.entry_point} = {main.__name__}:{main.main.__name__}'
+                        f'{self._build_settings.entry_point} = {main_mod.__name__}:{main_mod.main.__name__}'
                     ]
                 },
                 PackageData=self._build_settings.package_data
@@ -388,10 +399,6 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
-        if self._build_settings.project_type != ProjectTypeEnum.library.value:
-            Console.error(f'Project must be a {ProjectTypeEnum.library.value} for publishing.')
-            return
-
         self._output_path = os.path.join(self._output_path, 'publish')
 
         Console.write_line('Build:')

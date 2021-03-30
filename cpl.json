@@ -34,6 +34,7 @@
     "Classifiers": []
   },
   "BuildSettings": {
+    "ProjectType": "library",
     "SourcePath": "src",
     "OutputPath": "dist",
     "Main": "cpl_cli.main",

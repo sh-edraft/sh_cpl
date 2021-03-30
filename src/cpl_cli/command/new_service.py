@@ -97,6 +97,7 @@ class NewService(CommandABC):
 
     def _create_build_settings(self):
         self._build_dict = {
+            BuildSettingsNameEnum.project_type.value: self._command,
             BuildSettingsNameEnum.source_path.value: 'src',
             BuildSettingsNameEnum.output_path.value: 'dist',
             BuildSettingsNameEnum.main.value: 'main',
@@ -244,7 +245,7 @@ class NewService(CommandABC):
         """
         if len(args) == 0:
             self._help('Usage: cpl new <schematic> [options]')
-            exit()
+            return
 
         self._command = args[0]
         if self._command == 'console':
@@ -252,4 +253,4 @@ class NewService(CommandABC):
 
         else:
             self._help('Usage: cpl new <schematic> [options]')
-            exit()
+            return
