@@ -16,6 +16,7 @@ from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
+from cpl_cli.templates.new.console.appsettings_json import AppsettingsTemplate
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
 from cpl_cli.templates.new.console.src.application import ApplicationTemplate
@@ -142,14 +143,13 @@ class NewService(CommandABC):
         if result.lower() == 'y':
             self._use_application_api = True
 
-        result = Console.read('Do you want to use service providing? (y/n) ')
-        if result.lower() == 'y':
-            self._use_service_providing = True
-
-            if self._use_application_api:
-                result = Console.read('Do you want to use startup? (y/n) ')
-                if result.lower() == 'y':
-                    self._use_startup = True
+            result = Console.read('Do you want to use startup? (y/n) ')
+            if result.lower() == 'y':
+                self._use_startup = True
+        else:
+            result = Console.read('Do you want to use service providing? (y/n) ')
+            if result.lower() == 'y':
+                self._use_service_providing = True
 
         Console.set_foreground_color(ForegroundColorEnum.default)
 
@@ -169,7 +169,8 @@ class NewService(CommandABC):
         templates: list[TemplateFileABC] = [
             LicenseTemplate(),
             ReadmeTemplate(),
-            TestsInitTemplate()
+            TestsInitTemplate(),
+            AppsettingsTemplate()
         ]
 
         if self._use_application_api:
