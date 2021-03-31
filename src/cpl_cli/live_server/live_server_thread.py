@@ -51,8 +51,12 @@ class LiveServerThread(threading.Thread):
         Console.set_foreground_color(ForegroundColorEnum.default)
 
         env_vars = os.environ
-        env_vars['PYTHONPATH'] = f'{os.path.dirname(self._path)}:' \
-                                 f'{os.path.join(os.path.dirname(self._path), self._build_settings.source_path)}'
+        if sys.platform == 'win32':
+            env_vars['PYTHONPATH'] = f'{os.path.dirname(self._path)};' \
+                                     f'{os.path.join(os.path.dirname(self._path), self._build_settings.source_path)}'
+        else:
+            env_vars['PYTHONPATH'] = f'{os.path.dirname(self._path)}:' \
+                                     f'{os.path.join(os.path.dirname(self._path), self._build_settings.source_path)}'
 
         self._command = [sys.executable, self._main, ''.join(sys.argv[2:])]
         subprocess.run(self._command, env=env_vars)
