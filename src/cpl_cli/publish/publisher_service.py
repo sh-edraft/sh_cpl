@@ -141,11 +141,9 @@ class PublisherService(PublisherABC):
                         relative_path = os.path.relpath(r)
                         file_path = os.path.join(relative_path, os.path.relpath(sub_file))
 
-                        print(file_path)
                         self._included_files.append(os.path.relpath(file_path))
 
             elif os.path.isfile(rel_path):
-                print(rel_path)
                 self._included_files.append(rel_path)
 
         for r, d, f in os.walk(self._build_settings.source_path):
