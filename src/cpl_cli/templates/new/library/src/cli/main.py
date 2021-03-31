@@ -47,7 +47,7 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
 
         self._name = 'main.py'
         self._path = 'src/'
-        self._value = textwrap.dedent("""\
+        self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
             from {name}_cli.application import Application

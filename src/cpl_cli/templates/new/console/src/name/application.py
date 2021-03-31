@@ -1,15 +1,17 @@
 import textwrap
 
+from cpl.utils.string import String
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
 class ApplicationTemplate(TemplateFileABC):
 
-    def __init__(self):
+    def __init__(self, name: str):
         TemplateFileABC.__init__(self)
 
+        name = String.convert_to_snake_case(name)
         self._name = 'application.py'
-        self._path = 'src/'
+        self._path = f'src/{name}/'
         self._value = textwrap.dedent("""\
             from cpl.application import ApplicationABC
             from cpl.configuration import ConfigurationABC

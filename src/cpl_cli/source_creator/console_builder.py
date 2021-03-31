@@ -6,10 +6,11 @@ from cpl_cli.source_creator.template_builder import TemplateBuilder
 from cpl_cli.templates.new.console.appsettings_json import AppsettingsTemplate
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
-from cpl_cli.templates.new.console.src.application import ApplicationTemplate
-from cpl_cli.templates.new.console.src.main import MainWithApplicationHostAndStartupTemplate, \
+from cpl_cli.templates.new.console.src.name.application import ApplicationTemplate
+from cpl_cli.templates.new.console.src.name.init import MainInitTemplate
+from cpl_cli.templates.new.console.src.name.main import MainWithApplicationHostAndStartupTemplate, \
     MainWithoutApplicationBaseTemplate, MainWithApplicationBaseTemplate, MainWithDependencyInjection
-from cpl_cli.templates.new.console.src.startup import StartupTemplate
+from cpl_cli.templates.new.console.src.name.startup import StartupTemplate
 from cpl_cli.templates.new.console.src.tests.init import TestsInitTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
@@ -43,22 +44,23 @@ class ConsoleBuilder:
             LicenseTemplate(),
             ReadmeTemplate(),
             TestsInitTemplate(),
-            AppsettingsTemplate()
+            AppsettingsTemplate(),
+            MainInitTemplate(project_name)
         ]
 
         if use_application_api:
-            templates.append(ApplicationTemplate())
+            templates.append(ApplicationTemplate(project_name))
 
             if use_startup:
-                templates.append(StartupTemplate())
-                templates.append(MainWithApplicationHostAndStartupTemplate())
+                templates.append(StartupTemplate(project_name))
+                templates.append(MainWithApplicationHostAndStartupTemplate(project_name))
             else:
-                templates.append(MainWithApplicationBaseTemplate())
+                templates.append(MainWithApplicationBaseTemplate(project_name))
         else:
             if use_service_providing:
-                templates.append(MainWithDependencyInjection())
+                templates.append(MainWithDependencyInjection(project_name))
             else:
-                templates.append(MainWithoutApplicationBaseTemplate())
+                templates.append(MainWithoutApplicationBaseTemplate(project_name))
 
         for template in templates:
             Console.spinner(

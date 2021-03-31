@@ -13,6 +13,7 @@ from setuptools import sandbox
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl.utils.string import String
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
@@ -292,11 +293,11 @@ class PublisherService(PublisherABC):
 
         main = None
         try:
-            main_name = ''
+            main_name = self._build_settings.main
 
             if '.' in self._build_settings.main:
                 length = len(self._build_settings.main.split('.'))
-                main_name = self._build_settings.main.split('.')[length-1]
+                main_name = self._build_settings.main.split('.')[length - 1]
 
             sys.path.insert(0, self._source_path)
             main_mod = __import__(self._build_settings.main)
@@ -406,25 +407,44 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
-        if self._build_settings.project_type != ProjectTypeEnum.library.value:
-            Console.error(f'Project must be a {ProjectTypeEnum.library.value} for publishing.')
-            return
 
         self._output_path = os.path.join(self._output_path, 'publish')
 
         Console.write_line('Build:')
-        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Creating internal packages:', self._create_packages,
-                        text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner(
+            'Reading source files:',
+            self._read_sources,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue
+        )
+
+        Console.spinner(
+            'Creating internal packages:',
+            self._create_packages,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue
+        )
+
+        Console.spinner(
+            'Building application:',
+            self._dist_files,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue
+        )
 
         Console.write_line('\nPublish:')
-        Console.spinner('Generating setup.py:', self._create_setup, text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner(
+            'Generating setup.py:',
+            self._create_setup,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue
+        )
+
         Console.write_line('Running setup.py:\n')
         self._run_setup()
-        Console.spinner('Cleaning dist path:', self._clean_dist_files, text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner(
+            'Cleaning dist path:',
+            self._clean_dist_files,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue
+        )
