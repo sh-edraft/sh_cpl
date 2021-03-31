@@ -10,11 +10,11 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
 
         self._name = 'main.py'
         self._path = f'src/{name}_cli/'
-        self._value = textwrap.dedent("""\
+        self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
-            from application import Application
-            from startup import Startup
+            from {name}_cli.application import Application
+            from {name}_cli.startup import Startup
             
             
             def main():
@@ -50,7 +50,7 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
         self._value = textwrap.dedent("""\
             from cpl.application import ApplicationBuilder
             
-            from application import Application
+            from {name}_cli.application import Application
             
             
             def main():
