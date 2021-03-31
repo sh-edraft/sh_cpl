@@ -10,6 +10,7 @@ import cpl
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
+from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
@@ -90,9 +91,9 @@ class NewService(CommandABC):
         self._project.from_dict(self._project_dict)
 
     def _create_build_settings(self):
-        main = f'{self._project.name}.main'
+        main = f'{String.convert_to_snake_case(self._project.name)}.main'
         if self._command == ProjectTypeEnum.library.value:
-            main = f'{self._project.name}_cli.main'
+            main = f'{String.convert_to_snake_case(self._project.name)}_cli.main'
 
         self._build_dict = {
             BuildSettingsNameEnum.project_type.value: self._command,
