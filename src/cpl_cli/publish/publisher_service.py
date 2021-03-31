@@ -51,8 +51,7 @@ class PublisherService(PublisherABC):
     def dist_path(self) -> str:
         return self._output_path
 
-    @staticmethod
-    def _get_module_name_from_dirs(file: str) -> str:
+    def _get_module_name_from_dirs(self, file: str) -> str:
         """
         Extracts module name from directories
         :param file:
