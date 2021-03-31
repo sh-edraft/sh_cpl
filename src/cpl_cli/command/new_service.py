@@ -90,7 +90,7 @@ class NewService(CommandABC):
         self._project.from_dict(self._project_dict)
 
     def _create_build_settings(self):
-        main = 'main'
+        main = f'{self._project.name}.main'
         if self._command == ProjectTypeEnum.library.value:
             main = f'{self._project.name}_cli.main'
 
