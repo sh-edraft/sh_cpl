@@ -39,9 +39,11 @@ class PublisherService(PublisherABC):
         self._included_dirs: list[str] = []
         self._distributed_files: list[str] = []
 
-        self._src_path_part = 'src/'
+        self._path_mark = '/'
         if sys.platform == 'win32':
-            self._src_path_part = 'src\\'
+            self._path_mark = '\\'
+
+        self._src_path_part = f'src{self._path_mark}'
 
     @property
     def source_path(self) -> str:
@@ -60,7 +62,7 @@ class PublisherService(PublisherABC):
         if self._src_path_part in file:
             file = file.replace(self._src_path_part, '', 1)
 
-        dirs = os.path.dirname(file).split('/')
+        dirs = os.path.dirname(file).split(self._path_mark)
         for d in dirs:
             if d.__contains__('.'):
                 dirs.remove(d)
