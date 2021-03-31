@@ -96,6 +96,6 @@ Project link: [https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib](https://g
 
 <!-- Internal LINKS -->
 [project]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib
-[quickstart]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/wiki/quickstart.md
-[contributing]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/wiki/contributing.md
+[quickstart]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/wiki/quickstart
+[contributing]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/wiki/contributing
 [license]: LICENSE
