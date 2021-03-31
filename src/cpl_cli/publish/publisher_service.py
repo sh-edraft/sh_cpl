@@ -1,9 +1,6 @@
-import importlib
 import os
 import shutil
 import sys
-import traceback
-from importlib import util
 from string import Template as stringTemplate
 
 import setuptools
@@ -13,10 +10,8 @@ from setuptools import sandbox
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl.utils.string import String
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
-from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.publish.publisher_abc import PublisherABC
 from cpl_cli.templates.build.init_template import InitTemplate
 from cpl_cli.templates.publish.setup_template import SetupTemplate
