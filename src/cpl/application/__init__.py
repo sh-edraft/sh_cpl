@@ -15,7 +15,7 @@ __title__ = 'cpl.application'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.4.0rc5'
+__version__ = '2021.4.0rc6'
 
 from collections import namedtuple
 
@@ -26,4 +26,4 @@ from .application_builder_abc import ApplicationBuilderABC
 from .startup_abc import StartupABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='04', micro='0rc5')
+version_info = VersionInfo(major='2021', minor='04', micro='0rc6')
