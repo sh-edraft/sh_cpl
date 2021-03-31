@@ -1,2 +1,0 @@
-- create logger
-- use logger in publisher

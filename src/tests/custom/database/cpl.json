@@ -1,0 +1,42 @@
+{
+  "ProjectSettings": {
+    "Name": "database",
+    "Version": {
+      "Major": "0",
+      "Minor": "0",
+      "Micro": "0"
+    },
+    "Author": "",
+    "AuthorEmail": "",
+    "Description": "",
+    "LongDescription": "",
+    "URL": "",
+    "CopyrightDate": "",
+    "CopyrightName": "",
+    "LicenseName": "",
+    "LicenseDescription": "",
+    "Dependencies": [
+      "sh_cpl==2021.4.2.dev1"
+    ],
+    "PythonVersion": ">=3.9.2",
+    "PythonPath": {
+      "linux": ""
+    },
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "console",
+    "SourcePath": "src",
+    "OutputPath": "dist",
+    "Main": "main",
+    "EntryPoint": "database",
+    "IncludePackageData": false,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {}
+  }
+}
