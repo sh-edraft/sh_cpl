@@ -96,9 +96,6 @@ Project link: [https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib](https://g
 
 <!-- Internal LINKS -->
 [project]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib
-[quickstart]: quickstart.md
-[contributing]: contributing.md
-[license]: LICENSE
-
-[contributors-url]: contributors
-
+[quickstart]: [project]/wiki/quickstart.md
+[contributing]: [project]/wiki/contributing.md
+[license]: [project]/LICENSE
