@@ -402,7 +402,6 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
-
         self._output_path = os.path.join(self._output_path, 'publish')
 
         Console.write_line('Build:')
