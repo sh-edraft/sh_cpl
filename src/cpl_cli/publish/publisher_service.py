@@ -39,6 +39,10 @@ class PublisherService(PublisherABC):
         self._included_dirs: list[str] = []
         self._distributed_files: list[str] = []
 
+        self._src_path_part = 'src/'
+        if sys.platform == 'win32':
+            self._src_path_part = 'src\\'
+
     @property
     def source_path(self) -> str:
         return self._source_path
@@ -54,8 +58,8 @@ class PublisherService(PublisherABC):
         :param file:
         :return:
         """
-        if 'src/' in file:
-            file = file.replace('src/', '', 1)
+        if self._src_path_part in file:
+            file = file.replace(self._src_path_part, '', 1)
 
         dirs = os.path.dirname(file).split('/')
         for d in dirs:
@@ -230,8 +234,8 @@ class PublisherService(PublisherABC):
 
         for file in self._included_files:
             dist_file = file
-            if 'src/' in dist_file:
-                dist_file = dist_file.replace('src/', '', 1)
+            if self._src_path_part in dist_file:
+                dist_file = dist_file.replace(self._src_path_part, '', 1)
 
             output_path = os.path.join(build_path, os.path.dirname(dist_file))
             output_file = os.path.join(build_path, dist_file)
@@ -252,8 +256,8 @@ class PublisherService(PublisherABC):
 
         for empty_dir in self._included_dirs:
             dist_dir = empty_dir
-            if 'src/' in dist_dir:
-                dist_dir = dist_dir.replace('src/', '', 1)
+            if self._src_path_part in dist_dir:
+                dist_dir = dist_dir.replace(self._src_path_part, '', 1)
 
             output_path = os.path.join(build_path, dist_dir)
             if not os.path.isdir(output_path):
