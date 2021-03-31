@@ -1,3 +1,4 @@
+import sys
 import traceback
 from typing import Optional
 
@@ -70,6 +71,25 @@ class BuildSettings(ConfigurationModelABC):
             self._included = settings[BuildSettingsNameEnum.included.value]
             self._excluded = settings[BuildSettingsNameEnum.excluded.value]
             self._package_data = settings[BuildSettingsNameEnum.package_data.value]
+
+            if sys.platform == 'win32':
+                self._source_path = str(self._source_path).replace('/', '\\')
+                self._output_path = str(self._output_path).replace('/', '\\')
+
+                # windows paths for excluded files
+                excluded = []
+                for ex in self._excluded:
+                    excluded.append(str(ex).replace('/', '\\'))
+
+                self._excluded = excluded
+
+                # windows paths for included files
+                included = []
+                for inc in self._included:
+                    included.append(str(inc).replace('/', '\\'))
+
+                self._included = included
+
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(
