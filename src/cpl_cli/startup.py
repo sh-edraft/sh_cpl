@@ -1,3 +1,5 @@
+import os
+
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -29,7 +31,7 @@ class Startup(StartupABC):
         self._env = self._configuration.environment
         self._services = services
 
-        self._env.set_runtime_directory(__file__)
+        self._env.set_runtime_directory(os.path.dirname(__file__))
 
     def configure_configuration(self) -> ConfigurationABC:
         self._configuration.argument_error_function = Error.error
@@ -56,7 +58,9 @@ class Startup(StartupABC):
             ConsoleArgument('', 'library', ['l', 'L'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
-        self._configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
+        self._configuration.add_console_argument(
+            ConsoleArgument('', 'start', ['s', 'S'], ' ', is_value_token_optional=True)
+        )
         self._configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))
