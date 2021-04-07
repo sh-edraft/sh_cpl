@@ -201,7 +201,6 @@ class PublisherService(PublisherABC):
                     if len(module_py_lines) > 0:
                         imports = '\n'.join(module_py_lines)
 
-                Console.write_line(self._project_settings.version.to_str())
                 template_content = stringTemplate(InitTemplate.get_init_py()).substitute(
                     Name=self._project_settings.name,
                     Description=self._project_settings.description,
@@ -406,7 +405,7 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
-        self._output_path = os.path.join(self._output_path, 'publish')
+        self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'publish'))
 
         Console.write_line('Build:')
         Console.spinner(
