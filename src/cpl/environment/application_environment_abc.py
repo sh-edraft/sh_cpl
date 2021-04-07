@@ -83,3 +83,12 @@ class ApplicationEnvironmentABC(ABC):
         :return:
         """
         pass
+
+    @abstractmethod
+    def set_working_directory(self, working_directory: str):
+        """
+        Sets the current working directory
+        :param working_directory:
+        :return:
+        """
+        pass

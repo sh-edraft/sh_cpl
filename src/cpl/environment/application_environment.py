@@ -81,18 +81,22 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
     @property
     def working_directory(self) -> str:
-        return self._working_directory
-
-    def set_working_directory(self, path: str = ''):
-        if path != '':
-            self._working_directory = path
-            return
-
-        self._working_directory = pathlib.Path().absolute()
+        return str(self._working_directory)
 
     @property
     def runtime_directory(self) -> str:
-        return self._runtime_directory
+        return str(self._runtime_directory)
 
-    def set_runtime_directory(self, file: str):
-        self._runtime_directory = pathlib.Path(file).parent.absolute()
+    def set_runtime_directory(self, runtime_directory: str):
+        if runtime_directory != '':
+            self._runtime_directory = runtime_directory
+            return
+
+        self._runtime_directory = pathlib.Path().absolute()
+
+    def set_working_directory(self, working_directory: str):
+        if working_directory != '':
+            self._working_directory = working_directory
+            return
+
+        self._working_directory = pathlib.Path().absolute()
