@@ -83,6 +83,10 @@ class LiveServerService(FileSystemEventHandler):
         :param args:
         :return:
         """
+        if self._build_settings.main == '':
+            Console.error('Project has no entry point.')
+            return
+
         self._args = args
         Console.write_line('** CPL live development server is running **')
         self._start()

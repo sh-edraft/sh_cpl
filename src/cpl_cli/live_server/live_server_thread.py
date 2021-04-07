@@ -38,7 +38,13 @@ class LiveServerThread(threading.Thread):
         Starts the CPL project
         :return:
         """
-        main = self._build_settings.main.replace('.', '/')
+        src_path = ''
+        main = self._build_settings.main
+        if '.' in self._build_settings.main:
+            length = len(self._build_settings.main.split('.')) - 1
+            src_path = self._path.replace(f'{"/".join(self._build_settings.main.split(".")[:length])}/', '')
+            main = self._build_settings.main.split('.')[length]
+
         self._main = os.path.join(self._path, f'{main}.py')
         if not os.path.isfile(self._main):
             Console.error('Entry point main.py not found')
@@ -53,11 +59,11 @@ class LiveServerThread(threading.Thread):
 
         env_vars = os.environ
         if sys.platform == 'win32':
-            env_vars['PYTHONPATH'] = f'{os.path.dirname(self._path)};' \
-                                     f'{os.path.join(os.path.dirname(self._path), self._build_settings.source_path)}'
+            env_vars['PYTHONPATH'] = f'{os.path.dirname(src_path)};' \
+                                     f'{os.path.join(os.path.dirname(src_path), self._build_settings.source_path)}'
         else:
-            env_vars['PYTHONPATH'] = f'{os.path.dirname(self._path)}:' \
-                                     f'{os.path.join(os.path.dirname(self._path), self._build_settings.source_path)}'
+            env_vars['PYTHONPATH'] = f'{os.path.dirname(src_path)}:' \
+                                     f'{os.path.join(os.path.dirname(src_path), self._build_settings.source_path)}'
 
         self._command = [sys.executable, self._main, ''.join(self._args)]
         subprocess.run(self._command, env=env_vars)
