@@ -334,7 +334,7 @@ class Configuration(ConfigurationABC):
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
 
-    def add_configuration(self, key_type: type, value: ConfigurationModelABC):
+    def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
         self._config[key_type] = value
 
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
