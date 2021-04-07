@@ -29,6 +29,8 @@ class LiveServerService(FileSystemEventHandler):
         self._ls_thread = None
         self._observer = None
 
+        self._args: list[str] = []
+
     def _start_observer(self):
         """
         Starts the file changes observer
@@ -70,15 +72,17 @@ class LiveServerService(FileSystemEventHandler):
 
     def _start(self):
         self._start_observer()
-        self._ls_thread = LiveServerThread(self._src_dir, self._build_settings)
+        self._ls_thread = LiveServerThread(self._src_dir, self._build_settings, self._args)
         self._ls_thread.start()
         self._ls_thread.join()
         Console.close()
 
-    def start(self):
+    def start(self, args: list[str]):
         """
         Starts the CPL live development server
+        :param args:
         :return:
         """
+        self._args = args
         Console.write_line('** CPL live development server is running **')
         self._start()

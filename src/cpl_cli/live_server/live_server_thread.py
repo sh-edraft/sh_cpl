@@ -11,7 +11,7 @@ from cpl_cli.configuration import BuildSettings
 
 class LiveServerThread(threading.Thread):
 
-    def __init__(self, path: str, build_settings: BuildSettings):
+    def __init__(self, path: str, build_settings: BuildSettings, args: list[str]):
         """
         Thread to start the CPL project for the live development server
         :param path:
@@ -20,6 +20,7 @@ class LiveServerThread(threading.Thread):
 
         self._path = path
         self._build_settings = build_settings
+        self._args = args
 
         self._main = ''
         self._command = []
@@ -58,5 +59,5 @@ class LiveServerThread(threading.Thread):
             env_vars['PYTHONPATH'] = f'{os.path.dirname(self._path)}:' \
                                      f'{os.path.join(os.path.dirname(self._path), self._build_settings.source_path)}'
 
-        self._command = [sys.executable, self._main, ''.join(sys.argv[2:])]
+        self._command = [sys.executable, self._main, ''.join(self._args)]
         subprocess.run(self._command, env=env_vars)
