@@ -8,7 +8,7 @@ from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl.logging.logger_abc import LoggerABC
 from cpl.mailing.email import EMail
 from cpl.mailing.email_client_abc import EMailClientABC
-from tests.custom.general.test_service import TestService
+from test_service import TestService
 
 
 class Application(ApplicationABC):

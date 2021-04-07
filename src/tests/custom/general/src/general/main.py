@@ -1,6 +1,6 @@
 from cpl.application.application_builder import ApplicationBuilder
-from tests.custom.general.application import Application
-from tests.custom.general.startup import Startup
+from application import Application
+from startup import Startup
 
 
 def main():

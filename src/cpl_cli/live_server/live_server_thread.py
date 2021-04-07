@@ -50,13 +50,6 @@ class LiveServerThread(threading.Thread):
             Console.error('Entry point main.py not found')
             return
 
-        Console.set_foreground_color(ForegroundColorEnum.green)
-        Console.write_line('Read successfully')
-        Console.set_foreground_color(ForegroundColorEnum.cyan)
-        now = datetime.now()
-        Console.write_line(f'Started at {now.strftime("%Y-%m-%d %H:%M:%S")}\n\n')
-        Console.set_foreground_color(ForegroundColorEnum.default)
-
         env_vars = os.environ
         if sys.platform == 'win32':
             env_vars['PYTHONPATH'] = f'{os.path.dirname(src_path)};' \
@@ -64,6 +57,13 @@ class LiveServerThread(threading.Thread):
         else:
             env_vars['PYTHONPATH'] = f'{os.path.dirname(src_path)}:' \
                                      f'{os.path.join(os.path.dirname(src_path), self._build_settings.source_path)}'
+
+        Console.set_foreground_color(ForegroundColorEnum.green)
+        Console.write_line('Read successfully')
+        Console.set_foreground_color(ForegroundColorEnum.cyan)
+        now = datetime.now()
+        Console.write_line(f'Started at {now.strftime("%Y-%m-%d %H:%M:%S")}\n\n')
+        Console.set_foreground_color(ForegroundColorEnum.default)
 
         self._command = [sys.executable, self._main, ''.join(self._args)]
         subprocess.run(self._command, env=env_vars)
