@@ -148,7 +148,7 @@ class PublisherService(PublisherABC):
             elif os.path.isfile(rel_path):
                 self._included_files.append(rel_path)
 
-        for r, d, f in os.walk(self._build_settings.source_path):
+        for r, d, f in os.walk(self._source_path):
             for file in f:
                 relative_path = os.path.relpath(r)
                 file_path = os.path.join(relative_path, os.path.relpath(file))
@@ -201,6 +201,7 @@ class PublisherService(PublisherABC):
                     if len(module_py_lines) > 0:
                         imports = '\n'.join(module_py_lines)
 
+                Console.write_line(self._project_settings.version.to_str())
                 template_content = stringTemplate(InitTemplate.get_init_py()).substitute(
                     Name=self._project_settings.name,
                     Description=self._project_settings.description,
@@ -385,7 +386,7 @@ class PublisherService(PublisherABC):
         3. Copies all included source files to dist_path/build
         :return:
         """
-        self._output_path = os.path.join(self._output_path, 'build')
+        self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'build'))
 
         Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
                         spinner_foreground_color=ForegroundColorEnum.blue)

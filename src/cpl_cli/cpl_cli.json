@@ -25,7 +25,7 @@
   "BuildSettings": {
     "ProjectType": "console",
     "SourcePath": "",
-    "OutputPath": "dist",
+    "OutputPath": "../../dist",
     "Main": "main",
     "EntryPoint": "cpl",
     "IncludePackageData": true,

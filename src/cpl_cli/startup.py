@@ -40,7 +40,9 @@ class Startup(StartupABC):
         self._configuration.add_environment_variables('CPL_')
         self._configuration.add_json_file('appsettings.json', path=self._env.runtime_directory,
                                           optional=False, output=False)
-        self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
+        self._configuration.add_console_argument(
+            ConsoleArgument('', 'build', ['b', 'B'], ' ', is_value_token_optional=True)
+        )
         self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
             ConsoleArgument('', 'abc', ['a', 'A'], ' '),
             ConsoleArgument('', 'class', ['c', 'C'], ' '),
