@@ -72,6 +72,8 @@ class CommandHandler(ABC):
                         if index < len(sys.argv):
                             args = sys.argv[index:]
 
+                    self._config.add_configuration('ProjectName', project_name)
+
                     if project_name not in workspace.projects:
                         Error.error(
                             f'Project {project_name} not found.'

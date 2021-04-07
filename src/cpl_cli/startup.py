@@ -59,7 +59,9 @@ class Startup(StartupABC):
             ConsoleArgument('', 'console', ['c', 'C'], ' '),
             ConsoleArgument('', 'library', ['l', 'L'], ' ')
         ]))
-        self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
+        self._configuration.add_console_argument(
+            ConsoleArgument('', 'publish', ['p', 'P'], ' ', is_value_token_optional=True)
+        )
         self._configuration.add_console_argument(
             ConsoleArgument('', 'start', ['s', 'S'], ' ', is_value_token_optional=True)
         )

@@ -38,7 +38,7 @@
     "SourcePath": "",
     "OutputPath": "../../dist",
     "Main": "",
-    "EntryPoint": "cpl",
+    "EntryPoint": "",
     "IncludePackageData": true,
     "Included": [
       "*/templates"
@@ -48,10 +48,6 @@
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {
-      "cpl_cli": [
-        "*.json"
-      ]
-    }
+    "PackageData": {}
   }
 }

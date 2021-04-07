@@ -7,6 +7,7 @@ import setuptools
 from packaging import version
 from setuptools import sandbox
 
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
@@ -19,15 +20,18 @@ from cpl_cli.templates.publish.setup_template import SetupTemplate
 
 class PublisherService(PublisherABC):
 
-    def __init__(self, env: ApplicationEnvironmentABC, project: ProjectSettings, build: BuildSettings):
+    def __init__(self, config: ConfigurationABC,
+                 env: ApplicationEnvironmentABC, project: ProjectSettings, build: BuildSettings):
         """
         Service to build or publish files for distribution
+        :param config:
         :param env:
         :param project:
         :param build:
         """
         PublisherABC.__init__(self)
 
+        self._config = config
         self._env = env
         self._project_settings = project
         self._build_settings = build
@@ -130,6 +134,21 @@ class PublisherService(PublisherABC):
 
         return False
 
+    def _is_file_excluded(self, file: str) -> bool:
+        """
+        Checks if the file is excluded
+        :param file:
+        :return:
+        """
+        for excluded in self._build_settings.excluded:
+            if excluded.startswith('*'):
+                excluded = excluded.replace('*', '')
+
+            if excluded in file and not self._is_path_included(file):
+                return True
+
+        return False
+
     def _read_sources(self):
         """
         Reads all source files and save included files
@@ -152,8 +171,8 @@ class PublisherService(PublisherABC):
             for file in f:
                 relative_path = os.path.relpath(r)
                 file_path = os.path.join(relative_path, os.path.relpath(file))
-                if self._is_path_excluded(relative_path):
-                    break
+                if self._is_file_excluded(file_path):
+                    continue
 
                 if len(d) > 0:
                     for directory in d:
@@ -289,31 +308,39 @@ class PublisherService(PublisherABC):
         if os.path.isfile(setup_file):
             os.remove(setup_file)
 
-        main = None
-        try:
-            main_name = self._build_settings.main
+        entry_points = {}
+        if self._build_settings.main != "":
+            main = None
+            try:
+                main_name = self._build_settings.main
 
-            if '.' in self._build_settings.main:
-                length = len(self._build_settings.main.split('.'))
-                main_name = self._build_settings.main.split('.')[length - 1]
+                if '.' in self._build_settings.main:
+                    length = len(self._build_settings.main.split('.'))
+                    main_name = self._build_settings.main.split('.')[length - 1]
 
-            sys.path.insert(0, self._source_path)
-            main_mod = __import__(self._build_settings.main)
-            main = getattr(main_mod, main_name)
-        except Exception as e:
-            Console.error('Could not find entry point', str(e))
-            return
+                sys.path.insert(0, self._source_path)
+                main_mod = __import__(self._build_settings.main)
+                main = getattr(main_mod, main_name)
+            except Exception as e:
+                Console.error('Could not find entry point', str(e))
+                return
 
-        if main is None or not callable(main) and not hasattr(main, 'main'):
-            Console.error('Could not find entry point')
-            return
+            if main is None or not callable(main) and not hasattr(main, 'main'):
+                Console.error('Could not find entry point')
+                return
 
-        if callable(main):
-            mod_name = main.__module__
-            func_name = main.__name__
-        else:
-            mod_name = main.__name__
-            func_name = main.main.__name__
+            if callable(main):
+                mod_name = main.__module__
+                func_name = main.__name__
+            else:
+                mod_name = main.__name__
+                func_name = main.main.__name__
+
+            entry_points = {
+                'console_scripts': [
+                    f'{self._build_settings.entry_point} = {mod_name}:{func_name}'
+                ]
+            }
 
         with open(setup_file, 'w+') as setup_py:
             setup_string = stringTemplate(SetupTemplate.get_setup_py()).substitute(
@@ -328,11 +355,7 @@ class PublisherService(PublisherABC):
                 Description=self._project_settings.description,
                 PyRequires=self._project_settings.python_version,
                 Dependencies=self._project_settings.dependencies,
-                EntryPoints={
-                    'console_scripts': [
-                        f'{self._build_settings.entry_point} = {mod_name}:{func_name}'
-                    ]
-                },
+                EntryPoints=entry_points,
                 PackageData=self._build_settings.package_data
             )
             setup_py.write(setup_string)
@@ -385,6 +408,7 @@ class PublisherService(PublisherABC):
         3. Copies all included source files to dist_path/build
         :return:
         """
+        self.exclude(f'*/{self._config.get_configuration("ProjectName")}.json')
         self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'build'))
 
         Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
@@ -405,6 +429,7 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
+        self.exclude(f'*/{self._config.get_configuration("ProjectName")}.json')
         self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'publish'))
 
         Console.write_line('Build:')

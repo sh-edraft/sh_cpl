@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl==2021.4.0"
+      "sh_cpl==2021.4.dev1"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {},
@@ -26,7 +26,7 @@
     "ProjectType": "console",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "main",
+    "Main": "cpl_cli.main",
     "EntryPoint": "cpl",
     "IncludePackageData": true,
     "Included": [
