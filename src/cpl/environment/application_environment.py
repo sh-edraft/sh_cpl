@@ -9,18 +9,16 @@ from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 class ApplicationEnvironment(ApplicationEnvironmentABC):
 
-    def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production, crp: str = './'):
+    def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production):
         """
         Represents environment of the application
         :param name:
-        :param crp:
         """
         ApplicationEnvironmentABC.__init__(self)
 
         self._environment_name: Optional[EnvironmentNameEnum] = name
         self._app_name: Optional[str] = None
         self._customer: Optional[str] = None
-        self._content_root_path: Optional[str] = crp
 
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
@@ -50,14 +48,6 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
     @customer.setter
     def customer(self, customer: str):
         self._customer = customer
-
-    @property
-    def content_root_path(self) -> str:
-        return self._content_root_path
-
-    @content_root_path.setter
-    def content_root_path(self, content_root_path: str):
-        self._content_root_path = content_root_path
 
     @property
     def host_name(self):

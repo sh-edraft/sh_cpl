@@ -285,7 +285,7 @@ class Configuration(ConfigurationABC):
                 exit()
 
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
-        path_root = self._application_environment.content_root_path
+        path_root = self._application_environment.working_directory
         if path is not None:
             path_root = path
 
