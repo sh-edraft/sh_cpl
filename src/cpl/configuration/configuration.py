@@ -285,14 +285,17 @@ class Configuration(ConfigurationABC):
                 exit()
 
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
-        path_root = self._application_environment.working_directory
-        if path is not None:
-            path_root = path
-
-        if str(path_root).endswith('/') and not name.startswith('/'):
-            file_path = f'{path_root}{name}'
+        if os.path.isabs(name):
+            file_path = name
         else:
-            file_path = f'{path_root}/{name}'
+            path_root = self._application_environment.working_directory
+            if path is not None:
+                path_root = path
+
+            if str(path_root).endswith('/') and not name.startswith('/'):
+                file_path = f'{path_root}{name}'
+            else:
+                file_path = f'{path_root}/{name}'
 
         if not os.path.isfile(file_path):
             if optional is not True:
