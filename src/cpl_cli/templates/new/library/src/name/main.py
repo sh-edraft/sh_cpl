@@ -11,12 +11,12 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
 
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
-        self._path = f'src/{name}_cli/'
+        self._path = f'src/{name}/'
         self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
-            from {name}_cli.application import Application
-            from {name}_cli.startup import Startup
+            from {name}.application import Application
+            from {name}.startup import Startup
             
             
             def main():
@@ -44,15 +44,16 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
 
 class MainWithApplicationBaseTemplate(TemplateFileABC):
 
-    def __init__(self):
+    def __init__(self, name: str):
         TemplateFileABC.__init__(self)
 
+        name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = 'src/'
         self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
-            from {name}_cli.application import Application
+            from {name}.application import Application
             
             
             def main():

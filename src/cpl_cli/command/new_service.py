@@ -93,12 +93,12 @@ class NewService(CommandABC):
     def _create_build_settings(self):
         main = f'{String.convert_to_snake_case(self._project.name)}.main'
         if self._command == ProjectTypeEnum.library.value:
-            main = f'{String.convert_to_snake_case(self._project.name)}_cli.main'
+            main = f'{String.convert_to_snake_case(self._project.name)}.main'
 
         self._build_dict = {
             BuildSettingsNameEnum.project_type.value: self._command,
-            BuildSettingsNameEnum.source_path.value: 'src',
-            BuildSettingsNameEnum.output_path.value: 'dist',
+            BuildSettingsNameEnum.source_path.value: '',
+            BuildSettingsNameEnum.output_path.value: '../../dist',
             BuildSettingsNameEnum.main.value: main,
             BuildSettingsNameEnum.entry_point.value: self._project.name,
             BuildSettingsNameEnum.include_package_data.value: False,

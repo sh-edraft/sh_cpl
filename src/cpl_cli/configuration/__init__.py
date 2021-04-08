@@ -26,6 +26,8 @@ from .project_settings import ProjectSettings
 from .project_settings_name_enum import ProjectSettingsNameEnum
 from .version_settings import VersionSettings
 from .version_settings_name_enum import VersionSettingsNameEnum
+from .workspace_settings import WorkspaceSettings
+from .workspace_settings_name_enum import WorkspaceSettingsNameEnum
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2021', minor='4', micro='None')

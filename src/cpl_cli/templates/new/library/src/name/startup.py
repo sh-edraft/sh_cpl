@@ -11,7 +11,7 @@ class StartupTemplate(TemplateFileABC):
 
         name = String.convert_to_snake_case(name)
         self._name = 'startup.py'
-        self._path = f'src/{name}_cli/'
+        self._path = f'src/{name}/'
         self._value = textwrap.dedent("""\
             from cpl.application import StartupABC
             from cpl.configuration import ConfigurationABC

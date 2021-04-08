@@ -11,7 +11,7 @@ class ApplicationTemplate(TemplateFileABC):
 
         name = String.convert_to_snake_case(name)
         self._name = 'application.py'
-        self._path = f'src/{name}_cli/'
+        self._path = f'src/{name}/'
         self._value = textwrap.dedent("""\
             from cpl.application import ApplicationABC
             from cpl.configuration import ConfigurationABC
