@@ -22,8 +22,8 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
-        self._working_directory = os.path.abspath('./')
         self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self._working_directory = os.path.abspath('./')
 
     @property
     def environment_name(self) -> str:
@@ -82,11 +82,13 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
             self._runtime_directory = runtime_directory
             return
 
-        self._runtime_directory = pathlib.Path().absolute()
+        self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     def set_working_directory(self, working_directory: str):
         if working_directory != '':
             self._working_directory = working_directory
+            os.chdir(self._working_directory)
             return
 
-        self._working_directory = pathlib.Path().absolute()
+        self._working_directory = os.path.abspath('./')
+        os.chdir(self._working_directory)
