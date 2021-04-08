@@ -40,9 +40,7 @@ class Startup(StartupABC):
         self._configuration.add_environment_variables('CPL_')
         self._configuration.add_json_file('appsettings.json', path=self._env.runtime_directory,
                                           optional=False, output=False)
-        self._configuration.add_console_argument(
-            ConsoleArgument('', 'build', ['b', 'B'], ' ', is_value_token_optional=True)
-        )
+        self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
             ConsoleArgument('', 'abc', ['a', 'A'], ' '),
             ConsoleArgument('', 'class', ['c', 'C'], ' '),
@@ -59,12 +57,8 @@ class Startup(StartupABC):
             ConsoleArgument('', 'console', ['c', 'C'], ' '),
             ConsoleArgument('', 'library', ['l', 'L'], ' ')
         ]))
-        self._configuration.add_console_argument(
-            ConsoleArgument('', 'publish', ['p', 'P'], ' ', is_value_token_optional=True)
-        )
-        self._configuration.add_console_argument(
-            ConsoleArgument('', 'start', ['s', 'S'], ' ', is_value_token_optional=True)
-        )
+        self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
+        self._configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))

@@ -1,4 +1,4 @@
-import pathlib
+import os
 from datetime import datetime
 from socket import gethostname
 from typing import Optional
@@ -22,8 +22,8 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
-        self._working_directory = pathlib.Path().absolute()
-        self._runtime_directory = pathlib.Path(__file__).parent.absolute()
+        self._working_directory = os.path.abspath('./')
+        self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     @property
     def environment_name(self) -> str:

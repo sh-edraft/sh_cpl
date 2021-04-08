@@ -1,6 +1,7 @@
 import os
 import sys
 from abc import ABC
+from typing import Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
@@ -48,39 +49,44 @@ class CommandHandler(ABC):
         """
         for command in self._commands:
             if cmd == command.name or cmd in command.aliases:
-                if command.is_project_needed and \
-                        not os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
-                    Error.error(
-                        'The command requires to be run in an CPL workspace, but a workspace could not be found.'
-                    )
-                    return
-
                 if command.is_project_needed:
-                    self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
-                    workspace: WorkspaceSettings = self._config.get_configuration(WorkspaceSettings)
+                    error = None
+                    project_name: Optional[str] = None
+                    workspace: Optional[WorkspaceSettings] = None
 
-                    if workspace is None:
+                    if os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
+                        self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
+                        workspace = self._config.get_configuration(WorkspaceSettings)
+
+                    elif os.path.isfile(
+                            os.path.join(
+                                self._env.working_directory,
+                                f'{os.path.basename(self._env.working_directory)}.json'
+                            )
+                    ):
+                        project_name = os.path.basename(self._env.working_directory)
+
+                    if workspace is None and project_name is None:
                         Error.error(
-                            'The command requires to be run in an CPL workspace, but a workspace could not be found.'
+                            'The command requires to be run in an CPL workspace or project, '
+                            'but a workspace or project could not be found.'
                         )
                         return
 
-                    project_name = workspace.default_project
-                    if len(args) > 0:
-                        project_name = args[0]
-                        index = sys.argv.index(args[0]) + 1
-                        if index < len(sys.argv):
-                            args = sys.argv[index:]
+                    if project_name is None:
+                        project_name = workspace.default_project
 
                     self._config.add_configuration('ProjectName', project_name)
+                    project_json = f'{project_name}.json'
 
-                    if project_name not in workspace.projects:
-                        Error.error(
-                            f'Project {project_name} not found.'
-                        )
-                        return
+                    if workspace is not None:
+                        if project_name not in workspace.projects:
+                            Error.error(
+                                f'Project {project_name} not found.'
+                            )
+                            return
+                        project_json = workspace.projects[project_name]
 
-                    project_json = workspace.projects[project_name]
                     if not os.path.isfile(os.path.join(self._env.working_directory, project_json)):
                         Error.error(
                             'The command requires to be run in an CPL project, but a project could not be found.'
@@ -89,7 +95,7 @@ class CommandHandler(ABC):
 
                     self._config.add_json_file(project_json, optional=True, output=False)
 
-                    self._config.environment.set_working_directory(
+                    self._env.set_working_directory(
                         os.path.join(self._env.working_directory, os.path.dirname(project_json))
                     )
 
