@@ -16,7 +16,8 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl==2021.4.dev1"
+      "sh_cpl==2021.4.dev1",
+      "discord.py==1.7.1"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {

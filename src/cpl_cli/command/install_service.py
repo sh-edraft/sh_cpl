@@ -4,6 +4,7 @@ import subprocess
 
 from packaging import version
 
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
@@ -18,10 +19,11 @@ from cpl_cli.error import Error
 
 class InstallService(CommandABC):
 
-    def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings, project_settings: ProjectSettings,
-                 cli_settings: CLISettings):
+    def __init__(self, config: ConfigurationABC, env: ApplicationEnvironmentABC, build_settings: BuildSettings,
+                 project_settings: ProjectSettings, cli_settings: CLISettings):
         """
         Service for the CLI command install
+        :param config:
         :param env:
         :param build_settings:
         :param project_settings:
@@ -29,10 +31,13 @@ class InstallService(CommandABC):
         """
         CommandABC.__init__(self)
 
+        self._config = config
         self._env = env
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
+
+        self._project_file = f'{self._config.get_configuration("ProjectName")}.json'
 
     def _install_project(self):
         """
@@ -45,7 +50,7 @@ class InstallService(CommandABC):
             return
 
         if self._project_settings.dependencies is None:
-            Error.error('Found invalid dependencies in cpl.json.')
+            Error.error(f'Found invalid dependencies in {self._project_file}.')
             return
 
         Pip.set_executable(self._project_settings.python_executable)
@@ -76,7 +81,7 @@ class InstallService(CommandABC):
             return
 
         if self._project_settings.dependencies is None:
-            Error.error('Found invalid dependencies in cpl.json.')
+            Error.error(f'Found invalid dependencies in {self._project_file}.')
             return
 
         package_version = ''
@@ -147,7 +152,7 @@ class InstallService(CommandABC):
                 BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
             }
 
-            with open(os.path.join(self._env.working_directory, 'cpl.json'), 'w') as project_file:
+            with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
                 project_file.write(json.dumps(config, indent=2))
                 project_file.close()
 
