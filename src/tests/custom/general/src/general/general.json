@@ -1,6 +1,6 @@
 {
   "ProjectSettings": {
-    "Name": "sh_cpl.tests",
+    "Name": "sh_cpl.tests.custom.general",
     "Version": {
       "Major": "2021",
       "Minor": "04",
@@ -16,12 +16,12 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl==2021.4.1.post13",
-      "discord.py==1.6.0"
+      "sh_cpl==2021.4.dev1",
+      "discord.py==1.7.1"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {
-      "linux": "../../../../cpl-env/bin/python3.9",
+      "linux": "general-env/bin/python3.9",
       "win32": ""
     },
     "Classifiers": []
@@ -31,7 +31,7 @@
     "SourcePath": "",
     "OutputPath": "dist",
     "Main": "main",
-    "EntryPoint": "cpl",
+    "EntryPoint": "",
     "IncludePackageData": true,
     "Included": [
       "*/templates"
