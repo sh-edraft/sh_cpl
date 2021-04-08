@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
@@ -16,12 +17,14 @@ from cpl_cli.configuration.settings_helper import SettingsHelper
 class UpdateService(CommandABC):
 
     def __init__(self,
+                 config: ConfigurationABC,
                  env: ApplicationEnvironmentABC,
                  build_settings: BuildSettings,
                  project_settings: ProjectSettings,
                  cli_settings: CLISettings):
         """
         Service for the CLI command update
+        :param config:
         :param env:
         :param build_settings:
         :param project_settings:
@@ -29,6 +32,7 @@ class UpdateService(CommandABC):
         """
         CommandABC.__init__(self)
 
+        self._config = config
         self._env = env
         self._build_settings = build_settings
         self._project_settings = project_settings
@@ -115,7 +119,7 @@ class UpdateService(CommandABC):
 
     def _project_json_update_dependency(self, old_package: str, new_package: str):
         """
-        Writes new package version to cpl.json
+        Writes new package version to project.json
         :param old_package:
         :param new_package:
         :return:
@@ -135,7 +139,8 @@ class UpdateService(CommandABC):
             BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
         }
 
-        with open(os.path.join(self._env.working_directory, 'cpl.json'), 'w') as project:
+        with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'),
+                  'w') as project:
             project.write(json.dumps(config, indent=2))
             project.close()
 
