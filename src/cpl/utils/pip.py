@@ -1,6 +1,9 @@
+import os
 import subprocess
 import sys
+import shlex
 from contextlib import suppress
+from textwrap import dedent
 from typing import Optional
 
 
@@ -9,6 +12,8 @@ class Pip:
     Executes pip commands
     """
     _executable = sys.executable
+    _env = os.environ
+    _is_venv = False
 
     """
         Getter
@@ -29,8 +34,17 @@ class Pip:
         :param executable:
         :return:
         """
-        if executable is not None:
+        if executable is not None and executable != sys.executable:
             cls._executable = executable
+            if os.path.islink(cls._executable):
+                cls._is_venv = True
+                path = os.path.dirname(os.path.dirname(cls._executable))
+                cls._env = os.environ
+                if sys.platform == 'win32':
+                    cls._env['PATH'] = f'{path}\\bin' + os.pathsep + os.environ.get('PATH', '')
+                else:
+                    cls._env['PATH'] = f'{path}/bin' + os.pathsep + os.environ.get('PATH', '')
+                cls._env['VIRTUAL_ENV'] = path
 
     @classmethod
     def reset_executable(cls):
@@ -39,6 +53,7 @@ class Pip:
         :return:
         """
         cls._executable = sys.executable
+        cls._is_venv = False
 
     """
         Public utils functions
@@ -53,7 +68,14 @@ class Pip:
         """
         result = None
         with suppress(Exception):
-            result = subprocess.check_output([cls._executable, "-m", "pip", "show", package], stderr=subprocess.DEVNULL)
+            args = [cls._executable, "-m", "pip", "show", package]
+            if cls._is_venv:
+                args = ["pip", "show", package]
+
+            result = subprocess.check_output(
+                args,
+                stderr=subprocess.DEVNULL, env=cls._env
+            )
 
         if result is None:
             return None
@@ -76,7 +98,11 @@ class Pip:
         Gets table of outdated packages
         :return:
         """
-        return subprocess.check_output([cls._executable, "-m", "pip", "list", "--outdated"])
+        args = [cls._executable, "-m", "pip", "list", "--outdated"]
+        if cls._is_venv:
+            args = ["pip", "list", "--outdated"]
+
+        return subprocess.check_output(args, env=cls._env)
 
     @classmethod
     def install(cls, package: str, *args, source: str = None, stdout=None, stderr=None):
@@ -90,6 +116,8 @@ class Pip:
         :return:
         """
         pip_args = [cls._executable, "-m", "pip", "install"]
+        if cls._is_venv:
+            pip_args = ["pip", "install"]
 
         for arg in args:
             pip_args.append(arg)
@@ -99,7 +127,7 @@ class Pip:
             pip_args.append(source)
 
         pip_args.append(package)
-        subprocess.run(pip_args, stdout=stdout, stderr=stderr)
+        subprocess.run(pip_args, stdout=stdout, stderr=stderr, env=cls._env)
 
     @classmethod
     def uninstall(cls, package: str, stdout=None, stderr=None):
@@ -110,4 +138,11 @@ class Pip:
         :param stderr:
         :return:
         """
-        subprocess.run([cls._executable, "-m", "pip", "uninstall", "--yes", package], stdout=stdout, stderr=stderr)
+        args = [cls._executable, "-m", "pip", "uninstall", "--yes", package]
+        if cls._is_venv:
+            args = ["pip", "uninstall", "--yes", package]
+
+        subprocess.run(
+            args,
+            stdout=stdout, stderr=stderr, env=cls._env
+        )

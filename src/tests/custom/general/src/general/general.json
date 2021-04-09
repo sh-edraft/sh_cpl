@@ -1,6 +1,6 @@
 {
   "ProjectSettings": {
-    "Name": "sh_cpl.tests.custom.general",
+    "Name": "general",
     "Version": {
       "Major": "2021",
       "Minor": "04",
@@ -20,7 +20,7 @@
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {
-      "_linux": "../../../../cpl-env/bin/python3.9",
+      "linux": "../../../../../../cpl-env/bin/python3.9",
       "win32": ""
     },
     "Classifiers": []

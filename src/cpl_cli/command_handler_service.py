@@ -93,11 +93,13 @@ class CommandHandler(ABC):
                         )
                         return
 
-                    self._config.add_json_file(project_json, optional=True, output=False)
+                    project_json = os.path.join(self._env.working_directory, project_json)
 
                     self._env.set_working_directory(
                         os.path.join(self._env.working_directory, os.path.dirname(project_json))
                     )
+
+                    self._config.add_json_file(project_json, optional=True, output=False)
 
                 self._services.get_service(command.command).run(args)
                 Console.write('\n')

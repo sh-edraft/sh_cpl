@@ -126,6 +126,7 @@ class InstallService(CommandABC):
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
         new_package = Pip.get_package(name)
+        Console.write_line(new_package)
         if new_package is None \
                 or '==' in package and \
                 version.parse(package.split('==')[1]) != version.parse(new_package.split('==')[1]):
