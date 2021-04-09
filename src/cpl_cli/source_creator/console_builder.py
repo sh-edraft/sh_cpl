@@ -3,18 +3,17 @@ import os
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.utils.string import String
-from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.configuration.workspace_settings_name_enum import WorkspaceSettingsNameEnum
 from cpl_cli.source_creator.template_builder import TemplateBuilder
 from cpl_cli.templates.new.console.appsettings_json import AppsettingsTemplate
 from cpl_cli.templates.new.console.license import LicenseTemplate
 from cpl_cli.templates.new.console.readme_py import ReadmeTemplate
-from cpl_cli.templates.new.console.src.name.application import ApplicationTemplate
-from cpl_cli.templates.new.console.src.name.init import MainInitTemplate
-from cpl_cli.templates.new.console.src.name.main import MainWithApplicationHostAndStartupTemplate, \
+from cpl_cli.templates.new.console.source.name.application import ApplicationTemplate
+from cpl_cli.templates.new.console.source.name.init import MainInitTemplate
+from cpl_cli.templates.new.console.source.name.main import MainWithApplicationHostAndStartupTemplate, \
     MainWithoutApplicationBaseTemplate, MainWithApplicationBaseTemplate, MainWithDependencyInjection
-from cpl_cli.templates.new.console.src.name.startup import StartupTemplate
-from cpl_cli.templates.new.console.src.tests.init import TestsInitTemplate
+from cpl_cli.templates.new.console.source.name.startup import StartupTemplate
+from cpl_cli.templates.new.console.source.tests.init import TestsInitTemplate
 from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 
