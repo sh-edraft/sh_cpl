@@ -18,6 +18,7 @@ from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
+from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.source_creator.console_builder import ConsoleBuilder
 from cpl_cli.source_creator.library_builder import LibraryBuilder
 
@@ -34,6 +35,7 @@ class NewService(CommandABC):
         self._config = configuration
         self._env = self._config.environment
 
+        self._workspace = self._config.get_configuration(WorkspaceSettings)
         self._project: ProjectSettings = ProjectSettings()
         self._project_dict = {}
         self._build: BuildSettings = BuildSettings()
@@ -127,7 +129,11 @@ class NewService(CommandABC):
         Gets project path
         :return:
         """
-        project_path = os.path.join(self._env.working_directory, self._project.name)
+        if self._workspace is None:
+            project_path = os.path.join(self._env.working_directory, self._project.name)
+        else:
+            project_path = os.path.join(self._env.working_directory, 'src', self._project.name)
+
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
             Console.error('Project path is not empty\n')
             return None
@@ -204,7 +210,8 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._project.name,
-                self._project_json
+                self._project_json,
+                self._workspace
             )
         except Exception as e:
             Console.error('Could not create project', str(e))
@@ -218,6 +225,8 @@ class NewService(CommandABC):
         if len(args) == 0:
             self._help('Usage: cpl new <schematic> [options]')
             return
+
+        Console.write_line(1, self._workspace)
 
         self._command = str(args[0]).lower()
         if self._command == ProjectTypeEnum.console.value:

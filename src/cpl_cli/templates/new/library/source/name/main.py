@@ -1,3 +1,4 @@
+import os.path
 import textwrap
 
 from cpl.utils.string import String
@@ -6,12 +7,12 @@ from cpl_cli.templates.template_file_abc import TemplateFileABC
 
 class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
-        self._path = f'src/{name}/'
+        self._path = os.path.join(path, name)
         self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
@@ -44,12 +45,12 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
 
 class MainWithApplicationBaseTemplate(TemplateFileABC):
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
-        self._path = 'src/'
+        self._path = os.path.join(path, name)
         self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
@@ -80,11 +81,11 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
 
 class MainWithoutApplicationBaseTemplate(TemplateFileABC):
 
-    def __init__(self):
+    def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
         self._name = 'main.py'
-        self._path = 'src/'
+        self._path = os.path.join(path, name)
         self._value = textwrap.dedent("""\
             from cpl.console import Console
             
@@ -112,11 +113,11 @@ class MainWithoutApplicationBaseTemplate(TemplateFileABC):
 
 class MainWithDependencyInjection(TemplateFileABC):
 
-    def __init__(self):
+    def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
         self._name = 'main.py'
-        self._path = 'src/'
+        self._path = os.path.join(path, name)
         self._value = textwrap.dedent("""\
             from cpl.configuration import Configuration, ConfigurationABC
             from cpl.console import Console

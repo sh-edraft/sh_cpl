@@ -1,5 +1,4 @@
 import os
-import sys
 from abc import ABC
 from typing import Optional
 
@@ -49,16 +48,16 @@ class CommandHandler(ABC):
         """
         for command in self._commands:
             if cmd == command.name or cmd in command.aliases:
+                error = None
+                project_name: Optional[str] = None
+                workspace: Optional[WorkspaceSettings] = None
+
+                if os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
+                    self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
+                    workspace = self._config.get_configuration(WorkspaceSettings)
+
                 if command.is_project_needed:
-                    error = None
-                    project_name: Optional[str] = None
-                    workspace: Optional[WorkspaceSettings] = None
-
-                    if os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
-                        self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
-                        workspace = self._config.get_configuration(WorkspaceSettings)
-
-                    elif os.path.isfile(
+                    if os.path.isfile(
                             os.path.join(
                                 self._env.working_directory,
                                 f'{os.path.basename(self._env.working_directory)}.json'
