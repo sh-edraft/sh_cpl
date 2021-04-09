@@ -182,7 +182,8 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._project.name,
-                self._project_json
+                self._project_json,
+                self._workspace
             )
         except Exception as e:
             Console.error('Could not create project', str(e))
