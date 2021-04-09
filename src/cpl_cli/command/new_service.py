@@ -226,8 +226,6 @@ class NewService(CommandABC):
             self._help('Usage: cpl new <schematic> [options]')
             return
 
-        Console.write_line(1, self._workspace)
-
         self._command = str(args[0]).lower()
         if self._command == ProjectTypeEnum.console.value:
             self._console(args)

@@ -64,7 +64,6 @@ class LibraryBuilder:
                 os.path.dirname(project_path),
                 project_name_snake
             )
-            Console.write_line(project_path)
 
             templates: list[TemplateFileABC] = [
                 LicenseTemplate(),
@@ -120,7 +119,6 @@ class LibraryBuilder:
                 spinner_foreground_color=ForegroundColorEnum.cyan
             )
 
-        Console.write_line(project_file_path)
         Console.spinner(
             f'Creating {project_file_path}',
             cls._create_file,
