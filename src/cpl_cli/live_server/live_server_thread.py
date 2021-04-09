@@ -24,7 +24,8 @@ class LiveServerThread(threading.Thread):
         """
         threading.Thread.__init__(self)
 
-        self._executable = executable
+        self._executable = os.path.abspath(executable)
+
         self._path = path
         self._args = args
         self._env = env
@@ -32,6 +33,9 @@ class LiveServerThread(threading.Thread):
 
         self._main = ''
         self._command = []
+        self._env_vars = os.environ
+
+        self._set_venv()
 
     @property
     def command(self) -> list[str]:
@@ -40,6 +44,16 @@ class LiveServerThread(threading.Thread):
     @property
     def main(self) -> str:
         return self._main
+
+    def _set_venv(self):
+        if self._executable != sys.executable:
+            path = os.path.abspath(os.path.dirname(os.path.dirname(self._executable)))
+            if sys.platform == 'win32':
+                self._env_vars['PATH'] = f'{path}\\bin' + os.pathsep + os.environ.get('PATH', '')
+            else:
+                self._env_vars['PATH'] = f'{path}/bin' + os.pathsep + os.environ.get('PATH', '')
+
+            self._env_vars['VIRTUAL_ENV'] = path
 
     def run(self):
         """
@@ -56,12 +70,11 @@ class LiveServerThread(threading.Thread):
             Console.error('Entry point main.py not found')
             return
 
-        env_vars = os.environ
         if sys.platform == 'win32':
-            env_vars['PYTHONPATH'] = f'{self._env.working_directory};' \
+            self._env_vars['PYTHONPATH'] = f'{self._env.working_directory};' \
                                      f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'
         else:
-            env_vars['PYTHONPATH'] = f'{self._env.working_directory}:' \
+            self._env_vars['PYTHONPATH'] = f'{self._env.working_directory}:' \
                                      f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'
 
         Console.set_foreground_color(ForegroundColorEnum.green)
@@ -73,4 +86,4 @@ class LiveServerThread(threading.Thread):
 
         os.chdir(self._env.working_directory)
         self._command = [self._executable, self._main, ''.join(self._args)]
-        subprocess.run(self._command, env=env_vars)
+        subprocess.run(self._command, env=self._env_vars)
