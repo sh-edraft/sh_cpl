@@ -110,9 +110,11 @@ class ConsoleBuilder:
                 cls._create_file,
                 workspace_file_path,
                 {
-                    WorkspaceSettingsNameEnum.default_project.value: project_name,
-                    WorkspaceSettingsNameEnum.projects.value: {
-                        project_name: project_file_path
+                    WorkspaceSettings.__name__: {
+                        WorkspaceSettingsNameEnum.default_project.value: project_name,
+                        WorkspaceSettingsNameEnum.projects.value: {
+                            project_name: project_file_path
+                        }
                     }
                 },
                 text_foreground_color=ForegroundColorEnum.green,
