@@ -131,7 +131,11 @@ class NewService(CommandABC):
         if self._workspace is None:
             project_path = os.path.join(self._env.working_directory, self._project.name)
         else:
-            project_path = os.path.join(self._env.working_directory, 'src', self._project.name)
+            project_path = os.path.join(
+                self._env.working_directory,
+                'src',
+                String.convert_to_snake_case(self._project.name)
+            )
 
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
             Console.error('Project path is not empty\n')
