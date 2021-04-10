@@ -27,6 +27,9 @@ class LibraryBuilder:
 
     @staticmethod
     def _create_file(file_name: str, content: dict):
+        if not os.path.isabs(file_name):
+            file_name = os.path.abspath(file_name)
+
         path = os.path.dirname(file_name)
         if not os.path.isdir(path):
             os.makedirs(path)
@@ -36,8 +39,27 @@ class LibraryBuilder:
             project_json.close()
 
     @classmethod
-    def build(cls, project_path: str, use_application_api: bool, use_startup: bool, use_service_providing: bool,
-              project_name: str, project_settings: dict, workspace: Optional[WorkspaceSettings]):
+    def _create_workspace(cls, path: str, project_name, projects: dict):
+        ws_dict = {
+            WorkspaceSettings.__name__: {
+                WorkspaceSettingsNameEnum.default_project.value: project_name,
+                WorkspaceSettingsNameEnum.projects.value: projects
+            }
+        }
+
+        Console.spinner(
+            f'Creating {path}',
+            cls._create_file,
+            path,
+            ws_dict,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.cyan
+        )
+
+    @classmethod
+    def build(cls, project_path: str, use_application_api: bool, use_startup: bool,
+              use_service_providing: bool, project_name: str, project_settings: dict,
+              workspace: Optional[WorkspaceSettings]):
         """
         Builds the library project files
         :param project_path:
@@ -104,22 +126,13 @@ class LibraryBuilder:
             src_path = f'{proj_name}/src/{project_name_snake}'
             workspace_file_path = f'{proj_name}/cpl-workspace.json'
             project_file_path = f'{src_path}/{project_name}.json'
+            cls._create_workspace(workspace_file_path, project_name, {
+                project_name: project_file_path
+            })
 
-            Console.spinner(
-                f'Creating {workspace_file_path}',
-                cls._create_file,
-                workspace_file_path,
-                {
-                    WorkspaceSettings.__name__: {
-                        WorkspaceSettingsNameEnum.default_project.value: project_name,
-                        WorkspaceSettingsNameEnum.projects.value: {
-                            project_name: project_file_path
-                        }
-                    }
-                },
-                text_foreground_color=ForegroundColorEnum.green,
-                spinner_foreground_color=ForegroundColorEnum.cyan
-            )
+        else:
+            workspace.projects[project_name] = f'src/{project_file_path}'
+            cls._create_workspace('cpl-workspace.json', workspace.default_project, workspace.projects)
 
         Console.spinner(
             f'Creating {project_file_path}',

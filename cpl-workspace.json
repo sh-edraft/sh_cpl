@@ -1,5 +1,5 @@
 {
-  "Workspace": {
+  "WorkspaceSettings": {
     "DefaultProject": "cpl_cli",
     "Projects": {
       "cpl": "src/cpl/cpl.json",
