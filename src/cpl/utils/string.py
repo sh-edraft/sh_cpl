@@ -13,10 +13,14 @@ class String:
         :param name:
         :return:
         """
+        # convert to train-case to CamelCase
+        if '-' in name:
+            name = ''.join(word.title() for word in name.split('-'))
+
         pattern1 = re.compile(r'(.)([A-Z][a-z]+)')
         pattern2 = re.compile(r'([a-z0-9])([A-Z])')
         file_name = re.sub(pattern1, r'\1_\2', name)
-        return re.sub(pattern2, r'\1_\2', file_name).lower().replace('-', '_')
+        return re.sub(pattern2, r'\1_\2', file_name).lower()
 
     @staticmethod
     def first_to_upper(string: str) -> str:

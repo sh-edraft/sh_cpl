@@ -129,8 +129,12 @@ class LibraryBuilder:
         )
 
         for template in templates:
+            divider = ''
+            if not template.path.endswith('/'):
+                divider = '/'
+
             Console.spinner(
-                f'Creating {proj_name}/{template.path}{template.name}',
+                f'Creating {proj_name}/{template.path}{divider}{template.name}',
                 TemplateBuilder.build,
                 project_path,
                 template,
