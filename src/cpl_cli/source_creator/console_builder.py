@@ -27,6 +27,9 @@ class ConsoleBuilder:
 
     @staticmethod
     def _create_file(file_name: str, content: dict):
+        if not os.path.isabs(file_name):
+            file_name = os.path.abspath(file_name)
+
         path = os.path.dirname(file_name)
         if not os.path.isdir(path):
             os.makedirs(path)
