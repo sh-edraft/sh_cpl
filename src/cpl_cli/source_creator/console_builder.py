@@ -132,7 +132,7 @@ class ConsoleBuilder:
 
         for template in templates:
             divider = ''
-            if not template.path.endswith('/'):
+            if template.path != '' and not template.path.endswith('/'):
                 divider = '/'
 
             Console.spinner(
