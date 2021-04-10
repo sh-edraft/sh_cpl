@@ -13,11 +13,16 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = os.path.join(path, name)
+
+        import_pkg = f'{name}.'
+        if name == '':
+            import_pkg = ''
+
         self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
-            from {name}.application import Application
-            from {name}.startup import Startup
+            from {import_pkg}application import Application
+            from {import_pkg}startup import Startup
             
             
             def main():
@@ -51,10 +56,15 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = os.path.join(path, name)
+
+        import_pkg = f'{name}.'
+        if name == '':
+            import_pkg = ''
+
         self._value = textwrap.dedent(f"""\
             from cpl.application import ApplicationBuilder
             
-            from {name}.application import Application
+            from {import_pkg}application import Application
             
             
             def main():
@@ -87,6 +97,11 @@ class MainWithoutApplicationBaseTemplate(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = os.path.join(path, name)
+
+        import_pkg = f'{name}.'
+        if name == '':
+            import_pkg = ''
+
         self._value = textwrap.dedent("""\
             from cpl.console import Console
             
@@ -120,6 +135,11 @@ class MainWithDependencyInjection(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = os.path.join(path, name)
+
+        import_pkg = f'{name}.'
+        if name == '':
+            import_pkg = ''
+
         self._value = textwrap.dedent("""\
             from cpl.configuration import Configuration, ConfigurationABC
             from cpl.console import Console
