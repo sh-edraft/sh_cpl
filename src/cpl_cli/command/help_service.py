@@ -19,6 +19,7 @@ class HelpService(CommandABC):
         """
         Console.write_line('Available Commands:')
         commands = [
+            ['add (a|a)', 'Adds a project reference to given project.'],
             ['build (b|B)', 'Prepares files for publish into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.'],
             ['generate (g|G)', 'Generate a new file.'],
             ['help (h|H)', 'Lists available command and their short descriptions.'],

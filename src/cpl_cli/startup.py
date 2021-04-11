@@ -5,6 +5,7 @@ from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
@@ -41,6 +42,8 @@ class Startup(StartupABC):
         self._configuration.add_environment_variables('CPL_')
         self._configuration.add_json_file('appsettings.json', path=self._env.runtime_directory,
                                           optional=False, output=False)
+
+        self._configuration.add_console_argument(ConsoleArgument('', 'add', ['a', 'a'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
             ConsoleArgument('', 'abc', ['a', 'A'], ' '),
@@ -74,6 +77,7 @@ class Startup(StartupABC):
         self._services.add_transient(PublisherABC, PublisherService)
         self._services.add_transient(LiveServerService)
 
+        self._services.add_transient(AddService)
         self._services.add_transient(BuildService)
         self._services.add_transient(GenerateService)
         self._services.add_transient(HelpService)

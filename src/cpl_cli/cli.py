@@ -4,6 +4,7 @@ from cpl.application.application_abc import ApplicationABC
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.dependency_injection import ServiceProviderABC
+from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
@@ -33,7 +34,8 @@ class CLI(ApplicationABC):
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
 
-        self._command_handler.add_command(CommandModel('build', ['h', 'B'], BuildService, False, True, True))
+        self._command_handler.add_command(CommandModel('add', ['a', 'a'], AddService, False, False, False))
+        self._command_handler.add_command(CommandModel('build', ['b', 'B'], BuildService, False, True, True))
         self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, False, True, False))
         self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False, False))
         self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, False, True, True))
@@ -60,9 +62,13 @@ class CLI(ApplicationABC):
             else:
                 for cmd in self._command_handler.commands:
                     result = self._configuration.get_configuration(cmd.name)
+                    result_args = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
                     if result is not None:
                         command = cmd.name
                         args.append(result)
+
+                        for arg in result_args:
+                            args.append(arg)
 
             if command is None:
                 Error.error(f'Expected command')
