@@ -41,6 +41,7 @@
       "cpl_cli": [
         "*.json"
       ]
-    }
+    },
+    "ProjectReferences": []
   }
 }

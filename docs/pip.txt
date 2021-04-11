@@ -7,6 +7,15 @@ upload:
             twine upload --repository-url https://pip.sh-edraft.de dist/sh_cpl-cli/publish/setup/*
             twine upload -r pip.sh-edraft.de dist/sh_cpl-cli/publish/setup/*
 
+    exp:
+        cpl:
+            twine upload --repository-url https://pip-exp.sh-edraft.de dist/sh_cpl/publish/setup/*
+            twine upload -r pip-exp.sh-edraft.de dist/sh_cpl/publish/setup/*
+
+        cli:
+            twine upload --repository-url https://pip-exp.sh-edraft.de dist/sh_cpl-cli/publish/setup/*
+            twine upload -r pip-exp.sh-edraft.de dist/sh_cpl-cli/publish/setup/*
+
     dev:
         cpl:
             twine upload --repository-url https://pip-dev.sh-edraft.de dist/sh_cpl/publish/setup/*
@@ -17,4 +26,14 @@ upload:
             twine upload -r pip-dev.sh-edraft.de dist/sh_cpl-cli/publish/setup/*
 
 install:
-    pip install --extra-index-url https://pip.sh-edraft.de/ sh_cpl
+    prod:
+        pip install --extra-index-url https://pip.sh-edraft.de/ sh_cpl
+        pip install --extra-index-url https://pip.sh-edraft.de/ sh_cpl-cli
+
+    exp:
+        pip install --extra-index-url https://pip-exp.sh-edraft.de/ sh_cpl
+        pip install --extra-index-url https://pip-exp.sh-edraft.de/ sh_cpl-cli
+
+    dev:
+        pip install --extra-index-url https://pip-dev.sh-edraft.de/ sh_cpl
+        pip install --extra-index-url https://pip-dev.sh-edraft.de/ sh_cpl-cli
