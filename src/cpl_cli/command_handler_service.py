@@ -81,7 +81,7 @@ class CommandHandler(ABC):
                         self._project_not_found()
                         return
 
-                    else:
+                    elif command.is_workspace_needed or project_name is None:
                         if workspace is None:
                             Error.error(
                                 'The command requires to be run in an CPL workspace or project, '
