@@ -62,20 +62,14 @@ class CommandHandler(ABC):
 
                 if command.is_project_needed:
                     name = os.path.basename(self._env.working_directory)
-                    project_path = os.path.join(
-                        self._env.working_directory,
-                        f'{name}.json'
-                    )
-                    project_path_camel_case = os.path.join(
-                        self._env.working_directory,
-                        f'{String.convert_to_camel_case(name)}.json'
-                    )
-
-                    if os.path.isfile(project_path):
-                        project_name = os.path.basename(self._env.working_directory)
-
-                    if os.path.isfile(project_path_camel_case):
-                        project_name = String.convert_to_camel_case(name)
+                    for r, d, f in os.walk(self._env.working_directory):
+                        for file in f:
+                            if file.endswith('.json'):
+                                f_name = file.split('.json')[0]
+                                if f_name == name or \
+                                        String.convert_to_camel_case(f_name) == String.convert_to_camel_case(name):
+                                    project_name = f_name
+                                    break
 
                     if not command.is_workspace_needed and project_name is None and workspace is None:
                         self._project_not_found()
