@@ -31,9 +31,6 @@ class CommandHandler(ABC):
     def commands(self) -> list[CommandModel]:
         return self._commands
 
-    def _load_json(self):
-        pass
-
     def add_command(self, cmd: CommandModel):
         self._commands.append(cmd)
 
@@ -74,8 +71,8 @@ class CommandHandler(ABC):
                     if os.path.isfile(project_path_camel_case):
                         project_name = String.convert_to_camel_case(name)
 
-                    if command.is_workspace_needed:
-                        if workspace is None and project_name is None:
+                    if command.is_workspace_needed or command.is_workspace_needed and project_name is None:
+                        if workspace is None:
                             Error.error(
                                 'The command requires to be run in an CPL workspace or project, '
                                 'but a workspace or project could not be found.'
@@ -84,8 +81,6 @@ class CommandHandler(ABC):
 
                         if project_name is None:
                             project_name = workspace.default_project
-
-                    Console.write_line(project_name)
 
                     self._config.add_configuration('ProjectName', project_name)
                     project_json = f'{project_name}.json'
