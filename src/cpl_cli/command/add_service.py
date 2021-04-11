@@ -96,7 +96,12 @@ class AddService(CommandABC):
             Console.error(f'Project reference already exists.')
             return
 
-        build_settings.project_references.append(f'../{target}')
+        if self._workspace is None:
+            target = f'../{target}'
+        else:
+            target = target.replace('src', '..')
+
+        build_settings.project_references.append(target)
 
         Console.spinner(
             f'Editing {source}',
