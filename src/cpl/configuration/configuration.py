@@ -120,6 +120,9 @@ class Configuration(ConfigurationABC):
                 if found and child_argument_type.name not in self._additional_arguments:
                     self._additional_arguments.append(child_argument_type.name)
 
+                if found:
+                    break
+
             if not found:
                 raise Exception(f'Invalid argument: {argument}')
 
@@ -197,8 +200,7 @@ class Configuration(ConfigurationABC):
             # ?new value
             found = False
             for alias in argument_type.aliases:
-                alias = f' {alias} '
-                if alias in argument:
+                if alias == argument or f' {alias} ' == argument:
                     found = True
 
             if argument_type.name not in argument and not found:
@@ -212,6 +214,7 @@ class Configuration(ConfigurationABC):
                 value = ''
             else:
                 value = next_arguments[0]
+                next_arguments.remove(value)
                 self._handled_args.append(value)
 
             if argument_type.token != '' and argument.startswith(argument_type.token):
@@ -237,7 +240,7 @@ class Configuration(ConfigurationABC):
             self._additional_arguments.append(argument_type.name)
             result = True
 
-        if result and value == '':
+        if result:
             self._handled_args.append(argument)
             if next_arguments is not None and len(next_arguments) > 0:
                 next_args = []

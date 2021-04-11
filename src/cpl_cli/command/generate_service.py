@@ -102,8 +102,6 @@ class GenerateService(CommandABC):
             rel_path = '/'.join(parts[:-1])
             class_name = parts[len(parts) - 1]
 
-        Console.write_line(rel_path)
-
         if 'src' not in rel_path:
             rel_path = f'src/{rel_path}'
 
