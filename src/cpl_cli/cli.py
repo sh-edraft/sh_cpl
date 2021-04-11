@@ -32,16 +32,16 @@ class CLI(ApplicationABC):
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
 
-        self._command_handler.add_command(CommandModel('build', ['h', 'B'], BuildService, True))
-        self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, True))
-        self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False))
-        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, True))
-        self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False))
-        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, True))
-        self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, True))
-        self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, True))
-        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, True))
-        self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False))
+        self._command_handler.add_command(CommandModel('build', ['h', 'B'], BuildService, True, True))
+        self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, True, False))
+        self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False))
+        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, True, True))
+        self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, True))
+        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, True, True))
+        self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, True, True))
+        self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, True, True))
+        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, True, True))
+        self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False))
 
     def main(self):
         """

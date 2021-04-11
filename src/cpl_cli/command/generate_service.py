@@ -102,7 +102,9 @@ class GenerateService(CommandABC):
             rel_path = '/'.join(parts[:-1])
             class_name = parts[len(parts) - 1]
 
-        if 'src' not in name:
+        Console.write_line(rel_path)
+
+        if 'src' not in rel_path:
             rel_path = f'src/{rel_path}'
 
         template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)

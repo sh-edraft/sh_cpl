@@ -94,9 +94,10 @@ class CommandHandler(ABC):
 
                     project_json = os.path.join(self._env.working_directory, project_json)
 
-                    self._env.set_working_directory(
-                        os.path.join(self._env.working_directory, os.path.dirname(project_json))
-                    )
+                    if command.change_cwd:
+                        self._env.set_working_directory(
+                            os.path.join(self._env.working_directory, os.path.dirname(project_json))
+                        )
 
                     self._config.add_json_file(project_json, optional=True, output=False)
 
