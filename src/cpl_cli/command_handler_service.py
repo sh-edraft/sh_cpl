@@ -31,6 +31,12 @@ class CommandHandler(ABC):
     def commands(self) -> list[CommandModel]:
         return self._commands
 
+    @staticmethod
+    def _project_not_found():
+        Error.error(
+            'The command requires to be run in an CPL project, but a project could not be found.'
+        )
+
     def add_command(self, cmd: CommandModel):
         self._commands.append(cmd)
 
@@ -71,7 +77,11 @@ class CommandHandler(ABC):
                     if os.path.isfile(project_path_camel_case):
                         project_name = String.convert_to_camel_case(name)
 
-                    if command.is_workspace_needed or command.is_workspace_needed and project_name is None:
+                    if not command.is_workspace_needed and project_name is None and workspace is None:
+                        self._project_not_found()
+                        return
+
+                    else:
                         if workspace is None:
                             Error.error(
                                 'The command requires to be run in an CPL workspace or project, '
@@ -94,9 +104,7 @@ class CommandHandler(ABC):
                         project_json = workspace.projects[project_name]
 
                     if not os.path.isfile(os.path.join(self._env.working_directory, project_json)):
-                        Error.error(
-                            'The command requires to be run in an CPL project, but a project could not be found.'
-                        )
+                        self._project_not_found()
                         return
 
                     project_json = os.path.join(self._env.working_directory, project_json)
