@@ -9,6 +9,7 @@ from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
+from cpl_cli.command.remove_service import RemoveService
 from cpl_cli.command.start_service import StartService
 from cpl_cli.command.uninstall_service import UninstallService
 from cpl_cli.command.update_service import UpdateService
@@ -38,6 +39,7 @@ class CLI(ApplicationABC):
         self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, True, True))
         self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, True))
         self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, True, True))
+        self._command_handler.add_command(CommandModel('remove', ['r', 'R'], RemoveService, True, False))
         self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, True, True))
         self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, True, True))
         self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, True, True))

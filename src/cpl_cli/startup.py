@@ -10,6 +10,7 @@ from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
+from cpl_cli.command.remove_service import RemoveService
 from cpl_cli.command.start_service import StartService
 from cpl_cli.command.uninstall_service import UninstallService
 from cpl_cli.command.update_service import UpdateService
@@ -58,6 +59,7 @@ class Startup(StartupABC):
             ConsoleArgument('', 'library', ['l', 'L'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
+        self._configuration.add_console_argument(ConsoleArgument('', 'remove', ['r', 'R'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
@@ -78,6 +80,7 @@ class Startup(StartupABC):
         self._services.add_transient(InstallService)
         self._services.add_transient(NewService)
         self._services.add_transient(PublishService)
+        self._services.add_transient(RemoveService)
         self._services.add_transient(StartService)
         self._services.add_transient(UninstallService)
         self._services.add_transient(UpdateService)
