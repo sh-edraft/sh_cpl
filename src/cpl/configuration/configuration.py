@@ -85,7 +85,7 @@ class Configuration(ConfigurationABC):
         Console.write_line(f'[{name}] {message}')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
-    def _set_variable(self, name: str, value: str):
+    def _set_variable(self, name: str, value: any):
         """
         Sets variable to given value
         :param name:
@@ -295,9 +295,12 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
+            add_args = []
             for next_arg in next_arguments:
                 if next_arg not in self._handled_args and next_arg not in self._additional_arguments:
-                    self._additional_arguments.append(next_arg)
+                    add_args.append(next_arg)
+
+            self._set_variable(f'{argument}AdditionalArguments', add_args)
 
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         if os.path.isabs(name):
