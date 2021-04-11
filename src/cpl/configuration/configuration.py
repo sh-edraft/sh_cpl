@@ -295,6 +295,10 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
+            for next_arg in next_arguments:
+                if next_arg not in self._handled_args and next_arg not in self._additional_arguments:
+                    self._additional_arguments.append(next_arg)
+
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         if os.path.isabs(name):
             file_path = name
