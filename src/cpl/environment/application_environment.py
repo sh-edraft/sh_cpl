@@ -23,7 +23,7 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
         self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        self._working_directory = os.path.abspath('./')
+        self._working_directory = os.getcwd()
 
     @property
     def environment_name(self) -> str:
