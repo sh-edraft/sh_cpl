@@ -157,10 +157,16 @@ class Configuration(ConfigurationABC):
 
             if argument_type.token != '' and argument.startswith(argument_type.token):
                 # --new=value
+                if len(argument.split(argument_type.token)[1].split(argument_type.value_token)) == 0:
+                    raise Exception(f'Expected argument for command: {argument}')
+
                 argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
             else:
                 # new=value
-                argument_name = argument.split(argument_type.token)[1]
+                argument_name = argument.split(argument_type.value_token)[1]
+
+            if argument_name == '':
+                raise Exception(f'Expected argument for command: {argument_type.name}')
 
             result = True
 
@@ -199,7 +205,7 @@ class Configuration(ConfigurationABC):
 
             if (next_arguments is None or len(next_arguments) == 0) and \
                     argument_type.is_value_token_optional is not True:
-                raise Exception(f'Invalid argument: {argument}')
+                raise Exception(f'Expected argument for command: {argument_type.name}')
 
             if (next_arguments is None or len(next_arguments) == 0) and argument_type.is_value_token_optional is True:
                 value = ''
@@ -277,6 +283,7 @@ class Configuration(ConfigurationABC):
             if not found and error_message == '' and error is not False:
                 error_message = f'Invalid argument: {argument}'
 
+            if error_message != '':
                 if self._argument_error_function is not None:
                     self._argument_error_function(error_message)
                 else:
