@@ -149,6 +149,28 @@ class PublisherService(PublisherABC):
 
         return False
 
+    def _read_sources_from_path(self, path: str):
+        """
+        Reads all source files from given path
+        :param path:
+        :return:
+        """
+        for r, d, f in os.walk(path):
+            for file in f:
+                relative_path = os.path.relpath(r)
+                file_path = os.path.join(relative_path, os.path.relpath(file))
+                if self._is_file_excluded(file_path):
+                    continue
+
+                if len(d) > 0:
+                    for directory in d:
+                        empty_dir = os.path.join(os.path.dirname(file_path), directory)
+                        if len(os.listdir(empty_dir)) == 0:
+                            self._included_dirs.append(empty_dir)
+
+                if not self._is_path_excluded(relative_path):
+                    self._included_files.append(os.path.relpath(file_path))
+
     def _read_sources(self):
         """
         Reads all source files and save included files
@@ -167,21 +189,16 @@ class PublisherService(PublisherABC):
             elif os.path.isfile(rel_path):
                 self._included_files.append(rel_path)
 
-        for r, d, f in os.walk(self._source_path):
-            for file in f:
-                relative_path = os.path.relpath(r)
-                file_path = os.path.join(relative_path, os.path.relpath(file))
-                if self._is_file_excluded(file_path):
-                    continue
+        self._read_sources_from_path(self._source_path)
 
-                if len(d) > 0:
-                    for directory in d:
-                        empty_dir = os.path.join(os.path.dirname(file_path), directory)
-                        if len(os.listdir(empty_dir)) == 0:
-                            self._included_dirs.append(empty_dir)
+        for project in self._build_settings.project_references:
+            project = os.path.abspath(os.path.join(self._source_path, project))
+            if not os.path.isfile(os.path.abspath(project)):
+                Console.error(f'Cannot import project: {project}')
+                return
 
-                if not self._is_path_excluded(relative_path):
-                    self._included_files.append(os.path.relpath(file_path))
+            self.exclude(f'*/{os.path.basename(project)}')
+            self._read_sources_from_path(os.path.dirname(project))
 
     def _create_packages(self):
         """
@@ -196,8 +213,6 @@ class PublisherService(PublisherABC):
                 title = self._get_module_name_from_dirs(file)
                 if title == '':
                     title = self._project_settings.name
-                elif not title.__contains__('.'):
-                    title = f'{self._project_settings.name}.{title}'
 
                 module_py_lines: list[str] = []
                 imports = ''

@@ -109,7 +109,8 @@ class NewService(CommandABC):
                 '*/logs',
                 '*/tests'
             ],
-            BuildSettingsNameEnum.package_data.value: {}
+            BuildSettingsNameEnum.package_data.value: {},
+            BuildSettingsNameEnum.project_references.value: []
         }
         self._build.from_dict(self._build_dict)
 

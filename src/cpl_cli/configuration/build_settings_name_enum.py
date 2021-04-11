@@ -12,3 +12,4 @@ class BuildSettingsNameEnum(Enum):
     included = 'Included'
     excluded = 'Excluded'
     package_data = 'PackageData'
+    project_references = 'ProjectReferences'
