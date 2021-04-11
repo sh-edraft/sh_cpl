@@ -53,7 +53,9 @@ class Startup(StartupABC):
             ConsoleArgument('', 'settings', ['st', 'ST'], ' '),
             ConsoleArgument('', 'thread', ['t', 't'], ' ')
         ]))
-        self._configuration.add_console_argument(ConsoleArgument('', 'help', ['h', 'H'], ''))
+        self._configuration.add_console_argument(
+            ConsoleArgument('', 'help', ['h', 'H'], ' ', is_value_token_optional=True)
+        )
         self._configuration.add_console_argument(
             ConsoleArgument('', 'install', ['i', 'I'], ' ', is_value_token_optional=True)
         )

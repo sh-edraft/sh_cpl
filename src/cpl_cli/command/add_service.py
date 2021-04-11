@@ -1,5 +1,6 @@
 import json
-import os.path
+import os
+import textwrap
 from typing import Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -23,6 +24,11 @@ class AddService(CommandABC):
         self._config = config
 
         self._workspace = workspace
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        """)
 
     @staticmethod
     def _edit_project_file(source: str, project_settings: ProjectSettings, build_settings: BuildSettings):

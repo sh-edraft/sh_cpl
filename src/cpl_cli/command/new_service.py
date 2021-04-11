@@ -1,5 +1,6 @@
 import os
 import sys
+import textwrap
 from typing import Optional
 
 from packaging import version
@@ -45,6 +46,11 @@ class NewService(CommandABC):
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        """)
 
     @staticmethod
     def _help(message: str):

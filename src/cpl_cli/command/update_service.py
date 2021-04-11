@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import textwrap
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
@@ -37,6 +38,11 @@ class UpdateService(CommandABC):
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        """)
 
     def _collect_project_dependencies(self) -> list[tuple]:
         """

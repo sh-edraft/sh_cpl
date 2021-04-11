@@ -1,4 +1,5 @@
 import os
+import textwrap
 from collections import Callable
 
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -54,6 +55,11 @@ class GenerateService(CommandABC):
 
         self._config = configuration
         self._env = self._config.environment
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        """)
 
     @staticmethod
     def _help(message: str):

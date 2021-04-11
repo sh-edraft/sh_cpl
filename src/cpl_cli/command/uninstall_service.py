@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import textwrap
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
@@ -30,6 +31,11 @@ class UninstallService(CommandABC):
         self._env = env
         self._build_settings = build_settings
         self._project_settings = project_settings
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        """)
 
     def run(self, args: list[str]):
         """

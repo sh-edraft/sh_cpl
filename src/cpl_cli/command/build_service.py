@@ -1,3 +1,5 @@
+import textwrap
+
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.publish.publisher_abc import PublisherABC
 
@@ -12,6 +14,11 @@ class BuildService(CommandABC):
         CommandABC.__init__(self)
 
         self._publisher = publisher
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        """)
 
     def run(self, args: list[str]):
         """
