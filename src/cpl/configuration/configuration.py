@@ -197,6 +197,7 @@ class Configuration(ConfigurationABC):
             # ?new value
             found = False
             for alias in argument_type.aliases:
+                alias = f' {alias} '
                 if alias in argument:
                     found = True
 
@@ -236,7 +237,7 @@ class Configuration(ConfigurationABC):
             self._additional_arguments.append(argument_type.name)
             result = True
 
-        if result:
+        if result and value == '':
             self._handled_args.append(argument)
             if next_arguments is not None and len(next_arguments) > 0:
                 next_args = []
