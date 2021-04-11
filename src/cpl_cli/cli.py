@@ -33,17 +33,17 @@ class CLI(ApplicationABC):
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
 
-        self._command_handler.add_command(CommandModel('build', ['h', 'B'], BuildService, True, True))
-        self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, True, False))
-        self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False))
-        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, True, True))
-        self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, True))
-        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, True, True))
-        self._command_handler.add_command(CommandModel('remove', ['r', 'R'], RemoveService, True, False))
-        self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, True, True))
-        self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, True, True))
-        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, True, True))
-        self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False))
+        self._command_handler.add_command(CommandModel('build', ['h', 'B'], BuildService, False, True, True))
+        self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, False, True, False))
+        self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False, False))
+        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, False, True, True))
+        self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, False, True))
+        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, False, True, True))
+        self._command_handler.add_command(CommandModel('remove', ['r', 'R'], RemoveService, True, True, False))
+        self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, False, True, True))
+        self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, False, True, True))
+        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, False, True, True))
+        self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False, False))
 
     def main(self):
         """

@@ -5,6 +5,7 @@ from typing import Optional
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl.utils.string import String
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.error import Error
 from cpl_cli.command_model import CommandModel
@@ -57,23 +58,34 @@ class CommandHandler(ABC):
                     workspace = self._config.get_configuration(WorkspaceSettings)
 
                 if command.is_project_needed:
-                    if os.path.isfile(
-                            os.path.join(
-                                self._env.working_directory,
-                                f'{os.path.basename(self._env.working_directory)}.json'
-                            )
-                    ):
+                    name = os.path.basename(self._env.working_directory)
+                    project_path = os.path.join(
+                        self._env.working_directory,
+                        f'{name}.json'
+                    )
+                    project_path_camel_case = os.path.join(
+                        self._env.working_directory,
+                        f'{String.convert_to_camel_case(name)}.json'
+                    )
+
+                    if os.path.isfile(project_path):
                         project_name = os.path.basename(self._env.working_directory)
 
-                    if workspace is None and project_name is None:
-                        Error.error(
-                            'The command requires to be run in an CPL workspace or project, '
-                            'but a workspace or project could not be found.'
-                        )
-                        return
+                    if os.path.isfile(project_path_camel_case):
+                        project_name = String.convert_to_camel_case(name)
 
-                    if project_name is None:
-                        project_name = workspace.default_project
+                    if command.is_workspace_needed:
+                        if workspace is None and project_name is None:
+                            Error.error(
+                                'The command requires to be run in an CPL workspace or project, '
+                                'but a workspace or project could not be found.'
+                            )
+                            return
+
+                        if project_name is None:
+                            project_name = workspace.default_project
+
+                    Console.write_line(project_name)
 
                     self._config.add_configuration('ProjectName', project_name)
                     project_json = f'{project_name}.json'
