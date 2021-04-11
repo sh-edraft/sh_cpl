@@ -1,4 +1,4 @@
-import pathlib
+import os
 from datetime import datetime
 from socket import gethostname
 from typing import Optional
@@ -9,23 +9,21 @@ from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 class ApplicationEnvironment(ApplicationEnvironmentABC):
 
-    def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production, crp: str = './'):
+    def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production):
         """
         Represents environment of the application
         :param name:
-        :param crp:
         """
         ApplicationEnvironmentABC.__init__(self)
 
         self._environment_name: Optional[EnvironmentNameEnum] = name
         self._app_name: Optional[str] = None
         self._customer: Optional[str] = None
-        self._content_root_path: Optional[str] = crp
 
         self._start_time: datetime = datetime.now()
         self._end_time: datetime = datetime.now()
-        self._working_directory = pathlib.Path().absolute()
-        self._runtime_directory = pathlib.Path(__file__).parent.absolute()
+        self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self._working_directory = os.getcwd()
 
     @property
     def environment_name(self) -> str:
@@ -52,14 +50,6 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
         self._customer = customer
 
     @property
-    def content_root_path(self) -> str:
-        return self._content_root_path
-
-    @content_root_path.setter
-    def content_root_path(self, content_root_path: str):
-        self._content_root_path = content_root_path
-
-    @property
     def host_name(self):
         return gethostname()
 
@@ -81,18 +71,24 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
     @property
     def working_directory(self) -> str:
-        return self._working_directory
-
-    def set_working_directory(self, path: str = ''):
-        if path != '':
-            self._working_directory = path
-            return
-
-        self._working_directory = pathlib.Path().absolute()
+        return str(self._working_directory)
 
     @property
     def runtime_directory(self) -> str:
-        return self._runtime_directory
+        return str(self._runtime_directory)
 
-    def set_runtime_directory(self, file: str):
-        self._runtime_directory = pathlib.Path(file).parent.absolute()
+    def set_runtime_directory(self, runtime_directory: str):
+        if runtime_directory != '':
+            self._runtime_directory = runtime_directory
+            return
+
+        self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    def set_working_directory(self, working_directory: str):
+        if working_directory != '':
+            self._working_directory = working_directory
+            os.chdir(self._working_directory)
+            return
+
+        self._working_directory = os.path.abspath('./')
+        os.chdir(self._working_directory)

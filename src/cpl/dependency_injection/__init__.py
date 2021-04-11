@@ -15,7 +15,7 @@ __title__ = 'cpl.dependency_injection'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.4.0'
+__version__ = '2021.4.post1'
 
 from collections import namedtuple
 
@@ -28,4 +28,4 @@ from .service_provider import ServiceProvider
 from .service_provider_abc import ServiceProviderABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='04', micro='0')
+version_info = VersionInfo(major='2021', minor='4', micro='post1')

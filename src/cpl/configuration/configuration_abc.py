@@ -72,7 +72,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: type, value: object):
+    def add_configuration(self, key_type: Union[str, type], value: object):
         """
         Add configuration object
         :param key_type:

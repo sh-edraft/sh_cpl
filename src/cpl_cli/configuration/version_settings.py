@@ -31,16 +31,25 @@ class VersionSettings(ConfigurationModelABC):
         return self._micro
 
     def to_str(self) -> str:
-        return f'{self._major}.{self._minor}.{self._micro}'
+        if self._micro is None:
+            return f'{self._major}.{self._minor}'
+        else:
+            return f'{self._major}.{self._minor}.{self._micro}'
 
     def from_dict(self, settings: dict):
         self._major = settings[VersionSettingsNameEnum.major.value]
         self._minor = settings[VersionSettingsNameEnum.minor.value]
-        self._micro = settings[VersionSettingsNameEnum.micro.value]
+        micro = settings[VersionSettingsNameEnum.micro.value]
+        if micro != '':
+            self._micro = micro
 
     def to_dict(self) -> dict:
-        return {
+        version = {
             VersionSettingsNameEnum.major.value: self._major,
             VersionSettingsNameEnum.minor.value: self._minor,
-            VersionSettingsNameEnum.micro.value: self._micro
         }
+
+        if self._micro is not None:
+            version[VersionSettingsNameEnum.micro.value] = self._micro
+
+        return version

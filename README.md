@@ -38,9 +38,14 @@
 
 ### Installation
 
-Install the cpl package
+Install the CPL package
 ```sh
 pip install sh_cpl --extra-index-url https://pip.sh-edraft.de
+```
+
+Install the CPL CLI
+```sh
+pip install sh_cpl-cli --extra-index-url https://pip.sh-edraft.de
 ```
 
 Create workspace:

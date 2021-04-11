@@ -19,13 +19,15 @@ class HelpService(CommandABC):
         """
         Console.write_line('Available Commands:')
         commands = [
+            ['add (a|a)', 'Adds a project reference to given project.'],
             ['build (b|B)', 'Prepares files for publish into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.'],
             ['generate (g|G)', 'Generate a new file.'],
             ['help (h|H)', 'Lists available command and their short descriptions.'],
             ['install (i|I)', 'With argument installs packages to project, without argument installs project dependencies.'],
             ['new (n|N)', 'Creates new CPL project.'],
             ['publish (p|P)', 'Prepares files for publish into an output directory named dist/ at the given output path and executes setup.py. Must be executed from within a library workspace directory.'],
-            ['start (s|S)', 'Starts CPL project, restarting on file changes'],
+            ['remove (r|R)', 'Removes a project from workspace.'],
+            ['start (s|S)', 'Starts CPL project, restarting on file changes.'],
             ['uninstall (ui|UI)', 'Uninstalls packages from project.'],
             ['update (u|u)', 'Update CPL and project dependencies.'],
             ['version (v|V)', 'Outputs CPL CLI version.']

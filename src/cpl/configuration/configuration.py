@@ -85,7 +85,7 @@ class Configuration(ConfigurationABC):
         Console.write_line(f'[{name}] {message}')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
-    def _set_variable(self, name: str, value: str):
+    def _set_variable(self, name: str, value: any):
         """
         Sets variable to given value
         :param name:
@@ -119,6 +119,9 @@ class Configuration(ConfigurationABC):
                 found = self._validate_argument_by_argument_type(argument, child_argument_type, next_arguments)
                 if found and child_argument_type.name not in self._additional_arguments:
                     self._additional_arguments.append(child_argument_type.name)
+
+                if found:
+                    break
 
             if not found:
                 raise Exception(f'Invalid argument: {argument}')
@@ -157,10 +160,16 @@ class Configuration(ConfigurationABC):
 
             if argument_type.token != '' and argument.startswith(argument_type.token):
                 # --new=value
+                if len(argument.split(argument_type.token)[1].split(argument_type.value_token)) == 0:
+                    raise Exception(f'Expected argument for command: {argument}')
+
                 argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
             else:
                 # new=value
-                argument_name = argument.split(argument_type.token)[1]
+                argument_name = argument.split(argument_type.value_token)[1]
+
+            if argument_name == '':
+                raise Exception(f'Expected argument for command: {argument_type.name}')
 
             result = True
 
@@ -191,7 +200,7 @@ class Configuration(ConfigurationABC):
             # ?new value
             found = False
             for alias in argument_type.aliases:
-                if alias in argument:
+                if alias == argument or f' {alias} ' == argument:
                     found = True
 
             if argument_type.name not in argument and not found:
@@ -199,12 +208,13 @@ class Configuration(ConfigurationABC):
 
             if (next_arguments is None or len(next_arguments) == 0) and \
                     argument_type.is_value_token_optional is not True:
-                raise Exception(f'Invalid argument: {argument}')
+                raise Exception(f'Expected argument for command: {argument_type.name}')
 
             if (next_arguments is None or len(next_arguments) == 0) and argument_type.is_value_token_optional is True:
                 value = ''
             else:
                 value = next_arguments[0]
+                next_arguments.remove(value)
                 self._handled_args.append(value)
 
             if argument_type.token != '' and argument.startswith(argument_type.token):
@@ -277,6 +287,7 @@ class Configuration(ConfigurationABC):
             if not found and error_message == '' and error is not False:
                 error_message = f'Invalid argument: {argument}'
 
+            if error_message != '':
                 if self._argument_error_function is not None:
                     self._argument_error_function(error_message)
                 else:
@@ -284,15 +295,25 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
-    def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
-        path_root = self._application_environment.content_root_path
-        if path is not None:
-            path_root = path
+            add_args = []
+            for next_arg in next_arguments:
+                if next_arg not in self._handled_args and next_arg not in self._additional_arguments:
+                    add_args.append(next_arg)
 
-        if str(path_root).endswith('/') and not name.startswith('/'):
-            file_path = f'{path_root}{name}'
+            self._set_variable(f'{argument}AdditionalArguments', add_args)
+
+    def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
+        if os.path.isabs(name):
+            file_path = name
         else:
-            file_path = f'{path_root}/{name}'
+            path_root = self._application_environment.working_directory
+            if path is not None:
+                path_root = path
+
+            if str(path_root).endswith('/') and not name.startswith('/'):
+                file_path = f'{path_root}{name}'
+            else:
+                file_path = f'{path_root}/{name}'
 
         if not os.path.isfile(file_path):
             if optional is not True:
@@ -334,7 +355,7 @@ class Configuration(ConfigurationABC):
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
 
-    def add_configuration(self, key_type: type, value: ConfigurationModelABC):
+    def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
         self._config[key_type] = value
 
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[

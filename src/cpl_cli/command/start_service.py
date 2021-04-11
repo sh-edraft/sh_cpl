@@ -19,4 +19,4 @@ class StartService(CommandABC):
         :param args:
         :return:
         """
-        self._live_server.start()
+        self._live_server.start(args)

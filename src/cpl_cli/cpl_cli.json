@@ -1,0 +1,47 @@
+{
+  "ProjectSettings": {
+    "Name": "sh_cpl-cli",
+    "Version": {
+      "Major": "2021",
+      "Minor": "4",
+      "Micro": ""
+    },
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "sh-edraft Common Python library CLI",
+    "LongDescription": "sh-edraft Common Python library Command Line Interface",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2020 - 2021",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
+    "Dependencies": [
+      "sh_cpl==2021.4.post1"
+    ],
+    "PythonVersion": ">=3.8",
+    "PythonPath": {},
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "console",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "cpl_cli.main",
+    "EntryPoint": "cpl",
+    "IncludePackageData": true,
+    "Included": [
+      "*/templates"
+    ],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {
+      "cpl_cli": [
+        "*.json"
+      ]
+    },
+    "ProjectReferences": []
+  }
+}

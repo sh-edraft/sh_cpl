@@ -446,6 +446,8 @@ class Console:
         for call in cls._hold_back_calls:
             call.function(*call.args)
 
+        cls._hold_back_calls = []
+
         time.sleep(0.1)
 
         return return_value

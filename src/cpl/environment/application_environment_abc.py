@@ -37,14 +37,6 @@ class ApplicationEnvironmentABC(ABC):
 
     @property
     @abstractmethod
-    def content_root_path(self) -> str: pass
-
-    @content_root_path.setter
-    @abstractmethod
-    def content_root_path(self, content_root_path: str): pass
-
-    @property
-    @abstractmethod
     def host_name(self) -> str: pass
 
     @property
@@ -80,6 +72,15 @@ class ApplicationEnvironmentABC(ABC):
         """
         Sets the current runtime directory
         :param runtime_directory:
+        :return:
+        """
+        pass
+
+    @abstractmethod
+    def set_working_directory(self, working_directory: str):
+        """
+        Sets the current working directory
+        :param working_directory:
         :return:
         """
         pass
