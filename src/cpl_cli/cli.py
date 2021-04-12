@@ -75,8 +75,24 @@ class CLI(ApplicationABC):
             else:
                 for cmd in self._command_handler.commands:
                     result = self._configuration.get_configuration(cmd.name)
-                    result_args = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
-                    if result is not None:
+                    result_args: list[str] = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
+                    is_option = False
+                    for opt in self._options:
+                        if opt == result:
+                            is_option = True
+                            command = opt
+
+                        elif result_args is not None and opt in result_args:
+                            is_option = True
+                            command = opt
+                            result_args.remove(opt)
+
+                    if is_option:
+                        args.append(cmd.name)
+                        for arg in result_args:
+                            args.append(arg)
+
+                    elif result is not None:
                         command = cmd.name
                         args.append(result)
 
