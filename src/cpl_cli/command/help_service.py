@@ -22,6 +22,11 @@ class HelpService(CommandABC):
     @property
     def help_message(self) -> str:
         return textwrap.dedent("""\
+        Lists available command and their short descriptions.
+        usage: cpl help <command>
+        
+        Arguments:
+            command     The command to display the help message for
         """)
 
     def run(self, args: list[str]):

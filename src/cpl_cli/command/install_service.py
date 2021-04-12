@@ -43,6 +43,11 @@ class InstallService(CommandABC):
     @property
     def help_message(self) -> str:
         return textwrap.dedent("""\
+        Installs given package via pip
+        usage: cpl install <package>
+        
+        Arguments:
+            package    The package to install 
         """)
 
     def _install_project(self):
