@@ -59,6 +59,20 @@ class GenerateService(CommandABC):
     @property
     def help_message(self) -> str:
         return textwrap.dedent("""\
+        Generate a file based on schematic.
+        usage: cpl generate <schematic> <name>
+        
+        arguments:
+            schematic:  The schematic to generate.
+            name:       The name of the generated file
+            
+        schematics:
+            abc
+            class
+            enum
+            service
+            settings
+            thread
         """)
 
     @staticmethod
