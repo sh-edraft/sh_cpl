@@ -69,6 +69,9 @@ class Startup(StartupABC):
         self._configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))
+
+        self._configuration.add_console_argument(ConsoleArgument('', '--help', ['-h', '-H'], ''))
+
         self._configuration.add_console_arguments(error=False)
 
         return self._configuration

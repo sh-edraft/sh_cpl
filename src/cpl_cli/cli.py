@@ -30,6 +30,7 @@ class CLI(ApplicationABC):
         ApplicationABC.__init__(self, config, services)
 
         self._command_handler: Optional[CommandHandler] = None
+        self._options: list[str] = []
 
     def configure(self):
         self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
@@ -47,6 +48,9 @@ class CLI(ApplicationABC):
         self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, False, True, True))
         self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False, False))
 
+        self._command_handler.add_command(CommandModel('--help', ['-h', '-H'], HelpService, False, False, False))
+        self._options.append('--help')
+
     def main(self):
         """
         Entry point of the CPL CLI
@@ -56,9 +60,18 @@ class CLI(ApplicationABC):
             command = None
             args = []
             if len(self._configuration.additional_arguments) > 0:
-                command = self._configuration.additional_arguments[0]
-                if len(self._configuration.additional_arguments) > 1:
-                    args = self._configuration.additional_arguments[1:]
+                is_option = False
+                for opt in self._options:
+                    if opt in self._configuration.additional_arguments:
+                        is_option = True
+                        command = opt
+                        args = self._configuration.additional_arguments
+                        args.remove(opt)
+
+                if not is_option:
+                    command = self._configuration.additional_arguments[0]
+                    if len(self._configuration.additional_arguments) > 1:
+                        args = self._configuration.additional_arguments[1:]
             else:
                 for cmd in self._command_handler.commands:
                     result = self._configuration.get_configuration(cmd.name)
