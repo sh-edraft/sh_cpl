@@ -19,7 +19,7 @@ class PublishService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Prepares files for publish into an output directory named dist/ at the given output path and executes setup.py.
-        usage: cpl publish
+        Usage: cpl publish
         """)
 
     def run(self, args: list[str]):

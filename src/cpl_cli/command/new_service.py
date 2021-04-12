@@ -51,7 +51,7 @@ class NewService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Generates a workspace and initial project or add a project to workspace.
-        usage: cpl new <type> <name>
+        Usage: cpl new <type> <name>
         
         Arguments:
             type        The project type of the initial project

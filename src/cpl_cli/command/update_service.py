@@ -43,7 +43,7 @@ class UpdateService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Updates the CPL and project dependencies.
-        usage: cpl update
+        Usage: cpl update
         """)
 
     def _collect_project_dependencies(self) -> list[tuple]:

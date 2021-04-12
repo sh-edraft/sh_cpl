@@ -19,7 +19,7 @@ class StartService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Starts your application, restarting on file changes.
-        usage: cpl start
+        Usage: cpl start
         """)
 
     def run(self, args: list[str]):

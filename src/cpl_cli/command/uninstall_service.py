@@ -36,7 +36,7 @@ class UninstallService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Uninstalls given package via pip
-        usage: cpl uninstall <package>
+        Usage: cpl uninstall <package>
         
         Arguments:
             package     The package to uninstall

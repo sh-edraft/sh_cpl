@@ -19,7 +19,7 @@ class BuildService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Copies an python app into an output directory named build/ at the given output path. Must be executed within a CPL workspace or project directory
-        usage: cpl build
+        Usage: cpl build
         """)
 
     def run(self, args: list[str]):

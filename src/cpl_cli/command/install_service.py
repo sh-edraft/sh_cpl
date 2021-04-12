@@ -44,7 +44,7 @@ class InstallService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Installs given package via pip
-        usage: cpl install <package>
+        Usage: cpl install <package>
         
         Arguments:
             package    The package to install 

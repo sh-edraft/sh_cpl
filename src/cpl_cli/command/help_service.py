@@ -23,7 +23,7 @@ class HelpService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Lists available command and their short descriptions.
-        usage: cpl help <command>
+        Usage: cpl help <command>
         
         Arguments:
             command     The command to display the help message for

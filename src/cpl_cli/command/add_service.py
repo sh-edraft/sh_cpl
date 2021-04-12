@@ -29,9 +29,9 @@ class AddService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Adds a project reference to given project.
-        usage: cpl add <source-project> <target-project>
+        Usage: cpl add <source-project> <target-project>
         
-        arguments:
+        Arguments:
             source-project:  Name of the project to which the reference has to be
             target-project:  Name of the project to be referenced
         """)

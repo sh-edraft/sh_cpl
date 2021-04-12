@@ -23,7 +23,7 @@ class VersionService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Lists the version of CPL, CPL CLI and all installed packages from pip.
-        usage: cpl version
+        Usage: cpl version
         """)
 
     def run(self, args: list[str]):

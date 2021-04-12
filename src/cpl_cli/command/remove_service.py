@@ -30,7 +30,7 @@ class RemoveService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Removes a project from workspace.
-        usage: cpl add <project>
+        Usage: cpl remove <project>
         
         Arguments:
             project     The name of the project to delete

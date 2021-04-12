@@ -60,13 +60,13 @@ class GenerateService(CommandABC):
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Generate a file based on schematic.
-        usage: cpl generate <schematic> <name>
+        Usage: cpl generate <schematic> <name>
         
-        arguments:
+        Arguments:
             schematic:  The schematic to generate.
             name:       The name of the generated file
             
-        schematics:
+        Schematics:
             abc
             class
             enum
