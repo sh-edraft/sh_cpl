@@ -1,15 +1,33 @@
+import textwrap
+from typing import Optional
+
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command_abc import CommandABC
 
 
 class HelpService(CommandABC):
 
-    def __init__(self):
+    def __init__(self, services: ServiceProviderABC, cmd_handler: CommandHandler):
         """
         Service for CLI command help
         """
         CommandABC.__init__(self)
+
+        self._services = services
+        self._commands = cmd_handler.commands
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Lists available command and their short descriptions.
+        Usage: cpl help <command>
+        
+        Arguments:
+            command     The command to display the help message for
+        """)
 
     def run(self, args: list[str]):
         """
@@ -17,6 +35,21 @@ class HelpService(CommandABC):
         :param args:
         :return:
         """
+        if len(args) > 0:
+            command_name = args[0]
+            command: Optional[CommandABC] = None
+            for cmd in self._commands:
+                if cmd.name == command_name or command_name in cmd.aliases:
+                    command = self._services.get_service(cmd.command)
+
+            if command is None:
+                Console.error(f'Invalid argument: {command_name}')
+                return
+
+            Console.write_line(command.help_message)
+
+            return
+
         Console.write_line('Available Commands:')
         commands = [
             ['add (a|a)', 'Adds a project reference to given project.'],

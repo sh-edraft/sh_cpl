@@ -1,4 +1,5 @@
 import os
+import textwrap
 from collections import Callable
 
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -54,6 +55,25 @@ class GenerateService(CommandABC):
 
         self._config = configuration
         self._env = self._config.environment
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Generate a file based on schematic.
+        Usage: cpl generate <schematic> <name>
+        
+        Arguments:
+            schematic:  The schematic to generate.
+            name:       The name of the generated file
+            
+        Schematics:
+            abc
+            class
+            enum
+            service
+            settings
+            thread
+        """)
 
     @staticmethod
     def _help(message: str):

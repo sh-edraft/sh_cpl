@@ -1,6 +1,7 @@
 import os
 import shutil
 import json
+import textwrap
 
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
@@ -24,6 +25,16 @@ class RemoveService(CommandABC):
         self._env = env
 
         self._workspace: WorkspaceSettings = self._config.get_configuration(WorkspaceSettings)
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Removes a project from workspace.
+        Usage: cpl remove <project>
+        
+        Arguments:
+            project     The name of the project to delete
+        """)
 
     @staticmethod
     def _create_file(file_name: str, content: dict):

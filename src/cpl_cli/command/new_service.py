@@ -1,5 +1,6 @@
 import os
 import sys
+import textwrap
 from typing import Optional
 
 from packaging import version
@@ -45,6 +46,21 @@ class NewService(CommandABC):
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Generates a workspace and initial project or add a project to workspace.
+        Usage: cpl new <type> <name>
+        
+        Arguments:
+            type        The project type of the initial project
+            name        Name of the workspace or the project
+            
+        Types:
+            console
+            library
+        """)
 
     @staticmethod
     def _help(message: str):

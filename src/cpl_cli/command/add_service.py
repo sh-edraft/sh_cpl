@@ -1,5 +1,6 @@
 import json
-import os.path
+import os
+import textwrap
 from typing import Optional
 
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -23,6 +24,17 @@ class AddService(CommandABC):
         self._config = config
 
         self._workspace = workspace
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Adds a project reference to given project.
+        Usage: cpl add <source-project> <target-project>
+        
+        Arguments:
+            source-project:  Name of the project to which the reference has to be
+            target-project:  Name of the project to be referenced
+        """)
 
     @staticmethod
     def _edit_project_file(source: str, project_settings: ProjectSettings, build_settings: BuildSettings):

@@ -2,6 +2,7 @@ import pkgutil
 import sys
 import platform
 import pkg_resources
+import textwrap
 
 import cpl
 import cpl_cli
@@ -17,6 +18,13 @@ class VersionService(CommandABC):
         Service for the CLI command version
         """
         CommandABC.__init__(self)
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Lists the version of CPL, CPL CLI and all installed packages from pip.
+        Usage: cpl version
+        """)
 
     def run(self, args: list[str]):
         """

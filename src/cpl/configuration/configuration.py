@@ -104,32 +104,6 @@ class Configuration(ConfigurationABC):
         else:
             self._config[name] = value
 
-    def _validate_argument_child(self, argument: str, argument_type: ConsoleArgument,
-                                 next_arguments: Optional[list[str]]) -> bool:
-        """
-        Validates the child arguments of argument
-        :param argument:
-        :param argument_type:
-        :param next_arguments:
-        :return:
-        """
-        if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
-            found = False
-            for child_argument_type in argument_type.console_arguments:
-                found = self._validate_argument_by_argument_type(argument, child_argument_type, next_arguments)
-                if found and child_argument_type.name not in self._additional_arguments:
-                    self._additional_arguments.append(child_argument_type.name)
-
-                if found:
-                    break
-
-            if not found:
-                raise Exception(f'Invalid argument: {argument}')
-
-            return found
-
-        return True
-
     def _validate_argument_by_argument_type(self, argument: str, argument_type: ConsoleArgument,
                                             next_arguments: list[str] = None) -> bool:
         """
@@ -246,7 +220,23 @@ class Configuration(ConfigurationABC):
                 next_args = []
                 if len(next_arguments) > 1:
                     next_args = next_arguments[1:]
-                result = self._validate_argument_child(next_arguments[0], argument_type, next_args)
+
+                if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
+                    found_child = False
+                    for child_argument_type in argument_type.console_arguments:
+                        found_child = self._validate_argument_by_argument_type(
+                            next_arguments[0],
+                            child_argument_type,
+                            next_args
+                        )
+                        if found_child and child_argument_type.name not in self._additional_arguments:
+                            self._additional_arguments.append(child_argument_type.name)
+
+                        if found_child:
+                            break
+
+                    if not found_child:
+                        result = self._validate_argument_by_argument_type(next_arguments[0], argument_type, next_args)
 
         return result
 

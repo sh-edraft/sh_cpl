@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import textwrap
 
 from packaging import version
 
@@ -38,6 +39,16 @@ class InstallService(CommandABC):
         self._cli_settings = cli_settings
 
         self._project_file = f'{self._config.get_configuration("ProjectName")}.json'
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Installs given package via pip
+        Usage: cpl install <package>
+        
+        Arguments:
+            package    The package to install 
+        """)
 
     def _install_project(self):
         """
