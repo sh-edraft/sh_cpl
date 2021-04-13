@@ -89,8 +89,9 @@ class CLI(ApplicationABC):
 
                     if is_option:
                         args.append(cmd.name)
-                        for arg in result_args:
-                            args.append(arg)
+                        if result_args is not None:
+                            for arg in result_args:
+                                args.append(arg)
 
                     elif result is not None:
                         command = cmd.name

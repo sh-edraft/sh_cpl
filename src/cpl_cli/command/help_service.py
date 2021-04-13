@@ -39,11 +39,12 @@ class HelpService(CommandABC):
             command_name = args[0]
             command: Optional[CommandABC] = None
             for cmd in self._commands:
-                if cmd.name == command_name:
+                if cmd.name == command_name or command_name in cmd.aliases:
                     command = self._services.get_service(cmd.command)
 
             if command is None:
                 Console.error(f'Invalid argument: {command_name}')
+                return
 
             Console.write_line(command.help_message)
 
