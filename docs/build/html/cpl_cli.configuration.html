@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cpl_cli.configuration &mdash; Common Python Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cpl_cli.live_server" href="cpl_cli.live_server.html" />
+    <link rel="prev" title="cpl_cli.command" href="cpl_cli.command.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpl.html">CPL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_cli.html">CPL_CLI</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.command.html">cpl_cli.command</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_cli.configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.build_settings">cpl_cli.configuration.build_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.build_settings_name_enum">cpl_cli.configuration.build_settings_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.project_settings">cpl_cli.configuration.project_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.project_settings_name_enum">cpl_cli.configuration.project_settings_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.project_type_enum">cpl_cli.configuration.project_type_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.settings_helper">cpl_cli.configuration.settings_helper module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.version_settings">cpl_cli.configuration.version_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.version_settings_name_enum">cpl_cli.configuration.version_settings_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.workspace_settings">cpl_cli.configuration.workspace_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_cli.configuration.workspace_settings_name_enum">cpl_cli.configuration.workspace_settings_name_enum module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.live_server.html">cpl_cli.live_server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.publish.html">cpl_cli.publish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.source_creator.html">cpl_cli.source_creator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.cli">cpl_cli.cli</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.cli_settings">cpl_cli.cli_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.cli_settings_name_enum">cpl_cli.cli_settings_name_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.command_abc">cpl_cli.command_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.command_handler_service">cpl_cli.command_handler_service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.command_model">cpl_cli.command_model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.error">cpl_cli.error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.main">cpl_cli.main</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli.startup">cpl_cli.startup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.html#module-cpl_cli">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="cpl_cli.html">CPL_CLI</a> &raquo;</li>
+        
+      <li>cpl_cli.configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cpl_cli.configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cpl-cli-configuration">
+<h1>cpl_cli.configuration<a class="headerlink" href="#cpl-cli-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-cpl_cli.configuration.build_settings">
+<span id="cpl-cli-configuration-build-settings-module"></span><h2>cpl_cli.configuration.build_settings module<a class="headerlink" href="#module-cpl_cli.configuration.build_settings" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.build_settings.</span></code><code class="sig-name descname"><span class="pre">BuildSettings</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.entry_point">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">entry_point</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.entry_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.excluded">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">excluded</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.excluded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.from_dict">
+<code class="sig-name descname"><span class="pre">from_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts attributes to dict
+:param settings:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.include_package_data">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">include_package_data</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.include_package_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.included">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">included</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.included" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.main">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">main</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.output_path">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">output_path</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.package_data">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">package_data</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.package_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.project_references">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">project_references</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.project_references" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.project_type">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">project_type</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.project_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.build_settings.BuildSettings.source_path">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">source_path</span></code><a class="headerlink" href="#cpl_cli.configuration.build_settings.BuildSettings.source_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.build_settings_name_enum">
+<span id="cpl-cli-configuration-build-settings-name-enum-module"></span><h2>cpl_cli.configuration.build_settings_name_enum module<a class="headerlink" href="#module-cpl_cli.configuration.build_settings_name_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.build_settings_name_enum.</span></code><code class="sig-name descname"><span class="pre">BuildSettingsNameEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.entry_point">
+<code class="sig-name descname"><span class="pre">entry_point</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'EntryPoint'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.entry_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.excluded">
+<code class="sig-name descname"><span class="pre">excluded</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Excluded'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.excluded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.include_package_data">
+<code class="sig-name descname"><span class="pre">include_package_data</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'IncludePackageData'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.include_package_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.included">
+<code class="sig-name descname"><span class="pre">included</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Included'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.included" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.main">
+<code class="sig-name descname"><span class="pre">main</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Main'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.output_path">
+<code class="sig-name descname"><span class="pre">output_path</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'OutputPath'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.package_data">
+<code class="sig-name descname"><span class="pre">package_data</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'PackageData'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.package_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.project_references">
+<code class="sig-name descname"><span class="pre">project_references</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ProjectReferences'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.project_references" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.project_type">
+<code class="sig-name descname"><span class="pre">project_type</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ProjectType'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.project_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.source_path">
+<code class="sig-name descname"><span class="pre">source_path</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'SourcePath'</span></em><a class="headerlink" href="#cpl_cli.configuration.build_settings_name_enum.BuildSettingsNameEnum.source_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.project_settings">
+<span id="cpl-cli-configuration-project-settings-module"></span><h2>cpl_cli.configuration.project_settings module<a class="headerlink" href="#module-cpl_cli.configuration.project_settings" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.project_settings.</span></code><code class="sig-name descname"><span class="pre">ProjectSettings</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.author">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">author</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.author_email">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">author_email</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.author_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.classifiers">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">classifiers</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.classifiers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.copyright_date">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">copyright_date</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.copyright_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.copyright_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">copyright_name</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.copyright_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.dependencies">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">dependencies</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.description">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">description</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.from_dict">
+<code class="sig-name descname"><span class="pre">from_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts attributes to dict
+:param settings:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.license_description">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">license_description</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.license_description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.license_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">license_name</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.license_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.long_description">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">long_description</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.long_description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.python_executable">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">python_executable</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.python_executable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.python_path">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">python_path</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.python_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.python_version">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">python_version</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.python_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.url">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">url</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.project_settings.ProjectSettings.version">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">version</span></code><a class="headerlink" href="#cpl_cli.configuration.project_settings.ProjectSettings.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.project_settings_name_enum">
+<span id="cpl-cli-configuration-project-settings-name-enum-module"></span><h2>cpl_cli.configuration.project_settings_name_enum module<a class="headerlink" href="#module-cpl_cli.configuration.project_settings_name_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.project_settings_name_enum.</span></code><code class="sig-name descname"><span class="pre">ProjectSettingsNameEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.author">
+<code class="sig-name descname"><span class="pre">author</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Author'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.author_email">
+<code class="sig-name descname"><span class="pre">author_email</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'AuthorEmail'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.author_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.classifiers">
+<code class="sig-name descname"><span class="pre">classifiers</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Classifiers'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.classifiers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.copyright_date">
+<code class="sig-name descname"><span class="pre">copyright_date</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'CopyrightDate'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.copyright_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.copyright_name">
+<code class="sig-name descname"><span class="pre">copyright_name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'CopyrightName'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.copyright_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.dependencies">
+<code class="sig-name descname"><span class="pre">dependencies</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Dependencies'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.description">
+<code class="sig-name descname"><span class="pre">description</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Description'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.license_description">
+<code class="sig-name descname"><span class="pre">license_description</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'LicenseDescription'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.license_description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.license_name">
+<code class="sig-name descname"><span class="pre">license_name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'LicenseName'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.license_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.long_description">
+<code class="sig-name descname"><span class="pre">long_description</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'LongDescription'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.long_description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.name">
+<code class="sig-name descname"><span class="pre">name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Name'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.python_path">
+<code class="sig-name descname"><span class="pre">python_path</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'PythonPath'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.python_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.python_version">
+<code class="sig-name descname"><span class="pre">python_version</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'PythonVersion'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.python_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.url">
+<code class="sig-name descname"><span class="pre">url</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'URL'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.version">
+<code class="sig-name descname"><span class="pre">version</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Version'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_settings_name_enum.ProjectSettingsNameEnum.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.project_type_enum">
+<span id="cpl-cli-configuration-project-type-enum-module"></span><h2>cpl_cli.configuration.project_type_enum module<a class="headerlink" href="#module-cpl_cli.configuration.project_type_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.project_type_enum.ProjectTypeEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.project_type_enum.</span></code><code class="sig-name descname"><span class="pre">ProjectTypeEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.project_type_enum.ProjectTypeEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_type_enum.ProjectTypeEnum.console">
+<code class="sig-name descname"><span class="pre">console</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'console'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_type_enum.ProjectTypeEnum.console" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.project_type_enum.ProjectTypeEnum.library">
+<code class="sig-name descname"><span class="pre">library</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'library'</span></em><a class="headerlink" href="#cpl_cli.configuration.project_type_enum.ProjectTypeEnum.library" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.settings_helper">
+<span id="cpl-cli-configuration-settings-helper-module"></span><h2>cpl_cli.configuration.settings_helper module<a class="headerlink" href="#module-cpl_cli.configuration.settings_helper" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.settings_helper.SettingsHelper">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.settings_helper.</span></code><code class="sig-name descname"><span class="pre">SettingsHelper</span></code><a class="headerlink" href="#cpl_cli.configuration.settings_helper.SettingsHelper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="cpl_cli.configuration.settings_helper.SettingsHelper.get_build_settings_dict">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_build_settings_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">build</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl_cli.configuration.build_settings.BuildSettings" title="cpl_cli.configuration.build_settings.BuildSettings"><span class="pre">cpl_cli.configuration.build_settings.BuildSettings</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#cpl_cli.configuration.settings_helper.SettingsHelper.get_build_settings_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.settings_helper.SettingsHelper.get_project_settings_dict">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_project_settings_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl_cli.configuration.project_settings.ProjectSettings" title="cpl_cli.configuration.project_settings.ProjectSettings"><span class="pre">cpl_cli.configuration.project_settings.ProjectSettings</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#cpl_cli.configuration.settings_helper.SettingsHelper.get_project_settings_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.version_settings">
+<span id="cpl-cli-configuration-version-settings-module"></span><h2>cpl_cli.configuration.version_settings module<a class="headerlink" href="#module-cpl_cli.configuration.version_settings" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.version_settings.</span></code><code class="sig-name descname"><span class="pre">VersionSettings</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<dl class="py method">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings.from_dict">
+<code class="sig-name descname"><span class="pre">from_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts attributes to dict
+:param settings:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings.major">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">major</span></code><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings.major" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings.micro">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">micro</span></code><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings.micro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings.minor">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">minor</span></code><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings.minor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings.to_dict">
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.version_settings.VersionSettings.to_str">
+<code class="sig-name descname"><span class="pre">to_str</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#cpl_cli.configuration.version_settings.VersionSettings.to_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.version_settings_name_enum">
+<span id="cpl-cli-configuration-version-settings-name-enum-module"></span><h2>cpl_cli.configuration.version_settings_name_enum module<a class="headerlink" href="#module-cpl_cli.configuration.version_settings_name_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.version_settings_name_enum.</span></code><code class="sig-name descname"><span class="pre">VersionSettingsNameEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum.major">
+<code class="sig-name descname"><span class="pre">major</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Major'</span></em><a class="headerlink" href="#cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum.major" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum.micro">
+<code class="sig-name descname"><span class="pre">micro</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Micro'</span></em><a class="headerlink" href="#cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum.micro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum.minor">
+<code class="sig-name descname"><span class="pre">minor</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Minor'</span></em><a class="headerlink" href="#cpl_cli.configuration.version_settings_name_enum.VersionSettingsNameEnum.minor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.workspace_settings">
+<span id="cpl-cli-configuration-workspace-settings-module"></span><h2>cpl_cli.configuration.workspace_settings module<a class="headerlink" href="#module-cpl_cli.configuration.workspace_settings" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.workspace_settings.WorkspaceSettings">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.workspace_settings.</span></code><code class="sig-name descname"><span class="pre">WorkspaceSettings</span></code><a class="headerlink" href="#cpl_cli.configuration.workspace_settings.WorkspaceSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<dl class="py method">
+<dt id="cpl_cli.configuration.workspace_settings.WorkspaceSettings.default_project">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">default_project</span></code><a class="headerlink" href="#cpl_cli.configuration.workspace_settings.WorkspaceSettings.default_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.workspace_settings.WorkspaceSettings.from_dict">
+<code class="sig-name descname"><span class="pre">from_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.workspace_settings.WorkspaceSettings.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts attributes to dict
+:param settings:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl_cli.configuration.workspace_settings.WorkspaceSettings.projects">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">projects</span></code><a class="headerlink" href="#cpl_cli.configuration.workspace_settings.WorkspaceSettings.projects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl_cli.configuration.workspace_settings_name_enum">
+<span id="cpl-cli-configuration-workspace-settings-name-enum-module"></span><h2>cpl_cli.configuration.workspace_settings_name_enum module<a class="headerlink" href="#module-cpl_cli.configuration.workspace_settings_name_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl_cli.configuration.workspace_settings_name_enum.WorkspaceSettingsNameEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_cli.configuration.workspace_settings_name_enum.</span></code><code class="sig-name descname"><span class="pre">WorkspaceSettingsNameEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_cli.configuration.workspace_settings_name_enum.WorkspaceSettingsNameEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.workspace_settings_name_enum.WorkspaceSettingsNameEnum.default_project">
+<code class="sig-name descname"><span class="pre">default_project</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'DefaultProject'</span></em><a class="headerlink" href="#cpl_cli.configuration.workspace_settings_name_enum.WorkspaceSettingsNameEnum.default_project" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl_cli.configuration.workspace_settings_name_enum.WorkspaceSettingsNameEnum.projects">
+<code class="sig-name descname"><span class="pre">projects</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'Projects'</span></em><a class="headerlink" href="#cpl_cli.configuration.workspace_settings_name_enum.WorkspaceSettingsNameEnum.projects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cpl_cli.live_server.html" class="btn btn-neutral float-right" title="cpl_cli.live_server" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_cli.command.html" class="btn btn-neutral float-left" title="cpl_cli.command" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sven Heidemann.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

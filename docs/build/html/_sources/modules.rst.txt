@@ -2,6 +2,7 @@ cpl
 ===
 
 .. toctree::
-   :maxdepth: 4
+    :maxdepth: 4
 
-   cpl
+    cpl
+    cpl_cli
