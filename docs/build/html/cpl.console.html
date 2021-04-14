@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>cpl.console &mdash; Common Python Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cpl.database" href="cpl.database.html" />
+    <link rel="prev" title="cpl.configuration" href="cpl.configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="cpl.html">CPL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl.application.html">cpl.application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.configuration.html">cpl.configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl.console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl.console.background_color_enum">cpl.console.background_color_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl.console.console">cpl.console.console module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl.console.console_call">cpl.console.console_call module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl.console.foreground_color_enum">cpl.console.foreground_color_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl.console.spinner_thread">cpl.console.spinner_thread module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.database.html">cpl.database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.dependency_injection.html">cpl.dependency_injection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.environment.html">cpl.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.logging.html">cpl.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.mailing.html">cpl.mailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.time.html">cpl.time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.utils.html">cpl.utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl.html#module-cpl">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="cpl.html">CPL</a> &raquo;</li>
+        
+      <li>cpl.console</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cpl.console.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cpl-console">
+<h1>cpl.console<a class="headerlink" href="#cpl-console" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-cpl.console.background_color_enum">
+<span id="cpl-console-background-color-enum-module"></span><h2>cpl.console.background_color_enum module<a class="headerlink" href="#module-cpl.console.background_color_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.console.background_color_enum.</span></code><code class="sig-name descname"><span class="pre">BackgroundColorEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.blue">
+<code class="sig-name descname"><span class="pre">blue</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_blue'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.blue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.cyan">
+<code class="sig-name descname"><span class="pre">cyan</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_cyan'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.cyan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.default">
+<code class="sig-name descname"><span class="pre">default</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_default'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.green">
+<code class="sig-name descname"><span class="pre">green</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_green'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.green" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.grey">
+<code class="sig-name descname"><span class="pre">grey</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_grey'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.grey" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.magenta">
+<code class="sig-name descname"><span class="pre">magenta</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_magenta'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.magenta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.red">
+<code class="sig-name descname"><span class="pre">red</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_red'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.red" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.white">
+<code class="sig-name descname"><span class="pre">white</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_white'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.white" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.background_color_enum.BackgroundColorEnum.yellow">
+<code class="sig-name descname"><span class="pre">yellow</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_yellow'</span></em><a class="headerlink" href="#cpl.console.background_color_enum.BackgroundColorEnum.yellow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl.console.console">
+<span id="cpl-console-console-module"></span><h2>cpl.console.console module<a class="headerlink" href="#module-cpl.console.console" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl.console.console.Console">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.console.console.</span></code><code class="sig-name descname"><span class="pre">Console</span></code><a class="headerlink" href="#cpl.console.console.Console" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Useful functions for handling with input and output</p>
+<dl class="py attribute">
+<dt id="cpl.console.console.Console.background_color">
+<code class="sig-name descname"><span class="pre">background_color</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'on_default'</span></em><a class="headerlink" href="#cpl.console.console.Console.background_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.banner">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">banner</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.banner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the string as a banner
+:param string:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.clear">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">clear</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the console
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.close">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">close</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the application
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.color_reset">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">color_reset</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.color_reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets color
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.disable">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">disable</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable console interaction
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.enable">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">enable</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable console interaction
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.error">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">error</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tb</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints an error with traceback
+:param string:
+:param tb:
+:return:</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.console.Console.foreground_color">
+<code class="sig-name descname"><span class="pre">foreground_color</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'default'</span></em><a class="headerlink" href="#cpl.console.console.Console.foreground_color" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.read">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">read</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#cpl.console.console.Console.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in line
+:param output:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.read_line">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">read_line</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#cpl.console.console.Console.read_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in next line
+:param output:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.reset_cursor_position">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">reset_cursor_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.reset_cursor_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets cursor position
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.select">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">select</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">char:</span> <span class="pre">str</span></em>, <em class="sig-param"><span class="pre">message:</span> <span class="pre">str</span></em>, <em class="sig-param"><span class="pre">options:</span> <span class="pre">list</span></em>, <em class="sig-param"><span class="pre">header_foreground_color:</span> <span class="pre">Union[str</span></em>, <em class="sig-param"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum]</span> <span class="pre">=</span> <span class="pre">&lt;ForegroundColorEnum.default:</span> <span class="pre">'default'&gt;</span></em>, <em class="sig-param"><span class="pre">header_background_color:</span> <span class="pre">Union[str</span></em>, <em class="sig-param"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum]</span> <span class="pre">=</span> <span class="pre">&lt;BackgroundColorEnum.default:</span> <span class="pre">'on_default'&gt;</span></em>, <em class="sig-param"><span class="pre">option_foreground_color:</span> <span class="pre">Union[str</span></em>, <em class="sig-param"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum]</span> <span class="pre">=</span> <span class="pre">&lt;ForegroundColorEnum.default:</span> <span class="pre">'default'&gt;</span></em>, <em class="sig-param"><span class="pre">option_background_color:</span> <span class="pre">Union[str</span></em>, <em class="sig-param"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum]</span> <span class="pre">=</span> <span class="pre">&lt;BackgroundColorEnum.default:</span> <span class="pre">'on_default'&gt;</span></em>, <em class="sig-param"><span class="pre">cursor_foreground_color:</span> <span class="pre">Union[str</span></em>, <em class="sig-param"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum]</span> <span class="pre">=</span> <span class="pre">&lt;ForegroundColorEnum.default:</span> <span class="pre">'default'&gt;</span></em>, <em class="sig-param"><span class="pre">cursor_background_color:</span> <span class="pre">Union[str</span></em>, <em class="sig-param"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum]</span> <span class="pre">=</span> <span class="pre">&lt;BackgroundColorEnum.default:</span> <span class="pre">'on_default'&gt;</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#cpl.console.console.Console.select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints select menu
+:param char:
+:param message:
+:param options:
+:param header_foreground_color:
+:param header_background_color:
+:param option_foreground_color:
+:param option_background_color:
+:param cursor_foreground_color:
+:param cursor_background_color:
+:return: Selected option as str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.set_background_color">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">set_background_color</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl.console.background_color_enum.BackgroundColorEnum" title="cpl.console.background_color_enum.BackgroundColorEnum"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.set_background_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the background color
+:param color:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.set_cursor_position">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">set_cursor_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.set_cursor_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets cursor position
+:param x:
+:param y:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.set_foreground_color">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">set_foreground_color</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl.console.foreground_color_enum.ForegroundColorEnum" title="cpl.console.foreground_color_enum.ForegroundColorEnum"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.set_foreground_color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the foreground color
+:param color:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.set_hold_back">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">set_hold_back</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.set_hold_back" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.spinner">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">spinner</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.abc.Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_foreground_color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#cpl.console.foreground_color_enum.ForegroundColorEnum" title="cpl.console.foreground_color_enum.ForegroundColorEnum"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spinner_foreground_color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#cpl.console.foreground_color_enum.ForegroundColorEnum" title="cpl.console.foreground_color_enum.ForegroundColorEnum"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_background_color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#cpl.console.background_color_enum.BackgroundColorEnum" title="cpl.console.background_color_enum.BackgroundColorEnum"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spinner_background_color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#cpl.console.background_color_enum.BackgroundColorEnum" title="cpl.console.background_color_enum.BackgroundColorEnum"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">any</span><a class="headerlink" href="#cpl.console.console.Console.spinner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows spinner and calls given function
+When function has ended the spinner stops
+:param message:
+:param call:
+:param args:
+:param text_foreground_color:
+:param spinner_foreground_color:
+:param text_background_color:
+:param spinner_background_color:
+:param kwargs:
+:return: Return value of call</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.table">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">table</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints a table with header and values
+:param header:
+:param values:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.write">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints in active line
+:param args:
+:param end:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.write_at">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">write_at</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.write_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints at given position
+:param x:
+:param y:
+:param args:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.write_line">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">write_line</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.write_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints to new line
+:param args:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console.Console.write_line_at">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">write_line_at</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console.Console.write_line_at" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints new line at given position
+:param x:
+:param y:
+:param args:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl.console.console_call">
+<span id="cpl-console-console-call-module"></span><h2>cpl.console.console_call module<a class="headerlink" href="#module-cpl.console.console_call" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl.console.console_call.ConsoleCall">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.console.console_call.</span></code><code class="sig-name descname"><span class="pre">ConsoleCall</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.abc.Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.console_call.ConsoleCall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="cpl.console.console_call.ConsoleCall.args">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">args</span></code><a class="headerlink" href="#cpl.console.console_call.ConsoleCall.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.console_call.ConsoleCall.function">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">function</span></code><a class="headerlink" href="#cpl.console.console_call.ConsoleCall.function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl.console.foreground_color_enum">
+<span id="cpl-console-foreground-color-enum-module"></span><h2>cpl.console.foreground_color_enum module<a class="headerlink" href="#module-cpl.console.foreground_color_enum" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.console.foreground_color_enum.</span></code><code class="sig-name descname"><span class="pre">ForegroundColorEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.blue">
+<code class="sig-name descname"><span class="pre">blue</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'blue'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.blue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.cyan">
+<code class="sig-name descname"><span class="pre">cyan</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'cyan'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.cyan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.default">
+<code class="sig-name descname"><span class="pre">default</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'default'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.default" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.green">
+<code class="sig-name descname"><span class="pre">green</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'green'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.green" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.grey">
+<code class="sig-name descname"><span class="pre">grey</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'grey'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.grey" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.magenta">
+<code class="sig-name descname"><span class="pre">magenta</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'magenta'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.magenta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.red">
+<code class="sig-name descname"><span class="pre">red</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'red'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.red" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.white">
+<code class="sig-name descname"><span class="pre">white</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'white'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.white" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cpl.console.foreground_color_enum.ForegroundColorEnum.yellow">
+<code class="sig-name descname"><span class="pre">yellow</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'yellow'</span></em><a class="headerlink" href="#cpl.console.foreground_color_enum.ForegroundColorEnum.yellow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cpl.console.spinner_thread">
+<span id="cpl-console-spinner-thread-module"></span><h2>cpl.console.spinner_thread module<a class="headerlink" href="#module-cpl.console.spinner_thread" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="cpl.console.spinner_thread.SpinnerThread">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.console.spinner_thread.</span></code><code class="sig-name descname"><span class="pre">SpinnerThread</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg_len</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">foreground_color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.console.foreground_color_enum.ForegroundColorEnum" title="cpl.console.foreground_color_enum.ForegroundColorEnum"><span class="pre">cpl.console.foreground_color_enum.ForegroundColorEnum</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.console.background_color_enum.BackgroundColorEnum" title="cpl.console.background_color_enum.BackgroundColorEnum"><span class="pre">cpl.console.background_color_enum.BackgroundColorEnum</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.spinner_thread.SpinnerThread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code></p>
+<dl class="py method">
+<dt id="cpl.console.spinner_thread.SpinnerThread.exit">
+<code class="sig-name descname"><span class="pre">exit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.spinner_thread.SpinnerThread.exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the spinner
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.spinner_thread.SpinnerThread.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#cpl.console.spinner_thread.SpinnerThread.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Entry point of thread, shows the spinner
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cpl.console.spinner_thread.SpinnerThread.stop_spinning">
+<code class="sig-name descname"><span class="pre">stop_spinning</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.console.spinner_thread.SpinnerThread.stop_spinning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the spinner
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cpl.database.html" class="btn btn-neutral float-right" title="cpl.database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl.configuration.html" class="btn btn-neutral float-left" title="cpl.configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sven Heidemann.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
