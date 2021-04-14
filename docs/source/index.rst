@@ -19,4 +19,3 @@ These pages go into great detail about everything the Library can do.
    :maxdepth: 1
 
    cpl
-   cpl_cli

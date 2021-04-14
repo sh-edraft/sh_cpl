@@ -1,7 +1,7 @@
 cpl.console
 ===================
 
-cpl.console.background\_color\_enum module
+cpl.console.background\_color\_enum
 ------------------------------------------
 
 .. automodule:: cpl.console.background_color_enum
@@ -9,7 +9,7 @@ cpl.console.background\_color\_enum module
    :undoc-members:
    :show-inheritance:
 
-cpl.console.console module
+cpl.console.console
 --------------------------
 
 .. automodule:: cpl.console.console
@@ -17,7 +17,7 @@ cpl.console.console module
    :undoc-members:
    :show-inheritance:
 
-cpl.console.console\_call module
+cpl.console.console\_call
 --------------------------------
 
 .. automodule:: cpl.console.console_call
@@ -25,7 +25,7 @@ cpl.console.console\_call module
    :undoc-members:
    :show-inheritance:
 
-cpl.console.foreground\_color\_enum module
+cpl.console.foreground\_color\_enum
 ------------------------------------------
 
 .. automodule:: cpl.console.foreground_color_enum
@@ -33,7 +33,7 @@ cpl.console.foreground\_color\_enum module
    :undoc-members:
    :show-inheritance:
 
-cpl.console.spinner\_thread module
+cpl.console.spinner\_thread
 ----------------------------------
 
 .. automodule:: cpl.console.spinner_thread

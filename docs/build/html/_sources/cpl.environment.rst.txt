@@ -1,7 +1,7 @@
 cpl.environment
 =======================
 
-cpl.environment.application\_environment module
+cpl.environment.application\_environment
 -----------------------------------------------
 
 .. automodule:: cpl.environment.application_environment
@@ -9,7 +9,7 @@ cpl.environment.application\_environment module
    :undoc-members:
    :show-inheritance:
 
-cpl.environment.application\_environment\_abc module
+cpl.environment.application\_environment\_abc
 ----------------------------------------------------
 
 .. automodule:: cpl.environment.application_environment_abc
@@ -17,7 +17,7 @@ cpl.environment.application\_environment\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.environment.environment\_name\_enum module
+cpl.environment.environment\_name\_enum
 ----------------------------------------------
 
 .. automodule:: cpl.environment.environment_name_enum

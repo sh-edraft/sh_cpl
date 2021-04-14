@@ -10,7 +10,7 @@ cpl.database
 Submodules
 ----------
 
-cpl.database.database\_model module
+cpl.database.database\_model
 -----------------------------------
 
 .. automodule:: cpl.database.database_model
@@ -18,7 +18,7 @@ cpl.database.database\_model module
    :undoc-members:
    :show-inheritance:
 
-cpl.database.database\_settings module
+cpl.database.database\_settings
 --------------------------------------
 
 .. automodule:: cpl.database.database_settings
@@ -26,7 +26,7 @@ cpl.database.database\_settings module
    :undoc-members:
    :show-inheritance:
 
-cpl.database.database\_settings\_name\_enum module
+cpl.database.database\_settings\_name\_enum
 --------------------------------------------------
 
 .. automodule:: cpl.database.database_settings_name_enum

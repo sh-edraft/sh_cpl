@@ -1,7 +1,7 @@
 cpl.dependency\_injection
 =================================
 
-cpl.dependency\_injection.service\_collection module
+cpl.dependency\_injection.service\_collection
 ----------------------------------------------------
 
 .. automodule:: cpl.dependency_injection.service_collection
@@ -9,7 +9,7 @@ cpl.dependency\_injection.service\_collection module
    :undoc-members:
    :show-inheritance:
 
-cpl.dependency\_injection.service\_collection\_abc module
+cpl.dependency\_injection.service\_collection\_abc
 ---------------------------------------------------------
 
 .. automodule:: cpl.dependency_injection.service_collection_abc
@@ -17,7 +17,7 @@ cpl.dependency\_injection.service\_collection\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.dependency\_injection.service\_descriptor module
+cpl.dependency\_injection.service\_descriptor
 ----------------------------------------------------
 
 .. automodule:: cpl.dependency_injection.service_descriptor
@@ -25,7 +25,7 @@ cpl.dependency\_injection.service\_descriptor module
    :undoc-members:
    :show-inheritance:
 
-cpl.dependency\_injection.service\_lifetime\_enum module
+cpl.dependency\_injection.service\_lifetime\_enum
 --------------------------------------------------------
 
 .. automodule:: cpl.dependency_injection.service_lifetime_enum
@@ -33,7 +33,7 @@ cpl.dependency\_injection.service\_lifetime\_enum module
    :undoc-members:
    :show-inheritance:
 
-cpl.dependency\_injection.service\_provider module
+cpl.dependency\_injection.service\_provider
 --------------------------------------------------
 
 .. automodule:: cpl.dependency_injection.service_provider
@@ -41,7 +41,7 @@ cpl.dependency\_injection.service\_provider module
    :undoc-members:
    :show-inheritance:
 
-cpl.dependency\_injection.service\_provider\_abc module
+cpl.dependency\_injection.service\_provider\_abc
 -------------------------------------------------------
 
 .. automodule:: cpl.dependency_injection.service_provider_abc

@@ -1,7 +1,7 @@
 cpl.application
 =======================
 
-cpl.application.application\_abc module
+cpl.application.application\_abc
 ---------------------------------------
 
 .. automodule:: cpl.application.application_abc
@@ -9,7 +9,7 @@ cpl.application.application\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.application.application\_builder module
+cpl.application.application\_builder
 -------------------------------------------
 
 .. automodule:: cpl.application.application_builder
@@ -17,7 +17,7 @@ cpl.application.application\_builder module
    :undoc-members:
    :show-inheritance:
 
-cpl.application.application\_builder\_abc module
+cpl.application.application\_builder\_abc
 ------------------------------------------------
 
 .. automodule:: cpl.application.application_builder_abc
@@ -25,7 +25,7 @@ cpl.application.application\_builder\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.application.startup\_abc module
+cpl.application.startup\_abc
 -----------------------------------
 
 .. automodule:: cpl.application.startup_abc

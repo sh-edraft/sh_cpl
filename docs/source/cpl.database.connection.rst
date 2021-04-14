@@ -1,7 +1,7 @@
 cpl.database.connection
 ===============================
 
-cpl.database.connection.database\_connection module
+cpl.database.connection.database\_connection
 ---------------------------------------------------
 
 .. automodule:: cpl.database.connection.database_connection
@@ -9,7 +9,7 @@ cpl.database.connection.database\_connection module
    :undoc-members:
    :show-inheritance:
 
-cpl.database.connection.database\_connection\_abc module
+cpl.database.connection.database\_connection\_abc
 --------------------------------------------------------
 
 .. automodule:: cpl.database.connection.database_connection_abc

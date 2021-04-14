@@ -1,7 +1,7 @@
 cpl.logging
 ===================
 
-cpl.logging.logger\_abc module
+cpl.logging.logger\_abc
 ------------------------------
 
 .. automodule:: cpl.logging.logger_abc
@@ -9,7 +9,7 @@ cpl.logging.logger\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.logging.logger\_service module
+cpl.logging.logger\_service
 ----------------------------------
 
 .. automodule:: cpl.logging.logger_service
@@ -17,7 +17,7 @@ cpl.logging.logger\_service module
    :undoc-members:
    :show-inheritance:
 
-cpl.logging.logging\_level\_enum module
+cpl.logging.logging\_level\_enum
 ---------------------------------------
 
 .. automodule:: cpl.logging.logging_level_enum
@@ -25,7 +25,7 @@ cpl.logging.logging\_level\_enum module
    :undoc-members:
    :show-inheritance:
 
-cpl.logging.logging\_settings module
+cpl.logging.logging\_settings
 ------------------------------------
 
 .. automodule:: cpl.logging.logging_settings
@@ -33,7 +33,7 @@ cpl.logging.logging\_settings module
    :undoc-members:
    :show-inheritance:
 
-cpl.logging.logging\_settings\_name\_enum module
+cpl.logging.logging\_settings\_name\_enum
 ------------------------------------------------
 
 .. automodule:: cpl.logging.logging_settings_name_enum

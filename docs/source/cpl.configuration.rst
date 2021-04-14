@@ -1,7 +1,7 @@
 cpl.configuration
 =========================
 
-cpl.configuration.configuration module
+cpl.configuration.configuration
 --------------------------------------
 
 .. automodule:: cpl.configuration.configuration
@@ -9,7 +9,7 @@ cpl.configuration.configuration module
    :undoc-members:
    :show-inheritance:
 
-cpl.configuration.configuration\_abc module
+cpl.configuration.configuration\_abc
 -------------------------------------------
 
 .. automodule:: cpl.configuration.configuration_abc
@@ -17,7 +17,7 @@ cpl.configuration.configuration\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.configuration.configuration\_model\_abc module
+cpl.configuration.configuration\_model\_abc
 --------------------------------------------------
 
 .. automodule:: cpl.configuration.configuration_model_abc
@@ -25,7 +25,7 @@ cpl.configuration.configuration\_model\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.configuration.configuration\_variable\_name\_enum module
+cpl.configuration.configuration\_variable\_name\_enum
 ------------------------------------------------------------
 
 .. automodule:: cpl.configuration.configuration_variable_name_enum
@@ -33,7 +33,7 @@ cpl.configuration.configuration\_variable\_name\_enum module
    :undoc-members:
    :show-inheritance:
 
-cpl.configuration.console\_argument module
+cpl.configuration.console\_argument
 ------------------------------------------
 
 .. automodule:: cpl.configuration.console_argument

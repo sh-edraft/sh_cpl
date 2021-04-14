@@ -1,7 +1,7 @@
 cpl.mailing
 ===================
 
-cpl.mailing.email module
+cpl.mailing.email
 ------------------------
 
 .. automodule:: cpl.mailing.email
@@ -9,7 +9,7 @@ cpl.mailing.email module
    :undoc-members:
    :show-inheritance:
 
-cpl.mailing.email\_client\_abc module
+cpl.mailing.email\_client\_abc
 -------------------------------------
 
 .. automodule:: cpl.mailing.email_client_abc
@@ -17,7 +17,7 @@ cpl.mailing.email\_client\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl.mailing.email\_client\_service module
+cpl.mailing.email\_client\_service
 -----------------------------------------
 
 .. automodule:: cpl.mailing.email_client_service
@@ -25,7 +25,7 @@ cpl.mailing.email\_client\_service module
    :undoc-members:
    :show-inheritance:
 
-cpl.mailing.email\_client\_settings module
+cpl.mailing.email\_client\_settings
 ------------------------------------------
 
 .. automodule:: cpl.mailing.email_client_settings
@@ -33,7 +33,7 @@ cpl.mailing.email\_client\_settings module
    :undoc-members:
    :show-inheritance:
 
-cpl.mailing.email\_client\_settings\_name\_enum module
+cpl.mailing.email\_client\_settings\_name\_enum
 ------------------------------------------------------
 
 .. automodule:: cpl.mailing.email_client_settings_name_enum

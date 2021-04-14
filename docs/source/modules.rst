@@ -5,4 +5,3 @@ cpl
     :maxdepth: 4
 
     cpl
-    cpl_cli

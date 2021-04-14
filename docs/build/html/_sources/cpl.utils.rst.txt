@@ -1,7 +1,7 @@
 cpl.utils
 =================
 
-cpl.utils.credential\_manager module
+cpl.utils.credential\_manager
 ------------------------------------
 
 .. automodule:: cpl.utils.credential_manager
@@ -9,7 +9,7 @@ cpl.utils.credential\_manager module
    :undoc-members:
    :show-inheritance:
 
-cpl.utils.pip module
+cpl.utils.pip
 --------------------
 
 .. automodule:: cpl.utils.pip
@@ -17,7 +17,7 @@ cpl.utils.pip module
    :undoc-members:
    :show-inheritance:
 
-cpl.utils.string module
+cpl.utils.string
 -----------------------
 
 .. automodule:: cpl.utils.string

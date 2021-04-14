@@ -1,7 +1,7 @@
 cpl.database.context
 ============================
 
-cpl.database.context.database\_context module
+cpl.database.context.database\_context
 ---------------------------------------------
 
 .. automodule:: cpl.database.context.database_context
@@ -9,7 +9,7 @@ cpl.database.context.database\_context module
    :undoc-members:
    :show-inheritance:
 
-cpl.database.context.database\_context\_abc module
+cpl.database.context.database\_context\_abc
 --------------------------------------------------
 
 .. automodule:: cpl.database.context.database_context_abc
