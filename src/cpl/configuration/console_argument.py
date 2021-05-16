@@ -8,14 +8,16 @@ class ConsoleArgument:
                  is_value_token_optional: bool = None,
                  console_arguments: list['ConsoleArgument'] = None
                  ):
-        """
-        Representation of an console argument
-        :param token:
-        :param name:
-        :param aliases:
-        :param value_token:
-        :param is_value_token_optional:
-        :param console_arguments:
+        r"""Representation of an console argument
+
+        Parameter
+        ---------
+            token: :class:`str`
+            name: :class:`str`
+            aliases: list[:class:`str`]
+            value_token: :class:`str`
+            is_value_token_optional: :class:`bool`
+            console_arguments: List[:class:`cpl.configuration.console_argument.ConsoleArgument`]
         """
         self._token = token
         self._name = name

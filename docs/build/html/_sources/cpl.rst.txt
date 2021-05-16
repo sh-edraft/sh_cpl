@@ -15,10 +15,3 @@ CPL
     cpl.time
     cpl.utils
 
-Module contents
----------------
-
-.. automodule:: cpl
-   :members:
-   :undoc-members:
-   :show-inheritance:

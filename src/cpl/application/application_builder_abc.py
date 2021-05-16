@@ -19,7 +19,7 @@ class ApplicationBuilderABC(ABC):
         Parameter
         ---------
             startup: Type[:class:`cpl.application.startup_abc.StartupABC`]
-                Type of :class:`cpl.application.startup_abc.StartupABC`
+                Startup class to use
         """
         pass
 
