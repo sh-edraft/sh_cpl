@@ -54,7 +54,9 @@ class Configuration(ConfigurationABC):
         Parameter
         ---------
             name: :class:`str`
+                Info name
             message: :class:`str`
+                Info message
         """
         Console.set_foreground_color(ForegroundColorEnum.green)
         Console.write_line(f'[{name}] {message}')
@@ -67,7 +69,9 @@ class Configuration(ConfigurationABC):
         Parameter
         ---------
             name: :class:`str`
+                Warning name
             message: :class:`str`
+                Warning message
         """
         Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.write_line(f'[{name}] {message}')
@@ -80,7 +84,9 @@ class Configuration(ConfigurationABC):
         Parameter
         ---------
             name: :class:`str`
+                Error name
             message: :class:`str`
+                Error message
         """
         Console.set_foreground_color(ForegroundColorEnum.red)
         Console.write_line(f'[{name}] {message}')
@@ -92,7 +98,9 @@ class Configuration(ConfigurationABC):
         Parameter
         ---------
             name: :class:`str`
+                Name of the variable
             value: :class:`any`
+                Value of the variable
         """
         if name == ConfigurationVariableNameEnum.environment.value:
             self._application_environment.environment_name = EnvironmentNameEnum(value)
@@ -113,8 +121,11 @@ class Configuration(ConfigurationABC):
         Parameter
         ---------
             argument: :class:`str`
+                Command as string
             argument_type: :class:`cpl.configuration.console_argument.ConsoleArgument`
+                Command type as ConsoleArgument
             next_arguments: list[:class:`str`]
+                Following arguments of argument
 
         Returns
         -------

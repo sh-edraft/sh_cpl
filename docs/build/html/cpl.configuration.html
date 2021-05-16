@@ -187,8 +187,12 @@
 <code class="sig-name descname"><span class="pre">add_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration.Configuration.add_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add configuration object</p>
 <blockquote>
-<div><p>key_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>]
-value: <a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<div><dl class="simple">
+<dt>key_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>]</dt><dd><p>Type of the value</p>
+</dd>
+<dt>value: <a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></dt><dd><p>Object of the value</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -197,7 +201,10 @@ value: <a class="reference internal" href="#cpl.configuration.configuration_mode
 <code class="sig-name descname"><span class="pre">add_console_argument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.configuration.console_argument.ConsoleArgument" title="cpl.configuration.console_argument.ConsoleArgument"><span class="pre">cpl.configuration.console_argument.ConsoleArgument</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration.Configuration.add_console_argument" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds console argument to known console arguments</p>
 <blockquote>
-<div><p>argument: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.console.console_argument.ConsoleArgument</span></code></p>
+<div><dl class="simple">
+<dt>argument: <a class="reference internal" href="#cpl.configuration.console_argument.ConsoleArgument" title="cpl.configuration.console_argument.ConsoleArgument"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.console_argument.ConsoleArgument</span></code></a></dt><dd><p>Specifies the console argument</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -218,7 +225,10 @@ value: <a class="reference internal" href="#cpl.configuration.configuration_mode
 <code class="sig-name descname"><span class="pre">add_environment_variables</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration.Configuration.add_environment_variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the environment variables</p>
 <blockquote>
-<div><p>prefix: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<div><dl class="simple">
+<dt>prefix: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Prefix of the variables</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -227,10 +237,16 @@ value: <a class="reference internal" href="#cpl.configuration.configuration_mode
 <code class="sig-name descname"><span class="pre">add_json_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration.Configuration.add_json_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads and saves settings from given json file</p>
 <blockquote>
-<div><p>name (str): Name of the file
-optional: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
-output: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
-path: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Name of the file</p>
+</dd>
+<dt>optional: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies whether an error should occur if the file was not found</p>
+</dd>
+<dt>output: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Specifies whether an output should take place</p>
+</dd>
+<dt>path: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path in which the file should be stored</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -254,7 +270,10 @@ path: <code class="xref py py-class docutils literal notranslate"><span class="p
 <code class="sig-name descname"><span class="pre">get_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#cpl.configuration.configuration.Configuration.get_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns value from configuration by given type</p>
 <blockquote>
-<div><p>search_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Type[<a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</p>
+<div><dl class="simple">
+<dt>search_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Type[<a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</dt><dd><p>Type to search for</p>
+</dd>
+</dl>
 </div></blockquote>
 <blockquote>
 <div><p>Object of Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Callable[<a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</p>
@@ -275,8 +294,12 @@ path: <code class="xref py py-class docutils literal notranslate"><span class="p
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration_abc.ConfigurationABC.add_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add configuration object</p>
 <blockquote>
-<div><p>key_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>]
-value: <a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<div><dl class="simple">
+<dt>key_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>]</dt><dd><p>Type of the value</p>
+</dd>
+<dt>value: <a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></dt><dd><p>Object of the value</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -285,7 +308,10 @@ value: <a class="reference internal" href="#cpl.configuration.configuration_mode
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_console_argument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.configuration.console_argument.ConsoleArgument" title="cpl.configuration.console_argument.ConsoleArgument"><span class="pre">cpl.configuration.console_argument.ConsoleArgument</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration_abc.ConfigurationABC.add_console_argument" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds console argument to known console arguments</p>
 <blockquote>
-<div><p>argument: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.console.console_argument.ConsoleArgument</span></code></p>
+<div><dl class="simple">
+<dt>argument: <a class="reference internal" href="#cpl.configuration.console_argument.ConsoleArgument" title="cpl.configuration.console_argument.ConsoleArgument"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.console_argument.ConsoleArgument</span></code></a></dt><dd><p>Specifies the console argument</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -306,7 +332,10 @@ value: <a class="reference internal" href="#cpl.configuration.configuration_mode
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_environment_variables</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration_abc.ConfigurationABC.add_environment_variables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the environment variables</p>
 <blockquote>
-<div><p>prefix: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<div><dl class="simple">
+<dt>prefix: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Prefix of the variables</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -315,10 +344,16 @@ value: <a class="reference internal" href="#cpl.configuration.configuration_mode
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_json_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration_abc.ConfigurationABC.add_json_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads and saves settings from given json file</p>
 <blockquote>
-<div><p>name (str): Name of the file
-optional: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>
-output: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>
-path: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Name of the file</p>
+</dd>
+<dt>optional: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies whether an error should occur if the file was not found</p>
+</dd>
+<dt>output: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Specifies whether an output should take place</p>
+</dd>
+<dt>path: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path in which the file should be stored</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -342,7 +377,10 @@ path: <code class="xref py py-class docutils literal notranslate"><span class="p
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">get_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#cpl.configuration.configuration_abc.ConfigurationABC.get_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns value from configuration by given type</p>
 <blockquote>
-<div><p>search_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Type[<a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</p>
+<div><dl class="simple">
+<dt>search_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Type[<a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</dt><dd><p>Type to search for</p>
+</dd>
+</dl>
 </div></blockquote>
 <blockquote>
 <div><p>Object of Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Callable[<a class="reference internal" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</p>
@@ -361,9 +399,10 @@ path: <code class="xref py py-class docutils literal notranslate"><span class="p
 <dl class="py method">
 <dt id="cpl.configuration.configuration_model_abc.ConfigurationModelABC.from_dict">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">from_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.configuration.configuration_model_abc.ConfigurationModelABC.from_dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts attributes to dict
-:param settings:
-:return:</p>
+<dd><p>Converts attributes to dict</p>
+<blockquote>
+<div><p>settings: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>

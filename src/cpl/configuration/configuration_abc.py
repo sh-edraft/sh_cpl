@@ -37,6 +37,7 @@ class ConfigurationABC(ABC):
         Parameter
         ---------
             prefix: :class:`str`
+                Prefix of the variables
         """
         pass
 
@@ -47,6 +48,7 @@ class ConfigurationABC(ABC):
         Parameter
         ---------
             argument: :class:`cpl.configuration.console_argument.ConsoleArgument`
+                Specifies the console argument
         """
         pass
 
@@ -85,7 +87,9 @@ class ConfigurationABC(ABC):
         Parameter
         ---------
             key_type: Union[:class:`str`, :class:`type`]
+                Type of the value
             value: :class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`
+                Object of the value
         """
         pass
 
@@ -96,6 +100,7 @@ class ConfigurationABC(ABC):
         Parameter
         ---------
             search_type: Union[:class:`str`, Type[:class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]]
+                Type to search for
 
         Returns
         -------
