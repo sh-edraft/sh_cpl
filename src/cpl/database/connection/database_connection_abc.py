@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 
 class DatabaseConnectionABC(ABC):
+    r"""ABC for the :class:`cpl.database.connection.database_connection.DatabaseConnection`"""
 
     @abstractmethod
     def __init__(self): pass

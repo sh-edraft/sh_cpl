@@ -8,6 +8,7 @@ from cpl.database.database_settings_name_enum import DatabaseSettingsNameEnum
 
 
 class DatabaseSettings(ConfigurationModelABC):
+    r"""Represents settings for the database connection"""
 
     def __init__(self):
         ConfigurationModelABC.__init__(self)

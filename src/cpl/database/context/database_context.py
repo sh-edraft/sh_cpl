@@ -11,6 +11,12 @@ from cpl.database.database_model import DatabaseModel
 
 
 class DatabaseContext(DatabaseContextABC):
+    r"""Representation of the database context
+
+    Parameter
+    ---------
+        database_settings: :class:`cpl.database.database_settings.DatabaseSettings`
+    """
 
     def __init__(self, database_settings: DatabaseSettings):
         DatabaseContextABC.__init__(self)
