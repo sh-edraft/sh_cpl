@@ -4,16 +4,20 @@ import random
 
 
 class String:
-    """
-    Useful functions for strings
-    """
+    r"""Useful functions for strings"""
 
     @staticmethod
     def convert_to_camel_case(chars: str) -> str:
-        """
-        Converts string to camel case
-        :param chars:
-        :return:
+        r"""Converts string to camel case
+
+        Parameter
+        ---------
+            chars: :class:`str`
+                String to convert
+
+        Returns
+        -------
+            String converted to CamelCase
         """
         converted_name = chars
         char_set = string.punctuation + ' '
@@ -25,10 +29,16 @@ class String:
 
     @staticmethod
     def convert_to_snake_case(chars: str) -> str:
-        """
-        Converts string to snake case
-        :param chars:
-        :return:
+        r"""Converts string to snake case
+
+        Parameter
+        ---------
+            chars: :class:`str`
+                String to convert
+
+        Returns
+        -------
+            String converted to snake_case
         """
         # convert to train-case to CamelCase
         if '-' in chars:
@@ -41,26 +51,41 @@ class String:
 
     @staticmethod
     def first_to_upper(chars: str) -> str:
-        """
-        Converts first char to upper
-        :param chars:
-        :return:
+        r"""Converts first char to upper
+
+        Parameter
+        ---------
+            chars: :class:`str`
+                String to convert
+
+        Returns
+        -------
+            String with first char as upper
         """
         return f'{chars[0].upper()}{chars[1:]}'
 
     @staticmethod
     def first_to_lower(chars: str) -> str:
-        """
-        Converts first char to lower
-        :param chars:
-        :return:
+        r"""Converts first char to lower
+
+        Parameter
+        ---------
+            chars: :class:`str`
+                String to convert
+
+        Returns
+        -------
+            String with first char as lower
         """
         return f'{chars[0].lower()}{chars[1:]}'
 
     @staticmethod
     def random_string(chars: str, length: int) -> str:
-        """
-        Creates random string by given chars and length
+        r"""Creates random string by given chars and length
+
+        Returns
+        -------
+            String of random chars
         """
 
         return ''.join(random.choice(chars) for _ in range(length))
