@@ -19,9 +19,11 @@ class DatabaseConnectionABC(ABC):
 
     @abstractmethod
     def connect(self, connection_string: str):
-        """
-        Connects to a database by connection string
-        :param connection_string:
-        :return:
+        r"""Connects to a database by connection string
+
+        Parameter
+        ---------
+            connection_string: :class:`str`
+                Database connection string, see: https://docs.sqlalchemy.org/en/14/core/engines.html
         """
         pass

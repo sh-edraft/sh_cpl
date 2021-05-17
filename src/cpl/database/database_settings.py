@@ -68,6 +68,12 @@ class DatabaseSettings(ConfigurationModelABC):
         self._echo = echo
 
     def from_dict(self, settings: dict):
+        r"""Sets attributes from given dict
+
+        Parameter
+        ---------
+        settings: :class:`dict`
+        """
         try:
             self._connection_string = settings[DatabaseSettingsNameEnum.connection_string.value]
             self._credentials = settings[DatabaseSettingsNameEnum.credentials.value]
