@@ -1,4 +1,4 @@
-CPL
+API Reference
 ===========
 
 .. toctree::
@@ -14,4 +14,3 @@ CPL
     cpl.mailing
     cpl.time
     cpl.utils
-

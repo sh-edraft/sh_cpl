@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Introduction to the CPL Docs
-===========================
+============================
 
 The Common Python Library (CPL) is a package for python and a development platform meant to help you create simple and efficient server and desktop applications.
 
@@ -18,4 +18,7 @@ These pages go into great detail about everything the Library can do.
 .. toctree::
    :maxdepth: 1
 
+   introduction
+   getting_started
    cpl
+   cpl_cli
