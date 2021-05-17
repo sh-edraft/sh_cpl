@@ -21,7 +21,9 @@ class ServiceCollectionABC(ABC):
         Parameter
         ---------
             db_context: Type[:class:`cpl.database.context.database_context_abc.DatabaseContextABC`]
+                Database context
             db_settings: :class:`cpl.database.database_settings.DatabaseSettings`
+                Database settings
         """
         pass
 
@@ -37,7 +39,9 @@ class ServiceCollectionABC(ABC):
         Parameter
         ---------
             service_type: :class:`Type`
+                Type of the service
             service: :class:`Callable`
+                Object of the service
         """
         pass
 
@@ -48,7 +52,9 @@ class ServiceCollectionABC(ABC):
         Parameter
         ---------
             service_type: :class:`Type`
+                Type of the service
             service: :class:`Callable`
+                Object of the service
         """
         pass
 
@@ -59,7 +65,9 @@ class ServiceCollectionABC(ABC):
         Parameter
         ---------
             service_type: :class:`Type`
+                Type of the service
             service: :class:`Callable`
+                Object of the service
         """
         pass
 
