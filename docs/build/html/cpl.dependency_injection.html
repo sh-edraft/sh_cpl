@@ -189,8 +189,12 @@
 <code class="sig-name descname"><span class="pre">add_db_context</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_context_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="cpl.database.html#cpl.database.database_settings.DatabaseSettings" title="cpl.database.database_settings.DatabaseSettings"><span class="pre">cpl.database.database_settings.DatabaseSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection.ServiceCollection.add_db_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds database context</p>
 <blockquote>
-<div><p>db_context: Type[<a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></code></a>]
-db_settings: <a class="reference internal" href="cpl.database.html#cpl.database.database_settings.DatabaseSettings" title="cpl.database.database_settings.DatabaseSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.database_settings.DatabaseSettings</span></code></a></p>
+<div><dl class="simple">
+<dt>db_context: Type[<a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></code></a>]</dt><dd><p>Database context</p>
+</dd>
+<dt>db_settings: <a class="reference internal" href="cpl.database.html#cpl.database.database_settings.DatabaseSettings" title="cpl.database.database_settings.DatabaseSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.database_settings.DatabaseSettings</span></code></a></dt><dd><p>Database settings</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -205,8 +209,12 @@ db_settings: <a class="reference internal" href="cpl.database.html#cpl.database.
 <code class="sig-name descname"><span class="pre">add_scoped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection.ServiceCollection.add_scoped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a service with scoped lifetime</p>
 <blockquote>
-<div><p>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>
-service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
+<div><dl class="simple">
+<dt>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></dt><dd><p>Type of the service</p>
+</dd>
+<dt>service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Object of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -215,8 +223,12 @@ service: <code class="xref py py-class docutils literal notranslate"><span class
 <code class="sig-name descname"><span class="pre">add_singleton</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">,</span> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">,</span> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection.ServiceCollection.add_singleton" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a service with singleton lifetime</p>
 <blockquote>
-<div><p>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>
-service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
+<div><dl class="simple">
+<dt>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></dt><dd><p>Type of the service</p>
+</dd>
+<dt>service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Object of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -225,8 +237,12 @@ service: <code class="xref py py-class docutils literal notranslate"><span class
 <code class="sig-name descname"><span class="pre">add_transient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection.ServiceCollection.add_transient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a service with transient lifetime</p>
 <blockquote>
-<div><p>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>
-service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
+<div><dl class="simple">
+<dt>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></dt><dd><p>Type of the service</p>
+</dd>
+<dt>service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Object of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -254,8 +270,12 @@ service: <code class="xref py py-class docutils literal notranslate"><span class
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_db_context</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db_context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="cpl.database.html#cpl.database.database_settings.DatabaseSettings" title="cpl.database.database_settings.DatabaseSettings"><span class="pre">cpl.database.database_settings.DatabaseSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection_abc.ServiceCollectionABC.add_db_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds database context</p>
 <blockquote>
-<div><p>db_context: Type[<a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></code></a>]
-db_settings: <a class="reference internal" href="cpl.database.html#cpl.database.database_settings.DatabaseSettings" title="cpl.database.database_settings.DatabaseSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.database_settings.DatabaseSettings</span></code></a></p>
+<div><dl class="simple">
+<dt>db_context: Type[<a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></code></a>]</dt><dd><p>Database context</p>
+</dd>
+<dt>db_settings: <a class="reference internal" href="cpl.database.html#cpl.database.database_settings.DatabaseSettings" title="cpl.database.database_settings.DatabaseSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.database_settings.DatabaseSettings</span></code></a></dt><dd><p>Database settings</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -270,8 +290,12 @@ db_settings: <a class="reference internal" href="cpl.database.html#cpl.database.
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_scoped</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection_abc.ServiceCollectionABC.add_scoped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a service with scoped lifetime</p>
 <blockquote>
-<div><p>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>
-service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
+<div><dl class="simple">
+<dt>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></dt><dd><p>Type of the service</p>
+</dd>
+<dt>service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Object of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -280,8 +304,12 @@ service: <code class="xref py py-class docutils literal notranslate"><span class
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_singleton</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection_abc.ServiceCollectionABC.add_singleton" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a service with singleton lifetime</p>
 <blockquote>
-<div><p>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>
-service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
+<div><dl class="simple">
+<dt>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></dt><dd><p>Type of the service</p>
+</dd>
+<dt>service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Object of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -290,8 +318,12 @@ service: <code class="xref py py-class docutils literal notranslate"><span class
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">add_transient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a service with transient lifetime</p>
 <blockquote>
-<div><p>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>
-service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
+<div><dl class="simple">
+<dt>service_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></dt><dd><p>Type of the service</p>
+</dd>
+<dt>service: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Object of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -315,8 +347,12 @@ service: <code class="xref py py-class docutils literal notranslate"><span class
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Descriptor of a service</p>
 <blockquote>
-<div><p>implementation: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>, Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>]]
-lifetime: <a class="reference internal" href="#cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum" title="cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum</span></code></a></p>
+<div><dl class="simple">
+<dt>implementation: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>, Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code>]]</dt><dd><p>Object or type of service</p>
+</dd>
+<dt>lifetime: <a class="reference internal" href="#cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum" title="cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum</span></code></a></dt><dd><p>Lifetime of the service</p>
+</dd>
+</dl>
 </div></blockquote>
 <dl class="py method">
 <dt id="cpl.dependency_injection.service_descriptor.ServiceDescriptor.implementation">
@@ -369,9 +405,14 @@ lifetime: <a class="reference internal" href="#cpl.dependency_injection.service_
 <dd><p>Bases: <a class="reference internal" href="#cpl.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.dependency_injection.service_provider_abc.ServiceProviderABC</span></code></a></p>
 <p>Provider for the services</p>
 <blockquote>
-<div><p>service_descriptors: list[<a class="reference internal" href="#cpl.dependency_injection.service_descriptor.ServiceDescriptor" title="cpl.dependency_injection.service_descriptor.ServiceDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.dependency_injection.service_descriptor.ServiceDescriptor</span></code></a>]
-config: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_abc.ConfigurationABC" title="cpl.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_abc.ConfigurationABC</span></code></a>
-db_context: Optional[<a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></code></a>]</p>
+<div><dl class="simple">
+<dt>service_descriptors: list[<a class="reference internal" href="#cpl.dependency_injection.service_descriptor.ServiceDescriptor" title="cpl.dependency_injection.service_descriptor.ServiceDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.dependency_injection.service_descriptor.ServiceDescriptor</span></code></a>]</dt><dd><p>Descriptor of the service</p>
+</dd>
+<dt>config: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_abc.ConfigurationABC" title="cpl.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_abc.ConfigurationABC</span></code></a></dt><dd><p>CPL Configuration</p>
+</dd>
+<dt>db_context: Optional[<a class="reference internal" href="cpl.database.context.html#cpl.database.context.database_context_abc.DatabaseContextABC" title="cpl.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.database.context.database_context_abc.DatabaseContextABC</span></code></a>]</dt><dd><p>Database representation</p>
+</dd>
+</dl>
 </div></blockquote>
 <dl class="py method">
 <dt id="cpl.dependency_injection.service_provider.ServiceProvider.build_service">

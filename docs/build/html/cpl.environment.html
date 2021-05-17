@@ -180,6 +180,10 @@
 <dt id="cpl.environment.application_environment.ApplicationEnvironment">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.environment.application_environment.</span></code><code class="sig-name descname"><span class="pre">ApplicationEnvironment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name:</span> <span class="pre">cpl.environment.environment_name_enum.EnvironmentNameEnum</span> <span class="pre">=</span> <span class="pre">&lt;EnvironmentNameEnum.production:</span> <span class="pre">'production'&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.environment.application_environment.ApplicationEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl.environment.application_environment_abc.ApplicationEnvironmentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.environment.application_environment_abc.ApplicationEnvironmentABC</span></code></a></p>
+<p>Represents environment of the application</p>
+<blockquote>
+<div><p>name: <a class="reference internal" href="#cpl.environment.environment_name_enum.EnvironmentNameEnum" title="cpl.environment.environment_name_enum.EnvironmentNameEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.environment.environment_name_enum.EnvironmentNameEnum</span></code></a></p>
+</div></blockquote>
 <dl class="py method">
 <dt id="cpl.environment.application_environment.ApplicationEnvironment.application_name">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">application_name</span></code><a class="headerlink" href="#cpl.environment.application_environment.ApplicationEnvironment.application_name" title="Permalink to this definition">¶</a></dt>
@@ -218,17 +222,25 @@
 <dl class="py method">
 <dt id="cpl.environment.application_environment.ApplicationEnvironment.set_runtime_directory">
 <code class="sig-name descname"><span class="pre">set_runtime_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.environment.application_environment.ApplicationEnvironment.set_runtime_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the current runtime directory
-:param runtime_directory:
-:return:</p>
+<dd><p>Sets the current runtime directory</p>
+<blockquote>
+<div><dl class="simple">
+<dt>runtime_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the runtime directory</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.environment.application_environment.ApplicationEnvironment.set_working_directory">
 <code class="sig-name descname"><span class="pre">set_working_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.environment.application_environment.ApplicationEnvironment.set_working_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the current working directory
-:param working_directory:
-:return:</p>
+<dd><p>Sets the current working directory</p>
+<blockquote>
+<div><dl class="simple">
+<dt>working_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the current working directory</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -250,6 +262,7 @@
 <dt id="cpl.environment.application_environment_abc.ApplicationEnvironmentABC">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.environment.application_environment_abc.</span></code><code class="sig-name descname"><span class="pre">ApplicationEnvironmentABC</span></code><a class="headerlink" href="#cpl.environment.application_environment_abc.ApplicationEnvironmentABC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>ABC of the class <a class="reference internal" href="#cpl.environment.application_environment.ApplicationEnvironment" title="cpl.environment.application_environment.ApplicationEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.environment.application_environment.ApplicationEnvironment</span></code></a></p>
 <dl class="py method">
 <dt id="cpl.environment.application_environment_abc.ApplicationEnvironmentABC.application_name">
 <em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">application_name</span></code><a class="headerlink" href="#cpl.environment.application_environment_abc.ApplicationEnvironmentABC.application_name" title="Permalink to this definition">¶</a></dt>
@@ -288,17 +301,25 @@
 <dl class="py method">
 <dt id="cpl.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">set_runtime_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the current runtime directory
-:param runtime_directory:
-:return:</p>
+<dd><p>Sets the current runtime directory</p>
+<blockquote>
+<div><dl class="simple">
+<dt>runtime_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the runtime directory</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">set_working_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the current working directory
-:param working_directory:
-:return:</p>
+<dd><p>Sets the current working directory</p>
+<blockquote>
+<div><dl class="simple">
+<dt>working_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the current working directory</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">

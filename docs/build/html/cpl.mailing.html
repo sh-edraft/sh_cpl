@@ -182,20 +182,43 @@
 <dt id="cpl.mailing.email.EMail">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.mailing.email.</span></code><code class="sig-name descname"><span class="pre">EMail</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transceiver</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receiver</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email.EMail" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an email</p>
+<blockquote>
+<div><dl class="simple">
+<dt>header: list[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</dt><dd><p>Header of the E-Mail</p>
+</dd>
+<dt>subject: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Subject of the E-Mail</p>
+</dd>
+<dt>body: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Body of the E-Mail</p>
+</dd>
+<dt>transceiver: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Transceiver of the E-Mail</p>
+</dd>
+<dt>receiver: list[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</dt><dd><p>Receiver of the E-Mail</p>
+</dd>
+</dl>
+</div></blockquote>
 <dl class="py method">
 <dt id="cpl.mailing.email.EMail.add_header">
 <code class="sig-name descname"><span class="pre">add_header</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email.EMail.add_header" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds header
-:param header:
-:return:</p>
+<dd><p>Adds header</p>
+<blockquote>
+<div><dl class="simple">
+<dt>header: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The header of the E-Mail</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.mailing.email.EMail.add_receiver">
 <code class="sig-name descname"><span class="pre">add_receiver</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">receiver</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email.EMail.add_receiver" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds receiver
-:param receiver:
-:return:</p>
+<dd><p>Adds receiver</p>
+<blockquote>
+<div><dl class="simple">
+<dt>receiver: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The receiver of the E-Mail</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -206,17 +229,31 @@
 <dl class="py method">
 <dt id="cpl.mailing.email.EMail.check_mail">
 <em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">check_mail</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span><a class="headerlink" href="#cpl.mailing.email.EMail.check_mail" title="Permalink to this definition">¶</a></dt>
-<dd><p>Checks if an email is valid
-:param address:
-:return:</p>
+<dd><p>Checks if an email is valid</p>
+<blockquote>
+<div><dl class="simple">
+<dt>address: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The address to check</p>
+</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div><p>Result if E-Mail is valid or not</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.mailing.email.EMail.get_content">
 <code class="sig-name descname"><span class="pre">get_content</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transceiver</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email.EMail.get_content" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the mail as string
-:param transceiver:
-:return:</p>
+<dd><p>Returns the mail as string</p>
+<blockquote>
+<div><dl class="simple">
+<dt>transceiver: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The transceiver of the E-Mail</p>
+</dd>
+</dl>
+</div></blockquote>
+<blockquote>
+<div><p>E-Mail as string</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -258,19 +295,23 @@
 <dt id="cpl.mailing.email_client_abc.EMailClientABC">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.mailing.email_client_abc.</span></code><code class="sig-name descname"><span class="pre">EMailClientABC</span></code><a class="headerlink" href="#cpl.mailing.email_client_abc.EMailClientABC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>ABC of <a class="reference internal" href="#cpl.mailing.email_client_service.EMailClient" title="cpl.mailing.email_client_service.EMailClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.mailing.email_client_service.EMailClient</span></code></a></p>
 <dl class="py method">
 <dt id="cpl.mailing.email_client_abc.EMailClientABC.connect">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">connect</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_abc.EMailClientABC.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Connects to server
-:return:</p>
+<dd><p>Connects to server</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.mailing.email_client_abc.EMailClientABC.send_mail">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">send_mail</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.mailing.email.EMail" title="cpl.mailing.email.EMail"><span class="pre">cpl.mailing.email.EMail</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_abc.EMailClientABC.send_mail" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends email
-:param email:
-:return:</p>
+<dd><p>Sends email</p>
+<blockquote>
+<div><dl class="simple">
+<dt>email: <a class="reference internal" href="#cpl.mailing.email.EMail" title="cpl.mailing.email.EMail"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.mailing.email.EMail</span></code></a></dt><dd><p>Object of the E-Mail to send</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -282,33 +323,45 @@
 <dt id="cpl.mailing.email_client_service.EMailClient">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.mailing.email_client_service.</span></code><code class="sig-name descname"><span class="pre">EMailClient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="cpl.environment.html#cpl.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">cpl.environment.application_environment_abc.ApplicationEnvironmentABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="cpl.logging.html#cpl.logging.logger_abc.LoggerABC" title="cpl.logging.logger_abc.LoggerABC"><span class="pre">cpl.logging.logger_abc.LoggerABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mail_settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.mailing.email_client_settings.EMailClientSettings" title="cpl.mailing.email_client_settings.EMailClientSettings"><span class="pre">cpl.mailing.email_client_settings.EMailClientSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_service.EMailClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl.mailing.email_client_abc.EMailClientABC" title="cpl.mailing.email_client_abc.EMailClientABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.mailing.email_client_abc.EMailClientABC</span></code></a></p>
+<p>Service to send emails</p>
+<blockquote>
+<div><dl class="simple">
+<dt>environment: <a class="reference internal" href="cpl.environment.html#cpl.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl.environment.application_environment_abc.ApplicationEnvironmentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.environment.application_environment_abc.ApplicationEnvironmentABC</span></code></a></dt><dd><p>Environment of the application</p>
+</dd>
+<dt>logger: <a class="reference internal" href="cpl.logging.html#cpl.logging.logger_abc.LoggerABC" title="cpl.logging.logger_abc.LoggerABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.logging.logger_abc.LoggerABC</span></code></a></dt><dd><p>The logger to use</p>
+</dd>
+<dt>mail_settings: <a class="reference internal" href="#cpl.mailing.email_client_settings.EMailClientSettings" title="cpl.mailing.email_client_settings.EMailClientSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.mailing.email_client_settings.EMailClientSettings</span></code></a></dt><dd><p>Settings for mailing</p>
+</dd>
+</dl>
+</div></blockquote>
 <dl class="py method">
 <dt id="cpl.mailing.email_client_service.EMailClient.connect">
 <code class="sig-name descname"><span class="pre">connect</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_service.EMailClient.connect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Connects to server
-:return:</p>
+<dd><p>Connects to server</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.mailing.email_client_service.EMailClient.create">
 <code class="sig-name descname"><span class="pre">create</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_service.EMailClient.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates connection
-:return:</p>
+<dd><p>Creates connection</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.mailing.email_client_service.EMailClient.login">
 <code class="sig-name descname"><span class="pre">login</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_service.EMailClient.login" title="Permalink to this definition">¶</a></dt>
-<dd><p>Login to server
-:return:</p>
+<dd><p>Login to server</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.mailing.email_client_service.EMailClient.send_mail">
 <code class="sig-name descname"><span class="pre">send_mail</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.mailing.email.EMail" title="cpl.mailing.email.EMail"><span class="pre">cpl.mailing.email.EMail</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.mailing.email_client_service.EMailClient.send_mail" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends email
-:param email:
-:return:</p>
+<dd><p>Sends email</p>
+<blockquote>
+<div><dl class="simple">
+<dt>email: <a class="reference internal" href="#cpl.mailing.email.EMail" title="cpl.mailing.email.EMail"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.mailing.email.EMail</span></code></a></dt><dd><p>Object of the E-Mail to send</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -320,6 +373,7 @@
 <dt id="cpl.mailing.email_client_settings.EMailClientSettings">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.mailing.email_client_settings.</span></code><code class="sig-name descname"><span class="pre">EMailClientSettings</span></code><a class="headerlink" href="#cpl.mailing.email_client_settings.EMailClientSettings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<p>Representation of mailing settings</p>
 <dl class="py method">
 <dt id="cpl.mailing.email_client_settings.EMailClientSettings.credentials">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">credentials</span></code><a class="headerlink" href="#cpl.mailing.email_client_settings.EMailClientSettings.credentials" title="Permalink to this definition">¶</a></dt>

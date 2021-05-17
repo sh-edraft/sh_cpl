@@ -182,68 +182,105 @@
 <dt id="cpl.logging.logger_abc.LoggerABC">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.logging.logger_abc.</span></code><code class="sig-name descname"><span class="pre">LoggerABC</span></code><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>ABC for <a class="reference internal" href="#cpl.logging.logger_service.Logger" title="cpl.logging.logger_service.Logger"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.logging.logger_service.Logger</span></code></a></p>
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.debug">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">debug</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a debug message
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes a debug message</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.error">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">error</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Exception</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an error
-:param name:
-:param message:
-:param ex:
-:return:</p>
+<dd><p>Writes an error</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error message</p>
+</dd>
+<dt>ex: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></dt><dd><p>Thrown exception</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.fatal">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">fatal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Exception</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.fatal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an error and exits
-:param name:
-:param message:
-:param ex:
-:return:</p>
+<dd><p>Writes an error and ends the program</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error message</p>
+</dd>
+<dt>ex: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></dt><dd><p>Thrown exception</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.header">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">header</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.header" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a header message
-:param string:
-:return:</p>
+<dd><p>Writes a header message</p>
+<blockquote>
+<div><dl class="simple">
+<dt>string: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to write as header</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.info">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an information
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes an information</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.trace">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">trace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.trace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a trace message
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes a trace message</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_abc.LoggerABC.warn">
 <em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">warn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_abc.LoggerABC.warn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an warning
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes an warning</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -255,75 +292,121 @@
 <dt id="cpl.logging.logger_service.Logger">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.logging.logger_service.</span></code><code class="sig-name descname"><span class="pre">Logger</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logging_settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl.logging.logging_settings.LoggingSettings" title="cpl.logging.logging_settings.LoggingSettings"><span class="pre">cpl.logging.logging_settings.LoggingSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_format</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="cpl.time.html#cpl.time.time_format_settings.TimeFormatSettings" title="cpl.time.time_format_settings.TimeFormatSettings"><span class="pre">cpl.time.time_format_settings.TimeFormatSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="cpl.environment.html#cpl.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">cpl.environment.application_environment_abc.ApplicationEnvironmentABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl.logging.logger_abc.LoggerABC" title="cpl.logging.logger_abc.LoggerABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.logging.logger_abc.LoggerABC</span></code></a></p>
+<p>Service for logging</p>
+<blockquote>
+<div><dl class="simple">
+<dt>logging_settings: <a class="reference internal" href="#cpl.logging.logging_settings.LoggingSettings" title="cpl.logging.logging_settings.LoggingSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.logging.logging_settings.LoggingSettings</span></code></a></dt><dd><p>Settings for the logger</p>
+</dd>
+<dt>time_format: <a class="reference internal" href="cpl.time.html#cpl.time.time_format_settings.TimeFormatSettings" title="cpl.time.time_format_settings.TimeFormatSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.time.time_format_settings.TimeFormatSettings</span></code></a></dt><dd><p>Time format settings</p>
+</dd>
+<dt>env: <a class="reference internal" href="cpl.environment.html#cpl.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl.environment.application_environment_abc.ApplicationEnvironmentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.environment.application_environment_abc.ApplicationEnvironmentABC</span></code></a></dt><dd><p>Environment of the application</p>
+</dd>
+</dl>
+</div></blockquote>
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.create">
 <code class="sig-name descname"><span class="pre">create</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates path tree and logfile
-:return:</p>
+<dd><p>Creates path tree and logfile</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.debug">
 <code class="sig-name descname"><span class="pre">debug</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.debug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a debug message
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes a debug message</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.error">
 <code class="sig-name descname"><span class="pre">error</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Exception</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an error
-:param name:
-:param message:
-:param ex:
-:return:</p>
+<dd><p>Writes an error</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error message</p>
+</dd>
+<dt>ex: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></dt><dd><p>Thrown exception</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.fatal">
 <code class="sig-name descname"><span class="pre">fatal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Exception</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.fatal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an error and exits
-:param name:
-:param message:
-:param ex:
-:return:</p>
+<dd><p>Writes an error and ends the program</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Error message</p>
+</dd>
+<dt>ex: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></dt><dd><p>Thrown exception</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.header">
 <code class="sig-name descname"><span class="pre">header</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.header" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a header message
-:param string:
-:return:</p>
+<dd><p>Writes a header message</p>
+<blockquote>
+<div><dl class="simple">
+<dt>string: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to write as header</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.info">
 <code class="sig-name descname"><span class="pre">info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an information
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes an information</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.trace">
 <code class="sig-name descname"><span class="pre">trace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.trace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a trace message
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes a trace message</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt id="cpl.logging.logger_service.Logger.warn">
 <code class="sig-name descname"><span class="pre">warn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl.logging.logger_service.Logger.warn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes an warning
-:param name:
-:param message:
-:return:</p>
+<dd><p>Writes an warning</p>
+<blockquote>
+<div><dl class="simple">
+<dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message name</p>
+</dd>
+<dt>message: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Message string</p>
+</dd>
+</dl>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -380,6 +463,7 @@
 <dt id="cpl.logging.logging_settings.LoggingSettings">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl.logging.logging_settings.</span></code><code class="sig-name descname"><span class="pre">LoggingSettings</span></code><a class="headerlink" href="#cpl.logging.logging_settings.LoggingSettings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="cpl.configuration.html#cpl.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a></p>
+<p>Representation of logging settings</p>
 <dl class="py method">
 <dt id="cpl.logging.logging_settings.LoggingSettings.console">
 <em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">console</span></code><a class="headerlink" href="#cpl.logging.logging_settings.LoggingSettings.console" title="Permalink to this definition">¶</a></dt>
