@@ -8,6 +8,7 @@ from cpl.database.database_settings_name_enum import DatabaseSettingsNameEnum
 
 
 class DatabaseSettings(ConfigurationModelABC):
+    r"""Represents settings for the database connection"""
 
     def __init__(self):
         ConfigurationModelABC.__init__(self)
@@ -68,6 +69,12 @@ class DatabaseSettings(ConfigurationModelABC):
         self._echo = echo
 
     def from_dict(self, settings: dict):
+        r"""Sets attributes from given dict
+
+        Parameter
+        ---------
+        settings: :class:`dict`
+        """
         try:
             self._connection_string = settings[DatabaseSettingsNameEnum.connection_string.value]
             self._credentials = settings[DatabaseSettingsNameEnum.credentials.value]

@@ -1,6 +1,6 @@
 import os
 
-from cpl_cli.templates.template_file_abc import TemplateFileABC
+from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
 class TemplateBuilder:

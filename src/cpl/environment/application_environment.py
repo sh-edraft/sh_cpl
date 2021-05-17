@@ -8,12 +8,14 @@ from cpl.environment.environment_name_enum import EnvironmentNameEnum
 
 
 class ApplicationEnvironment(ApplicationEnvironmentABC):
+    r"""Represents environment of the application
+
+    Parameter
+    ---------
+        name: :class:`cpl.environment.environment_name_enum.EnvironmentNameEnum`
+    """
 
     def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production):
-        """
-        Represents environment of the application
-        :param name:
-        """
         ApplicationEnvironmentABC.__init__(self)
 
         self._environment_name: Optional[EnvironmentNameEnum] = name

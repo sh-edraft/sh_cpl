@@ -2,81 +2,101 @@ from abc import abstractmethod, ABC
 
 
 class LoggerABC(ABC):
+    r"""ABC for :class:`cpl.logging.logger_service.Logger`"""
 
     @abstractmethod
     def __init__(self):
-        """
-        ABC for logging
-        """
         ABC.__init__(self)
 
     @abstractmethod
     def header(self, string: str):
-        """
-        Writes a header message
-        :param string:
-        :return:
+        r"""Writes a header message
+
+        Parameter
+        ---------
+            string: :class:`str`
+                String to write as header
         """
         pass
 
     @abstractmethod
     def trace(self, name: str, message: str):
-        """
-        Writes a trace message
-        :param name:
-        :param message:
-        :return:
+        r"""Writes a trace message
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Message name
+            message: :class:`str`
+                Message string
         """
         pass
 
     @abstractmethod
     def debug(self, name: str, message: str):
-        """
-        Writes a debug message
-        :param name:
-        :param message:
-        :return:
+        r"""Writes a debug message
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Message name
+            message: :class:`str`
+                Message string
         """
         pass
 
     @abstractmethod
     def info(self, name: str, message: str):
-        """
-        Writes an information
-        :param name:
-        :param message:
-        :return:
+        r"""Writes an information
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Message name
+            message: :class:`str`
+                Message string
         """
         pass
 
     @abstractmethod
     def warn(self, name: str, message: str):
-        """
-        Writes an warning
-        :param name:
-        :param message:
-        :return:
+        r"""Writes an warning
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Message name
+            message: :class:`str`
+                Message string
         """
         pass
 
     @abstractmethod
     def error(self, name: str, message: str, ex: Exception = None):
-        """
-        Writes an error
-        :param name:
-        :param message:
-        :param ex:
-        :return:
+        r"""Writes an error
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Error name
+            message: :class:`str`
+                Error message
+            ex: :class:`Exception`
+                Thrown exception
         """
         pass
 
     @abstractmethod
     def fatal(self, name: str, message: str, ex: Exception = None):
-        """
-        Writes an error and exits
-        :param name:
-        :param message:
-        :param ex:
-        :return:
+        r"""Writes an error and ends the program
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Error name
+            message: :class:`str`
+                Error message
+            ex: :class:`Exception`
+                Thrown exception
         """
         pass

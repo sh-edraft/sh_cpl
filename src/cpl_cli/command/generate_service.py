@@ -7,14 +7,14 @@ from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
-from cpl_cli.templates.generate.init_template import InitTemplate
-from cpl_cli.templates.generate.abc_template import ABCTemplate
-from cpl_cli.templates.generate.class_template import ClassTemplate
-from cpl_cli.templates.generate.configmodel_template import ConfigModelTemplate
-from cpl_cli.templates.generate.enum_template import EnumTemplate
-from cpl_cli.templates.generate.service_template import ServiceTemplate
-from cpl_cli.templates.generate.thread_template import ThreadTemplate
-from cpl_cli.templates.template_file_abc import TemplateFileABC
+from cpl_cli._templates.generate.init_template import InitTemplate
+from cpl_cli._templates.generate.abc_template import ABCTemplate
+from cpl_cli._templates.generate.class_template import ClassTemplate
+from cpl_cli._templates.generate.configmodel_template import ConfigModelTemplate
+from cpl_cli._templates.generate.enum_template import EnumTemplate
+from cpl_cli._templates.generate.service_template import ServiceTemplate
+from cpl_cli._templates.generate.thread_template import ThreadTemplate
+from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
 class GenerateService(CommandABC):

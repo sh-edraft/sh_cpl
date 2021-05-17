@@ -14,8 +14,8 @@ from cpl.environment.application_environment_abc import ApplicationEnvironmentAB
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.publish.publisher_abc import PublisherABC
-from cpl_cli.templates.build.init_template import InitTemplate
-from cpl_cli.templates.publish.setup_template import SetupTemplate
+from cpl_cli._templates.build.init_template import InitTemplate
+from cpl_cli._templates.publish.setup_template import SetupTemplate
 
 
 class PublisherService(PublisherABC):

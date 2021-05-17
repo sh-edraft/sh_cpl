@@ -9,6 +9,7 @@ from cpl.logging.logging_settings_name_enum import LoggingSettingsNameEnum
 
 
 class LoggingSettings(ConfigurationModelABC):
+    r"""Representation of logging settings"""
 
     def __init__(self):
         ConfigurationModelABC.__init__(self)

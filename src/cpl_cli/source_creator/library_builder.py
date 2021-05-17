@@ -8,16 +8,16 @@ from cpl.utils.string import String
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.configuration.workspace_settings_name_enum import WorkspaceSettingsNameEnum
 from cpl_cli.source_creator.template_builder import TemplateBuilder
-from cpl_cli.templates.new.library.appsettings_json import AppsettingsTemplate
-from cpl_cli.templates.new.library.license import LicenseTemplate
-from cpl_cli.templates.new.library.readme_py import ReadmeTemplate
-from cpl_cli.templates.new.library.source.name.application import ApplicationTemplate
-from cpl_cli.templates.new.library.source.name.init import NameInitTemplate
-from cpl_cli.templates.new.library.source.name.main import MainWithApplicationHostAndStartupTemplate, \
+from cpl_cli._templates.new.library.appsettings_json import AppsettingsTemplate
+from cpl_cli._templates.new.library.license import LicenseTemplate
+from cpl_cli._templates.new.library.readme_py import ReadmeTemplate
+from cpl_cli._templates.new.library.source.name.application import ApplicationTemplate
+from cpl_cli._templates.new.library.source.name.init import NameInitTemplate
+from cpl_cli._templates.new.library.source.name.main import MainWithApplicationHostAndStartupTemplate, \
     MainWithoutApplicationBaseTemplate, MainWithApplicationBaseTemplate, MainWithDependencyInjection
-from cpl_cli.templates.new.library.source.name.startup import StartupTemplate
-from cpl_cli.templates.new.library.source.tests.init import TestsInitTemplate
-from cpl_cli.templates.template_file_abc import TemplateFileABC
+from cpl_cli._templates.new.library.source.name.startup import StartupTemplate
+from cpl_cli._templates.new.library.source.tests.init import TestsInitTemplate
+from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
 class LibraryBuilder:

@@ -4,27 +4,24 @@ from cpl.mailing.email import EMail
 
 
 class EMailClientABC(ABC):
+    """ABC of :class:`cpl.mailing.email_client_service.EMailClient`"""
 
     @abstractmethod
     def __init__(self):
-        """
-        ABC to send emails
-        """
         ABC.__init__(self)
 
     @abstractmethod
     def connect(self):
-        """
-        Connects to server
-        :return:
-        """
+        r"""Connects to server"""
         pass
 
     @abstractmethod
     def send_mail(self, email: EMail):
-        """
-        Sends email
-        :param email:
-        :return:
+        r"""Sends email
+
+        Parameter
+        ---------
+            email: :class:`cpl.mailing.email.EMail`
+                Object of the E-Mail to send
         """
         pass
