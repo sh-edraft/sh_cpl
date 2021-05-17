@@ -11,14 +11,19 @@ from cpl.utils.credential_manager import CredentialManager
 
 
 class EMailClient(EMailClientABC):
+    r"""Service to send emails
+
+    Parameter
+    ---------
+        environment: :class:`cpl.environment.application_environment_abc.ApplicationEnvironmentABC`
+            Environment of the application
+        logger: :class:`cpl.logging.logger_abc.LoggerABC`
+            The logger to use
+        mail_settings: :class:`cpl.mailing.email_client_settings.EMailClientSettings`
+            Settings for mailing
+    """
 
     def __init__(self, environment: ApplicationEnvironmentABC, logger: LoggerABC, mail_settings: EMailClientSettings):
-        """
-        Service to send emails
-        :param environment:
-        :param logger:
-        :param mail_settings:
-        """
         EMailClientABC.__init__(self)
 
         self._environment = environment
@@ -30,10 +35,7 @@ class EMailClient(EMailClientABC):
         self.create()
 
     def create(self):
-        """
-        Creates connection
-        :return:
-        """
+        r"""Creates connection"""
         self._logger.trace(__name__, f'Started {__name__}.create')
         self.connect()
         self._logger.trace(__name__, f'Stopped {__name__}.create')
@@ -54,10 +56,7 @@ class EMailClient(EMailClientABC):
         self._logger.trace(__name__, f'Stopped {__name__}.connect')
 
     def login(self):
-        """
-        Login to server
-        :return:
-        """
+        r"""Login to server"""
         self._logger.trace(__name__, f'Started {__name__}.login')
         try:
             self._logger.debug(__name__, f'Try to login {self._mail_settings.user_name}@{self._mail_settings.host}:{self._mail_settings.port}')
