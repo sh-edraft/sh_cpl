@@ -12,6 +12,14 @@ from cpl.environment.application_environment_abc import ApplicationEnvironmentAB
 
 
 class ServiceProvider(ServiceProviderABC):
+    r"""Provider for the services
+
+    Parameter
+    ---------
+        service_descriptors: list[:class:`cpl.dependency_injection.service_descriptor.ServiceDescriptor`]
+        config: :class:`cpl.configuration.configuration_abc.ConfigurationABC`
+        db_context: Optional[:class:`cpl.database.context.database_context_abc.DatabaseContextABC`]
+    """
 
     def __init__(self, service_descriptors: list[ServiceDescriptor], config: ConfigurationABC, db_context: Optional[DatabaseContextABC]):
         ServiceProviderABC.__init__(self)

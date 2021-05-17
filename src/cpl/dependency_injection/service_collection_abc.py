@@ -8,64 +8,67 @@ from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class ServiceCollectionABC(ABC):
+    r"""ABC for the class :class:`cpl.dependency_injection.service_collection.ServiceCollection`"""
 
     @abstractmethod
     def __init__(self):
-        """
-        ABC for service providing
-        """
         pass
 
     @abstractmethod
     def add_db_context(self, db_context: Type[DatabaseContextABC], db_settings: DatabaseSettings):
-        """
-        Adds database context
-        :param db_context:
-        :param db_settings:
-        :return:
+        r"""Adds database context
+
+        Parameter
+        ---------
+            db_context: Type[:class:`cpl.database.context.database_context_abc.DatabaseContextABC`]
+            db_settings: :class:`cpl.database.database_settings.DatabaseSettings`
         """
         pass
 
     @abstractmethod
     def add_logging(self):
-        """
-        Adds the CPL internal logger
-        """
+        r"""Adds the CPL internal logger"""
         pass
 
     @abstractmethod
     def add_transient(self, service_type: Type, service: Callable = None):
-        """
-        Adds a service with transient lifetime
-        :param service_type:
-        :param service:
-        :return:
+        r"""Adds a service with transient lifetime
+
+        Parameter
+        ---------
+            service_type: :class:`Type`
+            service: :class:`Callable`
         """
         pass
 
     @abstractmethod
     def add_scoped(self, service_type: Type, service: Callable = None):
-        """
-        Adds a service with scoped lifetime
-        :param service_type:
-        :param service:
-        :return:
+        r"""Adds a service with scoped lifetime
+
+        Parameter
+        ---------
+            service_type: :class:`Type`
+            service: :class:`Callable`
         """
         pass
 
     @abstractmethod
     def add_singleton(self, service_type: Type, service: Callable = None):
-        """
-        Adds a service with singleton lifetime
-        :param service_type:
-        :param service:
-        :return:
+        r"""Adds a service with singleton lifetime
+
+        Parameter
+        ---------
+            service_type: :class:`Type`
+            service: :class:`Callable`
         """
         pass
 
     @abstractmethod
     def build_service_provider(self) -> ServiceProviderABC:
-        """
-        Creates instance of the service provider
+        r"""Creates instance of the service provider
+
+        Returns
+        -------
+            Object of type :class:`cpl.dependency_injection.service_provider_abc.ServiceProviderABC`
         """
         pass

@@ -14,6 +14,7 @@ from cpl.utils.credential_manager import CredentialManager
 
 
 class ServiceCollection(ServiceCollectionABC):
+    r"""Representation of the collection of services"""
 
     def __init__(self, config: ConfigurationABC):
         ServiceCollectionABC.__init__(self)
