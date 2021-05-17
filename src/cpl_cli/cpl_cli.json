@@ -30,7 +30,7 @@
     "EntryPoint": "cpl",
     "IncludePackageData": true,
     "Included": [
-      "*/templates"
+      "*/_templates"
     ],
     "Excluded": [
       "*/__pycache__",
