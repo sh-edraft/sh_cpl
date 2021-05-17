@@ -13,14 +13,19 @@ from cpl.time.time_format_settings import TimeFormatSettings
 
 
 class Logger(LoggerABC):
+    r"""Service for logging
+
+    Parameter
+    ---------
+        logging_settings: :class:`cpl.logging.logging_settings.LoggingSettings`
+            Settings for the logger
+        time_format: :class:`cpl.time.time_format_settings.TimeFormatSettings`
+            Time format settings
+        env: :class:`cpl.environment.application_environment_abc.ApplicationEnvironmentABC`
+            Environment of the application
+    """
 
     def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, env: ApplicationEnvironmentABC):
-        """
-        Service for logging
-        :param logging_settings:
-        :param time_format:
-        :param app_runtime:
-        """
         LoggerABC.__init__(self)
 
         self._env = env
@@ -38,9 +43,11 @@ class Logger(LoggerABC):
         self.create()
 
     def _get_datetime_now(self) -> str:
-        """
-        Returns the date and time by given format
-        :return:
+        r"""Returns the date and time by given format
+
+        Returns
+        -------
+            Date and time in given format
         """
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_time_format)
@@ -48,9 +55,11 @@ class Logger(LoggerABC):
             self.error(__name__, 'Cannot get time', ex=e)
 
     def _get_date(self) -> str:
-        """
-        Returns the date by given format
-        :return:
+        r"""Returns the date by given format
+
+        Returns
+        -------
+            Date in given format
         """
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_format)
@@ -58,10 +67,7 @@ class Logger(LoggerABC):
             self.error(__name__, 'Cannot get date', ex=e)
 
     def create(self) -> None:
-        """
-        Creates path tree and logfile
-        :return:
-        """
+        r"""Creates path tree and logfile"""
 
         """ path """
         try:
@@ -81,11 +87,12 @@ class Logger(LoggerABC):
         except Exception as e:
             self._fatal_console(__name__, 'Cannot open log file', ex=e)
 
-    def _append_log(self, string):
-        """
-        Writes to logfile
-        :param string:
-        :return:
+    def _append_log(self, string: str):
+        r"""Writes to logfile
+
+        Parameter
+        ---------
+            string: :class:`str`
         """
         try:
             # open log file and append always
@@ -99,12 +106,20 @@ class Logger(LoggerABC):
             self._fatal_console(__name__, f'Cannot append log file, message: {string}', ex=e)
 
     def _get_string(self, name: str, level: LoggingLevelEnum, message: str) -> str:
-        """
-        Returns input as log entry format
-        :param name:
-        :param level:
-        :param message:
-        :return:
+        r"""Returns input as log entry format
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Name of the message
+            level: :class:`cpl.logging.logging_level_enum.LoggingLevelEnum`
+                Logging level
+            message: :class:`str`
+                Log message
+
+        Returns
+        -------
+            Formatted string for logging
         """
         log_level = level.name
         return f'<{self._get_datetime_now()}> [ {log_level} ] [ {name} ]: {message}'
@@ -209,12 +224,16 @@ class Logger(LoggerABC):
         exit()
 
     def _fatal_console(self, name: str, message: str, ex: Exception = None):
-        """
-        Writes an error to console only
-        :param name:
-        :param message:
-        :param ex:
-        :return:
+        r"""Writes an error to console only
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Error name
+            message: :class:`str`
+                Error message
+            ex: :class:`Exception`
+                Thrown exception
         """
         output = ''
         if ex is not None:
