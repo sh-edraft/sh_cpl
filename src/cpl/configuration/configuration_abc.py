@@ -81,14 +81,14 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
+    def add_configuration(self, key_type: Union[str, type], value: Union[str, ConfigurationModelABC]):
         r"""Add configuration object
 
         Parameter
         ---------
             key_type: Union[:class:`str`, :class:`type`]
                 Type of the value
-            value: :class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`
+            value: Union[:class:`str`, :class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]
                 Object of the value
         """
         pass

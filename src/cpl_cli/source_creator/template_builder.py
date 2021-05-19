@@ -19,6 +19,6 @@ class TemplateBuilder:
         if not os.path.isdir(file_rel_path):
             os.makedirs(file_rel_path)
 
-        with open(file_path, 'w') as license_file:
-            license_file.write(template.value)
-            license_file.close()
+        with open(file_path, 'w') as file:
+            file.write(template.value)
+            file.close()

@@ -70,6 +70,8 @@ class LiveServerThread(threading.Thread):
             Console.error('Entry point main.py not found')
             return
 
+        # set cwd to src/
+        self._env.set_working_directory(os.path.abspath(os.path.join(self._path, '../')))
         if sys.platform == 'win32':
             self._env_vars['PYTHONPATH'] = f'{self._env.working_directory};' \
                                      f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'

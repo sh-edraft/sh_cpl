@@ -67,7 +67,8 @@ class CommandHandler(ABC):
                             if file.endswith('.json'):
                                 f_name = file.split('.json')[0]
                                 if f_name == name or \
-                                        String.convert_to_camel_case(f_name) == String.convert_to_camel_case(name):
+                                        String.convert_to_camel_case(f_name).lower() == String.convert_to_camel_case(
+                                    name).lower():
                                     project_name = f_name
                                     break
 

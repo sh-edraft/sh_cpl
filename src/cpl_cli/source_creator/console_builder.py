@@ -97,10 +97,9 @@ class ConsoleBuilder:
             os.makedirs(project_path)
 
         src_rel_path = ''
-        src_name = ''
+        src_name = project_name_snake
         if workspace is None:
-            src_rel_path = 'src/'
-            src_name = project_name_snake
+            src_rel_path = os.path.join('src/', src_name)
 
         if use_application_api:
             templates.append(ApplicationTemplate(src_name, src_rel_path))
@@ -122,11 +121,12 @@ class ConsoleBuilder:
 
         project_file_path = f'{project_name_snake}/{project_name}.json'
         if workspace is None:
-            src_path = f'{proj_name}/src/{project_name_snake}'
+            src_path = f'src/{project_name_snake}'
             workspace_file_path = f'{proj_name}/cpl-workspace.json'
-            project_file_path = f'{src_path}/{project_name}.json'
+            project_file_rel_path = f'{src_path}/{project_name}.json'
+            project_file_path = f'{proj_name}/{src_path}/{project_name}.json'
             cls._create_workspace(workspace_file_path, project_name, {
-                project_name: project_file_path
+                project_name: project_file_rel_path
             })
 
         else:

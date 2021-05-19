@@ -1,7 +1,5 @@
-import os.path
 import textwrap
 
-from cpl.utils.string import String
 from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
@@ -10,9 +8,8 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
     def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
-        name = String.convert_to_snake_case(name)
         self._name = 'main.py'
-        self._path = os.path.join(path, name)
+        self._path = path
 
         import_pkg = f'{name}.'
         if name == '':
@@ -53,9 +50,8 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
     def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
-        name = String.convert_to_snake_case(name)
         self._name = 'main.py'
-        self._path = os.path.join(path, name)
+        self._path = path
 
         import_pkg = f'{name}.'
         if name == '':
@@ -95,11 +91,7 @@ class MainWithoutApplicationBaseTemplate(TemplateFileABC):
         TemplateFileABC.__init__(self)
 
         self._name = 'main.py'
-        self._path = os.path.join(path, name)
-
-        import_pkg = f'{name}.'
-        if name == '':
-            import_pkg = ''
+        self._path = path
 
         self._value = textwrap.dedent("""\
             from cpl.console import Console
@@ -132,11 +124,7 @@ class MainWithDependencyInjection(TemplateFileABC):
         TemplateFileABC.__init__(self)
 
         self._name = 'main.py'
-        self._path = os.path.join(path, name)
-
-        import_pkg = f'{name}.'
-        if name == '':
-            import_pkg = ''
+        self._path = path
 
         self._value = textwrap.dedent("""\
             from cpl.configuration import Configuration, ConfigurationABC
