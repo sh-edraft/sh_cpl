@@ -15,7 +15,7 @@ __title__ = 'cpl_cli'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.4.1rc4'
+__version__ = '2021.4.0.post1'
 
 from collections import namedtuple
 
@@ -29,4 +29,4 @@ from .main import main
 from .startup import Startup
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='4', micro='1.rc4')
+version_info = VersionInfo(major='2021', minor='4', micro='0.post1')
