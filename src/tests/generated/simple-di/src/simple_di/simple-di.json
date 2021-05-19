@@ -16,7 +16,7 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "sh_cpl==2021.4.2.dev1"
+      "sh_cpl==2021.4.1rc2"
     ],
     "PythonVersion": ">=3.9.2",
     "PythonPath": {
@@ -26,9 +26,9 @@
   },
   "BuildSettings": {
     "ProjectType": "console",
-    "SourcePath": "src",
-    "OutputPath": "dist",
-    "Main": "main",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "simple_di.main",
     "EntryPoint": "simple-di",
     "IncludePackageData": false,
     "Included": [],
@@ -37,6 +37,7 @@
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {}
+    "PackageData": {},
+    "ProjectReferences": []
   }
 }

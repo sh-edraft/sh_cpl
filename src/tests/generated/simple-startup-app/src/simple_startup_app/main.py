@@ -1,10 +1,12 @@
 from cpl.application import ApplicationBuilder
 
-from application import Application
+from simple_startup_app.application import Application
+from simple_startup_app.startup import Startup
 
 
 def main():
     app_builder = ApplicationBuilder(Application)
+    app_builder.use_startup(Startup)
     app_builder.build().run()
 
 

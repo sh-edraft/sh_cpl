@@ -15,11 +15,11 @@ __title__ = 'cpl_cli._templates.new.console.source.tests'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.4.1rc2'
+__version__ = '2021.4.1rc4'
 
 from collections import namedtuple
 
 # imports:
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='4', micro='1.rc2')
+version_info = VersionInfo(major='2021', minor='4', micro='1.rc4')

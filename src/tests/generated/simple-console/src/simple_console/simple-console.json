@@ -1,6 +1,6 @@
 {
   "ProjectSettings": {
-    "Name": "simple-app",
+    "Name": "simple-console",
     "Version": {
       "Major": "0",
       "Minor": "0",
@@ -16,7 +16,7 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "sh_cpl==2021.4.2"
+      "sh_cpl==2021.4.1rc2"
     ],
     "PythonVersion": ">=3.9.2",
     "PythonPath": {
@@ -26,10 +26,10 @@
   },
   "BuildSettings": {
     "ProjectType": "console",
-    "SourcePath": "src",
-    "OutputPath": "dist",
-    "Main": "main",
-    "EntryPoint": "simple-app",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "simple_console.main",
+    "EntryPoint": "simple-console",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [
@@ -37,6 +37,7 @@
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {}
+    "PackageData": {},
+    "ProjectReferences": []
   }
 }

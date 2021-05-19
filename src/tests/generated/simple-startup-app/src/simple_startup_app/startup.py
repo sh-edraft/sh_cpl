@@ -17,4 +17,3 @@ class Startup(StartupABC):
 
     def configure_services(self) -> ServiceProviderABC:
         return self._services.build_service_provider()
-

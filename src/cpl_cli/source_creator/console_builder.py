@@ -78,7 +78,7 @@ class ConsoleBuilder:
                 ReadmeTemplate(),
                 TestsInitTemplate(),
                 AppsettingsTemplate(),
-                MainInitTemplate(project_name, 'src')
+                MainInitTemplate(project_name, os.path.join('src/', project_name_snake))
             ]
         else:
             project_path = os.path.join(

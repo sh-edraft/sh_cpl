@@ -78,7 +78,7 @@ class LibraryBuilder:
                 LicenseTemplate(),
                 ReadmeTemplate(),
                 TestsInitTemplate(),
-                NameInitTemplate(project_name, 'src/'),
+                NameInitTemplate(project_name, os.path.join('src/', project_name_snake)),
                 AppsettingsTemplate()
             ]
         else:
