@@ -9,25 +9,31 @@ from watchdog.observers import Observer
 from cpl.console.console import Console
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
+from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 
 class LiveServerService(FileSystemEventHandler):
 
-    def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings):
+    def __init__(self, env: ApplicationEnvironmentABC, project_settings: ProjectSettings,
+                 build_settings: BuildSettings):
         """
         Service for the live development server
         :param env:
+        :param project_settings:
         :param build_settings:
         """
         FileSystemEventHandler.__init__(self)
 
         self._env = env
+        self._project_settings = project_settings
         self._build_settings = build_settings
 
         self._src_dir = os.path.join(self._env.working_directory, self._build_settings.source_path)
         self._ls_thread = None
         self._observer = None
+
+        self._args: list[str] = []
 
     def _start_observer(self):
         """
@@ -70,15 +76,27 @@ class LiveServerService(FileSystemEventHandler):
 
     def _start(self):
         self._start_observer()
-        self._ls_thread = LiveServerThread(self._src_dir, self._build_settings)
+        self._ls_thread = LiveServerThread(
+            self._project_settings.python_executable,
+            self._src_dir,
+            self._args,
+            self._env,
+            self._build_settings
+        )
         self._ls_thread.start()
         self._ls_thread.join()
         Console.close()
 
-    def start(self):
+    def start(self, args: list[str]):
         """
         Starts the CPL live development server
+        :param args:
         :return:
         """
+        if self._build_settings.main == '':
+            Console.error('Project has no entry point.')
+            return
+
+        self._args = args
         Console.write_line('** CPL live development server is running **')
         self._start()

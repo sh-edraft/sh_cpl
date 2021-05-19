@@ -11,9 +11,7 @@ class ConfigurationABC(ABC):
 
     @abstractmethod
     def __init__(self):
-        """
-        ABC of configuration
-        """
+        r"""ABC for the :class:`cpl.configuration.configuration.Configuration`"""
         pass
 
     @property
@@ -34,58 +32,78 @@ class ConfigurationABC(ABC):
 
     @abstractmethod
     def add_environment_variables(self, prefix: str):
-        """
-        Reads the environment variables
-        :param prefix:
-        :return:
+        r"""Reads the environment variables
+
+        Parameter
+        ---------
+            prefix: :class:`str`
+                Prefix of the variables
         """
         pass
 
     @abstractmethod
     def add_console_argument(self, argument: ConsoleArgument):
-        """
-        Adds console argument to known console arguments
-        :param argument:
-        :return:
+        r"""Adds console argument to known console arguments
+
+        Parameter
+        ---------
+            argument: :class:`cpl.configuration.console_argument.ConsoleArgument`
+                Specifies the console argument
         """
         pass
 
     @abstractmethod
     def add_console_arguments(self, error: bool = None):
-        """
-        Reads the console arguments
-        :param error: defines is invalid argument error will be shown or not
-        :return:
+        r"""Reads the console arguments
+
+        Parameter
+        ---------
+            error: :class:`bool`
+                Defines is invalid argument error will be shown or not
         """
         pass
 
     @abstractmethod
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
-        """
-        Reads and saves settings from given json file
-        :param name:
-        :param optional:
-        :param output:
-        :param path:
-        :return:
+        r"""Reads and saves settings from given json file
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Name of the file
+            optional: :class:`str`
+                Specifies whether an error should occur if the file was not found
+            output: :class:`bool`
+                Specifies whether an output should take place
+            path: :class:`str`
+                Path in which the file should be stored
         """
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: type, value: object):
-        """
-        Add configuration object
-        :param key_type:
-        :param value:
-        :return:
+    def add_configuration(self, key_type: Union[str, type], value: Union[str, ConfigurationModelABC]):
+        r"""Add configuration object
+
+        Parameter
+        ---------
+            key_type: Union[:class:`str`, :class:`type`]
+                Type of the value
+            value: Union[:class:`str`, :class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]
+                Object of the value
         """
         pass
 
     @abstractmethod
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
-        """
-        Returns value in configuration by given type
-        :param search_type:
-        :return:
+        r"""Returns value from configuration by given type
+
+        Parameter
+        ---------
+            search_type: Union[:class:`str`, Type[:class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]]
+                Type to search for
+
+        Returns
+        -------
+            Object of Union[:class:`str`, Callable[:class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]]
         """
         pass

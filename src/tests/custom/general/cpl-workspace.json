@@ -1,0 +1,8 @@
+{
+  "Workspace": {
+    "DefaultProject": "general",
+    "Projects": {
+      "general": "src/general/general.json"
+    }
+  }
+}

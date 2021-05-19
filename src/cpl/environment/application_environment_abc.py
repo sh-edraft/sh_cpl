@@ -3,12 +3,10 @@ from datetime import datetime
 
 
 class ApplicationEnvironmentABC(ABC):
+    r"""ABC of the class :class:`cpl.environment.application_environment.ApplicationEnvironment`"""
 
     @abstractmethod
     def __init__(self):
-        """
-        ABC of application environment
-        """
         pass
 
     @property
@@ -34,14 +32,6 @@ class ApplicationEnvironmentABC(ABC):
     @customer.setter
     @abstractmethod
     def customer(self, customer: str): pass
-
-    @property
-    @abstractmethod
-    def content_root_path(self) -> str: pass
-
-    @content_root_path.setter
-    @abstractmethod
-    def content_root_path(self, content_root_path: str): pass
 
     @property
     @abstractmethod
@@ -77,9 +67,22 @@ class ApplicationEnvironmentABC(ABC):
 
     @abstractmethod
     def set_runtime_directory(self, runtime_directory: str):
+        r"""Sets the current runtime directory
+
+        Parameter
+        ---------
+            runtime_directory: :class:`str`
+                Path of the runtime directory
         """
-        Sets the current runtime directory
-        :param runtime_directory:
-        :return:
+        pass
+
+    @abstractmethod
+    def set_working_directory(self, working_directory: str):
+        r"""Sets the current working directory
+
+        Parameter
+        ---------
+            working_directory: :class:`str`
+                Path of the current working directory
         """
         pass

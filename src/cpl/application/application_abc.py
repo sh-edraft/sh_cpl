@@ -8,20 +8,26 @@ from cpl.environment import ApplicationEnvironmentABC
 
 
 class ApplicationABC(ABC):
+    r"""ABC for the Application class
+
+    Parameters
+    ----------
+        config: :class:`cpl.configuration.configuration_abc.ConfigurationABC`
+            Contains object loaded from appsettings
+        services: :class:`cpl.dependency_injection.service_provider_abc.ServiceProviderABC`
+            Contains instances of prepared objects
+    """
 
     @abstractmethod
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
-        """
-        ABC of application
-        """
         self._configuration: Optional[ConfigurationABC] = config
         self._environment: Optional[ApplicationEnvironmentABC] = self._configuration.environment
         self._services: Optional[ServiceProviderABC] = services
 
     def run(self):
-        """
-        Entry point
-        :return:
+        r"""Entry point
+
+        Called by custom Application.main
         """
         try:
             self.configure()
@@ -31,16 +37,16 @@ class ApplicationABC(ABC):
 
     @abstractmethod
     def configure(self):
-        """
-        Prepare the application
-        :return:
+        r"""Configure the application
+
+        Called by :class:`cpl.application.application_abc.ApplicationABC.run`
         """
         pass
 
     @abstractmethod
     def main(self):
-        """
-        Custom entry point
-        :return:
+        r"""Custom entry point
+
+        Called by :class:`cpl.application.application_abc.ApplicationABC.run`
         """
         pass

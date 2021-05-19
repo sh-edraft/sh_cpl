@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 
 class DatabaseContextABC(ABC):
+    r"""ABC for the :class:`cpl.database.context.database_context.DatabaseContext`"""
 
     @abstractmethod
     def __init__(self, *args):
@@ -20,23 +21,20 @@ class DatabaseContextABC(ABC):
 
     @abstractmethod
     def connect(self, connection_string: str):
-        """
-        Connects to a database with connection string
-        :param connection_string:
-        :return:
+        r"""Connects to a database by connection string
+
+        Parameter
+        ---------
+            connection_string: :class:`str`
+                Database connection string, see: https://docs.sqlalchemy.org/en/14/core/engines.html
         """
         pass
 
     def save_changes(self):
-        """
-        Saves changes of the database
-        """
+        r"""Saves changes of the database"""
         pass
 
     @abstractmethod
     def _create_tables(self):
-        """
-        Create all tables for application from database model
-        :return:
-        """
+        r"""Create all tables for application from database model"""
         pass

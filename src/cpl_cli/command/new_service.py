@@ -1,6 +1,6 @@
-import json
 import os
 import sys
+import textwrap
 from typing import Optional
 
 from packaging import version
@@ -18,6 +18,7 @@ from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
+from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.source_creator.console_builder import ConsoleBuilder
 from cpl_cli.source_creator.library_builder import LibraryBuilder
 
@@ -34,6 +35,7 @@ class NewService(CommandABC):
         self._config = configuration
         self._env = self._config.environment
 
+        self._workspace = self._config.get_configuration(WorkspaceSettings)
         self._project: ProjectSettings = ProjectSettings()
         self._project_dict = {}
         self._build: BuildSettings = BuildSettings()
@@ -44,6 +46,21 @@ class NewService(CommandABC):
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Generates a workspace and initial project or add a project to workspace.
+        Usage: cpl new <type> <name>
+        
+        Arguments:
+            type        The project type of the initial project
+            name        Name of the workspace or the project
+            
+        Types:
+            console
+            library
+        """)
 
     @staticmethod
     def _help(message: str):
@@ -93,12 +110,12 @@ class NewService(CommandABC):
     def _create_build_settings(self):
         main = f'{String.convert_to_snake_case(self._project.name)}.main'
         if self._command == ProjectTypeEnum.library.value:
-            main = f'{String.convert_to_snake_case(self._project.name)}_cli.main'
+            main = f'{String.convert_to_snake_case(self._project.name)}.main'
 
         self._build_dict = {
             BuildSettingsNameEnum.project_type.value: self._command,
-            BuildSettingsNameEnum.source_path.value: 'src',
-            BuildSettingsNameEnum.output_path.value: 'dist',
+            BuildSettingsNameEnum.source_path.value: '',
+            BuildSettingsNameEnum.output_path.value: '../../dist',
             BuildSettingsNameEnum.main.value: main,
             BuildSettingsNameEnum.entry_point.value: self._project.name,
             BuildSettingsNameEnum.include_package_data.value: False,
@@ -108,7 +125,8 @@ class NewService(CommandABC):
                 '*/logs',
                 '*/tests'
             ],
-            BuildSettingsNameEnum.package_data.value: {}
+            BuildSettingsNameEnum.package_data.value: {},
+            BuildSettingsNameEnum.project_references.value: []
         }
         self._build.from_dict(self._build_dict)
 
@@ -127,7 +145,15 @@ class NewService(CommandABC):
         Gets project path
         :return:
         """
-        project_path = os.path.join(self._env.working_directory, self._project.name)
+        if self._workspace is None:
+            project_path = os.path.join(self._env.working_directory, self._project.name)
+        else:
+            project_path = os.path.join(
+                self._env.working_directory,
+                'src',
+                String.convert_to_snake_case(self._project.name)
+            )
+
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
             Console.error('Project path is not empty\n')
             return None
@@ -176,7 +202,8 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._project.name,
-                self._project_json
+                self._project_json,
+                self._workspace
             )
         except Exception as e:
             Console.error('Could not create project', str(e))
@@ -204,7 +231,8 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._project.name,
-                self._project_json
+                self._project_json,
+                self._workspace
             )
         except Exception as e:
             Console.error('Could not create project', str(e))

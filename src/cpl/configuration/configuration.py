@@ -18,9 +18,7 @@ from cpl.environment.environment_name_enum import EnvironmentNameEnum
 class Configuration(ConfigurationABC):
 
     def __init__(self):
-        """
-        Representation of configuration
-        """
+        r"""Representation of configuration"""
         ConfigurationABC.__init__(self)
 
         self._application_environment = ApplicationEnvironment()
@@ -51,11 +49,14 @@ class Configuration(ConfigurationABC):
 
     @staticmethod
     def _print_info(name: str, message: str):
-        """
-        Prints an info message
-        :param name:
-        :param message:
-        :return:
+        r"""Prints an info message
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Info name
+            message: :class:`str`
+                Info message
         """
         Console.set_foreground_color(ForegroundColorEnum.green)
         Console.write_line(f'[{name}] {message}')
@@ -63,11 +64,14 @@ class Configuration(ConfigurationABC):
 
     @staticmethod
     def _print_warn(name: str, message: str):
-        """
-        Prints a warning
-        :param name:
-        :param message:
-        :return:
+        r"""Prints a warning
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Warning name
+            message: :class:`str`
+                Warning message
         """
         Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.write_line(f'[{name}] {message}')
@@ -75,22 +79,28 @@ class Configuration(ConfigurationABC):
 
     @staticmethod
     def _print_error(name: str, message: str):
-        """
-        Prints an error
-        :param name:
-        :param message:
-        :return:
+        r"""Prints an error
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Error name
+            message: :class:`str`
+                Error message
         """
         Console.set_foreground_color(ForegroundColorEnum.red)
         Console.write_line(f'[{name}] {message}')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
-    def _set_variable(self, name: str, value: str):
-        """
-        Sets variable to given value
-        :param name:
-        :param value:
-        :return:
+    def _set_variable(self, name: str, value: any):
+        r"""Sets variable to given value
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Name of the variable
+            value: :class:`any`
+                Value of the variable
         """
         if name == ConfigurationVariableNameEnum.environment.value:
             self._application_environment.environment_name = EnvironmentNameEnum(value)
@@ -104,37 +114,26 @@ class Configuration(ConfigurationABC):
         else:
             self._config[name] = value
 
-    def _validate_argument_child(self, argument: str, argument_type: ConsoleArgument,
-                                 next_arguments: Optional[list[str]]) -> bool:
-        """
-        Validates the child arguments of argument
-        :param argument:
-        :param argument_type:
-        :param next_arguments:
-        :return:
-        """
-        if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
-            found = False
-            for child_argument_type in argument_type.console_arguments:
-                found = self._validate_argument_by_argument_type(argument, child_argument_type, next_arguments)
-                if found and child_argument_type.name not in self._additional_arguments:
-                    self._additional_arguments.append(child_argument_type.name)
-
-            if not found:
-                raise Exception(f'Invalid argument: {argument}')
-
-            return found
-
-        return True
-
     def _validate_argument_by_argument_type(self, argument: str, argument_type: ConsoleArgument,
                                             next_arguments: list[str] = None) -> bool:
-        """
-        Validate argument by argument type
-        :param argument:
-        :param argument_type:
-        :param next_arguments:
-        :return:
+        r"""Validate argument by argument type
+
+        Parameter
+        ---------
+            argument: :class:`str`
+                Command as string
+            argument_type: :class:`cpl.configuration.console_argument.ConsoleArgument`
+                Command type as ConsoleArgument
+            next_arguments: list[:class:`str`]
+                Following arguments of argument
+
+        Returns
+        -------
+            Object of :class:`bool`
+
+        Raises
+        ------
+            Exception: An error occurred getting an argument for a command
         """
         argument_name = ''
         value = ''
@@ -157,10 +156,16 @@ class Configuration(ConfigurationABC):
 
             if argument_type.token != '' and argument.startswith(argument_type.token):
                 # --new=value
+                if len(argument.split(argument_type.token)[1].split(argument_type.value_token)) == 0:
+                    raise Exception(f'Expected argument for command: {argument}')
+
                 argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
             else:
                 # new=value
-                argument_name = argument.split(argument_type.token)[1]
+                argument_name = argument.split(argument_type.value_token)[1]
+
+            if argument_name == '':
+                raise Exception(f'Expected argument for command: {argument_type.name}')
 
             result = True
 
@@ -191,7 +196,7 @@ class Configuration(ConfigurationABC):
             # ?new value
             found = False
             for alias in argument_type.aliases:
-                if alias in argument:
+                if alias == argument or f' {alias} ' == argument:
                     found = True
 
             if argument_type.name not in argument and not found:
@@ -199,12 +204,13 @@ class Configuration(ConfigurationABC):
 
             if (next_arguments is None or len(next_arguments) == 0) and \
                     argument_type.is_value_token_optional is not True:
-                raise Exception(f'Invalid argument: {argument}')
+                raise Exception(f'Expected argument for command: {argument_type.name}')
 
             if (next_arguments is None or len(next_arguments) == 0) and argument_type.is_value_token_optional is True:
                 value = ''
             else:
                 value = next_arguments[0]
+                next_arguments.remove(value)
                 self._handled_args.append(value)
 
             if argument_type.token != '' and argument.startswith(argument_type.token):
@@ -236,9 +242,52 @@ class Configuration(ConfigurationABC):
                 next_args = []
                 if len(next_arguments) > 1:
                     next_args = next_arguments[1:]
-                result = self._validate_argument_child(next_arguments[0], argument_type, next_args)
+
+                if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
+                    found_child = False
+                    for child_argument_type in argument_type.console_arguments:
+                        found_child = self._validate_argument_by_argument_type(
+                            next_arguments[0],
+                            child_argument_type,
+                            next_args
+                        )
+                        if found_child and child_argument_type.name not in self._additional_arguments:
+                            self._additional_arguments.append(child_argument_type.name)
+
+                        if found_child:
+                            break
+
+                    if not found_child:
+                        result = self._validate_argument_by_argument_type(next_arguments[0], argument_type, next_args)
 
         return result
+
+    def _load_json_file(self, file: str, output: bool) -> dict:
+        r"""Reads the json file
+
+        Parameter
+        ---------
+            file: :class:`str`
+                Name of the file
+            output: :class:`bool`
+                Specifies whether an output should take place
+
+        Returns
+        -------
+            Object of :class:`dict`
+        """
+        try:
+            # open config file, create if not exists
+            with open(file, encoding='utf-8') as cfg:
+                # load json
+                json_cfg = json.load(cfg)
+                if output:
+                    self._print_info(__name__, f'Loaded config file: {file}')
+
+                return json_cfg
+        except Exception as e:
+            self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
+            return {}
 
     def add_environment_variables(self, prefix: str):
         for variable in ConfigurationVariableNameEnum.to_list():
@@ -277,6 +326,7 @@ class Configuration(ConfigurationABC):
             if not found and error_message == '' and error is not False:
                 error_message = f'Invalid argument: {argument}'
 
+            if error_message != '':
                 if self._argument_error_function is not None:
                     self._argument_error_function(error_message)
                 else:
@@ -284,15 +334,25 @@ class Configuration(ConfigurationABC):
 
                 exit()
 
-    def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
-        path_root = self._application_environment.content_root_path
-        if path is not None:
-            path_root = path
+            add_args = []
+            for next_arg in next_arguments:
+                if next_arg not in self._handled_args and next_arg not in self._additional_arguments:
+                    add_args.append(next_arg)
 
-        if str(path_root).endswith('/') and not name.startswith('/'):
-            file_path = f'{path_root}{name}'
+            self._set_variable(f'{argument}AdditionalArguments', add_args)
+
+    def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
+        if os.path.isabs(name):
+            file_path = name
         else:
-            file_path = f'{path_root}/{name}'
+            path_root = self._application_environment.working_directory
+            if path is not None:
+                path_root = path
+
+            if str(path_root).endswith('/') and not name.startswith('/'):
+                file_path = f'{path_root}{name}'
+            else:
+                file_path = f'{path_root}/{name}'
 
         if not os.path.isfile(file_path):
             if optional is not True:
@@ -314,31 +374,11 @@ class Configuration(ConfigurationABC):
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
 
-    def _load_json_file(self, file: str, output: bool) -> dict:
-        """
-        Reads the json file
-        :param file:
-        :param output:
-        :return:
-        """
-        try:
-            # open config file, create if not exists
-            with open(file, encoding='utf-8') as cfg:
-                # load json
-                json_cfg = json.load(cfg)
-                if output:
-                    self._print_info(__name__, f'Loaded config file: {file}')
-
-                return json_cfg
-        except Exception as e:
-            self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
-            return {}
-
-    def add_configuration(self, key_type: type, value: ConfigurationModelABC):
+    def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
         self._config[key_type] = value
 
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
-        str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> \
+            Union[str, Callable[ConfigurationModelABC]]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name

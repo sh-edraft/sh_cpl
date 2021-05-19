@@ -42,5 +42,6 @@ class SettingsHelper:
             BuildSettingsNameEnum.include_package_data.value: build.include_package_data,
             BuildSettingsNameEnum.included.value: build.included,
             BuildSettingsNameEnum.excluded.value: build.excluded,
-            BuildSettingsNameEnum.package_data.value: build.package_data
+            BuildSettingsNameEnum.package_data.value: build.package_data,
+            BuildSettingsNameEnum.project_references.value: build.project_references
         }

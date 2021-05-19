@@ -6,6 +6,7 @@ from cpl.mailing.email_client_settings_name_enum import EMailClientSettingsNameE
 
 
 class EMailClientSettings(ConfigurationModelABC):
+    r"""Representation of mailing settings"""
 
     def __init__(self):
         ConfigurationModelABC.__init__(self)

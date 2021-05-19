@@ -1,4 +1,5 @@
-from cpl.console.console import Console
+import textwrap
+
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.publish.publisher_abc import PublisherABC
 
@@ -13,6 +14,13 @@ class PublishService(CommandABC):
         CommandABC.__init__(self)
 
         self._publisher = publisher
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Prepares files for publish into an output directory named dist/ at the given output path and executes setup.py.
+        Usage: cpl publish
+        """)
 
     def run(self, args: list[str]):
         """

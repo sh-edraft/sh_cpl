@@ -1,4 +1,5 @@
 import os
+import textwrap
 from collections import Callable
 
 from cpl.configuration.configuration_abc import ConfigurationABC
@@ -6,14 +7,14 @@ from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.console.console import Console
 from cpl.utils.string import String
 from cpl_cli.command_abc import CommandABC
-from cpl_cli.templates.generate.init_template import InitTemplate
-from cpl_cli.templates.generate.abc_template import ABCTemplate
-from cpl_cli.templates.generate.class_template import ClassTemplate
-from cpl_cli.templates.generate.configmodel_template import ConfigModelTemplate
-from cpl_cli.templates.generate.enum_template import EnumTemplate
-from cpl_cli.templates.generate.service_template import ServiceTemplate
-from cpl_cli.templates.generate.thread_template import ThreadTemplate
-from cpl_cli.templates.template_file_abc import TemplateFileABC
+from cpl_cli._templates.generate.init_template import InitTemplate
+from cpl_cli._templates.generate.abc_template import ABCTemplate
+from cpl_cli._templates.generate.class_template import ClassTemplate
+from cpl_cli._templates.generate.configmodel_template import ConfigModelTemplate
+from cpl_cli._templates.generate.enum_template import EnumTemplate
+from cpl_cli._templates.generate.service_template import ServiceTemplate
+from cpl_cli._templates.generate.thread_template import ThreadTemplate
+from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
 class GenerateService(CommandABC):
@@ -54,6 +55,25 @@ class GenerateService(CommandABC):
 
         self._config = configuration
         self._env = self._config.environment
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Generate a file based on schematic.
+        Usage: cpl generate <schematic> <name>
+        
+        Arguments:
+            schematic:  The schematic to generate.
+            name:       The name of the generated file
+            
+        Schematics:
+            abc
+            class
+            enum
+            service
+            settings
+            thread
+        """)
 
     @staticmethod
     def _help(message: str):
@@ -101,6 +121,9 @@ class GenerateService(CommandABC):
             parts = name.split('/')
             rel_path = '/'.join(parts[:-1])
             class_name = parts[len(parts) - 1]
+
+        if 'src' not in rel_path:
+            rel_path = f'src/{rel_path}'
 
         template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
 

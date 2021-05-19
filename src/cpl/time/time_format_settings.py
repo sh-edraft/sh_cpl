@@ -8,6 +8,7 @@ from cpl.time.time_format_settings_names_enum import TimeFormatSettingsNamesEnum
 
 
 class TimeFormatSettings(ConfigurationModelABC):
+    r"""Representation of time format settings"""
 
     def __init__(self):
         ConfigurationModelABC.__init__(self)

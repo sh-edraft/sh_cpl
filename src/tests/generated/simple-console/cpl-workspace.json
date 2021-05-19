@@ -1,0 +1,8 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "simple-console",
+    "Projects": {
+      "simple-console": "src/simple_console/simple-console.json"
+    }
+  }
+}

@@ -1,13 +1,17 @@
+import os
+
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
+from cpl_cli.command.remove_service import RemoveService
 from cpl_cli.command.start_service import StartService
 from cpl_cli.command.uninstall_service import UninstallService
 from cpl_cli.command.update_service import UpdateService
@@ -29,7 +33,7 @@ class Startup(StartupABC):
         self._env = self._configuration.environment
         self._services = services
 
-        self._env.set_runtime_directory(__file__)
+        self._env.set_runtime_directory(os.path.dirname(__file__))
 
     def configure_configuration(self) -> ConfigurationABC:
         self._configuration.argument_error_function = Error.error
@@ -38,6 +42,8 @@ class Startup(StartupABC):
         self._configuration.add_environment_variables('CPL_')
         self._configuration.add_json_file('appsettings.json', path=self._env.runtime_directory,
                                           optional=False, output=False)
+
+        self._configuration.add_console_argument(ConsoleArgument('', 'add', ['a', 'a'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
             ConsoleArgument('', 'abc', ['a', 'A'], ' '),
@@ -47,7 +53,9 @@ class Startup(StartupABC):
             ConsoleArgument('', 'settings', ['st', 'ST'], ' '),
             ConsoleArgument('', 'thread', ['t', 't'], ' ')
         ]))
-        self._configuration.add_console_argument(ConsoleArgument('', 'help', ['h', 'H'], ''))
+        self._configuration.add_console_argument(
+            ConsoleArgument('', 'help', ['h', 'H'], ' ', is_value_token_optional=True)
+        )
         self._configuration.add_console_argument(
             ConsoleArgument('', 'install', ['i', 'I'], ' ', is_value_token_optional=True)
         )
@@ -56,10 +64,14 @@ class Startup(StartupABC):
             ConsoleArgument('', 'library', ['l', 'L'], ' ')
         ]))
         self._configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
+        self._configuration.add_console_argument(ConsoleArgument('', 'remove', ['r', 'R'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
         self._configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
         self._configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))
+
+        self._configuration.add_console_argument(ConsoleArgument('', '--help', ['-h', '-H'], ''))
+
         self._configuration.add_console_arguments(error=False)
 
         return self._configuration
@@ -70,12 +82,14 @@ class Startup(StartupABC):
         self._services.add_transient(PublisherABC, PublisherService)
         self._services.add_transient(LiveServerService)
 
+        self._services.add_transient(AddService)
         self._services.add_transient(BuildService)
         self._services.add_transient(GenerateService)
         self._services.add_transient(HelpService)
         self._services.add_transient(InstallService)
         self._services.add_transient(NewService)
         self._services.add_transient(PublishService)
+        self._services.add_transient(RemoveService)
         self._services.add_transient(StartService)
         self._services.add_transient(UninstallService)
         self._services.add_transient(UpdateService)

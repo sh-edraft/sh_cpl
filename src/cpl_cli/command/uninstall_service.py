@@ -1,7 +1,9 @@
 import json
 import os
 import subprocess
+import textwrap
 
+from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.console.foreground_color_enum import ForegroundColorEnum
 from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
@@ -14,20 +16,31 @@ from cpl_cli.configuration.settings_helper import SettingsHelper
 
 class UninstallService(CommandABC):
 
-    def __init__(self, env: ApplicationEnvironmentABC, build_settings: BuildSettings,
+    def __init__(self, config: ConfigurationABC, env: ApplicationEnvironmentABC, build_settings: BuildSettings,
                  project_settings: ProjectSettings):
         """
         Service for the CLI command uninstall
+        :param config:
         :param env:
         :param build_settings:
         :param project_settings:
         """
         CommandABC.__init__(self)
 
+        self._config = config
         self._env = env
-
         self._build_settings = build_settings
         self._project_settings = project_settings
+
+    @property
+    def help_message(self) -> str:
+        return textwrap.dedent("""\
+        Uninstalls given package via pip
+        Usage: cpl uninstall <package>
+        
+        Arguments:
+            package     The package to uninstall
+        """)
 
     def run(self, args: list[str]):
         """
@@ -74,7 +87,7 @@ class UninstallService(CommandABC):
                 ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
                 BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
             }
-            with open(os.path.join(self._env.working_directory, 'cpl.json'), 'w') as project_file:
+            with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'), 'w') as project_file:
                 project_file.write(json.dumps(config, indent=2))
                 project_file.close()
 

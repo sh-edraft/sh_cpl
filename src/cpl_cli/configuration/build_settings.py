@@ -23,6 +23,7 @@ class BuildSettings(ConfigurationModelABC):
         self._included: Optional[list[str]] = None
         self._excluded: Optional[list[str]] = None
         self._package_data: Optional[dict[str, list[str]]] = None
+        self._project_references: Optional[list[str]] = None
 
     @property
     def project_type(self):
@@ -60,6 +61,10 @@ class BuildSettings(ConfigurationModelABC):
     def package_data(self) -> dict[str, list[str]]:
         return self._package_data
 
+    @property
+    def project_references(self) -> list[str]:
+        return self._project_references
+
     def from_dict(self, settings: dict):
         try:
             self._project_type = settings[BuildSettingsNameEnum.project_type.value]
@@ -71,6 +76,7 @@ class BuildSettings(ConfigurationModelABC):
             self._included = settings[BuildSettingsNameEnum.included.value]
             self._excluded = settings[BuildSettingsNameEnum.excluded.value]
             self._package_data = settings[BuildSettingsNameEnum.package_data.value]
+            self._project_references = settings[BuildSettingsNameEnum.project_references.value]
 
             if sys.platform == 'win32':
                 self._source_path = str(self._source_path).replace('/', '\\')

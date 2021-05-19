@@ -1,0 +1,8 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "simple-app",
+    "Projects": {
+      "simple-app": "src/simple_app/simple-app.json"
+    }
+  }
+}

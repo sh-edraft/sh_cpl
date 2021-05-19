@@ -1,0 +1,8 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "simple-di",
+    "Projects": {
+      "simple-di": "src/simple_di/simple-di.json"
+    }
+  }
+}
