@@ -333,7 +333,7 @@ class PublisherService(PublisherABC):
                     length = len(self._build_settings.main.split('.'))
                     main_name = self._build_settings.main.split('.')[length - 1]
 
-                sys.path.insert(0, self._source_path)
+                sys.path.insert(0, os.path.join(self._source_path, '../'))
                 main_mod = __import__(self._build_settings.main)
                 main = getattr(main_mod, main_name)
             except Exception as e:
