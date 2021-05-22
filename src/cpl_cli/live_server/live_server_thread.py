@@ -71,13 +71,14 @@ class LiveServerThread(threading.Thread):
             return
 
         # set cwd to src/
-        self._env.set_working_directory(os.path.abspath(os.path.join(self._path, '../')))
+        self._env.set_working_directory(os.path.abspath(os.path.join(self._path)))
+        src_cwd = os.path.abspath(os.path.join(self._path, '../'))
         if sys.platform == 'win32':
-            self._env_vars['PYTHONPATH'] = f'{self._env.working_directory};' \
-                                     f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'
+            self._env_vars['PYTHONPATH'] = f'{src_cwd};' \
+                                           f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'
         else:
-            self._env_vars['PYTHONPATH'] = f'{self._env.working_directory}:' \
-                                     f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'
+            self._env_vars['PYTHONPATH'] = f'{src_cwd}:' \
+                                           f'{os.path.join(self._env.working_directory, self._build_settings.source_path)}'
 
         Console.set_foreground_color(ForegroundColorEnum.green)
         Console.write_line('Read successfully')
@@ -86,6 +87,8 @@ class LiveServerThread(threading.Thread):
         Console.write_line(f'Started at {now.strftime("%Y-%m-%d %H:%M:%S")}\n\n')
         Console.set_foreground_color(ForegroundColorEnum.default)
 
-        os.chdir(self._env.working_directory)
-        self._command = [self._executable, self._main, ''.join(self._args)]
+        self._command = [self._executable, self._main]
+        if len(self._args) > 0:
+            self._command.append(''.join(self._args))
+
         subprocess.run(self._command, env=self._env_vars)
