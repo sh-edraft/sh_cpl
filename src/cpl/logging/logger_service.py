@@ -81,7 +81,11 @@ class Logger(LoggerABC):
         try:
             # open log file, create if not exists
             path = f'{self._path}{self._log}'
-            f = open(path, "w+")
+            permission = 'a+'
+            if not os.path.isfile(path):
+                permission = 'w+'
+
+            f = open(path, permission)
             Console.write_line(f'[{__name__}]: Using log file: {path}')
             f.close()
         except Exception as e:
