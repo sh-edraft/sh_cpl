@@ -3,8 +3,8 @@
     "Name": "sh_cpl-cli",
     "Version": {
       "Major": "2021",
-      "Minor": "4",
-      "Micro": "0.post3"
+      "Minor": "10",
+      "Micro": "2"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
