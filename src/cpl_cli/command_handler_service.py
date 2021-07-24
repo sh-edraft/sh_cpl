@@ -57,7 +57,7 @@ class CommandHandler(ABC):
                 workspace: Optional[WorkspaceSettings] = None
 
                 if os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
-                    self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
+                    # self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
                     workspace = self._config.get_configuration(WorkspaceSettings)
 
                 if command.is_project_needed:
