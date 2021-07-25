@@ -4,6 +4,8 @@
     "Projects": {
       "cpl": "src/cpl/cpl.json",
       "cpl_cli": "src/cpl_cli/cpl_cli.json"
+    },
+    "Scripts": {
     }
   }
 }

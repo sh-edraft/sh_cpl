@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 from cpl.application.startup_abc import StartupABC
 from cpl.configuration.console_argument import ConsoleArgument
@@ -7,6 +8,7 @@ from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
+from cpl_cli.command.custom_script_service import CustomScriptService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
@@ -18,6 +20,7 @@ from cpl_cli.command.update_service import UpdateService
 from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command.help_service import HelpService
 from cpl_cli.command.version_service import VersionService
+from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.error import Error
 from cpl_cli.live_server.live_server_service import LiveServerService
 from cpl_cli.publish.publisher_service import PublisherService
@@ -72,6 +75,13 @@ class Startup(StartupABC):
 
         self._configuration.add_console_argument(ConsoleArgument('', '--help', ['-h', '-H'], ''))
 
+        if os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
+            self._configuration.add_json_file('cpl-workspace.json', optional=True, output=False)
+            workspace: Optional[WorkspaceSettings] = self._configuration.get_configuration(WorkspaceSettings)
+            for script in workspace.scripts:
+                self._configuration.add_console_argument(
+                    ConsoleArgument('', script, [], ' ', is_value_token_optional=True))
+
         self._configuration.add_console_arguments(error=False)
 
         return self._configuration
@@ -84,6 +94,7 @@ class Startup(StartupABC):
 
         self._services.add_transient(AddService)
         self._services.add_transient(BuildService)
+        self._services.add_transient(CustomScriptService)
         self._services.add_transient(GenerateService)
         self._services.add_transient(HelpService)
         self._services.add_transient(InstallService)

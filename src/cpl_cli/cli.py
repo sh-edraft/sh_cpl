@@ -1,11 +1,14 @@
+import os
 from typing import Optional
 
 from cpl.application.application_abc import ApplicationABC
+from cpl.configuration.console_argument import ConsoleArgument
 from cpl.configuration.configuration_abc import ConfigurationABC
 from cpl.console.console import Console
 from cpl.dependency_injection import ServiceProviderABC
 from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
+from cpl_cli.command.custom_script_service import CustomScriptService
 from cpl_cli.command.generate_service import GenerateService
 from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
@@ -16,6 +19,7 @@ from cpl_cli.command.uninstall_service import UninstallService
 from cpl_cli.command.update_service import UpdateService
 from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command_model import CommandModel
+from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.error import Error
 from cpl_cli.command.help_service import HelpService
 from cpl_cli.command.version_service import VersionService
@@ -47,6 +51,11 @@ class CLI(ApplicationABC):
         self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, False, True, True))
         self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, False, True, True))
         self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False, False))
+
+        if os.path.isfile(os.path.join(self._environment.working_directory, 'cpl-workspace.json')):
+            workspace: Optional[WorkspaceSettings] = self._configuration.get_configuration(WorkspaceSettings)
+            for script in workspace.scripts:
+                self._command_handler.add_command(CommandModel(script, [], CustomScriptService, True, True, False))
 
         self._command_handler.add_command(CommandModel('--help', ['-h', '-H'], HelpService, False, False, False))
         self._options.append('--help')
@@ -99,6 +108,10 @@ class CLI(ApplicationABC):
 
                         for arg in result_args:
                             args.append(arg)
+
+                    else:
+                        Error.error(f'Unexpected command')
+                        return
 
             if command is None:
                 Error.error(f'Expected command')
