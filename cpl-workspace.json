@@ -6,7 +6,6 @@
       "cpl_cli": "src/cpl_cli/cpl_cli.json"
     },
     "Scripts": {
-      "hello-world": "python3 scripts/hello_world.py"
     }
   }
 }
