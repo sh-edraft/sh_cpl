@@ -3,9 +3,8 @@
     "DefaultProject": "cpl_cli",
     "Projects": {
       "cpl": "src/cpl/cpl.json",
-      "cpl_cli": "src/cpl_cli/cpl_cli.json"
-    },
-    "Scripts": {
+      "cpl_cli": "src/cpl_cli/cpl_cli.json",
+      "cpl_query": "src/cpl_query/cpl_query.json"
     }
   }
 }
