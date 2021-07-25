@@ -109,6 +109,10 @@ class CLI(ApplicationABC):
                         for arg in result_args:
                             args.append(arg)
 
+                    else:
+                        Error.error(f'Unexpected command')
+                        return
+
             if command is None:
                 Error.error(f'Expected command')
                 return
