@@ -43,7 +43,8 @@ class LibraryBuilder:
         ws_dict = {
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: project_name,
-                WorkspaceSettingsNameEnum.projects.value: projects
+                WorkspaceSettingsNameEnum.projects.value: projects,
+                WorkspaceSettingsNameEnum.scripts: {}
             }
         }
 
