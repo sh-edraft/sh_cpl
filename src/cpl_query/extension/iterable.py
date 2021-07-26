@@ -16,7 +16,7 @@ class Iterable(IterableABC):
     def __init__(self):
         IterableABC.__init__(self)
 
-    def any(self, func: str) -> bool:
+    def any(self, func: Callable) -> bool:
         return any_query(self, func)
 
     def first(self) -> any:
@@ -44,7 +44,7 @@ class Iterable(IterableABC):
     def single_or_default(self) -> Optional[any]:
         return single_or_default_query(self)
 
-    def where(self, func: str) -> IterableABC:
+    def where(self, func: Callable) -> IterableABC:
         res = where_query(self, func)
         res.__class__ = Iterable
         return res

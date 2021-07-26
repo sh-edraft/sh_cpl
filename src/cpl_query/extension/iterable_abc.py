@@ -9,7 +9,7 @@ class IterableABC(ABC, list):
         list.__init__(self)
 
     @abstractmethod
-    def any(self, func: str) -> bool: pass
+    def any(self, func: Callable) -> bool: pass
 
     @abstractmethod
     def first(self) -> any: pass
@@ -33,4 +33,4 @@ class IterableABC(ABC, list):
     def single_or_default(self) -> Optional[any]: pass
 
     @abstractmethod
-    def where(self, func: str) -> 'IterableABC': pass
+    def where(self, func: Callable) -> 'IterableABC': pass

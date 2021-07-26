@@ -41,8 +41,8 @@ class QueryTest(unittest.TestCase):
             if user.address.nr == 10:
                 results.append(user)
 
-        res = self._tests.any(f'User.address.nr == 10')
-        n_res = self._tests.any(f'User.address.nr == 100')
+        res = self._tests.any(lambda u: u.address.nr == 10)
+        n_res = self._tests.any(lambda u: u.address.nr == 100)
 
         self.assertTrue(res)
         self.assertFalse(n_res)
@@ -53,8 +53,8 @@ class QueryTest(unittest.TestCase):
             if user.address.nr == 10:
                 results.append(user)
 
-        res = self._tests.where(f'User.address.nr == 10')
-        s_res = self._tests.where(f'User.address.nr == 10').first()
+        res = self._tests.where(lambda u: u.address.nr == 10)
+        s_res = self._tests.where(lambda u: u.address.nr == 10).first()
 
         self.assertEqual(len(res), len(results))
         self.assertIsNotNone(s_res)
@@ -65,9 +65,9 @@ class QueryTest(unittest.TestCase):
             if user.address.nr == 10:
                 results.append(user)
 
-        res = self._tests.where(f'User.address.nr == 10')
-        s_res = self._tests.where(f'User.address.nr == 10').first_or_default()
-        sn_res = self._tests.where(f'User.address.nr == 11').first_or_default()
+        res = self._tests.where(lambda u: u.address.nr == 10)
+        s_res = self._tests.where(lambda u: u.address.nr == 10).first_or_default()
+        sn_res = self._tests.where(lambda u: u.address.nr == 11).first_or_default()
 
         self.assertEqual(len(res), len(results))
         self.assertIsNotNone(s_res)
@@ -77,8 +77,6 @@ class QueryTest(unittest.TestCase):
         users = []
         self._tests.for_each(
             lambda user: (
-                # Console.write_line(f'User: {user.name} | '),
-                # Console.write(f'Address: {user.address.street}'),
                 users.append(user)
             )
         )
@@ -114,7 +112,8 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(res, s_res)
 
     def test_then_by_descending(self):
-        res = self._tests.order_by_descending(lambda user: user.address.street[0]).then_by_descending(lambda user: user.address.nr)
+        res = self._tests.order_by_descending(lambda user: user.address.street[0]).then_by_descending(
+            lambda user: user.address.nr)
 
         s_res = self._tests
         s_res.sort(key=lambda user: (user.address.street[0], user.address.nr), reverse=True)
@@ -122,16 +121,16 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(res, s_res)
 
     def test_single(self):
-        res = self._tests.where(f'User.address.nr == {self._t_user.address.nr}')
-        s_res = self._tests.where(f'User.address.nr == {self._t_user.address.nr}').single()
+        res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr)
+        s_res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr).single()
 
         self.assertEqual(len(res), 1)
         self.assertEqual(self._t_user, s_res)
 
     def test_single_or_default(self):
-        res = self._tests.where(f'User.address.nr == {self._t_user.address.nr}')
-        s_res = self._tests.where(f'User.address.nr == {self._t_user.address.nr}').single_or_default()
-        sn_res = self._tests.where(f'User.address.nr == {self._t_user.address.nr + 1}').single_or_default()
+        res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr)
+        s_res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr).single_or_default()
+        sn_res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr + 1).single_or_default()
 
         self.assertEqual(len(res), 1)
         self.assertEqual(self._t_user, s_res)
@@ -143,5 +142,6 @@ class QueryTest(unittest.TestCase):
             if user.address.nr == 5:
                 results.append(user)
 
-        res = self._tests.where('User.address.nr == 5')
+        res = self._tests.where(lambda u: u.address.nr == 5)
+        # res = self._tests.where('User.address.nr == 5')
         self.assertEqual(len(results), len(res))
