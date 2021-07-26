@@ -143,5 +143,4 @@ class QueryTest(unittest.TestCase):
                 results.append(user)
 
         res = self._tests.where(lambda u: u.address.nr == 5)
-        # res = self._tests.where('User.address.nr == 5')
         self.assertEqual(len(results), len(res))
