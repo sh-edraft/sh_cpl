@@ -1,4 +1,4 @@
-from cpl_query.extension.iterable import Iterable
+from .._extension.iterable import Iterable
 
 
 class List(Iterable):
