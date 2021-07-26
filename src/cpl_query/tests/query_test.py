@@ -10,7 +10,7 @@ from cpl_query.tests.models import User, Address
 class QueryTest(unittest.TestCase):
 
     def setUp(self) -> None:
-        self._tests = List()
+        self._tests = List(User)
         self._t_user = User(
             'Test user',
             Address(
@@ -24,9 +24,9 @@ class QueryTest(unittest.TestCase):
     def _generate_test_data(self):
         for i in range(0, 100):
             user = User(
-                String.random_string(string.ascii_letters, 8),
+                String.random_string(string.ascii_letters, 8).lower(),
                 Address(
-                    String.random_string(string.ascii_letters, 10),
+                    String.random_string(string.ascii_letters, 10).lower(),
                     randint(0, 10)
                 )
             )
@@ -84,6 +84,42 @@ class QueryTest(unittest.TestCase):
         )
 
         self.assertEqual(len(users), len(self._tests))
+
+    def test_order_by(self):
+        res = self._tests.order_by(lambda user: user.address.street)
+        res2 = self._tests.order_by(lambda user: user.address.nr)
+        s_res = self._tests
+        s_res.sort(key=lambda user: user.address.street)
+
+        self.assertEqual(res, s_res)
+        s_res.sort(key=lambda user: user.address.nr)
+        self.assertEqual(res2, s_res)
+
+    def test_order_by_descending(self):
+        res = self._tests.order_by_descending(lambda user: user.address.street)
+        res2 = self._tests.order_by_descending(lambda user: user.address.nr)
+        s_res = self._tests
+        s_res.sort(key=lambda user: user.address.street, reverse=True)
+
+        self.assertEqual(res, s_res)
+        s_res.sort(key=lambda user: user.address.nr, reverse=True)
+        self.assertEqual(res2, s_res)
+
+    def test_then_by(self):
+        res = self._tests.order_by(lambda user: user.address.street[0]).then_by(lambda user: user.address.nr)
+
+        s_res = self._tests
+        s_res.sort(key=lambda user: (user.address.street[0], user.address.nr))
+
+        self.assertEqual(res, s_res)
+
+    def test_then_by_descending(self):
+        res = self._tests.order_by_descending(lambda user: user.address.street[0]).then_by_descending(lambda user: user.address.nr)
+
+        s_res = self._tests
+        s_res.sort(key=lambda user: (user.address.street[0], user.address.nr), reverse=True)
+
+        self.assertEqual(res, s_res)
 
     def test_single(self):
         res = self._tests.where(f'User.address.nr == {self._t_user.address.nr}')

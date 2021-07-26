@@ -21,6 +21,12 @@ class IterableABC(ABC, list):
     def for_each(self, func: Callable): pass
 
     @abstractmethod
+    def order_by(self, func: Callable): pass
+
+    @abstractmethod
+    def order_by_descending(self, func: Callable): pass
+
+    @abstractmethod
     def single(self): pass
 
     @abstractmethod
