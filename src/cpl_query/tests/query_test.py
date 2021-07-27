@@ -100,6 +100,9 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(self._tests[index], self._tests.element_at_or_default(index))
         self.assertIsNone(self._tests.element_at_or_default(len(self._tests)))
 
+        test = [1, 2, 3]
+        t = test[100]
+
     def test_first(self):
         results = []
         for user in self._tests:
