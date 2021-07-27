@@ -20,8 +20,8 @@ from cpl_query.extension.iterable_abc import IterableABC
 
 class Iterable(IterableABC):
 
-    def __init__(self):
-        IterableABC.__init__(self)
+    def __init__(self, t: type = None, values: list = None):
+        IterableABC.__init__(self, t, values)
 
     def any(self, func: Callable) -> bool:
         return any_query(self, func)
@@ -29,8 +29,8 @@ class Iterable(IterableABC):
     def all(self, func: Callable) -> bool:
         return all_query(self, func)
 
-    def average(self, t: type, func: Callable) -> Union[int, float, complex]:
-        return avg_query(self, t, func)
+    def average(self, func: Callable = None) -> Union[int, float, complex]:
+        return avg_query(self, func)
 
     def contains(self, value: object) -> bool:
         return contains_query(self, value)

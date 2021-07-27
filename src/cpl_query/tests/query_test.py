@@ -66,18 +66,23 @@ class QueryTest(unittest.TestCase):
             avg += user.address.nr
 
         avg = avg / len(self._tests)
-        res = self._tests.average(int, lambda u: u.address.nr)
+        res = self._tests.average(lambda u: u.address.nr)
 
-        self.assertEqual(res, avg)
-
-        def invalid():
-            e_res = self._tests.average(str, lambda u: u.address.nr)
+        self.assertEqual(avg, res)
 
         def wrong():
-            e_res = self._tests.average(int, lambda u: u.address.street)
+            e_res = self._tests.average(lambda u: u.address.street)
 
-        self.assertRaises(InvalidTypeException, invalid)
         self.assertRaises(WrongTypeException, wrong)
+
+        tests = List(int, list(range(0, 100)))
+        self.assertEqual(sum(tests) / len(tests), tests.average())
+
+        def wrong2():
+            tests2 = List(int, values=list(range(0, 100)))
+            e_res = tests2.average(lambda u: u.address.nr)
+
+        self.assertRaises(AttributeError, wrong2)
 
     def test_contains(self):
         self.assertTrue(self._tests.contains(self._t_user))

@@ -5,8 +5,20 @@ from typing import Optional, Callable, Union
 class IterableABC(ABC, list):
 
     @abstractmethod
-    def __init__(self):
+    def __init__(self, t: type = None, values: list = None):
         list.__init__(self)
+
+        if t == any:
+            t = None
+        self._type = t
+
+        if values is not None:
+            for value in values:
+                self.append(value)
+
+    @property
+    def type(self) -> type:
+        return self._type
 
     @abstractmethod
     def any(self, func: Callable) -> bool: pass
@@ -14,8 +26,14 @@ class IterableABC(ABC, list):
     @abstractmethod
     def all(self, func: Callable) -> bool: pass
 
+    def append(self, __object: object) -> None:
+        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type):
+            raise Exception(f'Unexpected type: {type(__object)}')
+
+        super().append(__object)
+
     @abstractmethod
-    def average(self, t: type, func: Callable) -> Union[int, float, complex]: pass
+    def average(self, func: Callable = None) -> Union[int, float, complex]: pass
 
     @abstractmethod
     def contains(self, value: object) -> bool: pass
