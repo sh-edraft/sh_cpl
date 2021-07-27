@@ -3,7 +3,7 @@ import unittest
 from random import randint
 
 from cpl.utils import String
-from cpl_query.exceptions import InvalidTypeException, WrongTypeException
+from cpl_query.exceptions import InvalidTypeException, WrongTypeException, ArgumentNoneException
 from cpl_query.extension.list import List
 from cpl_query.tests.models import User, Address
 
@@ -70,17 +70,14 @@ class QueryTest(unittest.TestCase):
 
         self.assertEqual(res, avg)
 
-    def test_avg_invalid(self):
-        def _():
-            res = self._tests.average(str, lambda u: u.address.nr)
+        def invalid():
+            e_res = self._tests.average(str, lambda u: u.address.nr)
 
-        self.assertRaises(InvalidTypeException, _)
+        def wrong():
+            e_res = self._tests.average(int, lambda u: u.address.street)
 
-    def test_avg_wrong(self):
-        def _():
-            res = self._tests.average(int, lambda u: u.address.street)
-
-        self.assertRaises(WrongTypeException, _)
+        self.assertRaises(InvalidTypeException, invalid)
+        self.assertRaises(WrongTypeException, wrong)
 
     def test_first(self):
         results = []
@@ -179,3 +176,8 @@ class QueryTest(unittest.TestCase):
 
         res = self._tests.where(lambda u: u.address.nr == 5)
         self.assertEqual(len(results), len(res))
+
+        def ex():
+            e_res = self._tests.where(None)
+
+        self.assertRaises(ArgumentNoneException, ex)
