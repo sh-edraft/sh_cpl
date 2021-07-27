@@ -12,6 +12,9 @@ class IterableABC(ABC, list):
     def any(self, func: Callable) -> bool: pass
 
     @abstractmethod
+    def all(self, func: Callable) -> bool: pass
+
+    @abstractmethod
     def first(self) -> any: pass
 
     @abstractmethod

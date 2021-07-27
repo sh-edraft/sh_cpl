@@ -47,6 +47,18 @@ class QueryTest(unittest.TestCase):
         self.assertTrue(res)
         self.assertFalse(n_res)
 
+    def test_all(self):
+        results = []
+        for user in self._tests:
+            if user.address.nr == 10:
+                results.append(user)
+
+        res = self._tests.all(lambda u: u.address is not None)
+        n_res = self._tests.all(lambda u: u.address.nr == 100)
+
+        self.assertTrue(res)
+        self.assertFalse(n_res)
+
     def test_first(self):
         results = []
         for user in self._tests:

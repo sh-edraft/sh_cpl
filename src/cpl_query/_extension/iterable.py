@@ -2,6 +2,7 @@ from typing import Optional, Callable
 
 from cpl_query._extension.ordered_iterable import OrderedIterable
 from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
+from .._query.all_query import all_query
 from .._query.any_query import any_query
 from .._query.first_query import first_or_default_query, first_query
 from .._query.for_each_query import for_each_query
@@ -18,6 +19,9 @@ class Iterable(IterableABC):
 
     def any(self, func: Callable) -> bool:
         return any_query(self, func)
+
+    def all(self, func: Callable) -> bool:
+        return all_query(self, func)
 
     def first(self) -> any:
         return first_query(self)
