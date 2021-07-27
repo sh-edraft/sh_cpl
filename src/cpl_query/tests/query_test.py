@@ -171,9 +171,25 @@ class QueryTest(unittest.TestCase):
         res = self._tests.max(lambda u: u.address.nr)
         self.assertEqual(self._t_user.address.nr, res)
 
+        tests = List(values=list(range(0, 100)))
+        self.assertEqual(99, tests.max())
+
+        def wrong():
+            e_res = List(str, list([str(v) for v in range(0, 100)])).max()
+
+        self.assertRaises(WrongTypeException, wrong)
+
     def test_min(self):
         res = self._tests.min(lambda u: u.address.nr)
         self.assertEqual(1, res)
+
+        tests = List(values=list(range(0, 100)))
+        self.assertEqual(0, tests.min())
+
+        def wrong():
+            e_res = List(str, list([str(v) for v in range(0, 100)])).min()
+
+        self.assertRaises(WrongTypeException, wrong)
 
     def test_order_by(self):
         res = self._tests.order_by(lambda user: user.address.street)
