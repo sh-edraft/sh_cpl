@@ -64,11 +64,11 @@ class Iterable(IterableABC):
     def for_each(self, func: Callable):
         for_each_query(self, func)
 
-    def max(self, t: type, func: Callable) -> Union[int, float, complex]:
-        return max_query(self, t, func)
+    def max(self, func: Callable) -> Union[int, float, complex]:
+        return max_query(self, func)
 
-    def min(self, t: type, func: Callable) -> Union[int, float, complex]:
-        return min_query(self, t, func)
+    def min(self, func: Callable) -> Union[int, float, complex]:
+        return min_query(self, func)
 
     def order_by(self, func: Callable) -> OrderedIterableABC:
         res = order_by_query(self, func)

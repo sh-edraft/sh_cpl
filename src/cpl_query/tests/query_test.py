@@ -168,11 +168,11 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(len(users), len(self._tests))
 
     def test_max(self):
-        res = self._tests.max(int, lambda u: u.address.nr)
+        res = self._tests.max(lambda u: u.address.nr)
         self.assertEqual(self._t_user.address.nr, res)
 
     def test_min(self):
-        res = self._tests.min(int, lambda u: u.address.nr)
+        res = self._tests.min(lambda u: u.address.nr)
         self.assertEqual(1, res)
 
     def test_order_by(self):

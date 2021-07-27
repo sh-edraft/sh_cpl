@@ -30,6 +30,9 @@ class IterableABC(ABC, list):
         if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type):
             raise Exception(f'Unexpected type: {type(__object)}')
 
+        if len(self) == 0 and self._type is None:
+            self._type = type(__object)
+
         super().append(__object)
 
     @abstractmethod
@@ -66,7 +69,10 @@ class IterableABC(ABC, list):
     def for_each(self, func: Callable) -> Union[int, float, complex]: pass
 
     @abstractmethod
-    def max(self, t: type, func: Callable) -> Union[int, float, complex]: pass
+    def max(self, func: Callable) -> Union[int, float, complex]: pass
+
+    @abstractmethod
+    def min(self, func: Callable) -> Union[int, float, complex]: pass
 
     @abstractmethod
     def order_by(self, func: Callable) -> 'IterableABC': pass
