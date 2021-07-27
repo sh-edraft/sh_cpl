@@ -9,9 +9,8 @@ from .._query.contains import contains_query
 from .._query.count import count_query
 from .._query.distinct import distinct_query
 from .._query.element_at import element_at_query, element_at_or_default_query
-from .._query.first import first_or_default_query, first_query
+from .._query.first_last import first_or_default_query, first_query, last_or_default_query, last_query
 from .._query.for_each import for_each_query
-from .._query.last import last_query, last_or_default_query
 from .._query.order_by import order_by_query, order_by_descending_query
 from .._query.single import single_query, single_or_default_query
 from .._query.where import where_query
