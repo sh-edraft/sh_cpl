@@ -45,7 +45,10 @@ class IterableABC(ABC, list):
     def first_or_default(self) -> any: pass
 
     @abstractmethod
-    def for_each(self, func: Callable): pass
+    def for_each(self, func: Callable) -> Union[int, float, complex]: pass
+
+    @abstractmethod
+    def max(self, t: type, func: Callable) -> Union[int, float, complex]: pass
 
     @abstractmethod
     def order_by(self, func: Callable) -> 'IterableABC': pass

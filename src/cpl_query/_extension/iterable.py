@@ -11,6 +11,7 @@ from .._query.distinct import distinct_query
 from .._query.element_at import element_at_query, element_at_or_default_query
 from .._query.first_last import first_or_default_query, first_query, last_or_default_query, last_query
 from .._query.for_each import for_each_query
+from .._query.max_min import max_query, min_query
 from .._query.order_by import order_by_query, order_by_descending_query
 from .._query.single import single_query, single_or_default_query
 from .._query.where import where_query
@@ -62,6 +63,12 @@ class Iterable(IterableABC):
 
     def for_each(self, func: Callable):
         for_each_query(self, func)
+
+    def max(self, t: type, func: Callable) -> Union[int, float, complex]:
+        return max_query(self, t, func)
+
+    def min(self, t: type, func: Callable) -> Union[int, float, complex]:
+        return min_query(self, t, func)
 
     def order_by(self, func: Callable) -> OrderedIterableABC:
         res = order_by_query(self, func)

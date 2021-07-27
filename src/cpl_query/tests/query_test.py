@@ -28,7 +28,7 @@ class QueryTest(unittest.TestCase):
                 String.random_string(string.ascii_letters, 8).lower(),
                 Address(
                     String.random_string(string.ascii_letters, 10).lower(),
-                    randint(0, 10)
+                    randint(1, 10)
                 )
             )
 
@@ -161,6 +161,14 @@ class QueryTest(unittest.TestCase):
         )
 
         self.assertEqual(len(users), len(self._tests))
+
+    def test_max(self):
+        res = self._tests.max(int, lambda u: u.address.nr)
+        self.assertEqual(self._t_user.address.nr, res)
+
+    def test_min(self):
+        res = self._tests.min(int, lambda u: u.address.nr)
+        self.assertEqual(1, res)
 
     def test_order_by(self):
         res = self._tests.order_by(lambda user: user.address.street)
