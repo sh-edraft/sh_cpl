@@ -27,6 +27,12 @@ class IterableABC(ABC, list):
     def distinct(self, func: Callable) -> 'IterableABC': pass
 
     @abstractmethod
+    def element_at(self, index: int) -> any: pass
+
+    @abstractmethod
+    def element_at_or_default(self, index: int) -> Optional[any]: pass
+
+    @abstractmethod
     def first(self) -> any: pass
 
     @abstractmethod

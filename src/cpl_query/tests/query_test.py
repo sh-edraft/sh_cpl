@@ -91,6 +91,15 @@ class QueryTest(unittest.TestCase):
         res = self._tests.distinct(lambda u: u.address.nr).where(lambda u: u.address.nr == 5)
         self.assertEqual(1, len(res))
 
+    def test_element_at(self):
+        index = randint(0, len(self._tests) - 1)
+        self.assertEqual(self._tests[index], self._tests.element_at(index))
+
+    def test_element_at_or_default(self):
+        index = randint(0, len(self._tests) - 1)
+        self.assertEqual(self._tests[index], self._tests.element_at_or_default(index))
+        self.assertIsNone(self._tests.element_at_or_default(len(self._tests)))
+
     def test_first(self):
         results = []
         for user in self._tests:

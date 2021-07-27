@@ -8,6 +8,7 @@ from .._query.avg import avg_query
 from .._query.contains import contains_query
 from .._query.count import count_query
 from .._query.distinct import distinct_query
+from .._query.element_at import element_at_query, element_at_or_default_query
 from .._query.first import first_or_default_query, first_query
 from .._query.for_each import for_each_query
 from .._query.order_by import order_by_query, order_by_descending_query
@@ -40,6 +41,12 @@ class Iterable(IterableABC):
         res = distinct_query(self, func)
         res.__class__ = Iterable
         return res
+
+    def element_at(self, index: int) -> any:
+        return element_at_query(self, index)
+
+    def element_at_or_default(self, index: int) -> Optional[any]:
+        return element_at_or_default_query(self, index)
 
     def first(self) -> any:
         return first_query(self)

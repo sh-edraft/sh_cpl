@@ -7,6 +7,7 @@ class ExceptionArgument(Enum):
     func = 'func'
     type = 'type'
     value = 'value'
+    index = 'index'
 
 
 # exceptions
