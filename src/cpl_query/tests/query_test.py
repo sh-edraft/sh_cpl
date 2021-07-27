@@ -87,6 +87,10 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(len(self._tests), self._tests.count())
         self.assertEqual(1, self._tests.count(lambda u: u == self._t_user))
 
+    def test_distinct(self):
+        res = self._tests.distinct(lambda u: u.address.nr).where(lambda u: u.address.nr == 5)
+        self.assertEqual(1, len(res))
+
     def test_first(self):
         results = []
         for user in self._tests:

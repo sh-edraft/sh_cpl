@@ -24,6 +24,9 @@ class IterableABC(ABC, list):
     def count(self, func: Callable) -> int: pass
 
     @abstractmethod
+    def distinct(self, func: Callable) -> 'IterableABC': pass
+
+    @abstractmethod
     def first(self) -> any: pass
 
     @abstractmethod
@@ -33,13 +36,13 @@ class IterableABC(ABC, list):
     def for_each(self, func: Callable): pass
 
     @abstractmethod
-    def order_by(self, func: Callable): pass
+    def order_by(self, func: Callable) -> 'IterableABC': pass
 
     @abstractmethod
-    def order_by_descending(self, func: Callable): pass
+    def order_by_descending(self, func: Callable) -> 'IterableABC': pass
 
     @abstractmethod
-    def single(self): pass
+    def single(self) -> any: pass
 
     @abstractmethod
     def single_or_default(self) -> Optional[any]: pass
