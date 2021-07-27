@@ -204,6 +204,8 @@ class QueryTest(unittest.TestCase):
         s_res.sort(key=lambda user: user.address.nr)
         self.assertEqual(res2, s_res)
 
+        self.assertEqual(self._t_user, res.where(lambda u: u.address.nr == self._t_user.address.nr).single())
+
     def test_order_by_descending(self):
         res = self._tests.order_by_descending(lambda user: user.address.street)
         res2 = self._tests.order_by_descending(lambda user: user.address.nr)
@@ -253,6 +255,50 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(len(res), 1)
         self.assertEqual(self._t_user, s_res)
         self.assertIsNone(sn_res)
+
+    def test_skip(self):
+        skipped = self._tests.skip(5)
+
+        self.assertEqual(len(self._tests) - 5, len(skipped))
+        self.assertEqual(self._tests[5:], skipped)
+
+    def test_skip_last(self):
+        skipped = self._tests.skip_last(5)
+
+        self.assertEqual(len(self._tests) - 5, len(skipped))
+        self.assertEqual(self._tests[:-5], skipped)
+        self.assertEqual(self._tests[:-5][len(self._tests[:-5]) - 1], skipped.last())
+
+    def test_sum(self):
+        res = self._tests.sum(lambda u: u.address.nr)
+
+        s_res = 0
+        for user in self._tests:
+            s_res += user.address.nr
+
+        self.assertEqual(s_res, res)
+
+        tests = List(values=list(range(0, 100)))
+        self.assertEqual(0, tests.min())
+
+        def invalid():
+            tests2 = List(str, ['hello', 'world'])
+            e_res = tests2.average()
+
+        self.assertRaises(InvalidTypeException, invalid)
+
+    def test_take(self):
+        skipped = self._tests.take(5)
+
+        self.assertEqual(5, len(skipped))
+        self.assertEqual(self._tests[:5], skipped)
+
+    def test_take_last(self):
+        skipped = self._tests.take_last(5)
+
+        self.assertEqual(5, len(skipped))
+        self.assertEqual(self._tests[-5:], skipped)
+        self.assertEqual(self._tests[len(self._tests) - 1], skipped.last())
 
     def test_where(self):
         results = []

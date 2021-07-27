@@ -1,13 +1,14 @@
-from abc import ABC
 from collections import Callable
 
+from .iterable import Iterable
 from .._query.order_by import then_by_query, then_by_descending_query
 from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
 
 
-class OrderedIterable(OrderedIterableABC, ABC):
+class OrderedIterable(Iterable, OrderedIterableABC):
 
     def __init__(self):
+        Iterable.__init__(self)
         OrderedIterableABC.__init__(self)
 
     def then_by(self, _func: Callable) -> OrderedIterableABC:

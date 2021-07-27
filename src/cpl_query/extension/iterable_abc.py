@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional, Callable, Union
+from typing import Optional, Callable, Union, Iterable
 
 
 class IterableABC(ABC, list):
@@ -53,6 +53,10 @@ class IterableABC(ABC, list):
     @abstractmethod
     def element_at_or_default(self, index: int) -> Optional[any]: pass
 
+    def extend(self, __iterable: Iterable) -> None:
+        for value in __iterable:
+            self.append(value)
+
     @abstractmethod
     def last(self) -> any: pass
 
@@ -86,11 +90,26 @@ class IterableABC(ABC, list):
     @abstractmethod
     def single(self) -> any: pass
 
-    def to_list(self) -> list:
-        return list(self)
-
     @abstractmethod
     def single_or_default(self) -> Optional[any]: pass
+
+    @abstractmethod
+    def skip(self, index: int) -> 'IterableABC': pass
+
+    @abstractmethod
+    def skip_last(self, index: int) -> 'IterableABC': pass
+
+    @abstractmethod
+    def sum(self, func: Callable = None) -> Union[int, float, complex]: pass
+
+    @abstractmethod
+    def take(self, index: int) -> 'IterableABC': pass
+
+    @abstractmethod
+    def take_last(self, index: int) -> 'IterableABC': pass
+
+    def to_list(self) -> list:
+        return list(self)
 
     @abstractmethod
     def where(self, func: Callable) -> 'IterableABC': pass
