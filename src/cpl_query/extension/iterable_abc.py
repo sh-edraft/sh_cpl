@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Optional, Callable
+from typing import Optional, Callable, Union
 
 
 class IterableABC(ABC, list):
@@ -13,6 +13,9 @@ class IterableABC(ABC, list):
 
     @abstractmethod
     def all(self, func: Callable) -> bool: pass
+
+    @abstractmethod
+    def average(self, t: type, func: Callable) -> Union[int, float, complex]: pass
 
     @abstractmethod
     def first(self) -> any: pass

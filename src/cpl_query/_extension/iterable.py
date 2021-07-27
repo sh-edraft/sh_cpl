@@ -1,9 +1,10 @@
-from typing import Optional, Callable
+from typing import Optional, Callable, Union
 
 from cpl_query._extension.ordered_iterable import OrderedIterable
 from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
 from .._query.all_query import all_query
 from .._query.any_query import any_query
+from .._query.avg_query import avg_query
 from .._query.first_query import first_or_default_query, first_query
 from .._query.for_each_query import for_each_query
 from .._query.order_by import order_by_query, order_by_descending_query
@@ -22,6 +23,9 @@ class Iterable(IterableABC):
 
     def all(self, func: Callable) -> bool:
         return all_query(self, func)
+
+    def average(self, t: type, func: Callable) -> Union[int, float, complex]:
+        return avg_query(self, t, func)
 
     def first(self) -> any:
         return first_query(self)
