@@ -70,10 +70,11 @@ class QueryTest(unittest.TestCase):
 
         self.assertEqual(avg, res)
 
-        def wrong():
-            e_res = self._tests.average(lambda u: u.address.street)
+        def invalid():
+            tests = List(str, ['hello', 'world'])
+            e_res = tests.average()
 
-        self.assertRaises(WrongTypeException, wrong)
+        self.assertRaises(InvalidTypeException, invalid)
 
         tests = List(int, list(range(0, 100)))
         self.assertEqual(sum(tests) / len(tests), tests.average())
@@ -174,10 +175,11 @@ class QueryTest(unittest.TestCase):
         tests = List(values=list(range(0, 100)))
         self.assertEqual(99, tests.max())
 
-        def wrong():
-            e_res = List(str, list([str(v) for v in range(0, 100)])).max()
+        def invalid():
+            tests = List(str, ['hello', 'world'])
+            e_res = tests.average()
 
-        self.assertRaises(WrongTypeException, wrong)
+        self.assertRaises(InvalidTypeException, invalid)
 
     def test_min(self):
         res = self._tests.min(lambda u: u.address.nr)
@@ -186,10 +188,11 @@ class QueryTest(unittest.TestCase):
         tests = List(values=list(range(0, 100)))
         self.assertEqual(0, tests.min())
 
-        def wrong():
-            e_res = List(str, list([str(v) for v in range(0, 100)])).min()
+        def invalid():
+            tests = List(str, ['hello', 'world'])
+            e_res = tests.average()
 
-        self.assertRaises(WrongTypeException, wrong)
+        self.assertRaises(InvalidTypeException, invalid)
 
     def test_order_by(self):
         res = self._tests.order_by(lambda user: user.address.street)

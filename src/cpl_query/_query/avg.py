@@ -9,6 +9,9 @@ def avg_query(_list: IterableABC, _func: Callable) -> Union[int, float, complex]
     if _list is None:
         raise ArgumentNoneException(ExceptionArgument.list)
 
+    if _func is None and not is_number(_list.type):
+        raise InvalidTypeException()
+
     average = 0
     count = len(_list)
 
@@ -18,9 +21,6 @@ def avg_query(_list: IterableABC, _func: Callable) -> Union[int, float, complex]
 
         else:
             value = element
-
-        if _func is None and type(element) != _list.type or not is_number(type(value)):
-            raise WrongTypeException()
 
         average += value
 

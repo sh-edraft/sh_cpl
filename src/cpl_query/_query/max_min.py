@@ -10,15 +10,15 @@ def max_query(_list: IterableABC, _func: Callable) -> Union[int, float, complex]
     if _list is None:
         raise ArgumentNoneException(ExceptionArgument.list)
 
+    if _func is None and not is_number(_list.type):
+        raise InvalidTypeException()
+
     max_value = 0
     for element in _list:
         if _func is not None:
             value = _func(element)
         else:
             value = element
-
-        if _func is None and type(value) != _list.type or not is_number(type(value)):
-            raise WrongTypeException()
 
         if value > max_value:
             max_value = value
@@ -30,6 +30,9 @@ def min_query(_list: IterableABC, _func: Callable) -> Union[int, float, complex]
     if _list is None:
         raise ArgumentNoneException(ExceptionArgument.list)
 
+    if _func is None and not is_number(_list.type):
+        raise InvalidTypeException()
+
     min_value = 0
     is_first = True
     for element in _list:
@@ -37,9 +40,6 @@ def min_query(_list: IterableABC, _func: Callable) -> Union[int, float, complex]
             value = _func(element)
         else:
             value = element
-
-        if _func is None and type(value) != _list.type or not is_number(type(value)):
-            raise WrongTypeException()
 
         if is_first:
             min_value = value
