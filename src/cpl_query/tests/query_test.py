@@ -100,8 +100,31 @@ class QueryTest(unittest.TestCase):
         self.assertEqual(self._tests[index], self._tests.element_at_or_default(index))
         self.assertIsNone(self._tests.element_at_or_default(len(self._tests)))
 
-        test = [1, 2, 3]
-        t = test[100]
+    def test_last(self):
+        results = []
+        for user in self._tests:
+            if user.address.nr == 10:
+                results.append(user)
+
+        res = self._tests.where(lambda u: u.address.nr == 10)
+        s_res = self._tests.where(lambda u: u.address.nr == 10).last()
+
+        self.assertEqual(len(res), len(results))
+        self.assertEqual(res[len(res) - 1], s_res)
+
+    def test_last_or_default(self):
+        results = []
+        for user in self._tests:
+            if user.address.nr == 10:
+                results.append(user)
+
+        res = self._tests.where(lambda u: u.address.nr == 10)
+        s_res = self._tests.where(lambda u: u.address.nr == 10).last_or_default()
+        sn_res = self._tests.where(lambda u: u.address.nr == 11).last_or_default()
+
+        self.assertEqual(len(res), len(results))
+        self.assertEqual(res[len(res) - 1], s_res)
+        self.assertIsNone(sn_res)
 
     def test_first(self):
         results = []
@@ -113,7 +136,7 @@ class QueryTest(unittest.TestCase):
         s_res = self._tests.where(lambda u: u.address.nr == 10).first()
 
         self.assertEqual(len(res), len(results))
-        self.assertIsNotNone(s_res)
+        self.assertEqual(res[0], s_res)
 
     def test_first_or_default(self):
         results = []
@@ -126,7 +149,7 @@ class QueryTest(unittest.TestCase):
         sn_res = self._tests.where(lambda u: u.address.nr == 11).first_or_default()
 
         self.assertEqual(len(res), len(results))
-        self.assertIsNotNone(s_res)
+        self.assertEqual(res[0], s_res)
         self.assertIsNone(sn_res)
 
     def test_for_each(self):

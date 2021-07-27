@@ -11,6 +11,7 @@ from .._query.distinct import distinct_query
 from .._query.element_at import element_at_query, element_at_or_default_query
 from .._query.first import first_or_default_query, first_query
 from .._query.for_each import for_each_query
+from .._query.last import last_query, last_or_default_query
 from .._query.order_by import order_by_query, order_by_descending_query
 from .._query.single import single_query, single_or_default_query
 from .._query.where import where_query
@@ -47,6 +48,12 @@ class Iterable(IterableABC):
 
     def element_at_or_default(self, index: int) -> Optional[any]:
         return element_at_or_default_query(self, index)
+
+    def last(self) -> any:
+        return last_query(self)
+
+    def last_or_default(self) -> Optional[any]:
+        return last_or_default_query(self)
 
     def first(self) -> any:
         return first_query(self)

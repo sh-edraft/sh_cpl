@@ -33,6 +33,12 @@ class IterableABC(ABC, list):
     def element_at_or_default(self, index: int) -> Optional[any]: pass
 
     @abstractmethod
+    def last(self) -> any: pass
+
+    @abstractmethod
+    def last_or_default(self) -> any: pass
+
+    @abstractmethod
     def first(self) -> any: pass
 
     @abstractmethod
