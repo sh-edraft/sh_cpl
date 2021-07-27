@@ -6,6 +6,7 @@ from .._query.all_query import all_query
 from .._query.any_query import any_query
 from .._query.avg_query import avg_query
 from .._query.contains_query import contains_query
+from .._query.count_query import count_query
 from .._query.first_query import first_or_default_query, first_query
 from .._query.for_each_query import for_each_query
 from .._query.order_by import order_by_query, order_by_descending_query
@@ -30,6 +31,9 @@ class Iterable(IterableABC):
 
     def contains(self, value: object) -> bool:
         return contains_query(self, value)
+
+    def count(self, func: Callable = None) -> int:
+        return count_query(self, func)
 
     def first(self) -> any:
         return first_query(self)

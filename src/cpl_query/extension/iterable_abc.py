@@ -21,6 +21,9 @@ class IterableABC(ABC, list):
     def contains(self, value: object) -> bool: pass
 
     @abstractmethod
+    def count(self, func: Callable) -> int: pass
+
+    @abstractmethod
     def first(self) -> any: pass
 
     @abstractmethod

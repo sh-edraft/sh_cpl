@@ -83,6 +83,10 @@ class QueryTest(unittest.TestCase):
         self.assertTrue(self._tests.contains(self._t_user))
         self.assertFalse(self._tests.contains(User("Test", None)))
 
+    def test_count(self):
+        self.assertEqual(len(self._tests), self._tests.count())
+        self.assertEqual(1, self._tests.count(lambda u: u == self._t_user))
+
     def test_first(self):
         results = []
         for user in self._tests:
