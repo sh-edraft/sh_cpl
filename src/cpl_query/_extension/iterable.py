@@ -2,17 +2,17 @@ from typing import Optional, Callable, Union
 
 from cpl_query._extension.ordered_iterable import OrderedIterable
 from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
-from .._query.all_query import all_query
-from .._query.any_query import any_query
-from .._query.avg_query import avg_query
-from .._query.contains_query import contains_query
-from .._query.count_query import count_query
-from .._query.distinct_query import distinct_query
-from .._query.first_query import first_or_default_query, first_query
-from .._query.for_each_query import for_each_query
+from .._query.all import all_query
+from .._query.any import any_query
+from .._query.avg import avg_query
+from .._query.contains import contains_query
+from .._query.count import count_query
+from .._query.distinct import distinct_query
+from .._query.first import first_or_default_query, first_query
+from .._query.for_each import for_each_query
 from .._query.order_by import order_by_query, order_by_descending_query
-from .._query.single_query import single_query, single_or_default_query
-from .._query.where_query import where_query
+from .._query.single import single_query, single_or_default_query
+from .._query.where import where_query
 from cpl_query.extension.iterable_abc import IterableABC
 
 
