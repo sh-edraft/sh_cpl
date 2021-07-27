@@ -79,6 +79,10 @@ class QueryTest(unittest.TestCase):
         self.assertRaises(InvalidTypeException, invalid)
         self.assertRaises(WrongTypeException, wrong)
 
+    def test_contains(self):
+        self.assertTrue(self._tests.contains(self._t_user))
+        self.assertFalse(self._tests.contains(User("Test", None)))
+
     def test_first(self):
         results = []
         for user in self._tests:

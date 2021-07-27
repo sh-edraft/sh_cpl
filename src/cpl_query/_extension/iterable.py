@@ -5,6 +5,7 @@ from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
 from .._query.all_query import all_query
 from .._query.any_query import any_query
 from .._query.avg_query import avg_query
+from .._query.contains_query import contains_query
 from .._query.first_query import first_or_default_query, first_query
 from .._query.for_each_query import for_each_query
 from .._query.order_by import order_by_query, order_by_descending_query
@@ -26,6 +27,9 @@ class Iterable(IterableABC):
 
     def average(self, t: type, func: Callable) -> Union[int, float, complex]:
         return avg_query(self, t, func)
+
+    def contains(self, value: object) -> bool:
+        return contains_query(self, value)
 
     def first(self) -> any:
         return first_query(self)

@@ -18,6 +18,9 @@ class IterableABC(ABC, list):
     def average(self, t: type, func: Callable) -> Union[int, float, complex]: pass
 
     @abstractmethod
+    def contains(self, value: object) -> bool: pass
+
+    @abstractmethod
     def first(self) -> any: pass
 
     @abstractmethod
