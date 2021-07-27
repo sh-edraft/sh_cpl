@@ -81,7 +81,13 @@ class IterableABC(ABC, list):
     def order_by_descending(self, func: Callable) -> 'IterableABC': pass
 
     @abstractmethod
+    def reverse(self) -> 'IterableABC': pass
+
+    @abstractmethod
     def single(self) -> any: pass
+
+    def to_list(self) -> list:
+        return list(self)
 
     @abstractmethod
     def single_or_default(self) -> Optional[any]: pass

@@ -228,6 +228,13 @@ class QueryTest(unittest.TestCase):
 
         self.assertEqual(res, s_res)
 
+    def test_reverse(self):
+        res = self._tests.reverse()
+        l_res = self._tests.to_list()
+        l_res.reverse()
+
+        self.assertEqual(l_res, res)
+
     def test_single(self):
         res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr)
         s_res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr).single()
