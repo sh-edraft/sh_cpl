@@ -3,7 +3,7 @@ import unittest
 from random import randint
 
 from cpl.utils import String
-from cpl_query.exceptions import InvalidTypeException, WrongTypeException, ArgumentNoneException
+from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException
 from cpl_query.extension.list import List
 from cpl_query.tests.models import User, Address
 
@@ -160,8 +160,7 @@ class QueryTest(unittest.TestCase):
 
     def test_for_each(self):
         users = []
-        self._tests.for_each(
-            lambda user: (
+        self._tests.for_each(lambda user: (
                 users.append(user)
             )
         )
