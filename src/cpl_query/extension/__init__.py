@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-cpl_query sh-edraft Common Python library Query
+sh_cpl_query sh-edraft Common Python library Query
 ~~~~~~~~~~~~~~~~~~~
 
 sh-edraft Common Python library Python integrated Queries
