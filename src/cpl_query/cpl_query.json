@@ -1,10 +1,10 @@
 {
   "ProjectSettings": {
-    "Name": "sh_cpl_query",
+    "Name": "sh_cpl-query",
     "Version": {
       "Major": "2021",
       "Minor": "10",
-      "Micro": "3"
+      "Micro": "0.rc1"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -26,9 +26,9 @@
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "cpl_query.main",
-    "EntryPoint": "cpl_query",
-    "IncludePackageData": false,
+    "Main": "",
+    "EntryPoint": "",
+    "IncludePackageData": true,
     "Included": [],
     "Excluded": [
       "*/__pycache__",
