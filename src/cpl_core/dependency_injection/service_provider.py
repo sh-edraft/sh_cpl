@@ -2,13 +2,13 @@ from collections import Callable
 from inspect import signature, Parameter
 from typing import Optional
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.database.context.database_context_abc import DatabaseContextABC
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.dependency_injection.service_descriptor import ServiceDescriptor
-from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.database.context.database_context_abc import DatabaseContextABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
+from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
 class ServiceProvider(ServiceProviderABC):

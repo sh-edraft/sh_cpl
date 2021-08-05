@@ -1,6 +1,6 @@
 from typing import Union, Optional
 
-from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
+from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 
 
 class ServiceDescriptor:

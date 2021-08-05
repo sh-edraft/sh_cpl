@@ -1,13 +1,13 @@
 from sqlalchemy import engine, Table
 from sqlalchemy.orm import Session
 
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.database.connection.database_connection import DatabaseConnection
-from cpl.database.connection.database_connection_abc import DatabaseConnectionABC
-from cpl.database.context.database_context_abc import DatabaseContextABC
-from cpl.database.database_settings import DatabaseSettings
-from cpl.database.database_model import DatabaseModel
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.database.connection.database_connection import DatabaseConnection
+from cpl_core.database.connection.database_connection_abc import DatabaseConnectionABC
+from cpl_core.database.context.database_context_abc import DatabaseContextABC
+from cpl_core.database.database_settings import DatabaseSettings
+from cpl_core.database.database_model import DatabaseModel
 
 
 class DatabaseContext(DatabaseContextABC):

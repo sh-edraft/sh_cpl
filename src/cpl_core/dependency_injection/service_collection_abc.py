@@ -2,9 +2,9 @@ from abc import abstractmethod, ABC
 from collections import Callable
 from typing import Type
 
-from cpl.database.database_settings import DatabaseSettings
-from cpl.database.context.database_context_abc import DatabaseContextABC
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.database.database_settings import DatabaseSettings
+from cpl_core.database.context.database_context_abc import DatabaseContextABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class ServiceCollectionABC(ABC):

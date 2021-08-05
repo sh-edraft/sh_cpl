@@ -1,16 +1,16 @@
 from typing import Union, Type, Callable, Optional
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.database.database_settings import DatabaseSettings
-from cpl.database.context.database_context_abc import DatabaseContextABC
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.dependency_injection.service_collection_abc import ServiceCollectionABC
-from cpl.dependency_injection.service_descriptor import ServiceDescriptor
-from cpl.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
-from cpl.dependency_injection.service_provider import ServiceProvider
-from cpl.logging.logger_service import Logger
-from cpl.logging.logger_abc import LoggerABC
-from cpl.utils.credential_manager import CredentialManager
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.database.database_settings import DatabaseSettings
+from cpl_core.database.context.database_context_abc import DatabaseContextABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
+from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
+from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
+from cpl_core.dependency_injection.service_provider import ServiceProvider
+from cpl_core.logging.logger_service import Logger
+from cpl_core.logging.logger_abc import LoggerABC
+from cpl_core.utils.credential_manager import CredentialManager
 
 
 class ServiceCollection(ServiceCollectionABC):

@@ -1,5 +1,5 @@
 import time
-from cpl.console import Console, ForegroundColorEnum
+from cpl_core.console import Console, ForegroundColorEnum
 
 
 def test_spinner():

@@ -3,8 +3,8 @@ from datetime import datetime
 from socket import gethostname
 from typing import Optional
 
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl.environment.environment_name_enum import EnvironmentNameEnum
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
 
 
 class ApplicationEnvironment(ApplicationEnvironmentABC):

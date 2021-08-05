@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class StartupABC(ABC):

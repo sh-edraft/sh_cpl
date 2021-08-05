@@ -2,9 +2,9 @@ from abc import abstractmethod, ABC
 from collections import Callable
 from typing import Type, Union, Optional
 
-from cpl.configuration.console_argument import ConsoleArgument
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.configuration.console_argument import ConsoleArgument
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
 class ConfigurationABC(ABC):

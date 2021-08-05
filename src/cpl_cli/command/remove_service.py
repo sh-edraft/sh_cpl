@@ -3,10 +3,10 @@ import shutil
 import json
 import textwrap
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration import WorkspaceSettings, WorkspaceSettingsNameEnum
 

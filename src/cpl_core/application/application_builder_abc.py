@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Type
 
-from cpl.application.application_abc import ApplicationABC
-from cpl.application.startup_abc import StartupABC
+from cpl_core.application.application_abc import ApplicationABC
+from cpl_core.application.startup_abc import StartupABC
 
 
 class ApplicationBuilderABC(ABC):

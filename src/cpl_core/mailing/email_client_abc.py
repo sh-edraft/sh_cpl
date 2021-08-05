@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABC
 
-from cpl.mailing.email import EMail
+from cpl_core.mailing.email import EMail
 
 
 class EMailClientABC(ABC):

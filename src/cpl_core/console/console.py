@@ -11,10 +11,10 @@ from pynput.keyboard import Key
 from tabulate import tabulate
 from termcolor import colored
 
-from cpl.console.background_color_enum import BackgroundColorEnum
-from cpl.console.console_call import ConsoleCall
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.console.spinner_thread import SpinnerThread
+from cpl_core.console.background_color_enum import BackgroundColorEnum
+from cpl_core.console.console_call import ConsoleCall
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.console.spinner_thread import SpinnerThread
 
 
 class Console:

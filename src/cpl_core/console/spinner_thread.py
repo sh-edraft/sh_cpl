@@ -5,8 +5,8 @@ import time
 
 from termcolor import colored
 
-from cpl.console.background_color_enum import BackgroundColorEnum
-from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.console.background_color_enum import BackgroundColorEnum
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 
 
 class SpinnerThread(threading.Thread):

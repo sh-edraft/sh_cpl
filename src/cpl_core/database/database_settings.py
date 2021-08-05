@@ -1,10 +1,10 @@
 import traceback
 from typing import Optional
 
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.database.database_settings_name_enum import DatabaseSettingsNameEnum
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.database.database_settings_name_enum import DatabaseSettingsNameEnum
 
 
 class DatabaseSettings(ConfigurationModelABC):

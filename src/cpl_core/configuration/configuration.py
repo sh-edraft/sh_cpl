@@ -4,15 +4,15 @@ import sys
 from collections import Callable
 from typing import Union, Type, Optional
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
-from cpl.configuration.console_argument import ConsoleArgument
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.environment.application_environment import ApplicationEnvironment
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl.environment.environment_name_enum import EnvironmentNameEnum
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
+from cpl_core.configuration.console_argument import ConsoleArgument
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.environment.application_environment import ApplicationEnvironment
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
 
 
 class Configuration(ConfigurationABC):

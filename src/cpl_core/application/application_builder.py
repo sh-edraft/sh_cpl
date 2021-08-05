@@ -1,10 +1,10 @@
 from typing import Type, Optional
 
-from cpl.application.application_abc import ApplicationABC
-from cpl.application.application_builder_abc import ApplicationBuilderABC
-from cpl.application.startup_abc import StartupABC
-from cpl.configuration.configuration import Configuration
-from cpl.dependency_injection.service_collection import ServiceCollection
+from cpl_core.application.application_abc import ApplicationABC
+from cpl_core.application.application_builder_abc import ApplicationBuilderABC
+from cpl_core.application.startup_abc import StartupABC
+from cpl_core.configuration.configuration import Configuration
+from cpl_core.dependency_injection.service_collection import ServiceCollection
 
 
 class ApplicationBuilder(ApplicationBuilderABC):

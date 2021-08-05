@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.environment import ApplicationEnvironmentABC
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.environment import ApplicationEnvironmentABC
 
 
 class ApplicationABC(ABC):

@@ -3,13 +3,13 @@ import os
 import traceback
 from string import Template
 
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl.logging.logger_abc import LoggerABC
-from cpl.logging.logging_level_enum import LoggingLevelEnum
-from cpl.logging.logging_settings import LoggingSettings
-from cpl.time.time_format_settings import TimeFormatSettings
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.logging.logger_abc import LoggerABC
+from cpl_core.logging.logging_level_enum import LoggingLevelEnum
+from cpl_core.logging.logging_settings import LoggingSettings
+from cpl_core.time.time_format_settings import TimeFormatSettings
 
 
 class Logger(LoggerABC):

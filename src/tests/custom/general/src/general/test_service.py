@@ -1,7 +1,7 @@
 from abc import ABC
 
-from cpl.console.console import Console
-from cpl.dependency_injection import ServiceProviderABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection import ServiceProviderABC
 
 
 class TestService(ABC):

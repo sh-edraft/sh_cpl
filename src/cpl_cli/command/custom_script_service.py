@@ -2,8 +2,8 @@ import os
 import subprocess
 import sys
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 

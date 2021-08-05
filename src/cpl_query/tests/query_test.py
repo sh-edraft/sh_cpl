@@ -2,7 +2,7 @@ import string
 import unittest
 from random import randint
 
-from cpl.utils import String
+from cpl_core.utils import String
 from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException
 from cpl_query.extension.list import List
 from cpl_query.tests.models import User, Address

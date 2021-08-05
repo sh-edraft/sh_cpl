@@ -2,10 +2,10 @@ import os
 from abc import ABC
 from typing import Optional
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.utils.string import String
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.utils.string import String
 from cpl_cli.command.custom_script_service import CustomScriptService
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.error import Error
