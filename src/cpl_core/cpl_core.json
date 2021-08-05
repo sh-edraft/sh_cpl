@@ -1,10 +1,10 @@
 {
   "ProjectSettings": {
-    "Name": "sh_cpl",
+    "Name": "sh_cpl-core",
     "Version": {
       "Major": "2021",
-      "Minor": "4",
-      "Micro": "0.post2"
+      "Minor": "10",
+      "Micro": "6"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
