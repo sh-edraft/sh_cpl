@@ -127,7 +127,11 @@ class ProjectSettings(ConfigurationModelABC):
 
             self._python_executable = path
 
-            self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
+            if ProjectSettingsNameEnum.classifiers.value:
+                self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
+            else:
+                self._classifiers = []
+
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(

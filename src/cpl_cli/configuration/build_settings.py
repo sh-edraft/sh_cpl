@@ -76,7 +76,11 @@ class BuildSettings(ConfigurationModelABC):
             self._included = settings[BuildSettingsNameEnum.included.value]
             self._excluded = settings[BuildSettingsNameEnum.excluded.value]
             self._package_data = settings[BuildSettingsNameEnum.package_data.value]
-            self._project_references = settings[BuildSettingsNameEnum.project_references.value]
+
+            if BuildSettingsNameEnum.project_references.value in settings:
+                self._project_references = settings[BuildSettingsNameEnum.project_references.value]
+            else:
+                self._project_references = []
 
             if sys.platform == 'win32':
                 self._source_path = str(self._source_path).replace('/', '\\')
