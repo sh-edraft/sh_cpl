@@ -96,7 +96,7 @@ class NewService(CommandABC):
             ProjectSettingsNameEnum.license_name.value: '',
             ProjectSettingsNameEnum.license_description.value: '',
             ProjectSettingsNameEnum.dependencies.value: [
-                f'sh_cpl=={version.parse(cpl.__version__)}'
+                f'sh_cpl>={version.parse(cpl.__version__)}'
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
             ProjectSettingsNameEnum.python_path.value: {
