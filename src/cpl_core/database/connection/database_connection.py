@@ -14,7 +14,7 @@ class DatabaseConnection(DatabaseConnectionABC):
 
     Parameter
     ---------
-        database_settings: :class:`cpl.database.database_settings.DatabaseSettings`
+        database_settings: :class:`cpl_core.database.database_settings.DatabaseSettings`
     """
 
     def __init__(self, database_settings: DatabaseSettings):

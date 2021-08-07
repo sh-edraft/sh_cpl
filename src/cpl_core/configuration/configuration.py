@@ -122,7 +122,7 @@ class Configuration(ConfigurationABC):
         ---------
             argument: :class:`str`
                 Command as string
-            argument_type: :class:`cpl.configuration.console_argument.ConsoleArgument`
+            argument_type: :class:`cpl_core.configuration.console_argument.ConsoleArgument`
                 Command type as ConsoleArgument
             next_arguments: list[:class:`str`]
                 Following arguments of argument

@@ -4,7 +4,7 @@ from cpl_core.mailing.email import EMail
 
 
 class EMailClientABC(ABC):
-    """ABC of :class:`cpl.mailing.email_client_service.EMailClient`"""
+    """ABC of :class:`cpl_core.mailing.email_client_service.EMailClient`"""
 
     @abstractmethod
     def __init__(self):
@@ -21,7 +21,7 @@ class EMailClientABC(ABC):
 
         Parameter
         ---------
-            email: :class:`cpl.mailing.email.EMail`
+            email: :class:`cpl_core.mailing.email.EMail`
                 Object of the E-Mail to send
         """
         pass

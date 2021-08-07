@@ -64,7 +64,7 @@ class Console:
 
         Parameter
         ---------
-            color: Union[:class:`cpl.console.background_color_enum.BackgroundColorEnum`, :class:`str`]
+            color: Union[:class:`cpl_core.console.background_color_enum.BackgroundColorEnum`, :class:`str`]
                 Background color of the console
         """
         if type(color) is str:
@@ -78,7 +78,7 @@ class Console:
 
         Parameter
         ---------
-            color: Union[:class:`cpl.console.background_color_enum.BackgroundColorEnum`, :class:`str`]
+            color: Union[:class:`cpl_core.console.background_color_enum.BackgroundColorEnum`, :class:`str`]
                 Foreground color of the console
         """
         if type(color) is str:
@@ -365,17 +365,17 @@ class Console:
                 Message or header of the selection
             options: List[:class:`str`]
                 Selectable options
-            header_foreground_color: Union[:class:`str`, :class:`cpl.console.foreground_color_enum.ForegroundColorEnum`]
+            header_foreground_color: Union[:class:`str`, :class:`cpl_core.console.foreground_color_enum.ForegroundColorEnum`]
                 Foreground color of the header
-            header_background_color: Union[:class:`str`, :class:`cpl.console.background_color_enum.BackgroundColorEnum`]
+            header_background_color: Union[:class:`str`, :class:`cpl_core.console.background_color_enum.BackgroundColorEnum`]
                 Background color of the header
-            option_foreground_color: Union[:class:`str`, :class:`cpl.console.foreground_color_enum.ForegroundColorEnum`]
+            option_foreground_color: Union[:class:`str`, :class:`cpl_core.console.foreground_color_enum.ForegroundColorEnum`]
                 Foreground color of the options
-            option_background_color: Union[:class:`str`, :class:`cpl.console.background_color_enum.BackgroundColorEnum`]
+            option_background_color: Union[:class:`str`, :class:`cpl_core.console.background_color_enum.BackgroundColorEnum`]
                 Background color of the options
-            cursor_foreground_color: Union[:class:`str`, :class:`cpl.console.foreground_color_enum.ForegroundColorEnum`]
+            cursor_foreground_color: Union[:class:`str`, :class:`cpl_core.console.foreground_color_enum.ForegroundColorEnum`]
                 Foreground color of the cursor
-            cursor_background_color: Union[:class:`str`, :class:`cpl.console.background_color_enum.BackgroundColorEnum`]
+            cursor_background_color: Union[:class:`str`, :class:`cpl_core.console.background_color_enum.BackgroundColorEnum`]
                 Background color of the cursor
 
         Returns
@@ -423,13 +423,13 @@ class Console:
                 Function to call
             args: :class:`list`
                 Arguments of the function
-            text_foreground_color: Union[:class:`str`, :class:`cpl.console.foreground_color_enum.ForegroundColorEnum`]
+            text_foreground_color: Union[:class:`str`, :class:`cpl_core.console.foreground_color_enum.ForegroundColorEnum`]
                 Foreground color of the text
-            spinner_foreground_color: Union[:class:`str`, :class:`cpl.console.foreground_color_enum.ForegroundColorEnum`]
+            spinner_foreground_color: Union[:class:`str`, :class:`cpl_core.console.foreground_color_enum.ForegroundColorEnum`]
                 Foreground color of the spinner
-            text_background_color: Union[:class:`str`, :class:`cpl.console.background_color_enum.BackgroundColorEnum`]
+            text_background_color: Union[:class:`str`, :class:`cpl_core.console.background_color_enum.BackgroundColorEnum`]
                 Background color of the text
-            spinner_background_color: Union[:class:`str`, :class:`cpl.console.background_color_enum.BackgroundColorEnum`]
+            spinner_background_color: Union[:class:`str`, :class:`cpl_core.console.background_color_enum.BackgroundColorEnum`]
                 Background color of the spinner
             kwargs: :class:`dict`
                 Keyword arguments of the call

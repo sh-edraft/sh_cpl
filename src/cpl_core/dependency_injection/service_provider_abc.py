@@ -4,7 +4,7 @@ from typing import Type, Optional
 
 
 class ServiceProviderABC(ABC):
-    r"""ABC for the class :class:`cpl.dependency_injection.service_provider.ServiceProvider`"""
+    r"""ABC for the class :class:`cpl_core.dependency_injection.service_provider.ServiceProvider`"""
 
     @abstractmethod
     def __init__(self):

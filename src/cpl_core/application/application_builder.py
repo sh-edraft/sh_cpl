@@ -8,11 +8,11 @@ from cpl_core.dependency_injection.service_collection import ServiceCollection
 
 
 class ApplicationBuilder(ApplicationBuilderABC):
-    r"""This is class is used to build a object of :class:`cpl.application.application_abc.ApplicationABC`
+    r"""This is class is used to build a object of :class:`cpl_core.application.application_abc.ApplicationABC`
 
     Parameter
     ---------
-        app: Type[:class:`cpl.application.application_abc.ApplicationABC`]
+        app: Type[:class:`cpl_core.application.application_abc.ApplicationABC`]
             Application to build
     """
 
@@ -26,11 +26,11 @@ class ApplicationBuilder(ApplicationBuilderABC):
         self._services = ServiceCollection(self._configuration)
 
     def use_startup(self, startup: Type[StartupABC]):
-        self._startup = startup(self._configuration, self._services)
+        self._startup = startup()
 
     def build(self) -> ApplicationABC:
         if self._startup is not None:
-            self._startup.configure_configuration()
-            self._startup.configure_services()
+            self._startup.configure_configuration(self._configuration, self._environment)
+            self._startup.configure_services(self._services, self._environment)
 
         return self._app(self._configuration, self._services.build_service_provider())

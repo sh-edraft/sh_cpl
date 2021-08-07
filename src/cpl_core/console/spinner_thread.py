@@ -16,9 +16,9 @@ class SpinnerThread(threading.Thread):
     ---------
         msg_len: :class:`int`
             Length of the message
-        foreground_color: :class:`cpl.console.foreground_color.ForegroundColorEnum`
+        foreground_color: :class:`cpl_core.console.foreground_color.ForegroundColorEnum`
             Foreground color of the spinner
-        background_color: :class:`cpl.console.background_color.BackgroundColorEnum`
+        background_color: :class:`cpl_core.console.background_color.BackgroundColorEnum`
             Background color of the spinner
     """
 

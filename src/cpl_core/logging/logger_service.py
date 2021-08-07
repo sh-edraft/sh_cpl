@@ -17,11 +17,11 @@ class Logger(LoggerABC):
 
     Parameter
     ---------
-        logging_settings: :class:`cpl.logging.logging_settings.LoggingSettings`
+        logging_settings: :class:`cpl_core.logging.logging_settings.LoggingSettings`
             Settings for the logger
-        time_format: :class:`cpl.time.time_format_settings.TimeFormatSettings`
+        time_format: :class:`cpl_core.time.time_format_settings.TimeFormatSettings`
             Time format settings
-        env: :class:`cpl.environment.application_environment_abc.ApplicationEnvironmentABC`
+        env: :class:`cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC`
             Environment of the application
     """
 
@@ -116,7 +116,7 @@ class Logger(LoggerABC):
         ---------
             name: :class:`str`
                 Name of the message
-            level: :class:`cpl.logging.logging_level_enum.LoggingLevelEnum`
+            level: :class:`cpl_core.logging.logging_level_enum.LoggingLevelEnum`
                 Logging level
             message: :class:`str`
                 Log message

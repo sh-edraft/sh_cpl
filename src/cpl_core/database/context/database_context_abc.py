@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 
 class DatabaseContextABC(ABC):
-    r"""ABC for the :class:`cpl.database.context.database_context.DatabaseContext`"""
+    r"""ABC for the :class:`cpl_core.database.context.database_context.DatabaseContext`"""
 
     @abstractmethod
     def __init__(self, *args):

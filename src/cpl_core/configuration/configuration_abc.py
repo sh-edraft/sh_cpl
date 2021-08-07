@@ -11,7 +11,7 @@ class ConfigurationABC(ABC):
 
     @abstractmethod
     def __init__(self):
-        r"""ABC for the :class:`cpl.configuration.configuration.Configuration`"""
+        r"""ABC for the :class:`cpl_core.configuration.configuration.Configuration`"""
         pass
 
     @property
@@ -47,7 +47,7 @@ class ConfigurationABC(ABC):
 
         Parameter
         ---------
-            argument: :class:`cpl.configuration.console_argument.ConsoleArgument`
+            argument: :class:`cpl_core.configuration.console_argument.ConsoleArgument`
                 Specifies the console argument
         """
         pass
@@ -88,7 +88,7 @@ class ConfigurationABC(ABC):
         ---------
             key_type: Union[:class:`str`, :class:`type`]
                 Type of the value
-            value: Union[:class:`str`, :class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]
+            value: Union[:class:`str`, :class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]
                 Object of the value
         """
         pass
@@ -99,11 +99,11 @@ class ConfigurationABC(ABC):
 
         Parameter
         ---------
-            search_type: Union[:class:`str`, Type[:class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]]
+            search_type: Union[:class:`str`, Type[:class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]]
                 Type to search for
 
         Returns
         -------
-            Object of Union[:class:`str`, Callable[:class:`cpl.configuration.configuration_model_abc.ConfigurationModelABC`]]
+            Object of Union[:class:`str`, Callable[:class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]]
         """
         pass

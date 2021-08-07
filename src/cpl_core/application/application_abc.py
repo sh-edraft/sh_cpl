@@ -12,9 +12,9 @@ class ApplicationABC(ABC):
 
     Parameters
     ----------
-        config: :class:`cpl.configuration.configuration_abc.ConfigurationABC`
+        config: :class:`cpl_core.configuration.configuration_abc.ConfigurationABC`
             Contains object loaded from appsettings
-        services: :class:`cpl.dependency_injection.service_provider_abc.ServiceProviderABC`
+        services: :class:`cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC`
             Contains instances of prepared objects
     """
 
@@ -39,7 +39,7 @@ class ApplicationABC(ABC):
     def configure(self):
         r"""Configure the application
 
-        Called by :class:`cpl.application.application_abc.ApplicationABC.run`
+        Called by :class:`cpl_core.application.application_abc.ApplicationABC.run`
         """
         pass
 
@@ -47,6 +47,6 @@ class ApplicationABC(ABC):
     def main(self):
         r"""Custom entry point
 
-        Called by :class:`cpl.application.application_abc.ApplicationABC.run`
+        Called by :class:`cpl_core.application.application_abc.ApplicationABC.run`
         """
         pass

@@ -17,7 +17,7 @@ class ConsoleArgument:
             aliases: list[:class:`str`]
             value_token: :class:`str`
             is_value_token_optional: :class:`bool`
-            console_arguments: List[:class:`cpl.configuration.console_argument.ConsoleArgument`]
+            console_arguments: List[:class:`cpl_core.configuration.console_argument.ConsoleArgument`]
         """
         self._token = token
         self._name = name

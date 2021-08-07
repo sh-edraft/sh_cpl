@@ -8,7 +8,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 
 
 class ServiceCollectionABC(ABC):
-    r"""ABC for the class :class:`cpl.dependency_injection.service_collection.ServiceCollection`"""
+    r"""ABC for the class :class:`cpl_core.dependency_injection.service_collection.ServiceCollection`"""
 
     @abstractmethod
     def __init__(self):
@@ -20,9 +20,9 @@ class ServiceCollectionABC(ABC):
 
         Parameter
         ---------
-            db_context: Type[:class:`cpl.database.context.database_context_abc.DatabaseContextABC`]
+            db_context: Type[:class:`cpl_core.database.context.database_context_abc.DatabaseContextABC`]
                 Database context
-            db_settings: :class:`cpl.database.database_settings.DatabaseSettings`
+            db_settings: :class:`cpl_core.database.database_settings.DatabaseSettings`
                 Database settings
         """
         pass
@@ -77,6 +77,6 @@ class ServiceCollectionABC(ABC):
 
         Returns
         -------
-            Object of type :class:`cpl.dependency_injection.service_provider_abc.ServiceProviderABC`
+            Object of type :class:`cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC`
         """
         pass

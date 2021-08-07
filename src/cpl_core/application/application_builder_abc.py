@@ -6,7 +6,7 @@ from cpl_core.application.startup_abc import StartupABC
 
 
 class ApplicationBuilderABC(ABC):
-    r"""ABC for the :class:`cpl.application.application_builder.ApplicationBuilder`"""
+    r"""ABC for the :class:`cpl_core.application.application_builder.ApplicationBuilder`"""
 
     @abstractmethod
     def __init__(self, *args):
@@ -18,7 +18,7 @@ class ApplicationBuilderABC(ABC):
 
         Parameter
         ---------
-            startup: Type[:class:`cpl.application.startup_abc.StartupABC`]
+            startup: Type[:class:`cpl_core.application.startup_abc.StartupABC`]
                 Startup class to use
         """
         pass
@@ -29,6 +29,6 @@ class ApplicationBuilderABC(ABC):
 
         Returns
         -------
-            Object of :class:`cpl.application.application_abc.ApplicationABC`
+            Object of :class:`cpl_core.application.application_abc.ApplicationABC`
         """
         pass

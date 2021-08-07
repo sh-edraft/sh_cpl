@@ -16,11 +16,11 @@ class ServiceProvider(ServiceProviderABC):
 
     Parameter
     ---------
-        service_descriptors: list[:class:`cpl.dependency_injection.service_descriptor.ServiceDescriptor`]
+        service_descriptors: list[:class:`cpl_core.dependency_injection.service_descriptor.ServiceDescriptor`]
             Descriptor of the service
-        config: :class:`cpl.configuration.configuration_abc.ConfigurationABC`
+        config: :class:`cpl_core.configuration.configuration_abc.ConfigurationABC`
             CPL Configuration
-        db_context: Optional[:class:`cpl.database.context.database_context_abc.DatabaseContextABC`]
+        db_context: Optional[:class:`cpl_core.database.context.database_context_abc.DatabaseContextABC`]
             Database representation
     """
 

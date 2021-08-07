@@ -10,7 +10,7 @@ class ServiceDescriptor:
     ---------
         implementation: Union[:class:`type`, Optional[:class:`object`]]
             Object or type of service
-        lifetime: :class:`cpl.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum`
+        lifetime: :class:`cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum`
             Lifetime of the service
     """
 

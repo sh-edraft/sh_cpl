@@ -2,7 +2,7 @@ from abc import abstractmethod, ABC
 
 
 class LoggerABC(ABC):
-    r"""ABC for :class:`cpl.logging.logger_service.Logger`"""
+    r"""ABC for :class:`cpl_core.logging.logger_service.Logger`"""
 
     @abstractmethod
     def __init__(self):

@@ -12,7 +12,7 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
     Parameter
     ---------
-        name: :class:`cpl.environment.environment_name_enum.EnvironmentNameEnum`
+        name: :class:`cpl_core.environment.environment_name_enum.EnvironmentNameEnum`
     """
 
     def __init__(self, name: EnvironmentNameEnum = EnvironmentNameEnum.production):

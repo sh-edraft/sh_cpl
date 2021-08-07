@@ -15,11 +15,11 @@ class EMailClient(EMailClientABC):
 
     Parameter
     ---------
-        environment: :class:`cpl.environment.application_environment_abc.ApplicationEnvironmentABC`
+        environment: :class:`cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC`
             Environment of the application
-        logger: :class:`cpl.logging.logger_abc.LoggerABC`
+        logger: :class:`cpl_core.logging.logger_abc.LoggerABC`
             The logger to use
-        mail_settings: :class:`cpl.mailing.email_client_settings.EMailClientSettings`
+        mail_settings: :class:`cpl_core.mailing.email_client_settings.EMailClientSettings`
             Settings for mailing
     """
 

@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class ApplicationEnvironmentABC(ABC):
-    r"""ABC of the class :class:`cpl.environment.application_environment.ApplicationEnvironment`"""
+    r"""ABC of the class :class:`cpl_core.environment.application_environment.ApplicationEnvironment`"""
 
     @abstractmethod
     def __init__(self):
