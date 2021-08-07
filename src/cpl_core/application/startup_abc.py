@@ -32,6 +32,11 @@ class StartupABC(ABC):
     def configure_services(self, service: ServiceCollectionABC, env: ApplicationEnvironmentABC) -> ServiceProviderABC:
         r"""Creates service provider
 
+        Parameter
+        ---------
+            services: :class:`cpl_core.dependency_injection.service_collection_abc`
+            env: :class:`cpl_core.environment.application_environment_abc`
+
         Returns
         -------
             Object of :class:`cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC`
