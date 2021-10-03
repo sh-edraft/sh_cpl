@@ -4,9 +4,9 @@ import sys
 import threading
 from datetime import datetime
 
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration import BuildSettings
 
 

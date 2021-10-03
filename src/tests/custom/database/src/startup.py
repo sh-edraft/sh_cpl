@@ -1,8 +1,8 @@
-from cpl.application import StartupABC
-from cpl.configuration import ConfigurationABC
-from cpl.database import DatabaseSettings
-from cpl.dependency_injection import ServiceProviderABC, ServiceCollectionABC
-from cpl.logging import LoggerABC, Logger
+from cpl_core.application import StartupABC
+from cpl_core.configuration import ConfigurationABC
+from cpl_core.database import DatabaseSettings
+from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
+from cpl_core.logging import LoggerABC, Logger
 from model.db_context import DBContext
 from model.user_repo import UserRepo
 from model.user_repo_abc import UserRepoABC

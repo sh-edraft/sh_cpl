@@ -1,4 +1,4 @@
-from cpl.console import Console
+from cpl_core.console import Console
 
 
 def main():

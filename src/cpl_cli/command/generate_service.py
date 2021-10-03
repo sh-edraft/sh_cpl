@@ -2,10 +2,10 @@ import os
 import textwrap
 from collections import Callable
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.console.console import Console
-from cpl.utils.string import String
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.console.console import Console
+from cpl_core.utils.string import String
 from cpl_cli.command_abc import CommandABC
 from cpl_cli._templates.generate.init_template import InitTemplate
 from cpl_cli._templates.generate.abc_template import ABCTemplate

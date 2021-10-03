@@ -2,9 +2,9 @@ import sys
 import traceback
 from typing import Optional
 
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 

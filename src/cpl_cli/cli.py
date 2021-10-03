@@ -1,11 +1,11 @@
 import os
 from typing import Optional
 
-from cpl.application.application_abc import ApplicationABC
-from cpl.configuration.console_argument import ConsoleArgument
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.dependency_injection import ServiceProviderABC
+from cpl_core.application.application_abc import ApplicationABC
+from cpl_core.configuration.console_argument import ConsoleArgument
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.custom_script_service import CustomScriptService

@@ -1,7 +1,7 @@
 import textwrap
 from string import Template
 
-from cpl.utils.string import String
+from cpl_core.utils.string import String
 from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 

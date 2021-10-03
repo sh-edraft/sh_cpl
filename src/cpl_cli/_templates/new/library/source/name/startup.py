@@ -11,9 +11,9 @@ class StartupTemplate(TemplateFileABC):
         self._name = 'startup.py'
         self._path = path
         self._value = textwrap.dedent("""\
-            from cpl.application import StartupABC
-            from cpl.configuration import ConfigurationABC
-            from cpl.dependency_injection import ServiceProviderABC, ServiceCollectionABC
+            from cpl_core.application import StartupABC
+            from cpl_core.configuration import ConfigurationABC
+            from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
             
             
             class Startup(StartupABC):

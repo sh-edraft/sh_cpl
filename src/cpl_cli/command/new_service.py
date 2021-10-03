@@ -5,12 +5,12 @@ from typing import Optional
 
 from packaging import version
 
-import cpl
+import cpl_core
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.console.console import Console
-from cpl.utils.string import String
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.console.console import Console
+from cpl_core.utils.string import String
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
@@ -96,7 +96,7 @@ class NewService(CommandABC):
             ProjectSettingsNameEnum.license_name.value: '',
             ProjectSettingsNameEnum.license_description.value: '',
             ProjectSettingsNameEnum.dependencies.value: [
-                f'sh_cpl>={version.parse(cpl.__version__)}'
+                f'sh_cpl>={version.parse(cpl_core.__version__)}'
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
             ProjectSettingsNameEnum.python_path.value: {
