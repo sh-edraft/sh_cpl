@@ -1,5 +1,5 @@
-from cpl_core.application.application_builder import ApplicationBuilder
 from application import Application
+from cpl_core.application import ApplicationBuilder
 from general.test_extension import TestExtension
 from startup import Startup
 

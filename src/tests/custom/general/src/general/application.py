@@ -1,13 +1,12 @@
 import time
 from typing import Optional
 
-from cpl_core.application.application_abc import ApplicationABC
-from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.application import ApplicationABC
+from cpl_core.configuration import ConfigurationABC
 from cpl_core.console.console import Console
-from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging.logger_abc import LoggerABC
-from cpl_core.mailing.email import EMail
-from cpl_core.mailing.email_client_abc import EMailClientABC
+from cpl_core.mailing import EMailClientABC, EMail
 from test_service import TestService
 
 
