@@ -45,9 +45,14 @@ class VersionService(CommandABC):
         Console.write_line(f'OS: {platform.system()} {platform.processor()}')
 
         Console.write_line('\nCPL packages:')
+        cpl_packages = [
+            'cpl_core',
+            'cpl_cli',
+            'cpl_query'
+        ]
         packages = []
-        for importer, modname, is_pkg in pkgutil.iter_modules(cpl_core.__path__):
-            module = importer.find_module(modname).load_module(modname)
+        for modname in cpl_packages:
+            module = pkgutil.find_loader(modname).load_module(modname)
             if '__version__' in dir(module):
                 packages.append([f'{modname}', module.__version__])
 
