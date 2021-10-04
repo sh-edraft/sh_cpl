@@ -48,16 +48,14 @@ class ConsoleBuilder:
             }
         }
 
-        Console.write_line('Test')
-        cls._create_file(path, ws_dict)
-        """Console.spinner(
+        Console.spinner(
             f'Creating {path}',
             cls._create_file,
             path,
             ws_dict,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
-        )"""
+        )
 
     @classmethod
     def build(cls, project_path: str, use_application_api: bool, use_startup: bool, use_service_providing: bool,
