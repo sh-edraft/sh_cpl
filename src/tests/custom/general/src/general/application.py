@@ -1,13 +1,12 @@
 import time
 from typing import Optional
 
-from cpl.application.application_abc import ApplicationABC
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.logging.logger_abc import LoggerABC
-from cpl.mailing.email import EMail
-from cpl.mailing.email_client_abc import EMailClientABC
+from cpl_core.application import ApplicationABC
+from cpl_core.configuration import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection import ServiceProviderABC
+from cpl_core.logging.logger_abc import LoggerABC
+from cpl_core.mailing import EMailClientABC, EMail
 from test_service import TestService
 
 
@@ -37,7 +36,8 @@ class Application(ApplicationABC):
         self._mailer = self._services.get_service(EMailClientABC)
 
     def main(self):
-        self._logger.header(f'{self._configuration.environment.application_name}:')
+        if self._configuration.environment.application_name != '':
+            self._logger.header(f'{self._configuration.environment.application_name}:')
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')

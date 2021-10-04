@@ -1,5 +1,5 @@
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.console.console import Console
 
 
 class Error:

@@ -1,6 +1,6 @@
-from cpl.configuration import Configuration, ConfigurationABC
-from cpl.console import Console
-from cpl.dependency_injection import ServiceCollection, ServiceProviderABC
+from cpl_core.configuration import Configuration, ConfigurationABC
+from cpl_core.console import Console
+from cpl_core.dependency_injection import ServiceCollection, ServiceProviderABC
 
 
 def configure_configuration() -> ConfigurationABC:

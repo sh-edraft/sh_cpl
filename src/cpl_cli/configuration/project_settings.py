@@ -3,9 +3,9 @@ import sys
 import traceback
 from typing import Optional
 
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.configuration.version_settings import VersionSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.error import Error
@@ -127,7 +127,11 @@ class ProjectSettings(ConfigurationModelABC):
 
             self._python_executable = path
 
-            self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
+            if ProjectSettingsNameEnum.classifiers.value:
+                self._classifiers = settings[ProjectSettingsNameEnum.classifiers.value]
+            else:
+                self._classifiers = []
+
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(

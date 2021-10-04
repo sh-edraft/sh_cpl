@@ -3,11 +3,11 @@ import os
 import subprocess
 import textwrap
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl.utils.pip import Pip
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.utils.pip import Pip
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings

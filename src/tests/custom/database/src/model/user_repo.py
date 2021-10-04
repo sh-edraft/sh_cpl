@@ -1,4 +1,4 @@
-from cpl.database.context import DatabaseContextABC
+from cpl_core.database.context import DatabaseContextABC
 from .city_model import CityModel
 from .user_model import UserModel
 from .user_repo_abc import UserRepoABC

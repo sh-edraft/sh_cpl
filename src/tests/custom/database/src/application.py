@@ -1,10 +1,10 @@
 from typing import Optional
 
-from cpl.application import ApplicationABC
-from cpl.configuration import ConfigurationABC
-from cpl.console import Console
-from cpl.dependency_injection import ServiceProviderABC
-from cpl.logging import LoggerABC
+from cpl_core.application import ApplicationABC
+from cpl_core.configuration import ConfigurationABC
+from cpl_core.console import Console
+from cpl_core.dependency_injection import ServiceProviderABC
+from cpl_core.logging import LoggerABC
 from model.user_repo_abc import UserRepoABC
 from model.user_repo import UserRepo
 

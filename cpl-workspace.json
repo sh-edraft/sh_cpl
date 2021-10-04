@@ -2,8 +2,10 @@
   "WorkspaceSettings": {
     "DefaultProject": "cpl_cli",
     "Projects": {
-      "cpl": "src/cpl/cpl.json",
-      "cpl_cli": "src/cpl_cli/cpl_cli.json"
-    }
+      "cpl_core": "src/cpl_core/cpl_core.json",
+      "cpl_cli": "src/cpl_cli/cpl_cli.json",
+      "cpl_query": "src/cpl_query/cpl_query.json"
+    },
+    "Scripts": {}
   }
 }

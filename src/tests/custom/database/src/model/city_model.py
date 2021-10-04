@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from cpl.database import DatabaseModel
+from cpl_core.database import DatabaseModel
 
 
 class CityModel(DatabaseModel):

@@ -1,7 +1,7 @@
 import textwrap
 from string import Template
 
-from cpl.utils.string import String
+from cpl_core.utils.string import String
 from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
@@ -16,8 +16,8 @@ class ConfigModelTemplate(TemplateFileABC):
         self._value = textwrap.dedent("""\
         import traceback
 
-        from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-        from cpl.console import Console
+        from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+        from cpl_core.console import Console
         
         
         class $Name(ConfigurationModelABC):

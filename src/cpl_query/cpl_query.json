@@ -1,0 +1,41 @@
+{
+  "ProjectSettings": {
+    "Name": "sh_cpl-query",
+    "Version": {
+      "Major": "2021",
+      "Minor": "10",
+      "Micro": "0"
+    },
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "sh-edraft Common Python library Query",
+    "LongDescription": "sh-edraft Common Python library Python integrated Queries",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2020 - 2021",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
+    "Dependencies": [
+      "sh_cpl-core>=2021.10.0"
+    ],
+    "PythonVersion": ">=3.9.2",
+    "PythonPath": {},
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "library",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "",
+    "EntryPoint": "",
+    "IncludePackageData": true,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {},
+    "ProjectReferences": []
+  }
+}

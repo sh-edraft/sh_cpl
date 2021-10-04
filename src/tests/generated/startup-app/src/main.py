@@ -1,4 +1,4 @@
-from cpl.application import ApplicationBuilder
+from cpl_core.application import ApplicationBuilder
 
 from application import Application
 from startup import Startup

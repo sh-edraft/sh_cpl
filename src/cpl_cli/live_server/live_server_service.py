@@ -6,8 +6,8 @@ import psutil as psutil
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-from cpl.console.console import Console
-from cpl.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.console.console import Console
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.live_server.live_server_thread import LiveServerThread

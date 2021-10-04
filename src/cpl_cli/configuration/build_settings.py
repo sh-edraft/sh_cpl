@@ -2,9 +2,9 @@ import sys
 import traceback
 from typing import Optional
 
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.console.console import Console
-from cpl.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 
@@ -76,7 +76,11 @@ class BuildSettings(ConfigurationModelABC):
             self._included = settings[BuildSettingsNameEnum.included.value]
             self._excluded = settings[BuildSettingsNameEnum.excluded.value]
             self._package_data = settings[BuildSettingsNameEnum.package_data.value]
-            self._project_references = settings[BuildSettingsNameEnum.project_references.value]
+
+            if BuildSettingsNameEnum.project_references.value in settings:
+                self._project_references = settings[BuildSettingsNameEnum.project_references.value]
+            else:
+                self._project_references = []
 
             if sys.platform == 'win32':
                 self._source_path = str(self._source_path).replace('/', '\\')

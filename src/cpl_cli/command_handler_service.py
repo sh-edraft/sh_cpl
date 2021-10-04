@@ -2,10 +2,11 @@ import os
 from abc import ABC
 from typing import Optional
 
-from cpl.configuration.configuration_abc import ConfigurationABC
-from cpl.console.console import Console
-from cpl.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl.utils.string import String
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.utils.string import String
+from cpl_cli.command.custom_script_service import CustomScriptService
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.error import Error
 from cpl_cli.command_model import CommandModel
@@ -57,7 +58,6 @@ class CommandHandler(ABC):
                 workspace: Optional[WorkspaceSettings] = None
 
                 if os.path.isfile(os.path.join(self._env.working_directory, 'cpl-workspace.json')):
-                    self._config.add_json_file('cpl-workspace.json', optional=True, output=False)
                     workspace = self._config.get_configuration(WorkspaceSettings)
 
                 if command.is_project_needed:
@@ -111,5 +111,27 @@ class CommandHandler(ABC):
 
                     self._config.add_json_file(project_json, optional=True, output=False)
 
-                self._services.get_service(command.command).run(args)
+                # pre scripts
                 Console.write('\n')
+                self._handle_pre_or_post_scripts(True, workspace, command)
+                self._services.get_service(command.command).run(args)
+                # post scripts
+                Console.write('\n\n')
+                self._handle_pre_or_post_scripts(False, workspace, command)
+                Console.write('\n')
+
+    def _handle_pre_or_post_scripts(self, pre: bool, workspace: WorkspaceSettings, command: CommandModel):
+        script_type = 'pre-' if pre else 'post-'
+        if workspace is not None and len(workspace.scripts) > 0:
+            for script in workspace.scripts:
+                if script_type in script and script.split(script_type)[1] == command.name:
+                    script_name = script
+                    script_cmd = workspace.scripts[script]
+                    if script_cmd in workspace.scripts:
+                        script_name = workspace.scripts[script]
+
+                    css: CustomScriptService = self._services.get_service(CustomScriptService)
+                    if css is None:
+                        continue
+
+                    css.run([script_name])

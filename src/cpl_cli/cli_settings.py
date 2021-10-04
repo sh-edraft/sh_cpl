@@ -1,8 +1,8 @@
 import traceback
 from typing import Optional
 
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl.console.console import Console
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console.console import Console
 from cpl_cli.cli_settings_name_enum import CLISettingsNameEnum
 
 

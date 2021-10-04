@@ -1,6 +1,6 @@
 import textwrap
 
-from cpl.utils.string import String
+from cpl_core.utils.string import String
 from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 
@@ -16,7 +16,7 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         import_pkg = f'{name}.'
 
         self._value = textwrap.dedent(f"""\
-            from cpl.application import ApplicationBuilder
+            from cpl_core.application import ApplicationBuilder
             
             from {import_pkg}application import Application
             from {import_pkg}startup import Startup
@@ -57,7 +57,7 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
         import_pkg = f'{name}.'
 
         self._value = textwrap.dedent(f"""\
-            from cpl.application import ApplicationBuilder
+            from cpl_core.application import ApplicationBuilder
             
             from {import_pkg}application import Application
             
@@ -96,7 +96,7 @@ class MainWithoutApplicationBaseTemplate(TemplateFileABC):
         import_pkg = f'{name}.'
 
         self._value = textwrap.dedent("""\
-            from cpl.console import Console
+            from cpl_core.console import Console
             
             
             def main():
@@ -132,9 +132,9 @@ class MainWithDependencyInjection(TemplateFileABC):
         import_pkg = f'{name}.'
 
         self._value = textwrap.dedent("""\
-            from cpl.configuration import Configuration, ConfigurationABC
-            from cpl.console import Console
-            from cpl.dependency_injection import ServiceCollection, ServiceProviderABC
+            from cpl_core.configuration import Configuration, ConfigurationABC
+            from cpl_core.console import Console
+            from cpl_core.dependency_injection import ServiceCollection, ServiceProviderABC
             
             
             def configure_configuration() -> ConfigurationABC:

@@ -83,7 +83,7 @@ To create the sample project to the following:
 3. Add ```Console.select``` as follows:
 
     ```py
-    from cpl.console import Console
+    from cpl_core.console import Console
 
 
     def main():
@@ -156,7 +156,7 @@ To create the sample project to the following:
     import random
     import string
 
-    from cpl.console import Console
+    from cpl_core.console import Console
 
 
     def generate_password(letters: str, length: int) -> str:

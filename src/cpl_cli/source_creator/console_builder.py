@@ -2,9 +2,9 @@ import json
 import os
 from typing import Optional
 
-from cpl.console.foreground_color_enum import ForegroundColorEnum
-from cpl.console.console import Console
-from cpl.utils.string import String
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.console.console import Console
+from cpl_core.utils.string import String
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.configuration.workspace_settings_name_enum import WorkspaceSettingsNameEnum
 from cpl_cli.source_creator.template_builder import TemplateBuilder
@@ -43,7 +43,8 @@ class ConsoleBuilder:
         ws_dict = {
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: project_name,
-                WorkspaceSettingsNameEnum.projects.value: projects
+                WorkspaceSettingsNameEnum.projects.value: projects,
+                WorkspaceSettingsNameEnum.scripts: {}
             }
         }
 

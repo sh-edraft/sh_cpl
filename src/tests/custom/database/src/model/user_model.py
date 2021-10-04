@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from cpl.database import DatabaseModel
+from cpl_core.database import DatabaseModel
 from .city_model import CityModel
 
 

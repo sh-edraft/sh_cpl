@@ -1,6 +1,6 @@
 from typing import Optional
 
-from cpl.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 
 
