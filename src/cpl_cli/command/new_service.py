@@ -73,6 +73,7 @@ class NewService(CommandABC):
 
         schematics = [
             'console (c|C) <name>',
+            'library (l|L) <name>',
         ]
         Console.write_line('Available Schematics:')
         for name in schematics:

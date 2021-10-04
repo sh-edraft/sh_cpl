@@ -44,18 +44,20 @@ class ConsoleBuilder:
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: project_name,
                 WorkspaceSettingsNameEnum.projects.value: projects,
-                WorkspaceSettingsNameEnum.scripts: {}
+                WorkspaceSettingsNameEnum.scripts.value: {}
             }
         }
 
-        Console.spinner(
+        Console.write_line('Test')
+        cls._create_file(path, ws_dict)
+        """Console.spinner(
             f'Creating {path}',
             cls._create_file,
             path,
             ws_dict,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
-        )
+        )"""
 
     @classmethod
     def build(cls, project_path: str, use_application_api: bool, use_startup: bool, use_service_providing: bool,
