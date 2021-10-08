@@ -19,16 +19,14 @@ class StartupTemplate(TemplateFileABC):
             
             class Startup(StartupABC):
             
-                def __init__():
+                def __init__(self):
                     StartupABC.__init__(self)
             
-                    self._environment = self._configuration.environment
-            
                 def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
-                    return self._configuration
+                    return configuration
             
                 def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
-                    return self._services.build_service_provider()
+                    return services.build_service_provider()
         """)
 
     @property
