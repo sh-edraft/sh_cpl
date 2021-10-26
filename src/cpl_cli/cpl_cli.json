@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl-core>=2021.10.0"
+      "sh_cpl-core>=2021.10.0.post1"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {},
