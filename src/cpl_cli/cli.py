@@ -120,7 +120,6 @@ class CLI(ApplicationABC):
                 Error.error(f'Expected command')
                 return
 
-            Console.write_line(command, args)
             self._command_handler.handle(command, args)
         except KeyboardInterrupt:
             Console.write_line()
