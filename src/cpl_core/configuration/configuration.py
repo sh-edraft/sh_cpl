@@ -199,7 +199,7 @@ class Configuration(ConfigurationABC):
                 if alias == argument or f' {alias} ' == argument:
                     found = True
 
-            if argument_type.name not in argument and not found:
+            if argument_type.name != argument and not found:
                 return False
 
             if (next_arguments is None or len(next_arguments) == 0) and \

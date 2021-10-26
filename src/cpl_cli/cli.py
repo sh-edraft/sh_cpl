@@ -86,6 +86,9 @@ class CLI(ApplicationABC):
                     result = self._configuration.get_configuration(cmd.name)
                     result_args: list[str] = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
                     is_option = False
+                    if result is None:
+                        continue
+
                     for opt in self._options:
                         if opt == result:
                             is_option = True
@@ -117,6 +120,7 @@ class CLI(ApplicationABC):
                 Error.error(f'Expected command')
                 return
 
+            Console.write_line(command, args)
             self._command_handler.handle(command, args)
         except KeyboardInterrupt:
             Console.write_line()
