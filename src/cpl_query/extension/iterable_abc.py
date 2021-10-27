@@ -27,7 +27,8 @@ class IterableABC(ABC, list):
     def all(self, func: Callable) -> bool: pass
 
     def append(self, __object: object) -> None:
-        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type):
+        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type) \
+                and not issubclass(type(__object), self._type):
             raise Exception(f'Unexpected type: {type(__object)}')
 
         if len(self) == 0 and self._type is None:
