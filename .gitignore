@@ -132,5 +132,4 @@ dmypy.json
 .pyre/
 
 # IDE
-.vscode/
 .idea/
