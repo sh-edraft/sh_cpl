@@ -15,7 +15,7 @@
             "name": "CPL: main test",
             "type": "python",
             "request": "launch",
-            "cwd": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_cpl/cpl_core/src/tests/custom/general/src/general",
+            "cwd": "${workspaceFolder}/cpl_core/src/tests/custom/general/src/general",
             "program": "main.py",
             "console": "integratedTerminal",
             "args": [
@@ -30,7 +30,7 @@
             "name": "CPL: console test",
             "type": "python",
             "request": "launch",
-            "cwd": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_cpl/src/tests/custom/console",
+            "cwd": "${workspaceFolder}/src/tests/custom/console",
             "program": "main.py",
             "console": "integratedTerminal",
         },
@@ -38,25 +38,259 @@
             "name": "CPL: database test",
             "type": "python",
             "request": "launch",
-            "cwd": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_cpl/src/tests/custom/database/src",
+            "cwd": "${workspaceFolder}/src/tests/custom/database/src",
             "program": "main.py",
             "console": "integratedTerminal",
         },
         {
-            "name": "CPL: CLI",
+            "name": "CLI",
             "type": "python",
             "request": "launch",
-            "cwd": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_cpl/src/",
-            "program": "cpl_cli/main.py",
+            "cwd": "${workspaceFolder}/",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
             "console": "integratedTerminal",
+            "args": []
         },
         {
-            "name": "CPL: CLI Remove",
+            "name": "CLI: add",
             "type": "python",
             "request": "launch",
-            "cwd": "/home/sven/Nextcloud_Sven/Schreibtisch/git_sh-edraft_de/sh_cpl/src/",
-            "program": "cpl_cli/main.py",
+            "cwd": "${workspaceFolder}/src/tests/custom/general",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
             "console": "integratedTerminal",
+            "args": [
+                "add",
+                "testing",
+                "general",
+            ]
+        },
+        {
+            "name": "CLI: remove",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/tests/custom/general",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "remove",
+                "testing",
+            ]
+        },
+        {
+            "name": "CLI: build",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "build"
+            ]
+        },
+        {
+            "name": "CLI: generate abc",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "generate",
+                "a",
+                "testName"
+            ]
+        },
+        {
+            "name": "CLI: generate class",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "generate",
+                "c",
+                "src/hfs/fsnfiu/fiush/fisbf/testName"
+            ]
+        },
+        {
+            "name": "CLI: generate enum",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "generate",
+                "e",
+                "testName"
+            ]
+        },
+        {
+            "name": "CLI: generate service",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "generate",
+                "s",
+                "testName"
+            ]
+        },
+        {
+            "name": "CLI: generate settings",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "generate",
+                "st",
+                "testName"
+            ]
+        },
+        {
+            "name": "CLI: generate thread",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "generate",
+                "t",
+                "testName"
+            ]
+        },
+        {
+            "name": "CLI: hello-world",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "hello-world",
+            ]
+        },
+        {
+            "name": "CLI: help",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "help",
+            ]
+        },
+        {
+            "name": "CLI: install discord.py",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/tests/custom/general",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "install",
+                "discord.py",
+            ]
+        },
+        {
+            "name": "CLI: install local",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/tests/custom/general",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "install",
+            ]
+        },
+        {
+            "name": "CLI: new console",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "new",
+                "console",
+                "HelloWorld"
+            ]
+        },
+        {
+            "name": "CLI: new library",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "new",
+                "library",
+                "HelloWorldLib"
+            ]
+        },
+        {
+            "name": "CLI: publish",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "publish",
+            ]
+        },
+        {
+            "name": "CLI: start",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "start",
+            ]
+        },
+        {
+            "name": "CLI: uninstall discord.py",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/tests/custom/general",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "uninstall",
+                "discord.py",
+            ]
+        },
+        {
+            "name": "CLI: start",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/tests/custom/general",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "update",
+            ]
+        },
+        {
+            "name": "CLI: version",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/src/cpl_cli/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "version",
+            ]
         },
     ]
 }
