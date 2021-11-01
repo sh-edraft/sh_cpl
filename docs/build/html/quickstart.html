@@ -98,8 +98,8 @@
 <li class="toctree-l2"><a class="reference internal" href="setup.html">Setting up the local environment and workspace</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API Reference</a></li>
 </ul>
 
             
@@ -245,7 +245,7 @@ Creating sample-project/src/sample-projectmain.py                               
 <li><p>Open the ‘sample-project/main.py’</p></li>
 <li><p>Change ‘Hello World’ to ‘Password generator:’ in line 5</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">Console.select</span></code> as follows:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cpl.console</span> <span class="kn">import</span> <span class="n">Console</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cpl_core.console</span> <span class="kn">import</span> <span class="n">Console</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -310,7 +310,7 @@ Creating sample-project/src/sample-projectmain.py                               
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">string</span>
 
-<span class="kn">from</span> <span class="nn">cpl.console</span> <span class="kn">import</span> <span class="n">Console</span>
+<span class="kn">from</span> <span class="nn">cpl_core.console</span> <span class="kn">import</span> <span class="n">Console</span>
 
 
 <span class="k">def</span> <span class="nf">generate_password</span><span class="p">(</span><span class="n">letters</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -356,9 +356,9 @@ Creating sample-project/src/sample-projectmain.py                               
 <p>In this section, you’ve created an application that uses user input to generate a password.</p>
 <p>To continue exploring CPL and developing applications:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="cpl.application.html"><span class="doc std std-doc">Application base</span></a></p></li>
-<li><p><a class="reference internal" href="cpl.dependency_injection.html"><span class="doc std std-doc">Dependency injection</span></a></p></li>
-<li><p><a class="reference internal" href="cpl.console.html"><span class="doc std std-doc">Console</span></a></p></li>
+<li><p><a class="reference internal" href="cpl_core.application.html"><span class="doc std std-doc">Application base</span></a></p></li>
+<li><p><a class="reference internal" href="cpl_core.dependency_injection.html"><span class="doc std std-doc">Dependency injection</span></a></p></li>
+<li><p><a class="reference internal" href="cpl_core.console.html"><span class="doc std std-doc">Console</span></a></p></li>
 </ul>
 <!-- LINKS -->
 </div>

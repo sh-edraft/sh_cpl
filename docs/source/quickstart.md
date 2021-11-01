@@ -200,9 +200,9 @@ In this section, you've created an application that uses user input to generate 
 
 To continue exploring CPL and developing applications:
 
-- [Application base](cpl.application)
-- [Dependency injection](cpl.dependency_injection)
-- [Console](cpl.console)
+- [Application base](cpl_core.application)
+- [Dependency injection](cpl_core.dependency_injection)
+- [Console](cpl_core.console)
 
 <!-- LINKS -->
 [pip-url]: https://pip.sh-edraft.de

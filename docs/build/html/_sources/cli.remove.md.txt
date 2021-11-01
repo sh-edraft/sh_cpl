@@ -15,7 +15,7 @@ cpl **R** *&lt;project&gt;*
 
 The command can be used to publish a project of type "console" or "library".
 
-The publish command builds the source files and then creates an ```setup.py``` with data from ```cpl.json```.
+The publish command builds the source files and then creates an ```setup.py``` with data from ```cpl_core.json```.
 The command executes the ```setup.py``` and removes all source files with the ```setup.py``` from the 'publish/' directory.
 
 Generated files of ```setup.py``` are in the 'publish/setup/' directory.

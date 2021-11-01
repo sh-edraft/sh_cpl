@@ -5,5 +5,6 @@ cpl
     :maxdepth: 4
 
     getting_started
-    cpl
     cpl_cli
+    cpl_core
+    cpl_query

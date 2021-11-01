@@ -14,7 +14,29 @@ class OrderedIterableABC(IterableABC):
             self._funcs.append(_func)
 
     @abstractmethod
-    def then_by(self, func: Callable) -> 'OrderedIterableABC': pass
+    def then_by(self, func: Callable) -> 'OrderedIterableABC':
+        r"""Sorts OrderedList in ascending order by function
+
+        Parameter
+        ---------
+            func: :class:`Callable`
+            
+        Returns
+        -------
+            list of :class:`cpl_query.extension.OrderedIterableABC`
+        """
+        pass
 
     @abstractmethod
-    def then_by_descending(self, func: Callable) -> 'OrderedIterableABC': pass
+    def then_by_descending(self, func: Callable) -> 'OrderedIterableABC':
+        r"""Sorts OrderedList in descending order by function
+
+        Parameter
+        ---------
+            func: :class:`Callable`
+            
+        Returns
+        -------
+            list of :class:`cpl_query.extension.OrderedIterableABC`
+        """
+        pass

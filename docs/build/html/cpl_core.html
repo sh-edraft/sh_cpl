@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>API Reference &mdash; Common Python Library  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cpl_core.application" href="cpl_core.application.html" />
+    <link rel="prev" title="cpl version" href="cli.version.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cpl_core.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_abc">cpl_core.application.application_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder">cpl_core.application.application_builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.console_argument">cpl_core.configuration.console_argument</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.background_color_enum">cpl_core.console.background_color_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console">cpl_core.console.console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console_call">cpl_core.console.console_call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.foreground_color_enum">cpl_core.console.foreground_color_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.spinner_thread">cpl_core.console.spinner_thread</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.connection.html">cpl_core.database.connection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection">cpl_core.database.connection.database_connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection_abc">cpl_core.database.connection.database_connection_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.context.html">cpl_core.database.context</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.context.html#module-cpl_core.database.context.database_context">cpl_core.database.context.database_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.context.html#module-cpl_core.database.context.database_context_abc">cpl_core.database.context.database_context_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_model">cpl_core.database.database_model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_abc">cpl_core.logging.logger_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_service">cpl_core.logging.logger_service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_level_enum">cpl_core.logging.logging_level_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings">cpl_core.logging.logging_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings_name_enum">cpl_core.logging.logging_settings_name_enum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email">cpl_core.mailing.email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_abc">cpl_core.mailing.email_client_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_service">cpl_core.mailing.email_client_service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings">cpl_core.mailing.email_client_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings">cpl_core.time.time_format_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">cpl_core.time.time_format_settings_names_enum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.pip">cpl_core.utils.pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="cpl_core.application.html" class="btn btn-neutral float-right" title="cpl_core.application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cli.version.html" class="btn btn-neutral float-left" title="cpl version" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Sven Heidemann.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

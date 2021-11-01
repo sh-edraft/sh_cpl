@@ -31,5 +31,5 @@ Generates files based on a schematic.
 | ```class```       | Class               | ```<name>```
 | ```enum```        | Enum class          | ```<name>```
 | ```service```     | Service class       | ```<name>```
-| ```settings```    | [Configmodel](cpl.configuration) | ```<name>```
+| ```settings```    | [Configmodel](cpl_core.configuration) | ```<name>```
 | ```thread```      | Thread class        | ```<name>```

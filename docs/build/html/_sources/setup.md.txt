@@ -41,7 +41,7 @@ pip install sh_cpl-cli --extra-index-url https://pip.sh-edraft.de
 
 ## Create initial console app
 
-You develop apps and packages in the context of an CPL project which is defined in an cpl.json.
+You develop apps and packages in the context of an CPL project which is defined in an cpl_core.json.
 
 1. Run the CLI command ```cpl new console``` and provide the name my-app, as shown here:
 
@@ -55,7 +55,7 @@ The CLI create a new workspace and a simple 'Hello World' app, ready to run.
 
 ## Create initial library
 
-You develop apps and packages in the context of an CPL project which is defined in an cpl.json.
+You develop apps and packages in the context of an CPL project which is defined in an cpl_core.json.
 
 1. Run the CLI command ```cpl new library``` and provide the name my-lib, as shown here:
 

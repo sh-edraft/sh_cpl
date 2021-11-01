@@ -20,5 +20,6 @@ These pages go into great detail about everything the Library can do.
 
    introduction
    getting_started
-   cpl
    cpl_cli
+   cpl_core
+   cpl_query
