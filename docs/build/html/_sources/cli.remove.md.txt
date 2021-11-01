@@ -13,12 +13,9 @@ cpl **R** *&lt;project&gt;*
 
 ## Description
 
-The command can be used to publish a project of type "console" or "library".
+Removes a project reference and the files from workspace.
 
-The publish command builds the source files and then creates an ```setup.py``` with data from ```cpl_core.json```.
-The command executes the ```setup.py``` and removes all source files with the ```setup.py``` from the 'publish/' directory.
-
-Generated files of ```setup.py``` are in the 'publish/setup/' directory.
+If you call the command in a CPL workspace, you can use the project names. Otherwise the paths of the projects must be specified.
 
 ## Arguments
 

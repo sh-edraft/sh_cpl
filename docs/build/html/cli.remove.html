@@ -109,6 +109,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>
 </ul>
 
             
@@ -193,10 +194,8 @@ cpl <strong>R</strong> <em>&lt;project&gt;</em></p>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>The command can be used to publish a project of type “console” or “library”.</p>
-<p>The publish command builds the source files and then creates an <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> with data from <code class="docutils literal notranslate"><span class="pre">cpl_core.json</span></code>.
-The command executes the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and removes all source files with the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> from the ‘publish/’ directory.</p>
-<p>Generated files of <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> are in the ‘publish/setup/’ directory.</p>
+<p>Removes a project reference and the files from workspace.</p>
+<p>If you call the command in a CPL workspace, you can use the project names. Otherwise the paths of the projects must be specified.</p>
 </div>
 <div class="section" id="arguments">
 <h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>

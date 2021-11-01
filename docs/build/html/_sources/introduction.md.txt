@@ -8,5 +8,6 @@ This CPL docs help you learn, understand and use the package. From your first ap
 
 - [Getting started](quickstart)
 - [Setup](setup)
-- [API Reference](cpl)
+- [API Reference](cpl_core)
 - [CLI Reference](cli.overview)
+- [Query Reference](cpl_query)

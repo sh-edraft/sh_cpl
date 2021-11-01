@@ -12,6 +12,8 @@ class ExceptionArgument(Enum):
 
 # exceptions
 class ArgumentNoneException(Exception):
+    r"""Exception when argument is None
+    """
 
     def __init__(self, arg: ExceptionArgument):
         Exception.__init__(self, f'argument {arg} is None')

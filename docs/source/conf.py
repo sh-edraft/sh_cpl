@@ -51,6 +51,8 @@ templates_path = ['_templates']
 exclude_patterns = [
     'cpl_cli/templates/*',
     'cpl_cli/*',
+    'tests',
+    'cpl_query/tests/*',
     'tests/*'
 ]
 
