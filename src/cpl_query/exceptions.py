@@ -20,14 +20,20 @@ class ArgumentNoneException(Exception):
 
 
 class IndexOutOfRangeException(Exception):
+    r"""Exception when index is out of range
+    """
 
     def __init__(self):
         Exception.__init__(self, f'List index out of range')
 
 
 class InvalidTypeException(Exception):
+    r"""Exception when type is invalid
+    """
     pass
 
 
 class WrongTypeException(Exception):
+    r"""Exception when type is unexpected
+    """
     pass
