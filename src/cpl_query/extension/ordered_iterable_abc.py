@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from collections import Callable
 
-from iterable_abc import IterableABC
+from cpl_query.extension.iterable_abc import IterableABC
 
 
 class OrderedIterableABC(IterableABC):
