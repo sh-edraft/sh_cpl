@@ -1,11 +1,13 @@
 from collections import Callable
 
-from .iterable import Iterable
+from iterable import Iterable
 from .._query.order_by import then_by_query, then_by_descending_query
-from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
+from ordered_iterable_abc import OrderedIterableABC
 
 
 class OrderedIterable(Iterable, OrderedIterableABC):
+    r"""Implementation of :class: `cpl_query.extension.Iterable` `cpl_query.extension.OrderedIterableABC`
+    """
 
     def __init__(self):
         Iterable.__init__(self)

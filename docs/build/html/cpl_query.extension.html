@@ -43,9 +43,9 @@
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_query.html">Query Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_query.extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_query.extension.iterable_abc">cpl_query.extension.iterable_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_query.extension.list">cpl_query.extension.list</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_query.extension.ordered_iterable_abc">cpl_query.extension.ordered_iterable_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpl-query-extension-iterable-abc">cpl_query.extension.iterable_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpl-query-extension-list">cpl_query.extension.list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpl-query-extension-ordered-iterable-abc">cpl_query.extension.ordered_iterable_abc</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.exceptions.html">cpl_query.exceptions</a></li>
@@ -80,210 +80,14 @@
              
   <div class="section" id="cpl-query-extension">
 <h1>cpl_query.extension<a class="headerlink" href="#cpl-query-extension" title="Permalink to this headline"></a></h1>
-<div class="section" id="module-cpl_query.extension.iterable_abc">
-<span id="cpl-query-extension-iterable-abc"></span><h2>cpl_query.extension.iterable_abc<a class="headerlink" href="#module-cpl_query.extension.iterable_abc" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cpl_query.extension.iterable_abc.</span></span><span class="sig-name descname"><span class="pre">IterableABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.all">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.all" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.any">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.append">
-<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_IterableABC__object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.append" title="Permalink to this definition"></a></dt>
-<dd><p>Append object to the end of the list.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.average">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.average" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.contains">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.contains" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.count">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.count" title="Permalink to this definition"></a></dt>
-<dd><p>Return number of occurrences of value.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.distinct">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">distinct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.distinct" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.element_at">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">element_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.element_at" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.element_at_or_default">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">element_at_or_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.element_at_or_default" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.extend">
-<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_IterableABC__iterable</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.extend" title="Permalink to this definition"></a></dt>
-<dd><p>Extend list by appending elements from the iterable.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.first">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">first</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.first" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.first_or_default">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">first_or_default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.first_or_default" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.for_each">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">for_each</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.for_each" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.last">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">last</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.last" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.last_or_default">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">last_or_default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.last_or_default" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.max">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.max" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.min">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.min" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.order_by">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">order_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.order_by" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.order_by_descending">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">order_by_descending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.order_by_descending" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.reverse">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.reverse" title="Permalink to this definition"></a></dt>
-<dd><p>Reverse <em>IN PLACE</em>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.single">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">single</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.single" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.single_or_default">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">single_or_default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.any" title="cpl_query.extension.iterable_abc.IterableABC.any"><span class="pre">cpl_query.extension.iterable_abc.IterableABC.any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.single_or_default" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.skip">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.skip" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.skip_last">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">skip_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.skip_last" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.sum">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">float</span><span class="p"><span class="pre">,</span> </span><span class="pre">complex</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.sum" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.take">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">take</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.take" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.take_last">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">take_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.take_last" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.to_list">
-<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.to_list" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.type">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC.type" title="cpl_query.extension.iterable_abc.IterableABC.type"><span class="pre">type</span></a></em><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.iterable_abc.IterableABC.where">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.iterable_abc.IterableABC.where" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="cpl-query-extension-iterable-abc">
+<h2>cpl_query.extension.iterable_abc<a class="headerlink" href="#cpl-query-extension-iterable-abc" title="Permalink to this headline"></a></h2>
 </div>
-<div class="section" id="module-cpl_query.extension.list">
-<span id="cpl-query-extension-list"></span><h2>cpl_query.extension.list<a class="headerlink" href="#module-cpl_query.extension.list" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="cpl_query.extension.list.List">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cpl_query.extension.list.</span></span><span class="sig-name descname"><span class="pre">List</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_query.extension.list.List" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_query._extension.iterable.Iterable</span></code></p>
-</dd></dl>
-
+<div class="section" id="cpl-query-extension-list">
+<h2>cpl_query.extension.list<a class="headerlink" href="#cpl-query-extension-list" title="Permalink to this headline"></a></h2>
 </div>
-<div class="section" id="module-cpl_query.extension.ordered_iterable_abc">
-<span id="cpl-query-extension-ordered-iterable-abc"></span><h2>cpl_query.extension.ordered_iterable_abc<a class="headerlink" href="#module-cpl_query.extension.ordered_iterable_abc" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="cpl_query.extension.ordered_iterable_abc.OrderedIterableABC">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cpl_query.extension.ordered_iterable_abc.</span></span><span class="sig-name descname"><span class="pre">OrderedIterableABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#cpl_query.extension.iterable_abc.IterableABC" title="cpl_query.extension.iterable_abc.IterableABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_query.extension.iterable_abc.IterableABC</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.ordered_iterable_abc.OrderedIterableABC.then_by">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">then_by</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.abc.Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC" title="cpl_query.extension.ordered_iterable_abc.OrderedIterableABC"><span class="pre">cpl_query.extension.ordered_iterable_abc.OrderedIterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC.then_by" title="Permalink to this definition"></a></dt>
-<dd><p>Sorts OrderedList in ascending order by function</p>
-<blockquote>
-<div><p>func: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
-</div></blockquote>
-<blockquote>
-<div><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_query.extension.OrderedIterableABC</span></code></p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_query.extension.ordered_iterable_abc.OrderedIterableABC.then_by_descending">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">then_by_descending</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">collections.abc.Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC" title="cpl_query.extension.ordered_iterable_abc.OrderedIterableABC"><span class="pre">cpl_query.extension.ordered_iterable_abc.OrderedIterableABC</span></a></span></span><a class="headerlink" href="#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC.then_by_descending" title="Permalink to this definition"></a></dt>
-<dd><p>Sorts OrderedList in descending order by function</p>
-<blockquote>
-<div><p>func: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
-</div></blockquote>
-<blockquote>
-<div><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_query.extension.OrderedIterableABC</span></code></p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
+<div class="section" id="cpl-query-extension-ordered-iterable-abc">
+<h2>cpl_query.extension.ordered_iterable_abc<a class="headerlink" href="#cpl-query-extension-ordered-iterable-abc" title="Permalink to this headline"></a></h2>
 </div>
 </div>
 
