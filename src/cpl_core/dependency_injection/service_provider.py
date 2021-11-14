@@ -31,7 +31,7 @@ class ServiceProvider(ServiceProviderABC):
         self._configuration: ConfigurationABC = config
         self._database_context = db_context
 
-    def _find_service(self, service_type: type) -> [ServiceDescriptor]:
+    def _find_service(self, service_type: type) -> ServiceDescriptor:
         for descriptor in self._service_descriptors:
             if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
                 return descriptor
@@ -85,7 +85,7 @@ class ServiceProvider(ServiceProviderABC):
 
         return service_type(*params)
 
-    def get_service(self, service_type: type) -> Optional[Callable[object]]:
+    def get_service(self, service_type: type) -> Optional[Callable]:
         result = self._find_service(service_type)
 
         if result is None:

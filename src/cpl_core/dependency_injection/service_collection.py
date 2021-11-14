@@ -59,9 +59,13 @@ class ServiceCollection(ServiceCollectionABC):
             self._add_descriptor(impl, ServiceLifetimeEnum.singleton)
 
     def add_scoped(self, service_type: Type, service: Callable = None):
-        raise Exception('Not implemented')
+        if service is not None:
+            self._add_descriptor(service, ServiceLifetimeEnum.scoped)
+        else:
+            self._add_descriptor(service_type, ServiceLifetimeEnum.scoped)
+        
 
-    def add_transient(self, service_type: Union[type], service: Union[type] = None):
+    def add_transient(self, service_type: type, service: type = None):
         if service is not None:
             self._add_descriptor(service, ServiceLifetimeEnum.transient)
         else:

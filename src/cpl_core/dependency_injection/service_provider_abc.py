@@ -26,7 +26,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: Type) -> Optional[Callable[object]]:
+    def get_service(self, instance_type: Type) -> Optional[Callable]:
         r"""Returns instance of given type
 
         Parameter
