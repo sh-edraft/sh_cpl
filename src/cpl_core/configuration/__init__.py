@@ -15,7 +15,7 @@ __title__ = 'cpl_core.configuration'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.10.0.post1'
+__version__ = '2021.10.1'
 
 from collections import namedtuple
 
@@ -27,4 +27,4 @@ from .configuration_variable_name_enum import ConfigurationVariableNameEnum
 from .console_argument import ConsoleArgument
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='10', micro='0.post1')
+version_info = VersionInfo(major='2021', minor='10', micro='1')
