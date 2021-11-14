@@ -30,9 +30,9 @@ class Application(ApplicationABC):
         b = t.service_provider
         scope1.dispose()
         
-        Console.write_line('Disposed:')
-        ts1: TestService = scope1.service_provider.get_service(TestService)
-        ts1.run()
+        #Console.write_line('Disposed:')
+        #ts1: TestService = scope1.service_provider.get_service(TestService)
+        #ts1.run()
         
         Console.write_line('Scope2')
         scope2: Scope = self._services.create_scope()

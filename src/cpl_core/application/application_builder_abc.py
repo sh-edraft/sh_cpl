@@ -24,8 +24,29 @@ class ApplicationBuilderABC(ABC):
         pass
 
     @abstractmethod
+    async def use_startup(self, startup: Type[StartupABC]):
+        r"""Sets the custom startup class to use async
+
+        Parameter
+        ---------
+            startup: Type[:class:`cpl_core.application.startup_abc.StartupABC`]
+                Startup class to use
+        """
+        pass
+
+    @abstractmethod
     def build(self) -> ApplicationABC:
         r"""Creates custom application object
+
+        Returns
+        -------
+            Object of :class:`cpl_core.application.application_abc.ApplicationABC`
+        """
+        pass
+
+    @abstractmethod
+    async def build_async(self) -> ApplicationABC:
+        r"""Creates custom application object async
 
         Returns
         -------

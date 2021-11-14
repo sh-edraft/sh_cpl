@@ -11,3 +11,6 @@ class ApplicationExtensionABC(ABC):
 
     @abstractmethod
     def run(self, config: ConfigurationABC, services: ServiceProviderABC): pass
+    
+    @abstractmethod
+    async def run(self, config: ConfigurationABC, services: ServiceProviderABC): pass

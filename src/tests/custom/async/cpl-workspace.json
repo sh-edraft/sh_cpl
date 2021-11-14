@@ -1,0 +1,9 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "async",
+    "Projects": {
+      "async": "src/async/async.json"
+    },
+    "Scripts": {}
+  }
+}
