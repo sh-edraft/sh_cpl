@@ -1,0 +1,9 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "di",
+    "Projects": {
+      "di": "src/di/di.json"
+    },
+    "Scripts": {}
+  }
+}
