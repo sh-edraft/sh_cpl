@@ -1,10 +1,13 @@
 from collections import Callable
+import copy
 from inspect import signature, Parameter
 from typing import Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
+from cpl_core.dependency_injection.scope_abc import ScopeABC
+from cpl_core.dependency_injection.scope_builder import ScopeBuilder
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
@@ -30,8 +33,9 @@ class ServiceProvider(ServiceProviderABC):
         self._service_descriptors: list[ServiceDescriptor] = service_descriptors
         self._configuration: ConfigurationABC = config
         self._database_context = db_context
+        self._scope: Optional[ScopeABC] = None
 
-    def _find_service(self, service_type: type) -> [ServiceDescriptor]:
+    def _find_service(self, service_type: type) -> ServiceDescriptor:
         for descriptor in self._service_descriptors:
             if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
                 return descriptor
@@ -84,6 +88,13 @@ class ServiceProvider(ServiceProviderABC):
                     params.append(self._get_service(parameter))
 
         return service_type(*params)
+    
+    def set_scope(self, scope: ScopeABC):
+        self._scope = scope
+    
+    def create_scope(self) -> ScopeABC:
+        sb = ScopeBuilder(ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context))
+        return sb.build()
 
     def get_service(self, service_type: type) -> Optional[Callable[object]]:
         result = self._find_service(service_type)
@@ -95,7 +106,7 @@ class ServiceProvider(ServiceProviderABC):
             return result.implementation
 
         implementation = self.build_service(service_type)
-        if result.lifetime == ServiceLifetimeEnum.singleton:
+        if result.lifetime == ServiceLifetimeEnum.singleton or result.lifetime == ServiceLifetimeEnum.scoped and self._scope is not None:
             result.implementation = implementation
 
         return implementation

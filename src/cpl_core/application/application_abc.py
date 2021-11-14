@@ -34,6 +34,17 @@ class ApplicationABC(ABC):
             self.main()
         except KeyboardInterrupt:
             Console.close()
+    
+    async def run_async(self):
+        r"""Entry point
+
+        Called by custom Application.main
+        """
+        try:
+            await self.configure()
+            await self.main()
+        except KeyboardInterrupt:
+            Console.close()
 
     @abstractmethod
     def configure(self):

@@ -46,6 +46,7 @@ class NewService(CommandABC):
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
+        self._use_async: bool = False
 
     @property
     def help_message(self) -> str:
@@ -177,6 +178,10 @@ class NewService(CommandABC):
             result = Console.read('Do you want to use service providing? (y/n) ')
             if result.lower() == 'y':
                 self._use_service_providing = True
+                
+        result = Console.read('Do you want to use async? (y/n) ')
+        if result.lower() == 'y':
+            self._use_async = True
 
         Console.set_foreground_color(ForegroundColorEnum.default)
 
@@ -202,6 +207,7 @@ class NewService(CommandABC):
                 self._use_application_api,
                 self._use_startup,
                 self._use_service_providing,
+                self._use_async,
                 self._project.name,
                 self._project_json,
                 self._workspace
@@ -231,6 +237,7 @@ class NewService(CommandABC):
                 self._use_application_api,
                 self._use_startup,
                 self._use_service_providing,
+                self._use_async,
                 self._project.name,
                 self._project_json,
                 self._workspace

@@ -1,4 +1,3 @@
-import types
 from typing import Type, Optional, Callable
 
 from cpl_core.application.application_abc import ApplicationABC
@@ -6,7 +5,6 @@ from cpl_core.application.application_builder_abc import ApplicationBuilderABC
 from cpl_core.application.application_extension_abc import ApplicationExtensionABC
 from cpl_core.application.startup_abc import StartupABC
 from cpl_core.configuration.configuration import Configuration
-from cpl_core.console import Console
 from cpl_core.dependency_injection.service_collection import ServiceCollection
 
 
@@ -48,5 +46,19 @@ class ApplicationBuilder(ApplicationBuilderABC):
         for ex in self._extensions:
             extension = ex()
             extension.run(config, services)
+
+        return self._app(config, services)
+
+    async def build_async(self) -> ApplicationABC:
+        if self._startup is not None:
+            await self._startup.configure_configuration(self._configuration, self._environment)
+            await self._startup.configure_services(self._services, self._environment)
+
+        config = self._configuration
+        services = self._services.build_service_provider()
+
+        for ex in self._extensions:
+            extension = ex()
+            await extension.run(config, services)
 
         return self._app(config, services)

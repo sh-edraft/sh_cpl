@@ -59,13 +59,14 @@ class ConsoleBuilder:
 
     @classmethod
     def build(cls, project_path: str, use_application_api: bool, use_startup: bool, use_service_providing: bool,
-              project_name: str, project_settings: dict, workspace: Optional[WorkspaceSettings]):
+              use_async: bool, project_name: str, project_settings: dict, workspace: Optional[WorkspaceSettings]):
         """
         Builds the console project files
         :param project_path:
         :param use_application_api:
         :param use_startup:
         :param use_service_providing:
+        :param use_async:
         :param project_name:
         :param project_settings:
         :param workspace:
@@ -79,7 +80,8 @@ class ConsoleBuilder:
                 ReadmeTemplate(),
                 TestsInitTemplate(),
                 AppsettingsTemplate(),
-                MainInitTemplate(project_name, os.path.join('src/', project_name_snake))
+                MainInitTemplate(project_name, os.path.join(
+                    'src/', project_name_snake))
             ]
         else:
             project_path = os.path.join(
@@ -103,18 +105,22 @@ class ConsoleBuilder:
             src_rel_path = os.path.join('src/', src_name)
 
         if use_application_api:
-            templates.append(ApplicationTemplate(src_name, src_rel_path))
+            templates.append(ApplicationTemplate(src_name, src_rel_path, use_async))
 
             if use_startup:
-                templates.append(StartupTemplate(src_name, src_rel_path))
-                templates.append(MainWithApplicationHostAndStartupTemplate(src_name, src_rel_path))
+                templates.append(StartupTemplate(src_name, src_rel_path, use_async))
+                templates.append(MainWithApplicationHostAndStartupTemplate(
+                    src_name, src_rel_path, use_async))
             else:
-                templates.append(MainWithApplicationBaseTemplate(src_name, src_rel_path))
+                templates.append(MainWithApplicationBaseTemplate(
+                    src_name, src_rel_path, use_async))
         else:
             if use_service_providing:
-                templates.append(MainWithDependencyInjection(src_name, src_rel_path))
+                templates.append(MainWithDependencyInjection(
+                    src_name, src_rel_path, use_async))
             else:
-                templates.append(MainWithoutApplicationBaseTemplate(src_name, src_rel_path))
+                templates.append(MainWithoutApplicationBaseTemplate(
+                    src_name, src_rel_path, use_async))
 
         proj_name = project_name
         if workspace is not None:
@@ -132,7 +138,8 @@ class ConsoleBuilder:
 
         else:
             workspace.projects[project_name] = f'src/{project_file_path}'
-            cls._create_workspace('cpl-workspace.json', workspace.default_project, workspace.projects)
+            cls._create_workspace('cpl-workspace.json',
+                                  workspace.default_project, workspace.projects)
 
         Console.spinner(
             f'Creating {project_file_path}',

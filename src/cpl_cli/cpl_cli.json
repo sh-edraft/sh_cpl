@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2021",
       "Minor": "10",
-      "Micro": "0.post2"
+      "Micro": "3"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl-core>=2021.10.0.post1"
+      "sh_cpl-core>=2021.10.2"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {},

@@ -2,6 +2,8 @@ from abc import abstractmethod, ABC
 from collections import Callable
 from typing import Type, Optional
 
+from cpl_core.dependency_injection.scope_abc import ScopeABC
+
 
 class ServiceProviderABC(ABC):
     r"""ABC for the class :class:`cpl_core.dependency_injection.service_provider.ServiceProvider`"""
@@ -22,6 +24,27 @@ class ServiceProviderABC(ABC):
         Returns
         -------
             Object of the given type
+        """
+        pass
+    
+    @abstractmethod
+    def set_scope(self, scope: ScopeABC):
+        r"""Sets the scope of service provider
+
+        Parameter
+        ---------
+            scope :class:`cpl_core.dependency_injection.scope.Scope`
+                Service scope
+        """
+        pass
+    
+    @abstractmethod
+    def create_scope(self) -> ScopeABC:
+        r"""Creates a service scope
+
+        Returns
+        -------
+            Object of type :class:`cpl_core.dependency_injection.scope.Scope`
         """
         pass
 
