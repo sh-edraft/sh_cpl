@@ -72,6 +72,13 @@ class ConsoleBuilder:
         :param workspace:
         :return:
         """
+        src_rel_path = ''
+        if '/' in project_name:
+            old_pj_name = project_name
+            parts = project_name.split('/')
+            project_name = parts[len(parts) - 1]
+            src_rel_path = old_pj_name.split(project_name)[0]
+            
         project_name_snake = String.convert_to_snake_case(project_name)
 
         if workspace is None:

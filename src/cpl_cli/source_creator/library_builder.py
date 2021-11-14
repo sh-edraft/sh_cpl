@@ -73,6 +73,13 @@ class LibraryBuilder:
         :param workspace:
         :return:
         """
+        src_rel_path = ''
+        if '/' in project_name:
+            old_pj_name = project_name
+            parts = project_name.split('/')
+            project_name = parts[len(parts) - 1]
+            src_rel_path = old_pj_name.split(project_name)[0]
+
         project_name_snake = String.convert_to_snake_case(project_name)
 
         if workspace is None:
@@ -100,28 +107,29 @@ class LibraryBuilder:
         if not os.path.isdir(project_path):
             os.makedirs(project_path)
 
-        src_rel_path = ''
         src_name = project_name_snake
         if workspace is None:
             src_rel_path = os.path.join('src/', src_name)
 
         if use_application_api:
-            templates.append(ApplicationTemplate(src_name, src_rel_path))
+            templates.append(ApplicationTemplate(
+                src_name, src_rel_path, use_async))
 
             if use_startup:
-                templates.append(StartupTemplate(src_name, src_rel_path))
+                templates.append(StartupTemplate(
+                    src_name, src_rel_path, use_async))
                 templates.append(MainWithApplicationHostAndStartupTemplate(
-                    src_name, src_rel_path))
+                    src_name, src_rel_path, use_async))
             else:
                 templates.append(MainWithApplicationBaseTemplate(
-                    src_name, src_rel_path))
+                    src_name, src_rel_path, use_async))
         else:
             if use_service_providing:
                 templates.append(MainWithDependencyInjection(
-                    src_name, src_rel_path))
+                    src_name, src_rel_path, use_async))
             else:
                 templates.append(MainWithoutApplicationBaseTemplate(
-                    src_name, src_rel_path))
+                    src_name, src_rel_path, use_async))
 
         proj_name = project_name
         if workspace is not None:
