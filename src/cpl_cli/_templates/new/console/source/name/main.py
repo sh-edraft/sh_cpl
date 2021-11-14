@@ -12,12 +12,13 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = path
-        self._use_async = use_async
 
         import_pkg = f'{name}.'
 
         if use_async:
             self._value = textwrap.dedent(f"""\
+                import asyncio
+                
                 from cpl_core.application import ApplicationBuilder
                 
                 from {import_pkg}application import Application
@@ -28,7 +29,7 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
                     app_builder = ApplicationBuilder(Application)
                     app_builder.use_startup(Startup)
                     app: Application = await app_builder.build_async()
-                    await app.run()
+                    await app.run_async()
                 
                 
                 if __name__ == '__main__':
@@ -74,12 +75,13 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = path
-        self._use_async = use_async
 
         import_pkg = f'{name}.'
 
         if use_async:
             self._value = textwrap.dedent(f"""\
+                import asyncio
+                
                 from cpl_core.application import ApplicationBuilder
                 
                 from {import_pkg}application import Application
@@ -88,7 +90,7 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
                 async def main():
                     app_builder = ApplicationBuilder(Application)
                     app: Application = await app_builder.build_async()
-                    await app.run()
+                    await app.run_async()
                 
                 
                 if __name__ == '__main__':
@@ -132,12 +134,13 @@ class MainWithoutApplicationBaseTemplate(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = path
-        self._use_async = use_async
 
         import_pkg = f'{name}.'
 
         if use_async:
             self._value = textwrap.dedent("""\
+                import asyncio
+                
                 from cpl_core.console import Console
                 
                 
@@ -183,12 +186,13 @@ class MainWithDependencyInjection(TemplateFileABC):
         name = String.convert_to_snake_case(name)
         self._name = 'main.py'
         self._path = path
-        self._use_async = use_async
 
         import_pkg = f'{name}.'
 
         if use_async:
             self._value = textwrap.dedent("""\
+                import asyncio
+                
                 from cpl_core.configuration import Configuration, ConfigurationABC
                 from cpl_core.console import Console
                 from cpl_core.dependency_injection import ServiceCollection, ServiceProviderABC
@@ -205,8 +209,8 @@ class MainWithDependencyInjection(TemplateFileABC):
                 
                 
                 async def main():
-                    await config = configure_configuration()
-                    await provider = configure_services(config)
+                    config = await configure_configuration()
+                    provider = await configure_services(config)
                     Console.write_line('Hello World')
                 
                 

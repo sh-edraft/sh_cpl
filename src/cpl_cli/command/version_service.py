@@ -52,7 +52,11 @@ class VersionService(CommandABC):
         ]
         packages = []
         for modname in cpl_packages:
-            module = pkgutil.find_loader(modname).load_module(modname)
+            module = pkgutil.find_loader(modname)
+            if module is None:
+                break
+            
+            module = module.load_module(modname)
             if '__version__' in dir(module):
                 packages.append([f'{modname}', module.__version__])
 

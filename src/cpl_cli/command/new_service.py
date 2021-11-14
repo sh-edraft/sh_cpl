@@ -180,7 +180,7 @@ class NewService(CommandABC):
                 self._use_service_providing = True
                 
         result = Console.read('Do you want to use async? (y/n) ')
-        if result.lower == 'y':
+        if result.lower() == 'y':
             self._use_async = True
 
         Console.set_foreground_color(ForegroundColorEnum.default)
