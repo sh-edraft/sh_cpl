@@ -59,7 +59,7 @@ class LibraryBuilder:
 
     @classmethod
     def build(cls, project_path: str, use_application_api: bool, use_startup: bool,
-              use_service_providing: bool, project_name: str, project_settings: dict,
+              use_async: bool, use_service_providing: bool, project_name: str, project_settings: dict,
               workspace: Optional[WorkspaceSettings]):
         """
         Builds the library project files
@@ -67,6 +67,7 @@ class LibraryBuilder:
         :param use_application_api:
         :param use_startup:
         :param use_service_providing:
+        :param use_async:
         :param project_name:
         :param project_settings:
         :param workspace:
@@ -79,7 +80,8 @@ class LibraryBuilder:
                 LicenseTemplate(),
                 ReadmeTemplate(),
                 TestsInitTemplate(),
-                NameInitTemplate(project_name, os.path.join('src/', project_name_snake)),
+                NameInitTemplate(project_name, os.path.join(
+                    'src/', project_name_snake)),
                 AppsettingsTemplate()
             ]
         else:
@@ -108,14 +110,18 @@ class LibraryBuilder:
 
             if use_startup:
                 templates.append(StartupTemplate(src_name, src_rel_path))
-                templates.append(MainWithApplicationHostAndStartupTemplate(src_name, src_rel_path))
+                templates.append(MainWithApplicationHostAndStartupTemplate(
+                    src_name, src_rel_path))
             else:
-                templates.append(MainWithApplicationBaseTemplate(src_name, src_rel_path))
+                templates.append(MainWithApplicationBaseTemplate(
+                    src_name, src_rel_path))
         else:
             if use_service_providing:
-                templates.append(MainWithDependencyInjection(src_name, src_rel_path))
+                templates.append(MainWithDependencyInjection(
+                    src_name, src_rel_path))
             else:
-                templates.append(MainWithoutApplicationBaseTemplate(src_name, src_rel_path))
+                templates.append(MainWithoutApplicationBaseTemplate(
+                    src_name, src_rel_path))
 
         proj_name = project_name
         if workspace is not None:
@@ -133,7 +139,8 @@ class LibraryBuilder:
 
         else:
             workspace.projects[project_name] = f'src/{project_file_path}'
-            cls._create_workspace('cpl-workspace.json', workspace.default_project, workspace.projects)
+            cls._create_workspace('cpl-workspace.json',
+                                  workspace.default_project, workspace.projects)
 
         Console.spinner(
             f'Creating {project_file_path}',
