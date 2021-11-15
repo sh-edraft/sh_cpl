@@ -73,14 +73,11 @@ class LibraryBuilder:
         :param workspace:
         :return:
         """
-        src_rel_path = ''
-        if '/' in project_name:
-            old_pj_name = project_name
-            parts = project_name.split('/')
-            project_name = parts[len(parts) - 1]
-            src_rel_path = old_pj_name.split(project_name)[0]
+        pj_name = project_name
+        if '/' in pj_name:
+            pj_name = pj_name.split('/')[len(pj_name.split('/')) - 1]
 
-        project_name_snake = String.convert_to_snake_case(project_name)
+        project_name_snake = String.convert_to_snake_case(pj_name)
 
         if workspace is None:
             templates: list[TemplateFileABC] = [
@@ -107,6 +104,7 @@ class LibraryBuilder:
         if not os.path.isdir(project_path):
             os.makedirs(project_path)
 
+        src_rel_path = ''
         src_name = project_name_snake
         if workspace is None:
             src_rel_path = os.path.join('src/', src_name)
@@ -131,11 +129,26 @@ class LibraryBuilder:
                 templates.append(MainWithoutApplicationBaseTemplate(
                     src_name, src_rel_path, use_async))
 
+        if '/' in project_name:
+            old_pj_name = project_name
+            parts = project_name.split('/')
+            project_name = parts[len(parts) - 1]
+            src_rel_path = old_pj_name.split(project_name)[0]
+
         proj_name = project_name
+        if src_rel_path.endswith('/'):
+            src_rel_path = src_rel_path[:len(src_rel_path) - 1]
+        
+        if src_rel_path != '':
+            proj_name = f'{src_rel_path}/{project_name}'
         if workspace is not None:
             proj_name = project_name_snake
 
-        project_file_path = f'{project_name_snake}/{project_name}.json'
+        if src_rel_path != '':
+            project_file_path = f'{src_rel_path}/{project_name_snake}/{project_name}.json'
+        else:
+            project_file_path = f'{project_name_snake}/{project_name}.json'
+
         if workspace is None:
             src_path = f'src/{project_name_snake}'
             workspace_file_path = f'{proj_name}/cpl-workspace.json'
