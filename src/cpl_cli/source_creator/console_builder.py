@@ -109,10 +109,12 @@ class ConsoleBuilder:
             src_rel_path = os.path.join('src/', src_name)
 
         if use_application_api:
-            templates.append(ApplicationTemplate(src_name, src_rel_path, use_async))
+            templates.append(ApplicationTemplate(
+                src_name, src_rel_path, use_async))
 
             if use_startup:
-                templates.append(StartupTemplate(src_name, src_rel_path, use_async))
+                templates.append(StartupTemplate(
+                    src_name, src_rel_path, use_async))
                 templates.append(MainWithApplicationHostAndStartupTemplate(
                     src_name, src_rel_path, use_async))
             else:
@@ -135,7 +137,7 @@ class ConsoleBuilder:
         proj_name = project_name
         if src_rel_path.endswith('/'):
             src_rel_path = src_rel_path[:len(src_rel_path) - 1]
-        
+
         if src_rel_path != '':
             proj_name = f'{src_rel_path}/{project_name}'
         if workspace is not None:
@@ -146,7 +148,6 @@ class ConsoleBuilder:
         else:
             project_file_path = f'{project_name_snake}/{project_name}.json'
 
-        project_file_path = f'{project_name_snake}/{project_name}.json'
         if workspace is None:
             src_path = f'src/{project_name_snake}'
             workspace_file_path = f'{proj_name}/cpl-workspace.json'
