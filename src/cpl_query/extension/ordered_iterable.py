@@ -9,9 +9,9 @@ class OrderedIterable(Iterable, OrderedIterableABC):
     r"""Implementation of :class: `cpl_query.extension.Iterable` `cpl_query.extension.OrderedIterableABC`
     """
 
-    def __init__(self):
-        Iterable.__init__(self)
-        OrderedIterableABC.__init__(self)
+    def __init__(self, _t: type = None):
+        Iterable.__init__(self, _t)
+        OrderedIterableABC.__init__(self, _t)
 
     def then_by(self, _func: Callable) -> OrderedIterableABC:
         self._funcs.append(_func)

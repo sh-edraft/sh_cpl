@@ -75,13 +75,13 @@ class Iterable(IterableABC):
 
     def order_by(self, func: Callable) -> OrderedIterableABC:
         res = order_by_query(self, func)
-        from cpl_query._extension.ordered_iterable import OrderedIterable
+        from cpl_query.extension.ordered_iterable import OrderedIterable
         res.__class__ = OrderedIterable
         return res
 
     def order_by_descending(self, func: Callable) -> OrderedIterableABC:
         res = order_by_descending_query(self, func)
-        from cpl_query._extension.ordered_iterable import OrderedIterable
+        from cpl_query.extension.ordered_iterable import OrderedIterable
         res.__class__ = OrderedIterable
         return res
 

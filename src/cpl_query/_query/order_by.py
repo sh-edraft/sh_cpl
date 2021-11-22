@@ -6,7 +6,7 @@ from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
 
 
 def order_by_query(_list: IterableABC, _func: Callable) -> OrderedIterableABC:
-    result = OrderedIterableABC(_func)
+    result = OrderedIterableABC(_list.type, _func)
     _list.sort(key=_func)
     result.extend(_list)
     return result
@@ -19,7 +19,7 @@ def order_by_descending_query(_list: IterableABC, _func: Callable) -> OrderedIte
     if _func is None:
         raise ArgumentNoneException(ExceptionArgument.func)
 
-    result = OrderedIterableABC(_func)
+    result = OrderedIterableABC(_list.type, _func)
     _list.sort(key=_func, reverse=True)
     result.extend(_list)
     return result

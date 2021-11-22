@@ -7,8 +7,8 @@ from cpl_query.extension.iterable_abc import IterableABC
 class OrderedIterableABC(IterableABC):
 
     @abstractmethod
-    def __init__(self, _func: Callable = None):
-        IterableABC.__init__(self)
+    def __init__(self, _t: type, _func: Callable = None):
+        IterableABC.__init__(self, _t)
         self._funcs: list[Callable] = []
         if _func is not None:
             self._funcs.append(_func)
