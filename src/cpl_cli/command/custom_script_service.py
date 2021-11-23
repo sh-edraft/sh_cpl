@@ -30,10 +30,6 @@ class CustomScriptService(CommandABC):
             if script == cmd:
                 command = self._workspace.scripts[script]
                 try:
-                    run_command = []
-                    for word in command.split(' '):
-                        run_command.append(word)
-
-                    subprocess.run(run_command)
+                    subprocess.run(command, shell=True if os.name == 'posix' else None)
                 except Exception as e:
                     Console.error(str(e))
