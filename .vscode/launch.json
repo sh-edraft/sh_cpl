@@ -256,7 +256,10 @@
             "console": "integratedTerminal",
             "args": [
                 "start",
-            ]
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src/:${workspaceFolder}/src/cpl_cli/"
+            }
         },
         {
             "name": "CLI: uninstall discord.py",
