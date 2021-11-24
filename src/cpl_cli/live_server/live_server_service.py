@@ -41,7 +41,7 @@ class LiveServerService(FileSystemEventHandler):
         :return:
         """
         self._observer = Observer()
-        self._observer.schedule(self, path=self._src_dir, recursive=True)
+        self._observer.schedule(self, path=os.path.abspath(os.path.join(self._src_dir, '../')), recursive=True)
         self._observer.start()
 
     def _restart(self):
