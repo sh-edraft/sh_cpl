@@ -94,8 +94,6 @@ class ConsoleBuilder:
             )
 
             templates: list[TemplateFileABC] = [
-                LicenseTemplate(),
-                ReadmeTemplate(),
                 AppsettingsTemplate(),
                 MainInitTemplate('', '')
             ]
