@@ -29,8 +29,8 @@ class Application(ApplicationABC):
         user_repo.add_test_user()
         Console.write_line('Users:')
         for user in user_repo.get_users():
-            Console.write_line(user.Id, user.Name, user.City_Id, user.City.Id, user.City.Name, user.City.ZIP)
+            Console.write_line(user.UserId, user.Name, user.CityId, user.City.CityId, user.City.Name, user.City.ZIP)
 
         Console.write_line('Cities:')
         for city in user_repo.get_cities():
-            Console.write_line(city.Id, city.Name, city.ZIP)
+            Console.write_line(city.CityId, city.Name, city.ZIP)

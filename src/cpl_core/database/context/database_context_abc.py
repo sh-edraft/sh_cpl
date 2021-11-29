@@ -1,7 +1,6 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 
-from sqlalchemy import engine
-from sqlalchemy.orm import Session
+from cpl_core.database.database_settings import DatabaseSettings
 
 
 class DatabaseContextABC(ABC):
@@ -13,28 +12,18 @@ class DatabaseContextABC(ABC):
 
     @property
     @abstractmethod
-    def engine(self) -> engine: pass
-
-    @property
-    @abstractmethod
-    def session(self) -> Session: pass
+    def cursor(self): pass
 
     @abstractmethod
-    def connect(self, connection_string: str):
-        r"""Connects to a database by connection string
+    def connect(self, database_settings: DatabaseSettings):
+        r"""Connects to a database by connection settings
 
         Parameter
         ---------
-            connection_string: :class:`str`
-                Database connection string, see: https://docs.sqlalchemy.org/en/14/core/engines.html
+            database_settings :class:`cpl_core.database.database_settings.DatabaseSettings`
         """
         pass
 
     def save_changes(self):
         r"""Saves changes of the database"""
-        pass
-
-    @abstractmethod
-    def _create_tables(self):
-        r"""Create all tables for application from database model"""
         pass

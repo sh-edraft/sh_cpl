@@ -13,60 +13,46 @@ class DatabaseSettings(ConfigurationModelABC):
     def __init__(self):
         ConfigurationModelABC.__init__(self)
 
+        self._host: Optional[str] = None
+        self._user: Optional[str] = None
+        self._password: Optional[str] = None
+        self._databse: Optional[str] = None
+        self._charset: Optional[str] = None
+        self._use_unicode: Optional[bool] = None
+        self._buffered: Optional[bool] = None
         self._auth_plugin: Optional[str] = None
-        self._connection_string: Optional[str] = None
-        self._credentials: Optional[str] = None
-        self._encoding: Optional[str] = None
-        self._case_sensitive: Optional[bool] = None
-        self._echo: Optional[bool] = None
 
     @property
-    def auth_plugin(self) -> str:
+    def host(self) -> Optional[str]:
+        return self._host
+
+    @property
+    def user(self) -> Optional[str]:
+        return self._user
+
+    @property
+    def password(self) -> Optional[str]:
+        return self._password
+
+    @property
+    def database(self) -> Optional[str]:
+        return self._databse
+
+    @property
+    def charset(self) -> Optional[str]:
+        return self._charset
+
+    @property
+    def use_unicode(self) -> Optional[bool]:
+        return self._use_unicode
+
+    @property
+    def buffered(self) -> Optional[bool]:
+        return self._buffered
+
+    @property
+    def auth_plugin(self) -> Optional[str]:
         return self._auth_plugin
-
-    @auth_plugin.setter
-    def auth_plugin(self, auth_plugin: str):
-        self._auth_plugin = auth_plugin
-
-    @property
-    def connection_string(self) -> str:
-        return self._connection_string
-
-    @connection_string.setter
-    def connection_string(self, connection_string: str):
-        self._connection_string = connection_string
-
-    @property
-    def credentials(self) -> str:
-        return self._credentials
-
-    @credentials.setter
-    def credentials(self, credentials: str):
-        self._credentials = credentials
-
-    @property
-    def encoding(self) -> str:
-        return self._encoding
-
-    @encoding.setter
-    def encoding(self, encoding: str) -> None:
-        self._encoding = encoding
-
-    @property
-    def case_sensitive(self) -> bool:
-        return self._case_sensitive
-
-    @case_sensitive.setter
-    def case_sensitive(self, case_sensitive: bool) -> None:
-        self._case_sensitive = case_sensitive
-
-    @property
-    def echo(self) -> bool:
-        return self._echo
-
-    @echo.setter
-    def echo(self, echo: bool) -> None:
-        self._echo = echo
 
     def from_dict(self, settings: dict):
         r"""Sets attributes from given dict
@@ -76,20 +62,22 @@ class DatabaseSettings(ConfigurationModelABC):
         settings: :class:`dict`
         """
         try:
-            self._connection_string = settings[DatabaseSettingsNameEnum.connection_string.value]
-            self._credentials = settings[DatabaseSettingsNameEnum.credentials.value]
-
+            self._host = settings[DatabaseSettingsNameEnum.host.value]
+            self._user = settings[DatabaseSettingsNameEnum.user.value]
+            self._password = settings[DatabaseSettingsNameEnum.password.value]
+            self._databse = settings[DatabaseSettingsNameEnum.database.value]
+            
+            if DatabaseSettingsNameEnum.charset.value in settings:
+                self._charset = settings[DatabaseSettingsNameEnum.charset.value]
+            
+            if DatabaseSettingsNameEnum.buffered.value in settings:
+                self._use_unicode = bool(settings[DatabaseSettingsNameEnum.use_unicode.value])
+            
+            if DatabaseSettingsNameEnum.buffered.value in settings:
+                self._buffered = bool(settings[DatabaseSettingsNameEnum.buffered.value])
+            
             if DatabaseSettingsNameEnum.auth_plugin.value in settings:
                 self._auth_plugin = settings[DatabaseSettingsNameEnum.auth_plugin.value]
-
-            if DatabaseSettingsNameEnum.encoding.value in settings:
-                self._encoding = settings[DatabaseSettingsNameEnum.encoding.value]
-
-            if DatabaseSettingsNameEnum.case_sensitive.value in settings:
-                self._case_sensitive = bool(settings[DatabaseSettingsNameEnum.case_sensitive.value])
-
-            if DatabaseSettingsNameEnum.echo.value in settings:
-                self._echo = bool(settings[DatabaseSettingsNameEnum.echo.value])
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')

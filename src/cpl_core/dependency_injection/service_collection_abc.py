@@ -15,15 +15,13 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_db_context(self, db_context: Type[DatabaseContextABC], db_settings: DatabaseSettings):
+    def add_db_context(self, db_context: Type[DatabaseContextABC]):
         r"""Adds database context
 
         Parameter
         ---------
             db_context: Type[:class:`cpl_core.database.context.database_context_abc.DatabaseContextABC`]
                 Database context
-            db_settings: :class:`cpl_core.database.database_settings.DatabaseSettings`
-                Database settings
         """
         pass
 

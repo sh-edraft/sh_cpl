@@ -1,13 +1,13 @@
-from sqlalchemy import engine, Table
-from sqlalchemy.orm import Session
+
+from typing import Optional
 
 from cpl_core.console.console import Console
-from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.database.connection.database_connection import DatabaseConnection
-from cpl_core.database.connection.database_connection_abc import DatabaseConnectionABC
+from cpl_core.database.connection.database_connection_abc import \
+    DatabaseConnectionABC
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.database.database_settings import DatabaseSettings
-from cpl_core.database.database_model import DatabaseModel
+from cpl_core.database.table_abc import TableABC
 
 
 class DatabaseContext(DatabaseContextABC):
@@ -19,38 +19,24 @@ class DatabaseContext(DatabaseContextABC):
     """
 
     def __init__(self, database_settings: DatabaseSettings):
-        DatabaseContextABC.__init__(self)
+        DatabaseContextABC.__init__(self, database_settings)
 
-        self._db: DatabaseConnectionABC = DatabaseConnection(database_settings)
-        self._tables: list[Table] = []
-
-    @property
-    def engine(self) -> engine:
-        return self._db.engine
+        self._db: DatabaseConnectionABC = DatabaseConnection()
+        self._cursor: Optional[str] = None
+        self._tables: list[TableABC] = TableABC.__subclasses__()
 
     @property
-    def session(self) -> Session:
-        return self._db.session
+    def cursor(self):
+        return self._cursor
 
-    def connect(self, connection_string: str):
-        self._db.connect(connection_string)
-        self._create_tables()
+    def connect(self, database_settings: DatabaseSettings):
+        self._db.connect(database_settings)
+        c = self._db.server.cursor()
+        self._cursor = c
+        Console.write_line(f"Ts: {self._tables}")
+        for table in self._tables:
+            Console.write_line(f"{table}, {table.create_string}")
+            c.execute(table.create_string)
 
     def save_changes(self):
-        self._db.session.commit()
-
-    def _create_tables(self):
-        try:
-            for subclass in DatabaseModel.__subclasses__():
-                self._tables.append(subclass.__table__)
-
-            DatabaseModel.metadata.drop_all(self._db.engine, self._tables)
-            DatabaseModel.metadata.create_all(self._db.engine, self._tables, checkfirst=True)
-            Console.set_foreground_color(ForegroundColorEnum.green)
-            Console.write_line(f'[{__name__}] Created tables')
-            Console.set_foreground_color(ForegroundColorEnum.default)
-        except Exception as e:
-            Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(f'[{__name__}] Creating tables failed -> {e}')
-            Console.set_foreground_color(ForegroundColorEnum.default)
-            exit()
+        self._db.server.commit()

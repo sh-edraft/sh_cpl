@@ -1,7 +1,7 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 
-from sqlalchemy import engine
-from sqlalchemy.orm import Session
+from cpl_core.database.database_settings import DatabaseSettings
+from mysql.connector.abstracts import MySQLConnectionAbstract
 
 
 class DatabaseConnectionABC(ABC):
@@ -12,14 +12,10 @@ class DatabaseConnectionABC(ABC):
 
     @property
     @abstractmethod
-    def engine(self) -> engine: pass
-
-    @property
+    def server(self) -> MySQLConnectionAbstract: pass
+    
     @abstractmethod
-    def session(self) -> Session: pass
-
-    @abstractmethod
-    def connect(self, connection_string: str):
+    def connect(self, database_settings: DatabaseSettings):
         r"""Connects to a database by connection string
 
         Parameter

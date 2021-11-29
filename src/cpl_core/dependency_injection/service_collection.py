@@ -40,7 +40,7 @@ class ServiceCollection(ServiceCollectionABC):
 
     def add_db_context(self, db_context_type: Type[DatabaseContextABC], db_settings: DatabaseSettings):
         self._database_context = db_context_type(db_settings)
-        self._database_context.connect(CredentialManager.build_string(db_settings.connection_string, db_settings.credentials))
+        self._database_context.connect(db_settings)
 
     def add_logging(self):
         self.add_singleton(LoggerABC, Logger)
