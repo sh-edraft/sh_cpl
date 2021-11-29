@@ -57,7 +57,8 @@ class RemoveService(CommandABC):
         ws_dict = {
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: self._workspace.default_project,
-                WorkspaceSettingsNameEnum.projects.value: self._workspace.projects
+                WorkspaceSettingsNameEnum.projects.value: self._workspace.projects,
+                WorkspaceSettingsNameEnum.scripts.value: self._workspace.scripts
             }
         }
 

@@ -39,12 +39,12 @@ class ConsoleBuilder:
             project_json.close()
 
     @classmethod
-    def _create_workspace(cls, path: str, project_name, projects: dict):
+    def _create_workspace(cls, path: str, project_name, projects: dict, scripts: dict):
         ws_dict = {
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: project_name,
                 WorkspaceSettingsNameEnum.projects.value: projects,
-                WorkspaceSettingsNameEnum.scripts.value: {}
+                WorkspaceSettingsNameEnum.scripts.value: scripts
             }
         }
 
@@ -151,14 +151,18 @@ class ConsoleBuilder:
             workspace_file_path = f'{proj_name}/cpl-workspace.json'
             project_file_rel_path = f'{src_path}/{project_name}.json'
             project_file_path = f'{proj_name}/{src_path}/{project_name}.json'
-            cls._create_workspace(workspace_file_path, project_name, {
-                project_name: project_file_rel_path
-            })
+            cls._create_workspace(
+                workspace_file_path,
+                project_name, 
+                {
+                    project_name: project_file_rel_path
+                },
+                {}
+            )
 
         else:
             workspace.projects[project_name] = f'src/{project_file_path}'
-            cls._create_workspace('cpl-workspace.json',
-                                  workspace.default_project, workspace.projects)
+            cls._create_workspace('cpl-workspace.json', workspace.default_project, workspace.projects, workspace.scripts)
 
         Console.spinner(
             f'Creating {project_file_path}',
