@@ -39,12 +39,12 @@ class LibraryBuilder:
             project_json.close()
 
     @classmethod
-    def _create_workspace(cls, path: str, project_name, projects: dict):
+    def _create_workspace(cls, path: str, project_name, projects: dict, scripts: dict):
         ws_dict = {
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: project_name,
                 WorkspaceSettingsNameEnum.projects.value: projects,
-                WorkspaceSettingsNameEnum.scripts.value: {}
+                WorkspaceSettingsNameEnum.scripts.value: scripts,
             }
         }
 
