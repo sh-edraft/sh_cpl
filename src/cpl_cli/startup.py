@@ -55,7 +55,10 @@ class Startup(StartupABC):
             ConsoleArgument('', 'help', ['h', 'H'], ' ', is_value_token_optional=True)
         )
         configuration.add_console_argument(
-            ConsoleArgument('', 'install', ['i', 'I'], ' ', is_value_token_optional=True)
+            ConsoleArgument('', 'install', ['i', 'I'], ' ', is_value_token_optional=True, console_arguments= [
+                ConsoleArgument('', '--virtual', ['--v', '--V'], ''),
+                ConsoleArgument('', '--simulate', ['--s', '--S'], ''),
+            ])
         )
         configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', console_arguments=[
             ConsoleArgument('', 'console', ['c', 'C'], ' '),

@@ -41,6 +41,10 @@
             "cwd": "${workspaceFolder}/src/tests/custom/database/src",
             "program": "main.py",
             "console": "integratedTerminal",
+            "env": {
+                "PYTHON_ENVIRONMENT": "development",
+                "PYTHONPATH": "${workspaceFolder}/src/:$PYTHONPATH"
+            }
         },
         {
             "name": "CLI",
@@ -197,7 +201,11 @@
             "args": [
                 "install",
                 "discord.py",
-            ]
+            ],
+            "env": {
+                "GISMO_ENVIRONMENT": "development",
+                "PYTHONPATH": "${workspaceFolder}/src/:$PYTHONPATH"
+            }
         },
         {
             "name": "CLI: install local",

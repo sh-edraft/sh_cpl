@@ -3,8 +3,8 @@
     "Name": "sh_cpl-core",
     "Version": {
       "Major": "2021",
-      "Minor": "10",
-      "Micro": "2"
+      "Minor": "11",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -19,15 +19,14 @@
       "colorama==0.4.4",
       "mysql-connector==2.2.9",
       "psutil==5.8.0",
-      "packaging==20.9",
+      "packaging==21.3",
       "pyfiglet==0.8.post1",
-      "pynput==1.7.3",
-      "SQLAlchemy==1.4.7",
-      "setuptools==56.0.0",
+      "pynput==1.7.5",
+      "setuptools==59.4.0",
       "tabulate==0.8.9",
       "termcolor==1.1.0",
-      "watchdog==2.0.2",
-      "wheel==0.36.2"
+      "watchdog==2.1.6",
+      "wheel==0.37.0"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {},

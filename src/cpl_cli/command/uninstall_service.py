@@ -2,6 +2,7 @@ import json
 import os
 import subprocess
 import textwrap
+import time
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
@@ -31,6 +32,9 @@ class UninstallService(CommandABC):
         self._env = env
         self._build_settings = build_settings
         self._project_settings = project_settings
+        
+        self._is_simulating = False
+        self._is_virtual = False
 
     @property
     def help_message(self) -> str:
@@ -41,6 +45,9 @@ class UninstallService(CommandABC):
         Arguments:
             package     The package to uninstall
         """)
+        
+    def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
+        time.sleep(t)
 
     def run(self, args: list[str]):
         """
@@ -52,13 +59,28 @@ class UninstallService(CommandABC):
             Console.error(f'Expected package')
             Console.error(f'Usage: cpl uninstall <package>')
             return
+        
+        
+        if '--virtual' in args:
+            self._is_virtual = True
+            args.remove('--virtual')
+            Console.write_line('Running in virtual mode:')
+        
+        if '--simulate' in args:
+            self._is_virtual = True
+            args.remove('--simulate')
+            Console.write_line('Running in simulation mode:')
 
-        Pip.set_executable(self._project_settings.python_executable)
+        if not self._is_virtual:
+            Pip.set_executable(self._project_settings.python_executable)
 
         package = args[0]
         is_in_dependencies = False
 
-        pip_package = Pip.get_package(package)
+        if not self._is_virtual:
+            pip_package = Pip.get_package(package)
+        else:
+            pip_package = package
 
         for dependency in self._project_settings.dependencies:
             if package in dependency:
@@ -74,7 +96,7 @@ class UninstallService(CommandABC):
 
         Console.spinner(
             f'Uninstalling: {package}',
-            Pip.uninstall, package,
+            Pip.uninstall if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
@@ -83,13 +105,15 @@ class UninstallService(CommandABC):
 
         if package in self._project_settings.dependencies:
             self._project_settings.dependencies.remove(package)
-            config = {
-                ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
-                BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
-            }
-            with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'), 'w') as project_file:
-                project_file.write(json.dumps(config, indent=2))
-                project_file.close()
+            if not self._is_simulating:
+                config = {
+                    ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
+                    BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
+                }
+                with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'), 'w') as project_file:
+                    project_file.write(json.dumps(config, indent=2))
+                    project_file.close()
 
         Console.write_line(f'Removed {package}')
-        Pip.reset_executable()
+        if not self._is_virtual:
+            Pip.reset_executable()

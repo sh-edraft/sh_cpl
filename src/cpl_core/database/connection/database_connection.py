@@ -1,64 +1,52 @@
 from typing import Optional
 
-from sqlalchemy import engine, create_engine
-from sqlalchemy.orm import Session, sessionmaker
-
-from cpl_core.console.console import Console
-from cpl_core.console.foreground_color_enum import ForegroundColorEnum
-from cpl_core.database.connection.database_connection_abc import DatabaseConnectionABC
+import mysql.connector as sql
+from cpl_core.database.connection.database_connection_abc import \
+    DatabaseConnectionABC
 from cpl_core.database.database_settings import DatabaseSettings
+from cpl_core.utils.credential_manager import CredentialManager
+from mysql.connector.abstracts import MySQLConnectionAbstract
+from mysql.connector.cursor import MySQLCursorBuffered
 
 
 class DatabaseConnection(DatabaseConnectionABC):
     r"""Representation of the database connection
-
-    Parameter
-    ---------
-        database_settings: :class:`cpl_core.database.database_settings.DatabaseSettings`
     """
 
-    def __init__(self, database_settings: DatabaseSettings):
+    def __init__(self):
         DatabaseConnectionABC.__init__(self)
 
-        self._db_settings = database_settings
-
-        self._engine: Optional[engine] = None
-        self._session: Optional[Session] = None
-        self._credentials: Optional[str] = None
+        self._database: Optional[MySQLConnectionAbstract] = None
+        self._cursor: Optional[MySQLCursorBuffered] = None
 
     @property
-    def engine(self) -> engine:
-        return self._engine
+    def server(self) -> MySQLConnectionAbstract:
+        return self._database
 
     @property
-    def session(self) -> Session:
-        return self._session
+    def cursor(self) -> MySQLCursorBuffered:
+        return self._cursor
 
-    def connect(self, connection_string: str):
-        try:
-            self._engine = create_engine(connection_string)
-
-            if self._db_settings.auth_plugin is not None:
-                self._engine = create_engine(connection_string, connect_args={'auth_plugin': self._db_settings.auth_plugin})
-
-            if self._db_settings.encoding is not None:
-                self._engine.encoding = self._db_settings.encoding
-
-            if self._db_settings.case_sensitive is not None:
-                self._engine.case_sensitive = self._db_settings.case_sensitive
-
-            if self._db_settings.echo is not None:
-                self._engine.echo = self._db_settings.echo
-
-            self._engine.connect()
-
-            db_session = sessionmaker(bind=self._engine)
-            self._session = db_session()
-            Console.set_foreground_color(ForegroundColorEnum.green)
-            Console.write_line(f'[{__name__}] Connected to database')
-            Console.set_foreground_color(ForegroundColorEnum.default)
-        except Exception as e:
-            Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(f'[{__name__}] Database connection failed -> {e}')
-            Console.set_foreground_color(ForegroundColorEnum.default)
-            exit()
+    def connect(self, database_settings: DatabaseSettings):
+        connection = sql.connect(
+            host=database_settings.host,
+            user=database_settings.user,
+            passwd=CredentialManager.decrypt(database_settings.password),
+            charset=database_settings.charset,
+            use_unicode=database_settings.use_unicode,
+            buffered=database_settings.buffered,
+            auth_plugin=database_settings.auth_plugin
+        )
+        connection.cursor().execute(
+            f'CREATE DATABASE IF NOT EXISTS `{database_settings.database}`;')
+        self._database = sql.connect(
+            host=database_settings.host,
+            user=database_settings.user,
+            passwd=CredentialManager.decrypt(database_settings.password),
+            db=database_settings.database,
+            charset=database_settings.charset,
+            use_unicode=database_settings.use_unicode,
+            buffered=database_settings.buffered,
+            auth_plugin=database_settings.auth_plugin
+        )
+        self._cursor = self._database.cursor()
