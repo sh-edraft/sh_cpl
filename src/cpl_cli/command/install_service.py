@@ -172,14 +172,15 @@ class InstallService(CommandABC):
 
             self._project_settings.dependencies.append(new_name)
 
-            config = {
-                ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
-                BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
-            }
+            if not self._is_simulating:
+                config = {
+                    ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
+                    BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
+                }
             
-            with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
-                project_file.write(json.dumps(config, indent=2))
-                project_file.close()
+                with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
+                    project_file.write(json.dumps(config, indent=2))
+                    project_file.close()
 
         Pip.reset_executable()
 
