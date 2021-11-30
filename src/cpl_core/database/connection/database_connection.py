@@ -6,7 +6,7 @@ from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.database.connection.database_connection_abc import \
     DatabaseConnectionABC
 from cpl_core.database.database_settings import DatabaseSettings
-from cpl_core.utils import CredentialManager
+from cpl_core.utils.credential_manager import CredentialManager
 from mysql.connector.abstracts import MySQLConnectionAbstract
 from mysql.connector.cursor import MySQLCursorBuffered
 

@@ -1,7 +1,6 @@
 
 from typing import Optional
 
-from cpl_core.console.console import Console
 from cpl_core.database.connection.database_connection import DatabaseConnection
 from cpl_core.database.connection.database_connection_abc import \
     DatabaseConnectionABC
@@ -31,9 +30,7 @@ class DatabaseContext(DatabaseContextABC):
     
     def connect(self, database_settings: DatabaseSettings):
         self._db.connect(database_settings)
-        Console.write_line(f"Ts: {self._tables}")
         for table in self._tables:
-            Console.write_line(f"{table}, {table.get_create_string()}")
             self._db.cursor.execute(table.get_create_string())
 
     def save_changes(self):
