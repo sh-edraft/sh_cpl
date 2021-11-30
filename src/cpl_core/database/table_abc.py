@@ -7,8 +7,8 @@ class TableABC(ABC):
 
     @abstractmethod
     def __init__(self):
-        self._created_at: Optional[datetime] = None
-        self._modified_at: Optional[datetime] = None
+        self._created_at: Optional[datetime] = datetime.now().isoformat()
+        self._modified_at: Optional[datetime] = datetime.now().isoformat()
     
     @property
     def created_at(self) -> datetime:
@@ -17,6 +17,10 @@ class TableABC(ABC):
     @property
     def modified_at(self) -> datetime:
         return self._modified_at
+
+    @modified_at.setter
+    def modified_at(self, value: datetime):
+        self._modified_at = value
     
     @staticmethod
     @abstractmethod
