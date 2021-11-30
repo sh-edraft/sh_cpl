@@ -84,7 +84,7 @@
             "name": "CLI: build",
             "type": "python",
             "request": "launch",
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/src/cpl_core",
             "program": "${workspaceFolder}/src/cpl_cli/main.py",
             "console": "integratedTerminal",
             "args": [
