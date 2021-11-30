@@ -33,6 +33,8 @@ class DatabaseContext(DatabaseContextABC):
         for table in self._tables:
             self._db.cursor.execute(table.get_create_string())
 
+        self.save_changes()
+
     def save_changes(self):
         self._db.server.commit()
         
