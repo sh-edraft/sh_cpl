@@ -39,6 +39,6 @@ class DatabaseContext(DatabaseContextABC):
     def save_changes(self):
         self._db.server.commit()
         
-    def select(self, statement: str) -> list:
+    def select(self, statement: str) -> list[tuple]:
         self._db.cursor.execute(statement)
         return self._db.cursor.fetchall()

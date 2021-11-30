@@ -31,7 +31,7 @@ class DatabaseContextABC(ABC):
         pass
     
     @abstractmethod
-    def select(self, statement: str) -> list:
+    def select(self, statement: str) -> list[tuple]:
         r"""Runs SQL Statements
         
         Parameter
