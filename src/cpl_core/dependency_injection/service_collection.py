@@ -39,7 +39,8 @@ class ServiceCollection(ServiceCollectionABC):
         self._service_descriptors.append(ServiceDescriptor(service, lifetime))
 
     def add_db_context(self, db_context_type: Type[DatabaseContextABC], db_settings: DatabaseSettings):
-        self._database_context = db_context_type(db_settings)
+        self.add_singleton(DatabaseContextABC, db_context_type)
+        self._database_context = self.build_service_provider().get_service(DatabaseContextABC)
         self._database_context.connect(db_settings)
 
     def add_logging(self):
