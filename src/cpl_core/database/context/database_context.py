@@ -18,8 +18,8 @@ class DatabaseContext(DatabaseContextABC):
         database_settings: :class:`cpl_core.database.database_settings.DatabaseSettings`
     """
 
-    def __init__(self, database_settings: DatabaseSettings):
-        DatabaseContextABC.__init__(self, database_settings)
+    def __init__(self):
+        DatabaseContextABC.__init__(self)
 
         self._db: DatabaseConnectionABC = DatabaseConnection()
         self._tables: list[TableABC] = TableABC.__subclasses__()
