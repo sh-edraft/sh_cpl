@@ -18,9 +18,9 @@ class TableABC(ABC):
     def LastModifiedAt(self) -> datetime:
         return self._modified_at
     
-    @property
+    @staticmethod
     @abstractmethod
-    def create_string(self) -> str: pass
+    def get_create_string() -> str: pass
     
     @property
     @abstractmethod

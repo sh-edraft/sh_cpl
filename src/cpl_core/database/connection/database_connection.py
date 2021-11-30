@@ -8,6 +8,7 @@ from cpl_core.database.connection.database_connection_abc import \
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.utils import CredentialManager
 from mysql.connector.abstracts import MySQLConnectionAbstract
+from mysql.connector.cursor import MySQLCursorBuffered
 
 
 class DatabaseConnection(DatabaseConnectionABC):
@@ -17,15 +18,30 @@ class DatabaseConnection(DatabaseConnectionABC):
     def __init__(self):
         DatabaseConnectionABC.__init__(self)
 
-        self._database_server: Optional[MySQLConnectionAbstract] = None
+        self._database: Optional[MySQLConnectionAbstract] = None
+        self._cursor: Optional[MySQLCursorBuffered] = None
         
     @property
     def server(self) -> MySQLConnectionAbstract:
-        return self._database_server
+        return self._database
+    
+    @property
+    def cursor(self) -> MySQLCursorBuffered:
+        return self._cursor
 
     def connect(self, database_settings: DatabaseSettings):
         try:
-            self._database_server = sql.connect(
+            connection = sql.connect(
+                host=database_settings.host,
+                user=database_settings.user,
+                passwd=CredentialManager.decrypt(database_settings.password),
+                charset=database_settings.charset,
+                use_unicode=database_settings.use_unicode,
+                buffered=database_settings.buffered,
+                auth_plugin=database_settings.auth_plugin
+            )
+            connection.cursor().execute(f'CREATE DATABASE IF NOT EXISTS `{database_settings.database}`;')
+            self._database = sql.connect(
                 host=database_settings.host,
                 user=database_settings.user,
                 passwd=CredentialManager.decrypt(database_settings.password),
@@ -35,6 +51,7 @@ class DatabaseConnection(DatabaseConnectionABC):
                 buffered=database_settings.buffered,
                 auth_plugin=database_settings.auth_plugin
             )
+            self._cursor = self._database.cursor()
             Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(f'[{__name__}] Connected to database')
             Console.set_foreground_color(ForegroundColorEnum.default)

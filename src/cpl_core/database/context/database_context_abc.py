@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from cpl_core.database.database_settings import DatabaseSettings
+from mysql.connector.cursor import MySQLCursorBuffered
 
 
 class DatabaseContextABC(ABC):
@@ -11,9 +12,9 @@ class DatabaseContextABC(ABC):
         pass
 
     @property
-    @abstractmethod
-    def cursor(self): pass
-
+    def cursor(self) -> MySQLCursorBuffered:
+        return self._cursor
+    
     @abstractmethod
     def connect(self, database_settings: DatabaseSettings):
         r"""Connects to a database by connection settings
@@ -23,7 +24,22 @@ class DatabaseContextABC(ABC):
             database_settings :class:`cpl_core.database.database_settings.DatabaseSettings`
         """
         pass
-
+    
+    @abstractmethod
     def save_changes(self):
         r"""Saves changes of the database"""
+        pass
+    
+    @abstractmethod
+    def select(self, statement: str) -> list:
+        r"""Runs SQL Statements
+        
+        Parameter
+        ---------
+            statement: :class:`str`
+        
+        Returns
+        -------
+            list: Fetched list of selected elements
+        """
         pass

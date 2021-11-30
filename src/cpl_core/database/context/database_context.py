@@ -8,6 +8,7 @@ from cpl_core.database.connection.database_connection_abc import \
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.database.table_abc import TableABC
+from mysql.connector.cursor import MySQLCursorBuffered
 
 
 class DatabaseContext(DatabaseContextABC):
@@ -22,21 +23,22 @@ class DatabaseContext(DatabaseContextABC):
         DatabaseContextABC.__init__(self, database_settings)
 
         self._db: DatabaseConnectionABC = DatabaseConnection()
-        self._cursor: Optional[str] = None
         self._tables: list[TableABC] = TableABC.__subclasses__()
 
     @property
-    def cursor(self):
-        return self._cursor
-
+    def cursor(self) -> MySQLCursorBuffered:
+        return self._db.cursor
+    
     def connect(self, database_settings: DatabaseSettings):
         self._db.connect(database_settings)
-        c = self._db.server.cursor()
-        self._cursor = c
         Console.write_line(f"Ts: {self._tables}")
         for table in self._tables:
-            Console.write_line(f"{table}, {table.create_string}")
-            c.execute(table.create_string)
+            Console.write_line(f"{table}, {table.get_create_string()}")
+            self._db.cursor.execute(table.get_create_string())
 
     def save_changes(self):
         self._db.server.commit()
+        
+    def select(self, statement: str) -> list:
+        self._db.cursor.execute(statement)
+        return self._db.cursor.fetchall()

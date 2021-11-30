@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 from cpl_core.database.database_settings import DatabaseSettings
 from mysql.connector.abstracts import MySQLConnectionAbstract
+from mysql.connector.cursor import MySQLCursorBuffered
 
 
 class DatabaseConnectionABC(ABC):
@@ -13,6 +14,10 @@ class DatabaseConnectionABC(ABC):
     @property
     @abstractmethod
     def server(self) -> MySQLConnectionAbstract: pass
+    
+    @property
+    @abstractmethod
+    def cursor(self) -> MySQLCursorBuffered: pass
     
     @abstractmethod
     def connect(self, database_settings: DatabaseSettings):
