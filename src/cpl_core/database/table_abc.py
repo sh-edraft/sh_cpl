@@ -11,11 +11,11 @@ class TableABC(ABC):
         self._modified_at: Optional[datetime] = None
     
     @property
-    def CreatedAt(self) -> datetime:
+    def created_at(self) -> datetime:
         return self._created_at
     
     @property
-    def LastModifiedAt(self) -> datetime:
+    def modified_at(self) -> datetime:
         return self._modified_at
     
     @staticmethod
