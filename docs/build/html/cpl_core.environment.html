@@ -1,33 +1,70 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>cpl_core.environment &mdash; Common Python Library  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cpl_core.logging" href="cpl_core.logging.html" />
     <link rel="prev" title="cpl_core.dependency_injection" href="cpl_core.dependency_injection.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="index.html" class="icon icon-home"> Common Python Library
+          
+
+          
           </a>
+
+          
+            
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -35,7 +72,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
@@ -61,81 +109,123 @@
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Common Python Library</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
           <li><a href="cpl_core.html">API Reference</a> &raquo;</li>
+        
       <li>cpl_core.environment</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="_sources/cpl_core.environment.rst.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <div class="section" id="cpl-core-environment">
-<h1>cpl_core.environment<a class="headerlink" href="#cpl-core-environment" title="Permalink to this headline"></a></h1>
+<h1>cpl_core.environment<a class="headerlink" href="#cpl-core-environment" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-cpl_core.environment.application_environment">
-<span id="cpl-core-environment-application-environment"></span><h2>cpl_core.environment.application_environment<a class="headerlink" href="#module-cpl_core.environment.application_environment" title="Permalink to this headline"></a></h2>
+<span id="cpl-core-environment-application-environment"></span><h2>cpl_core.environment.application_environment<a class="headerlink" href="#module-cpl_core.environment.application_environment" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.application_environment.</span></span><span class="sig-name descname"><span class="pre">ApplicationEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="cpl_core.environment.environment_name_enum.EnvironmentNameEnum"><span class="pre">cpl_core.environment.environment_name_enum.EnvironmentNameEnum</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">EnvironmentNameEnum.production</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_core.environment.application_environment.</span></code><code class="sig-name descname"><span class="pre">ApplicationEnvironment</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">name:</span> <span class="pre">cpl_core.environment.environment_name_enum.EnvironmentNameEnum</span> <span class="pre">=</span> <span class="pre">&lt;EnvironmentNameEnum.production:</span> <span class="pre">'production'&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC</span></code></a></p>
 <p>Represents environment of the application</p>
 <blockquote>
 <div><p>name: <a class="reference internal" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="cpl_core.environment.environment_name_enum.EnvironmentNameEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.environment_name_enum.EnvironmentNameEnum</span></code></a></p>
 </div></blockquote>
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.application_name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">application_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.application_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.customer">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">customer</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.customer" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.date_time_now">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">date_time_now</span></span><em class="property"><span class="pre">:</span> <span class="pre">datetime.datetime</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.date_time_now" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.end_time">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">end_time</span></span><em class="property"><span class="pre">:</span> <span class="pre">datetime.datetime</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.end_time" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.environment_name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">environment_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.environment_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.host_name">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">host_name</span></span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.host_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.runtime_directory">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">runtime_directory</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.runtime_directory" title="Permalink to this definition"></a></dt>
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.application_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">application_name</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.application_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory">
-<span class="sig-name descname"><span class="pre">set_runtime_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.customer">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">customer</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.customer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.date_time_now">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">date_time_now</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.date_time_now" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.end_time">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">end_time</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.end_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.environment_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">environment_name</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.environment_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.host_name">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">host_name</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.host_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.runtime_directory">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">runtime_directory</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.runtime_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory">
+<code class="sig-name descname"><span class="pre">set_runtime_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the current runtime directory</p>
 <blockquote>
 <div><dl class="simple">
@@ -146,8 +236,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory">
-<span class="sig-name descname"><span class="pre">set_working_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory">
+<code class="sig-name descname"><span class="pre">set_working_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the current working directory</p>
 <blockquote>
 <div><dl class="simple">
@@ -157,64 +247,64 @@
 </div></blockquote>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.start_time">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="pre">:</span> <span class="pre">datetime.datetime</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.start_time" title="Permalink to this definition"></a></dt>
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.start_time">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">start_time</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.start_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.working_directory">
-<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">working_directory</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.working_directory" title="Permalink to this definition"></a></dt>
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment.ApplicationEnvironment.working_directory">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">working_directory</span></code><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.working_directory" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-cpl_core.environment.application_environment_abc">
-<span id="cpl-core-environment-application-environment-abc"></span><h2>cpl_core.environment.application_environment_abc<a class="headerlink" href="#module-cpl_core.environment.application_environment_abc" title="Permalink to this headline"></a></h2>
+<span id="cpl-core-environment-application-environment-abc"></span><h2>cpl_core.environment.application_environment_abc<a class="headerlink" href="#module-cpl_core.environment.application_environment_abc" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.application_environment_abc.</span></span><span class="sig-name descname"><span class="pre">ApplicationEnvironmentABC</span></span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_core.environment.application_environment_abc.</span></code><code class="sig-name descname"><span class="pre">ApplicationEnvironmentABC</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>ABC of the class <a class="reference internal" href="#cpl_core.environment.application_environment.ApplicationEnvironment" title="cpl_core.environment.application_environment.ApplicationEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.application_environment.ApplicationEnvironment</span></code></a></p>
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.application_name">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">application_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.application_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.customer">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">customer</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.customer" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.date_time_now">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">date_time_now</span></span><em class="property"><span class="pre">:</span> <span class="pre">datetime.datetime</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.date_time_now" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.end_time">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">end_time</span></span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.end_time" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.environment_name">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">environment_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.environment_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.host_name">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">host_name</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.host_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.runtime_directory">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">runtime_directory</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.runtime_directory" title="Permalink to this definition"></a></dt>
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.application_name">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">application_name</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.application_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_runtime_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.customer">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">customer</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.customer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.date_time_now">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">date_time_now</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.date_time_now" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.end_time">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">end_time</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.end_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.environment_name">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">environment_name</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.environment_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.host_name">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">host_name</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.host_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.runtime_directory">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">runtime_directory</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.runtime_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory">
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">set_runtime_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the current runtime directory</p>
 <blockquote>
 <div><dl class="simple">
@@ -225,8 +315,8 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory">
-<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">set_working_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory">
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">set_working_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the current working directory</p>
 <blockquote>
 <div><dl class="simple">
@@ -236,44 +326,44 @@
 </div></blockquote>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.start_time">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="pre">:</span> <span class="pre">datetime.datetime</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.start_time" title="Permalink to this definition"></a></dt>
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.start_time">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">start_time</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.start_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.working_directory">
-<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">working_directory</span></span><em class="property"><span class="pre">:</span> <span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.working_directory" title="Permalink to this definition"></a></dt>
+<dl class="py method">
+<dt id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.working_directory">
+<em class="property"><span class="pre">abstract</span> <span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">working_directory</span></code><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.working_directory" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 </div>
 <div class="section" id="module-cpl_core.environment.environment_name_enum">
-<span id="cpl-core-environment-environment-name-enum"></span><h2>cpl_core.environment.environment_name_enum<a class="headerlink" href="#module-cpl_core.environment.environment_name_enum" title="Permalink to this headline"></a></h2>
+<span id="cpl-core-environment-environment-name-enum"></span><h2>cpl_core.environment.environment_name_enum<a class="headerlink" href="#module-cpl_core.environment.environment_name_enum" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.environment_name_enum.</span></span><span class="sig-name descname"><span class="pre">EnvironmentNameEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpl_core.environment.environment_name_enum.</span></code><code class="sig-name descname"><span class="pre">EnvironmentNameEnum</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
 <p>An enumeration.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.development">
-<span class="sig-name descname"><span class="pre">development</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'development'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.development" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.development">
+<code class="sig-name descname"><span class="pre">development</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'development'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.development" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production">
-<span class="sig-name descname"><span class="pre">production</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'production'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production">
+<code class="sig-name descname"><span class="pre">production</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'production'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging">
-<span class="sig-name descname"><span class="pre">staging</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'staging'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging">
+<code class="sig-name descname"><span class="pre">staging</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'staging'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.testing">
-<span class="sig-name descname"><span class="pre">testing</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'testing'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.testing" title="Permalink to this definition"></a></dt>
+<dt id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum.testing">
+<code class="sig-name descname"><span class="pre">testing</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'testing'</span></em><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.testing" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -283,33 +373,50 @@
 
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.dependency_injection.html" class="btn btn-neutral float-left" title="cpl_core.dependency_injection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="cpl_core.logging.html" class="btn btn-neutral float-right" title="cpl_core.logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.dependency_injection.html" class="btn btn-neutral float-left" title="cpl_core.dependency_injection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Sven Heidemann.</p>
-  </div>
+    <p>
+        &#169; Copyright 2021, Sven Heidemann.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -5,6 +5,7 @@
 1. [Prerequisites](#prerequisites)
 2. [Install the package](#install-the-package)
 3. [Install the CLI](#install-the-cli)
+3. [Install the query](#install-the-query)
 4. [Create a initial application](#create-initial-console-app)
 5. [Create a initial library](#create-initial-library)
 6. [Start the application](#start-the-app)
@@ -26,7 +27,7 @@ Also you need to have the following installed.
 To install the package, open a terminal window and run the following command:
 
 ```sh
-pip install sh_cpl --extra-index-url https://pip.sh-edraft.de
+pip install sh_cpl-core --extra-index-url https://pip.sh-edraft.de
 ```
 
 ## Install the CLI
@@ -37,6 +38,14 @@ To install the CLI, open a terminal window and run the following command:
 
 ```sh
 pip install sh_cpl-cli --extra-index-url https://pip.sh-edraft.de
+```
+
+## Install the query
+
+To install the package, open a terminal window and run the following command:
+
+```sh
+pip install sh_cpl-query --extra-index-url https://pip.sh-edraft.de
 ```
 
 ## Create initial console app
