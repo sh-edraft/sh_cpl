@@ -22,10 +22,6 @@ class TableABC(ABC):
     def modified_at(self, value: datetime):
         self._modified_at = value
     
-    @staticmethod
-    @abstractmethod
-    def get_create_string() -> str: pass
-    
     @property
     @abstractmethod
     def insert_string(self) -> str: pass
