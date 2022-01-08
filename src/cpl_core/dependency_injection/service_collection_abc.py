@@ -15,7 +15,7 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_db_context(self, db_context: Type[DatabaseContextABC]):
+    def add_db_context(self, db_context_type: Type[DatabaseContextABC], db_settings: DatabaseSettings):
         r"""Adds database context
 
         Parameter
