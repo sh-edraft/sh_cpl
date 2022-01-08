@@ -100,7 +100,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def count(self, func: Callable) -> int:
+    def count(self, func: Callable = None) -> int:
         r"""Returns length of list or count of found elements
 
         Parameter
@@ -115,7 +115,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def distinct(self, func: Callable) -> 'IterableABC':
+    def distinct(self, func: Callable = None) -> 'IterableABC':
         r"""Returns list without redundancies
 
         Parameter
