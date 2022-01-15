@@ -106,8 +106,6 @@ class LibraryBuilder:
 
         src_rel_path = ''
         src_name = project_name_snake
-        if workspace is None:
-            src_rel_path = os.path.join('src/', src_name)
 
         if use_application_api:
             templates.append(ApplicationTemplate(
