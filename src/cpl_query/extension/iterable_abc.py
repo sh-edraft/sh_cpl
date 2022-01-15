@@ -60,9 +60,8 @@ class IterableABC(ABC, list):
             __object: :class:`object`
                 value
         """
-        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type) \
-                and not issubclass(type(__object), self._type):
-            raise Exception(f'Unexpected type: {type(__object)}')
+        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type) and not issubclass(type(__object), self._type):
+            raise Exception(f'Unexpected type: {type(__object)}\nExpected type: {self._type}')
 
         if len(self) == 0 and self._type is None:
             self._type = type(__object)

@@ -43,7 +43,7 @@ class Iterable(IterableABC):
     def count(self, func: Callable = None) -> int:
         return count_query(self, func)
 
-    def distinct(self, func: Callable) -> IterableABC:
+    def distinct(self, func: Callable = None) -> IterableABC:
         return self.__to_self(distinct_query(self, func))
 
     def element_at(self, index: int) -> any:

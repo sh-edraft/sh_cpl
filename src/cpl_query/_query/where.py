@@ -11,7 +11,7 @@ def where_query(_list: IterableABC, _func: Callable) -> IterableABC:
     if _func is None:
         raise ArgumentNoneException(ExceptionArgument.func)
 
-    result = IterableABC()
+    result = IterableABC(_list.type)
     for element in _list:
         if _func(element):
             result.append(element)
