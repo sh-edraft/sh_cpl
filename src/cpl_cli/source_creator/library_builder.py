@@ -104,29 +104,26 @@ class LibraryBuilder:
         if not os.path.isdir(project_path):
             os.makedirs(project_path)
 
-        src_rel_path = ''
+        py_src_rel_path = ''
         src_name = project_name_snake
+        if workspace is None:
+            py_src_rel_path = f'src/{src_name}'
 
         if use_application_api:
-            templates.append(ApplicationTemplate(
-                src_name, src_rel_path, use_async))
+            templates.append(ApplicationTemplate(src_name, py_src_rel_path, use_async))
 
             if use_startup:
-                templates.append(StartupTemplate(
-                    src_name, src_rel_path, use_async))
-                templates.append(MainWithApplicationHostAndStartupTemplate(
-                    src_name, src_rel_path, use_async))
+                templates.append(StartupTemplate(src_name, py_src_rel_path, use_async))
+                templates.append(MainWithApplicationHostAndStartupTemplate(src_name, py_src_rel_path, use_async))
             else:
-                templates.append(MainWithApplicationBaseTemplate(
-                    src_name, src_rel_path, use_async))
+                templates.append(MainWithApplicationBaseTemplate(src_name, py_src_rel_path, use_async))
         else:
             if use_service_providing:
-                templates.append(MainWithDependencyInjection(
-                    src_name, src_rel_path, use_async))
+                templates.append(MainWithDependencyInjection(src_name, py_src_rel_path, use_async))
             else:
-                templates.append(MainWithoutApplicationBaseTemplate(
-                    src_name, src_rel_path, use_async))
+                templates.append(MainWithoutApplicationBaseTemplate(src_name, py_src_rel_path, use_async))
 
+        src_rel_path = ''
         if '/' in project_name:
             old_pj_name = project_name
             parts = project_name.split('/')
