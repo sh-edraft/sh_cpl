@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2021",
       "Minor": "11",
-      "Micro": "0.post4"
+      "Micro": "0.post5"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,11 +16,11 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
+      "art==5.4",
       "colorama==0.4.4",
       "mysql-connector==2.2.9",
       "psutil==5.9.0",
       "packaging==21.3",
-      "pyfiglet==0.8.post1",
       "pynput==1.7.6",
       "setuptools==60.5.0",
       "tabulate==0.8.9",

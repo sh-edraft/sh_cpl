@@ -4,8 +4,8 @@ import time
 from collections import Callable
 from typing import Union, Optional
 
+from art import text2art
 import colorama
-import pyfiglet
 from pynput import keyboard
 from pynput.keyboard import Key
 from tabulate import tabulate
@@ -214,8 +214,7 @@ class Console:
             cls._hold_back_calls.append(ConsoleCall(cls.banner, string))
             return
 
-        ascii_banner = pyfiglet.figlet_format(string)
-        cls.write_line(ascii_banner)
+        cls.write_line(text2art(string))
 
     @classmethod
     def color_reset(cls):
