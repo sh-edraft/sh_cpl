@@ -1,5 +1,6 @@
 import datetime
 import os
+import sys
 import traceback
 from string import Template
 
@@ -225,7 +226,7 @@ class Logger(LoggerABC):
             Console.write_line(output)
             Console.set_foreground_color(ForegroundColorEnum.default)
 
-        exit()
+        sys.exit()
 
     def _fatal_console(self, name: str, message: str, ex: Exception = None):
         r"""Writes an error to console only
@@ -253,4 +254,4 @@ class Logger(LoggerABC):
             Console.write_line(output)
             Console.set_foreground_color(ForegroundColorEnum.default)
 
-        exit()
+        sys.exit()

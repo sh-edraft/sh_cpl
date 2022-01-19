@@ -15,7 +15,7 @@ __title__ = 'cpl_cli.configuration'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2021 sh-edraft.de'
-__version__ = '2021.11.0.post2'
+__version__ = '2021.11.0.post3'
 
 from collections import namedtuple
 
@@ -30,4 +30,4 @@ from .workspace_settings import WorkspaceSettings
 from .workspace_settings_name_enum import WorkspaceSettingsNameEnum
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2021', minor='11', micro='0.post2')
+version_info = VersionInfo(major='2021', minor='11', micro='0.post3')

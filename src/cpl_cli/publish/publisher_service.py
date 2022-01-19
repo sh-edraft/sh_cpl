@@ -88,7 +88,7 @@ class PublisherService(PublisherABC):
                 shutil.rmtree(path)
             except Exception as e:
                 Console.error(f'{e}')
-                exit()
+                sys.exit()
 
     @staticmethod
     def _create_path(path: str):
@@ -102,7 +102,7 @@ class PublisherService(PublisherABC):
                 os.makedirs(path)
             except Exception as e:
                 Console.error(f'{e}')
-                exit()
+                sys.exit()
 
     def _is_path_included(self, path: str) -> bool:
         """

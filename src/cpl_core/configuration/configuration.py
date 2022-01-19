@@ -333,7 +333,7 @@ class Configuration(ConfigurationABC):
                 else:
                     self._print_error(__name__, error_message)
 
-                exit()
+                sys.exit()
 
             add_args = []
             for next_arg in next_arguments:
@@ -360,7 +360,7 @@ class Configuration(ConfigurationABC):
                 if output:
                     self._print_error(__name__, f'File not found: {file_path}')
 
-                exit()
+                sys.exit()
 
             if output:
                 self._print_warn(__name__, f'Not Loaded config file: {file_path}')

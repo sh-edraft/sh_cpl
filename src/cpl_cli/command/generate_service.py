@@ -1,4 +1,5 @@
 import os
+import sys
 import textwrap
 from collections import Callable
 
@@ -146,7 +147,7 @@ class GenerateService(CommandABC):
 
         if os.path.isfile(file_path):
             Console.error(f'{String.first_to_upper(schematic)} already exists!')
-            exit()
+            sys.exit()
 
         message = f'Creating {self._env.working_directory}/{template.path}/{template.name}'
         if template.path == '':
@@ -169,7 +170,7 @@ class GenerateService(CommandABC):
         """
         if len(args) == 0:
             self._help('Usage: cpl generate <schematic> [options]')
-            exit()
+            sys.exit()
 
         schematic = args[0]
         name = self._config.get_configuration(schematic)
@@ -182,4 +183,4 @@ class GenerateService(CommandABC):
 
         else:
             self._help('Usage: cpl generate <schematic> [options]')
-            exit()
+            sys.exit()

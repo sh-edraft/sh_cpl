@@ -245,7 +245,7 @@ class Console:
         Console.color_reset()
         Console.write('\n\n\nPress any key to continue...')
         Console.read()
-        exit()
+        sys.exit()
 
     @classmethod
     def disable(cls):

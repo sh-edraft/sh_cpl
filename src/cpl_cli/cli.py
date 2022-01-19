@@ -1,4 +1,5 @@
 import os
+import sys
 from typing import Optional
 
 from cpl_core.application.application_abc import ApplicationABC
@@ -123,4 +124,4 @@ class CLI(ApplicationABC):
             self._command_handler.handle(command, args)
         except KeyboardInterrupt:
             Console.write_line()
-            exit()
+            sys.exit()
