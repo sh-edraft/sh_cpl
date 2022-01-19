@@ -18,15 +18,15 @@
     "Dependencies": [
       "colorama==0.4.4",
       "mysql-connector==2.2.9",
-      "psutil==5.8.0",
+      "psutil==5.9.0",
       "packaging==21.3",
       "pyfiglet==0.8.post1",
-      "pynput==1.7.5",
-      "setuptools==59.4.0",
+      "pynput==1.7.6",
+      "setuptools==60.5.0",
       "tabulate==0.8.9",
       "termcolor==1.1.0",
       "watchdog==2.1.6",
-      "wheel==0.37.0"
+      "wheel==0.37.1"
     ],
     "PythonVersion": ">=3.8",
     "PythonPath": {},

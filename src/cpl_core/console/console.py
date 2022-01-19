@@ -402,7 +402,8 @@ class Console:
         cls._show_select_menu()
 
         with keyboard.Listener(
-                on_press=cls._select_menu_key_press, suppress=True) as listener:
+                on_press=cls._select_menu_key_press, suppress=False
+        ) as listener:
             listener.join()
 
         Console.color_reset()
