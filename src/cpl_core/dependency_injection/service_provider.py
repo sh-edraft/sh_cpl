@@ -1,4 +1,3 @@
-from collections import Callable
 import copy
 from inspect import signature, Parameter
 from typing import Optional
@@ -96,7 +95,7 @@ class ServiceProvider(ServiceProviderABC):
         sb = ScopeBuilder(ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context))
         return sb.build()
 
-    def get_service(self, service_type: type) -> Optional[Callable[object]]:
+    def get_service(self, service_type: type) -> Optional[object]:
         result = self._find_service(service_type)
 
         if result is None:

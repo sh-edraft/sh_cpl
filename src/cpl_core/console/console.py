@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-from collections import Callable
+from collections.abc import Callable
 from typing import Union, Optional
 
 from art import text2art

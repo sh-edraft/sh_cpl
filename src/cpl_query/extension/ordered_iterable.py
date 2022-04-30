@@ -1,4 +1,4 @@
-from collections import Callable
+from collections.abc import Callable
 
 from cpl_query._query.order_by import then_by_descending_query, then_by_query
 from cpl_query.extension.iterable import Iterable

@@ -1,7 +1,6 @@
 import os
 import sys
 import textwrap
-from collections import Callable
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -108,7 +107,7 @@ class GenerateService(CommandABC):
             template.write(value)
             template.close()
 
-    def _generate(self, schematic: str, name: str, template: Callable[TemplateFileABC]):
+    def _generate(self, schematic: str, name: str, template: TemplateFileABC):
         """
         Generates files by given schematic, name and template
         :param schematic:

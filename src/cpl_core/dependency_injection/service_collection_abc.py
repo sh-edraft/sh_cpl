@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABC
-from collections import Callable
+from collections.abc import Callable
 from typing import Type
 
 from cpl_core.database.database_settings import DatabaseSettings

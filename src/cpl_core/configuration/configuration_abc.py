@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABC
-from collections import Callable
+from collections.abc import Callable
 from typing import Type, Union, Optional
 
 from cpl_core.configuration.console_argument import ConsoleArgument
@@ -94,7 +94,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, Callable[ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, ConfigurationModelABC]:
         r"""Returns value from configuration by given type
 
         Parameter
@@ -104,6 +104,6 @@ class ConfigurationABC(ABC):
 
         Returns
         -------
-            Object of Union[:class:`str`, Callable[:class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]]
+            Object of Union[:class:`str`, :class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]
         """
         pass
