@@ -2,7 +2,7 @@
   "ProjectSettings": {
     "Name": "cpl-core",
     "Version": {
-      "Major": "2021",
+      "Major": "2022",
       "Minor": "6",
       "Micro": "1"
     },
@@ -16,16 +16,16 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "art==5.4",
+      "art==5.6",
       "colorama==0.4.4",
       "mysql-connector==2.2.9",
       "psutil==5.9.0",
       "packaging==21.3",
       "pynput==1.7.6",
-      "setuptools==60.5.0",
+      "setuptools==62.1.0",
       "tabulate==0.8.9",
       "termcolor==1.1.0",
-      "watchdog==2.1.6",
+      "watchdog==2.1.7",
       "wheel==0.37.1"
     ],
     "PythonVersion": ">=3.8",
