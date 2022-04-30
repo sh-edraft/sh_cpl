@@ -18,7 +18,7 @@
     "Dependencies": [
       "cpl-core>=2022.6.1"
     ],
-    "PythonVersion": ">=3.8",
+    "PythonVersion": ">=3.10",
     "PythonPath": {},
     "Classifiers": []
   },

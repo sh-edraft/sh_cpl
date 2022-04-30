@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-from collections import Callable
+from collections.abc import Callable
 from typing import Union, Type, Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
@@ -379,7 +379,7 @@ class Configuration(ConfigurationABC):
         self._config[key_type] = value
 
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> \
-            Union[str, Callable[ConfigurationModelABC]]:
+            Union[str, ConfigurationModelABC]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name

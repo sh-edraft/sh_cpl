@@ -1,4 +1,4 @@
-from collections import Callable
+from collections.abc import Callable
 from typing import Union
 
 from cpl_query._helper import is_number

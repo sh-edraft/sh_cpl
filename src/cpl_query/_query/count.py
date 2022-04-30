@@ -1,4 +1,4 @@
-from collections import Callable
+from collections.abc import Callable
 
 from cpl_query._query.where import where_query
 from cpl_query.exceptions import ArgumentNoneException, ExceptionArgument

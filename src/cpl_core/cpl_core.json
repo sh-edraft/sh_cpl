@@ -28,7 +28,7 @@
       "watchdog==2.1.7",
       "wheel==0.37.1"
     ],
-    "PythonVersion": ">=3.8",
+    "PythonVersion": ">=3.10",
     "PythonPath": {},
     "Classifiers": []
   },
