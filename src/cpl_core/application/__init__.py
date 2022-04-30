@@ -24,6 +24,7 @@ from .application_abc import ApplicationABC
 from .application_builder import ApplicationBuilder
 from .application_builder_abc import ApplicationBuilderABC
 from .startup_abc import StartupABC
+from .startup_extension_abc import StartupExtensionABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2022', minor='6', micro='1')
