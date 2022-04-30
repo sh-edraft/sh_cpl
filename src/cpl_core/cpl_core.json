@@ -1,17 +1,17 @@
 {
   "ProjectSettings": {
-    "Name": "sh_cpl-core",
+    "Name": "cpl-core",
     "Version": {
       "Major": "2021",
-      "Minor": "11",
-      "Micro": "0.post5"
+      "Minor": "6",
+      "Micro": "1"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
     "Description": "sh-edraft Common Python library",
     "LongDescription": "sh-edraft Common Python library",
     "URL": "https://www.sh-edraft.de",
-    "CopyrightDate": "2020 - 2021",
+    "CopyrightDate": "2020 - 2022",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
