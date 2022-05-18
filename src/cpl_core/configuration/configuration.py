@@ -8,8 +8,10 @@ from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
 from cpl_core.configuration.console_argument import ConsoleArgument
+from cpl_core.configuration.runnable_argument_abc import RunnableArgumentABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
@@ -378,8 +380,15 @@ class Configuration(ConfigurationABC):
     def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
         self._config[key_type] = value
 
+    def create_console_argument(self, token: str, name: str, aliases: list[str], value_token: str,
+                                is_value_token_optional: bool = None,
+                                runnable: Type[RunnableArgumentABC] = None) -> ConsoleArgument:
+        argument = ConsoleArgument(token, name, aliases, value_token, is_value_token_optional, runnable)
+        self.add_console_argument(argument)
+        return argument
+
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> \
-            Union[str, ConfigurationModelABC]:
+            Optional[Union[str, ConfigurationModelABC]]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name
@@ -396,3 +405,7 @@ class Configuration(ConfigurationABC):
         for config_model in self._config:
             if config_model == search_type:
                 return self._config[config_model]
+
+    def resolve_runnable_argument_types(self, services: ServiceProviderABC):
+        for arg in self._argument_types:
+            arg.set_runnable(services.get_service(arg.runnable_type))

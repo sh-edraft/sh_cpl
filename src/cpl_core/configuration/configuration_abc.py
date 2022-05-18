@@ -4,6 +4,7 @@ from typing import Type, Union, Optional
 
 from cpl_core.configuration.console_argument import ConsoleArgument
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.configuration.runnable_argument_abc import RunnableArgumentABC
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
@@ -94,7 +95,35 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[str, ConfigurationModelABC]:
+    def create_console_argument(self, token: str, name: str, aliases: list[str], value_token: str,
+                                is_value_token_optional: bool = None,
+                                runnable: Type[RunnableArgumentABC] = None) -> ConsoleArgument:
+        r"""Creates and adds a console argument to known console arguments
+
+        Parameter
+        ---------
+            token: :class:`str`
+                Specifies optional beginning of argument
+            name :class:`str`
+                Specifies name of argument
+            aliases list[:class:`str`]
+                Specifies possible aliases of name
+            value_token :class:`str`
+                Specifies were the value begins
+            is_value_token_optional :class:`bool`
+                Specifies if values are optional
+            runnable: :class:`cpl_core.configuration.console_argument.ConsoleArgument`
+                Specifies class to run when called if value is not None
+
+        Returns
+        ------
+            Object of :class:`cpl_core.configuration.console_argument.ConsoleArgument`
+        """
+        pass
+
+    @abstractmethod
+    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
+        str, ConfigurationModelABC]:
         r"""Returns value from configuration by given type
 
         Parameter
@@ -105,5 +134,16 @@ class ConfigurationABC(ABC):
         Returns
         -------
             Object of Union[:class:`str`, :class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]
+        """
+        pass
+
+    @abstractmethod
+    def resolve_runnable_argument_types(self, services: 'ServiceProviderABC'):
+        r"""Gets all objects for given types of ConsoleArguments
+
+        Parameter
+        ---------
+            services: :class:`cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC`
+                Provides services
         """
         pass
