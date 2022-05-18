@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class RunnableArgumentABC(ABC):
+class ArgumentExecutableABC(ABC):
 
     @abstractmethod
     def __init__(self): pass

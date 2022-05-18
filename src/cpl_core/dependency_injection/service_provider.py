@@ -34,7 +34,7 @@ class ServiceProvider(ServiceProviderABC):
         self._database_context = db_context
         self._scope: Optional[ScopeABC] = None
 
-    def _find_service(self, service_type: type) -> ServiceDescriptor:
+    def _find_service(self, service_type: type) -> Optional[ServiceDescriptor]:
         for descriptor in self._service_descriptors:
             if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
                 return descriptor

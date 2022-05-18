@@ -2,9 +2,9 @@ from abc import abstractmethod, ABC
 from collections.abc import Callable
 from typing import Type, Union, Optional
 
-from cpl_core.configuration.console_argument import ConsoleArgument
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_core.configuration.runnable_argument_abc import RunnableArgumentABC
+from cpl_core.configuration.argument_abc import ArgumentABC
+from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
@@ -43,18 +43,18 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_console_argument(self, argument: ConsoleArgument):
+    def add_console_argument(self, argument: ArgumentABC):
         r"""Adds console argument to known console arguments
 
         Parameter
         ---------
-            argument: :class:`cpl_core.configuration.console_argument.ConsoleArgument`
+            argument: :class:`cpl_core.configuration.console_argument.ConsoleArgumentABC`
                 Specifies the console argument
         """
         pass
 
     @abstractmethod
-    def add_console_arguments(self, error: bool = None):
+    def parse_console_arguments(self, error: bool = None):
         r"""Reads the console arguments
 
         Parameter
@@ -95,9 +95,8 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def create_console_argument(self, token: str, name: str, aliases: list[str], value_token: str,
-                                is_value_token_optional: bool = None,
-                                runnable: Type[RunnableArgumentABC] = None) -> ConsoleArgument:
+    def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
+                                *args, **kwargs) -> ArgumentABC:
         r"""Creates and adds a console argument to known console arguments
 
         Parameter
@@ -112,12 +111,12 @@ class ConfigurationABC(ABC):
                 Specifies were the value begins
             is_value_token_optional :class:`bool`
                 Specifies if values are optional
-            runnable: :class:`cpl_core.configuration.console_argument.ConsoleArgument`
+            runnable: :class:`cpl_core.configuration.console_argument.ConsoleArgumentABC`
                 Specifies class to run when called if value is not None
 
         Returns
         ------
-            Object of :class:`cpl_core.configuration.console_argument.ConsoleArgument`
+            Object of :class:`cpl_core.configuration.console_argument.ConsoleArgumentABC`
         """
         pass
 

@@ -2,7 +2,7 @@ import os
 from typing import Optional
 
 from cpl_core.application.startup_abc import StartupABC
-from cpl_core.configuration.console_argument import ConsoleArgument
+from cpl_core.configuration.argument_abc import ConsoleArgument
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
@@ -80,7 +80,7 @@ class Startup(StartupABC):
                 configuration.add_console_argument(
                     ConsoleArgument('', script, [], ' ', is_value_token_optional=True))
 
-        configuration.add_console_arguments(error=False)
+        configuration.parse_console_arguments(error=False)
 
         return configuration
 

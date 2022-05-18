@@ -55,6 +55,7 @@ class ApplicationBuilder(ApplicationBuilderABC):
         config = self._configuration
         services = self._services.build_service_provider()
         config.resolve_runnable_argument_types(services)
+        config.parse_console_arguments(error=False)
 
         for ex in self._app_extensions:
             extension = ex()
