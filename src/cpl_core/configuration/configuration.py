@@ -159,9 +159,7 @@ class Configuration(ConfigurationABC):
     def _parse_arguments(self, call_stack: list[Callable], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
             arg_str = arg_list[i]
-            Console.write_line('ARG_STR', arg_str)
             for arg in args_types:
-                Console.write_line('ARG', arg.name, type(arg), len(arg.console_arguments))
                 arg_str_without_token = arg_str
                 if arg.token != "" and arg.token in arg_str:
                     arg_str_without_token = arg_str.split(arg.token)[1]
@@ -170,7 +168,6 @@ class Configuration(ConfigurationABC):
                 if isinstance(arg, ExecutableArgument):
                     if arg_str.startswith(arg.token) \
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
-                        Console.write_line('EXEC', arg.name)
                         call_stack.append(arg.run)
                         self._parse_arguments(call_stack, arg_list[i:], arg.console_arguments)
 
@@ -195,22 +192,16 @@ class Configuration(ConfigurationABC):
                         self._additional_arguments.append(arg.name)
                         self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
 
-            Console.write_line()
-
     def parse_console_arguments(self, error: bool = None):
         # sets environment variables as possible arguments as: --VAR=VALUE
         for arg_name in ConfigurationVariableNameEnum.to_list():
             self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
 
-        Console.error('Parsing arguments:')
         arg_list = sys.argv[1:]
         call_stack = []
         self._parse_arguments(call_stack, arg_list, self._argument_types)
 
-        Console.error('Parsing finished')
-
         for call in call_stack:
-            Console.write_line(call)
             call(self._additional_arguments)
 
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
