@@ -75,7 +75,7 @@ class RemoveService(CommandABC):
         """
         if 'simulate' in args:
             args.remove('simulate')
-            Console.write_line('Simulating:')
+            Console.write_line('Running in simulation mode:')
             self._is_simulation = True
 
         project_name = args[0]

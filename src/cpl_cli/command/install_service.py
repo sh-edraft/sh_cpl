@@ -39,7 +39,7 @@ class InstallService(CommandABC):
         self._project_settings = project_settings
         self._cli_settings = cli_settings
         
-        self._is_simulating = False
+        self._is_simulation = False
         self._is_virtual = False
 
         self._project_file = f'{self._config.get_configuration("ProjectName")}.json'
@@ -172,7 +172,7 @@ class InstallService(CommandABC):
 
             self._project_settings.dependencies.append(new_name)
 
-            if not self._is_simulating:
+            if not self._is_simulation:
                 config = {
                     ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
                     BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
@@ -190,14 +190,14 @@ class InstallService(CommandABC):
         :param args:
         :return:
         """
-        if '--virtual' in args:
+        if 'virtual' in args:
             self._is_virtual = True
-            args.remove('--virtual')
+            args.remove('virtual')
             Console.write_line('Running in virtual mode:')
         
-        if '--simulate' in args:
-            self._is_virtual = True
-            args.remove('--simulate')
+        if 'simulate' in args:
+            self._is_simulation = True
+            args.remove('simulate')
             Console.write_line('Running in simulation mode:')
 
         if len(args) == 0:
