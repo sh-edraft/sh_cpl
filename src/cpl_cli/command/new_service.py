@@ -42,7 +42,8 @@ class NewService(CommandABC):
         self._build_dict = {}
         self._project_json = {}
 
-        self._command: str = ''
+        self._name: str = ''
+        self._schematic: ProjectTypeEnum = ProjectTypeEnum.console
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
@@ -111,11 +112,11 @@ class NewService(CommandABC):
 
     def _create_build_settings(self):
         main = f'{String.convert_to_snake_case(self._project.name)}.main'
-        if self._command == ProjectTypeEnum.library.value:
+        if self._schematic == ProjectTypeEnum.library.value:
             main = f'{String.convert_to_snake_case(self._project.name)}.main'
 
         self._build_dict = {
-            BuildSettingsNameEnum.project_type.value: self._command,
+            BuildSettingsNameEnum.project_type.value: self._schematic,
             BuildSettingsNameEnum.source_path.value: '',
             BuildSettingsNameEnum.output_path.value: '../../dist',
             BuildSettingsNameEnum.main.value: main,
@@ -191,9 +192,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        name = self._config.get_configuration(self._command)
-
-        self._create_project_settings(name)
+        self._create_project_settings(self._name)
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -221,9 +220,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        name = self._config.get_configuration(self._command)
-
-        self._create_project_settings(name)
+        self._create_project_settings(self._name)
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -251,15 +248,16 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        if len(args) == 0:
-            self._help('Usage: cpl new <schematic> [options]')
-            return
-
-        self._command = str(args[0]).lower()
-        if self._command == ProjectTypeEnum.console.value:
+        console = self._config.get_configuration(ProjectTypeEnum.console.value)
+        library = self._config.get_configuration(ProjectTypeEnum.library.value)
+        if console is not None and library is None:
+            self._name = console
+            self._schematic = ProjectTypeEnum.console.value
             self._console(args)
 
-        elif self._command == ProjectTypeEnum.library.value:
+        elif console is None and library is not None:
+            self._name = library
+            self._schematic = ProjectTypeEnum.library.value
             self._library(args)
 
         else:
