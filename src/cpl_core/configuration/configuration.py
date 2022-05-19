@@ -150,7 +150,8 @@ class Configuration(ConfigurationABC):
     def _parse_arguments(self, call_stack: list[Callable], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
             arg_str = arg_list[i]
-            for arg in args_types:
+            for n in range(0, len(args_types)):
+                arg = args_types[n]
                 arg_str_without_token = arg_str
                 if arg.token != "" and arg.token in arg_str:
                     arg_str_without_token = arg_str.split(arg.token)[1]
@@ -160,8 +161,8 @@ class Configuration(ConfigurationABC):
                     if arg_str.startswith(arg.token) \
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
                         call_stack.append(arg.run)
+                        self._handled_args.append(arg_str)
                         self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
-                        break
 
                 # variables
                 elif isinstance(arg, VariableArgument):
@@ -176,20 +177,20 @@ class Configuration(ConfigurationABC):
                         else:
                             value = arg_list[i + 1]
                         self._set_variable(arg.name, value)
+                        self._handled_args.append(arg_str)
                         self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
-                        break
 
                 # flags
                 elif isinstance(arg, FlagArgument):
                     if arg_str.startswith(arg.token) \
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
                         self._additional_arguments.append(arg.name)
+                        self._handled_args.append(arg_str)
                         self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
-                        break
 
-                # add left over values to args
-                if arg_str not in self._additional_arguments:
-                    self._additional_arguments.append(arg_str)
+            # add left over values to args
+            if arg_str not in self._additional_arguments and arg_str not in self._handled_args:
+                self._additional_arguments.append(arg_str)
 
     def add_environment_variables(self, prefix: str):
         for variable in ConfigurationVariableNameEnum.to_list():

@@ -42,8 +42,6 @@
         "*.json"
       ]
     },
-    "ProjectReferences": [
-      "../cpl_core/cpl_core.json"
-    ]
+    "ProjectReferences": []
   }
 }

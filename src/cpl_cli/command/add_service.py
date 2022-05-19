@@ -23,6 +23,7 @@ class AddService(CommandABC):
 
         self._config = config
         self._workspace = workspace
+        self._is_simulation = False
 
     @property
     def help_message(self) -> str:
@@ -35,8 +36,9 @@ class AddService(CommandABC):
             target-project:  Name of the project to be referenced
         """)
 
-    @staticmethod
-    def _edit_project_file(source: str, project_settings: ProjectSettings, build_settings: BuildSettings):
+    def _edit_project_file(self, source: str, project_settings: ProjectSettings, build_settings: BuildSettings):
+        if self._is_simulation:
+            return
         with open(source, 'w') as file:
             file.write(json.dumps({
                 ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(project_settings),
@@ -50,6 +52,11 @@ class AddService(CommandABC):
         :param args:
         :return:
         """
+        if 'simulate' in args:
+            args.remove('simulate')
+            Console.write_line('Simulating:')
+            self._is_simulation = True
+
         if len(args) == 0:
             Console.error('Expected source and target project')
             return
@@ -59,7 +66,7 @@ class AddService(CommandABC):
             return
 
         elif len(args) > 2:
-            Console.error(f'Unexpected argument: {" ".join(args[2:])}')
+            Console.error(f'Unexpected argument(s): {", ".join(args[2:])}')
             return
 
         # file names
