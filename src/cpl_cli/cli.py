@@ -33,32 +33,33 @@ class CLI(ApplicationABC):
         """
         ApplicationABC.__init__(self, config, services)
 
-        self._command_handler: Optional[CommandHandler] = None
+        # self._command_handler: Optional[CommandHandler] = None
         self._options: list[str] = []
 
     def configure(self):
-        self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
-
-        self._command_handler.add_command(CommandModel('add', ['a', 'a'], AddService, False, False, False))
-        self._command_handler.add_command(CommandModel('build', ['b', 'B'], BuildService, False, True, True))
-        self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, False, True, False))
-        self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False, False))
-        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, False, True, True))
-        self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, False, True))
-        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, False, True, True))
-        self._command_handler.add_command(CommandModel('remove', ['r', 'R'], RemoveService, True, True, False))
-        self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, False, True, True))
-        self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, False, True, True))
-        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, False, True, True))
-        self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False, False))
-
-        if os.path.isfile(os.path.join(self._environment.working_directory, 'cpl-workspace.json')):
-            workspace: Optional[WorkspaceSettings] = self._configuration.get_configuration(WorkspaceSettings)
-            for script in workspace.scripts:
-                self._command_handler.add_command(CommandModel(script, [], CustomScriptService, True, True, False))
-
-        self._command_handler.add_command(CommandModel('--help', ['-h', '-H'], HelpService, False, False, False))
-        self._options.append('--help')
+        pass
+        # self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
+        #
+        # self._command_handler.add_command(CommandModel('add', ['a', 'a'], AddService, False, False, False))
+        # self._command_handler.add_command(CommandModel('build', ['b', 'B'], BuildService, False, True, True))
+        # self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, False, True, False))
+        # self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False, False))
+        # self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, False, True, True))
+        # self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, False, True))
+        # self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, False, True, True))
+        # self._command_handler.add_command(CommandModel('remove', ['r', 'R'], RemoveService, True, True, False))
+        # self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, False, True, True))
+        # self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, False, True, True))
+        # self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, False, True, True))
+        # self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False, False))
+        #
+        # if os.path.isfile(os.path.join(self._environment.working_directory, 'cpl-workspace.json')):
+        #     workspace: Optional[WorkspaceSettings] = self._configuration.get_configuration(WorkspaceSettings)
+        #     for script in workspace.scripts:
+        #         self._command_handler.add_command(CommandModel(script, [], CustomScriptService, True, True, False))
+        #
+        # self._command_handler.add_command(CommandModel('--help', ['-h', '-H'], HelpService, False, False, False))
+        # self._options.append('--help')
 
     def main(self):
         """
@@ -66,61 +67,62 @@ class CLI(ApplicationABC):
         :return:
         """
         try:
-            command = None
-            args = []
-            if len(self._configuration.additional_arguments) > 0:
-                is_option = False
-                for opt in self._options:
-                    if opt in self._configuration.additional_arguments:
-                        is_option = True
-                        command = opt
-                        args = self._configuration.additional_arguments
-                        args.remove(opt)
-
-                if not is_option:
-                    command = self._configuration.additional_arguments[0]
-                    if len(self._configuration.additional_arguments) > 1:
-                        args = self._configuration.additional_arguments[1:]
-            else:
-                for cmd in self._command_handler.commands:
-                    result = self._configuration.get_configuration(cmd.name)
-                    result_args: list[str] = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
-                    is_option = False
-                    if result is None:
-                        continue
-
-                    for opt in self._options:
-                        if opt == result:
-                            is_option = True
-                            command = opt
-
-                        elif result_args is not None and opt in result_args:
-                            is_option = True
-                            command = opt
-                            result_args.remove(opt)
-
-                    if is_option:
-                        args.append(cmd.name)
-                        if result_args is not None:
-                            for arg in result_args:
-                                args.append(arg)
-
-                    elif result is not None:
-                        command = cmd.name
-                        args.append(result)
-
-                        for arg in result_args:
-                            args.append(arg)
-
-                    else:
-                        Error.error(f'Unexpected command')
-                        return
-
-            if command is None:
-                Error.error(f'Expected command')
-                return
-
-            self._command_handler.handle(command, args)
+            pass
+            # command = None
+            # args = []
+            # if len(self._configuration.additional_arguments) > 0:
+            #     is_option = False
+            #     for opt in self._options:
+            #         if opt in self._configuration.additional_arguments:
+            #             is_option = True
+            #             command = opt
+            #             args = self._configuration.additional_arguments
+            #             args.remove(opt)
+            #
+            #     if not is_option:
+            #         command = self._configuration.additional_arguments[0]
+            #         if len(self._configuration.additional_arguments) > 1:
+            #             args = self._configuration.additional_arguments[1:]
+            # else:
+            #     for cmd in self._command_handler.commands:
+            #         result = self._configuration.get_configuration(cmd.name)
+            #         result_args: list[str] = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
+            #         is_option = False
+            #         if result is None:
+            #             continue
+            #
+            #         for opt in self._options:
+            #             if opt == result:
+            #                 is_option = True
+            #                 command = opt
+            #
+            #             elif result_args is not None and opt in result_args:
+            #                 is_option = True
+            #                 command = opt
+            #                 result_args.remove(opt)
+            #
+            #         if is_option:
+            #             args.append(cmd.name)
+            #             if result_args is not None:
+            #                 for arg in result_args:
+            #                     args.append(arg)
+            #
+            #         elif result is not None:
+            #             command = cmd.name
+            #             args.append(result)
+            #
+            #             for arg in result_args:
+            #                 args.append(arg)
+            #
+            #         else:
+            #             Error.error(f'Unexpected command')
+            #             return
+            #
+            # if command is None:
+            #     Error.error(f'Expected command')
+            #     return
+            #
+            # self._command_handler.handle(command, args)
         except KeyboardInterrupt:
             Console.write_line()
             sys.exit()

@@ -23,6 +23,7 @@ from collections import namedtuple
 from .application_abc import ApplicationABC
 from .application_builder import ApplicationBuilder
 from .application_builder_abc import ApplicationBuilderABC
+from .application_extension_abc import ApplicationExtensionABC
 from .startup_abc import StartupABC
 from .startup_extension_abc import StartupExtensionABC
 

@@ -20,6 +20,8 @@ __version__ = '2022.6.3.dev2'
 from collections import namedtuple
 
 # imports:
+from .scope import Scope
+from .scope_abc import ScopeABC
 from .service_collection import ServiceCollection
 from .service_collection_abc import ServiceCollectionABC
 from .service_descriptor import ServiceDescriptor

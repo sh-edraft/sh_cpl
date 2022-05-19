@@ -2,8 +2,9 @@ import os
 from typing import Optional
 
 from cpl_core.application.startup_abc import StartupABC
-from cpl_core.configuration.argument_abc import ConsoleArgument
+from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console import Console
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_cli.command.add_service import AddService
@@ -40,52 +41,48 @@ class Startup(StartupABC):
         configuration.add_environment_variables('PYTHON_')
         configuration.add_environment_variables('CPL_')
         configuration.add_json_file('appsettings.json', path=environment.runtime_directory, optional=False, output=False)
+        configuration.add_json_file('cpl-workspace.json', path=environment.working_directory, optional=True, output=False)
 
-        configuration.add_console_argument(ConsoleArgument('', 'add', ['a', 'a'], ' '))
-        configuration.add_console_argument(ConsoleArgument('', 'build', ['b', 'B'], ''))
-        configuration.add_console_argument(ConsoleArgument('', 'generate', ['g', 'G'], '', console_arguments=[
-            ConsoleArgument('', 'abc', ['a', 'A'], ' '),
-            ConsoleArgument('', 'class', ['c', 'C'], ' '),
-            ConsoleArgument('', 'enum', ['e', 'E'], ' '),
-            ConsoleArgument('', 'service', ['s', 'S'], ' '),
-            ConsoleArgument('', 'settings', ['st', 'ST'], ' '),
-            ConsoleArgument('', 'thread', ['t', 't'], ' ')
-        ]))
-        configuration.add_console_argument(
-            ConsoleArgument('', 'help', ['h', 'H'], ' ', is_value_token_optional=True)
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'add', ['a', 'A'], AddService) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'build', ['b', 'B'], BuildService)
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'generate', ['g', 'G'], GenerateService) \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'abc', ['a', 'A'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'class', ['c', 'C'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'enum', ['e', 'E'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 't'], ' ')
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService) \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'console', ['c', 'C'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ')
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService)
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['S', 'S'], StartService)
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'update', ['u', 'U'], UpdateService)
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'version', ['v', 'V'], VersionService)
+
+        configuration.for_each_argument(
+            lambda a: a.add_console_argument(ArgumentTypeEnum.Executable, '--', 'help', ['h', 'H'], HelpService)
         )
-        configuration.add_console_argument(
-            ConsoleArgument('', 'install', ['i', 'I'], ' ', is_value_token_optional=True, console_arguments= [
-                ConsoleArgument('', '--virtual', ['--v', '--V'], ''),
-                ConsoleArgument('', '--simulate', ['--s', '--S'], ''),
-            ])
-        )
-        configuration.add_console_argument(ConsoleArgument('', 'new', ['n', 'N'], '', console_arguments=[
-            ConsoleArgument('', 'console', ['c', 'C'], ' '),
-            ConsoleArgument('', 'library', ['l', 'L'], ' ')
-        ]))
-        configuration.add_console_argument(ConsoleArgument('', 'publish', ['p', 'P'], ''))
-        configuration.add_console_argument(ConsoleArgument('', 'remove', ['r', 'R'], ' '))
-        configuration.add_console_argument(ConsoleArgument('', 'start', ['s', 'S'], ''))
-        configuration.add_console_argument(ConsoleArgument('', 'uninstall', ['ui', 'UI'], ' '))
-        configuration.add_console_argument(ConsoleArgument('', 'update', ['u', 'U'], ''))
-        configuration.add_console_argument(ConsoleArgument('', 'version', ['v', 'V'], ''))
+        configuration.create_console_argument(ArgumentTypeEnum.Executable, '', 'help', ['h', 'H'], HelpService)
 
-        configuration.add_console_argument(ConsoleArgument('', '--help', ['-h', '-H'], ''))
-
-        if os.path.isfile(os.path.join(environment.working_directory, 'cpl-workspace.json')):
-            configuration.add_json_file('cpl-workspace.json', optional=True, output=False)
-            workspace: Optional[WorkspaceSettings] = configuration.get_configuration(WorkspaceSettings)
+        workspace: Optional[WorkspaceSettings] = configuration.get_configuration(WorkspaceSettings)
+        if workspace is not None:
             for script in workspace.scripts:
-                configuration.add_console_argument(
-                    ConsoleArgument('', script, [], ' ', is_value_token_optional=True))
-
-        configuration.parse_console_arguments(error=False)
+                configuration.create_console_argument(ArgumentTypeEnum.Executable, '', script, [], CustomScriptService)
 
         return configuration
 
     def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
-        services.add_singleton(CommandHandler)
+        # services.add_singleton(CommandHandler)
 
         services.add_transient(PublisherABC, PublisherService)
         services.add_transient(LiveServerService)

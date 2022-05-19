@@ -70,7 +70,6 @@ class RemoveService(CommandABC):
         :param args:
         :return:
         """
-
         project_name = args[0]
         if project_name not in self._workspace.projects:
             Console.error(f'Project {project_name} not found in workspace.')

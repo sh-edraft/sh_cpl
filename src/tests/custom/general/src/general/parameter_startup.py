@@ -28,5 +28,5 @@ class ParameterStartup(StartupExtensionABC):
 
     def configure_services(self, services: ServiceCollectionABC, env: ApplicationEnvironmentABC):
         services \
-            .add_singleton(GenerateArgument) \
+            .add_transient(GenerateArgument) \
             .add_singleton(InstallArgument)

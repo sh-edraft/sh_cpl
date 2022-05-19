@@ -54,17 +54,6 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def parse_console_arguments(self, error: bool = None):
-        r"""Reads the console arguments
-
-        Parameter
-        ---------
-            error: :class:`bool`
-                Defines is invalid argument error will be shown or not
-        """
-        pass
-
-    @abstractmethod
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         r"""Reads and saves settings from given json file
 
@@ -121,6 +110,17 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
+    def for_each_argument(self, call: Callable):
+        r"""Iterates through all arguments and calls the call function
+
+        Parameter
+        ---------
+            call: :class:`Callable`
+                Call for each argument
+        """
+        pass
+
+    @abstractmethod
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
         str, ConfigurationModelABC]:
         r"""Returns value from configuration by given type
@@ -133,6 +133,17 @@ class ConfigurationABC(ABC):
         Returns
         -------
             Object of Union[:class:`str`, :class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]
+        """
+        pass
+
+    @abstractmethod
+    def parse_console_arguments(self, error: bool = None):
+        r"""Reads the console arguments
+
+        Parameter
+        ---------
+            error: :class:`bool`
+                Defines is invalid argument error will be shown or not
         """
         pass
 

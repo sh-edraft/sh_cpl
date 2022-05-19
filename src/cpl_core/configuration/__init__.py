@@ -20,11 +20,17 @@ __version__ = '2022.6.3.dev2'
 from collections import namedtuple
 
 # imports:
+from .argument_abc import ArgumentABC
+from .argument_builder import ArgumentBuilder
+from .argument_executable_abc import ArgumentExecutableABC
+from .argument_type_enum import ArgumentTypeEnum
 from .configuration import Configuration
 from .configuration_abc import ConfigurationABC
 from .configuration_model_abc import ConfigurationModelABC
 from .configuration_variable_name_enum import ConfigurationVariableNameEnum
-from .argument_abc import ArgumentABC
+from .executable_argument import ExecutableArgument
+from .flag_argument import FlagArgument
+from .variable_argument import VariableArgument
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2022', minor='6', micro='3.dev2')

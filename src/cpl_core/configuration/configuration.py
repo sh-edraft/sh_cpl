@@ -147,15 +147,6 @@ class Configuration(ConfigurationABC):
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
 
-    def add_environment_variables(self, prefix: str):
-        for variable in ConfigurationVariableNameEnum.to_list():
-            var_name = f'{prefix}{variable}'
-            if var_name in [key.upper() for key in os.environ.keys()]:
-                self._set_variable(variable, os.environ[var_name])
-
-    def add_console_argument(self, argument: ArgumentABC):
-        self._argument_types.append(argument)
-
     def _parse_arguments(self, call_stack: list[Callable], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
             arg_str = arg_list[i]
@@ -169,7 +160,8 @@ class Configuration(ConfigurationABC):
                     if arg_str.startswith(arg.token) \
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
                         call_stack.append(arg.run)
-                        self._parse_arguments(call_stack, arg_list[i:], arg.console_arguments)
+                        self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
+                        break
 
                 # variables
                 elif isinstance(arg, VariableArgument):
@@ -185,24 +177,28 @@ class Configuration(ConfigurationABC):
                             value = arg_list[i + 1]
                         self._set_variable(arg.name, value)
                         self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
+                        break
+
                 # flags
                 elif isinstance(arg, FlagArgument):
                     if arg_str.startswith(arg.token) \
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
                         self._additional_arguments.append(arg.name)
                         self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
+                        break
 
-    def parse_console_arguments(self, error: bool = None):
-        # sets environment variables as possible arguments as: --VAR=VALUE
-        for arg_name in ConfigurationVariableNameEnum.to_list():
-            self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
+                # add left over values to args
+                if arg_str not in self._additional_arguments:
+                    self._additional_arguments.append(arg_str)
 
-        arg_list = sys.argv[1:]
-        call_stack = []
-        self._parse_arguments(call_stack, arg_list, self._argument_types)
+    def add_environment_variables(self, prefix: str):
+        for variable in ConfigurationVariableNameEnum.to_list():
+            var_name = f'{prefix}{variable}'
+            if var_name in [key.upper() for key in os.environ.keys()]:
+                self._set_variable(variable, os.environ[var_name])
 
-        for call in call_stack:
-            call(self._additional_arguments)
+    def add_console_argument(self, argument: ArgumentABC):
+        self._argument_types.append(argument)
 
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         if os.path.isabs(name):
@@ -246,6 +242,10 @@ class Configuration(ConfigurationABC):
         self._argument_types.append(argument)
         return argument
 
+    def for_each_argument(self, call: Callable):
+        for arg in self._argument_types:
+            call(arg)
+
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> \
             Optional[Union[str, ConfigurationModelABC]]:
         if type(search_type) is str:
@@ -264,6 +264,18 @@ class Configuration(ConfigurationABC):
         for config_model in self._config:
             if config_model == search_type:
                 return self._config[config_model]
+
+    def parse_console_arguments(self, error: bool = None):
+        # sets environment variables as possible arguments as: --VAR=VALUE
+        for arg_name in ConfigurationVariableNameEnum.to_list():
+            self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
+
+        arg_list = sys.argv[1:]
+        call_stack = []
+        self._parse_arguments(call_stack, arg_list, self._argument_types)
+
+        for call in call_stack:
+            call(self._additional_arguments)
 
     def resolve_runnable_argument_types(self, services: ServiceProviderABC):
         for arg in self._argument_types:

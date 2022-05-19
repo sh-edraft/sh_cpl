@@ -22,7 +22,6 @@ class AddService(CommandABC):
         CommandABC.__init__(self)
 
         self._config = config
-
         self._workspace = workspace
 
     @property
@@ -104,14 +103,14 @@ class AddService(CommandABC):
             Console.error(f'Invalid target: {target}')
             return
 
-        if target in build_settings.project_references:
-            Console.error(f'Project reference already exists.')
-            return
-
         if self._workspace is None:
             target = f'../{target}'
         else:
             target = target.replace('src', '..')
+
+        if target in build_settings.project_references:
+            Console.error(f'Project reference already exists.')
+            return
 
         build_settings.project_references.append(target)
 

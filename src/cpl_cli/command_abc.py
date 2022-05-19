@@ -1,7 +1,9 @@
 from abc import abstractmethod, ABC
 
+from cpl_core.configuration.executable_argument import ExecutableArgument
 
-class CommandABC(ABC):
+
+class CommandABC(ExecutableArgument):
 
     @abstractmethod
     def __init__(self):
@@ -10,6 +12,3 @@ class CommandABC(ABC):
     @property
     @abstractmethod
     def help_message(self) -> str: pass
-
-    @abstractmethod
-    def run(self, args: list[str]): pass
