@@ -15,7 +15,6 @@ class CommandABC(ExecutableArgument):
     def help_message(self) -> str: pass
 
     def execute(self, args: list[str]):
-        Console.write_line(args)
         if 'help' in args:
             Console.write_line(self.help_message)
             return
