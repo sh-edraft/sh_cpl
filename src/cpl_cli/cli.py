@@ -26,7 +26,7 @@ class CLI(ApplicationABC):
         :return:
         """
         try:
-            self._configuration.parse_console_arguments()
+            self._configuration.parse_console_arguments(self._services)
         except KeyboardInterrupt:
             Console.write_line()
             sys.exit()

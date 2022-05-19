@@ -10,7 +10,7 @@ from cpl_core.dependency_injection.service_collection import ServiceCollection
 
 
 class ApplicationBuilder(ApplicationBuilderABC):
-    r"""This is class is used to build a object of :class:`cpl_core.application.application_abc.ApplicationABC`
+    r"""This is class is used to build an object of :class:`cpl_core.application.application_abc.ApplicationABC`
 
     Parameter
     ---------
@@ -54,7 +54,6 @@ class ApplicationBuilder(ApplicationBuilderABC):
 
         config = self._configuration
         services = self._services.build_service_provider()
-        config.resolve_runnable_argument_types(services)
 
         for ex in self._app_extensions:
             extension = ex()

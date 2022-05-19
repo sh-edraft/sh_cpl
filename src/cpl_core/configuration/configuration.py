@@ -15,7 +15,7 @@ from cpl_core.configuration.flag_argument import FlagArgument
 from cpl_core.configuration.variable_argument import VariableArgument
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
-from cpl_core.dependency_injection import ServiceProviderABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
@@ -52,6 +52,10 @@ class Configuration(ConfigurationABC):
     @argument_error_function.setter
     def argument_error_function(self, argument_error_function: Callable):
         self._argument_error_function = argument_error_function
+
+    @property
+    def arguments(self) -> list[ArgumentABC]:
+        return self._argument_types
 
     @staticmethod
     def _print_info(name: str, message: str):
@@ -147,7 +151,7 @@ class Configuration(ConfigurationABC):
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
 
-    def _parse_arguments(self, call_stack: list[Callable], arg_list: list[str], args_types: list[ArgumentABC]):
+    def _parse_arguments(self, executables: list[ArgumentABC], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
             arg_str = arg_list[i]
             for n in range(0, len(args_types)):
@@ -160,9 +164,9 @@ class Configuration(ConfigurationABC):
                 if isinstance(arg, ExecutableArgument):
                     if arg_str.startswith(arg.token) \
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
-                        call_stack.append(arg.run)
+                        executables.append(arg)
                         self._handled_args.append(arg_str)
-                        self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
+                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
                 # variables
                 elif isinstance(arg, VariableArgument):
@@ -178,7 +182,7 @@ class Configuration(ConfigurationABC):
                             value = arg_list[i + 1]
                         self._set_variable(arg.name, value)
                         self._handled_args.append(arg_str)
-                        self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
+                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
                 # flags
                 elif isinstance(arg, FlagArgument):
@@ -186,7 +190,7 @@ class Configuration(ConfigurationABC):
                             and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
                         self._additional_arguments.append(arg.name)
                         self._handled_args.append(arg_str)
-                        self._parse_arguments(call_stack, arg_list[i + 1:], arg.console_arguments)
+                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
             # add left over values to args
             if arg_str not in self._additional_arguments and arg_str not in self._handled_args:
@@ -266,19 +270,16 @@ class Configuration(ConfigurationABC):
             if config_model == search_type:
                 return self._config[config_model]
 
-    def parse_console_arguments(self, error: bool = None):
+    def parse_console_arguments(self, services: ServiceProviderABC, error: bool = None):
         # sets environment variables as possible arguments as: --VAR=VALUE
         for arg_name in ConfigurationVariableNameEnum.to_list():
             self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
 
         arg_list = sys.argv[1:]
-        call_stack = []
-        self._parse_arguments(call_stack, arg_list, self._argument_types)
+        executables: list[ExecutableArgument] = []
+        self._parse_arguments(executables, arg_list, self._argument_types)
 
-        for call in call_stack:
-            call(self._additional_arguments)
+        for exe in executables:
+            service: ExecutableArgument = services.get_service(exe.executable_type)
+            service.run(self._additional_arguments)
 
-    def resolve_runnable_argument_types(self, services: ServiceProviderABC):
-        for arg in self._argument_types:
-            if isinstance(arg, ExecutableArgument):
-                arg.set_executable(services.get_service(arg.executable_type))

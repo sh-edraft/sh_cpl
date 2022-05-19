@@ -31,6 +31,10 @@ class ConfigurationABC(ABC):
     @abstractmethod
     def argument_error_function(self, argument_error_function: Callable): pass
 
+    @property
+    @abstractmethod
+    def arguments(self) -> list[ArgumentABC]: pass
+
     @abstractmethod
     def add_environment_variables(self, prefix: str):
         r"""Reads the environment variables
@@ -137,23 +141,12 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def parse_console_arguments(self, error: bool = None):
+    def parse_console_arguments(self, services: 'ServiceProviderABC', error: bool = None):
         r"""Reads the console arguments
 
         Parameter
         ---------
             error: :class:`bool`
                 Defines is invalid argument error will be shown or not
-        """
-        pass
-
-    @abstractmethod
-    def resolve_runnable_argument_types(self, services: 'ServiceProviderABC'):
-        r"""Gets all objects for given types of ConsoleArguments
-
-        Parameter
-        ---------
-            services: :class:`cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC`
-                Provides services
         """
         pass

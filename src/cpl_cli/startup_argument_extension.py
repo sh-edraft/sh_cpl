@@ -18,7 +18,6 @@ from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_core.application import StartupExtensionABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.configuration.configuration_abc import ConfigurationABC
-from cpl_core.console import Console
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl_core.environment import ApplicationEnvironmentABC
 from cpl_core.utils import String
@@ -83,7 +82,8 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'update', ['u', 'U'], UpdateService)
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'update', ['u', 'U'], UpdateService) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'version', ['v', 'V'], VersionService)
 
         config.for_each_argument(
