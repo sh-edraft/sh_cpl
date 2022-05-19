@@ -4,6 +4,7 @@ import sys
 from collections.abc import Callable
 from typing import Union, Type, Optional
 
+from cpl_cli.command_abc import CommandABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_builder import ArgumentBuilder
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
@@ -281,6 +282,5 @@ class Configuration(ConfigurationABC):
         self._parse_arguments(executables, arg_list, self._argument_types)
 
         for exe in executables:
-            service: ExecutableArgument = services.get_service(exe.executable_type)
-            service.run(self._additional_arguments)
-
+            cmd: CommandABC = services.get_service(exe.executable_type)
+            cmd.execute(self._additional_arguments)

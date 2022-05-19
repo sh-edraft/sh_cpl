@@ -1,6 +1,7 @@
 import os
 from typing import Optional
 
+from cpl_cli import CommandABC
 from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.custom_script_service import CustomScriptService
@@ -87,11 +88,23 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'version', ['v', 'V'], VersionService)
 
         config.for_each_argument(
-            lambda a: a.add_console_argument(ArgumentTypeEnum.Executable, '--', 'help', ['h', 'H'], HelpService)
+            lambda a: a.add_console_argument(ArgumentTypeEnum.Flag, '--', 'help', ['h', 'H'])
         )
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'help', ['h', 'H'], HelpService)
 
         self._read_cpl_environment(config, env)
 
-    def configure_services(self, service: ServiceCollectionABC, env: ApplicationEnvironmentABC):
-        pass
+    def configure_services(self, services: ServiceCollectionABC, env: ApplicationEnvironmentABC):
+        services.add_transient(CommandABC, AddService)
+        services.add_transient(CommandABC, BuildService)
+        services.add_transient(CommandABC, CustomScriptService)
+        services.add_transient(CommandABC, GenerateService)
+        services.add_transient(CommandABC, HelpService)
+        services.add_transient(CommandABC, InstallService)
+        services.add_transient(CommandABC, NewService)
+        services.add_transient(CommandABC, PublishService)
+        services.add_transient(CommandABC, RemoveService)
+        services.add_transient(CommandABC, StartService)
+        services.add_transient(CommandABC, UninstallService)
+        services.add_transient(CommandABC, UpdateService)
+        services.add_transient(CommandABC, VersionService)
