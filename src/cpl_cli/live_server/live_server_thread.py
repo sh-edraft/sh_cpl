@@ -66,7 +66,6 @@ class LiveServerThread(threading.Thread):
             main = self._build_settings.main.split('.')[length]
 
         self._main = os.path.join(self._path, f'{main}.py')
-        Console.write_line(self._main)
         if not os.path.isfile(self._main):
             Console.error('Entry point main.py not found')
             return
