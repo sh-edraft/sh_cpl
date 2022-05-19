@@ -182,6 +182,7 @@ class Configuration(ConfigurationABC):
                             value = arg_list[i + 1]
                         self._set_variable(arg.name, value)
                         self._handled_args.append(arg_str)
+                        self._handled_args.append(value)
                         self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
                 # flags
