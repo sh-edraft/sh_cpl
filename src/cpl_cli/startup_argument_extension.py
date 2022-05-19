@@ -78,7 +78,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService)
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['S', 'S'], StartService)
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['s', 'S'], StartService)
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
