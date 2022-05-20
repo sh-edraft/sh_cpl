@@ -7,7 +7,8 @@ class FlagArgument(ArgumentABC):
                  token: str,
                  name: str,
                  aliases: list[str],
+                 prevent_next_executable: bool = False,
                  console_arguments: list['ArgumentABC'] = None
                  ):
 
-        ArgumentABC.__init__(self, token, name, aliases, console_arguments)
+        ArgumentABC.__init__(self, token, name, aliases, prevent_next_executable, console_arguments)

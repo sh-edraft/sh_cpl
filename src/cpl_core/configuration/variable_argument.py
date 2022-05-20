@@ -8,12 +8,13 @@ class VariableArgument(ArgumentABC):
                  name: str,
                  aliases: list[str],
                  value_token: str,
+                 prevent_next_executable: bool = False,
                  console_arguments: list['ArgumentABC'] = None
                  ):
         self._value_token = value_token
         self._value: str = ''
 
-        ArgumentABC.__init__(self, token, name, aliases, console_arguments)
+        ArgumentABC.__init__(self, token, name, aliases, prevent_next_executable, console_arguments)
 
     @property
     def value_token(self) -> str:

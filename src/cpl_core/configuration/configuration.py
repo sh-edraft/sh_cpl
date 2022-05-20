@@ -13,6 +13,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
 from cpl_core.configuration.executable_argument import ExecutableArgument
 from cpl_core.configuration.flag_argument import FlagArgument
+from cpl_core.configuration.validator_abc import ValidatorABC
 from cpl_core.configuration.variable_argument import VariableArgument
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -245,7 +246,7 @@ class Configuration(ConfigurationABC):
 
     def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
                                 *args, **kwargs) -> ArgumentABC:
-        argument = ArgumentBuilder.build_argument(arg_type, token, name, aliases, *args, *kwargs)
+        argument = ArgumentBuilder.build_argument(arg_type, token, name, aliases, *args, **kwargs)
         self._argument_types.append(argument)
         return argument
 
@@ -285,6 +286,18 @@ class Configuration(ConfigurationABC):
         for exe in executables:
             if prevent:
                 continue
+
+            abort = False
+            for validator_type in exe.validators:
+                validator: ValidatorABC = services.get_service(validator_type)
+                result = validator.validate()
+                abort = not result
+                if abort:
+                    break
+
+            if abort:
+                continue
+
             cmd: CommandABC = services.get_service(exe.executable_type)
             self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
             cmd.execute(self._additional_arguments)
