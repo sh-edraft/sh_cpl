@@ -32,7 +32,7 @@ class GenerateService(CommandABC):
                 "Template": ABCTemplate
             },
             "class": {
-                "Upper": "",
+                "Upper": "Class",
                 "Template": ClassTemplate
             },
             "enum": {
@@ -167,12 +167,19 @@ class GenerateService(CommandABC):
         :param args:
         :return:
         """
-        if len(args) == 0:
+        schematic = None
+        value = None
+        for s in self._schematics:
+            value = self._config.get_configuration(s)
+            if value is not None:
+                schematic = s
+                break
+
+        if schematic is None:
             self._help('Usage: cpl generate <schematic> [options]')
             sys.exit()
 
-        schematic = args[0]
-        name = self._config.get_configuration(schematic)
+        name = value
         if name is None:
             name = Console.read(f'Name for the {args[0]}: ')
 
