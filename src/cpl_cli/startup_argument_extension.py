@@ -60,32 +60,32 @@ class StartupArgumentExtension(StartupExtensionABC):
     def configure_configuration(self, config: ConfigurationABC, env: ApplicationEnvironmentABC):
         config.add_json_file('cpl-workspace.json', path=env.working_directory, optional=True, output=False)
 
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'add', ['a', 'A'], AddService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'add', ['a', 'A'], AddService, True) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'build', ['b', 'B'], BuildService)
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'generate', ['g', 'G'], GenerateService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'build', ['b', 'B'], BuildService, True)
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'generate', ['g', 'G'], GenerateService, True) \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'abc', ['a', 'A'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'class', ['c', 'C'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'enum', ['e', 'E'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 't'], ' ')
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService, True) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService, True) \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'console', ['c', 'C'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ')
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService)
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService, True)
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService, True) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['s', 'S'], StartService)
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['s', 'S'], StartService, True)
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService, True) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'update', ['u', 'U'], UpdateService) \
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'update', ['u', 'U'], UpdateService, True) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'version', ['v', 'V'], VersionService)
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'version', ['v', 'V'], VersionService, True)
 
         config.for_each_argument(
             lambda a: a.add_console_argument(ArgumentTypeEnum.Flag, '--', 'help', ['h', 'H'])

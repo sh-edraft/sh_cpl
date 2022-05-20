@@ -240,7 +240,7 @@ class Configuration(ConfigurationABC):
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
 
-    def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
+    def add_configuration(self, key_type: Union[str, type], value: Union[str, ConfigurationModelABC]):
         self._config[key_type] = value
 
     def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
@@ -281,6 +281,11 @@ class Configuration(ConfigurationABC):
         executables: list[ExecutableArgument] = []
         self._parse_arguments(executables, arg_list, self._argument_types)
 
+        prevent = False
         for exe in executables:
+            if prevent:
+                continue
             cmd: CommandABC = services.get_service(exe.executable_type)
+            self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
             cmd.execute(self._additional_arguments)
+            prevent = exe.prevent_next_executable

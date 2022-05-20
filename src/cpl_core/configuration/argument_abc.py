@@ -10,6 +10,7 @@ class ArgumentABC(ABC):
                  token: str,
                  name: str,
                  aliases: list[str],
+                 prevent_next_executable: bool = False,
                  console_arguments: list['ArgumentABC'] = None
                  ):
         r"""Representation of an console argument
@@ -24,6 +25,7 @@ class ArgumentABC(ABC):
         self._token = token
         self._name = name
         self._aliases = aliases
+        self._prevent_next_executable = prevent_next_executable
         self._console_arguments = console_arguments if console_arguments is not None else []
 
     @property
@@ -37,6 +39,10 @@ class ArgumentABC(ABC):
     @property
     def aliases(self) -> list[str]:
         return self._aliases
+
+    @property
+    def prevent_next_executable(self) -> bool:
+        return self._prevent_next_executable
 
     @property
     def console_arguments(self) -> list['ArgumentABC']:

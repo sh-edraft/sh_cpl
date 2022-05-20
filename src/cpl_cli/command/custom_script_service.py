@@ -1,6 +1,5 @@
 import os
 import subprocess
-import sys
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
@@ -24,6 +23,7 @@ class CustomScriptService(CommandABC):
         return ''
 
     def run(self, args: list[str]):
+        Console.write_line(args, self._config.additional_arguments)
         cmd = args[0] if len(args) > 0 else self._config.additional_arguments[0]
 
         for script in self._workspace.scripts:
