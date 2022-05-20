@@ -50,16 +50,19 @@
       "upl-dev-query": "twine upload -r pip-dev.sh-edraft.de dist/cpl-query/publish/setup/*",
 
       "deploy-prod": "cpl deploy-prod-cli; cpl deploy-prod-core; cpl deploy-prod-query;",
+      "dp": "cpl deploy-prod",
       "deploy-prod-cli": "cpl publish-cli; cpl upload-prod-cli",
       "deploy-prod-core": "cpl publish-core; cpl upload-prod-core",
       "deploy-prod-query": "cpl publish-query; cpl upload-prod-query",
 
       "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-query;",
+      "de": "cpl deploy-exp",
       "deploy-exp-cli": "cpl publish-cli; cpl upload-exp-cli",
       "deploy-exp-core": "cpl publish-core; cpl upload-exp-core",
       "deploy-exp-query": "cpl publish-query; cpl upload-exp-query",
 
       "deploy-dev": "cpl deploy-dev-cli; cpl deploy-dev-core; cpl deploy-dev-query;",
+      "dd": "cpl deploy-dev",
       "deploy-dev-cli": "cpl publish-cli; cpl upload-dev-cli",
       "deploy-dev-core": "cpl publish-core; cpl upload-dev-core",
       "deploy-dev-query": "cpl publish-query; cpl upload-dev-query"
