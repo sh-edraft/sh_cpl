@@ -54,4 +54,4 @@ class HelpService(CommandABC):
             Console.write(f'\n\t{name} ')
             Console.set_foreground_color(ForegroundColorEnum.default)
             Console.write(f'{description}')
-        Console.write_line('\nRun \'cpl <command> --help\' for command specific information\'s')
+        Console.write_line('\nRun \'cpl <command> --help\' for command specific information\'s\n')

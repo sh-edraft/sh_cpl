@@ -145,7 +145,7 @@ class GenerateService(CommandABC):
                     )
 
         if os.path.isfile(file_path):
-            Console.error(f'{String.first_to_upper(schematic)} already exists!')
+            Console.error(f'{String.first_to_upper(schematic)} already exists!\n')
             sys.exit()
 
         message = f'Creating {self._env.working_directory}/{template.path}/{template.name}'
