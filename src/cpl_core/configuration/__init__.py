@@ -30,6 +30,7 @@ from .configuration_model_abc import ConfigurationModelABC
 from .configuration_variable_name_enum import ConfigurationVariableNameEnum
 from .executable_argument import ExecutableArgument
 from .flag_argument import FlagArgument
+from .validator_abc import ValidatorABC
 from .variable_argument import VariableArgument
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
