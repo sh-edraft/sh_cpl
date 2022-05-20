@@ -23,8 +23,7 @@ class CustomScriptService(CommandABC):
         return ''
 
     def run(self, args: list[str]):
-        Console.write_line(args, self._config.additional_arguments)
-        cmd = args[0] if len(args) > 0 else self._config.additional_arguments[0]
+        cmd = self._config.get_configuration('ACTIVE_EXECUTABLE')
 
         for script in self._workspace.scripts:
             if script == cmd:
