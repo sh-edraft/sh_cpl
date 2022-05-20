@@ -2,6 +2,7 @@ import os
 import sys
 import textwrap
 
+from cpl_cli._templates.generate.validator_template import ValidatorTemplate
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.console.console import Console
@@ -50,6 +51,10 @@ class GenerateService(CommandABC):
             "thread": {
                 "Upper": "Thread",
                 "Template": ThreadTemplate
+            },
+            "validator": {
+                "Upper": "Validator",
+                "Template": ValidatorTemplate
             }
         }
 
@@ -73,6 +78,7 @@ class GenerateService(CommandABC):
             service
             settings
             thread
+            validator
         """)
 
     @staticmethod
@@ -89,7 +95,9 @@ class GenerateService(CommandABC):
             'class (c|C)',
             'enum (e|E)',
             'service (s|S)',
-            'settings (st|ST)'
+            'settings (st|ST)',
+            'thread (t|T)',
+            'validator (v|V)'
         ]
         Console.write_line('Available Schematics:')
         for name in schematics:

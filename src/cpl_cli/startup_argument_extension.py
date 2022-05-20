@@ -68,7 +68,8 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'enum', ['e', 'E'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
-            .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 't'], ' ')
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 'T'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'validator', ['v', 'V'], ' ')
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService, True) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])

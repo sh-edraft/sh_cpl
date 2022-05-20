@@ -287,16 +287,17 @@ class Configuration(ConfigurationABC):
             if prevent:
                 continue
 
-            abort = False
-            for validator_type in exe.validators:
-                validator: ValidatorABC = services.get_service(validator_type)
-                result = validator.validate()
-                abort = not result
-                if abort:
-                    break
+            if exe.validators is not None:
+                abort = False
+                for validator_type in exe.validators:
+                    validator: ValidatorABC = services.get_service(validator_type)
+                    result = validator.validate()
+                    abort = not result
+                    if abort:
+                        break
 
-            if abort:
-                continue
+                if abort:
+                    continue
 
             cmd: CommandABC = services.get_service(exe.executable_type)
             self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
