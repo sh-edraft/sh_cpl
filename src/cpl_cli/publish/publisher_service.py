@@ -206,55 +206,57 @@ class PublisherService(PublisherABC):
         :return:
         """
         for file in self._included_files:
-            if file.endswith('__init__.py'):
-                template_content = ''
-                module_file_lines: list[str] = []
+            if not file.endswith('__init__.py'):
+                continue
 
-                title = self._get_module_name_from_dirs(file)
-                if title == '':
-                    title = self._project_settings.name
+            template_content = ''
+            module_file_lines: list[str] = []
 
-                module_py_lines: list[str] = []
-                imports = ''
+            title = self._get_module_name_from_dirs(file)
+            if title == '':
+                title = self._project_settings.name
 
-                with open(file, 'r') as py_file:
-                    module_file_lines = py_file.readlines()
-                    py_file.close()
+            module_py_lines: list[str] = []
+            imports = ''
 
-                if len(module_file_lines) == 0:
-                    imports = '# imports:'
-                else:
-                    is_started = False
-                    for line in module_file_lines:
-                        if line.__contains__('# imports'):
-                            is_started = True
+            with open(file, 'r') as py_file:
+                module_file_lines = py_file.readlines()
+                py_file.close()
 
-                        if (line.__contains__('from') or line.__contains__('import')) and is_started:
-                            module_py_lines.append(line.replace('\n', ''))
+            if len(module_file_lines) == 0:
+                imports = '# imports:'
+            else:
+                is_started = False
+                for line in module_file_lines:
+                    if line.__contains__('# imports'):
+                        is_started = True
 
-                    if len(module_py_lines) > 0:
-                        imports = '\n'.join(module_py_lines)
+                    if ((line.__contains__('from') or line.__contains__('import')) and is_started) or line.startswith('__cli_startup_extension__'):
+                        module_py_lines.append(line.replace('\n', ''))
 
-                template_content = stringTemplate(InitTemplate.get_init_py()).substitute(
-                    Name=self._project_settings.name,
-                    Description=self._project_settings.description,
-                    LongDescription=self._project_settings.long_description,
-                    CopyrightDate=self._project_settings.copyright_date,
-                    CopyrightName=self._project_settings.copyright_name,
-                    LicenseName=self._project_settings.license_name,
-                    LicenseDescription=self._project_settings.license_description,
-                    Title=title if title is not None and title != '' else self._project_settings.name,
-                    Author=self._project_settings.author,
-                    Version=version.parse(self._project_settings.version.to_str()),
-                    Major=self._project_settings.version.major,
-                    Minor=self._project_settings.version.minor,
-                    Micro=self._project_settings.version.micro,
-                    Imports=imports
-                )
+                if len(module_py_lines) > 0:
+                    imports = '\n'.join(module_py_lines)
 
-                with open(file, 'w+') as py_file:
-                    py_file.write(template_content)
-                    py_file.close()
+            template_content = stringTemplate(InitTemplate.get_init_py()).substitute(
+                Name=self._project_settings.name,
+                Description=self._project_settings.description,
+                LongDescription=self._project_settings.long_description,
+                CopyrightDate=self._project_settings.copyright_date,
+                CopyrightName=self._project_settings.copyright_name,
+                LicenseName=self._project_settings.license_name,
+                LicenseDescription=self._project_settings.license_description,
+                Title=title if title is not None and title != '' else self._project_settings.name,
+                Author=self._project_settings.author,
+                Version=version.parse(self._project_settings.version.to_str()),
+                Major=self._project_settings.version.major,
+                Minor=self._project_settings.version.minor,
+                Micro=self._project_settings.version.micro,
+                Imports=imports
+            )
+
+            with open(file, 'w+') as py_file:
+                py_file.write(template_content)
+                py_file.close()
 
     def _dist_files(self):
         """

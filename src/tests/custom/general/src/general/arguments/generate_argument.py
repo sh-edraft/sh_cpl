@@ -11,6 +11,6 @@ class GenerateArgument(ArgumentExecutableABC):
         self._config = config
         self._env = env
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         Console.error('Generate:')
         Console.write_line(args, self._env.environment_name)

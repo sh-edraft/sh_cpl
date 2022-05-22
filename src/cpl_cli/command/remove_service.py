@@ -67,7 +67,7 @@ class RemoveService(CommandABC):
 
         self._create_file(path, ws_dict)
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:

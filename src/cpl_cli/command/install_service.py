@@ -184,7 +184,7 @@ class InstallService(CommandABC):
 
         Pip.reset_executable()
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:

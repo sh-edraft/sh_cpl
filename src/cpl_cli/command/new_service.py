@@ -242,7 +242,7 @@ class NewService(CommandABC):
         except Exception as e:
             Console.error('Could not create project', str(e))
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:

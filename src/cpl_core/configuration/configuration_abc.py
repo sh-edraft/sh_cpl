@@ -141,12 +141,16 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def parse_console_arguments(self, services: 'ServiceProviderABC', error: bool = None):
+    def parse_console_arguments(self, services: 'ServiceProviderABC', error: bool = None) -> bool:
         r"""Reads the console arguments
 
         Parameter
         ---------
             error: :class:`bool`
                 Defines is invalid argument error will be shown or not
+
+        Returns
+        -------
+            Bool to specify if executables were executed or not.
         """
         pass

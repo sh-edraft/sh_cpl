@@ -274,18 +274,19 @@ class Configuration(ConfigurationABC):
             if config_model == search_type:
                 return self._config[config_model]
 
-    def parse_console_arguments(self, services: ServiceProviderABC, error: bool = None):
+    def parse_console_arguments(self, services: ServiceProviderABC, error: bool = None) -> bool:
         # sets environment variables as possible arguments as: --VAR=VALUE
         for arg_name in ConfigurationVariableNameEnum.to_list():
             self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
 
+        success = False
         try:
             arg_list = sys.argv[1:]
             executables: list[ExecutableArgument] = []
             self._parse_arguments(executables, arg_list, self._argument_types)
         except Exception as e:
             Console.error('An error occurred while parsing arguments.')
-            exit()
+            sys.exit()
 
         try:
             prevent = False
@@ -309,5 +310,9 @@ class Configuration(ConfigurationABC):
                 self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
                 cmd.execute(self._additional_arguments)
                 prevent = exe.prevent_next_executable
+                success = True
         except Exception as e:
             Console.error('An error occurred while executing arguments.')
+            sys.exit()
+
+        return success
