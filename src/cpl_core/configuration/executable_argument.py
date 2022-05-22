@@ -3,7 +3,6 @@ from typing import Type, Optional
 from cpl_core.configuration.argument_executable_abc import ArgumentExecutableABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.validator_abc import ValidatorABC
-from cpl_core.console import Console
 
 
 class ExecutableArgument(ArgumentABC):
@@ -40,4 +39,4 @@ class ExecutableArgument(ArgumentABC):
         """
         if self._executable is None:
             return
-        self._executable.run(args)
+        self._executable.execute(args)

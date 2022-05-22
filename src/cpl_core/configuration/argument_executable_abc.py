@@ -7,4 +7,4 @@ class ArgumentExecutableABC(ABC):
     def __init__(self): pass
 
     @abstractmethod
-    def run(self, args: list[str]): pass
+    def execute(self, args: list[str]): pass
