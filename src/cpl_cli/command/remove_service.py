@@ -25,6 +25,7 @@ class RemoveService(CommandABC):
         self._env = env
 
         self._workspace: WorkspaceSettings = self._config.get_configuration(WorkspaceSettings)
+        self._is_simulation = False
 
     @property
     def help_message(self) -> str:
@@ -36,8 +37,10 @@ class RemoveService(CommandABC):
             project     The name of the project to delete
         """)
 
-    @staticmethod
-    def _create_file(file_name: str, content: dict):
+    def _create_file(self, file_name: str, content: dict):
+        if self._is_simulation:
+            return
+
         if not os.path.isabs(file_name):
             file_name = os.path.abspath(file_name)
 
@@ -70,6 +73,10 @@ class RemoveService(CommandABC):
         :param args:
         :return:
         """
+        if 'simulate' in args:
+            args.remove('simulate')
+            Console.write_line('Running in simulation mode:')
+            self._is_simulation = True
 
         project_name = args[0]
         if project_name not in self._workspace.projects:

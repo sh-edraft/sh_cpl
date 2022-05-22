@@ -38,6 +38,7 @@ class UpdateService(CommandABC):
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
+        self._is_simulation = False
 
     @property
     def help_message(self) -> str:
@@ -132,6 +133,9 @@ class UpdateService(CommandABC):
         :param new_package:
         :return:
         """
+        if self._is_simulation:
+            return
+
         if old_package in self._project_settings.dependencies:
             index = self._project_settings.dependencies.index(old_package)
             if '/' in new_package:
@@ -158,6 +162,11 @@ class UpdateService(CommandABC):
         :param args:
         :return:
         """
+        if 'simulate' in args:
+            args.remove('simulate')
+            Console.write_line('Running in simulation mode:')
+            self._is_simulation = True
+
         Pip.set_executable(self._project_settings.python_executable)
         self._check_project_dependencies()
         self._check_outdated()

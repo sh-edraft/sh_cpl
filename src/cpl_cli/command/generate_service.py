@@ -2,6 +2,7 @@ import os
 import sys
 import textwrap
 
+from cpl_cli._templates.generate.validator_template import ValidatorTemplate
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.console.console import Console
@@ -32,7 +33,7 @@ class GenerateService(CommandABC):
                 "Template": ABCTemplate
             },
             "class": {
-                "Upper": "",
+                "Upper": "Class",
                 "Template": ClassTemplate
             },
             "enum": {
@@ -50,6 +51,10 @@ class GenerateService(CommandABC):
             "thread": {
                 "Upper": "Thread",
                 "Template": ThreadTemplate
+            },
+            "validator": {
+                "Upper": "Validator",
+                "Template": ValidatorTemplate
             }
         }
 
@@ -73,6 +78,7 @@ class GenerateService(CommandABC):
             service
             settings
             thread
+            validator
         """)
 
     @staticmethod
@@ -89,7 +95,9 @@ class GenerateService(CommandABC):
             'class (c|C)',
             'enum (e|E)',
             'service (s|S)',
-            'settings (st|ST)'
+            'settings (st|ST)',
+            'thread (t|T)',
+            'validator (v|V)'
         ]
         Console.write_line('Available Schematics:')
         for name in schematics:
@@ -145,7 +153,7 @@ class GenerateService(CommandABC):
                     )
 
         if os.path.isfile(file_path):
-            Console.error(f'{String.first_to_upper(schematic)} already exists!')
+            Console.error(f'{String.first_to_upper(schematic)} already exists!\n')
             sys.exit()
 
         message = f'Creating {self._env.working_directory}/{template.path}/{template.name}'
@@ -167,12 +175,19 @@ class GenerateService(CommandABC):
         :param args:
         :return:
         """
-        if len(args) == 0:
+        schematic = None
+        value = None
+        for s in self._schematics:
+            value = self._config.get_configuration(s)
+            if value is not None:
+                schematic = s
+                break
+
+        if schematic is None:
             self._help('Usage: cpl generate <schematic> [options]')
             sys.exit()
 
-        schematic = args[0]
-        name = self._config.get_configuration(schematic)
+        name = value
         if name is None:
             name = Console.read(f'Name for the {args[0]}: ')
 

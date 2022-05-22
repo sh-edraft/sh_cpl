@@ -434,6 +434,7 @@ class PublisherService(PublisherABC):
                         spinner_foreground_color=ForegroundColorEnum.blue)
         Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green,
                         spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.write_line()
 
     def publish(self):
         """
@@ -487,3 +488,4 @@ class PublisherService(PublisherABC):
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.blue
         )
+        Console.write_line()

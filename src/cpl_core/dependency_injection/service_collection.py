@@ -10,7 +10,6 @@ from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeE
 from cpl_core.dependency_injection.service_provider import ServiceProvider
 from cpl_core.logging.logger_service import Logger
 from cpl_core.logging.logger_abc import LoggerABC
-from cpl_core.utils.credential_manager import CredentialManager
 
 
 class ServiceCollection(ServiceCollectionABC):
@@ -59,18 +58,23 @@ class ServiceCollection(ServiceCollectionABC):
 
             self._add_descriptor(impl, ServiceLifetimeEnum.singleton)
 
+        return self
+
     def add_scoped(self, service_type: Type, service: Callable = None):
         if service is not None:
             self._add_descriptor(service, ServiceLifetimeEnum.scoped)
         else:
             self._add_descriptor(service_type, ServiceLifetimeEnum.scoped)
-        
+
+        return self
 
     def add_transient(self, service_type: type, service: type = None):
         if service is not None:
             self._add_descriptor(service, ServiceLifetimeEnum.transient)
         else:
             self._add_descriptor(service_type, ServiceLifetimeEnum.transient)
+
+        return self
 
     def build_service_provider(self) -> ServiceProviderABC:
         return ServiceProvider(self._service_descriptors, self._configuration, self._database_context)
