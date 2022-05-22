@@ -5,7 +5,7 @@ from cpl_cli.error import Error
 from cpl_core.application.application_abc import ApplicationABC
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
-from cpl_core.dependency_injection import ServiceProviderABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class CLI(ApplicationABC):

@@ -1,13 +1,12 @@
 import json
 import os
 import sys
-import traceback
 from collections.abc import Callable
 from typing import Union, Type, Optional
 
-from cpl_cli.command_abc import CommandABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_builder import ArgumentBuilder
+from cpl_core.configuration.argument_executable_abc import ArgumentExecutableABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
@@ -306,7 +305,7 @@ class Configuration(ConfigurationABC):
                     if abort:
                         continue
 
-                cmd: CommandABC = services.get_service(exe.executable_type)
+                cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
                 self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
                 cmd.execute(self._additional_arguments)
                 prevent = exe.prevent_next_executable

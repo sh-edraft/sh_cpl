@@ -14,7 +14,7 @@ class PipeTemplate(TemplateFileABC):
         self._class_name = f'{String.first_to_upper(name)}{schematic_upper}'
         self._path = path
         self._value = textwrap.dedent("""\
-        from cpl_core.pipe import PipeABC
+        from cpl_core.pipes.pipe_abc import PipeABC
         
         
         class $Name(PipeABC):

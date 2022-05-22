@@ -1,6 +1,5 @@
 from cpl_core.application import StartupExtensionABC
-from cpl_core.configuration import ConfigurationABC
-from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
+from cpl_core.configuration import ConfigurationABC, ArgumentTypeEnum
 from cpl_core.dependency_injection import ServiceCollectionABC
 from cpl_core.environment import ApplicationEnvironmentABC
 from arguments.generate_argument import GenerateArgument

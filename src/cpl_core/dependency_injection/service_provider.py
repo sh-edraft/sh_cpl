@@ -4,6 +4,7 @@ from typing import Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console import Console
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.dependency_injection.scope_abc import ScopeABC
 from cpl_core.dependency_injection.scope_builder import ScopeBuilder

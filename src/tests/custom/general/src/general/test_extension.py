@@ -1,4 +1,4 @@
-from cpl_core.application.application_extension_abc import ApplicationExtensionABC
+from cpl_core.application import ApplicationExtensionABC
 from cpl_core.configuration import ConfigurationABC
 from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
