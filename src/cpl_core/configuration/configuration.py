@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import traceback
 from collections.abc import Callable
 from typing import Union, Type, Optional
 
@@ -278,28 +279,35 @@ class Configuration(ConfigurationABC):
         for arg_name in ConfigurationVariableNameEnum.to_list():
             self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
 
-        arg_list = sys.argv[1:]
-        executables: list[ExecutableArgument] = []
-        self._parse_arguments(executables, arg_list, self._argument_types)
+        try:
+            arg_list = sys.argv[1:]
+            executables: list[ExecutableArgument] = []
+            self._parse_arguments(executables, arg_list, self._argument_types)
+        except Exception as e:
+            Console.error('An error occurred while parsing arguments.')
+            exit()
 
-        prevent = False
-        for exe in executables:
-            if prevent:
-                continue
-
-            if exe.validators is not None:
-                abort = False
-                for validator_type in exe.validators:
-                    validator: ValidatorABC = services.get_service(validator_type)
-                    result = validator.validate()
-                    abort = not result
-                    if abort:
-                        break
-
-                if abort:
+        try:
+            prevent = False
+            for exe in executables:
+                if prevent:
                     continue
 
-            cmd: CommandABC = services.get_service(exe.executable_type)
-            self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
-            cmd.execute(self._additional_arguments)
-            prevent = exe.prevent_next_executable
+                if exe.validators is not None:
+                    abort = False
+                    for validator_type in exe.validators:
+                        validator: ValidatorABC = services.get_service(validator_type)
+                        result = validator.validate()
+                        abort = not result
+                        if abort:
+                            break
+
+                    if abort:
+                        continue
+
+                cmd: CommandABC = services.get_service(exe.executable_type)
+                self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
+                cmd.execute(self._additional_arguments)
+                prevent = exe.prevent_next_executable
+        except Exception as e:
+            Console.error('An error occurred while executing arguments.')
