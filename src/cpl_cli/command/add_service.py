@@ -46,7 +46,7 @@ class AddService(CommandABC):
             }, indent=2))
             file.close()
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:

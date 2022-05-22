@@ -22,7 +22,7 @@ class CustomScriptService(CommandABC):
     def help_message(self) -> str:
         return ''
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         cmd = self._config.get_configuration('ACTIVE_EXECUTABLE')
 
         for script in self._workspace.scripts:

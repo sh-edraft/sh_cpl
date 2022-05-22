@@ -156,7 +156,7 @@ class UpdateService(CommandABC):
             project.write(json.dumps(config, indent=2))
             project.close()
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:

@@ -49,7 +49,7 @@ class UninstallService(CommandABC):
     def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
         time.sleep(t)
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:
