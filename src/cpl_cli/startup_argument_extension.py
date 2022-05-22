@@ -17,12 +17,12 @@ from cpl_cli.command.version_service import VersionService
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.validators.project_validator import ProjectValidator
 from cpl_cli.validators.workspace_validator import WorkspaceValidator
-from cpl_core.application import StartupExtensionABC
+from cpl_core.application.startup_extension_abc import StartupExtensionABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
-from cpl_core.environment import ApplicationEnvironmentABC
-from cpl_core.utils import String
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.utils.string import String
 
 
 class StartupArgumentExtension(StartupExtensionABC):
@@ -66,6 +66,7 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'abc', ['a', 'A'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'class', ['c', 'C'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'enum', ['e', 'E'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'pipes', ['p', 'P'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 'T'], ' ') \

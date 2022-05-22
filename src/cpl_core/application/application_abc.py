@@ -4,7 +4,7 @@ from typing import Optional
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl_core.environment import ApplicationEnvironmentABC
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
 class ApplicationABC(ABC):
