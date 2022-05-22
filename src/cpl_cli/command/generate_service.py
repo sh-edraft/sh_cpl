@@ -2,6 +2,7 @@ import os
 import sys
 import textwrap
 
+from cpl_cli._templates.generate.pipe_template import PipeTemplate
 from cpl_cli._templates.generate.validator_template import ValidatorTemplate
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -40,6 +41,10 @@ class GenerateService(CommandABC):
                 "Upper": "Enum",
                 "Template": EnumTemplate
             },
+            "pipe": {
+                "Upper": "Pipe",
+                "Template": PipeTemplate
+            },
             "service": {
                 "Upper": "Service",
                 "Template": ServiceTemplate
@@ -75,6 +80,7 @@ class GenerateService(CommandABC):
             abc
             class
             enum
+            pipe
             service
             settings
             thread
@@ -94,6 +100,7 @@ class GenerateService(CommandABC):
             'abc (a|A)',
             'class (c|C)',
             'enum (e|E)',
+            'pipe (p|P)',
             'service (s|S)',
             'settings (st|ST)',
             'thread (t|T)',

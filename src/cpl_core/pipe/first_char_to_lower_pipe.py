@@ -1,4 +1,4 @@
-from cpl_core.pipes.pipe_abc import PipeABC
+from cpl_core.pipe.pipe_abc import PipeABC
 
 
 class FirstCharToLowerPipe(PipeABC):
