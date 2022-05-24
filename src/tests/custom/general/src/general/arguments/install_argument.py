@@ -1,4 +1,4 @@
-from cpl_core.configuration.argument_executable_abc import ArgumentExecutableABC
+from cpl_core.configuration import ArgumentExecutableABC
 from cpl_core.console import Console
 
 

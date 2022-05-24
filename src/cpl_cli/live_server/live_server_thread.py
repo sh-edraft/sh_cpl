@@ -60,6 +60,7 @@ class LiveServerThread(threading.Thread):
         Starts the CPL project
         :return:
         """
+        Console.write_line(self._build_settings.main)
         main = self._build_settings.main
         if '.' in self._build_settings.main:
             length = len(self._build_settings.main.split('.')) - 1
