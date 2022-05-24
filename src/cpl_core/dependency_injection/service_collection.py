@@ -1,17 +1,15 @@
-from typing import Union, Type, Callable, Optional, overload
-
-import lifetime as lifetime
+from typing import Union, Type, Callable, Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
-from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
-from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 from cpl_core.dependency_injection.service_provider import ServiceProvider
-from cpl_core.logging.logger_service import Logger
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.logging.logger_abc import LoggerABC
+from cpl_core.logging.logger_service import Logger
 
 
 class ServiceCollection(ServiceCollectionABC):
