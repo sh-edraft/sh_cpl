@@ -200,10 +200,11 @@ class Configuration(ConfigurationABC):
                 self._additional_arguments.append(arg_str)
 
     def add_environment_variables(self, prefix: str):
-        for variable in ConfigurationVariableNameEnum.to_list():
-            var_name = f'{prefix}{variable}'
-            if var_name in [key.upper() for key in os.environ.keys()]:
-                self._set_variable(variable, os.environ[var_name])
+        for env_var in os.environ.keys():
+            if not env_var.startswith(prefix):
+                continue
+
+            self._set_variable(env_var.replace(prefix, ''), os.environ[env_var])
 
     def add_console_argument(self, argument: ArgumentABC):
         self._argument_types.append(argument)
