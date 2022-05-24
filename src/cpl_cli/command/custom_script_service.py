@@ -26,9 +26,11 @@ class CustomScriptService(CommandABC):
         cmd = self._config.get_configuration('ACTIVE_EXECUTABLE')
 
         for script in self._workspace.scripts:
-            if script == cmd:
-                command = self._workspace.scripts[script]
-                try:
-                    subprocess.run(command, shell=True if os.name == 'posix' else None)
-                except Exception as e:
-                    Console.error(str(e))
+            if script != cmd:
+                continue
+
+            command = self._workspace.scripts[script]
+            try:
+                subprocess.run(command, shell=True if os.name == 'posix' else None)
+            except Exception as e:
+                Console.error(str(e))

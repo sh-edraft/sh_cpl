@@ -5,6 +5,8 @@ import traceback
 from collections.abc import Callable
 from typing import Union, Type, Optional
 
+from cpl_cli.command.custom_script_service import CustomScriptService
+from cpl_cli.configuration import WorkspaceSettings
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_builder import ArgumentBuilder
 from cpl_core.configuration.argument_executable_abc import ArgumentExecutableABC
@@ -153,6 +155,28 @@ class Configuration(ConfigurationABC):
         except Exception as e:
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
+
+    def _handle_pre_or_post_executables(self, pre: bool, argument: ExecutableArgument, services: ServiceProviderABC):
+        script_type = 'pre-' if pre else 'post-'
+        workspace: Optional[WorkspaceSettings] = self.get_configuration(WorkspaceSettings)
+        if workspace is None or len(workspace.scripts) == 0:
+            return
+
+        for script in workspace.scripts:
+            if script_type not in script and not script.startswith(script_type):
+                continue
+
+            # split in two ifs to prevent exception
+            if script.split(script_type)[1] != argument.name:
+                continue
+
+            css: CustomScriptService = services.get_service(CustomScriptService)
+            if css is None:
+                continue
+
+            Console.write_line()
+            self.add_configuration('ACTIVE_EXECUTABLE', script)
+            css.run([])
 
     def _parse_arguments(self, executables: list[ArgumentABC], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
@@ -308,8 +332,10 @@ class Configuration(ConfigurationABC):
                         sys.exit()
 
                 cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
+                self._handle_pre_or_post_executables(True, exe, services)
                 self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
                 cmd.execute(self._additional_arguments)
+                self._handle_pre_or_post_executables(False, exe, services)
                 prevent = exe.prevent_next_executable
                 success = True
         except Exception as e:
