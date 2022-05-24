@@ -1,4 +1,4 @@
-from typing import Union, Type, Callable, Optional
+from typing import Union, Type, Callable, Optional, overload
 
 import lifetime as lifetime
 
@@ -24,7 +24,7 @@ class ServiceCollection(ServiceCollectionABC):
         self._database_context: Optional[DatabaseContextABC] = None
         self._service_descriptors: list[ServiceDescriptor] = []
 
-    def _add_descriptor(self, service: Union[type, object], lifetime: ServiceLifetimeEnum):
+    def _add_descriptor(self, service: Union[type, object], lifetime: ServiceLifetimeEnum, base_type: Callable = None):
         found = False
         for descriptor in self._service_descriptors:
             if isinstance(service, descriptor.service_type):
@@ -37,11 +37,11 @@ class ServiceCollection(ServiceCollectionABC):
 
             raise Exception(f'Service of type {service_type} already exists')
 
-        self._service_descriptors.append(ServiceDescriptor(service, lifetime))
+        self._service_descriptors.append(ServiceDescriptor(service, lifetime, base_type))
 
     def _add_descriptor_by_lifetime(self, service_type: Type, lifetime: ServiceLifetimeEnum, service: Callable = None):
         if service is not None:
-            self._add_descriptor(service, lifetime)
+            self._add_descriptor(service, lifetime, service_type)
         else:
             self._add_descriptor(service_type, lifetime)
 

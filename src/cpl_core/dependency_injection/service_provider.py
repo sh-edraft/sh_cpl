@@ -37,7 +37,7 @@ class ServiceProvider(ServiceProviderABC):
 
     def _find_service(self, service_type: type) -> Optional[ServiceDescriptor]:
         for descriptor in self._service_descriptors:
-            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+            if descriptor.service_type == service_type or issubclass(descriptor.base_type, service_type):
                 return descriptor
 
         return None

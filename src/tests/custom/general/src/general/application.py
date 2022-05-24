@@ -49,4 +49,5 @@ class Application(ApplicationABC):
         test2: TestService = self._services.get_service(TestService)
         ip_pipe2: IPAddressPipe = self._services.get_service(IPAddressPipe)
         Console.write_line(f'DI working: {test == test2 and ip_pipe != ip_pipe2}')
+        Console.write_line(self._services.get_service(LoggerABC))
         # self.test_send_mail()

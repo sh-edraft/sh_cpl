@@ -1,5 +1,6 @@
 from typing import Union, Optional
 
+from cpl_core.console import Console
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 
 
@@ -14,7 +15,7 @@ class ServiceDescriptor:
             Lifetime of the service
     """
 
-    def __init__(self, implementation: Union[type, Optional[object]], lifetime: ServiceLifetimeEnum):
+    def __init__(self, implementation: Union[type, Optional[object]], lifetime: ServiceLifetimeEnum, base_type=None):
 
         self._service_type = implementation
         self._implementation = implementation
@@ -25,9 +26,15 @@ class ServiceDescriptor:
         else:
             self._implementation = None
 
+        self._base_type = base_type if base_type is not None else self._service_type
+
     @property
     def service_type(self) -> type:
         return self._service_type
+
+    @property
+    def base_type(self) -> type:
+        return self._base_type
 
     @property
     def implementation(self) -> Union[type, Optional[object]]:
