@@ -93,5 +93,4 @@ class LiveServerThread(threading.Thread):
         for arg in self._args:
             self._command.append(arg)
 
-        Console.write_line(self._command)
         subprocess.run(self._command, env=self._env_vars)
