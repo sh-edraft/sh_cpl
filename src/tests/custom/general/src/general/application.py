@@ -7,6 +7,7 @@ from cpl_core.console.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging.logger_abc import LoggerABC
 from cpl_core.mailing import EMailClientABC, EMail
+from cpl_core.pipes import IPAddressPipe
 from test_service import TestService
 
 
@@ -43,5 +44,9 @@ class Application(ApplicationABC):
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
         Console.spinner('Test', self._wait, 2, spinner_foreground_color='red')
         test: TestService = self._services.get_service(TestService)
+        ip_pipe: IPAddressPipe = self._services.get_service(IPAddressPipe)
         test.run()
+        test2: TestService = self._services.get_service(TestService)
+        ip_pipe2: IPAddressPipe = self._services.get_service(IPAddressPipe)
+        Console.write_line(f'DI working: {test == test2 and ip_pipe != ip_pipe2}')
         # self.test_send_mail()
