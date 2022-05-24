@@ -37,8 +37,11 @@ class Application(ApplicationABC):
         self._mailer = self._services.get_service(EMailClientABC)
 
     def main(self):
+        self._configuration.parse_console_arguments(self._services)
+
         if self._configuration.environment.application_name != '':
             self._logger.header(f'{self._configuration.environment.application_name}:')
+        self._logger.debug(__name__, f'Args: {self._configuration.additional_arguments}')
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')

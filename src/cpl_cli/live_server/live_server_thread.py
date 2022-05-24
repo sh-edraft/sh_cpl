@@ -60,7 +60,6 @@ class LiveServerThread(threading.Thread):
         Starts the CPL project
         :return:
         """
-        Console.write_line(self._build_settings.main)
         main = self._build_settings.main
         if '.' in self._build_settings.main:
             length = len(self._build_settings.main.split('.')) - 1
@@ -89,7 +88,10 @@ class LiveServerThread(threading.Thread):
         Console.set_foreground_color(ForegroundColorEnum.default)
 
         self._command = [self._executable, self._main]
-        if len(self._args) > 0:
-            self._command.append(''.join(self._args))
+        # if len(self._args) > 0:
+        #     self._command.append(' '.join(self._args))
+        for arg in self._args:
+            self._command.append(arg)
 
+        Console.write_line(self._command)
         subprocess.run(self._command, env=self._env_vars)

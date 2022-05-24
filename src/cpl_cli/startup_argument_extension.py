@@ -31,10 +31,10 @@ class StartupArgumentExtension(StartupExtensionABC):
         pass
 
     @staticmethod
-    def _search_project_json(env: ApplicationEnvironmentABC) -> Optional[str]:
+    def _search_project_json(working_directory: str) -> Optional[str]:
         project_name = None
-        name = os.path.basename(env.working_directory)
-        for r, d, f in os.walk(env.working_directory):
+        name = os.path.basename(working_directory)
+        for r, d, f in os.walk(working_directory):
             for file in f:
                 if file.endswith('.json'):
                     f_name = file.split('.json')[0]
@@ -49,10 +49,14 @@ class StartupArgumentExtension(StartupExtensionABC):
         if workspace is not None:
             for script in workspace.scripts:
                 config.create_console_argument(ArgumentTypeEnum.Executable, '', script, [], CustomScriptService)
+            return
 
-            project = workspace.projects[workspace.default_project]
-        else:
-            project = f'{self._search_project_json(env)}.json'
+        project = self._search_project_json(env.working_directory)
+        if project is not None:
+            project = f'{project}.json'
+
+        if project is None:
+            return
 
         config.add_json_file(project, optional=True, output=False)
 

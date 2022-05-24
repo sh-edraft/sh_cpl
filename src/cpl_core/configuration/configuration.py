@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import traceback
 from collections.abc import Callable
 from typing import Union, Type, Optional
 
@@ -304,7 +305,7 @@ class Configuration(ConfigurationABC):
                             break
 
                     if abort:
-                        continue
+                        sys.exit()
 
                 cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
                 self.add_configuration('ACTIVE_EXECUTABLE', exe.name)
@@ -312,7 +313,7 @@ class Configuration(ConfigurationABC):
                 prevent = exe.prevent_next_executable
                 success = True
         except Exception as e:
-            Console.error('An error occurred while executing arguments.')
+            Console.error('An error occurred while executing arguments.', traceback.format_exc())
             sys.exit()
 
         return success
