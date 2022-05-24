@@ -1,9 +1,9 @@
+from arguments.generate_argument import GenerateArgument
+from arguments.install_argument import InstallArgument
 from cpl_core.application import StartupExtensionABC
 from cpl_core.configuration import ConfigurationABC, ArgumentTypeEnum
 from cpl_core.dependency_injection import ServiceCollectionABC
 from cpl_core.environment import ApplicationEnvironmentABC
-from arguments.generate_argument import GenerateArgument
-from arguments.install_argument import InstallArgument
 
 
 class ParameterStartup(StartupExtensionABC):
