@@ -11,23 +11,23 @@
       "hello-world": "echo 'Hello World'",
 
       "sv": "cpl set-version",
-      "set-version": "echo 'Set versions for all projects'; cpl run set-version $ARGS; echo '';",
+      "set-version": "cpl run set-version $ARGS; echo '';",
 
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
       "db": "cpl build-docs",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
 
-      "pre-build-all": "cpl sv",
+      "pre-build-all": "cpl sv $ARGS",
       "build-all": "cpl build-cli; cpl build-core; cpl build-query;",
-      "ba": "cpl build-all",
+      "ba": "cpl build-all $ARGS",
       "build-cli": "echo 'Build cpl_cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
       "build-core": "echo 'Build cpl_core'; cd ./src/cpl_core; cpl build; cd ../../;",
       "build-query": "echo 'Build cpl_query'; cd ./src/cpl_query; cpl build; cd ../../;",
 
-      "pre-publish-all": "cpl sv",
+      "pre-publish-all": "cpl sv $ARGS",
       "publish-all": "cpl publish-cli; cpl publish-core; cpl publish-query;",
-      "pa": "cpl build-all",
+      "pa": "cpl build-all $ARGS",
       "publish-cli": "echo 'Publish cpl_cli'; cd ./src/cpl_cli; cpl publish; cd ../../;",
       "publish-core": "echo 'Publish cpl_core'; cd ./src/cpl_core; cpl publish; cd ../../;",
       "publish-query": "echo 'Publish cpl_query'; cd ./src/cpl_query; cpl publish; cd ../../;",
