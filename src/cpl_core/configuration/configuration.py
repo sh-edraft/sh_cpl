@@ -340,7 +340,7 @@ class Configuration(ConfigurationABC):
                 prevent = exe.prevent_next_executable
                 success = True
         except Exception as e:
-            Console.error('An error occurred while executing arguments.')
+            Console.error('An error occurred while executing arguments.', traceback.format_exc())
             sys.exit()
 
         return success

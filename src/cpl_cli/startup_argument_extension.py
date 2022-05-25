@@ -1,6 +1,8 @@
 import os
 from typing import Optional
 
+from cpl_core.console import Console
+
 from cpl_cli.command.add_service import AddService
 from cpl_cli.command.build_service import BuildService
 from cpl_cli.command.custom_script_service import CustomScriptService
@@ -47,6 +49,7 @@ class StartupArgumentExtension(StartupExtensionABC):
 
     def _read_cpl_environment(self, config: ConfigurationABC, env: ApplicationEnvironmentABC):
         workspace: Optional[WorkspaceSettings] = config.get_configuration(WorkspaceSettings)
+        config.add_configuration('PATH_WORKSPACE', env.working_directory)
         if workspace is not None:
             for script in workspace.scripts:
                 config.create_console_argument(ArgumentTypeEnum.Executable, '', script, [], CustomScriptService)
