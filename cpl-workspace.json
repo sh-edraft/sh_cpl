@@ -63,8 +63,9 @@
       "deploy-exp-core": "cpl publish-core; cpl upload-exp-core",
       "deploy-exp-query": "cpl publish-query; cpl upload-exp-query",
 
+      "pre-deploy-dev": "cpl sv $ARGS",
       "deploy-dev": "cpl deploy-dev-cli; cpl deploy-dev-core; cpl deploy-dev-query;",
-      "dd": "cpl deploy-dev",
+      "dd": "cpl deploy-dev $ARGS",
       "deploy-dev-cli": "cpl publish-cli; cpl upload-dev-cli",
       "deploy-dev-core": "cpl publish-core; cpl upload-dev-core",
       "deploy-dev-query": "cpl publish-query; cpl upload-dev-query"
