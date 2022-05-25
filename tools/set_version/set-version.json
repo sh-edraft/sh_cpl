@@ -16,7 +16,7 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "sh_cpl-core>=2022.6.15.dev4"
+      "cpl-core>=2022.6.15.dev5"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {
