@@ -11,7 +11,7 @@
     "Description": "CPL internal tool to set version from branch name",
     "LongDescription": "CPL internal tool to set version from branch name",
     "URL": "https://www.sh-edraft.de",
-    "CopyrightDate": "2020 - 2022",
+    "CopyrightDate": "2022",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",

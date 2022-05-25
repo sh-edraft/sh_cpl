@@ -6,7 +6,7 @@ set-version CPL internal tool to set version from branch name
 
 CPL internal tool to set version from branch name
 
-:copyright: (c) 2020 - 2022 sh-edraft.de
+:copyright: (c) 2022 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
@@ -14,7 +14,7 @@ CPL internal tool to set version from branch name
 __title__ = 'set_version'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'
+__copyright__ = 'Copyright (c) 2022 sh-edraft.de'
 __version__ = '2022.6.0'
 
 from collections import namedtuple

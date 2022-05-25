@@ -6,7 +6,7 @@ set-pip-urls CPL internal tool to set pip URL for CLI by environment
 
 CPL internal tool to set pip URL for CLI by environment
 
-:copyright: (c) 2020 - 2022 sh-edraft.de
+:copyright: (c) 2022 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
@@ -14,7 +14,7 @@ CPL internal tool to set pip URL for CLI by environment
 __title__ = 'set_pip_urls'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'
+__copyright__ = 'Copyright (c) 2022 sh-edraft.de'
 __version__ = '2022.6.0'
 
 from collections import namedtuple
