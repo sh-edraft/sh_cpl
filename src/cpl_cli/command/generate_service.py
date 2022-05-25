@@ -192,6 +192,7 @@ class GenerateService(CommandABC):
 
         if schematic is None:
             self._help('Usage: cpl generate <schematic> [options]')
+            Console.write_line()
             sys.exit()
 
         name = value
@@ -204,4 +205,5 @@ class GenerateService(CommandABC):
 
         else:
             self._help('Usage: cpl generate <schematic> [options]')
+            Console.write_line()
             sys.exit()
