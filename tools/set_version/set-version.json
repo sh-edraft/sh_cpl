@@ -4,24 +4,22 @@
     "Version": {
       "Major": "2022",
       "Minor": "6",
-      "Micro": "15"
+      "Micro": ""
     },
-    "Author": "",
-    "AuthorEmail": "",
-    "Description": "",
-    "LongDescription": "",
-    "URL": "",
-    "CopyrightDate": "",
-    "CopyrightName": "",
-    "LicenseName": "",
-    "LicenseDescription": "",
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "CPL internal tool to set version from branch name",
+    "LongDescription": "CPL internal tool to set version from branch name",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2020 - 2022",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.6.15.dev5"
+      "cpl-core>=2022.6.15.dev6"
     ],
     "PythonVersion": ">=3.10.4",
-    "PythonPath": {
-      "linux": ""
-    },
+    "PythonPath": {},
     "Classifiers": []
   },
   "BuildSettings": {
