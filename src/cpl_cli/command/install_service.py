@@ -38,7 +38,7 @@ class InstallService(CommandABC):
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
-        
+
         self._is_simulation = False
         self._is_virtual = False
 
@@ -53,7 +53,7 @@ class InstallService(CommandABC):
         Arguments:
             package    The package to install 
         """)
-        
+
     def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
         time.sleep(t)
 
@@ -77,7 +77,7 @@ class InstallService(CommandABC):
             Console.spinner(
                 f'Installing: {dependency}',
                 Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
-                source=self._cli_settings.pip_path if 'sh_cpl' in dependency else None,
+                source=self._cli_settings.pip_path if 'cpl-' in dependency else None,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
@@ -140,13 +140,13 @@ class InstallService(CommandABC):
         Console.spinner(
             f'Installing: {package}',
             Pip.install if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
-            source=self._cli_settings.pip_path if 'sh_cpl' in package else None,
+            source=self._cli_settings.pip_path if 'cpl-' in package else None,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
-        
+
         if self._is_virtual:
             new_package = name
         else:
@@ -177,7 +177,7 @@ class InstallService(CommandABC):
                     ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
                     BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
                 }
-            
+
                 with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
                     project_file.write(json.dumps(config, indent=2))
                     project_file.close()
@@ -194,7 +194,7 @@ class InstallService(CommandABC):
             self._is_virtual = True
             args.remove('virtual')
             Console.write_line('Running in virtual mode:')
-        
+
         if 'simulate' in args:
             self._is_simulation = True
             args.remove('simulate')

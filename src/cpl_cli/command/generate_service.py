@@ -137,7 +137,7 @@ class GenerateService(CommandABC):
             rel_path = '/'.join(parts[:-1])
             class_name = parts[len(parts) - 1]
 
-        if 'src' not in rel_path:
+        if 'src' not in rel_path and not os.path.exists(os.path.join(self._env.working_directory, rel_path)):
             rel_path = f'src/{rel_path}'
 
         template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
@@ -192,6 +192,7 @@ class GenerateService(CommandABC):
 
         if schematic is None:
             self._help('Usage: cpl generate <schematic> [options]')
+            Console.write_line()
             sys.exit()
 
         name = value
@@ -204,4 +205,5 @@ class GenerateService(CommandABC):
 
         else:
             self._help('Usage: cpl generate <schematic> [options]')
+            Console.write_line()
             sys.exit()

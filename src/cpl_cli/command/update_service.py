@@ -73,7 +73,7 @@ class UpdateService(CommandABC):
                 '--upgrade',
                 '--upgrade-strategy',
                 'eager',
-                source=self._cli_settings.pip_path if 'sh_cpl' in name else None,
+                source=self._cli_settings.pip_path if 'cpl-' in name else None,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )

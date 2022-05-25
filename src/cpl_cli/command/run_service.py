@@ -86,11 +86,7 @@ class RunService(CommandABC):
         :param args:
         :return:
         """
-        if len(args) > 1:
-            Error.error(f'Unexpected argument(s): {", ".join(args)}')
-            sys.exit()
-
-        if len(args) == 1:
+        if len(args) >= 1:
             self._set_project_by_args(args[0])
             args.remove(args[0])
 

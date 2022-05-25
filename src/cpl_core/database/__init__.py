@@ -15,7 +15,7 @@ __title__ = 'cpl_core.database'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'
-__version__ = '2022.6.14.dev1'
+__version__ = '2022.6.15.dev6'
 
 from collections import namedtuple
 
@@ -25,4 +25,4 @@ from .database_settings import DatabaseSettings
 from .table_abc import TableABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='6', micro='14.dev1')
+version_info = VersionInfo(major='2022', minor='6', micro='15.dev6')
