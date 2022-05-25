@@ -10,6 +10,7 @@ from cpl_cli.command.install_service import InstallService
 from cpl_cli.command.new_service import NewService
 from cpl_cli.command.publish_service import PublishService
 from cpl_cli.command.remove_service import RemoveService
+from cpl_cli.command.run_service import RunService
 from cpl_cli.command.start_service import StartService
 from cpl_cli.command.uninstall_service import UninstallService
 from cpl_cli.command.update_service import UpdateService
@@ -84,6 +85,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService, True, validators=[WorkspaceValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'run', [], RunService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['s', 'S'], StartService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService, True, validators=[ProjectValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
@@ -110,6 +112,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         services.add_transient(NewService)
         services.add_transient(PublishService)
         services.add_transient(RemoveService)
+        services.add_transient(RunService)
         services.add_transient(StartService)
         services.add_transient(UninstallService)
         services.add_transient(UpdateService)
