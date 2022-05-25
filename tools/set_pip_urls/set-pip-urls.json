@@ -1,15 +1,15 @@
 {
   "ProjectSettings": {
-    "Name": "cpl-query",
+    "Name": "set-pip-urls",
     "Version": {
       "Major": "2022",
       "Minor": "6",
-      "Micro": "16.dev1"
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
-    "Description": "sh-edraft Common Python library Query",
-    "LongDescription": "sh-edraft Common Python library Python integrated Queries",
+    "Description": "CPL internal tool to set pip URL for CLI by environment",
+    "LongDescription": "CPL internal tool to set pip URL for CLI by environment",
     "URL": "https://www.sh-edraft.de",
     "CopyrightDate": "2020 - 2022",
     "CopyrightName": "sh-edraft.de",
@@ -18,17 +18,17 @@
     "Dependencies": [
       "cpl-core>=2022.6.16.dev1"
     ],
-    "PythonVersion": ">=3.10",
+    "PythonVersion": ">=3.10.4",
     "PythonPath": {},
     "Classifiers": []
   },
   "BuildSettings": {
-    "ProjectType": "library",
+    "ProjectType": "console",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "",
-    "EntryPoint": "",
-    "IncludePackageData": true,
+    "Main": "set_pip_url.main",
+    "EntryPoint": "set-pip-url",
+    "IncludePackageData": false,
     "Included": [],
     "Excluded": [
       "*/__pycache__",
