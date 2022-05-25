@@ -13,4 +13,4 @@ class Application(ApplicationABC):
         pass
 
     def main(self):
-        Console.write_line('Hello World')
+        Console.write_line('Hello World', self._environment.environment_name)

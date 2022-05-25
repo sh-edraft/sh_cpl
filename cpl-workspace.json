@@ -6,7 +6,7 @@
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
       "set-version": "tools/set_version/set-version.json",
-      "set-pip-url": "tools/set_pip_url/set-pip-url.json"
+      "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
@@ -14,17 +14,21 @@
       "sv": "cpl set-version",
       "set-version": "cpl run set-version $ARGS; echo '';",
 
+      "spu": "cpl set-pip-urls",
+      "set-pip-urls": "cpl run set-pip-urls $ARGS; echo '';",
+
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
       "db": "cpl build-docs",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
 
-      "pre-build-all": "cpl sv $ARGS",
-      "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-version",
+      "pre-build-all": "cpl sv $ARGS; cpl spu;",
+      "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-pip-urls; cpl build-set-version",
       "ba": "cpl build-all $ARGS",
       "build-cli": "echo 'Build cpl-cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
       "build-core": "echo 'Build cpl-core'; cd ./src/cpl_core; cpl build; cd ../../;",
       "build-query": "echo 'Build cpl-query'; cd ./src/cpl_query; cpl build; cd ../../;",
+      "build-set-pip-urls": "echo 'Build set-pip-urls'; cd ./tools/set_pip_urls; cpl build; cd ../../;",
       "build-set-version": "echo 'Build set-version'; cd ./tools/set_version; cpl build; cd ../../;",
 
       "pre-publish-all": "cpl sv $ARGS",
