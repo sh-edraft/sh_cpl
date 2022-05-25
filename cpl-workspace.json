@@ -11,7 +11,7 @@
       "hello-world": "echo 'Hello World'",
 
       "sv": "cpl set-version",
-      "set-version": "echo 'Set versions for all projects'; cpl run set-version; echo '';",
+      "set-version": "echo 'Set versions for all projects'; cpl run set-version $ARGS; echo '';",
 
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
       "db": "cpl build-docs",

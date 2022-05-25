@@ -35,7 +35,15 @@ class CustomScriptService(CommandABC):
             if script != cmd:
                 continue
 
-            command = self._workspace.scripts[script]
+            command = ''
+            external_args = self._config.get_configuration('ARGS')
+            if external_args is not None:
+                command += f'ARGS="{external_args}";'
+
+            command += self._workspace.scripts[script]
+            env_vars = os.environ
+            env_vars['CPL_ARGS'] = " ".join(args)
+
             try:
                 subprocess.run(command, shell=True if os.name == 'posix' else None)
             except Exception as e:
