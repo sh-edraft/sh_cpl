@@ -5,7 +5,8 @@
       "cpl-core": "src/cpl_core/cpl-core.json",
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
-      "set-version": "tools/set_version/set-version.json"
+      "set-version": "tools/set_version/set-version.json",
+      "set-pip-url": "tools/set_pip_url/set-pip-url.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
