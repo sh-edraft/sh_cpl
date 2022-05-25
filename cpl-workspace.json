@@ -22,7 +22,7 @@
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
 
-      "pre-build-all": "cpl sv $ARGS; cpl spu;",
+      "pre-build-all": "cpl sv $ARGS; cpl spu $ARGS;",
       "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-pip-urls; cpl build-set-version",
       "ba": "cpl build-all $ARGS",
       "build-cli": "echo 'Build cpl-cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
@@ -31,7 +31,7 @@
       "build-set-pip-urls": "echo 'Build set-pip-urls'; cd ./tools/set_pip_urls; cpl build; cd ../../;",
       "build-set-version": "echo 'Build set-version'; cd ./tools/set_version; cpl build; cd ../../;",
 
-      "pre-publish-all": "cpl sv $ARGS",
+      "pre-publish-all": "cpl sv $ARGS; cpl spu $ARGS;",
       "publish-all": "cpl publish-cli; cpl publish-core; cpl publish-query;",
       "pa": "cpl build-all $ARGS",
       "publish-cli": "echo 'Publish cpl-cli'; cd ./src/cpl_cli; cpl publish; cd ../../;",
