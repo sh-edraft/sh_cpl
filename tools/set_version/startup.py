@@ -5,6 +5,7 @@ from cpl_core.application import StartupABC
 from cpl_core.configuration import ConfigurationABC
 from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
 from cpl_core.environment import ApplicationEnvironment
+from cpl_core.pipes.version_pipe import VersionPipe
 from set_version.git_service import GitService
 from set_version.version_setter_service import VersionSetterService
 
@@ -25,5 +26,6 @@ class Startup(StartupABC):
     def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
         services.add_transient(GitService)
         services.add_transient(VersionSetterService)
+        services.add_transient(VersionPipe)
 
         return services.build_service_provider()

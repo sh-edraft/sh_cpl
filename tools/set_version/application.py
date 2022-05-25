@@ -1,10 +1,12 @@
 import traceback
 
-from cpl_cli.configuration import WorkspaceSettings
-from cpl_core.application import ApplicationABC
-from cpl_core.configuration import ConfigurationABC
-from cpl_core.console import Console
-from cpl_core.dependency_injection import ServiceProviderABC
+from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
+from cpl_cli.configuration.workspace_settings import WorkspaceSettings
+from cpl_core.application.application_abc import ApplicationABC
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.pipes.version_pipe import VersionPipe
 from set_version.git_service import GitService
 from set_version.version_setter_service import VersionSetterService
 
@@ -18,6 +20,7 @@ class Application(ApplicationABC):
 
         self._git_service: GitService = self._services.get_service(GitService)
         self._version_setter: VersionSetterService = self._services.get_service(VersionSetterService)
+        self._version_pipe: VersionPipe = self._services.get_service(VersionPipe)
 
     def configure(self):
         self._configuration.parse_console_arguments(self._services)
@@ -43,9 +46,9 @@ class Application(ApplicationABC):
             return
 
         try:
-            version['Major'] = branch.split('.')[0]
-            version['Minor'] = branch.split('.')[1]
-            version['Micro'] = f'{branch.split(".")[2]}{suffix}'
+            version[VersionSettingsNameEnum.major.value] = branch.split('.')[0]
+            version[VersionSettingsNameEnum.minor.value] = branch.split('.')[1]
+            version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
         except Exception as e:
             Console.error(f'Branch {branch} does not contain valid version')
             return
@@ -55,7 +58,7 @@ class Application(ApplicationABC):
                 if not project.startswith('cpl'):
                     continue
 
-                Console.write_line(f'Set version {version["Major"]}.{version["Minor"]}.{version["Micro"]} for {project}')
+                Console.write_line(f'Set version {self._version_pipe.transform(version)} for {project}')
                 self._version_setter.set_version(self._workspace.projects[project], version)
         except Exception as e:
             Console.error('Version could not be set', traceback.format_exc())
