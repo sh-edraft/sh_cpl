@@ -13,6 +13,7 @@
       "db": "cpl build-docs",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
+      "pre-build": "cpl run set-version;",
       "build-all": "cpl build-cli; cpl build-core; cpl build-query;",
       "ba": "cpl build-all",
       "build-cli": "echo 'Build cpl_cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
