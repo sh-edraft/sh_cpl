@@ -52,8 +52,9 @@ class RemoveService(CommandABC):
             project_json.write(json.dumps(content, indent=2))
             project_json.close()
 
-    @staticmethod
-    def _remove_sources(path: str):
+    def _remove_sources(self, path: str):
+        if self._is_simulation:
+            return
         shutil.rmtree(path)
 
     def _create_workspace(self, path: str):

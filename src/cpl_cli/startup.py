@@ -8,7 +8,7 @@ from cpl_core.application.startup_abc import StartupABC
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl_core.environment import ApplicationEnvironment
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 
 
 class Startup(StartupABC):
@@ -16,7 +16,7 @@ class Startup(StartupABC):
     def __init__(self):
         StartupABC.__init__(self)
 
-    def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
+    def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironmentABC) -> ConfigurationABC:
         environment.set_runtime_directory(os.path.dirname(__file__))
         configuration.argument_error_function = Error.error
 
@@ -26,7 +26,7 @@ class Startup(StartupABC):
 
         return configuration
 
-    def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
+    def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironmentABC) -> ServiceProviderABC:
         services.add_transient(PublisherABC, PublisherService)
         services.add_transient(LiveServerService)
 
