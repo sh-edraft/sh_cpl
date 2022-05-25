@@ -1,6 +1,7 @@
 from typing import Union, Type, Callable, Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console import Console
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC
@@ -10,6 +11,7 @@ from cpl_core.dependency_injection.service_provider import ServiceProvider
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.logging.logger_abc import LoggerABC
 from cpl_core.logging.logger_service import Logger
+from cpl_core.pipes.pipe_abc import PipeABC
 
 
 class ServiceCollection(ServiceCollectionABC):
@@ -52,6 +54,10 @@ class ServiceCollection(ServiceCollectionABC):
 
     def add_logging(self):
         self.add_singleton(LoggerABC, Logger)
+
+    def add_pipes(self):
+        for pipe in PipeABC.__subclasses__():
+            self.add_transient(PipeABC, pipe)
 
     def add_singleton(self, service_type: Union[type, object], service: Union[type, object] = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.singleton, service)

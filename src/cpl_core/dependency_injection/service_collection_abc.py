@@ -31,6 +31,11 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
+    def add_pipes(self):
+        r"""Adds the CPL internal pipes as transient"""
+        pass
+
+    @abstractmethod
     def add_transient(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
         r"""Adds a service with transient lifetime
 

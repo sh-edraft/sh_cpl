@@ -24,8 +24,8 @@ class Startup(StartupABC):
         return configuration
 
     def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
+        services.add_pipes()
         services.add_transient(GitService)
         services.add_transient(VersionSetterService)
-        services.add_transient(VersionPipe)
 
         return services.build_service_provider()
