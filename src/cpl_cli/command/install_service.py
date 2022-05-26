@@ -178,7 +178,6 @@ class InstallService(CommandABC):
                     BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
                 }
 
-                Console.write_line(self._project_file)
                 with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
                     project_file.write(json.dumps(config, indent=2))
                     project_file.close()
