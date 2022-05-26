@@ -1,5 +1,5 @@
+import time
 import unittest
-from unittest import TestSuite
 
 from cpl_core.application import ApplicationABC
 from cpl_core.configuration import ConfigurationABC

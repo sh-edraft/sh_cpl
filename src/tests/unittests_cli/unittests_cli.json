@@ -28,8 +28,8 @@
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "tests/unittest_cli.main",
-    "EntryPoint": "tests/unittest_cli",
+    "Main": "unittest_cli.main",
+    "EntryPoint": "unittest_cli",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

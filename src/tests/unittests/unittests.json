@@ -28,8 +28,8 @@
     "ProjectType": "unittest",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "tests/unittest.main",
-    "EntryPoint": "tests/unittest",
+    "Main": "unittest.main",
+    "EntryPoint": "unittest",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

@@ -28,8 +28,8 @@
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "tests/unittest_shared.main",
-    "EntryPoint": "tests/unittest_shared",
+    "Main": "unittest_shared.main",
+    "EntryPoint": "unittest_shared",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

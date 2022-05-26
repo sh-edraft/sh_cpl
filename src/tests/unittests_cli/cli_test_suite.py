@@ -1,9 +1,11 @@
 import os
+import shutil
 import traceback
 import unittest
 
 from unittests_cli.add_test_case import AddTestCase
 from unittests_cli.build_test_case import BuildTestCase
+from unittests_cli.constants import PLAYGROUND
 from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
@@ -20,8 +22,6 @@ class CLITestSuite(unittest.TestSuite):
 
     def __init__(self):
         unittest.TestSuite.__init__(self)
-
-        self._setup()
 
         loader = unittest.TestLoader()
         # nothing needed
@@ -42,23 +42,26 @@ class CLITestSuite(unittest.TestSuite):
         self.addTests(loader.loadTestsFromTestCase(AddTestCase))
         self.addTests(loader.loadTestsFromTestCase(RemoveTestCase))
 
-        self._cleanup()
-
     def _setup(self):
+        print(f'Setup {__name__}')
         try:
-            playground = os.path.abspath(os.path.join(os.getcwd(), 'test_cli_playground'))
-            if os.path.exists(playground):
-                os.rmdir(playground)
+            if os.path.exists(PLAYGROUND):
+                shutil.rmtree(PLAYGROUND)
 
-            os.mkdir(playground)
-            os.chdir(playground)
+            os.mkdir(PLAYGROUND)
+            os.chdir(PLAYGROUND)
         except Exception as e:
             print(f'Setup of {__name__} failed: {traceback.format_exc()}')
 
     def _cleanup(self):
+        print(f'Cleanup {__name__}')
         try:
-            playground = os.path.abspath(os.path.join(os.getcwd(), 'test_cli_playground'))
-            if os.path.exists(playground):
-                os.rmdir(playground)
+            if os.path.exists(PLAYGROUND):
+                shutil.rmtree(PLAYGROUND)
         except Exception as e:
             print(f'Cleanup of {__name__} failed: {traceback.format_exc()}')
+
+    def run(self, *args):
+        self._setup()
+        super().run(*args)
+        self._cleanup()

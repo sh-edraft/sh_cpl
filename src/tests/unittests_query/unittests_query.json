@@ -28,8 +28,8 @@
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "tests/unittest_query.main",
-    "EntryPoint": "tests/unittest_query",
+    "Main": "unittest_query.main",
+    "EntryPoint": "unittest_query",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [
