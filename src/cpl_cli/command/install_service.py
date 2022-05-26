@@ -42,7 +42,7 @@ class InstallService(CommandABC):
         self._is_simulation = False
         self._is_virtual = False
 
-        self._project_file = f'{self._config.get_configuration("ProjectName")}.json'
+        self._project_file = f'{self._project_settings.name}.json'
 
     @property
     def help_message(self) -> str:
@@ -178,6 +178,7 @@ class InstallService(CommandABC):
                     BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
                 }
 
+                Console.write_line(self._project_file)
                 with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
                     project_file.write(json.dumps(config, indent=2))
                     project_file.close()
