@@ -16,7 +16,7 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.6.17.dev1"
+      "cpl-core>=2022.6.17.dev4"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {

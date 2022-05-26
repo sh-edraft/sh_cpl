@@ -9,6 +9,7 @@ class CLICommands:
     @staticmethod
     def _run(cmd: str, *args):
         env_vars = os.environ
+        env_vars['CPL_IS_UNITTEST'] = 'YES'
         command = ['python', CLI_PATH, cmd]
         for arg in args:
             command.append(arg)
