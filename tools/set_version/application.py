@@ -64,7 +64,10 @@ class Application(ApplicationABC):
 
         diff_paths = []
         for file in self._git_service.get_diff_files():
-            diff_paths.append(os.path.basename(os.path.dirname(file)))
+            if '/' in file:
+                diff_paths.append(file.split('/')[1])
+            else:
+                diff_paths.append(os.path.basename(os.path.dirname(file)))
 
         try:
             for project in self._workspace.projects:

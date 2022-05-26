@@ -45,6 +45,7 @@ class NewService(CommandABC):
 
         self._name: str = ''
         self._schematic: ProjectTypeEnum = ProjectTypeEnum.console
+        self._use_nothing: bool = False
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
@@ -169,7 +170,7 @@ class NewService(CommandABC):
         Gets project information's from user
         :return:
         """
-        if self._use_application_api or self._use_startup or self._use_service_providing or self._use_async:
+        if self._use_application_api or self._use_startup or self._use_service_providing or self._use_async or self._use_nothing:
             Console.set_foreground_color(ForegroundColorEnum.default)
             Console.write_line('Skipping question due to given flags')
             return
@@ -277,6 +278,7 @@ class NewService(CommandABC):
         :return:
         """
         if 'nothing' in args:
+            self._use_nothing = True
             self._use_async = False
             self._use_application_api = False
             self._use_startup = False

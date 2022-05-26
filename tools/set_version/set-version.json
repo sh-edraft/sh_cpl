@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.6.17.dev7",
+      "cpl-core>=2022.6.17.dev8",
       "gitpython==3.1.27"
     ],
     "PythonVersion": ">=3.10.4",
