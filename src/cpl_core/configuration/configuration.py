@@ -190,8 +190,7 @@ class Configuration(ConfigurationABC):
 
                 # executable
                 if isinstance(arg, ExecutableArgument):
-                    if arg_str.startswith(arg.token) \
-                            and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
+                    if arg_str.startswith(arg.token) and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
                         executables.append(arg)
                         self._handled_args.append(arg_str)
                         self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
@@ -202,8 +201,7 @@ class Configuration(ConfigurationABC):
                     if arg.value_token in arg_str_without_value:
                         arg_str_without_value = arg_str_without_token.split(arg.value_token)[0]
 
-                    if arg_str.startswith(arg.token) \
-                            and arg_str_without_value == arg.name or arg_str_without_value in arg.aliases:
+                    if arg_str.startswith(arg.token) and arg_str_without_value == arg.name or arg_str_without_value in arg.aliases:
                         if arg.value_token != ' ':
                             value = arg_str_without_token.split(arg.value_token)[1]
                         else:
@@ -216,9 +214,15 @@ class Configuration(ConfigurationABC):
                 # flags
                 elif isinstance(arg, FlagArgument):
                     if arg_str.startswith(arg.token) and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
+                        if arg_str in self._additional_arguments:
+                            self._additional_arguments.remove(arg_str)
                         self._additional_arguments.append(arg.name)
                         self._handled_args.append(arg_str)
                         self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
+
+            # add left over values to args
+            if arg_str not in self._additional_arguments and arg_str not in self._handled_args:
+                self._additional_arguments.append(arg_str)
 
     def add_environment_variables(self, prefix: str):
         for env_var in os.environ.keys():
@@ -305,10 +309,6 @@ class Configuration(ConfigurationABC):
             arg_list = sys.argv[1:]
             executables: list[ExecutableArgument] = []
             self._parse_arguments(executables, arg_list, self._argument_types)
-            for arg_str in arg_list:
-                # add left over values to args
-                if arg_str not in self._additional_arguments and arg_str not in self._handled_args:
-                    self._additional_arguments.append(arg_str)
         except Exception as e:
             Console.error('An error occurred while parsing arguments.')
             sys.exit()
