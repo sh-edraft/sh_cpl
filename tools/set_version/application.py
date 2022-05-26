@@ -1,6 +1,8 @@
 import os
 import traceback
 
+from cpl_core.utils import String
+
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_core.application.application_abc import ApplicationABC
@@ -61,7 +63,7 @@ class Application(ApplicationABC):
 
         try:
             for project in self._workspace.projects:
-                if project not in diff_paths:
+                if project not in diff_paths and String.convert_to_snake_case(project) not in diff_paths:
                     Console.write_line(f'Skipping {project} due to missing changes')
                     continue
 
