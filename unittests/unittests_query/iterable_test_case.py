@@ -3,7 +3,7 @@ import unittest
 from cpl_query.extension.list import List
 
 
-class IterableTest(unittest.TestCase):
+class IterableTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self._list = List(int)

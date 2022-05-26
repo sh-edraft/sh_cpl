@@ -5,10 +5,10 @@ from random import randint
 from cpl_core.utils import String
 from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException
 from cpl_query.extension.list import List
-from cpl_query.tests.models import User, Address
+from unittests_query.models import User, Address
 
 
-class QueryTest(unittest.TestCase):
+class QueryTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self._tests = List(User)
