@@ -29,6 +29,7 @@ class CLI(ApplicationABC):
         try:
             result = self._configuration.parse_console_arguments(self._services)
             if result:
+                Console.write_line()
                 return
 
             if len(self._configuration.additional_arguments) == 0:
@@ -37,6 +38,7 @@ class CLI(ApplicationABC):
 
             unexpected_arguments = ', '.join(self._configuration.additional_arguments)
             Error.error(f'Unexpected argument(s): {unexpected_arguments}')
+            Console.write_line()
         except KeyboardInterrupt:
             Console.write_line()
             sys.exit()

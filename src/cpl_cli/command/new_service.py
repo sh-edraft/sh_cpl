@@ -6,6 +6,7 @@ from typing import Optional
 from packaging import version
 
 import cpl_core
+from cpl_cli.source_creator.unittest_builder import UnittestBuilder
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -163,22 +164,23 @@ class NewService(CommandABC):
 
         return project_path
 
-    def _get_project_information(self):
+    def _get_project_information(self, is_unittest=False):
         """
         Gets project information's from user
         :return:
         """
-        result = Console.read('Do you want to use application base? (y/n) ')
-        if result.lower() == 'y':
-            self._use_application_api = True
+        if not is_unittest:
+            result = Console.read('Do you want to use application base? (y/n) ')
+            if result.lower() == 'y':
+                self._use_application_api = True
 
-            result = Console.read('Do you want to use startup? (y/n) ')
-            if result.lower() == 'y':
-                self._use_startup = True
-        else:
-            result = Console.read('Do you want to use service providing? (y/n) ')
-            if result.lower() == 'y':
-                self._use_service_providing = True
+                result = Console.read('Do you want to use startup? (y/n) ')
+                if result.lower() == 'y':
+                    self._use_startup = True
+            else:
+                result = Console.read('Do you want to use service providing? (y/n) ')
+                if result.lower() == 'y':
+                    self._use_service_providing = True
                 
         result = Console.read('Do you want to use async? (y/n) ')
         if result.lower() == 'y':
@@ -206,6 +208,32 @@ class NewService(CommandABC):
                 self._use_application_api,
                 self._use_startup,
                 self._use_service_providing,
+                self._use_async,
+                self._project.name,
+                self._project_json,
+                self._workspace
+            )
+        except Exception as e:
+            Console.error('Could not create project', str(e))
+
+    def _unittest(self, args: list[str]):
+        """
+        Generates new unittest project
+        :param args:
+        :return:
+        """
+        self._create_project_settings(self._name)
+        self._create_build_settings()
+        self._create_project_json()
+        path = self._get_project_path()
+        if path is None:
+            return
+
+        self._get_project_information(is_unittest=True)
+        try:
+            UnittestBuilder.build(
+                path,
+                self._use_application_api,
                 self._use_async,
                 self._project.name,
                 self._project_json,
@@ -250,15 +278,21 @@ class NewService(CommandABC):
         """
         console = self._config.get_configuration(ProjectTypeEnum.console.value)
         library = self._config.get_configuration(ProjectTypeEnum.library.value)
-        if console is not None and library is None:
+        unittest = self._config.get_configuration(ProjectTypeEnum.unittest.value)
+        if console is not None and library is None and unittest is None:
             self._name = console
             self._schematic = ProjectTypeEnum.console.value
             self._console(args)
 
-        elif console is None and library is not None:
+        elif console is None and library is not None and unittest is None:
             self._name = library
             self._schematic = ProjectTypeEnum.library.value
             self._library(args)
+
+        elif console is None and library is None and unittest is not None:
+            self._name = unittest
+            self._schematic = ProjectTypeEnum.unittest.value
+            self._unittest(args)
 
         else:
             self._help('Usage: cpl new <schematic> [options]')
