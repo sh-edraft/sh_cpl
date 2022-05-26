@@ -7,7 +7,11 @@
       "cpl-query": "src/cpl_query/cpl-query.json",
       "set-version": "tools/set_version/set-version.json",
       "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json",
-      "unittests": "src/unittests/unittests.json"
+      "unittests": "src/tests/unittests/unittests.json",
+      "unittests_cli": "src/tests/unittests_cli/unittests_cli.json",
+      "unittests_core": "src/tests/unittests_core/unittests_core.json",
+      "unittests_query": "src/tests/unittests_query/unittests_query.json",
+      "unittests_shared": "src/tests/unittests_shared/unittests_shared.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
