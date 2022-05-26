@@ -43,7 +43,6 @@ class CLITestSuite(unittest.TestSuite):
         self.addTests(loader.loadTestsFromTestCase(RemoveTestCase))
 
     def _setup(self):
-        print(f'Setup {__name__}')
         try:
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, '../')))
@@ -54,7 +53,6 @@ class CLITestSuite(unittest.TestSuite):
             print(f'Setup of {__name__} failed: {traceback.format_exc()}')
 
     def _cleanup(self):
-        print(f'Cleanup {__name__}')
         try:
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, '../')))
