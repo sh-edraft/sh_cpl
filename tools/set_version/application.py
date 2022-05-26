@@ -62,11 +62,13 @@ class Application(ApplicationABC):
         try:
             for project in self._workspace.projects:
                 if project not in diff_paths:
+                    Console.write_line(f'Skipping {project} due to missing changes')
                     continue
 
                 Console.write_line(f'Set dependencies {self._version_pipe.transform(version)} for {project}')
                 self._version_setter.set_dependencies(self._workspace.projects[project], version)
                 if not project.startswith('cpl') and not project.startswith('unittest'):
+                    Console.write_line(f'Skipping {project}')
                     continue
 
                 Console.write_line(f'Set version {self._version_pipe.transform(version)} for {project}')
