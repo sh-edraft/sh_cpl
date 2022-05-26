@@ -2,9 +2,9 @@
   "ProjectSettings": {
     "Name": "unittest_core",
     "Version": {
-      "Major": "0",
-      "Minor": "0",
-      "Micro": "0"
+      "Major": "2022",
+      "Minor": "6",
+      "Micro": "17.dev4"
     },
     "Author": "",
     "AuthorEmail": "",

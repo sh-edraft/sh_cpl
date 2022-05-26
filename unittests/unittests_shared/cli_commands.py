@@ -14,7 +14,6 @@ class CLICommands:
         for arg in args:
             command.append(arg)
 
-        print(f'Running {command}')
         subprocess.run(command, env=env_vars)
 
     @classmethod
