@@ -276,18 +276,29 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
+        if 'nothing' in args:
+            self._use_async = False
+            self._use_application_api = False
+            self._use_startup = False
+            self._use_service_providing = False
+            if 'async' in args:
+                args.remove('async')
+            if 'application-base' in args:
+                args.remove('application-base')
+            if 'startup' in args:
+                args.remove('startup')
+            if 'service-providing' in args:
+                args.remove('service-providing')
+
         if 'async' in args:
             self._use_async = True
             args.remove('async')
-
         if 'application-base' in args:
             self._use_application_api = True
             args.remove('application-base')
-
         if 'startup' in args:
             self._use_startup = True
             args.remove('startup')
-
         if 'service-providing' in args:
             self._use_service_providing = True
             args.remove('service-providing')

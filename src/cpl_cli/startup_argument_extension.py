@@ -90,7 +90,8 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'async', ['a', 'A']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'application-base', ['ab', 'AB']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'startup', ['s', 'S']) \
-            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'service-providing', ['sp', 'SP'])
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'service-providing', ['sp', 'SP']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'nothing', ['n', 'N'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService, True, validators=[WorkspaceValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
