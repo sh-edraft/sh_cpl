@@ -86,7 +86,11 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService, True) \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'console', ['c', 'C'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ') \
-            .add_console_argument(ArgumentTypeEnum.Variable, '', 'unittest', ['ut', 'UT'], ' ')
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'unittest', ['ut', 'UT'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'async', ['a', 'A']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'application-base', ['ab', 'AB']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'startup', ['s', 'S']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'service-providing', ['sp', 'SP'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService, True, validators=[WorkspaceValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])

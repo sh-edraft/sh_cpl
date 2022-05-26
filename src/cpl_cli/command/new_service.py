@@ -169,22 +169,22 @@ class NewService(CommandABC):
         Gets project information's from user
         :return:
         """
-        if not is_unittest:
-            result = Console.read('Do you want to use application base? (y/n) ')
-            if result.lower() == 'y':
-                self._use_application_api = True
+        if self._use_application_api or self._use_startup or self._use_service_providing or self._use_async:
+            Console.set_foreground_color(ForegroundColorEnum.default)
+            Console.write_line('Skipping question due to given flags')
+            return
 
-                result = Console.read('Do you want to use startup? (y/n) ')
-                if result.lower() == 'y':
-                    self._use_startup = True
-            else:
-                result = Console.read('Do you want to use service providing? (y/n) ')
-                if result.lower() == 'y':
-                    self._use_service_providing = True
-                
-        result = Console.read('Do you want to use async? (y/n) ')
-        if result.lower() == 'y':
-            self._use_async = True
+        if not is_unittest:
+            self._use_application_api = Console.read('Do you want to use application base? (y/n) ').lower() == 'y'
+
+        if not is_unittest and self._use_application_api:
+            self._use_startup = Console.read('Do you want to use startup? (y/n) ').lower() == 'y'
+
+        if not is_unittest and not self._use_application_api:
+            self._use_service_providing = Console.read('Do you want to use service providing? (y/n) ').lower() == 'y'
+
+        if not self._use_async:
+            self._use_async = Console.read('Do you want to use async? (y/n) ').lower() == 'y'
 
         Console.set_foreground_color(ForegroundColorEnum.default)
 
@@ -276,6 +276,22 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
+        if 'async' in args:
+            self._use_async = True
+            args.remove('async')
+
+        if 'application-base' in args:
+            self._use_application_api = True
+            args.remove('application-base')
+
+        if 'startup' in args:
+            self._use_startup = True
+            args.remove('startup')
+
+        if 'service-providing' in args:
+            self._use_service_providing = True
+            args.remove('service-providing')
+
         console = self._config.get_configuration(ProjectTypeEnum.console.value)
         library = self._config.get_configuration(ProjectTypeEnum.library.value)
         unittest = self._config.get_configuration(ProjectTypeEnum.unittest.value)
