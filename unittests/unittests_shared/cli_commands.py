@@ -9,7 +9,7 @@ class CLICommands:
     @staticmethod
     def _run(cmd: str, *args):
         env_vars = os.environ
-        env_vars['CPL_IS_UNITTEST'] = 'YES'
+        # env_vars['CPL_IS_UNITTEST'] = 'YES'
         command = ['python', CLI_PATH, cmd]
         for arg in args:
             command.append(arg)
@@ -17,9 +17,9 @@ class CLICommands:
         subprocess.run(command, env=env_vars)
 
     @classmethod
-    def generate(cls, *args):
-        cls._run('generate', *args)
+    def generate(cls, schematic: str, name: str):
+        cls._run('generate', schematic, name)
 
     @classmethod
-    def new(cls, *args):
-        cls._run('new', *args)
+    def new(cls, project_type: str, name: str, *args):
+        cls._run('new', project_type, name, *args)
