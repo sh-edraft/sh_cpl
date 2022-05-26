@@ -2,21 +2,22 @@ import os
 import sys
 import textwrap
 
-from cpl_cli._templates.generate.pipe_template import PipeTemplate
-from cpl_cli._templates.generate.validator_template import ValidatorTemplate
-from cpl_core.configuration.configuration_abc import ConfigurationABC
-from cpl_core.console.foreground_color_enum import ForegroundColorEnum
-from cpl_core.console.console import Console
-from cpl_core.utils.string import String
-from cpl_cli.command_abc import CommandABC
-from cpl_cli._templates.generate.init_template import InitTemplate
 from cpl_cli._templates.generate.abc_template import ABCTemplate
 from cpl_cli._templates.generate.class_template import ClassTemplate
 from cpl_cli._templates.generate.configmodel_template import ConfigModelTemplate
 from cpl_cli._templates.generate.enum_template import EnumTemplate
+from cpl_cli._templates.generate.init_template import InitTemplate
+from cpl_cli._templates.generate.pipe_template import PipeTemplate
 from cpl_cli._templates.generate.service_template import ServiceTemplate
+from cpl_cli._templates.generate.test_case_template import TestCaseTemplate
 from cpl_cli._templates.generate.thread_template import ThreadTemplate
+from cpl_cli._templates.generate.validator_template import ValidatorTemplate
 from cpl_cli._templates.template_file_abc import TemplateFileABC
+from cpl_cli.command_abc import CommandABC
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.utils.string import String
 
 
 class GenerateService(CommandABC):
@@ -53,6 +54,10 @@ class GenerateService(CommandABC):
                 "Upper": "Settings",
                 "Template": ConfigModelTemplate
             },
+            "test_case": {
+                "Upper": "TestCase",
+                "Template": TestCaseTemplate
+            },
             "thread": {
                 "Upper": "Thread",
                 "Template": ThreadTemplate
@@ -83,6 +88,7 @@ class GenerateService(CommandABC):
             pipe
             service
             settings
+            test_case
             thread
             validator
         """)
@@ -103,6 +109,7 @@ class GenerateService(CommandABC):
             'pipe (p|P)',
             'service (s|S)',
             'settings (st|ST)',
+            'test-case (tc|TC)',
             'thread (t|T)',
             'validator (v|V)'
         ]

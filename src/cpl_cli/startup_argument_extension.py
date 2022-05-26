@@ -77,6 +77,7 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'pipe', ['p', 'P'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'test_case', ['tc', 'TC'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 'T'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'validator', ['v', 'V'], ' ')
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService, True, validators=[ProjectValidator]) \
