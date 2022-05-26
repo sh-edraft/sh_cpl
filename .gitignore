@@ -135,3 +135,6 @@ dmypy.json
 # IDE
 .idea/
 PythonImportHelper-v2-Completion.json
+
+# cpl unittest stuff
+unittests/test_*_playground
