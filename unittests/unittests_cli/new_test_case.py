@@ -21,6 +21,11 @@ class NewTestCase(unittest.TestCase):
         project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name, 'src', String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
         self.assertTrue(os.path.join(project_path, f'{name}.json'))
+        self.assertTrue(os.path.join(project_path, f'application.py'))
+        self.assertTrue(os.path.join(project_path, f'main.py'))
+        self.assertTrue(os.path.join(project_path, f'startup.py'))
+        if project_type == 'unittest':
+            self.assertTrue(os.path.join(project_path, f'test_case_test_case.py'))
 
     def _test_sub_project(self, project_type: str, name: str, workspace_name: str, *args):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))
