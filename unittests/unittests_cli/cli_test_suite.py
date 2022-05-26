@@ -2,20 +2,12 @@ import os
 import shutil
 import traceback
 import unittest
+from typing import Optional
+from unittest import TestResult
 
-from unittests_cli.add_test_case import AddTestCase
-from unittests_cli.build_test_case import BuildTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
-from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
-from unittests_cli.publish_test_case import PublishTestCase
-from unittests_cli.remove_test_case import RemoveTestCase
-from unittests_cli.run_test_case import RunTestCase
-from unittests_cli.start_test_case import StartTestCase
-from unittests_cli.uninstall_test_case import UninstallTestCase
-from unittests_cli.update_test_case import UpdateTestCase
-from unittests_cli.version_test_case import VersionTestCase
 
 
 class CLITestSuite(unittest.TestSuite):
@@ -24,8 +16,9 @@ class CLITestSuite(unittest.TestSuite):
         unittest.TestSuite.__init__(self)
 
         loader = unittest.TestLoader()
+        self._result: Optional[TestResult] = None
         # nothing needed
-        # self.addTests(loader.loadTestsFromTestCase(GenerateTestCase))
+        self.addTests(loader.loadTestsFromTestCase(GenerateTestCase))
         self.addTests(loader.loadTestsFromTestCase(NewTestCase))
         # self.addTests(loader.loadTestsFromTestCase(VersionTestCase))
 
@@ -54,6 +47,9 @@ class CLITestSuite(unittest.TestSuite):
 
     def _cleanup(self):
         try:
+            if self._result is not None and (len(self._result.errors) > 0 or len(self._result.failures) > 0):
+                return
+
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH)))
         except Exception as e:
@@ -61,5 +57,5 @@ class CLITestSuite(unittest.TestSuite):
 
     def run(self, *args):
         self._setup()
-        super().run(*args)
+        self._result = super().run(*args)
         self._cleanup()
