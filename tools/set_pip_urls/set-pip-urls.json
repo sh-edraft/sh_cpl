@@ -1,6 +1,6 @@
 {
   "ProjectSettings": {
-    "Name": "set-version",
+    "Name": "set-pip-urls",
     "Version": {
       "Major": "2022",
       "Minor": "6",
@@ -8,8 +8,8 @@
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
-    "Description": "CPL internal tool to set version from branch name",
-    "LongDescription": "CPL internal tool to set version from branch name",
+    "Description": "CPL internal tool to set pip URL for CLI by environment",
+    "LongDescription": "CPL internal tool to set pip URL for CLI by environment",
     "URL": "https://www.sh-edraft.de",
     "CopyrightDate": "2022",
     "CopyrightName": "sh-edraft.de",
@@ -26,8 +26,8 @@
     "ProjectType": "console",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "set_version.main",
-    "EntryPoint": "set-version",
+    "Main": "set_pip_url.main",
+    "EntryPoint": "set-pip-url",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

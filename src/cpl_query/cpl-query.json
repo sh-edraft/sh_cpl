@@ -4,19 +4,19 @@
     "Version": {
       "Major": "2022",
       "Minor": "6",
-      "Micro": "15.dev6"
+      "Micro": "16.dev2"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
     "Description": "sh-edraft Common Python library Query",
     "LongDescription": "sh-edraft Common Python library Python integrated Queries",
     "URL": "https://www.sh-edraft.de",
-    "CopyrightDate": "2020 - 2022",
+    "CopyrightDate": "2021 - 2022",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.6.15.dev6"
+      "cpl-core>=2022.6.16.dev2"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},

@@ -6,7 +6,7 @@ cpl-query sh-edraft Common Python library Query
 
 sh-edraft Common Python library Python integrated Queries
 
-:copyright: (c) 2020 - 2022 sh-edraft.de
+:copyright: (c) 2021 - 2022 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
@@ -14,12 +14,12 @@ sh-edraft Common Python library Python integrated Queries
 __title__ = 'cpl_query'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'
-__version__ = '2022.6.15.dev6'
+__copyright__ = 'Copyright (c) 2021 - 2022 sh-edraft.de'
+__version__ = '2022.6.16.dev2'
 
 from collections import namedtuple
 
 # imports: 
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='6', micro='15.dev6')
+version_info = VersionInfo(major='2022', minor='6', micro='16.dev2')

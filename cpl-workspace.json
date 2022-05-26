@@ -5,7 +5,8 @@
       "cpl-core": "src/cpl_core/cpl-core.json",
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
-      "set-version": "tools/set_version/set-version.json"
+      "set-version": "tools/set_version/set-version.json",
+      "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
@@ -13,20 +14,24 @@
       "sv": "cpl set-version",
       "set-version": "cpl run set-version $ARGS; echo '';",
 
+      "spu": "cpl set-pip-urls",
+      "set-pip-urls": "cpl run set-pip-urls $ARGS; echo '';",
+
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
       "db": "cpl build-docs",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
 
-      "pre-build-all": "cpl sv $ARGS",
-      "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-version",
+      "pre-build-all": "cpl sv $ARGS; cpl spu $ARGS;",
+      "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-pip-urls; cpl build-set-version",
       "ba": "cpl build-all $ARGS",
       "build-cli": "echo 'Build cpl-cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
       "build-core": "echo 'Build cpl-core'; cd ./src/cpl_core; cpl build; cd ../../;",
       "build-query": "echo 'Build cpl-query'; cd ./src/cpl_query; cpl build; cd ../../;",
+      "build-set-pip-urls": "echo 'Build set-pip-urls'; cd ./tools/set_pip_urls; cpl build; cd ../../;",
       "build-set-version": "echo 'Build set-version'; cd ./tools/set_version; cpl build; cd ../../;",
 
-      "pre-publish-all": "cpl sv $ARGS",
+      "pre-publish-all": "cpl sv $ARGS; cpl spu $ARGS;",
       "publish-all": "cpl publish-cli; cpl publish-core; cpl publish-query;",
       "pa": "cpl build-all $ARGS",
       "publish-cli": "echo 'Publish cpl-cli'; cd ./src/cpl_cli; cpl publish; cd ../../;",
@@ -52,21 +57,21 @@
       "upload-dev-query": "echo 'DEV Upload cpl_query'; cpl upl-dev-query;",
       "upl-dev-query": "twine upload -r pip-dev.sh-edraft.de dist/cpl-query/publish/setup/*",
 
-      "pre-deploy-prod": "cpl sv $ARGS",
+      "pre-deploy-prod": "cpl sv $ARGS; cpl spu --environment=production;",
       "deploy-prod": "cpl deploy-prod-cli; cpl deploy-prod-core; cpl deploy-prod-query;",
       "dp": "cpl deploy-prod $ARGS",
       "deploy-prod-cli": "cpl publish-cli; cpl upload-prod-cli",
       "deploy-prod-core": "cpl publish-core; cpl upload-prod-core",
       "deploy-prod-query": "cpl publish-query; cpl upload-prod-query",
 
-      "pre-deploy-exp": "cpl sv $ARGS",
+      "pre-deploy-exp": "cpl sv $ARGS; cpl spu --environment=staging;",
       "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-query;",
       "de": "cpl deploy-exp $ARGS",
       "deploy-exp-cli": "cpl publish-cli; cpl upload-exp-cli",
       "deploy-exp-core": "cpl publish-core; cpl upload-exp-core",
       "deploy-exp-query": "cpl publish-query; cpl upload-exp-query",
 
-      "pre-deploy-dev": "cpl sv $ARGS",
+      "pre-deploy-dev": "cpl sv $ARGS; cpl spu --environment=development;",
       "deploy-dev": "cpl deploy-dev-cli; cpl deploy-dev-core; cpl deploy-dev-query;",
       "dd": "cpl deploy-dev $ARGS",
       "deploy-dev-cli": "cpl publish-cli; cpl upload-dev-cli",

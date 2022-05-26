@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """
-set-version CPL internal tool to set version from branch name
+set-pip-urls CPL internal tool to set pip URL for CLI by environment
 ~~~~~~~~~~~~~~~~~~~
 
-CPL internal tool to set version from branch name
+CPL internal tool to set pip URL for CLI by environment
 
 :copyright: (c) 2022 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = 'set_version'
+__title__ = 'set_pip_urls'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2022 sh-edraft.de'
