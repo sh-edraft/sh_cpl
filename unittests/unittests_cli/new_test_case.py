@@ -28,7 +28,8 @@ class NewTestCase(unittest.TestCase):
         else:
             self.assertFalse(os.path.isfile(os.path.join(project_path, f'application.py')))
 
-        if '--sp' in args:
+        # s depends on ab
+        if '--ab' in args and '--s' in args:
             self.assertTrue(os.path.isfile(os.path.join(project_path, f'startup.py')))
         else:
             self.assertFalse(os.path.isfile(os.path.join(project_path, f'startup.py')))
@@ -50,16 +51,16 @@ class NewTestCase(unittest.TestCase):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
 
     def test_console(self):
-        self._test_project('console', 'test-console', '--ab', '--s', '--sp')
-
-    def test_console_without_sp(self):
-        self._test_project('console', 'test-console-without-sp', '--ab', '--s')
+        self._test_project('console', 'test-console', '--ab', '--s')
 
     def test_console_without_s(self):
         self._test_project('console', 'test-console-without-s', '--ab')
 
     def test_console_without_ab(self):
         self._test_project('console', 'test-console-without-ab', '--sp')
+
+    def test_console_without_anything(self):
+        self._test_project('console', 'test-console-without-anything', '--n')
 
     def test_sub_console(self):
         self._test_sub_project('console', 'test-sub-console', 'test-console', '--ab', '--s', '--sp')
