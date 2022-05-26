@@ -15,14 +15,20 @@
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
+
       "sv": "cpl set-version",
       "set-version": "cpl run set-version $ARGS; echo '';",
+
       "spu": "cpl set-pip-urls",
       "set-pip-urls": "cpl run set-pip-urls $ARGS; echo '';",
+
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
       "db": "cpl build-docs",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
+
+      "test": "cpl run unittests",
+
       "pre-build-all": "cpl sv $ARGS; cpl spu $ARGS;",
       "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-pip-urls; cpl build-set-version",
       "ba": "cpl build-all $ARGS",
@@ -31,12 +37,14 @@
       "build-query": "echo 'Build cpl-query'; cd ./src/cpl_query; cpl build; cd ../../;",
       "build-set-pip-urls": "echo 'Build set-pip-urls'; cd ./tools/set_pip_urls; cpl build; cd ../../;",
       "build-set-version": "echo 'Build set-version'; cd ./tools/set_version; cpl build; cd ../../;",
+
       "pre-publish-all": "cpl sv $ARGS; cpl spu $ARGS;",
       "publish-all": "cpl publish-cli; cpl publish-core; cpl publish-query;",
       "pa": "cpl build-all $ARGS",
       "publish-cli": "echo 'Publish cpl-cli'; cd ./src/cpl_cli; cpl publish; cd ../../;",
       "publish-core": "echo 'Publish cpl-core'; cd ./src/cpl_core; cpl publish; cd ../../;",
       "publish-query": "echo 'Publish cpl_query'; cd ./src/cpl_query; cpl publish; cd ../../;",
+
       "upload-prod-cli": "echo 'PROD Upload cpl-cli'; cpl upl-prod-cli;",
       "upl-prod-cli": "twine upload -r pip.sh-edraft.de dist/cpl-cli/publish/setup/*",
       "upload-prod-core": "echo 'PROD Upload cpl-core'; cpl upl-prod-core;",
@@ -55,18 +63,21 @@
       "upl-dev-core": "twine upload -r pip-dev.sh-edraft.de dist/cpl-core/publish/setup/*",
       "upload-dev-query": "echo 'DEV Upload cpl_query'; cpl upl-dev-query;",
       "upl-dev-query": "twine upload -r pip-dev.sh-edraft.de dist/cpl-query/publish/setup/*",
+
       "pre-deploy-prod": "cpl sv $ARGS; cpl spu --environment=production;",
       "deploy-prod": "cpl deploy-prod-cli; cpl deploy-prod-core; cpl deploy-prod-query;",
       "dp": "cpl deploy-prod $ARGS",
       "deploy-prod-cli": "cpl publish-cli; cpl upload-prod-cli",
       "deploy-prod-core": "cpl publish-core; cpl upload-prod-core",
       "deploy-prod-query": "cpl publish-query; cpl upload-prod-query",
+
       "pre-deploy-exp": "cpl sv $ARGS; cpl spu --environment=staging;",
       "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-query;",
       "de": "cpl deploy-exp $ARGS",
       "deploy-exp-cli": "cpl publish-cli; cpl upload-exp-cli",
       "deploy-exp-core": "cpl publish-core; cpl upload-exp-core",
       "deploy-exp-query": "cpl publish-query; cpl upload-exp-query",
+
       "pre-deploy-dev": "cpl sv $ARGS; cpl spu --environment=development;",
       "deploy-dev": "cpl deploy-dev-cli; cpl deploy-dev-core; cpl deploy-dev-query;",
       "dd": "cpl deploy-dev $ARGS",

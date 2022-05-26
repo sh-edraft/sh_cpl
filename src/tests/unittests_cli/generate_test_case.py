@@ -1,18 +1,15 @@
 import os.path
 import unittest
 
-from unittests_cli.constants import PLAYGROUND
+from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
 class GenerateTestCase(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def _test_file(self, schematic: str, suffix: str):
         CLICommands.generate(schematic, 'GeneratedFile')
-        file_path = os.path.abspath(os.path.join(PLAYGROUND, f'generated_file{suffix}.py'))
+        file_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, f'generated_file{suffix}.py'))
         file_exists = os.path.exists(file_path)
         self.assertTrue(file_exists)
         os.remove(file_path)

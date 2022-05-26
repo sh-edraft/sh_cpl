@@ -5,7 +5,7 @@ import unittest
 
 from unittests_cli.add_test_case import AddTestCase
 from unittests_cli.build_test_case import BuildTestCase
-from unittests_cli.constants import PLAYGROUND
+from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
@@ -45,19 +45,19 @@ class CLITestSuite(unittest.TestSuite):
     def _setup(self):
         print(f'Setup {__name__}')
         try:
-            if os.path.exists(PLAYGROUND):
-                shutil.rmtree(PLAYGROUND)
+            if os.path.exists(PLAYGROUND_PATH):
+                shutil.rmtree(PLAYGROUND_PATH)
 
-            os.mkdir(PLAYGROUND)
-            os.chdir(PLAYGROUND)
+            os.mkdir(PLAYGROUND_PATH)
+            os.chdir(PLAYGROUND_PATH)
         except Exception as e:
             print(f'Setup of {__name__} failed: {traceback.format_exc()}')
 
     def _cleanup(self):
         print(f'Cleanup {__name__}')
         try:
-            if os.path.exists(PLAYGROUND):
-                shutil.rmtree(PLAYGROUND)
+            if os.path.exists(PLAYGROUND_PATH):
+                shutil.rmtree(PLAYGROUND_PATH)
         except Exception as e:
             print(f'Cleanup of {__name__} failed: {traceback.format_exc()}')
 

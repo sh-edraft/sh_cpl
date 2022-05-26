@@ -1,4 +1,3 @@
-import time
 import unittest
 
 from cpl_core.application import ApplicationABC
