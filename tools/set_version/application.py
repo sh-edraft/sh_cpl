@@ -1,3 +1,4 @@
+import os
 import traceback
 
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
@@ -27,6 +28,7 @@ class Application(ApplicationABC):
 
     def main(self):
         Console.write_line('Set versions:')
+
         args = self._configuration.additional_arguments
         version = {}
         branch = ""
@@ -53,8 +55,15 @@ class Application(ApplicationABC):
             Console.error(f'Branch {branch} does not contain valid version')
             return
 
+        diff_paths = []
+        for file in self._git_service.get_diff_files():
+            diff_paths.append(os.path.basename(os.path.dirname(file)))
+
         try:
             for project in self._workspace.projects:
+                if project not in diff_paths:
+                    continue
+
                 Console.write_line(f'Set dependencies {self._version_pipe.transform(version)} for {project}')
                 self._version_setter.set_dependencies(self._workspace.projects[project], version)
                 if not project.startswith('cpl') and not project.startswith('unittest'):

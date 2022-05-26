@@ -1,4 +1,4 @@
-import os
+from git import Repo, DiffIndex
 
 from cpl_core.environment import ApplicationEnvironmentABC
 
@@ -7,12 +7,11 @@ class GitService:
 
     def __init__(self, env: ApplicationEnvironmentABC):
         self._env = env
+        self._repo = Repo(env.working_directory)
 
     def get_active_branch_name(self) -> str:
-        head_dir = os.path.join(self._env.working_directory, '.git/HEAD')
-        with open(head_dir, 'r') as f:
-            content = f.read().splitlines()
+        branch = self._repo.active_branch
+        return branch.name
 
-        for line in content:
-            if line[0:4] == "ref:":
-                return line.partition("refs/heads/")[2]
+    def get_diff_files(self) -> list[str]:
+        return [item.a_path for item in self._repo.index.diff(None)]
