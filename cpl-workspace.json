@@ -83,7 +83,13 @@
       "dd": "cpl deploy-dev $ARGS",
       "deploy-dev-cli": "cpl publish-cli; cpl upload-dev-cli",
       "deploy-dev-core": "cpl publish-core; cpl upload-dev-core",
-      "deploy-dev-query": "cpl publish-query; cpl upload-dev-query"
+      "deploy-dev-query": "cpl publish-query; cpl upload-dev-query",
+
+      "dev-install": "cpl di-core; cpl di-cli; cpl di-query;",
+      "di": "cpl dev-install",
+      "di-core": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-cli": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de"
     }
   }
 }
