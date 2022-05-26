@@ -46,9 +46,9 @@ class CLITestSuite(unittest.TestSuite):
         print(f'Setup {__name__}')
         try:
             if os.path.exists(PLAYGROUND_PATH):
-                shutil.rmtree(PLAYGROUND_PATH)
+                shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, '../')))
 
-            os.mkdir(PLAYGROUND_PATH)
+            os.makedirs(PLAYGROUND_PATH)
             os.chdir(PLAYGROUND_PATH)
         except Exception as e:
             print(f'Setup of {__name__} failed: {traceback.format_exc()}')
@@ -57,7 +57,7 @@ class CLITestSuite(unittest.TestSuite):
         print(f'Cleanup {__name__}')
         try:
             if os.path.exists(PLAYGROUND_PATH):
-                shutil.rmtree(PLAYGROUND_PATH)
+                shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, '../')))
         except Exception as e:
             print(f'Cleanup of {__name__} failed: {traceback.format_exc()}')
 
