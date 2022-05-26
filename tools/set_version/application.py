@@ -35,6 +35,11 @@ class Application(ApplicationABC):
         version = {}
         branch = ""
         suffix = ""
+        force = False
+        if '--force' in args:
+            args.remove('--force')
+            force = True
+
         if len(args) > 1:
             Console.error(f'Unexpected argument(s): {", ".join(args[1:])}')
             return
@@ -63,7 +68,7 @@ class Application(ApplicationABC):
 
         try:
             for project in self._workspace.projects:
-                if project not in diff_paths and String.convert_to_snake_case(project) not in diff_paths:
+                if project not in diff_paths and String.convert_to_snake_case(project) not in diff_paths and not force:
                     Console.write_line(f'Skipping {project} due to missing changes')
                     continue
 
