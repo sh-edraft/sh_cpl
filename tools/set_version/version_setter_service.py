@@ -1,5 +1,8 @@
 import json
 import os
+from string import ascii_letters
+
+from cpl_core.utils import String
 
 from cpl_core.console import Console
 
@@ -30,7 +33,7 @@ class VersionSetterService:
         project_json['ProjectSettings']['Version'] = version
         self._write_file(file, project_json)
 
-    def set_dependencies(self, file: str, version: dict):
+    def set_dependencies(self, file: str, version: dict, skipped=None):
         project_json = self._read_file(file)
         dependencies = project_json['ProjectSettings']['Dependencies']
         new_deps = []
@@ -40,6 +43,13 @@ class VersionSetterService:
                 continue
 
             dep_version = dependency.split('=')[1]
+            dep_name = dependency.split('=')[0]
+            if dep_name[len(dep_name)-1] not in ascii_letters:
+                dep_name = dep_name[:len(dep_name)-1]
+
+            if skipped is not None and (dep_name in skipped or String.convert_to_snake_case(dep_name) in skipped):
+                new_deps.append(dependency)
+                continue
             new_deps.append(dependency.replace(dep_version, f'{version["Major"]}.{version["Minor"]}.{version["Micro"]}'))
 
         project_json['ProjectSettings']['Dependencies'] = new_deps

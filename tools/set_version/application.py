@@ -70,13 +70,15 @@ class Application(ApplicationABC):
                 diff_paths.append(os.path.basename(os.path.dirname(file)))
 
         try:
+            skipped = []
             for project in self._workspace.projects:
                 if project not in diff_paths and String.convert_to_snake_case(project) not in diff_paths and not force:
                     Console.write_line(f'Skipping {project} due to missing changes')
+                    skipped.append(project)
                     continue
 
                 Console.write_line(f'Set dependencies {self._version_pipe.transform(version)} for {project}')
-                self._version_setter.set_dependencies(self._workspace.projects[project], version)
+                self._version_setter.set_dependencies(self._workspace.projects[project], version, skipped=skipped)
                 if not project.startswith('cpl') and not project.startswith('unittest'):
                     Console.write_line(f'Skipping {project}')
                     continue
