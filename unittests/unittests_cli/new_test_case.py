@@ -1,3 +1,4 @@
+import json
 import os
 import shutil
 import unittest
@@ -50,6 +51,33 @@ class NewTestCase(unittest.TestCase):
         self.assertTrue(os.path.join(project_path, f'{name}.json'))
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
 
+    def _test_sub_directory_project(self, project_type: str, directory: str, name: str, workspace_name: str, *args):
+        os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))
+        CLICommands.new(project_type, f'{directory}/{name}', *args)
+        workspace_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name))
+        self.assertTrue(os.path.exists(workspace_path))
+
+        project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, f'src/{directory}', String.convert_to_snake_case(name)))
+        self.assertTrue(os.path.exists(project_path))
+        project_file = os.path.join(project_path, f'{name}.json')
+        self.assertTrue(project_file)
+        project_json = {}
+        with open(project_file, 'r', encoding='utf-8') as cfg:
+            # load json
+            project_json = json.load(cfg)
+            cfg.close()
+
+        project_settings = project_json['ProjectSettings']
+        build_settings = project_json['BuildSettings']
+
+        self.assertEqual(project_settings['Name'], name)
+        self.assertEqual(build_settings['ProjectType'], 'library')
+        self.assertEqual(build_settings['OutputPath'], '../../dist')
+        self.assertEqual(build_settings['Main'], f'{String.convert_to_snake_case(name)}.main')
+        self.assertEqual(build_settings['EntryPoint'], name)
+
+        os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
+
     def test_console(self):
         self._test_project('console', 'test-console', '--ab', '--s')
 
@@ -70,6 +98,9 @@ class NewTestCase(unittest.TestCase):
 
     def test_sub_library(self):
         self._test_sub_project('library', 'test-sub-library', 'test-console', '--ab', '--s', '--sp')
+
+    def test_sub_directory_library(self):
+        self._test_sub_directory_project('library', 'directory', 'test-sub-library', 'test-console', '--ab', '--s', '--sp')
 
     def test_unittest(self):
         self._test_project('unittest', 'test-unittest', '--ab')

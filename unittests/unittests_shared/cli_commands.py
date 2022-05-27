@@ -7,9 +7,10 @@ from unittests_cli.constants import CLI_PATH
 class CLICommands:
 
     @staticmethod
-    def _run(cmd: str, *args):
+    def _run(cmd: str, *args, output=False):
         env_vars = os.environ
-        env_vars['CPL_IS_UNITTEST'] = 'YES'
+        env_vars['CPL_IS_UNITTEST'] = 'NO' if output else 'YES'
+
         command = ['python', CLI_PATH, cmd]
         for arg in args:
             command.append(arg)
@@ -17,9 +18,9 @@ class CLICommands:
         subprocess.run(command, env=env_vars)
 
     @classmethod
-    def generate(cls, schematic: str, name: str):
-        cls._run('generate', schematic, name)
+    def generate(cls, schematic: str, name: str, output=False):
+        cls._run('generate', schematic, name, output=output)
 
     @classmethod
-    def new(cls, project_type: str, name: str, *args):
-        cls._run('new', project_type, name, *args)
+    def new(cls, project_type: str, name: str, *args, output=False):
+        cls._run('new', project_type, name, *args, output=output)
