@@ -60,8 +60,7 @@ class NewTestCase(unittest.TestCase):
         project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, f'src/{directory}', String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
         project_file = os.path.join(project_path, f'{name}.json')
-        self.assertTrue(project_file)
-        project_json = {}
+        self.assertTrue(os.path.exists(project_file))
         with open(project_file, 'r', encoding='utf-8') as cfg:
             # load json
             project_json = json.load(cfg)

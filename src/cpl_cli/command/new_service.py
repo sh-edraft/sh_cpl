@@ -44,6 +44,7 @@ class NewService(CommandABC):
         self._project_json = {}
 
         self._name: str = ''
+        self._rel_path: str = ''
         self._schematic: ProjectTypeEnum = ProjectTypeEnum.console
         self._use_nothing: bool = False
         self._use_application_api: bool = False
@@ -83,9 +84,10 @@ class NewService(CommandABC):
         for name in schematics:
             Console.write(f'\n\t{name} ')
 
-    def _create_project_settings(self, name: str):
+    def _create_project_settings(self):
+        self._rel_path = os.path.dirname(self._name)
         self._project_dict = {
-            ProjectSettingsNameEnum.name.value: name,
+            ProjectSettingsNameEnum.name.value: os.path.basename(self._name),
             ProjectSettingsNameEnum.version.value: {
                 VersionSettingsNameEnum.major.value: '0',
                 VersionSettingsNameEnum.minor.value: '0',
@@ -113,15 +115,11 @@ class NewService(CommandABC):
         self._project.from_dict(self._project_dict)
 
     def _create_build_settings(self):
-        main = f'{String.convert_to_snake_case(self._project.name)}.main'
-        if self._schematic == ProjectTypeEnum.library.value:
-            main = f'{String.convert_to_snake_case(self._project.name)}.main'
-
         self._build_dict = {
             BuildSettingsNameEnum.project_type.value: self._schematic,
             BuildSettingsNameEnum.source_path.value: '',
             BuildSettingsNameEnum.output_path.value: '../../dist',
-            BuildSettingsNameEnum.main.value: main,
+            BuildSettingsNameEnum.main.value: f'{String.convert_to_snake_case(self._project.name)}.main',
             BuildSettingsNameEnum.entry_point.value: self._project.name,
             BuildSettingsNameEnum.include_package_data.value: False,
             BuildSettingsNameEnum.included.value: [],
@@ -151,15 +149,12 @@ class NewService(CommandABC):
         :return:
         """
         if self._workspace is None:
-            project_path = os.path.join(self._env.working_directory, self._project.name)
+            project_path = os.path.join(self._env.working_directory, self._rel_path, self._project.name)
         else:
-            project_path = os.path.join(
-                self._env.working_directory,
-                'src',
-                String.convert_to_snake_case(self._project.name)
-            )
+            project_path = os.path.join(self._env.working_directory, 'src', self._rel_path, String.convert_to_snake_case(self._project.name))
 
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
+            Console.write_line(project_path)
             Console.error('Project path is not empty\n')
             return None
 
@@ -195,7 +190,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        self._create_project_settings(self._name)
+        self._create_project_settings()
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -203,6 +198,9 @@ class NewService(CommandABC):
             return
 
         self._get_project_information()
+        project_name = self._project.name
+        if self._rel_path != '':
+            project_name = f'{self._rel_path}/{project_name}'
         try:
             ConsoleBuilder.build(
                 path,
@@ -210,7 +208,7 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._use_async,
-                self._project.name,
+                project_name,
                 self._project_json,
                 self._workspace
             )
@@ -223,7 +221,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        self._create_project_settings(self._name)
+        self._create_project_settings()
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -231,12 +229,15 @@ class NewService(CommandABC):
             return
 
         self._get_project_information(is_unittest=True)
+        project_name = self._project.name
+        if self._rel_path != '':
+            project_name = f'{self._rel_path}/{project_name}'
         try:
             UnittestBuilder.build(
                 path,
                 self._use_application_api,
                 self._use_async,
-                self._project.name,
+                project_name,
                 self._project_json,
                 self._workspace
             )
@@ -249,7 +250,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        self._create_project_settings(self._name)
+        self._create_project_settings()
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -257,6 +258,9 @@ class NewService(CommandABC):
             return
 
         self._get_project_information()
+        project_name = self._project.name
+        if self._rel_path != '':
+            project_name = f'{self._rel_path}/{project_name}'
         try:
             LibraryBuilder.build(
                 path,
@@ -264,7 +268,7 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._use_async,
-                self._project.name,
+                project_name,
                 self._project_json,
                 self._workspace
             )
