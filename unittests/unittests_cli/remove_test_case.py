@@ -17,6 +17,14 @@ class RemoveTestCase(unittest.TestCase):
         self._target = 'add-test-library'
         self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
 
+    def _get_project_settings(self):
+        with open(os.path.join(os.getcwd(), self._project_file), 'r', encoding='utf-8') as cfg:
+            # load json
+            project_json = json.load(cfg)
+            cfg.close()
+
+        return project_json
+
     def setUp(self):
         os.chdir(os.path.abspath(PLAYGROUND_PATH))
         # create projects
@@ -30,3 +38,11 @@ class RemoveTestCase(unittest.TestCase):
         self.assertTrue(os.path.exists(os.getcwd()))
         self.assertTrue(os.path.exists(os.path.join(os.getcwd(), self._project_file)))
         self.assertFalse(os.path.exists(path))
+        settings = self._get_project_settings()
+        self.assertIn('ProjectSettings', settings)
+        self.assertIn('ProjectReferences', settings['BuildSettings'])
+        self.assertIn('BuildSettings', settings)
+        self.assertNotIn(
+            f'../{String.convert_to_snake_case(self._target)}/{self._target}.json',
+            settings['BuildSettings']['ProjectReferences']
+        )
