@@ -28,3 +28,7 @@ class CLICommands:
     @classmethod
     def new(cls, project_type: str, name: str, *args, output=False):
         cls._run('new', project_type, name, *args, output=output)
+
+    @classmethod
+    def remove(cls, project: str):
+        cls._run('remove', project)

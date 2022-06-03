@@ -9,6 +9,7 @@ from unittests_cli.add_test_case import AddTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.new_test_case import NewTestCase
+from unittests_cli.remove_test_case import RemoveTestCase
 
 
 class CLITestSuite(unittest.TestSuite):
@@ -34,7 +35,7 @@ class CLITestSuite(unittest.TestSuite):
 
         # workspace needed
         self.addTests(loader.loadTestsFromTestCase(AddTestCase))
-        # self.addTests(loader.loadTestsFromTestCase(RemoveTestCase))
+        self.addTests(loader.loadTestsFromTestCase(RemoveTestCase))
 
     def _setup(self):
         try:
