@@ -5,6 +5,7 @@ import unittest
 from typing import Optional
 from unittest import TestResult
 
+from unittests_cli.add_test_case import AddTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.new_test_case import NewTestCase
@@ -32,7 +33,7 @@ class CLITestSuite(unittest.TestSuite):
         # self.addTests(loader.loadTestsFromTestCase(UpdateTestCase))
 
         # workspace needed
-        # self.addTests(loader.loadTestsFromTestCase(AddTestCase))
+        self.addTests(loader.loadTestsFromTestCase(AddTestCase))
         # self.addTests(loader.loadTestsFromTestCase(RemoveTestCase))
 
     def _setup(self):

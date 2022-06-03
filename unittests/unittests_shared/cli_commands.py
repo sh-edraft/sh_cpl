@@ -18,6 +18,10 @@ class CLICommands:
         subprocess.run(command, env=env_vars)
 
     @classmethod
+    def add(cls, source: str, target: str):
+        cls._run('add', source, target)
+
+    @classmethod
     def generate(cls, schematic: str, name: str, output=False):
         cls._run('generate', schematic, name, output=output)
 
