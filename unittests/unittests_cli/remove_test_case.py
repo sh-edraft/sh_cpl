@@ -31,6 +31,7 @@ class RemoveTestCase(unittest.TestCase):
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))
         CLICommands.new('console', self._target, '--ab', '--s')
+        CLICommands.add(self._source, self._target)
 
     def test_remove(self):
         CLICommands.remove(self._target)
