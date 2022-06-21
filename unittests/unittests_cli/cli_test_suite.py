@@ -11,6 +11,7 @@ from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
 from unittests_cli.remove_test_case import RemoveTestCase
+from unittests_cli.uninstall_test_case import UninstallTestCase
 
 
 class CLITestSuite(unittest.TestSuite):
@@ -23,15 +24,28 @@ class CLITestSuite(unittest.TestSuite):
         # nothing needed
         self.addTests(loader.loadTestsFromTestCase(GenerateTestCase))
         self.addTests(loader.loadTestsFromTestCase(NewTestCase))
+
+        # compare console output
         # self.addTests(loader.loadTestsFromTestCase(VersionTestCase))
 
         # project needed
+        # compare two file states/directory content
         # self.addTests(loader.loadTestsFromTestCase(BuildTestCase))
+
         self.addTests(loader.loadTestsFromTestCase(InstallTestCase))
+
+        # compare two file states/directory content
         # self.addTests(loader.loadTestsFromTestCase(PublishTestCase))
+
+        # check if application was executed properly
         # self.addTests(loader.loadTestsFromTestCase(RunTestCase))
+
+        # check if application was executed properly and file watcher is working
         # self.addTests(loader.loadTestsFromTestCase(StartTestCase))
-        # self.addTests(loader.loadTestsFromTestCase(UninstallTestCase))
+
+        self.addTests(loader.loadTestsFromTestCase(UninstallTestCase))
+
+        # check in project settings if package is updated
         # self.addTests(loader.loadTestsFromTestCase(UpdateTestCase))
 
         # workspace needed

@@ -36,3 +36,7 @@ class CLICommands:
     @classmethod
     def remove(cls, project: str):
         cls._run('remove', project)
+
+    @classmethod
+    def uninstall(cls, package: str, output=False):
+        cls._run('uninstall', package, output=output)

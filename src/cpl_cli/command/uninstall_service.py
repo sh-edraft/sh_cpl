@@ -35,6 +35,7 @@ class UninstallService(CommandABC):
         
         self._is_simulating = False
         self._is_virtual = False
+        self._project_file = f'{self._project_settings.name}.json'
 
     @property
     def help_message(self) -> str:
@@ -59,8 +60,7 @@ class UninstallService(CommandABC):
             Console.error(f'Expected package')
             Console.error(f'Usage: cpl uninstall <package>')
             return
-        
-        
+
         if '--virtual' in args:
             self._is_virtual = True
             args.remove('--virtual')
@@ -110,7 +110,7 @@ class UninstallService(CommandABC):
                     ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
                     BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
                 }
-                with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'), 'w') as project_file:
+                with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
                     project_file.write(json.dumps(config, indent=2))
                     project_file.close()
 
