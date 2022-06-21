@@ -26,6 +26,10 @@ class CLICommands:
         cls._run('generate', schematic, name, output=output)
 
     @classmethod
+    def install(cls, package: str = '', output=False):
+        cls._run('install', package, output=output)
+
+    @classmethod
     def new(cls, project_type: str, name: str, *args, output=False):
         cls._run('new', project_type, name, *args, output=output)
 

@@ -8,6 +8,7 @@ from unittest import TestResult
 from unittests_cli.add_test_case import AddTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
+from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
 from unittests_cli.remove_test_case import RemoveTestCase
 
@@ -26,7 +27,7 @@ class CLITestSuite(unittest.TestSuite):
 
         # project needed
         # self.addTests(loader.loadTestsFromTestCase(BuildTestCase))
-        # self.addTests(loader.loadTestsFromTestCase(InstallTestCase))
+        self.addTests(loader.loadTestsFromTestCase(InstallTestCase))
         # self.addTests(loader.loadTestsFromTestCase(PublishTestCase))
         # self.addTests(loader.loadTestsFromTestCase(RunTestCase))
         # self.addTests(loader.loadTestsFromTestCase(StartTestCase))

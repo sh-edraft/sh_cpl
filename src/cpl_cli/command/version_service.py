@@ -5,7 +5,6 @@ import pkg_resources
 import textwrap
 
 import cpl_cli
-import cpl_core
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.command_abc import CommandABC
