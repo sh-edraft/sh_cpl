@@ -30,7 +30,11 @@ class CLICommands:
         cls._run('generate', schematic, name, output=output)
 
     @classmethod
-    def install(cls, package: str = '', output=False):
+    def install(cls, package: str = None, output=False):
+        if package is None:
+            cls._run('install', output=output)
+            return
+
         cls._run('install', package, output=output)
 
     @classmethod

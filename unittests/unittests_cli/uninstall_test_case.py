@@ -1,13 +1,11 @@
 import json
 import os
 import shutil
-import time
+import subprocess
+import sys
 import unittest
 
-import pkg_resources
-
 from cpl_core.utils import String
-
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
@@ -44,6 +42,10 @@ class UninstallTestCase(unittest.TestCase):
 
         shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source)))
 
+    def _get_installed_packages(self) -> dict:
+        reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
+        return dict([tuple(r.decode().split('==')) for r in reqs.split()])
+
     def test_uninstall(self):
         CLICommands.uninstall(self._package)
         settings = self._get_project_settings()
@@ -54,5 +56,5 @@ class UninstallTestCase(unittest.TestCase):
             self._package,
             settings['ProjectSettings']['Dependencies']
         )
-        packages = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
+        packages = self._get_installed_packages()
         self.assertNotIn(self._package_name, packages)

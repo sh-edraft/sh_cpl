@@ -1,6 +1,8 @@
 import json
 import os
 import shutil
+import subprocess
+import sys
 import unittest
 
 import pkg_resources
@@ -44,6 +46,10 @@ class InstallTestCase(unittest.TestCase):
 
         shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source)))
 
+    def _get_installed_packages(self) -> dict:
+        reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
+        return dict([tuple(r.decode().split('==')) for r in reqs.split()])
+
     def test_install_package(self):
         version = '1.7.3'
         package_name = 'discord.py'
@@ -57,11 +63,11 @@ class InstallTestCase(unittest.TestCase):
             package,
             settings['ProjectSettings']['Dependencies']
         )
-        packages = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
+        packages = self._get_installed_packages()
         self.assertIn(package_name, packages)
         self.assertEqual(version, packages[package_name])
 
-    def test_install_all(self):
+    def _test_install_all(self):
         version = '1.7.3'
         package_name = 'discord.py'
         package = f'{package_name}=={version}'
@@ -83,5 +89,8 @@ class InstallTestCase(unittest.TestCase):
             package,
             new_settings['ProjectSettings']['Dependencies']
         )
+        packages = self._get_installed_packages()
+        self.assertIn(package_name, packages)
+        self.assertEqual(version, packages[package_name])
 
 
