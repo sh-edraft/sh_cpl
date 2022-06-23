@@ -11,6 +11,7 @@ from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
+from unittests_cli.publish_test_case import PublishTestCase
 from unittests_cli.remove_test_case import RemoveTestCase
 from unittests_cli.uninstall_test_case import UninstallTestCase
 from unittests_cli.update_test_case import UpdateTestCase
@@ -28,28 +29,19 @@ class CLITestSuite(unittest.TestSuite):
             # nothing needed
             GenerateTestCase,
             NewTestCase,
-
             # compare console output
             # VersionTestCase,
-
             # project needed
-            # compare two file states/directory content
             BuildTestCase,
             InstallTestCase,
-
-            # compare two file states/directory content
-            # PublishTestCase,
-
+            PublishTestCase,
             # check if application was executed properly
             # RunTestCase,
-
             # check if application was executed properly and file watcher is working
             # StartTestCase,
-
             UninstallTestCase,
             # check in project settings if package is updated
             # UpdateTestCase,
-
             # workspace needed
             AddTestCase,
             RemoveTestCase

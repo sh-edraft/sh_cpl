@@ -42,6 +42,10 @@ class CLICommands:
         cls._run('new', project_type, name, *args, output=output)
 
     @classmethod
+    def publish(cls):
+        cls._run('publish')
+
+    @classmethod
     def remove(cls, project: str):
         cls._run('remove', project)
 
