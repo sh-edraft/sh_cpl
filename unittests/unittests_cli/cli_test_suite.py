@@ -6,12 +6,14 @@ from typing import Optional
 from unittest import TestResult
 
 from unittests_cli.add_test_case import AddTestCase
+from unittests_cli.build_test_case import BuildTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.generate_test_case import GenerateTestCase
 from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
 from unittests_cli.remove_test_case import RemoveTestCase
 from unittests_cli.uninstall_test_case import UninstallTestCase
+from unittests_cli.update_test_case import UpdateTestCase
 
 
 class CLITestSuite(unittest.TestSuite):
@@ -21,36 +23,40 @@ class CLITestSuite(unittest.TestSuite):
 
         loader = unittest.TestLoader()
         self._result: Optional[TestResult] = None
-        # nothing needed
-        self.addTests(loader.loadTestsFromTestCase(GenerateTestCase))
-        self.addTests(loader.loadTestsFromTestCase(NewTestCase))
 
-        # compare console output
-        # self.addTests(loader.loadTestsFromTestCase(VersionTestCase))
+        active_tests = [
+            # nothing needed
+            GenerateTestCase,
+            NewTestCase,
 
-        # project needed
-        # compare two file states/directory content
-        # self.addTests(loader.loadTestsFromTestCase(BuildTestCase))
+            # compare console output
+            # VersionTestCase,
 
-        self.addTests(loader.loadTestsFromTestCase(InstallTestCase))
+            # project needed
+            # compare two file states/directory content
+            BuildTestCase,
+            InstallTestCase,
 
-        # compare two file states/directory content
-        # self.addTests(loader.loadTestsFromTestCase(PublishTestCase))
+            # compare two file states/directory content
+            # PublishTestCase,
 
-        # check if application was executed properly
-        # self.addTests(loader.loadTestsFromTestCase(RunTestCase))
+            # check if application was executed properly
+            # RunTestCase,
 
-        # check if application was executed properly and file watcher is working
-        # self.addTests(loader.loadTestsFromTestCase(StartTestCase))
+            # check if application was executed properly and file watcher is working
+            # StartTestCase,
 
-        self.addTests(loader.loadTestsFromTestCase(UninstallTestCase))
+            UninstallTestCase,
+            # check in project settings if package is updated
+            # UpdateTestCase,
 
-        # check in project settings if package is updated
-        # self.addTests(loader.loadTestsFromTestCase(UpdateTestCase))
+            # workspace needed
+            AddTestCase,
+            RemoveTestCase
+        ]
 
-        # workspace needed
-        self.addTests(loader.loadTestsFromTestCase(AddTestCase))
-        self.addTests(loader.loadTestsFromTestCase(RemoveTestCase))
+        for test in active_tests:
+            self.addTests(loader.loadTestsFromTestCase(test))
 
     def _setup(self):
         try:

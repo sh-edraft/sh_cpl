@@ -22,6 +22,10 @@ class CLICommands:
         cls._run('add', source, target)
 
     @classmethod
+    def build(cls):
+        cls._run('build')
+
+    @classmethod
     def generate(cls, schematic: str, name: str, output=False):
         cls._run('generate', schematic, name, output=output)
 

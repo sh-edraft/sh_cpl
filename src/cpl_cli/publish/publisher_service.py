@@ -426,7 +426,7 @@ class PublisherService(PublisherABC):
         :return:
         """
         self._env.set_working_directory(os.path.join(self._env.working_directory, '../'))
-        self.exclude(f'*/{self._config.get_configuration("ProjectName")}.json')
+        self.exclude(f'*/{self._project_settings.name}.json')
         self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'build'))
 
         Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
@@ -449,7 +449,7 @@ class PublisherService(PublisherABC):
         :return:
         """
         self._env.set_working_directory(os.path.join(self._env.working_directory, '../'))
-        self.exclude(f'*/{self._config.get_configuration("ProjectName")}.json')
+        self.exclude(f'*/{self._project_settings.name}.json')
         self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'publish'))
 
         Console.write_line('Build:')
