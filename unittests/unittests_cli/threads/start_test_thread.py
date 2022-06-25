@@ -9,4 +9,4 @@ class StartTestThread(threading.Thread):
         threading.Thread.__init__(self, daemon=True)
 
     def run(self):
-        CLICommands.start()
+        CLICommands.start(True)
