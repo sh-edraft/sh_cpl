@@ -26,24 +26,24 @@ class CLITestSuite(unittest.TestSuite):
 
         loader = unittest.TestLoader()
         self._result: Optional[TestResult] = None
-        self._is_online = False
+        self._is_online = True
 
         active_tests = [
             # nothing needed
-            # GenerateTestCase,
-            # NewTestCase,
+            GenerateTestCase,
+            NewTestCase,
             # compare console output
             # VersionTestCase,
             # project needed
-            # BuildTestCase,
-            # PublishTestCase,
-            # RunTestCase,
+            BuildTestCase,
+            PublishTestCase,
+            RunTestCase,
             StartTestCase,
             # check in project settings if package is updated
             # UpdateTestCase,
             # workspace needed
-            # AddTestCase,
-            # RemoveTestCase
+            AddTestCase,
+            RemoveTestCase
         ]
 
         if self._is_online:
