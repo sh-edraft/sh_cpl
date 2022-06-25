@@ -18,7 +18,7 @@ class CLICommands:
         if output:
             subprocess.run(command, env=env_vars)
         else:
-            subprocess.run(command, env=env_vars, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(command, env=env_vars, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
 
     @classmethod
     def add(cls, source: str, target: str, output=False):
@@ -58,6 +58,10 @@ class CLICommands:
             cls._run('run', output=output)
             return
         cls._run('run', project, output=output)
+
+    @classmethod
+    def start(cls, output=False):
+        cls._run('start', output=output)
 
     @classmethod
     def uninstall(cls, package: str, output=False):

@@ -5,10 +5,7 @@ import subprocess
 import sys
 import unittest
 
-import pkg_resources
-
 from cpl_core.utils import String
-
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 

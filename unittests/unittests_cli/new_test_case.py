@@ -1,10 +1,8 @@
 import json
 import os
-import shutil
 import unittest
 
 from cpl_core.utils import String
-
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
