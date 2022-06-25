@@ -25,7 +25,7 @@ class StartTestCase(unittest.TestCase):
             settings = json.load(cfg)
             cfg.close()
         
-        if settings['RunTest']['WasStarted']:
+        if settings['RunTest']['WasStarted'] == 'True':
             settings['RunTest']['WasRestarted'] = 'True'
         
         settings['RunTest']['WasStarted'] = 'True'
