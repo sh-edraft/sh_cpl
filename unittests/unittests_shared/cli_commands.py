@@ -15,15 +15,18 @@ class CLICommands:
         for arg in args:
             command.append(arg)
 
-        subprocess.run(command, env=env_vars)
+        if output:
+            subprocess.run(command, env=env_vars)
+        else:
+            subprocess.run(command, env=env_vars, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     @classmethod
-    def add(cls, source: str, target: str):
-        cls._run('add', source, target)
+    def add(cls, source: str, target: str, output=False):
+        cls._run('add', source, target, output=output)
 
     @classmethod
-    def build(cls):
-        cls._run('build')
+    def build(cls, output=False):
+        cls._run('build', output=output)
 
     @classmethod
     def generate(cls, schematic: str, name: str, output=False):
@@ -42,12 +45,19 @@ class CLICommands:
         cls._run('new', project_type, name, *args, output=output)
 
     @classmethod
-    def publish(cls):
-        cls._run('publish')
+    def publish(cls, output=False):
+        cls._run('publish', output=output)
 
     @classmethod
-    def remove(cls, project: str):
-        cls._run('remove', project)
+    def remove(cls, project: str, output=False):
+        cls._run('remove', project, output=output)
+
+    @classmethod
+    def run(cls, project: str = None, output=False):
+        if project is None:
+            cls._run('run', output=output)
+            return
+        cls._run('run', project, output=output)
 
     @classmethod
     def uninstall(cls, package: str, output=False):

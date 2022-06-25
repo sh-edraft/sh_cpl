@@ -13,6 +13,7 @@ from unittests_cli.install_test_case import InstallTestCase
 from unittests_cli.new_test_case import NewTestCase
 from unittests_cli.publish_test_case import PublishTestCase
 from unittests_cli.remove_test_case import RemoveTestCase
+from unittests_cli.run_test_case import RunTestCase
 from unittests_cli.uninstall_test_case import UninstallTestCase
 from unittests_cli.update_test_case import UpdateTestCase
 
@@ -24,6 +25,7 @@ class CLITestSuite(unittest.TestSuite):
 
         loader = unittest.TestLoader()
         self._result: Optional[TestResult] = None
+        self._is_online = True
 
         active_tests = [
             # nothing needed
@@ -33,19 +35,20 @@ class CLITestSuite(unittest.TestSuite):
             # VersionTestCase,
             # project needed
             BuildTestCase,
-            InstallTestCase,
             PublishTestCase,
-            # check if application was executed properly
-            # RunTestCase,
+            RunTestCase,
             # check if application was executed properly and file watcher is working
             # StartTestCase,
-            UninstallTestCase,
             # check in project settings if package is updated
             # UpdateTestCase,
             # workspace needed
             AddTestCase,
             RemoveTestCase
         ]
+
+        if self._is_online:
+            active_tests.append(InstallTestCase)
+            active_tests.append(UninstallTestCase)
 
         for test in active_tests:
             self.addTests(loader.loadTestsFromTestCase(test))
