@@ -17,6 +17,7 @@ from unittests_cli.run_test_case import RunTestCase
 from unittests_cli.start_test_case import StartTestCase
 from unittests_cli.uninstall_test_case import UninstallTestCase
 from unittests_cli.update_test_case import UpdateTestCase
+from unittests_cli.version_test_case import VersionTestCase
 
 
 class CLITestSuite(unittest.TestSuite):
@@ -29,12 +30,11 @@ class CLITestSuite(unittest.TestSuite):
         self._is_online = True
 
         active_tests = [
-            # nothing needed
+            # # nothing needed
+            VersionTestCase,
             GenerateTestCase,
             NewTestCase,
-            # compare console output
-            # VersionTestCase,
-            # project needed
+            # # project needed
             BuildTestCase,
             PublishTestCase,
             RunTestCase,

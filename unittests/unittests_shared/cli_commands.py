@@ -20,6 +20,17 @@ class CLICommands:
         else:
             subprocess.run(command, env=env_vars, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
 
+    @staticmethod
+    def _run_with_output(cmd: str, *args) -> str:
+        env_vars = os.environ
+        env_vars['CPL_IS_UNITTEST'] = 'NO'
+
+        command = ['python', CLI_PATH, cmd]
+        for arg in args:
+            command.append(arg)
+
+        return subprocess.run(command, env=env_vars, check=True, capture_output=True, text=True).stdout
+
     @classmethod
     def add(cls, source: str, target: str, output=False):
         cls._run('add', source, target, output=output)
@@ -66,3 +77,7 @@ class CLICommands:
     @classmethod
     def uninstall(cls, package: str, output=False):
         cls._run('uninstall', package, output=output)
+
+    @classmethod
+    def version(cls) -> str:
+        return cls._run_with_output('version')
