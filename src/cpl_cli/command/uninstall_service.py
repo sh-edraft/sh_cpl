@@ -36,6 +36,8 @@ class UninstallService(CommandABC):
         
         self._is_simulating = False
         self._is_virtual = False
+        self._is_dev = False
+
         self._project_file = f'{self._project_settings.name}.json'
 
     @property
@@ -62,6 +64,10 @@ class UninstallService(CommandABC):
             Console.error(f'Usage: cpl uninstall <package>')
             return
 
+        if 'dev' in args:
+            self._is_dev = True
+            args.remove('dev')
+
         if '--virtual' in args:
             self._is_virtual = True
             args.remove('--virtual')
@@ -82,7 +88,11 @@ class UninstallService(CommandABC):
         else:
             pip_package = package
 
-        for dependency in self._project_settings.dependencies:
+        deps = self._project_settings.dependencies
+        if self._is_dev:
+            deps = self._project_settings.dev_dependencies
+
+        for dependency in deps:
             if package in dependency:
                 is_in_dependencies = True
                 package = dependency
@@ -95,7 +105,7 @@ class UninstallService(CommandABC):
             package = pip_package
 
         Console.spinner(
-            f'Uninstalling: {package}',
+            f'Uninstalling: {package}' if not self._is_dev else f'Uninstalling dev: {package}',
             Pip.uninstall if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -103,8 +113,12 @@ class UninstallService(CommandABC):
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
 
-        if package in self._project_settings.dependencies:
-            self._project_settings.dependencies.remove(package)
+        deps = self._project_settings.dependencies
+        if self._is_dev:
+            deps = self._project_settings.dev_dependencies
+
+        if package in deps:
+            deps.remove(package)
             if not self._is_simulating:
                 config = {
                     ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
