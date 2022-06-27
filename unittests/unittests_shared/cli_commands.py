@@ -79,5 +79,9 @@ class CLICommands:
         cls._run('uninstall', package, output=output)
 
     @classmethod
+    def update(cls, output=False):
+        cls._run('update', output=output)
+
+    @classmethod
     def version(cls) -> str:
         return cls._run_with_output('version')

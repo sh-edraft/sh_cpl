@@ -30,17 +30,15 @@ class CLITestSuite(unittest.TestSuite):
         self._is_online = True
 
         active_tests = [
-            # # nothing needed
+            # nothing needed
             VersionTestCase,
             GenerateTestCase,
             NewTestCase,
-            # # project needed
+            # project needed
             BuildTestCase,
             PublishTestCase,
             RunTestCase,
             StartTestCase,
-            # check in project settings if package is updated
-            # UpdateTestCase,
             # workspace needed
             AddTestCase,
             RemoveTestCase
@@ -49,6 +47,7 @@ class CLITestSuite(unittest.TestSuite):
         if self._is_online:
             active_tests.append(InstallTestCase)
             active_tests.append(UninstallTestCase)
+            active_tests.append(UpdateTestCase)
 
         for test in active_tests:
             self.addTests(loader.loadTestsFromTestCase(test))

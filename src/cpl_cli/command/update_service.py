@@ -40,6 +40,8 @@ class UpdateService(CommandABC):
         self._cli_settings = cli_settings
         self._is_simulation = False
 
+        self._project_file = f'{self._project_settings.name}.json'
+
     @property
     def help_message(self) -> str:
         return textwrap.dedent("""\
@@ -81,7 +83,7 @@ class UpdateService(CommandABC):
             new_package = Pip.get_package(name)
             if new_package is None:
                 Console.error(f'Update for package {package} failed')
-                return
+                continue
 
             self._project_json_update_dependency(package, new_package)
 
@@ -151,8 +153,7 @@ class UpdateService(CommandABC):
             BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
         }
 
-        with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'),
-                  'w') as project:
+        with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project:
             project.write(json.dumps(config, indent=2))
             project.close()
 
