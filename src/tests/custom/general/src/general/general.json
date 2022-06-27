@@ -18,6 +18,9 @@
     "Dependencies": [
       "cpl_core==2022.6.1"
     ],
+    "DevDependencies": [
+      "cpl-cli==2022.6.17.dev10"
+    ],
     "PythonVersion": ">=3.10",
     "PythonPath": {
       "linux": "../../venv/bin/python",

@@ -26,6 +26,7 @@ class SettingsHelper:
             ProjectSettingsNameEnum.license_name.value: project.license_name,
             ProjectSettingsNameEnum.license_description.value: project.license_description,
             ProjectSettingsNameEnum.dependencies.value: project.dependencies,
+            ProjectSettingsNameEnum.dev_dependencies.value: project.dev_dependencies,
             ProjectSettingsNameEnum.python_version.value: project.python_version,
             ProjectSettingsNameEnum.python_path.value: project.python_path,
             ProjectSettingsNameEnum.classifiers.value: project.classifiers

@@ -42,6 +42,7 @@ class InstallService(CommandABC):
 
         self._is_simulation = False
         self._is_virtual = False
+        self._is_dev = False
 
         self._project_file = f'{self._project_settings.name}.json'
 
@@ -107,7 +108,11 @@ class InstallService(CommandABC):
             package_version = package.split('==')[1]
 
         to_remove_list = []
-        for dependency in self._project_settings.dependencies:
+        deps = self._project_settings.dependencies
+        if self._is_dev:
+            deps = self._project_settings.dev_dependencies
+
+        for dependency in deps:
             dependency_version = ''
 
             if '==' in dependency:
@@ -121,7 +126,10 @@ class InstallService(CommandABC):
                     is_already_in_project = True
 
         for to_remove in to_remove_list:
-            self._project_settings.dependencies.remove(to_remove)
+            if self._is_dev:
+                self._project_settings.dev_dependencies.remove(to_remove)
+            else:
+                self._project_settings.dependencies.remove(to_remove)
 
         local_package = Pip.get_package(package)
         if local_package is not None and local_package in self._project_settings.dependencies:
@@ -133,9 +141,9 @@ class InstallService(CommandABC):
             return
 
         Console.spinner(
-            f'Installing: {package}',
+            f'Installing: {package}' if not self._is_dev else f'Installing dev: {package}',
             Pip.install if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
-            source=self._cli_settings.pip_path if 'cpl-' in package else None,
+            source=self._cli_settings.pip_path if 'cpl-' in package or 'cpl_' in package else None,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
@@ -165,7 +173,10 @@ class InstallService(CommandABC):
             if '\r' in new_name:
                 new_name = new_name.replace('\r', '')
 
-            self._project_settings.dependencies.append(new_name)
+            if self._is_dev:
+                self._project_settings.dev_dependencies.append(new_name)
+            else:
+                self._project_settings.dependencies.append(new_name)
 
             if not self._is_simulation:
                 config = {
@@ -185,6 +196,10 @@ class InstallService(CommandABC):
         :param args:
         :return:
         """
+        if 'dev' in args:
+            self._is_dev = True
+            args.remove('dev')
+
         if 'virtual' in args:
             self._is_virtual = True
             args.remove('virtual')

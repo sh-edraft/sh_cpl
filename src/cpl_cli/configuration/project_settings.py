@@ -28,6 +28,7 @@ class ProjectSettings(ConfigurationModelABC):
         self._license_name: Optional[str] = None
         self._license_description: Optional[str] = None
         self._dependencies: Optional[list[str]] = None
+        self._dev_dependencies: Optional[list[str]] = None
         self._python_version: Optional[str] = None
         self._python_path: Optional[str] = None
         self._python_executable: Optional[str] = None
@@ -82,6 +83,10 @@ class ProjectSettings(ConfigurationModelABC):
         return self._dependencies
 
     @property
+    def dev_dependencies(self) -> list[str]:
+        return self._dev_dependencies
+
+    @property
     def python_version(self) -> str:
         return self._python_version
 
@@ -111,6 +116,9 @@ class ProjectSettings(ConfigurationModelABC):
             self._license_name = settings[ProjectSettingsNameEnum.license_name.value]
             self._license_description = settings[ProjectSettingsNameEnum.license_description.value]
             self._dependencies = settings[ProjectSettingsNameEnum.dependencies.value]
+            if ProjectSettingsNameEnum.dev_dependencies.value not in settings:
+                settings[ProjectSettingsNameEnum.dev_dependencies.value] = []
+            self._dev_dependencies = settings[ProjectSettingsNameEnum.dev_dependencies.value]
             self._python_version = settings[ProjectSettingsNameEnum.python_version.value]
             self._python_path = settings[ProjectSettingsNameEnum.python_path.value]
 
