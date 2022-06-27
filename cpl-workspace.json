@@ -87,8 +87,8 @@
 
       "dev-install": "cpl di-core; cpl di-cli; cpl di-query;",
       "di": "cpl dev-install",
-      "di-core": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
-      "di-cli": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-core": "pip install cpl-core --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-cli": "pip install cpl-cli --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
       "di-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de"
     }
   }
