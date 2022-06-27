@@ -1,9 +1,10 @@
 import json
 import os
-import shutil
 import subprocess
 import textwrap
 import time
+
+from packaging import version
 
 from cpl_cli.cli_settings import CLISettings
 from cpl_cli.command_abc import CommandABC
@@ -17,7 +18,6 @@ from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.utils.pip import Pip
-from packaging import version
 
 
 class InstallService(CommandABC):
@@ -75,6 +75,17 @@ class InstallService(CommandABC):
         for dependency in self._project_settings.dependencies:
             Console.spinner(
                 f'Installing: {dependency}',
+                Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
+                source=self._cli_settings.pip_path if 'cpl-' in dependency else None,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
+            )
+
+        for dependency in self._project_settings.dev_dependencies:
+            Console.spinner(
+                f'Installing dev: {dependency}',
                 Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
                 source=self._cli_settings.pip_path if 'cpl-' in dependency else None,
                 stdout=subprocess.DEVNULL,
