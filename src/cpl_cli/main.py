@@ -5,6 +5,7 @@ import pkg_resources
 from cpl_cli.cli import CLI
 from cpl_cli.startup import Startup
 from cpl_cli.startup_argument_extension import StartupArgumentExtension
+from cpl_cli.startup_workspace_extension import StartupWorkspaceExtension
 from cpl_core.application.application_builder import ApplicationBuilder
 from cpl_core.application.startup_extension_abc import StartupExtensionABC
 
@@ -31,6 +32,7 @@ def get_startup_extensions() -> list[Type[StartupExtensionABC]]:
 def main():
     app_builder = ApplicationBuilder(CLI)
     app_builder.use_startup(Startup)
+    app_builder.use_extension(StartupWorkspaceExtension)
     app_builder.use_extension(StartupArgumentExtension)
     for extension in get_startup_extensions():
         app_builder.use_extension(extension)

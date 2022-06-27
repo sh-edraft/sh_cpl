@@ -19,7 +19,9 @@
       "cpl-core>=2022.6.17.dev8"
     ],
     "PythonVersion": ">=3.10",
-    "PythonPath": {},
+    "PythonPath": {
+      "linux": "../../venv"
+    },
     "Classifiers": []
   },
   "BuildSettings": {

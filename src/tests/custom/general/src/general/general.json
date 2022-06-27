@@ -20,7 +20,7 @@
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {
-      "linux": "../../../../../../cpl-env/bin/python3.9",
+      "linux": "../../venv/bin/python",
       "win32": ""
     },
     "Classifiers": []

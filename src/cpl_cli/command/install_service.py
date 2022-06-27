@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import subprocess
 import textwrap
 import time
@@ -9,12 +10,12 @@ from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.settings_helper import SettingsHelper
+from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_cli.error import Error
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
-from cpl_core.environment.application_environment_abc import \
-    ApplicationEnvironmentABC
+from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.utils.pip import Pip
 from packaging import version
 
@@ -57,12 +58,27 @@ class InstallService(CommandABC):
     def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
         time.sleep(t)
 
+    def _init_venv(self):
+        if self._is_virtual:
+            return
+        venv_path = os.path.abspath(os.path.join(self._env.working_directory, self._project_settings.python_executable))
+
+        if not os.path.exists(venv_path):
+            Console.spinner(
+                f'Creating venv {venv_path}',
+                VenvHelper.create_venv,
+                venv_path,
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
+            )
+
+        Pip.set_executable(venv_path)
+
     def _install_project(self):
         """
         Installs dependencies of CPl project
         :return:
         """
-
         if self._project_settings is None or self._build_settings is None:
             Error.error('The command requires to be run in an CPL project, but a project could not be found.')
             return
@@ -71,8 +87,6 @@ class InstallService(CommandABC):
             Error.error(f'Found invalid dependencies in {self._project_file}.')
             return
 
-        if not self._is_virtual:
-            Pip.set_executable(self._project_settings.python_executable)
         for dependency in self._project_settings.dependencies:
             Console.spinner(
                 f'Installing: {dependency}',
@@ -94,9 +108,6 @@ class InstallService(CommandABC):
         :return:
         """
         is_already_in_project = False
-        if not self._is_virtual:
-            Pip.set_executable(self._project_settings.python_executable)
-
         if self._project_settings is None or self._build_settings is None:
             Error.error('The command requires to be run in an CPL project, but a project could not be found.')
             return
@@ -200,7 +211,11 @@ class InstallService(CommandABC):
             args.remove('simulate')
             Console.write_line('Running in simulation mode:')
 
+        self._init_venv()
+
         if len(args) == 0:
             self._install_project()
         else:
             self._install_package(args[0])
+
+        # shutil.rmtree(os.path.abspath(os.path.join(self._env.working_directory, self._project_settings.python_executable)))

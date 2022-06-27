@@ -1,5 +1,23 @@
 import os
 
+from cpl_cli.command.add_service import AddService
+from cpl_cli.command.build_service import BuildService
+from cpl_cli.command.custom_script_service import CustomScriptService
+from cpl_cli.command.generate_service import GenerateService
+from cpl_cli.command.help_service import HelpService
+from cpl_cli.command.install_service import InstallService
+from cpl_cli.command.new_service import NewService
+from cpl_cli.command.publish_service import PublishService
+from cpl_cli.command.remove_service import RemoveService
+from cpl_cli.command.run_service import RunService
+from cpl_cli.command.start_service import StartService
+from cpl_cli.command.uninstall_service import UninstallService
+from cpl_cli.command.update_service import UpdateService
+from cpl_cli.command.version_service import VersionService
+from cpl_cli.validators.project_validator import ProjectValidator
+
+from cpl_cli.validators.workspace_validator import WorkspaceValidator
+
 from cpl_core.console import Console
 
 from cpl_cli.error import Error
@@ -36,5 +54,23 @@ class Startup(StartupABC):
     def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironmentABC) -> ServiceProviderABC:
         services.add_transient(PublisherABC, PublisherService)
         services.add_transient(LiveServerService)
+
+        services.add_transient(WorkspaceValidator)
+        services.add_transient(ProjectValidator)
+
+        services.add_transient(AddService)
+        services.add_transient(BuildService)
+        services.add_transient(CustomScriptService)
+        services.add_transient(GenerateService)
+        services.add_transient(HelpService)
+        services.add_transient(InstallService)
+        services.add_transient(NewService)
+        services.add_transient(PublishService)
+        services.add_transient(RemoveService)
+        services.add_transient(RunService)
+        services.add_transient(StartService)
+        services.add_transient(UninstallService)
+        services.add_transient(UpdateService)
+        services.add_transient(VersionService)
 
         return services.build_service_provider()
