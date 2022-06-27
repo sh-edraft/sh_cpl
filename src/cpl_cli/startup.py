@@ -1,5 +1,7 @@
 import os
 
+from cpl_core.console import Console
+
 from cpl_cli.error import Error
 from cpl_cli.live_server.live_server_service import LiveServerService
 from cpl_cli.publish.publisher_abc import PublisherABC
@@ -22,6 +24,11 @@ class Startup(StartupABC):
 
         configuration.add_environment_variables('PYTHON_')
         configuration.add_environment_variables('CPL_')
+
+        is_unittest = configuration.get_configuration('IS_UNITTEST')
+        if is_unittest == 'YES':
+            Console.disable()
+
         configuration.add_json_file('appsettings.json', path=environment.runtime_directory, optional=False, output=False)
 
         return configuration

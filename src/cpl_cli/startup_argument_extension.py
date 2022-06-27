@@ -77,6 +77,7 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'pipe', ['p', 'P'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'test_case', ['tc', 'TC'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 'T'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'validator', ['v', 'V'], ' ')
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService, True, validators=[ProjectValidator]) \
@@ -84,7 +85,13 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService, True) \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'console', ['c', 'C'], ' ') \
-            .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ')
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Variable, '', 'unittest', ['ut', 'UT'], ' ') \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'async', ['a', 'A']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'application-base', ['ab', 'AB']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'startup', ['s', 'S']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'service-providing', ['sp', 'SP']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'nothing', ['n', 'N'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService, True, validators=[WorkspaceValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])

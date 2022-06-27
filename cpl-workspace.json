@@ -6,7 +6,12 @@
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
       "set-version": "tools/set_version/set-version.json",
-      "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json"
+      "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json",
+      "unittests": "unittests/unittests/unittests.json",
+      "unittests_cli": "unittests/unittests_cli/unittests_cli.json",
+      "unittests_core": "unittests/unittests_core/unittests_core.json",
+      "unittests_query": "unittests/unittests_query/unittests_query.json",
+      "unittests_shared": "unittests/unittests_shared/unittests_shared.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
@@ -21,6 +26,8 @@
       "db": "cpl build-docs",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
+
+      "test": "cpl run unittests",
 
       "pre-build-all": "cpl sv $ARGS; cpl spu $ARGS;",
       "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-pip-urls; cpl build-set-version",
@@ -76,7 +83,13 @@
       "dd": "cpl deploy-dev $ARGS",
       "deploy-dev-cli": "cpl publish-cli; cpl upload-dev-cli",
       "deploy-dev-core": "cpl publish-core; cpl upload-dev-core",
-      "deploy-dev-query": "cpl publish-query; cpl upload-dev-query"
+      "deploy-dev-query": "cpl publish-query; cpl upload-dev-query",
+
+      "dev-install": "cpl di-core; cpl di-cli; cpl di-query;",
+      "di": "cpl dev-install",
+      "di-core": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-cli": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de"
     }
   }
 }

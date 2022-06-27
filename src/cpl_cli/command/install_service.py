@@ -42,7 +42,7 @@ class InstallService(CommandABC):
         self._is_simulation = False
         self._is_virtual = False
 
-        self._project_file = f'{self._config.get_configuration("ProjectName")}.json'
+        self._project_file = f'{self._project_settings.name}.json'
 
     @property
     def help_message(self) -> str:

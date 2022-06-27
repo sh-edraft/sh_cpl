@@ -15,7 +15,7 @@ __title__ = 'cpl_core.database.connection'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'
-__version__ = '2022.6.16.dev2'
+__version__ = '2022.6.17.dev8'
 
 from collections import namedtuple
 
@@ -24,4 +24,4 @@ from .database_connection import DatabaseConnection
 from .database_connection_abc import DatabaseConnectionABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='6', micro='16.dev2')
+version_info = VersionInfo(major='2022', minor='6', micro='17.dev8')

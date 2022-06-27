@@ -3,12 +3,14 @@ import shutil
 import json
 import textwrap
 
+from cpl_cli.configuration.settings_helper import SettingsHelper
+
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.command_abc import CommandABC
-from cpl_cli.configuration import WorkspaceSettings, WorkspaceSettingsNameEnum
+from cpl_cli.configuration import WorkspaceSettings, WorkspaceSettingsNameEnum, BuildSettingsNameEnum, ProjectSettings, BuildSettings
 
 
 class RemoveService(CommandABC):
@@ -68,6 +70,50 @@ class RemoveService(CommandABC):
 
         self._create_file(path, ws_dict)
 
+    def _get_project_settings(self, project: str) -> dict:
+        with open(os.path.join(os.getcwd(), self._workspace.projects[project]), 'r', encoding='utf-8') as cfg:
+            # load json
+            project_json = json.load(cfg)
+            cfg.close()
+
+        return project_json
+
+    def _write_project_settings(self, project: str, project_settings: dict, build_settings: dict):
+        with open(os.path.join(os.getcwd(), self._workspace.projects[project]), 'w', encoding='utf-8') as file:
+            file.write(json.dumps({
+                ProjectSettings.__name__: project_settings,
+                BuildSettings.__name__: build_settings
+            }, indent=2))
+            file.close()
+
+    def _find_deps_in_projects(self, project_name: str, rel_path: str):
+        for project in self._workspace.projects:
+            if project == project_name:
+                continue
+
+            project_settings = self._get_project_settings(project)
+            if BuildSettings.__name__ not in project_settings or BuildSettingsNameEnum.project_references.value not in project_settings[BuildSettings.__name__]:
+                continue
+
+            ref_to_delete = ''
+            for ref in project_settings[BuildSettings.__name__][BuildSettingsNameEnum.project_references.value]:
+                if os.path.basename(ref) == f'{project_name}.json':
+                    ref_to_delete = ref
+
+            if ref_to_delete not in project_settings[BuildSettings.__name__][BuildSettingsNameEnum.project_references.value]:
+                continue
+
+            project_settings[BuildSettings.__name__][BuildSettingsNameEnum.project_references.value].remove(ref_to_delete)
+            Console.spinner(
+                f'Removing {project_name} from {project}',
+                self._write_project_settings,
+                project,
+                project_settings[ProjectSettings.__name__],
+                project_settings[BuildSettings.__name__],
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
+            )
+
     def execute(self, args: list[str]):
         """
         Entry point of command
@@ -88,14 +134,16 @@ class RemoveService(CommandABC):
             Console.error(f'Project {project_name} is the default project.')
             return
 
-        src_path = os.path.abspath(os.path.dirname(self._workspace.projects[project_name]))
+        src_path = os.path.dirname(self._workspace.projects[project_name])
         Console.spinner(
             f'Removing {src_path}',
             self._remove_sources,
-            src_path,
+            os.path.abspath(src_path),
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
+
+        self._find_deps_in_projects(project_name, src_path)
 
         del self._workspace.projects[project_name]
         path = 'cpl-workspace.json'

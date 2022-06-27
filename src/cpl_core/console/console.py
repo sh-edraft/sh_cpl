@@ -456,17 +456,21 @@ class Console:
 
         cls.write_line(message)
         cls.set_hold_back(True)
-        spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
-        spinner.start()
+        spinner = None
+        if not cls._disabled:
+            spinner = SpinnerThread(len(message), spinner_foreground_color, spinner_background_color)
+            spinner.start()
 
         return_value = None
         try:
             return_value = call(*args, **kwargs)
         except KeyboardInterrupt:
-            spinner.exit()
+            if spinner is not None:
+                spinner.exit()
             cls.close()
 
-        spinner.stop_spinning()
+        if spinner is not None:
+            spinner.stop_spinning()
         cls.set_hold_back(False)
 
         cls.set_foreground_color(ForegroundColorEnum.default)
