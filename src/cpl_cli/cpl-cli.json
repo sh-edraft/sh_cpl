@@ -18,6 +18,7 @@
     "Dependencies": [
       "cpl-core>=2022.6.17.dev8"
     ],
+    "DevDependencies": [],
     "PythonVersion": ">=3.10",
     "PythonPath": {
       "linux": "../../venv"

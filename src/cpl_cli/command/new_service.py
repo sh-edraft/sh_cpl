@@ -5,6 +5,7 @@ from typing import Optional
 
 from packaging import version
 
+import cpl_cli
 import cpl_core
 from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_cli.source_creator.unittest_builder import UnittestBuilder
@@ -106,6 +107,9 @@ class NewService(CommandABC):
             ProjectSettingsNameEnum.license_description.value: '',
             ProjectSettingsNameEnum.dependencies.value: [
                 f'cpl-core>={version.parse(cpl_core.__version__)}'
+            ],
+            ProjectSettingsNameEnum.dev_dependencies.value: [
+                f'cpl-cli>={version.parse(cpl_cli.__version__)}'
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
             ProjectSettingsNameEnum.python_path.value: {
