@@ -12,10 +12,15 @@ class NewTestCase(unittest.TestCase):
     def setUp(self):
         os.chdir(os.path.abspath(PLAYGROUND_PATH))
 
-    def _test_project(self, project_type: str, name: str, *args):
+    def _test_project(self, project_type: str, name: str, *args, test_venv=False):
         CLICommands.new(project_type, name, *args)
         workspace_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name))
         self.assertTrue(os.path.exists(workspace_path))
+        if test_venv:
+            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv')))
+            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin')))
+            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin/python')))
+            self.assertTrue(os.path.islink(os.path.join(workspace_path, 'venv/bin/python')))
 
         project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name, 'src', String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
@@ -38,11 +43,16 @@ class NewTestCase(unittest.TestCase):
         else:
             self.assertFalse(os.path.isfile(os.path.join(project_path, f'test_case.py')))
 
-    def _test_sub_project(self, project_type: str, name: str, workspace_name: str, *args):
+    def _test_sub_project(self, project_type: str, name: str, workspace_name: str, *args, test_venv=False):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))
         CLICommands.new(project_type, name, *args)
         workspace_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name))
         self.assertTrue(os.path.exists(workspace_path))
+        if test_venv:
+            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv')))
+            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin')))
+            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin/python')))
+            self.assertTrue(os.path.islink(os.path.join(workspace_path, 'venv/bin/python')))
 
         project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, 'src', String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
@@ -76,7 +86,7 @@ class NewTestCase(unittest.TestCase):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
 
     def test_console(self):
-        self._test_project('console', 'test-console', '--ab', '--s')
+        self._test_project('console', 'test-console', '--ab', '--s', '--venv', test_venv=True)
 
     def test_console_without_s(self):
         self._test_project('console', 'test-console-without-s', '--ab')
@@ -88,7 +98,7 @@ class NewTestCase(unittest.TestCase):
         self._test_project('console', 'test-console-without-anything', '--n')
 
     def test_sub_console(self):
-        self._test_sub_project('console', 'test-sub-console', 'test-console', '--ab', '--s', '--sp')
+        self._test_sub_project('console', 'test-sub-console', 'test-console', '--ab', '--s', '--sp', '--venv', test_venv=True)
 
     def test_library(self):
         self._test_project('library', 'test-library', '--ab', '--s', '--sp')

@@ -4,6 +4,7 @@ import subprocess
 import textwrap
 import time
 
+from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -71,8 +72,7 @@ class UninstallService(CommandABC):
             args.remove('--simulate')
             Console.write_line('Running in simulation mode:')
 
-        if not self._is_virtual:
-            Pip.set_executable(self._project_settings.python_executable)
+        VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
 
         package = args[0]
         is_in_dependencies = False
