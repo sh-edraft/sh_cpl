@@ -6,6 +6,7 @@ from typing import Optional
 from packaging import version
 
 import cpl_core
+from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_cli.source_creator.unittest_builder import UnittestBuilder
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
@@ -36,7 +37,7 @@ class NewService(CommandABC):
         self._config = configuration
         self._env = self._config.environment
 
-        self._workspace = self._config.get_configuration(WorkspaceSettings)
+        self._workspace: WorkspaceSettings = self._config.get_configuration(WorkspaceSettings)
         self._project: ProjectSettings = ProjectSettings()
         self._project_dict = {}
         self._build: BuildSettings = BuildSettings()
@@ -51,6 +52,7 @@ class NewService(CommandABC):
         self._use_startup: bool = False
         self._use_service_providing: bool = False
         self._use_async: bool = False
+        self._use_venv: bool = False
 
     @property
     def help_message(self) -> str:
@@ -107,7 +109,7 @@ class NewService(CommandABC):
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
             ProjectSettingsNameEnum.python_path.value: {
-                sys.platform: ''
+                sys.platform: '../../venv/bin/python' if self._use_venv else ''
             },
             ProjectSettingsNameEnum.classifiers.value: []
         }
@@ -275,6 +277,22 @@ class NewService(CommandABC):
         except Exception as e:
             Console.error('Could not create project', str(e))
 
+    def _create_venv(self):
+
+        project = self._project.name
+        if self._workspace is not None:
+            project = self._workspace.default_project
+
+        if self._env.working_directory.endswith(project):
+            project = ''
+
+        VenvHelper.init_venv(
+            False,
+            self._env,
+            self._project,
+            explicit_path=os.path.join(self._env.working_directory, project, self._project.python_executable.replace('../', ''))
+        )
+
     def execute(self, args: list[str]):
         """
         Entry point of command
@@ -308,6 +326,9 @@ class NewService(CommandABC):
         if 'service-providing' in args:
             self._use_service_providing = True
             args.remove('service-providing')
+        if 'venv' in args:
+            self._use_venv = True
+            args.remove('venv')
 
         console = self._config.get_configuration(ProjectTypeEnum.console.value)
         library = self._config.get_configuration(ProjectTypeEnum.library.value)
@@ -316,16 +337,22 @@ class NewService(CommandABC):
             self._name = console
             self._schematic = ProjectTypeEnum.console.value
             self._console(args)
+            if self._use_venv:
+                self._create_venv()
 
         elif console is None and library is not None and unittest is None:
             self._name = library
             self._schematic = ProjectTypeEnum.library.value
             self._library(args)
+            if self._use_venv:
+                self._create_venv()
 
         elif console is None and library is None and unittest is not None:
             self._name = unittest
             self._schematic = ProjectTypeEnum.unittest.value
             self._unittest(args)
+            if self._use_venv:
+                self._create_venv()
 
         else:
             self._help('Usage: cpl new <schematic> [options]')

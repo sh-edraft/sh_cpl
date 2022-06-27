@@ -58,22 +58,6 @@ class InstallService(CommandABC):
     def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
         time.sleep(t)
 
-    def _init_venv(self):
-        if self._is_virtual:
-            return
-        venv_path = os.path.abspath(os.path.join(self._env.working_directory, self._project_settings.python_executable))
-
-        if not os.path.exists(venv_path):
-            Console.spinner(
-                f'Creating venv {venv_path}',
-                VenvHelper.create_venv,
-                venv_path,
-                text_foreground_color=ForegroundColorEnum.green,
-                spinner_foreground_color=ForegroundColorEnum.cyan
-            )
-
-        Pip.set_executable(venv_path)
-
     def _install_project(self):
         """
         Installs dependencies of CPl project
@@ -211,11 +195,12 @@ class InstallService(CommandABC):
             args.remove('simulate')
             Console.write_line('Running in simulation mode:')
 
-        self._init_venv()
+        VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
 
         if len(args) == 0:
             self._install_project()
         else:
             self._install_package(args[0])
 
-        # shutil.rmtree(os.path.abspath(os.path.join(self._env.working_directory, self._project_settings.python_executable)))
+        if not self._is_virtual:
+            Pip.reset_executable()

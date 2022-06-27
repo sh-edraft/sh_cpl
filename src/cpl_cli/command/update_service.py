@@ -3,6 +3,7 @@ import os
 import subprocess
 import textwrap
 
+from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -168,7 +169,8 @@ class UpdateService(CommandABC):
             Console.write_line('Running in simulation mode:')
             self._is_simulation = True
 
-        Pip.set_executable(self._project_settings.python_executable)
+        VenvHelper.init_venv(False, self._env, self._project_settings)
+
         self._check_project_dependencies()
         self._check_outdated()
         Pip.reset_executable()
