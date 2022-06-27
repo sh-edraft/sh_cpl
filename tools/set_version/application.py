@@ -59,7 +59,7 @@ class Application(ApplicationABC):
             version[VersionSettingsNameEnum.major.value] = branch.split('.')[0]
             version[VersionSettingsNameEnum.minor.value] = branch.split('.')[1]
             if len(branch.split('.')) == 2:
-                version[VersionSettingsNameEnum.micro.value] = 0
+                version[VersionSettingsNameEnum.micro.value] = f'0{suffix}'
             else:
                 version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
         except Exception as e:
