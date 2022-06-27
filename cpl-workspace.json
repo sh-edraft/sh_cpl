@@ -23,7 +23,7 @@
       "set-pip-urls": "cpl run set-pip-urls $ARGS; echo '';",
 
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
-      "db": "cpl build-docs",
+      "db": "cpl docs-build",
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
 
