@@ -33,7 +33,6 @@ class UninstallTestCase(unittest.TestCase):
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))
-        CLICommands.install(self._package)
 
     def cleanUp(self):
         # remove projects
@@ -47,6 +46,7 @@ class UninstallTestCase(unittest.TestCase):
         return dict([tuple(r.decode().split('==')) for r in reqs.split()])
 
     def test_uninstall(self):
+        CLICommands.install(self._package)
         CLICommands.uninstall(self._package)
         settings = self._get_project_settings()
         self.assertNotEqual(settings, {})
@@ -55,6 +55,29 @@ class UninstallTestCase(unittest.TestCase):
         self.assertNotIn(
             self._package,
             settings['ProjectSettings']['Dependencies']
+        )
+        self.assertNotIn(
+            self._package,
+            settings['ProjectSettings']['DevDependencies']
+        )
+        packages = self._get_installed_packages()
+        self.assertNotIn(self._package_name, packages)
+
+    def test_dev_uninstall(self):
+        CLICommands.install(self._package, is_dev=True)
+        CLICommands.uninstall(self._package, is_dev=True)
+        settings = self._get_project_settings()
+        self.assertNotEqual(settings, {})
+        self.assertIn('ProjectSettings', settings)
+        self.assertIn('Dependencies', settings['ProjectSettings'])
+        self.assertIn('DevDependencies', settings['ProjectSettings'])
+        self.assertNotIn(
+            self._package,
+            settings['ProjectSettings']['Dependencies']
+        )
+        self.assertNotIn(
+            self._package,
+            settings['ProjectSettings']['DevDependencies']
         )
         packages = self._get_installed_packages()
         self.assertNotIn(self._package_name, packages)
