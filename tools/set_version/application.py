@@ -55,9 +55,13 @@ class Application(ApplicationABC):
             return
 
         try:
+
             version[VersionSettingsNameEnum.major.value] = branch.split('.')[0]
             version[VersionSettingsNameEnum.minor.value] = branch.split('.')[1]
-            version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
+            if len(branch.split('.')) == 2:
+                version[VersionSettingsNameEnum.micro.value] = 0
+            else:
+                version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
         except Exception as e:
             Console.error(f'Branch {branch} does not contain valid version')
             return
