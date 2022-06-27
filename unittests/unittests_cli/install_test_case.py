@@ -64,6 +64,28 @@ class InstallTestCase(unittest.TestCase):
         self.assertIn(package_name, packages)
         self.assertEqual(version, packages[package_name])
 
+    def test_dev_install_package(self):
+        version = '1.7.3'
+        package_name = 'discord.py'
+        package = f'{package_name}=={version}'
+        CLICommands.install(package, is_dev=True)
+        settings = self._get_project_settings()
+        self.assertNotEqual(settings, {})
+        self.assertIn('ProjectSettings', settings)
+        self.assertIn('Dependencies', settings['ProjectSettings'])
+        self.assertIn('DevDependencies', settings['ProjectSettings'])
+        self.assertNotIn(
+            package,
+            settings['ProjectSettings']['Dependencies']
+        )
+        self.assertIn(
+            package,
+            settings['ProjectSettings']['DevDependencies']
+        )
+        packages = self._get_installed_packages()
+        self.assertIn(package_name, packages)
+        self.assertEqual(version, packages[package_name])
+
     def _test_install_all(self):
         version = '1.7.3'
         package_name = 'discord.py'
@@ -71,20 +93,32 @@ class InstallTestCase(unittest.TestCase):
         settings = self._get_project_settings()
         self.assertIn('ProjectSettings', settings)
         self.assertIn('Dependencies', settings['ProjectSettings'])
+        self.assertIn('DevDependencies', settings['ProjectSettings'])
+        self.assertNotIn(
+            package,
+            settings['ProjectSettings']['Dependencies']
+        )
+        self.assertIn('DevDependencies', settings['ProjectSettings'])
         self.assertNotIn(
             package,
             settings['ProjectSettings']['Dependencies']
         )
         settings['ProjectSettings']['Dependencies'].append(package)
+        settings['ProjectSettings']['DevDependencies'].append(package)
         self._save_project_settings(settings)
         CLICommands.install()
         new_settings = self._get_project_settings()
         self.assertEqual(settings, new_settings)
         self.assertIn('ProjectSettings', new_settings)
         self.assertIn('Dependencies', new_settings['ProjectSettings'])
+        self.assertIn('DevDependencies', new_settings['ProjectSettings'])
         self.assertIn(
             package,
             new_settings['ProjectSettings']['Dependencies']
+        )
+        self.assertIn(
+            package,
+            new_settings['ProjectSettings']['DevDependencies']
         )
         packages = self._get_installed_packages()
         self.assertIn(package_name, packages)

@@ -16,6 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [],
+    "DevDependencies": [],
     "PythonVersion": ">=3.10",
     "PythonPath": {},
     "Classifiers": []

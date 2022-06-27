@@ -126,7 +126,6 @@ class Pip:
             pip_args.append(source)
 
         pip_args.append(package)
-        print(pip_args)
         subprocess.run(pip_args, stdout=stdout, stderr=stderr, env=cls._env)
 
     @classmethod

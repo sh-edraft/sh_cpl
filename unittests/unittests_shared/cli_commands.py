@@ -44,12 +44,12 @@ class CLICommands:
         cls._run('generate', schematic, name, output=output)
 
     @classmethod
-    def install(cls, package: str = None, output=False):
+    def install(cls, package: str = None, is_dev=False, output=False):
         if package is None:
             cls._run('install', output=output)
             return
 
-        cls._run('install', package, output=output)
+        cls._run('install', package, '--dev' if is_dev else '', output=output)
 
     @classmethod
     def new(cls, project_type: str, name: str, *args, output=False):
@@ -75,8 +75,8 @@ class CLICommands:
         cls._run('start', output=output)
 
     @classmethod
-    def uninstall(cls, package: str, output=False):
-        cls._run('uninstall', package, output=output)
+    def uninstall(cls, package: str, is_dev=False, output=False):
+        cls._run('uninstall', package, '--dev' if is_dev else '', output=output)
 
     @classmethod
     def update(cls, output=False):
