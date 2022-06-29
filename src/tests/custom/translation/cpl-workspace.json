@@ -1,0 +1,9 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "translation",
+    "Projects": {
+      "translation": "src/translation/translation.json"
+    },
+    "Scripts": {}
+  }
+}
