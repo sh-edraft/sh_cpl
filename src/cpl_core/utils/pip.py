@@ -4,19 +4,22 @@ import sys
 from contextlib import suppress
 from typing import Optional
 
+from cpl_core.console import Console
+
 
 class Pip:
     r"""Executes pip commands"""
     _executable = sys.executable
     _env = os.environ
-    _is_venv = False
 
     """Getter"""
+
     @classmethod
     def get_executable(cls) -> str:
         return cls._executable
 
     """Setter"""
+
     @classmethod
     def set_executable(cls, executable: str):
         r"""Sets the executable
@@ -26,25 +29,28 @@ class Pip:
             executable: :class:`str`
                 The python command
         """
-        if executable is not None and executable != sys.executable:
-            cls._executable = executable
-            if os.path.islink(cls._executable):
-                cls._is_venv = True
-                path = os.path.dirname(os.path.dirname(cls._executable))
-                cls._env = os.environ
-                if sys.platform == 'win32':
-                    cls._env['PATH'] = f'{path}\\bin' + os.pathsep + os.environ.get('PATH', '')
-                else:
-                    cls._env['PATH'] = f'{path}/bin' + os.pathsep + os.environ.get('PATH', '')
-                cls._env['VIRTUAL_ENV'] = path
+        if executable is None or executable == sys.executable:
+            return
+
+        cls._executable = executable
+        if not os.path.islink(cls._executable):
+            return
+
+        path = os.path.dirname(os.path.dirname(cls._executable))
+        cls._env = os.environ
+        if sys.platform == 'win32':
+            cls._env['PATH'] = f'{path}\\bin' + os.pathsep + os.environ.get('PATH', '')
+        else:
+            cls._env['PATH'] = f'{path}/bin' + os.pathsep + os.environ.get('PATH', '')
+        cls._env['VIRTUAL_ENV'] = path
 
     @classmethod
     def reset_executable(cls):
         r"""Resets the executable to system standard"""
         cls._executable = sys.executable
-        cls._is_venv = False
 
     """Public utils functions"""
+
     @classmethod
     def get_package(cls, package: str) -> Optional[str]:
         r"""Gets given package py local pip list
@@ -60,8 +66,6 @@ class Pip:
         result = None
         with suppress(Exception):
             args = [cls._executable, "-m", "pip", "show", package]
-            if cls._is_venv:
-                args = ["pip", "show", package]
 
             result = subprocess.check_output(
                 args,
@@ -92,8 +96,6 @@ class Pip:
             Bytes string of the command result
         """
         args = [cls._executable, "-m", "pip", "list", "--outdated"]
-        if cls._is_venv:
-            args = ["pip", "list", "--outdated"]
 
         return subprocess.check_output(args, env=cls._env)
 
@@ -115,8 +117,6 @@ class Pip:
                 Stderr of subprocess.run
         """
         pip_args = [cls._executable, "-m", "pip", "install"]
-        if cls._is_venv:
-            pip_args = ["pip", "install"]
 
         for arg in args:
             pip_args.append(arg)
@@ -142,8 +142,6 @@ class Pip:
                 Stderr of subprocess.run
         """
         args = [cls._executable, "-m", "pip", "uninstall", "--yes", package]
-        if cls._is_venv:
-            args = ["pip", "uninstall", "--yes", package]
 
         subprocess.run(
             args,

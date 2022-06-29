@@ -1,5 +1,5 @@
 from abc import abstractmethod, ABC
-from collections import Callable
+from collections.abc import Callable
 from typing import Type
 
 from cpl_core.database.database_settings import DatabaseSettings
@@ -31,7 +31,12 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_transient(self, service_type: Type, service: Callable = None):
+    def add_pipes(self):
+        r"""Adds the CPL internal pipes as transient"""
+        pass
+
+    @abstractmethod
+    def add_transient(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
         r"""Adds a service with transient lifetime
 
         Parameter
@@ -40,11 +45,15 @@ class ServiceCollectionABC(ABC):
                 Type of the service
             service: :class:`Callable`
                 Object of the service
+
+        Returns
+        ------
+            self: :class:`cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC
         """
         pass
 
     @abstractmethod
-    def add_scoped(self, service_type: Type, service: Callable = None):
+    def add_scoped(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
         r"""Adds a service with scoped lifetime
 
         Parameter
@@ -53,11 +62,15 @@ class ServiceCollectionABC(ABC):
                 Type of the service
             service: :class:`Callable`
                 Object of the service
+
+        Returns
+        ------
+            self: :class:`cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC
         """
         pass
 
     @abstractmethod
-    def add_singleton(self, service_type: Type, service: Callable = None):
+    def add_singleton(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
         r"""Adds a service with singleton lifetime
 
         Parameter
@@ -66,6 +79,10 @@ class ServiceCollectionABC(ABC):
                 Type of the service
             service: :class:`Callable`
                 Object of the service
+
+        Returns
+        ------
+            self: :class:`cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC
         """
         pass
 

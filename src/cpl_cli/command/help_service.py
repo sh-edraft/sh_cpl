@@ -1,54 +1,38 @@
+import sys
 import textwrap
-from typing import Optional
 
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
-from cpl_cli.command_handler_service import CommandHandler
 from cpl_cli.command_abc import CommandABC
 
 
 class HelpService(CommandABC):
 
-    def __init__(self, services: ServiceProviderABC, cmd_handler: CommandHandler):
+    def __init__(self, services: ServiceProviderABC):
         """
         Service for CLI command help
         """
         CommandABC.__init__(self)
 
         self._services = services
-        self._commands = cmd_handler.commands
 
     @property
     def help_message(self) -> str:
         return textwrap.dedent("""\
         Lists available command and their short descriptions.
-        Usage: cpl help <command>
-        
-        Arguments:
-            command     The command to display the help message for
+        Usage: cpl help
         """)
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:
         :return:
         """
         if len(args) > 0:
-            command_name = args[0]
-            command: Optional[CommandABC] = None
-            for cmd in self._commands:
-                if cmd.name == command_name or command_name in cmd.aliases:
-                    command = self._services.get_service(cmd.command)
-
-            if command is None:
-                Console.error(f'Invalid argument: {command_name}')
-                return
-
-            Console.write_line(command.help_message)
-
-            return
+            Console.error(f'Unexpected argument(s): {", ".join(args)}')
+            sys.exit()
 
         Console.write_line('Available Commands:')
         commands = [
@@ -70,3 +54,4 @@ class HelpService(CommandABC):
             Console.write(f'\n\t{name} ')
             Console.set_foreground_color(ForegroundColorEnum.default)
             Console.write(f'{description}')
+        Console.write_line('\nRun \'cpl <command> --help\' for command specific information\'s\n')

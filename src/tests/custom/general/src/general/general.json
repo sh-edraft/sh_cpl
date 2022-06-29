@@ -16,11 +16,12 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "sh_cpl==2021.4.0.post2"
+      "cpl_core==2022.6.1"
     ],
-    "PythonVersion": ">=3.8",
+    "DevDependencies": [],
+    "PythonVersion": ">=3.10",
     "PythonPath": {
-      "linux": "../../../../../../cpl-env/bin/python3.9",
+      "linux": "../../venv/bin/python",
       "win32": ""
     },
     "Classifiers": []

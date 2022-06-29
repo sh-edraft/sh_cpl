@@ -1,5 +1,4 @@
 from abc import abstractmethod, ABC
-from collections import Callable
 from typing import Type, Optional
 
 from cpl_core.dependency_injection.scope_abc import ScopeABC
@@ -49,7 +48,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: Type) -> Optional[Callable[object]]:
+    def get_service(self, instance_type: Type) -> Optional[object]:
         r"""Returns instance of given type
 
         Parameter

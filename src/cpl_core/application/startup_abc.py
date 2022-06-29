@@ -10,8 +10,7 @@ class StartupABC(ABC):
     r"""ABC for the startup class"""
 
     @abstractmethod
-    def __init__(self, *args):
-        pass
+    def __init__(self): pass
 
     @abstractmethod
     def configure_configuration(self, config: ConfigurationABC, env: ApplicationEnvironmentABC) -> ConfigurationABC:

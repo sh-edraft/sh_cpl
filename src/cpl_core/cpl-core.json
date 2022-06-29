@@ -1,0 +1,58 @@
+{
+  "ProjectSettings": {
+    "Name": "cpl-core",
+    "Version": {
+      "Major": "2022",
+      "Minor": "6",
+      "Micro": "0"
+    },
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "sh-edraft Common Python library",
+    "LongDescription": "sh-edraft Common Python library",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2020 - 2022",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
+    "Dependencies": [
+      "art==5.6",
+      "colorama==0.4.4",
+      "mysql-connector==2.2.9",
+      "psutil==5.9.0",
+      "packaging==21.3",
+      "pynput==1.7.6",
+      "setuptools==62.1.0",
+      "tabulate==0.8.9",
+      "termcolor==1.1.0",
+      "watchdog==2.1.7",
+      "wheel==0.37.1"
+    ],
+    "DevDependencies": [
+      "sphinx==5.0.2",
+      "sphinx_rtd_theme==1.0.0",
+      "myst_parser==0.18.0"
+    ],
+    "PythonVersion": ">=3.10",
+    "PythonPath": {},
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "library",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "",
+    "EntryPoint": "",
+    "IncludePackageData": true,
+    "Included": [
+      "*/templates"
+    ],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {},
+    "ProjectReferences": []
+  }
+}

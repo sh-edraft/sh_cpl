@@ -1,0 +1,42 @@
+{
+  "ProjectSettings": {
+    "Name": "set-version",
+    "Version": {
+      "Major": "2022",
+      "Minor": "6",
+      "Micro": "0"
+    },
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "CPL internal tool to set version from branch name",
+    "LongDescription": "CPL internal tool to set version from branch name",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2022",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
+    "Dependencies": [
+      "cpl-core>=2022.6.0.rc1",
+      "gitpython==3.1.27"
+    ],
+    "PythonVersion": ">=3.10.4",
+    "PythonPath": {},
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "console",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "set_version.main",
+    "EntryPoint": "set-version",
+    "IncludePackageData": false,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {},
+    "ProjectReferences": []
+  }
+}

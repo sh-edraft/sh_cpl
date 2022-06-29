@@ -1,10 +1,10 @@
-from collections import Callable
 import copy
 from inspect import signature, Parameter
 from typing import Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
+from cpl_core.console import Console
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.dependency_injection.scope_abc import ScopeABC
 from cpl_core.dependency_injection.scope_builder import ScopeBuilder
@@ -35,9 +35,9 @@ class ServiceProvider(ServiceProviderABC):
         self._database_context = db_context
         self._scope: Optional[ScopeABC] = None
 
-    def _find_service(self, service_type: type) -> ServiceDescriptor:
+    def _find_service(self, service_type: type) -> Optional[ServiceDescriptor]:
         for descriptor in self._service_descriptors:
-            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+            if descriptor.service_type == service_type or issubclass(descriptor.base_type, service_type):
                 return descriptor
 
         return None
@@ -96,7 +96,7 @@ class ServiceProvider(ServiceProviderABC):
         sb = ScopeBuilder(ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context))
         return sb.build()
 
-    def get_service(self, service_type: type) -> Optional[Callable[object]]:
+    def get_service(self, service_type: type) -> Optional[object]:
         result = self._find_service(service_type)
 
         if result is None:

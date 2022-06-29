@@ -5,7 +5,10 @@ from typing import Optional
 
 from packaging import version
 
+import cpl_cli
 import cpl_core
+from cpl_cli.configuration.venv_helper_service import VenvHelper
+from cpl_cli.source_creator.unittest_builder import UnittestBuilder
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -35,18 +38,22 @@ class NewService(CommandABC):
         self._config = configuration
         self._env = self._config.environment
 
-        self._workspace = self._config.get_configuration(WorkspaceSettings)
+        self._workspace: WorkspaceSettings = self._config.get_configuration(WorkspaceSettings)
         self._project: ProjectSettings = ProjectSettings()
         self._project_dict = {}
         self._build: BuildSettings = BuildSettings()
         self._build_dict = {}
         self._project_json = {}
 
-        self._command: str = ''
+        self._name: str = ''
+        self._rel_path: str = ''
+        self._schematic: ProjectTypeEnum = ProjectTypeEnum.console
+        self._use_nothing: bool = False
         self._use_application_api: bool = False
         self._use_startup: bool = False
         self._use_service_providing: bool = False
         self._use_async: bool = False
+        self._use_venv: bool = False
 
     @property
     def help_message(self) -> str:
@@ -80,9 +87,10 @@ class NewService(CommandABC):
         for name in schematics:
             Console.write(f'\n\t{name} ')
 
-    def _create_project_settings(self, name: str):
+    def _create_project_settings(self):
+        self._rel_path = os.path.dirname(self._name)
         self._project_dict = {
-            ProjectSettingsNameEnum.name.value: name,
+            ProjectSettingsNameEnum.name.value: os.path.basename(self._name),
             ProjectSettingsNameEnum.version.value: {
                 VersionSettingsNameEnum.major.value: '0',
                 VersionSettingsNameEnum.minor.value: '0',
@@ -98,11 +106,14 @@ class NewService(CommandABC):
             ProjectSettingsNameEnum.license_name.value: '',
             ProjectSettingsNameEnum.license_description.value: '',
             ProjectSettingsNameEnum.dependencies.value: [
-                f'sh_cpl-core>={version.parse(cpl_core.__version__)}'
+                f'cpl-core>={version.parse(cpl_core.__version__)}'
+            ],
+            ProjectSettingsNameEnum.dev_dependencies.value: [
+                f'cpl-cli>={version.parse(cpl_cli.__version__)}'
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
             ProjectSettingsNameEnum.python_path.value: {
-                sys.platform: ''
+                sys.platform: '../../venv/bin/python' if self._use_venv else ''
             },
             ProjectSettingsNameEnum.classifiers.value: []
         }
@@ -110,15 +121,11 @@ class NewService(CommandABC):
         self._project.from_dict(self._project_dict)
 
     def _create_build_settings(self):
-        main = f'{String.convert_to_snake_case(self._project.name)}.main'
-        if self._command == ProjectTypeEnum.library.value:
-            main = f'{String.convert_to_snake_case(self._project.name)}.main'
-
         self._build_dict = {
-            BuildSettingsNameEnum.project_type.value: self._command,
+            BuildSettingsNameEnum.project_type.value: self._schematic,
             BuildSettingsNameEnum.source_path.value: '',
             BuildSettingsNameEnum.output_path.value: '../../dist',
-            BuildSettingsNameEnum.main.value: main,
+            BuildSettingsNameEnum.main.value: f'{String.convert_to_snake_case(self._project.name)}.main',
             BuildSettingsNameEnum.entry_point.value: self._project.name,
             BuildSettingsNameEnum.include_package_data.value: False,
             BuildSettingsNameEnum.included.value: [],
@@ -148,40 +155,38 @@ class NewService(CommandABC):
         :return:
         """
         if self._workspace is None:
-            project_path = os.path.join(self._env.working_directory, self._project.name)
+            project_path = os.path.join(self._env.working_directory, self._rel_path, self._project.name)
         else:
-            project_path = os.path.join(
-                self._env.working_directory,
-                'src',
-                String.convert_to_snake_case(self._project.name)
-            )
+            project_path = os.path.join(self._env.working_directory, 'src', self._rel_path, String.convert_to_snake_case(self._project.name))
 
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
+            Console.write_line(project_path)
             Console.error('Project path is not empty\n')
             return None
 
         return project_path
 
-    def _get_project_information(self):
+    def _get_project_information(self, is_unittest=False):
         """
         Gets project information's from user
         :return:
         """
-        result = Console.read('Do you want to use application base? (y/n) ')
-        if result.lower() == 'y':
-            self._use_application_api = True
+        if self._use_application_api or self._use_startup or self._use_service_providing or self._use_async or self._use_nothing:
+            Console.set_foreground_color(ForegroundColorEnum.default)
+            Console.write_line('Skipping question due to given flags')
+            return
 
-            result = Console.read('Do you want to use startup? (y/n) ')
-            if result.lower() == 'y':
-                self._use_startup = True
-        else:
-            result = Console.read('Do you want to use service providing? (y/n) ')
-            if result.lower() == 'y':
-                self._use_service_providing = True
-                
-        result = Console.read('Do you want to use async? (y/n) ')
-        if result.lower() == 'y':
-            self._use_async = True
+        if not is_unittest:
+            self._use_application_api = Console.read('Do you want to use application base? (y/n) ').lower() == 'y'
+
+        if not is_unittest and self._use_application_api:
+            self._use_startup = Console.read('Do you want to use startup? (y/n) ').lower() == 'y'
+
+        if not is_unittest and not self._use_application_api:
+            self._use_service_providing = Console.read('Do you want to use service providing? (y/n) ').lower() == 'y'
+
+        if not self._use_async:
+            self._use_async = Console.read('Do you want to use async? (y/n) ').lower() == 'y'
 
         Console.set_foreground_color(ForegroundColorEnum.default)
 
@@ -191,9 +196,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        name = self._config.get_configuration(self._command)
-
-        self._create_project_settings(name)
+        self._create_project_settings()
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -201,6 +204,9 @@ class NewService(CommandABC):
             return
 
         self._get_project_information()
+        project_name = self._project.name
+        if self._rel_path != '':
+            project_name = f'{self._rel_path}/{project_name}'
         try:
             ConsoleBuilder.build(
                 path,
@@ -208,7 +214,36 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._use_async,
-                self._project.name,
+                project_name,
+                self._project_json,
+                self._workspace
+            )
+        except Exception as e:
+            Console.error('Could not create project', str(e))
+
+    def _unittest(self, args: list[str]):
+        """
+        Generates new unittest project
+        :param args:
+        :return:
+        """
+        self._create_project_settings()
+        self._create_build_settings()
+        self._create_project_json()
+        path = self._get_project_path()
+        if path is None:
+            return
+
+        self._get_project_information(is_unittest=True)
+        project_name = self._project.name
+        if self._rel_path != '':
+            project_name = f'{self._rel_path}/{project_name}'
+        try:
+            UnittestBuilder.build(
+                path,
+                self._use_application_api,
+                self._use_async,
+                project_name,
                 self._project_json,
                 self._workspace
             )
@@ -221,9 +256,7 @@ class NewService(CommandABC):
         :param args:
         :return:
         """
-        name = self._config.get_configuration(self._command)
-
-        self._create_project_settings(name)
+        self._create_project_settings()
         self._create_build_settings()
         self._create_project_json()
         path = self._get_project_path()
@@ -231,6 +264,9 @@ class NewService(CommandABC):
             return
 
         self._get_project_information()
+        project_name = self._project.name
+        if self._rel_path != '':
+            project_name = f'{self._rel_path}/{project_name}'
         try:
             LibraryBuilder.build(
                 path,
@@ -238,29 +274,89 @@ class NewService(CommandABC):
                 self._use_startup,
                 self._use_service_providing,
                 self._use_async,
-                self._project.name,
+                project_name,
                 self._project_json,
                 self._workspace
             )
         except Exception as e:
             Console.error('Could not create project', str(e))
 
-    def run(self, args: list[str]):
+    def _create_venv(self):
+
+        project = self._project.name
+        if self._workspace is not None:
+            project = self._workspace.default_project
+
+        if self._env.working_directory.endswith(project):
+            project = ''
+
+        VenvHelper.init_venv(
+            False,
+            self._env,
+            self._project,
+            explicit_path=os.path.join(self._env.working_directory, project, self._project.python_executable.replace('../', ''))
+        )
+
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:
         :return:
         """
-        if len(args) == 0:
-            self._help('Usage: cpl new <schematic> [options]')
-            return
+        if 'nothing' in args:
+            self._use_nothing = True
+            self._use_async = False
+            self._use_application_api = False
+            self._use_startup = False
+            self._use_service_providing = False
+            if 'async' in args:
+                args.remove('async')
+            if 'application-base' in args:
+                args.remove('application-base')
+            if 'startup' in args:
+                args.remove('startup')
+            if 'service-providing' in args:
+                args.remove('service-providing')
 
-        self._command = str(args[0]).lower()
-        if self._command == ProjectTypeEnum.console.value:
+        if 'async' in args:
+            self._use_async = True
+            args.remove('async')
+        if 'application-base' in args:
+            self._use_application_api = True
+            args.remove('application-base')
+        if 'startup' in args:
+            self._use_startup = True
+            args.remove('startup')
+        if 'service-providing' in args:
+            self._use_service_providing = True
+            args.remove('service-providing')
+        if 'venv' in args:
+            self._use_venv = True
+            args.remove('venv')
+
+        console = self._config.get_configuration(ProjectTypeEnum.console.value)
+        library = self._config.get_configuration(ProjectTypeEnum.library.value)
+        unittest = self._config.get_configuration(ProjectTypeEnum.unittest.value)
+        if console is not None and library is None and unittest is None:
+            self._name = console
+            self._schematic = ProjectTypeEnum.console.value
             self._console(args)
+            if self._use_venv:
+                self._create_venv()
 
-        elif self._command == ProjectTypeEnum.library.value:
+        elif console is None and library is not None and unittest is None:
+            self._name = library
+            self._schematic = ProjectTypeEnum.library.value
             self._library(args)
+            if self._use_venv:
+                self._create_venv()
+
+        elif console is None and library is None and unittest is not None:
+            self._name = unittest
+            self._schematic = ProjectTypeEnum.unittest.value
+            self._unittest(args)
+            if self._use_venv:
+                self._create_venv()
 
         else:
             self._help('Usage: cpl new <schematic> [options]')

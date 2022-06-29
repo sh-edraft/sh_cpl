@@ -3,6 +3,7 @@ import os
 import subprocess
 import textwrap
 
+from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -38,6 +39,9 @@ class UpdateService(CommandABC):
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
+        self._is_simulation = False
+
+        self._project_file = f'{self._project_settings.name}.json'
 
     @property
     def help_message(self) -> str:
@@ -72,7 +76,7 @@ class UpdateService(CommandABC):
                 '--upgrade',
                 '--upgrade-strategy',
                 'eager',
-                source=self._cli_settings.pip_path if 'sh_cpl' in name else None,
+                source=self._cli_settings.pip_path if 'cpl-' in name else None,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
@@ -80,7 +84,7 @@ class UpdateService(CommandABC):
             new_package = Pip.get_package(name)
             if new_package is None:
                 Console.error(f'Update for package {package} failed')
-                return
+                continue
 
             self._project_json_update_dependency(package, new_package)
 
@@ -132,6 +136,9 @@ class UpdateService(CommandABC):
         :param new_package:
         :return:
         """
+        if self._is_simulation:
+            return
+
         if old_package in self._project_settings.dependencies:
             index = self._project_settings.dependencies.index(old_package)
             if '/' in new_package:
@@ -147,18 +154,23 @@ class UpdateService(CommandABC):
             BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
         }
 
-        with open(os.path.join(self._env.working_directory, f'{self._config.get_configuration("ProjectName")}.json'),
-                  'w') as project:
+        with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project:
             project.write(json.dumps(config, indent=2))
             project.close()
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:
         :return:
         """
-        Pip.set_executable(self._project_settings.python_executable)
+        if 'simulate' in args:
+            args.remove('simulate')
+            Console.write_line('Running in simulation mode:')
+            self._is_simulation = True
+
+        VenvHelper.init_venv(False, self._env, self._project_settings)
+
         self._check_project_dependencies()
         self._check_outdated()
         Pip.reset_executable()

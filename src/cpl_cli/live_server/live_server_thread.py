@@ -35,8 +35,6 @@ class LiveServerThread(threading.Thread):
         self._command = []
         self._env_vars = os.environ
 
-        self._set_venv()
-
     @property
     def command(self) -> list[str]:
         return self._command
@@ -44,16 +42,6 @@ class LiveServerThread(threading.Thread):
     @property
     def main(self) -> str:
         return self._main
-
-    def _set_venv(self):
-        if self._executable != sys.executable:
-            path = os.path.abspath(os.path.dirname(os.path.dirname(self._executable)))
-            if sys.platform == 'win32':
-                self._env_vars['PATH'] = f'{path}\\bin' + os.pathsep + os.environ.get('PATH', '')
-            else:
-                self._env_vars['PATH'] = f'{path}/bin' + os.pathsep + os.environ.get('PATH', '')
-
-            self._env_vars['VIRTUAL_ENV'] = path
 
     def run(self):
         """
@@ -88,7 +76,9 @@ class LiveServerThread(threading.Thread):
         Console.set_foreground_color(ForegroundColorEnum.default)
 
         self._command = [self._executable, self._main]
-        if len(self._args) > 0:
-            self._command.append(''.join(self._args))
+        # if len(self._args) > 0:
+        #     self._command.append(' '.join(self._args))
+        for arg in self._args:
+            self._command.append(arg)
 
         subprocess.run(self._command, env=self._env_vars)

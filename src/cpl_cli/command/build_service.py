@@ -22,7 +22,7 @@ class BuildService(CommandABC):
         Usage: cpl build
         """)
 
-    def run(self, args: list[str]):
+    def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:

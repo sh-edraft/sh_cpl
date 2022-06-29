@@ -1,15 +1,24 @@
 import json
 import os
 import sys
-from collections import Callable
+import traceback
+from collections.abc import Callable
 from typing import Union, Type, Optional
 
+from cpl_core.configuration.argument_abc import ArgumentABC
+from cpl_core.configuration.argument_builder import ArgumentBuilder
+from cpl_core.configuration.argument_executable_abc import ArgumentExecutableABC
+from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
-from cpl_core.configuration.console_argument import ConsoleArgument
+from cpl_core.configuration.executable_argument import ExecutableArgument
+from cpl_core.configuration.flag_argument import FlagArgument
+from cpl_core.configuration.validator_abc import ValidatorABC
+from cpl_core.configuration.variable_argument import VariableArgument
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
@@ -24,7 +33,7 @@ class Configuration(ConfigurationABC):
         self._application_environment = ApplicationEnvironment()
         self._config: dict[Union[type, str], Union[ConfigurationModelABC, str]] = {}
 
-        self._argument_types: list[ConsoleArgument] = []
+        self._argument_types: list[ArgumentABC] = []
         self._additional_arguments: list[str] = []
 
         self._argument_error_function: Optional[Callable] = None
@@ -46,6 +55,10 @@ class Configuration(ConfigurationABC):
     @argument_error_function.setter
     def argument_error_function(self, argument_error_function: Callable):
         self._argument_error_function = argument_error_function
+
+    @property
+    def arguments(self) -> list[ArgumentABC]:
+        return self._argument_types
 
     @staticmethod
     def _print_info(name: str, message: str):
@@ -114,155 +127,6 @@ class Configuration(ConfigurationABC):
         else:
             self._config[name] = value
 
-    def _validate_argument_by_argument_type(self, argument: str, argument_type: ConsoleArgument,
-                                            next_arguments: list[str] = None) -> bool:
-        r"""Validate argument by argument type
-
-        Parameter
-        ---------
-            argument: :class:`str`
-                Command as string
-            argument_type: :class:`cpl_core.configuration.console_argument.ConsoleArgument`
-                Command type as ConsoleArgument
-            next_arguments: list[:class:`str`]
-                Following arguments of argument
-
-        Returns
-        -------
-            Object of :class:`bool`
-
-        Raises
-        ------
-            Exception: An error occurred getting an argument for a command
-        """
-        argument_name = ''
-        value = ''
-        result = False
-
-        if argument_type.value_token != '' and argument_type.value_token in argument:
-            # ?new=value
-            found = False
-            for alias in argument_type.aliases:
-                if alias in argument:
-                    found = True
-
-            if argument_type.name not in argument_name and not found:
-                return False
-
-            if argument_type.is_value_token_optional is not None and argument_type.is_value_token_optional:
-                if argument_type.name not in self._additional_arguments:
-                    self._additional_arguments.append(argument_type.name)
-                    result = True
-
-            if argument_type.token != '' and argument.startswith(argument_type.token):
-                # --new=value
-                if len(argument.split(argument_type.token)[1].split(argument_type.value_token)) == 0:
-                    raise Exception(f'Expected argument for command: {argument}')
-
-                argument_name = argument.split(argument_type.token)[1].split(argument_type.value_token)[0]
-            else:
-                # new=value
-                argument_name = argument.split(argument_type.value_token)[1]
-
-            if argument_name == '':
-                raise Exception(f'Expected argument for command: {argument_type.name}')
-
-            result = True
-
-            if argument_type.is_value_token_optional is True:
-                is_valid = False
-
-                name_list = argument.split(argument_type.token)
-                if len(name_list) > 1:
-                    value_list = name_list[1].split(argument_type.value_token)
-                    if len(value_list) > 1:
-                        is_valid = True
-                        value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
-
-                if not is_valid:
-                    if argument_type.name not in self._additional_arguments:
-                        self._additional_arguments.append(argument_type.name)
-                        result = True
-            else:
-                value = argument.split(argument_type.token)[1].split(argument_type.value_token)[1]
-
-            if argument_name != argument_type.name and argument_name not in argument_type.aliases:
-                return False
-
-            self._set_variable(argument_type.name, value)
-            result = True
-
-        elif argument_type.value_token == ' ':
-            # ?new value
-            found = False
-            for alias in argument_type.aliases:
-                if alias == argument or f' {alias} ' == argument:
-                    found = True
-
-            if (argument_type.token != '' and f'{argument_type.token}{argument_type.name}' != argument
-                or argument_type.name not in argument) and not found:
-                return False
-
-            if (next_arguments is None or len(next_arguments) == 0) and \
-                    argument_type.is_value_token_optional is not True:
-                raise Exception(f'Expected argument for command: {argument_type.name}')
-
-            if (next_arguments is None or len(next_arguments) == 0) and argument_type.is_value_token_optional is True:
-                value = ''
-            else:
-                value = next_arguments[0]
-                # next_arguments.remove(value)
-                self._handled_args.append(value)
-
-            if argument_type.token != '' and argument.startswith(argument_type.token):
-                # --new value
-                argument_name = argument.split(argument_type.token)[1]
-            else:
-                # new value
-                argument_name = argument
-
-            if argument_name != argument_type.name and argument_name not in argument_type.aliases:
-                return False
-
-            if value == '':
-                if argument_type.name not in self._additional_arguments:
-                    self._additional_arguments.append(argument_type.name)
-            else:
-                self._set_variable(argument_type.name, value)
-
-            result = True
-
-        elif argument_type.name == argument or argument in argument_type.aliases:
-            # new
-            self._additional_arguments.append(argument_type.name)
-            result = True
-
-        if result:
-            self._handled_args.append(argument)
-            if next_arguments is not None and len(next_arguments) > 0:
-                next_args = []
-                if len(next_arguments) > 1:
-                    next_args = next_arguments[1:]
-
-                if argument_type.console_arguments is not None and len(argument_type.console_arguments) > 0:
-                    found_child = False
-                    for child_argument_type in argument_type.console_arguments:
-                        found_child = self._validate_argument_by_argument_type(
-                            next_arguments[0],
-                            child_argument_type,
-                            next_args
-                        )
-                        if found_child and child_argument_type.name not in self._additional_arguments:
-                            self._additional_arguments.append(child_argument_type.name)
-
-                        if found_child:
-                            break
-
-                    if not found_child:
-                        result = self._validate_argument_by_argument_type(next_arguments[0], argument_type, next_args)
-
-        return result
-
     def _load_json_file(self, file: str, output: bool) -> dict:
         r"""Reads the json file
 
@@ -290,57 +154,85 @@ class Configuration(ConfigurationABC):
             self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
             return {}
 
-    def add_environment_variables(self, prefix: str):
-        for variable in ConfigurationVariableNameEnum.to_list():
-            var_name = f'{prefix}{variable}'
-            if var_name in [key.upper() for key in os.environ.keys()]:
-                self._set_variable(variable, os.environ[var_name])
+    def _handle_pre_or_post_executables(self, pre: bool, argument: ExecutableArgument, services: ServiceProviderABC):
+        script_type = 'pre-' if pre else 'post-'
 
-    def add_console_argument(self, argument: ConsoleArgument):
-        self._argument_types.append(argument)
+        from cpl_cli.configuration.workspace_settings import WorkspaceSettings
+        workspace: Optional[WorkspaceSettings] = self.get_configuration(WorkspaceSettings)
+        if workspace is None or len(workspace.scripts) == 0:
+            return
 
-    def add_console_arguments(self, error: bool = None):
-        for arg_name in ConfigurationVariableNameEnum.to_list():
-            self.add_console_argument(ConsoleArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
+        for script in workspace.scripts:
+            if script_type not in script and not script.startswith(script_type):
+                continue
 
-        arg_list = sys.argv[1:]
+            # split in two ifs to prevent exception
+            if script.split(script_type)[1] != argument.name:
+                continue
+
+            from cpl_cli.command.custom_script_service import CustomScriptService
+            css: CustomScriptService = services.get_service(CustomScriptService)
+            if css is None:
+                continue
+
+            Console.write_line()
+            self._set_variable('ACTIVE_EXECUTABLE', script)
+            css.run([])
+
+    def _parse_arguments(self, executables: list[ArgumentABC], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
-            argument = arg_list[i]
-            next_arguments = []
-            error_message = ''
+            arg_str = arg_list[i]
+            for n in range(0, len(args_types)):
+                arg = args_types[n]
+                arg_str_without_token = arg_str
+                if arg.token != "" and arg.token in arg_str:
+                    arg_str_without_token = arg_str.split(arg.token)[1]
 
-            if argument in self._handled_args:
-                break
+                # executable
+                if isinstance(arg, ExecutableArgument):
+                    if arg_str.startswith(arg.token) and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
+                        executables.append(arg)
+                        self._handled_args.append(arg_str)
+                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
-            if i + 1 < len(arg_list):
-                next_arguments = arg_list[i + 1:]
+                # variables
+                elif isinstance(arg, VariableArgument):
+                    arg_str_without_value = arg_str_without_token
+                    if arg.value_token in arg_str_without_value:
+                        arg_str_without_value = arg_str_without_token.split(arg.value_token)[0]
 
-            found = False
-            for argument_type in self._argument_types:
-                try:
-                    found = self._validate_argument_by_argument_type(argument, argument_type, next_arguments)
-                    if found:
-                        break
-                except Exception as e:
-                    error_message = e
+                    if arg_str.startswith(arg.token) and arg_str_without_value == arg.name or arg_str_without_value in arg.aliases:
+                        if arg.value_token != ' ':
+                            value = arg_str_without_token.split(arg.value_token)[1]
+                        else:
+                            value = arg_list[i + 1]
+                        self._set_variable(arg.name, value)
+                        self._handled_args.append(arg_str)
+                        self._handled_args.append(value)
+                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
-            if not found and error_message == '' and error is not False:
-                error_message = f'Invalid argument: {argument}'
+                # flags
+                elif isinstance(arg, FlagArgument):
+                    if arg_str.startswith(arg.token) and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
+                        if arg_str in self._additional_arguments:
+                            self._additional_arguments.remove(arg_str)
+                        self._additional_arguments.append(arg.name)
+                        self._handled_args.append(arg_str)
+                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
 
-            if error_message != '':
-                if self._argument_error_function is not None:
-                    self._argument_error_function(error_message)
-                else:
-                    self._print_error(__name__, error_message)
+            # add left over values to args
+            if arg_str not in self._additional_arguments and arg_str not in self._handled_args:
+                self._additional_arguments.append(arg_str)
 
-                sys.exit()
+    def add_environment_variables(self, prefix: str):
+        for env_var in os.environ.keys():
+            if not env_var.startswith(prefix):
+                continue
 
-            add_args = []
-            for next_arg in next_arguments:
-                if next_arg not in self._handled_args and next_arg not in self._additional_arguments:
-                    add_args.append(next_arg)
+            self._set_variable(env_var.replace(prefix, ''), os.environ[env_var])
 
-            self._set_variable(f'{argument}AdditionalArguments', add_args)
+    def add_console_argument(self, argument: ArgumentABC):
+        self._argument_types.append(argument)
 
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         if os.path.isabs(name):
@@ -375,11 +267,21 @@ class Configuration(ConfigurationABC):
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
 
-    def add_configuration(self, key_type: Union[str, type], value: ConfigurationModelABC):
+    def add_configuration(self, key_type: Union[str, type], value: Union[str, ConfigurationModelABC]):
         self._config[key_type] = value
 
+    def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
+                                *args, **kwargs) -> ArgumentABC:
+        argument = ArgumentBuilder.build_argument(arg_type, token, name, aliases, *args, **kwargs)
+        self._argument_types.append(argument)
+        return argument
+
+    def for_each_argument(self, call: Callable):
+        for arg in self._argument_types:
+            call(arg)
+
     def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> \
-            Union[str, Callable[ConfigurationModelABC]]:
+            Optional[Union[str, ConfigurationModelABC]]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name
@@ -396,3 +298,48 @@ class Configuration(ConfigurationABC):
         for config_model in self._config:
             if config_model == search_type:
                 return self._config[config_model]
+
+    def parse_console_arguments(self, services: ServiceProviderABC, error: bool = None) -> bool:
+        # sets environment variables as possible arguments as: --VAR=VALUE
+        for arg_name in ConfigurationVariableNameEnum.to_list():
+            self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
+
+        success = False
+        try:
+            arg_list = sys.argv[1:]
+            executables: list[ExecutableArgument] = []
+            self._parse_arguments(executables, arg_list, self._argument_types)
+        except Exception as e:
+            Console.error('An error occurred while parsing arguments.')
+            sys.exit()
+
+        try:
+            prevent = False
+            for exe in executables:
+                if prevent:
+                    continue
+
+                if exe.validators is not None:
+                    abort = False
+                    for validator_type in exe.validators:
+                        validator: ValidatorABC = services.get_service(validator_type)
+                        result = validator.validate()
+                        abort = not result
+                        if abort:
+                            break
+
+                    if abort:
+                        sys.exit()
+
+                cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
+                self._handle_pre_or_post_executables(True, exe, services)
+                self._set_variable('ACTIVE_EXECUTABLE', exe.name)
+                cmd.execute(self._additional_arguments)
+                self._handle_pre_or_post_executables(False, exe, services)
+                prevent = exe.prevent_next_executable
+                success = True
+        except Exception as e:
+            Console.error('An error occurred while executing arguments.', traceback.format_exc())
+            sys.exit()
+
+        return success

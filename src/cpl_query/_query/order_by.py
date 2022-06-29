@@ -1,4 +1,4 @@
-from collections import Callable
+from collections.abc import Callable
 
 from cpl_query.exceptions import ExceptionArgument, ArgumentNoneException
 from cpl_query.extension.iterable_abc import IterableABC

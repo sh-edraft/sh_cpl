@@ -1,12 +1,13 @@
 import time
 from typing import Optional
 
-from cpl_core.application import ApplicationABC
+from cpl_core.application.application_abc import ApplicationABC
 from cpl_core.configuration import ConfigurationABC
-from cpl_core.console.console import Console
+from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
-from cpl_core.logging.logger_abc import LoggerABC
+from cpl_core.logging import LoggerABC
 from cpl_core.mailing import EMailClientABC, EMail
+from cpl_core.pipes import IPAddressPipe
 from test_service import TestService
 
 
@@ -36,12 +37,20 @@ class Application(ApplicationABC):
         self._mailer = self._services.get_service(EMailClientABC)
 
     def main(self):
+        self._configuration.parse_console_arguments(self._services)
+
         if self._configuration.environment.application_name != '':
             self._logger.header(f'{self._configuration.environment.application_name}:')
+        self._logger.debug(__name__, f'Args: {self._configuration.additional_arguments}')
         self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
         self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
         self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
         Console.spinner('Test', self._wait, 2, spinner_foreground_color='red')
         test: TestService = self._services.get_service(TestService)
+        ip_pipe: IPAddressPipe = self._services.get_service(IPAddressPipe)
         test.run()
+        test2: TestService = self._services.get_service(TestService)
+        ip_pipe2: IPAddressPipe = self._services.get_service(IPAddressPipe)
+        Console.write_line(f'DI working: {test == test2 and ip_pipe != ip_pipe2}')
+        Console.write_line(self._services.get_service(LoggerABC))
         # self.test_send_mail()

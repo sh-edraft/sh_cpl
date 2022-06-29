@@ -25,11 +25,14 @@ Generates files based on a schematic.
 
 ## Schematics
 
-| Schematic         | Description         | Arguments      |
-| ----------------- |:-------------------:|:----------------:|
-| ```abc```         | Abstract base class | ```<name>```
-| ```class```       | Class               | ```<name>```
-| ```enum```        | Enum class          | ```<name>```
-| ```service```     | Service class       | ```<name>```
-| ```settings```    | [Configmodel](cpl_core.configuration) | ```<name>```
-| ```thread```      | Thread class        | ```<name>```
+| Schematic       |              Description              |  Arguments   |
+|-----------------|:-------------------------------------:|:------------:|
+| ```abc```       |          Abstract base class          | ```<name>``` |
+| ```class```     |                 Class                 | ```<name>``` |
+| ```enum```      |              Enum class               | ```<name>``` |
+| ```pipe```      |              Pipe class               | ```<name>``` |
+| ```service```   |             Service class             | ```<name>``` |
+| ```settings```  | [Configmodel](cpl_core.configuration) | ```<name>``` |
+| ```test```      |              Test class               | ```<name>``` |
+| ```thread```    |             Thread class              | ```<name>``` |
+| ```validator``` |            Validator class            | ```<name>``` |

@@ -1,0 +1,44 @@
+{
+  "ProjectSettings": {
+    "Name": "unittest_query",
+    "Version": {
+      "Major": "2022",
+      "Minor": "6",
+      "Micro": "0.rc1"
+    },
+    "Author": "",
+    "AuthorEmail": "",
+    "Description": "",
+    "LongDescription": "",
+    "URL": "",
+    "CopyrightDate": "",
+    "CopyrightName": "",
+    "LicenseName": "",
+    "LicenseDescription": "",
+    "Dependencies": [
+      "cpl-core>=2022.6.0.rc1",
+      "cpl-query>=2022.6.0.rc1"
+    ],
+    "PythonVersion": ">=3.10.4",
+    "PythonPath": {
+      "linux": ""
+    },
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "library",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "unittest_query.main",
+    "EntryPoint": "unittest_query",
+    "IncludePackageData": false,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {},
+    "ProjectReferences": []
+  }
+}

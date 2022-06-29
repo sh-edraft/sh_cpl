@@ -1,29 +1,11 @@
-import os
 import sys
-from typing import Optional
+import traceback
 
+from cpl_cli.error import Error
 from cpl_core.application.application_abc import ApplicationABC
-from cpl_core.configuration.console_argument import ConsoleArgument
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
-from cpl_core.dependency_injection import ServiceProviderABC
-from cpl_cli.command.add_service import AddService
-from cpl_cli.command.build_service import BuildService
-from cpl_cli.command.custom_script_service import CustomScriptService
-from cpl_cli.command.generate_service import GenerateService
-from cpl_cli.command.install_service import InstallService
-from cpl_cli.command.new_service import NewService
-from cpl_cli.command.publish_service import PublishService
-from cpl_cli.command.remove_service import RemoveService
-from cpl_cli.command.start_service import StartService
-from cpl_cli.command.uninstall_service import UninstallService
-from cpl_cli.command.update_service import UpdateService
-from cpl_cli.command_handler_service import CommandHandler
-from cpl_cli.command_model import CommandModel
-from cpl_cli.configuration.workspace_settings import WorkspaceSettings
-from cpl_cli.error import Error
-from cpl_cli.command.help_service import HelpService
-from cpl_cli.command.version_service import VersionService
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 
 
 class CLI(ApplicationABC):
@@ -34,32 +16,10 @@ class CLI(ApplicationABC):
         """
         ApplicationABC.__init__(self, config, services)
 
-        self._command_handler: Optional[CommandHandler] = None
         self._options: list[str] = []
 
     def configure(self):
-        self._command_handler: CommandHandler = self._services.get_service(CommandHandler)
-
-        self._command_handler.add_command(CommandModel('add', ['a', 'a'], AddService, False, False, False))
-        self._command_handler.add_command(CommandModel('build', ['b', 'B'], BuildService, False, True, True))
-        self._command_handler.add_command(CommandModel('generate', ['g', 'G'], GenerateService, False, True, False))
-        self._command_handler.add_command(CommandModel('help', ['h', 'H'], HelpService, False, False, False))
-        self._command_handler.add_command(CommandModel('install', ['i', 'I'], InstallService, False, True, True))
-        self._command_handler.add_command(CommandModel('new', ['n', 'N'], NewService, False, False, True))
-        self._command_handler.add_command(CommandModel('publish', ['p', 'P'], PublishService, False, True, True))
-        self._command_handler.add_command(CommandModel('remove', ['r', 'R'], RemoveService, True, True, False))
-        self._command_handler.add_command(CommandModel('start', ['s', 'S'], StartService, False, True, True))
-        self._command_handler.add_command(CommandModel('uninstall', ['ui', 'UI'], UninstallService, False, True, True))
-        self._command_handler.add_command(CommandModel('update', ['u', 'U'], UpdateService, False, True, True))
-        self._command_handler.add_command(CommandModel('version', ['v', 'V'], VersionService, False, False, False))
-
-        if os.path.isfile(os.path.join(self._environment.working_directory, 'cpl-workspace.json')):
-            workspace: Optional[WorkspaceSettings] = self._configuration.get_configuration(WorkspaceSettings)
-            for script in workspace.scripts:
-                self._command_handler.add_command(CommandModel(script, [], CustomScriptService, True, True, False))
-
-        self._command_handler.add_command(CommandModel('--help', ['-h', '-H'], HelpService, False, False, False))
-        self._options.append('--help')
+        pass
 
     def main(self):
         """
@@ -67,61 +27,21 @@ class CLI(ApplicationABC):
         :return:
         """
         try:
-            command = None
-            args = []
-            if len(self._configuration.additional_arguments) > 0:
-                is_option = False
-                for opt in self._options:
-                    if opt in self._configuration.additional_arguments:
-                        is_option = True
-                        command = opt
-                        args = self._configuration.additional_arguments
-                        args.remove(opt)
-
-                if not is_option:
-                    command = self._configuration.additional_arguments[0]
-                    if len(self._configuration.additional_arguments) > 1:
-                        args = self._configuration.additional_arguments[1:]
-            else:
-                for cmd in self._command_handler.commands:
-                    result = self._configuration.get_configuration(cmd.name)
-                    result_args: list[str] = self._configuration.get_configuration(f'{cmd.name}AdditionalArguments')
-                    is_option = False
-                    if result is None:
-                        continue
-
-                    for opt in self._options:
-                        if opt == result:
-                            is_option = True
-                            command = opt
-
-                        elif result_args is not None and opt in result_args:
-                            is_option = True
-                            command = opt
-                            result_args.remove(opt)
-
-                    if is_option:
-                        args.append(cmd.name)
-                        if result_args is not None:
-                            for arg in result_args:
-                                args.append(arg)
-
-                    elif result is not None:
-                        command = cmd.name
-                        args.append(result)
-
-                        for arg in result_args:
-                            args.append(arg)
-
-                    else:
-                        Error.error(f'Unexpected command')
-                        return
-
-            if command is None:
-                Error.error(f'Expected command')
+            result = self._configuration.parse_console_arguments(self._services)
+            if result:
+                Console.write_line()
                 return
 
-            self._command_handler.handle(command, args)
+            if len(self._configuration.additional_arguments) == 0:
+                Error.error('Expected command')
+                return
+
+            unexpected_arguments = ', '.join(self._configuration.additional_arguments)
+            Error.error(f'Unexpected argument(s): {unexpected_arguments}')
+            Console.write_line()
         except KeyboardInterrupt:
             Console.write_line()
+            sys.exit()
+        except Exception as e:
+            Console.error(str(e), traceback.format_exc())
             sys.exit()
