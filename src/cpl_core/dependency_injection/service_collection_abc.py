@@ -36,6 +36,11 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
+    def add_translation(self):
+        r"""Adds the CPL translation"""
+        pass
+
+    @abstractmethod
     def add_transient(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
         r"""Adds a service with transient lifetime
 

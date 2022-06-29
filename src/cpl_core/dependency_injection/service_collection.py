@@ -59,6 +59,17 @@ class ServiceCollection(ServiceCollectionABC):
         for pipe in PipeABC.__subclasses__():
             self.add_transient(PipeABC, pipe)
 
+    def add_translation(self):
+        try:
+            from cpl_translation.translation_service_abc import TranslationServiceABC
+            from cpl_translation.translation_service import TranslationService
+            from cpl_translation.translate_pipe import TranslatePipe
+            from cpl_translation.translation_settings import TranslationSettings
+            self.add_singleton(TranslationServiceABC, TranslationService)
+            self.add_transient(PipeABC, TranslatePipe)
+        except ImportError as e:
+            Console.error('cpl-translation is not installed', str(e))
+
     def add_singleton(self, service_type: Union[type, object], service: Union[type, object] = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.singleton, service)
         return self
