@@ -12,6 +12,6 @@ class Error:
     @staticmethod
     def warn(message: str):
         Console.set_foreground_color(ForegroundColorEnum.yellow)
-        Console.write_line(message)
+        Console.write_line(message, '\n')
         Console.set_foreground_color(ForegroundColorEnum.default)
 

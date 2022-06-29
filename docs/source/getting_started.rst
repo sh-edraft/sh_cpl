@@ -6,4 +6,5 @@ Getting started
 
     quickstart
     setup
+    tutorials
 

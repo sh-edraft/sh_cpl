@@ -17,6 +17,14 @@ Uninstall given package from project via pip.
 
 ## Arguments
 
-| Argument          | Description                   | Value type    |
-| ----------------- |:-----------------------------:|:-------------:|
-| ```<package>```   | The package to uninstall      | ```str```     |
+| Argument        |       Description        | Value type |
+|-----------------|:------------------------:|:----------:|
+| ```<package>``` | The package to uninstall | ```str```  |
+
+## Flags
+
+| Argument         |                     Description                      |
+|------------------|:----------------------------------------------------:|
+| ```--dev```      | Specifies whether the command is in development mode |
+| ```--virtual```  |    Specifies whether the command is virtual mode     |
+| ```--simulate``` |      Specifies whether the command is simulated      |

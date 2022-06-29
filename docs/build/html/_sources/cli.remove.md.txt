@@ -19,6 +19,12 @@ If you call the command in a CPL workspace, you can use the project names. Other
 
 ## Arguments
 
-| Argument                  | Description                           | Value type      |
-| ------------------------- |:-------------------------------------:|:----------------:|
-| ```<project>```           | The name of the project to delete     | ```str```
+| Argument        |            Description            | Value type |
+|-----------------|:---------------------------------:|:----------:|
+| ```<project>``` | The name of the project to delete | ```str```  |
+
+## Flags
+
+| Argument         |                     Description                      |
+|------------------|:----------------------------------------------------:|
+| ```--simulate``` |      Specifies whether the command is simulated      |
