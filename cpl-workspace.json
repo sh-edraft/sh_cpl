@@ -5,6 +5,7 @@
       "cpl-core": "src/cpl_core/cpl-core.json",
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
+      "cpl-translation": "src/cpl_translation/cpl-translation.json",
       "set-version": "tools/set_version/set-version.json",
       "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json",
       "unittests": "unittests/unittests/unittests.json",
@@ -12,7 +13,7 @@
       "unittests_core": "unittests/unittests_core/unittests_core.json",
       "unittests_query": "unittests/unittests_query/unittests_query.json",
       "unittests_shared": "unittests/unittests_shared/unittests_shared.json",
-      "cpl-translation": "src/cpl_translation/cpl-translation.json"
+      "unittests_translation": "unittests/unittests_translation/unittests_translation.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",

@@ -3,8 +3,8 @@
     "Name": "unittests",
     "Version": {
       "Major": "2022",
-      "Minor": "8",
-      "Micro": "1.dev7"
+      "Minor": "7",
+      "Micro": "0"
     },
     "Author": "",
     "AuthorEmail": "",
@@ -22,7 +22,8 @@
     "PythonPath": {
       "linux": ""
     },
-    "Classifiers": []
+    "Classifiers": [],
+    "DevDependencies": []
   },
   "BuildSettings": {
     "ProjectType": "unittest",

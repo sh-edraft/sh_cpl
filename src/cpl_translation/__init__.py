@@ -20,6 +20,10 @@ __version__ = '2022.8.1.dev7'
 from collections import namedtuple
 
 # imports:
+from .translate_pipe import TranslatePipe
+from .translation_service import TranslationService
+from .translation_service_abc import TranslationServiceABC
+from .translation_settings import TranslationSettings
 # build-ignore
 
 

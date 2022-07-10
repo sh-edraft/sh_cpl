@@ -68,6 +68,7 @@ class NewService(CommandABC):
         Types:
             console
             library
+            unittest
         """)
 
     @staticmethod
@@ -82,6 +83,7 @@ class NewService(CommandABC):
         schematics = [
             'console (c|C) <name>',
             'library (l|L) <name>',
+            'unittest (ut|UT) <name>',
         ]
         Console.write_line('Available Schematics:')
         for name in schematics:

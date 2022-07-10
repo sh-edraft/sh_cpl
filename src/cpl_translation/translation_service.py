@@ -2,7 +2,6 @@ import json
 import os.path
 from functools import reduce
 
-from cpl_core.console import Console
 from cpl_translation.translation_service_abc import TranslationServiceABC
 from cpl_translation.translation_settings import TranslationSettings
 
@@ -18,10 +17,16 @@ class TranslationService(TranslationServiceABC):
         TranslationServiceABC.__init__(self)
 
     def set_default_lang(self, lang: str):
+        if lang not in self._translation:
+            raise KeyError()
+
         self._default_language = lang
         self.set_lang(lang)
 
     def set_lang(self, lang: str):
+        if lang not in self._translation:
+            raise KeyError()
+
         self._language = lang
 
     def load(self, lang: str):
