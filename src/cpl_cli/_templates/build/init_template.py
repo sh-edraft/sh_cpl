@@ -27,6 +27,7 @@ class InitTemplate:
             
             from collections import namedtuple
             
+            
             $Imports
             
             VersionInfo = namedtuple('VersionInfo', 'major minor micro')

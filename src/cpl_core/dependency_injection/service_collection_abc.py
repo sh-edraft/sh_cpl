@@ -35,9 +35,9 @@ class ServiceCollectionABC(ABC):
         r"""Adds the CPL internal pipes as transient"""
         pass
 
-    @abstractmethod
     def add_translation(self):
         r"""Adds the CPL translation"""
+        raise NotImplementedError('You should install and use the cpl-translation package')
         pass
 
     @abstractmethod
