@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .cli import CLI
 from .command_abc import CommandABC

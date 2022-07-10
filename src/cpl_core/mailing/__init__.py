@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .email import EMail
 from .email_client_service import EMailClient

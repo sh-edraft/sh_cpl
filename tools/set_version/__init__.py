@@ -19,6 +19,7 @@ __version__ = '2022.6.0'
 
 from collections import namedtuple
 
+
 # imports: 
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')

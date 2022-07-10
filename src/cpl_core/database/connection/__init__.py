@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .database_connection import DatabaseConnection
 from .database_connection_abc import DatabaseConnectionABC

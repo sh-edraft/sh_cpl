@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .build_settings import BuildSettings
 from .build_settings_name_enum import BuildSettingsNameEnum

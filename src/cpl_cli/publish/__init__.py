@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .publisher_abc import PublisherABC
 from .publisher_service import PublisherService

@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .iterable_abc import IterableABC
 from .iterable import Iterable

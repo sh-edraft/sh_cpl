@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .bool_pipe import BoolPipe
 from .first_char_to_lower_pipe import FirstCharToLowerPipe

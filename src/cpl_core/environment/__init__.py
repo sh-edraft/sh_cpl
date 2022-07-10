@@ -19,6 +19,7 @@ __version__ = '2022.7.0'
 
 from collections import namedtuple
 
+
 # imports:
 from .application_environment_abc import ApplicationEnvironmentABC
 from .environment_name_enum import EnvironmentNameEnum
