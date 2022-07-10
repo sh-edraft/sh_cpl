@@ -16,12 +16,13 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.8.1.dev7",
+      "cpl-core>=2022.7.0",
       "gitpython==3.1.27"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {},
-    "Classifiers": []
+    "Classifiers": [],
+    "DevDependencies": []
   },
   "BuildSettings": {
     "ProjectType": "console",

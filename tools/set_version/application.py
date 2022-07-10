@@ -82,7 +82,8 @@ class Application(ApplicationABC):
                     continue
 
                 Console.write_line(f'Set dependencies {self._version_pipe.transform(version)} for {project}')
-                self._version_setter.set_dependencies(self._workspace.projects[project], version, skipped=skipped)
+                self._version_setter.set_dependencies(self._workspace.projects[project], version, 'Dependencies', skipped=skipped)
+                self._version_setter.set_dependencies(self._workspace.projects[project], version, 'DevDependencies', skipped=skipped)
                 if not project.startswith('cpl') and not project.startswith('unittest'):
                     Console.write_line(f'Skipping {project}')
                     continue
