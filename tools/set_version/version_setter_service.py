@@ -33,9 +33,12 @@ class VersionSetterService:
         project_json['ProjectSettings']['Version'] = version
         self._write_file(file, project_json)
 
-    def set_dependencies(self, file: str, version: dict, skipped=None):
+    def set_dependencies(self, file: str, version: dict, key: str, skipped=None):
         project_json = self._read_file(file)
-        dependencies = project_json['ProjectSettings']['Dependencies']
+        if key not in project_json['ProjectSettings']:
+            project_json['ProjectSettings'][key] = []
+
+        dependencies = project_json['ProjectSettings'][key]
         new_deps = []
         for dependency in dependencies:
             if not dependency.startswith('cpl-'):
@@ -52,5 +55,5 @@ class VersionSetterService:
                 continue
             new_deps.append(dependency.replace(dep_version, f'{version["Major"]}.{version["Minor"]}.{version["Micro"]}'))
 
-        project_json['ProjectSettings']['Dependencies'] = new_deps
+        project_json['ProjectSettings'][key] = new_deps
         self._write_file(file, project_json)

@@ -5,13 +5,15 @@
       "cpl-core": "src/cpl_core/cpl-core.json",
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
+      "cpl-translation": "src/cpl_translation/cpl-translation.json",
       "set-version": "tools/set_version/set-version.json",
       "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json",
       "unittests": "unittests/unittests/unittests.json",
       "unittests_cli": "unittests/unittests_cli/unittests_cli.json",
       "unittests_core": "unittests/unittests_core/unittests_core.json",
       "unittests_query": "unittests/unittests_query/unittests_query.json",
-      "unittests_shared": "unittests/unittests_shared/unittests_shared.json"
+      "unittests_shared": "unittests/unittests_shared/unittests_shared.json",
+      "unittests_translation": "unittests/unittests_translation/unittests_translation.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
@@ -24,72 +26,96 @@
 
       "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
       "db": "cpl docs-build",
+
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",
       "do": "cpl docs-open",
 
       "test": "cpl run unittests",
 
       "pre-build-all": "cpl sv $ARGS; cpl spu $ARGS;",
-      "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-set-pip-urls; cpl build-set-version",
+      "build-all": "cpl build-cli; cpl build-core; cpl build-query; cpl build-translation; cpl build-set-pip-urls; cpl build-set-version",
       "ba": "cpl build-all $ARGS",
       "build-cli": "echo 'Build cpl-cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
       "build-core": "echo 'Build cpl-core'; cd ./src/cpl_core; cpl build; cd ../../;",
       "build-query": "echo 'Build cpl-query'; cd ./src/cpl_query; cpl build; cd ../../;",
+      "build-translation": "echo 'Build cpl-translation'; cd ./src/cpl_translation; cpl build; cd ../../;",
       "build-set-pip-urls": "echo 'Build set-pip-urls'; cd ./tools/set_pip_urls; cpl build; cd ../../;",
       "build-set-version": "echo 'Build set-version'; cd ./tools/set_version; cpl build; cd ../../;",
 
       "pre-publish-all": "cpl sv $ARGS; cpl spu $ARGS;",
-      "publish-all": "cpl publish-cli; cpl publish-core; cpl publish-query;",
+      "publish-all": "cpl publish-cli; cpl publish-core; cpl publish-query; cpl publish-translation;",
       "pa": "cpl build-all $ARGS",
       "publish-cli": "echo 'Publish cpl-cli'; cd ./src/cpl_cli; cpl publish; cd ../../;",
       "publish-core": "echo 'Publish cpl-core'; cd ./src/cpl_core; cpl publish; cd ../../;",
-      "publish-query": "echo 'Publish cpl_query'; cd ./src/cpl_query; cpl publish; cd ../../;",
+      "publish-query": "echo 'Publish cpl-query'; cd ./src/cpl_query; cpl publish; cd ../../;",
+      "publish-translation": "echo 'Publish cpl-translation'; cd ./src/cpl_translation; cpl publish; cd ../../;",
 
       "upload-prod-cli": "echo 'PROD Upload cpl-cli'; cpl upl-prod-cli;",
       "upl-prod-cli": "twine upload -r pip.sh-edraft.de dist/cpl-cli/publish/setup/*",
+
       "upload-prod-core": "echo 'PROD Upload cpl-core'; cpl upl-prod-core;",
       "upl-prod-core": "twine upload -r pip.sh-edraft.de dist/cpl-core/publish/setup/*",
-      "upload-prod-query": "echo 'PROD Upload cpl_query'; cpl upl-prod-query;",
+
+      "upload-prod-query": "echo 'PROD Upload cpl-query'; cpl upl-prod-query;",
       "upl-prod-query": "twine upload -r pip.sh-edraft.de dist/cpl-query/publish/setup/*",
+
+      "upload-prod-translation": "echo 'PROD Upload cpl-translation'; cpl upl-prod-translation;",
+      "upl-prod-translation": "twine upload -r pip.sh-edraft.de dist/cpl-translation/publish/setup/*",
+
       "upload-exp-cli": "echo 'EXP Upload cpl-cli'; cpl upl-exp-cli;",
       "upl-exp-cli": "twine upload -r pip-exp.sh-edraft.de dist/cpl-cli/publish/setup/*",
+
       "upload-exp-core": "echo 'EXP Upload cpl-core'; cpl upl-exp-core;",
       "upl-exp-core": "twine upload -r pip-exp.sh-edraft.de dist/cpl-core/publish/setup/*",
-      "upload-exp-query": "echo 'EXP Upload cpl_query'; cpl upl-exp-query;",
+
+      "upload-exp-query": "echo 'EXP Upload cpl-query'; cpl upl-exp-query;",
       "upl-exp-query": "twine upload -r pip-exp.sh-edraft.de dist/cpl-query/publish/setup/*",
+
+      "upload-exp-translation": "echo 'EXP Upload cpl-translation'; cpl upl-exp-translation;",
+      "upl-exp-translation": "twine upload -r pip-exp.sh-edraft.de dist/cpl-translation/publish/setup/*",
+
       "upload-dev-cli": "echo 'DEV Upload cpl-cli'; cpl upl-dev-cli;",
       "upl-dev-cli": "twine upload -r pip-dev.sh-edraft.de dist/cpl-cli/publish/setup/*",
+
       "upload-dev-core": "echo 'DEV Upload cpl-core'; cpl upl-dev-core;",
       "upl-dev-core": "twine upload -r pip-dev.sh-edraft.de dist/cpl-core/publish/setup/*",
-      "upload-dev-query": "echo 'DEV Upload cpl_query'; cpl upl-dev-query;",
+
+      "upload-dev-query": "echo 'DEV Upload cpl-query'; cpl upl-dev-query;",
       "upl-dev-query": "twine upload -r pip-dev.sh-edraft.de dist/cpl-query/publish/setup/*",
 
+      "upload-dev-translation": "echo 'DEV Upload cpl-translation'; cpl upl-dev-translation;",
+      "upl-dev-translation": "twine upload -r pip-dev.sh-edraft.de dist/cpl-translation/publish/setup/*",
+
       "pre-deploy-prod": "cpl sv $ARGS; cpl spu --environment=production;",
-      "deploy-prod": "cpl deploy-prod-cli; cpl deploy-prod-core; cpl deploy-prod-query;",
+      "deploy-prod": "cpl deploy-prod-cli; cpl deploy-prod-core; cpl deploy-prod-query; cpl deploy-prod-translation;",
       "dp": "cpl deploy-prod $ARGS",
       "deploy-prod-cli": "cpl publish-cli; cpl upload-prod-cli",
       "deploy-prod-core": "cpl publish-core; cpl upload-prod-core",
       "deploy-prod-query": "cpl publish-query; cpl upload-prod-query",
+      "deploy-prod-translation": "cpl publish-translation; cpl upload-prod-translation",
 
       "pre-deploy-exp": "cpl sv $ARGS; cpl spu --environment=staging;",
-      "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-query;",
+      "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-query; cpl deploy-exp-translation;",
       "de": "cpl deploy-exp $ARGS",
       "deploy-exp-cli": "cpl publish-cli; cpl upload-exp-cli",
       "deploy-exp-core": "cpl publish-core; cpl upload-exp-core",
       "deploy-exp-query": "cpl publish-query; cpl upload-exp-query",
+      "deploy-exp-translation": "cpl publish-translation; cpl upload-exp-translation",
 
       "pre-deploy-dev": "cpl sv $ARGS; cpl spu --environment=development;",
-      "deploy-dev": "cpl deploy-dev-cli; cpl deploy-dev-core; cpl deploy-dev-query;",
+      "deploy-dev": "cpl deploy-dev-cli; cpl deploy-dev-core; cpl deploy-dev-query; cpl deploy-dev-translation;",
       "dd": "cpl deploy-dev $ARGS",
       "deploy-dev-cli": "cpl publish-cli; cpl upload-dev-cli",
       "deploy-dev-core": "cpl publish-core; cpl upload-dev-core",
       "deploy-dev-query": "cpl publish-query; cpl upload-dev-query",
+      "deploy-dev-translation": "cpl publish-query; cpl upload-dev-translation",
 
-      "dev-install": "cpl di-core; cpl di-cli; cpl di-query;",
+      "dev-install": "cpl di-core; cpl di-cli; cpl di-query; cpl di-translation;",
       "di": "cpl dev-install",
       "di-core": "pip install cpl-core --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
       "di-cli": "pip install cpl-cli --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
-      "di-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de"
+      "di-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+      "di-translation": "pip install cpl-translation --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de"
     }
   }
 }

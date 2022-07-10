@@ -5,6 +5,7 @@ from cpl_core.configuration import ConfigurationABC
 from cpl_core.dependency_injection import ServiceProviderABC
 from unittests_cli.cli_test_suite import CLITestSuite
 from unittests_query.query_test_suite import QueryTestSuite
+from unittests_translation.translation_test_suite import TranslationTestSuite
 
 
 class Application(ApplicationABC):
@@ -19,3 +20,4 @@ class Application(ApplicationABC):
         runner = unittest.TextTestRunner()
         runner.run(CLITestSuite())
         runner.run(QueryTestSuite())
+        runner.run(TranslationTestSuite())

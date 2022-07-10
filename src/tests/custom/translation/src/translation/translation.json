@@ -1,0 +1,46 @@
+{
+  "ProjectSettings": {
+    "Name": "translation",
+    "Version": {
+      "Major": "0",
+      "Minor": "0",
+      "Micro": "0"
+    },
+    "Author": "",
+    "AuthorEmail": "",
+    "Description": "",
+    "LongDescription": "",
+    "URL": "",
+    "CopyrightDate": "",
+    "CopyrightName": "",
+    "LicenseName": "",
+    "LicenseDescription": "",
+    "Dependencies": [
+      "cpl-core>=2022.6.0"
+    ],
+    "DevDependencies": [
+      "cpl-cli>=2022.6.0"
+    ],
+    "PythonVersion": ">=3.10.4",
+    "PythonPath": {
+      "linux": ""
+    },
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "console",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "translation.main",
+    "EntryPoint": "translation",
+    "IncludePackageData": false,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {},
+    "ProjectReferences": []
+  }
+}

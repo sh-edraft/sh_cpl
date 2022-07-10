@@ -1,7 +1,6 @@
 from typing import Union, Type, Callable, Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
-from cpl_core.console import Console
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.dependency_injection.service_collection_abc import ServiceCollectionABC

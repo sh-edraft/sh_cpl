@@ -227,11 +227,19 @@ class PublisherService(PublisherABC):
                 imports = '# imports:'
             else:
                 is_started = False
+                build_ignore = False
                 for line in module_file_lines:
                     if line.__contains__('# imports'):
                         is_started = True
 
-                    if ((line.__contains__('from') or line.__contains__('import')) and is_started) or line.startswith('__cli_startup_extension__'):
+                    if line.__contains__('# build-ignore'):
+                        build_ignore = True
+
+                    if line.__contains__('# build-ignore-end') and is_started:
+                        module_py_lines.append('# build-ignore-end'.replace('\n', ''))
+                        build_ignore = False
+
+                    if ((line.__contains__('from') or line.__contains__('import')) and is_started) or line.startswith('__cli_startup_extension__') or build_ignore:
                         module_py_lines.append(line.replace('\n', ''))
 
                 if len(module_py_lines) > 0:

@@ -3,8 +3,8 @@
     "Name": "unittests",
     "Version": {
       "Major": "2022",
-      "Minor": "6",
-      "Micro": "0.rc1"
+      "Minor": "7",
+      "Micro": "0"
     },
     "Author": "",
     "AuthorEmail": "",
@@ -16,13 +16,14 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.6.0.rc1"
+      "cpl-core>=2022.8.1.dev7"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {
       "linux": ""
     },
-    "Classifiers": []
+    "Classifiers": [],
+    "DevDependencies": []
   },
   "BuildSettings": {
     "ProjectType": "unittest",
