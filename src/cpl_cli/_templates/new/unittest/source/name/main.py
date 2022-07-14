@@ -31,8 +31,7 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
                 
                 
                 if __name__ == '__main__':
-                    ml = asyncio.get_event_loop()
-                    ml.run_until_complete(main())
+                    asyncio.run(main())
             """)
         else:
             self._value = textwrap.dedent(f"""\

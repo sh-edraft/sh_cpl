@@ -31,8 +31,8 @@
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "cpl_translation.main",
-    "EntryPoint": "cpl-translation",
+    "Main": "",
+    "EntryPoint": "n",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

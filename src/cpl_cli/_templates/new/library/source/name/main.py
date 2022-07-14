@@ -33,8 +33,7 @@ class MainWithApplicationHostAndStartupTemplate(TemplateFileABC):
                 
                 
                 if __name__ == '__main__':
-                    ml = asyncio.get_event_loop()
-                    ml.run_until_complete(main())
+                    asyncio.run(main())
             """)
         else:
             self._value = textwrap.dedent(f"""\
@@ -95,8 +94,7 @@ class MainWithApplicationBaseTemplate(TemplateFileABC):
                 
                 
                 if __name__ == '__main__':
-                    ml = asyncio.get_event_loop()
-                    ml.run_until_complete(main())
+                    asyncio.run(main())
             """)
         else:
             self._value = textwrap.dedent(f"""\
@@ -147,8 +145,7 @@ class MainWithoutApplicationBaseTemplate(TemplateFileABC):
                 
                 
                 if __name__ == '__main__':
-                    ml = asyncio.get_event_loop()
-                    ml.run_until_complete(main())
+                    asyncio.run(main())
             """)
         else:
             self._value = textwrap.dedent("""\
@@ -210,8 +207,7 @@ class MainWithDependencyInjection(TemplateFileABC):
                 
                 
                 if __name__ == '__main__':
-                    ml = asyncio.get_event_loop()
-                    ml.run_until_complete(main())
+                    asyncio.run(main())
             """)
         else:
             self._value = textwrap.dedent("""\

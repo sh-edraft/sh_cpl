@@ -121,11 +121,11 @@ class Pip:
         for arg in args:
             pip_args.append(arg)
 
+        pip_args.append(package)
+
         if source is not None:
             pip_args.append(f'--extra-index-url')
             pip_args.append(source)
-
-        pip_args.append(package)
         subprocess.run(pip_args, stdout=stdout, stderr=stderr, env=cls._env)
 
     @classmethod
