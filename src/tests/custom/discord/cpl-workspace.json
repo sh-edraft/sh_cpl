@@ -1,0 +1,9 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "discord",
+    "Projects": {
+      "discord": "src/discord/discord.json"
+    },
+    "Scripts": {}
+  }
+}
