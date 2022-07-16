@@ -50,9 +50,10 @@ class VersionSetterService:
             if dep_name[len(dep_name)-1] not in ascii_letters:
                 dep_name = dep_name[:len(dep_name)-1]
 
-            if skipped is not None and (dep_name in skipped or String.convert_to_snake_case(dep_name) in skipped):
+            if skipped is not None and (dep_name in skipped or String.convert_to_snake_case(dep_name) in skipped) or dep_version == '':
                 new_deps.append(dependency)
                 continue
+
             new_deps.append(dependency.replace(dep_version, f'{version["Major"]}.{version["Minor"]}.{version["Micro"]}'))
 
         project_json['ProjectSettings'][key] = new_deps
