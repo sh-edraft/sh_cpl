@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from cpl_translation import TranslationSettings
+
 
 class TranslationServiceABC(ABC):
 
@@ -16,7 +18,7 @@ class TranslationServiceABC(ABC):
     def load(self, lang: str): pass
 
     @abstractmethod
-    def load_by_settings(self): pass
+    def load_by_settings(self, settings: TranslationSettings): pass
 
     @abstractmethod
     def translate(self, key: str) -> str: pass
