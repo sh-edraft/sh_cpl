@@ -80,6 +80,6 @@ class DatabaseSettings(ConfigurationModelABC):
                 self._auth_plugin = settings[DatabaseSettingsNameEnum.auth_plugin.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
+            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
             Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
             Console.set_foreground_color(ForegroundColorEnum.default)

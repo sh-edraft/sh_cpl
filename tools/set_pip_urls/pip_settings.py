@@ -33,5 +33,5 @@ class PIPSettings(ConfigurationModelABC):
             self._staging = settings[EnvironmentNameEnum.staging.value]
             self._development = settings[EnvironmentNameEnum.development.value]
         except Exception as e:
-            Console.error(f'[ ERROR ] [ {__name__} ]: Reading error in {self.__name__} settings')
+            Console.error(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
             Console.error(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
