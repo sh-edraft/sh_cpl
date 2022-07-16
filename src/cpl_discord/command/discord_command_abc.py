@@ -2,10 +2,10 @@ from abc import ABC, abstractmethod
 
 from discord.ext import commands
 
-from commands_meta import CommandsMeta
+from discord_commands_meta import DiscordCogMeta
 
 
-class CommandABC(ABC, commands.Cog, metaclass=CommandsMeta):
+class DiscordCommandABC(ABC, commands.Cog, metaclass=DiscordCogMeta):
 
     @abstractmethod
     def __init__(self): pass

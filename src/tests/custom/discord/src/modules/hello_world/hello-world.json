@@ -1,6 +1,6 @@
 {
   "ProjectSettings": {
-    "Name": "discord",
+    "Name": "hello-world",
     "Version": {
       "Major": "0",
       "Minor": "0",
@@ -19,7 +19,7 @@
       "cpl-core>=2022.7.0"
     ],
     "DevDependencies": [
-      "cpl-cli>=2022.7.0"
+      "cpl-cli>=2022.7.0.post1"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {
@@ -28,11 +28,11 @@
     "Classifiers": []
   },
   "BuildSettings": {
-    "ProjectType": "console",
+    "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "discord.main",
-    "EntryPoint": "discord",
+    "Main": "hello_world.main",
+    "EntryPoint": "hello-world",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

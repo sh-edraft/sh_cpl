@@ -4,7 +4,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.console import Console
 
 
-class BotSettings(ConfigurationModelABC):
+class DiscordBotSettings(ConfigurationModelABC):
 
     def __init__(self):
         ConfigurationModelABC.__init__(self)

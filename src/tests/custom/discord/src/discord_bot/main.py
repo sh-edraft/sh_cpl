@@ -2,8 +2,8 @@ import asyncio
 
 from cpl_core.application import ApplicationBuilder
 
-from discord.application import Application
-from discord.startup import Startup
+from discord_bot.application import Application
+from discord_bot.startup import Startup
 
 
 async def main():

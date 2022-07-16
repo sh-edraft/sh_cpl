@@ -4,13 +4,16 @@ import discord
 from discord.ext import commands
 
 
-class BotServiceABC(ABC, commands.Bot):
+class DiscordBotServiceABC(commands.Bot):
 
-    def __init__(self):
-        ABC.__init__(self)
+    def __init__(self, **kwargs):
+        commands.Bot.__init__(self, **kwargs)
 
     @abstractmethod
     async def start_async(self): pass
 
     @abstractmethod
     async def stop_async(self): pass
+
+    @abstractmethod
+    async def on_ready(self): pass
