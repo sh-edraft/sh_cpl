@@ -21,6 +21,7 @@ from collections import namedtuple
 
 
 # imports
+from .discord_bot_settings import DiscordBotSettings
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2022', minor='7', micro='0')

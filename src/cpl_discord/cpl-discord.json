@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.7.0",
+      "cpl-core>=2022.7.0.post1",
       "discord.py==1.7.3",
       "cpl-query==2022.6.0"
     ],
@@ -33,8 +33,8 @@
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "cpl_discord.main",
-    "EntryPoint": "cpl-discord",
+    "Main": "",
+    "EntryPoint": "",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [

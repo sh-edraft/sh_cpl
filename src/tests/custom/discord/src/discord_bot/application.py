@@ -3,7 +3,7 @@ from cpl_core.configuration import ConfigurationABC
 from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging import LoggerABC
-from cpl_discord.application.discord_bot_abc import DiscordBotApplicationABC
+from cpl_discord.application.discord_bot_application_abc import DiscordBotApplicationABC
 from cpl_discord.configuration.discord_bot_settings import DiscordBotSettings
 from cpl_discord.service.discord_bot_service import DiscordBotService
 from cpl_discord.service.discord_bot_service_abc import DiscordBotServiceABC
