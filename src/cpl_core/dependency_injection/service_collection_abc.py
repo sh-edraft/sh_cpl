@@ -35,6 +35,11 @@ class ServiceCollectionABC(ABC):
         r"""Adds the CPL internal pipes as transient"""
         pass
 
+    def add_discord(self):
+        r"""Adds the CPL discord"""
+        raise NotImplementedError('You should install and use the cpl-discord package')
+        pass
+
     def add_translation(self):
         r"""Adds the CPL translation"""
         raise NotImplementedError('You should install and use the cpl-translation package')

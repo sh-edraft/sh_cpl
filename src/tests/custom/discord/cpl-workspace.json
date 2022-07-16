@@ -1,0 +1,10 @@
+{
+  "WorkspaceSettings": {
+    "DefaultProject": "discord-bot",
+    "Projects": {
+      "discord-bot": "src/discord_bot/discord-bot.json",
+      "hello-world": "src/modules/hello_world/hello-world.json"
+    },
+    "Scripts": {}
+  }
+}
