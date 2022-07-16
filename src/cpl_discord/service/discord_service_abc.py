@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Optional, Sequence, Union
 
 import discord
+from discord.ext import commands
 
 
 class DiscordServiceABC(ABC):
@@ -11,7 +12,19 @@ class DiscordServiceABC(ABC):
         ABC.__init__(self)
 
     @abstractmethod
+    def init(self, bot: commands.Bot): pass
+
+    @abstractmethod
     async def on_connect(self): pass
+
+    @abstractmethod
+    async def on_command(self): pass
+
+    @abstractmethod
+    async def on_command_error(self): pass
+
+    @abstractmethod
+    async def on_command_completion(self): pass
 
     @abstractmethod
     async def on_disconnect(self): pass

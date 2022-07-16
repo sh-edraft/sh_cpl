@@ -3,6 +3,7 @@ from typing import Optional, Sequence, Union, Type
 
 import discord
 from discord.ext import commands
+from discord.ext.commands import Context, CommandError
 
 from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
@@ -10,6 +11,9 @@ from cpl_core.logging import LoggerABC
 from cpl_core.utils import String
 from cpl_discord.command.discord_commands_meta import DiscordCogMeta
 from cpl_discord.events.on_bulk_message_delete_abc import OnBulkMessageDeleteABC
+from cpl_discord.events.on_command_abc import OnCommandABC
+from cpl_discord.events.on_command_completion_abc import OnCommandCompletionABC
+from cpl_discord.events.on_command_error_abc import OnCommandErrorABC
 from cpl_discord.events.on_connect_abc import OnConnectABC
 from cpl_discord.events.on_disconnect_abc import OnDisconnectABC
 from cpl_discord.events.on_group_join_abc import OnGroupJoinABC
@@ -90,12 +94,44 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
                 func = getattr(event_instance, func_name)
                 await func(*args)
             except Exception as e:
-                self._logger.error(__name__, f'Cannot execute {func_name} of {event_instance.__name__}', e)
+                self._logger.error(__name__, f'Cannot execute {func_name} of {type(event_instance).__name__}', e)
+
+    def init(self, bot: commands.Bot):
+        try:
+            bot.add_cog(self)
+        except Exception as e:
+            self._logger.error(__name__, f'{type(self).__name__} initialization failed', e)
+
+        try:
+            for command_type in self._collection.get_commands():
+                self._logger.trace(__name__, f'Register command {command_type.__name__}')
+                command = self._services.get_service(command_type)
+                if command is None:
+                    self._logger.warn(__name__, f'Instance of {command_type.__name__} not found')
+                    continue
+                bot.add_cog(command)
+        except Exception as e:
+            self._logger.error(__name__, f'Registration of commands failed', e)
 
     @commands.Cog.listener()
     async def on_connect(self):
         self._logger.trace(__name__, f'Received on_connect')
         await self._handle_event(OnConnectABC)
+
+    @commands.Cog.listener()
+    async def on_command(self, ctx: Context):
+        self._logger.trace(__name__, f'Received on_command')
+        await self._handle_event(OnCommandABC, ctx)
+
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx: Context, error: CommandError):
+        self._logger.trace(__name__, f'Received on_command_error')
+        await self._handle_event(OnCommandErrorABC, ctx, error)
+
+    @commands.Cog.listener()
+    async def on_command_completion(self, ctx: Context):
+        self._logger.trace(__name__, f'Received on_command_completion')
+        await self._handle_event(OnCommandCompletionABC, ctx)
 
     @commands.Cog.listener()
     async def on_disconnect(self):

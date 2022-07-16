@@ -1,7 +1,4 @@
-import sys
-
 import discord
-from discord.ext import commands
 
 from cpl_core.configuration import ConfigurationABC
 from cpl_core.console import Console
@@ -66,6 +63,6 @@ class DiscordBotService(DiscordBotServiceABC):
         if self._logging_st.console.value >= LoggingLevelEnum.INFO.value:
             Console.banner(self._env.application_name if self._env.application_name != '' else 'A bot')
 
-        self.add_cog(self._discord_service)
+        self._discord_service.init(self)
 
         await self._discord_service.on_ready()
