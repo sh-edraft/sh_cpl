@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from cpl_translation import TranslationSettings
+from cpl_translation.translation_settings import TranslationSettings
 
 
 class TranslationServiceABC(ABC):
