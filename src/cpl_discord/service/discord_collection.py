@@ -1,13 +1,11 @@
 from typing import Type, Optional
 
-from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceCollectionABC
+from cpl_discord.command.discord_command_abc import DiscordCommandABC
 from cpl_discord.discord_event_types_enum import DiscordEventTypesEnum
 from cpl_discord.service.command_error_handler_service import CommandErrorHandlerService
 from cpl_discord.service.discord_collection_abc import DiscordCollectionABC
 from cpl_query.extension import List
-
-from cpl_cli import CommandABC
 
 
 class DiscordCollection(DiscordCollectionABC):
@@ -17,15 +15,15 @@ class DiscordCollection(DiscordCollectionABC):
 
         self._services = service_collection
         self._events: dict[str, List] = {}
-        self._commands = List(type(CommandABC))
+        self._commands = List(type(DiscordCommandABC))
 
         self.add_event(DiscordEventTypesEnum.on_command_error.value, CommandErrorHandlerService)
 
-    def add_command(self, _t: Type[CommandABC]):
-        self._services.add_transient(CommandABC, _t)
+    def add_command(self, _t: Type[DiscordCommandABC]):
+        self._services.add_transient(DiscordCommandABC, _t)
         self._commands.append(_t)
 
-    def get_commands(self) -> List[CommandABC]:
+    def get_commands(self) -> List[DiscordCommandABC]:
         return self._commands
 
     def add_event(self, _t_event: Type, _t: Type):

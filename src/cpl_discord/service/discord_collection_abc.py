@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Type
 
+from cpl_discord.command import DiscordCommandABC
 from cpl_query.extension import List
-
-from cpl_cli import CommandABC
 
 
 class DiscordCollectionABC(ABC):
@@ -12,10 +11,10 @@ class DiscordCollectionABC(ABC):
         ABC.__init__(self)
 
     @abstractmethod
-    def add_command(self, _t: Type[CommandABC]): pass
+    def add_command(self, _t: Type[DiscordCommandABC]): pass
 
     @abstractmethod
-    def get_commands(self) -> List[CommandABC]: pass
+    def get_commands(self) -> List[DiscordCommandABC]: pass
 
     @abstractmethod
     def add_event(self, _t_event: Type, _t: Type): pass
