@@ -6,8 +6,6 @@ from typing import Union, Optional
 
 from art import text2art
 import colorama
-from pynput import keyboard
-from pynput.keyboard import Key
 from tabulate import tabulate
 from termcolor import colored
 
@@ -173,7 +171,7 @@ class Console:
         Console.write_line()
 
     @classmethod
-    def _select_menu_key_press(cls, key: Key):
+    def _select_menu_key_press(cls, key):
         r"""Event function when key press is detected
 
         Parameter
@@ -181,6 +179,7 @@ class Console:
             key: :class:`pynput.keyboard.Key`
                 Pressed key
         """
+        from pynput.keyboard import Key
         if key == Key.down:
             if cls._selected_menu_item_index == len(cls._select_menu_items) - 1:
                 return
@@ -400,6 +399,7 @@ class Console:
         Console.write_line(message, '\n')
         cls._show_select_menu()
 
+        from pynput import keyboard
         with keyboard.Listener(
                 on_press=cls._select_menu_key_press, suppress=False
         ) as listener:
