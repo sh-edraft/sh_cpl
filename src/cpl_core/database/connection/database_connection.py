@@ -30,6 +30,7 @@ class DatabaseConnection(DatabaseConnectionABC):
     def connect(self, database_settings: DatabaseSettings):
         connection = sql.connect(
             host=database_settings.host,
+            port=database_settings.port,
             user=database_settings.user,
             passwd=CredentialManager.decrypt(database_settings.password),
             charset=database_settings.charset,
@@ -41,6 +42,7 @@ class DatabaseConnection(DatabaseConnectionABC):
             f'CREATE DATABASE IF NOT EXISTS `{database_settings.database}`;')
         self._database = sql.connect(
             host=database_settings.host,
+            port=database_settings.port,
             user=database_settings.user,
             passwd=CredentialManager.decrypt(database_settings.password),
             db=database_settings.database,

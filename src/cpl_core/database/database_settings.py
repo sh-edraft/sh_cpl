@@ -14,6 +14,7 @@ class DatabaseSettings(ConfigurationModelABC):
         ConfigurationModelABC.__init__(self)
 
         self._host: Optional[str] = None
+        self._port: Optional[int] = None
         self._user: Optional[str] = None
         self._password: Optional[str] = None
         self._databse: Optional[str] = None
@@ -25,6 +26,10 @@ class DatabaseSettings(ConfigurationModelABC):
     @property
     def host(self) -> Optional[str]:
         return self._host
+
+    @property
+    def port(self) -> Optional[int]:
+        return self._port
 
     @property
     def user(self) -> Optional[str]:
@@ -63,6 +68,10 @@ class DatabaseSettings(ConfigurationModelABC):
         """
         try:
             self._host = settings[DatabaseSettingsNameEnum.host.value]
+            if DatabaseSettingsNameEnum.port.value in settings:
+                self._port = settings[DatabaseSettingsNameEnum.port.value]
+            else:
+                self._port = 3306
             self._user = settings[DatabaseSettingsNameEnum.user.value]
             self._password = settings[DatabaseSettingsNameEnum.password.value]
             self._databse = settings[DatabaseSettingsNameEnum.database.value]
