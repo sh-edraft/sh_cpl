@@ -30,6 +30,9 @@ class DiscordServiceABC(ABC):
     async def on_disconnect(self): pass
 
     @abstractmethod
+    async def on_error(self, event: str, *args, **kwargs): pass
+
+    @abstractmethod
     async def on_ready(self): pass
 
     @abstractmethod

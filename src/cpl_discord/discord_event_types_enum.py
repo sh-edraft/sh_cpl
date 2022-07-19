@@ -6,6 +6,7 @@ from cpl_discord.events.on_command_completion_abc import OnCommandCompletionABC
 from cpl_discord.events.on_command_error_abc import OnCommandErrorABC
 from cpl_discord.events.on_connect_abc import OnConnectABC
 from cpl_discord.events.on_disconnect_abc import OnDisconnectABC
+from cpl_discord.events.on_error_abc import OnErrorABC
 from cpl_discord.events.on_group_join_abc import OnGroupJoinABC
 from cpl_discord.events.on_group_remove_abc import OnGroupRemoveABC
 from cpl_discord.events.on_guild_available_abc import OnGuildAvailableABC
@@ -58,6 +59,7 @@ class DiscordEventTypesEnum(Enum):
     on_command_completion = OnCommandCompletionABC
     on_connect = OnConnectABC
     on_disconnect = OnDisconnectABC
+    on_error = OnErrorABC
     on_group_join = OnGroupJoinABC
     on_group_remove = OnGroupRemoveABC
     on_guild_available = OnGuildAvailableABC

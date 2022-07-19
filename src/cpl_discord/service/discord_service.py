@@ -16,6 +16,7 @@ from cpl_discord.events.on_command_completion_abc import OnCommandCompletionABC
 from cpl_discord.events.on_command_error_abc import OnCommandErrorABC
 from cpl_discord.events.on_connect_abc import OnConnectABC
 from cpl_discord.events.on_disconnect_abc import OnDisconnectABC
+from cpl_discord.events.on_error_abc import OnErrorABC
 from cpl_discord.events.on_group_join_abc import OnGroupJoinABC
 from cpl_discord.events.on_group_remove_abc import OnGroupRemoveABC
 from cpl_discord.events.on_guild_available_abc import OnGuildAvailableABC
@@ -76,7 +77,7 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
         self._collection = dc_collection
         self._services = services
 
-    async def _handle_event(self, event: Type, *args):
+    async def _handle_event(self, event: Type, *args, **kwargs):
         event_collection = self._collection.get_events_by_base(event)
         if event_collection is None:
             return
@@ -92,7 +93,7 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
 
             try:
                 func = getattr(event_instance, func_name)
-                await func(*args)
+                await func(*args, **kwargs)
             except Exception as e:
                 self._logger.error(__name__, f'Cannot execute {func_name} of {type(event_instance).__name__}', e)
 
@@ -137,6 +138,11 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
     async def on_disconnect(self):
         self._logger.trace(__name__, f'Received on_disconnect')
         await self._handle_event(OnDisconnectABC)
+
+    @commands.Cog.listener()
+    async def on_error(self, event: str, *args, **kwargs):
+        self._logger.trace(__name__, f'Received on_error')
+        await self._handle_event(OnErrorABC, event, *args, **kwargs)
 
     async def on_ready(self):
         self._logger.trace(__name__, f'Received on_ready')
