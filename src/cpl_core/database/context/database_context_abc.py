@@ -12,8 +12,8 @@ class DatabaseContextABC(ABC):
         pass
 
     @property
-    def cursor(self) -> MySQLCursorBuffered:
-        return self._cursor
+    @abstractmethod
+    def cursor(self) -> MySQLCursorBuffered: pass
     
     @abstractmethod
     def connect(self, database_settings: DatabaseSettings):
