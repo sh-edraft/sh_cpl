@@ -53,4 +53,9 @@ class Application(ApplicationABC):
         ip_pipe2: IPAddressPipe = self._services.get_service(IPAddressPipe)
         Console.write_line(f'DI working: {test == test2 and ip_pipe != ip_pipe2}')
         Console.write_line(self._services.get_service(LoggerABC))
+
+        scope = self._services.create_scope()
+        Console.write_line('scope', scope)
+        with self._services.create_scope() as s:
+            Console.write_line('with scope', s)
         # self.test_send_mail()
