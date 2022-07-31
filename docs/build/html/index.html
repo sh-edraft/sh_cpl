@@ -40,6 +40,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>
@@ -73,6 +74,158 @@
 <h1>Introduction to the CPL Docs<a class="headerlink" href="#introduction-to-the-cpl-docs" title="Permalink to this heading"></a></h1>
 <p>The Common Python Library (CPL) is a package for python and a development platform meant to help you create simple and efficient server and desktop applications.</p>
 <p>This CPL docs help you learn, understand and use the package. From your first application to complex apps for enterprises.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cpl-core</dt><dd><ul>
+<li><p>Expandle</p></li>
+<li><dl class="simple">
+<dt>Application base</dt><dd><ul>
+<li><p>Standardized application classes</p></li>
+<li><p>Application object builder</p></li>
+<li><p>Application extension classes</p></li>
+<li><p>Startup classes</p></li>
+<li><p>Startup extension classes</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Configuration</dt><dd><ul>
+<li><p>Configure via object mapped JSON</p></li>
+<li><p>Console argument handling</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Console class for in and output</dt><dd><ul>
+<li><p>Banner</p></li>
+<li><p>Spinner</p></li>
+<li><p>Options (menu)</p></li>
+<li><p>Table</p></li>
+<li><p>Write</p></li>
+<li><p>Write_at</p></li>
+<li><p>Write_line</p></li>
+<li><p>Write_line_at</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Dependency injection</dt><dd><ul>
+<li><p>Service lifetimes: singleton, scoped and transient</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Providing of application environment</dt><dd><ul>
+<li><p>Environment (development, staging, testing, production)</p></li>
+<li><p>Appname</p></li>
+<li><p>Customer</p></li>
+<li><p>Hostname</p></li>
+<li><p>Runtime directory</p></li>
+<li><p>Working directory</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Logging</dt><dd><ul>
+<li><p>Standardized logger</p></li>
+<li><p>Log-level (FATAL, ERROR, WARN, INFO, DEBUG &amp; TRACE)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Mail handling</dt><dd><ul>
+<li><p>Send mails</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Pipe classes</dt><dd><ul>
+<li><p>Convert input</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Utils</dt><dd><ul>
+<li><dl class="simple">
+<dt>Credential manager</dt><dd><ul>
+<li><p>Encryption via BASE64</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PIP wrapper class based on subprocess</dt><dd><ul>
+<li><p>Run pip commands</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>String converter to different variants</dt><dd><ul>
+<li><p>to_lower_case</p></li>
+<li><p>to_camel_case</p></li>
+<li><p>…</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cpl-cli</dt><dd><ul>
+<li><p>Expandle</p></li>
+<li><p>Code generation</p></li>
+<li><p>Package managing</p></li>
+<li><p>Build &amp; Publishing</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cpl-discord</dt><dd><ul>
+<li><p>Utils for discord.py</p></li>
+<li><p>Connector between cpl-core and discord.py</p></li>
+<li><p>Prepared services for dependency injection</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cpl-query</dt><dd><ul>
+<li><p>Python list extensions</p></li>
+<li><p>Functions for sorting and filtering</p></li>
+<li><p>Like linq from C# but in python xD</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cpl-translate</dt><dd><ul>
+<li><p>Generic translations</p></li>
+<li><p>Prepared translation service and translate pipe</p></li>
+<li><p>Get translation from JSON files key dot.key notation</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
 <section id="manuals">
 <h2>Manuals<a class="headerlink" href="#manuals" title="Permalink to this heading"></a></h2>
 <p>These pages go into great detail about everything the Library can do.</p>
@@ -80,6 +233,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>

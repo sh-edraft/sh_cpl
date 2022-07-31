@@ -1,9 +1,9 @@
 # cpl help
 
-<!-- ## Contents
+## Contents
 
-- [Description](#description) -->
-<!-- - [Arguments](#arguments) -->
+- [Description](#description)
+- [Arguments](#arguments)
 
 Lists available command and their short descriptions.
 
