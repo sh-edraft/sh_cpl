@@ -44,7 +44,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 2. Be sure that an issue describes the problem you're fixing, or documents the design for the feature you'd like to add. Discussing the design upfront helps to ensure that we're ready to accept your work.
 
-3. Fork the sh-edraft.de/sh_cpl repo.
+3. Fork the sh-edraft.de/cpl repo.
 
 4. In your forked repository, make your changes in a new git branch:
 
@@ -70,7 +70,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     git push origin my-fix-branch
     ```
 
-8. In Gitea, send a pull request to sh_cpl:master
+8. In Gitea, send a pull request to cpl:master
 
 ### Reviewing a Pull Request
 
@@ -104,7 +104,7 @@ To ensure consistency throughout the source code, keep these rules in mind as yo
 ## License
 
 By contributing, you agree that your contributions will be licensed under its MIT License.
-See [LICENSE](https://git.sh-edraft.de/sh-edraft.de/sh_cpl/src/branch/master/LICENSE)
+See [LICENSE](https://git.sh-edraft.de/sh-edraft.de/cpl/src/branch/master/LICENSE)
 
 <!-- LINKS -->
 [gitea-repo]: https://git.sh-edraft.de/sh-edraft.de/sh_cpl/
