@@ -7,6 +7,7 @@ from cpl_discord.discord_event_types_enum import DiscordEventTypesEnum
 from modules.hello_world.on_ready_event import OnReadyEvent
 from modules.hello_world.on_ready_test_event import OnReadyTestEvent
 from modules.hello_world.ping_command import PingCommand
+from modules.hello_world.purge_command import PurgeCommand
 
 
 class Startup(StartupABC):
@@ -28,5 +29,6 @@ class Startup(StartupABC):
         dc_collection.add_event(DiscordEventTypesEnum.on_ready.value, OnReadyEvent)
         dc_collection.add_event(DiscordEventTypesEnum.on_ready.value, OnReadyTestEvent)
         dc_collection.add_command(PingCommand)
+        dc_collection.add_command(PurgeCommand)
 
         return services.build_service_provider()

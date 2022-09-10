@@ -21,28 +21,36 @@ class DiscordBotService(DiscordBotServiceABC):
             discord_service: DiscordServiceABC
     ):
         # services
+        self._config = config
         self._logger = logger
         self._env = env
         self._logging_st = logging_st
         self._discord_service = discord_service
 
         # settings
-        if discord_bot_settings is None:
-            self._discord_settings = DiscordBotSettings()
-            token = config.get_configuration('TOKEN')
-            if token is None:
-                raise Exception('You have to configure discord token by appsettings or environment variables')
-
-            prefix = config.get_configuration('PREFIX')
-            self._discord_settings.from_dict({
-                'Token': token,
-                'Prefix': prefix if prefix is not None else '! '
-            })
-        else:
-            self._discord_settings = discord_bot_settings
+        self._discord_settings = self._get_settings(discord_bot_settings)
 
         # setup super
         DiscordBotServiceABC.__init__(self, command_prefix=self._discord_settings.prefix, help_command=None, intents=discord.Intents().all())
+
+    @staticmethod
+    def _is_string_invalid(x):
+        return x is None or x == ''
+
+    def _get_settings(self, settings_from_config: DiscordBotSettings) -> DiscordBotSettings:
+        new_settings = DiscordBotSettings()
+        token = settings_from_config.token
+        prefix = settings_from_config.prefix
+        env_token = self._config.get_configuration('TOKEN')
+        env_prefix = self._config.get_configuration('PREFIX')
+
+        new_settings.from_dict({
+            'Token': env_token if token is None or token == '' else token,
+            'Prefix': ('! ' if self._is_string_invalid(env_prefix) else env_prefix) if self._is_string_invalid(prefix) else prefix
+        })
+        if new_settings.token is None or new_settings.token == '':
+            raise Exception('You have to configure discord token by appsettings or environment variables')
+        return new_settings
 
     async def start_async(self):
         self._logger.trace(__name__, 'Try to connect to discord')
@@ -63,6 +71,6 @@ class DiscordBotService(DiscordBotServiceABC):
         if self._logging_st.console.value >= LoggingLevelEnum.INFO.value:
             Console.banner(self._env.application_name if self._env.application_name != '' else 'A bot')
 
-        self._discord_service.init(self)
+        await self._discord_service.init(self)
 
         await self._discord_service.on_ready()

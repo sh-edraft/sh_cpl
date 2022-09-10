@@ -1,7 +1,7 @@
 import asyncio
 from typing import Optional
 
-from cpl_core.application import ApplicationBuilder
+from cpl_core.application import ApplicationBuilder, ApplicationABC
 
 from discord_bot.application import Application
 from discord_bot.startup import Startup
@@ -15,7 +15,7 @@ class Main:
     async def main(self):
         app_builder = ApplicationBuilder(Application)
         app_builder.use_startup(Startup)
-        self._app: Application = await app_builder.build_async()
+        self._app: ApplicationABC = await app_builder.build_async()
         await self._app.run_async()
 
     async def stop(self):

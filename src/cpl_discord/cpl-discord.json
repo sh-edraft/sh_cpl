@@ -3,8 +3,8 @@
     "Name": "cpl-discord",
     "Version": {
       "Major": "2022",
-      "Minor": "7",
-      "Micro": "0.post4"
+      "Minor": "10",
+      "Micro": "1"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -17,7 +17,7 @@
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
       "cpl-core>=2022.7.0.post2",
-      "discord.py==1.7.3",
+      "discord.py==2.0.1",
       "cpl-query==2022.7.0"
     ],
     "DevDependencies": [

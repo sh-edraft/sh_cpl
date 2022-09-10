@@ -42,9 +42,6 @@ from cpl_discord.events.on_reaction_clear_abc import OnReactionClearABC
 from cpl_discord.events.on_reaction_clear_emoji_abc import OnReactionClearEmojiABC
 from cpl_discord.events.on_reaction_remove_abc import OnReactionRemoveABC
 from cpl_discord.events.on_ready_abc import OnReadyABC
-from cpl_discord.events.on_relationship_add_abc import OnRelationshipAddABC
-from cpl_discord.events.on_relationship_remove_abc import OnRelationshipRemoveABC
-from cpl_discord.events.on_relationship_update_abc import OnRelationshipUpdateABC
 from cpl_discord.events.on_resume_abc import OnResumeABC
 from cpl_discord.events.on_typing_abc import OnTypingABC
 from cpl_discord.events.on_user_update_abc import OnUserUpdateABC
@@ -95,9 +92,6 @@ class DiscordEventTypesEnum(Enum):
     on_reaction_clear_emoji = OnReactionClearEmojiABC
     on_reaction_remove = OnReactionRemoveABC
     on_ready = OnReadyABC
-    on_relationship_add = OnRelationshipAddABC
-    on_relationship_remove = OnRelationshipRemoveABC
-    on_relationship_update = OnRelationshipUpdateABC
     on_resume = OnResumeABC
     on_typing = OnTypingABC
     on_user_update = OnUserUpdateABC

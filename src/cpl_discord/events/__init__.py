@@ -62,9 +62,6 @@ from .on_reaction_clear_abc import OnReactionClearABC
 from .on_reaction_clear_emoji_abc import OnReactionClearEmojiABC
 from .on_reaction_remove_abc import OnReactionRemoveABC
 from .on_ready_abc import OnReadyABC
-from .on_relationship_add_abc import OnRelationshipAddABC
-from .on_relationship_remove_abc import OnRelationshipRemoveABC
-from .on_relationship_update_abc import OnRelationshipUpdateABC
 from .on_resume_abc import OnResumeABC
 from .on_typing_abc import OnTypingABC
 from .on_user_update_abc import OnUserUpdateABC
