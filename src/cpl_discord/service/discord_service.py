@@ -3,9 +3,8 @@ from typing import Optional, Sequence, Union, Type
 
 import discord
 from discord.ext import commands
-from discord.ext.commands import Context, CommandError
+from discord.ext.commands import Context, CommandError, Cog, Command
 
-from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging import LoggerABC
 from cpl_core.utils import String
@@ -52,9 +51,6 @@ from cpl_discord.events.on_reaction_clear_abc import OnReactionClearABC
 from cpl_discord.events.on_reaction_clear_emoji_abc import OnReactionClearEmojiABC
 from cpl_discord.events.on_reaction_remove_abc import OnReactionRemoveABC
 from cpl_discord.events.on_ready_abc import OnReadyABC
-from cpl_discord.events.on_relationship_add_abc import OnRelationshipAddABC
-from cpl_discord.events.on_relationship_remove_abc import OnRelationshipRemoveABC
-from cpl_discord.events.on_relationship_update_abc import OnRelationshipUpdateABC
 from cpl_discord.events.on_resume_abc import OnResumeABC
 from cpl_discord.events.on_typing_abc import OnTypingABC
 from cpl_discord.events.on_user_update_abc import OnUserUpdateABC
@@ -97,20 +93,20 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
             except Exception as e:
                 self._logger.error(__name__, f'Cannot execute {func_name} of {type(event_instance).__name__}', e)
 
-    def init(self, bot: commands.Bot):
+    async def init(self, bot: commands.Bot):
         try:
-            bot.add_cog(self)
+            await bot.add_cog(self)
         except Exception as e:
             self._logger.error(__name__, f'{type(self).__name__} initialization failed', e)
 
         try:
             for command_type in self._collection.get_commands():
                 self._logger.trace(__name__, f'Register command {command_type.__name__}')
-                command = self._services.get_service(command_type)
+                command: Cog = self._services.get_service(command_type)
                 if command is None:
                     self._logger.warn(__name__, f'Instance of {command_type.__name__} not found')
                     continue
-                bot.add_cog(command)
+                await bot.add_cog(command)
         except Exception as e:
             self._logger.error(__name__, f'Registration of commands failed', e)
 
@@ -352,18 +348,3 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
     async def on_group_remove(self, channel: discord.GroupChannel, user: discord.User):
         self._logger.trace(__name__, f'Received on_group_remove:\n\t{channel}\n\t{user}')
         await self._handle_event(OnGroupRemoveABC, channel, user)
-
-    @commands.Cog.listener()
-    async def on_relationship_add(self, relationship: discord.Relationship):
-        self._logger.trace(__name__, f'Received on_relationship_add:\n\t{relationship}')
-        await self._handle_event(OnRelationshipAddABC, relationship)
-
-    @commands.Cog.listener()
-    async def on_relationship_remove(self, relationship: discord.Relationship):
-        self._logger.trace(__name__, f'Received on_relationship_remove:\n\t{relationship}')
-        await self._handle_event(OnRelationshipRemoveABC, relationship)
-
-    @commands.Cog.listener()
-    async def on_relationship_update(self, before: discord.Relationship, after: discord.Relationship):
-        self._logger.trace(__name__, f'Received on_relationship_update:\n\t{before}\n\t{after}')
-        await self._handle_event(OnRelationshipUpdateABC, before, after)

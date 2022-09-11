@@ -157,12 +157,3 @@ class DiscordServiceABC(ABC):
 
     @abstractmethod
     async def on_group_remove(self, chhanel: discord.GroupChannel, user: discord.User): pass
-
-    @abstractmethod
-    async def on_relationship_add(self, relationship: discord.Relationship): pass
-
-    @abstractmethod
-    async def on_relationship_remove(self, relationship: discord.Relationship): pass
-
-    @abstractmethod
-    async def on_relationship_update(self, before: discord.Relationship, after: discord.Relationship): pass
