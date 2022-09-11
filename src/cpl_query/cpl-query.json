@@ -3,8 +3,8 @@
     "Name": "cpl-query",
     "Version": {
       "Major": "2022",
-      "Minor": "7",
-      "Micro": "0"
+      "Minor": "10",
+      "Micro": "2"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
