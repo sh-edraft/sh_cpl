@@ -72,5 +72,8 @@ class DiscordBotService(DiscordBotServiceABC):
             Console.banner(self._env.application_name if self._env.application_name != '' else 'A bot')
 
         await self._discord_service.init(self)
+        await self.wait_until_ready()
+        await self.tree.sync()
+        self._logger.debug(__name__, f'Finished syncing commands')
 
         await self._discord_service.on_ready()

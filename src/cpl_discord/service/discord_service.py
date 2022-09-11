@@ -3,7 +3,7 @@ from typing import Optional, Sequence, Union, Type
 
 import discord
 from discord.ext import commands
-from discord.ext.commands import Context, CommandError, Cog
+from discord.ext.commands import Context, CommandError, Cog, Command
 
 from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging import LoggerABC
