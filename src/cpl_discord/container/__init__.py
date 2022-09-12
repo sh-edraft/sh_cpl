@@ -21,6 +21,14 @@ from collections import namedtuple
 
 
 # imports
+from .category_channel import CategoryChannel
+from .container import Container
+from .guild import Guild
+from .member import Member
+from .role import Role
+from .text_channel import TextChannel
+from .thread import Thread
+from .voice_channel import VoiceChannel
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2022', minor='10', micro='2')
