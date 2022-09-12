@@ -6,7 +6,7 @@ from cpl_core.environment import ApplicationEnvironmentABC
 from cpl_core.logging import LoggerABC, LoggingSettings, LoggingLevelEnum
 from cpl_discord.configuration.discord_bot_settings import DiscordBotSettings
 from cpl_discord.container.guild import Guild
-from cpl_discord.helper.ToContainersConverter import ToContainersConverter
+from cpl_discord.helper.to_containers_converter import ToContainersConverter
 from cpl_discord.service.discord_bot_service_abc import DiscordBotServiceABC
 from cpl_discord.service.discord_service_abc import DiscordServiceABC
 from cpl_query.extension.list import List

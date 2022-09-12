@@ -6,10 +6,10 @@ from cpl_discord.helper.to_containers_converter import ToContainersConverter
 from cpl_query.extension import List
 
 
-class VoiceChannel(discord.VoiceChannel, Container):
+class Thread(discord.Thread, Container):
 
-    def __init__(self, _t: discord.VoiceChannel):
-        Container.__init__(self, _t, VoiceChannel)
+    def __init__(self, _t: discord.Thread):
+        Container.__init__(self, _t, Thread)
 
     @property
     def members(self) -> List[Member]:
