@@ -2,7 +2,7 @@ import discord
 
 from cpl_discord.container.container import Container
 from cpl_discord.container.member import Member
-from cpl_discord.container.threads import Thread
+from cpl_discord.container.thread import Thread
 from cpl_discord.helper.to_containers_converter import ToContainersConverter
 from cpl_query.extension import List
 

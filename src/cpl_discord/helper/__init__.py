@@ -21,6 +21,7 @@ from collections import namedtuple
 
 
 # imports
+from .to_containers_converter import ToContainersConverter
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2022', minor='10', micro='2')
