@@ -1,7 +1,9 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
-import discord
 from discord.ext import commands
+
+from cpl_discord.container.guild import Guild
+from cpl_query.extension.list import List
 
 
 class DiscordBotServiceABC(commands.Bot):
@@ -17,3 +19,7 @@ class DiscordBotServiceABC(commands.Bot):
 
     @abstractmethod
     async def on_ready(self): pass
+
+    @property
+    @abstractmethod
+    def guilds(self) -> List[Guild]: pass

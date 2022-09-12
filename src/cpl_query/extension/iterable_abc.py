@@ -158,7 +158,7 @@ class IterableABC(ABC, list):
         """
         pass
 
-    def extend(self, __iterable: Iterable) -> None:
+    def extend(self, __iterable: Iterable) -> 'IterableABC':
         r"""Adds elements of given list to list
 
         Parameter
@@ -168,6 +168,8 @@ class IterableABC(ABC, list):
         """
         for value in __iterable:
             self.append(value)
+
+        return self
 
     @abstractmethod
     def last(self) -> any:
@@ -283,6 +285,24 @@ class IterableABC(ABC, list):
     @abstractmethod
     def reverse(self) -> 'IterableABC':
         r"""Reverses list
+
+        Returns
+        -------
+            :class: `cpl_query.extension.iterable_abc.IterableABC`
+        """
+        pass
+
+    def select(self, _f: Callable) -> 'IterableABC':
+        r"""Formats each element of list to a given format
+
+        Returns
+        -------
+            :class: `cpl_query.extension.iterable_abc.IterableABC`
+        """
+        pass
+
+    def select_many(self, _f: Callable) -> 'IterableABC':
+        r"""Flattens resulting lists to one
 
         Returns
         -------

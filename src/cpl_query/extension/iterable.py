@@ -14,6 +14,7 @@ from cpl_query._query.for_each import for_each_query
 from cpl_query._query.max_min import max_query, min_query
 from cpl_query._query.order_by import order_by_descending_query, order_by_query
 from cpl_query._query.reverse import reverse_query
+from cpl_query._query.select import select_query, select_many_query
 from cpl_query._query.single import single_or_default_query, single_query
 from cpl_query._query.skip_take import (skip_last_query, skip_query,
                                         take_last_query, take_query)
@@ -93,6 +94,12 @@ class Iterable(IterableABC):
 
     def single_or_default(self) -> Optional[any]:
         return single_or_default_query(self)
+
+    def select(self, _f: Callable) -> IterableABC:
+        return self.__to_self(select_query(self, _f))
+
+    def select_many(self, _f: Callable) -> IterableABC:
+        return self.__to_self(select_many_query(self, _f))
 
     def skip(self, index: int) -> IterableABC:
         return self.__to_self(skip_query(self, index))

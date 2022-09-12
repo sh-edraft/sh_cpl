@@ -161,9 +161,9 @@ class QueryTestCase(unittest.TestCase):
     def test_for_each(self):
         users = []
         self._tests.for_each(lambda user: (
-                users.append(user)
-            )
+            users.append(user)
         )
+                             )
 
         self.assertEqual(len(users), len(self._tests))
 
@@ -238,6 +238,35 @@ class QueryTestCase(unittest.TestCase):
         l_res.reverse()
 
         self.assertEqual(l_res, res)
+
+    def test_select(self):
+        range_list = List(int, range(0, 100))
+        selected_range = range_list.select(lambda x: x + 1)
+
+        modulo_range = []
+        for x in range(0, 100):
+            if x % 2 == 0:
+                modulo_range.append(x)
+        self.assertEqual(selected_range.to_list(), list(range(1, 101)))
+        self.assertEqual(range_list.where(lambda x: x % 2 == 0).to_list(), modulo_range)
+
+    def test_select_many(self):
+        range_list = List(int, range(0, 100))
+        selected_range = range_list.select(lambda x: [x, x])
+
+        self.assertEqual(selected_range, [[x, x] for x in range(0, 100)])
+        self.assertEqual(selected_range.select_many(lambda x: x).to_list(), [_x for _l in [2 * [x] for x in range(0, 100)] for _x in _l])
+
+        class TestClass:
+            def __init__(self, i, is_sub=False):
+                self.i = i
+                if is_sub:
+                    return
+                self.elements = [TestClass(x, True) for x in range(0, 10)]
+
+        elements = List(TestClass, [TestClass(i) for i in range(0, 100)])
+        selected_elements = elements.select_many(lambda x: x.elements).select(lambda x: x.i)
+        self.assertEqual(selected_elements.where(lambda x: x == 0).count(), 100)
 
     def test_single(self):
         res = self._tests.where(lambda u: u.address.nr == self._t_user.address.nr)
