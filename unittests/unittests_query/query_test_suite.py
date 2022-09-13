@@ -1,5 +1,6 @@
 import unittest
 
+from unittests_query.enumerable_test_case import EnumerableTestCase
 from unittests_query.iterable_test_case import IterableTestCase
 from unittests_query.query_test_case import QueryTestCase
 
@@ -11,6 +12,7 @@ class QueryTestSuite(unittest.TestSuite):
 
         loader = unittest.TestLoader()
         self.addTests(loader.loadTestsFromTestCase(QueryTestCase))
+        self.addTests(loader.loadTestsFromTestCase(EnumerableTestCase))
         self.addTests(loader.loadTestsFromTestCase(IterableTestCase))
 
     def run(self, *args):

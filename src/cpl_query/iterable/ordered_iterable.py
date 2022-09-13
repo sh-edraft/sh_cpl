@@ -1,7 +1,7 @@
 from collections.abc import Callable
 
-from cpl_query.extension.iterable import Iterable
-from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
+from cpl_query.iterable.iterable import Iterable
+from cpl_query.iterable.ordered_iterable_abc import OrderedIterableABC
 from cpl_query.query import Query
 
 

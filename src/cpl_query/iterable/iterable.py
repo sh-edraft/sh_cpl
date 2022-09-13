@@ -1,7 +1,7 @@
 from typing import Callable, Optional, Union
 
-from cpl_query.extension.iterable_abc import IterableABC
-from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
+from cpl_query.iterable.iterable_abc import IterableABC
+from cpl_query.iterable.ordered_iterable_abc import OrderedIterableABC
 from cpl_query.query import Query
 
 
@@ -57,13 +57,13 @@ class Iterable(IterableABC):
 
     def order_by(self, func: Callable) -> OrderedIterableABC:
         res = Query.order_by(self, func)
-        from cpl_query.extension.ordered_iterable import OrderedIterable
+        from cpl_query.iterable.ordered_iterable import OrderedIterable
         res.__class__ = OrderedIterable
         return res
 
     def order_by_descending(self, func: Callable) -> OrderedIterableABC:
         res = Query.order_by_descending(self, func)
-        from cpl_query.extension.ordered_iterable import OrderedIterable
+        from cpl_query.iterable.ordered_iterable import OrderedIterable
         res.__class__ = OrderedIterable
         return res
 

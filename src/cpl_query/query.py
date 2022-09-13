@@ -2,8 +2,8 @@ from typing import Callable, Union, Optional
 
 from cpl_query._helper import is_number
 from cpl_query.exceptions import ArgumentNoneException, ExceptionArgument, InvalidTypeException, IndexOutOfRangeException
-from cpl_query.extension.iterable_abc import IterableABC
-from cpl_query.extension.ordered_iterable_abc import OrderedIterableABC
+from cpl_query.iterable.iterable_abc import IterableABC
+from cpl_query.iterable.ordered_iterable_abc import OrderedIterableABC
 
 
 class Query:
