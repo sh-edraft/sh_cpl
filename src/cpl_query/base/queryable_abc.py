@@ -5,7 +5,7 @@ from typing import Optional, Callable, Union
 class QueryableABC(ABC):
 
     @abstractmethod
-    def all(self, func: Callable) -> bool:
+    def all(self, _func: Callable) -> bool:
         r"""Checks if every element of list equals result found by function
 
         Parameter
@@ -20,7 +20,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def any(self, func: Callable) -> bool:
+    def any(self, _func: Callable) -> bool:
         r"""Checks if list contains result found by function
 
         Parameter
@@ -35,7 +35,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def average(self, func: Callable = None) -> Union[int, float, complex]:
+    def average(self, _func: Callable) -> Union[int, float, complex]:
         r"""Returns average value of list
 
         Parameter
@@ -65,7 +65,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def count(self, func: Callable = None) -> int:
+    def count(self, _func: Callable = None) -> int:
         r"""Returns length of list or count of found elements
 
         Parameter
@@ -80,7 +80,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def distinct(self, func: Callable = None) -> 'QueryableABC':
+    def distinct(self, _func: Callable = None) -> 'QueryableABC':
         r"""Returns list without redundancies
 
         Parameter
@@ -125,26 +125,6 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def last(self) -> any:
-        r"""Returns last element
-
-        Returns
-        -------
-            Last element of list: any
-        """
-        pass
-
-    @abstractmethod
-    def last_or_default(self) -> any:
-        r"""Returns last element or None
-
-        Returns
-        -------
-            Last element of list: Optional[any]
-        """
-        pass
-
-    @abstractmethod
     def first(self) -> any:
         r"""Returns first element
 
@@ -165,7 +145,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def for_each(self, func: Callable):
+    def for_each(self, _func: Callable):
         r"""Runs given function for each element of list
 
         Parameter
@@ -176,8 +156,27 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def max(self, func: Callable = None) -> Union[int, float, complex]:
-        r"""Returns highest value
+    def last(self) -> any:
+        r"""Returns last element
+
+        Returns
+        -------
+            Last element of list: any
+        """
+        pass
+
+    @abstractmethod
+    def last_or_default(self) -> any:
+        r"""Returns last element or None
+
+        Returns
+        -------
+            Last element of list: Optional[any]
+        """
+        pass
+    @abstractmethod
+    def max(self, _func: Callable) -> Union[int, float, complex]:
+        r"""Returns the highest value
 
         Parameter
         ---------
@@ -191,8 +190,19 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def min(self, func: Callable = None) -> Union[int, float, complex]:
-        r"""Returns highest value
+    def median(self) -> Union[int, float]:
+        r"""Return the median value of data elements
+
+        Returns
+        -------
+            Union[int, float]
+        """
+        pass
+
+
+    @abstractmethod
+    def min(self, _func: Callable) -> Union[int, float, complex]:
+        r"""Returns the lowest value
 
         Parameter
         ---------
@@ -206,7 +216,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def order_by(self, func: Callable) -> 'QueryableABC':
+    def order_by(self, _func: Callable) -> 'QueryableABC':
         r"""Sorts elements by function in ascending order
 
         Parameter
@@ -221,7 +231,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def order_by_descending(self, func: Callable) -> 'QueryableABC':
+    def order_by_descending(self, _func: Callable) -> 'QueryableABC':
         r"""Sorts elements by function in descending order
 
         Parameter
@@ -321,7 +331,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def sum(self, func: Callable = None) -> Union[int, float, complex]:
+    def sum(self, _func: Callable) -> Union[int, float, complex]:
         r"""Sum of all values
 
         Parameter
@@ -366,7 +376,7 @@ class QueryableABC(ABC):
         pass
 
     @abstractmethod
-    def where(self, func: Callable) -> 'QueryableABC':
+    def where(self, _func: Callable) -> 'QueryableABC':
         r"""Select element by function
 
         Parameter

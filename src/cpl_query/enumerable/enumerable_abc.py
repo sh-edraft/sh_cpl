@@ -1,63 +1,24 @@
-import itertools
 from abc import abstractmethod
-from typing import Union
+from typing import Iterable
 
-from cpl_query.enumerable.enumerable_values import EnumerableValues
+from cpl_query.base.queryable_abc import QueryableABC
+from cpl_query.base.sequence_abc import SequenceABC
+from cpl_query.base.sequence_values import SequenceValues
 
 
-class EnumerableABC:
+class EnumerableABC(SequenceABC, QueryableABC):
+    r"""ABC to define functions on list
+    """
 
     @abstractmethod
-    def __init__(self, t: type = None, values: Union[list, iter] = None):
-        if t == any:
-            t = None
-        self._type = t
-
-        self._values = EnumerableValues(values)
+    def __init__(self, t: type = None, values: Iterable = None):
+        SequenceABC.__init__(self, t, values)
         self._remove_error_check = True
 
     def set_remove_error_check(self, _value: bool):
         r"""Set flag to check if element exists before removing
         """
         self._remove_error_check = _value
-
-    def __len__(self):
-        return len(self._values)
-
-    def __iter__(self):
-        return iter(self._values)
-
-    def next(self):
-        return next(self._values)
-
-    def __next__(self):
-        return self.next()
-
-    def __getitem__(self, n) -> object:
-        r"""Gets item in enumerable at specified zero-based index
-
-        Parameter
-        --------
-            n: the index of the item to get
-
-        Returns
-        -------
-            The element at the specified index.
-
-        Raises
-        ------
-            IndexError if n > number of elements in the iterable
-        """
-        for i, e in enumerate(self):
-            if i == n:
-                return e
-
-    def __repr__(self):
-        return f'<EnumerableABC {list(self).__repr__()}>'
-
-    @property
-    def type(self) -> type:
-        return self._type
 
     def add(self, __object: object) -> None:
         r"""Adds an element to the enumerable.
@@ -68,16 +29,7 @@ class EnumerableABC:
         if len(self) == 0 and self._type is None:
             self._type = type(__object)
 
-        self._values = EnumerableValues([*self._values, __object])
-
-    def count(self) -> int:
-        r"""Returns count of  elements
-
-        Returns
-        -------
-            int
-        """
-        return sum(1 for element in self)
+        self._values = SequenceValues([*self._values, __object], self._type)
 
     def clear(self):
         r"""Removes all elements
@@ -85,19 +37,16 @@ class EnumerableABC:
         del self._values
         self._values = []
 
-    @staticmethod
-    def empty():
-        r"""Returns an empty enumerable
+    def extend(self, __list: Iterable) -> 'EnumerableABC':
+        r"""Adds elements of given list to enumerable
 
-        Returns
-        -------
-            Enumerable object that contains no elements
+        Parameter
+        ---------
+            __enumerable: :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`
+                index
         """
-        return EnumerableABC()
-
-    @staticmethod
-    def range(start: int, length: int) -> 'EnumerableABC':
-        return EnumerableABC(int, range(start, start + length, 1))
+        self._values = SequenceValues([*self._values, *__list], self._type)
+        return self
 
     def remove(self, __object: object) -> None:
         r"""Removes element from list
@@ -115,13 +64,4 @@ class EnumerableABC:
             raise Exception('Element not found')
 
         # self._values.remove(__object)
-        self._values = EnumerableValues([x for x in self.to_list() if x != __object])
-
-    def to_list(self) -> list:
-        r"""Converts :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC` to :class: `list`
-
-        Returns
-        -------
-            :class: `list`
-        """
-        return [x for x in self]
+        self._values = SequenceValues([x for x in self.to_list() if x != __object], self._type)

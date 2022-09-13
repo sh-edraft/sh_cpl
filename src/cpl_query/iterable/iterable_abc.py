@@ -1,33 +1,38 @@
-from abc import ABC, abstractmethod
-from typing import Optional, Callable, Union, Iterable
+from abc import abstractmethod
+from typing import Iterable
 
 from cpl_query.base.queryable_abc import QueryableABC
-from cpl_query.enumerable.enumerable_abc import EnumerableABC
+from cpl_query.base.sequence_abc import SequenceABC
+from cpl_query.base.sequence_values import SequenceValues
 
 
-class IterableABC(QueryableABC, list):
+class IterableABC(SequenceABC, QueryableABC):
     r"""ABC to define functions on list
     """
 
     @abstractmethod
     def __init__(self, t: type = None, values: list = None):
-        list.__init__(self)
+        SequenceABC.__init__(self, t, values)
 
-        if t == any:
-            t = None
-        self._type = t
+    def __getitem__(self, n) -> object:
+        r"""Gets item in enumerable at specified zero-based index
 
-        if values is not None:
-            for value in values:
-                self.append(value)
+        Parameter
+        --------
+            n: the index of the item to get
 
-    @property
-    def type(self) -> type:
-        return self._type
+        Returns
+        -------
+            The element at the specified index.
+
+        Raises
+        ------
+            IndexError if n > number of elements in the iterable
+        """
+        return list.__getitem__(self.to_list(), n)
 
     def append(self, __object: object) -> None:
         r"""Adds element to list
-
         Parameter
         ---------
             __object: :class:`object`
@@ -39,11 +44,10 @@ class IterableABC(QueryableABC, list):
         if len(self) == 0 and self._type is None:
             self._type = type(__object)
 
-        super().append(__object)
+        self._values = SequenceValues([*self._values, __object], self._type)
 
     def extend(self, __iterable: Iterable) -> 'IterableABC':
         r"""Adds elements of given list to list
-
         Parameter
         ---------
             __iterable: :class: `cpl_query.extension.iterable.Iterable`
@@ -53,12 +57,3 @@ class IterableABC(QueryableABC, list):
             self.append(value)
 
         return self
-
-    def to_list(self) -> list:
-        r"""Converts :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC` to :class: `list`
-
-        Returns
-        -------
-            :class: `list`
-        """
-        return list(self)

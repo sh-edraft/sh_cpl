@@ -23,8 +23,8 @@ class IndexOutOfRangeException(Exception):
     r"""Exception when index is out of range
     """
 
-    def __init__(self):
-        Exception.__init__(self, f'List index out of range')
+    def __init__(self, err: str = None):
+        Exception.__init__(self, f'List index out of range' if err is None else err)
 
 
 class InvalidTypeException(Exception):

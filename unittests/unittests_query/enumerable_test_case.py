@@ -1,13 +1,12 @@
 import unittest
 
-from cpl_query.extension.lazy_list import LazyList
-from cpl_query.extension.list import List
+from cpl_query.enumerable.enumerable import Enumerable
 
 
 class EnumerableTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
-        self._list = LazyList(int)
+        self._list = Enumerable(int)
 
     def _clear(self):
         self._list.clear()
@@ -22,19 +21,19 @@ class EnumerableTestCase(unittest.TestCase):
         self.assertRaises(Exception, lambda v: self._list.add(v), '3')
 
     def test_default(self):
-        self.assertEqual(LazyList.empty().to_list(), [])
-        self.assertEqual(LazyList.range(0, 100).to_list(), list(range(0, 100)))
+        self.assertEqual(Enumerable.empty().to_list(), [])
+        self.assertEqual(Enumerable.range(0, 100).to_list(), list(range(0, 100)))
 
     def test_iter(self):
         n = 0
-        elements = LazyList.range(0, 100)
+        elements = Enumerable.range(0, 100)
         while n < 100:
             self.assertEqual(elements.next(), n)
             n += 1
 
     def test_for(self):
         n = 0
-        for i in LazyList.range(0, 100):
+        for i in Enumerable.range(0, 100):
             self.assertEqual(i, n)
             n += 1
 
@@ -43,7 +42,7 @@ class EnumerableTestCase(unittest.TestCase):
         self._list.add(2)
         self._list.add(3)
 
-        self.assertEqual(self._list[2], [1, 2, 3][2])
+        self.assertEqual(self._list.element_at(2), [1, 2, 3][2])
 
     def test_count(self):
         self._list.add(1)
