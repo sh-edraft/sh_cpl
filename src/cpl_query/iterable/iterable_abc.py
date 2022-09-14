@@ -15,21 +15,21 @@ class IterableABC(SequenceABC, QueryableABC):
         SequenceABC.__init__(self, t, values)
 
     def __getitem__(self, n) -> object:
-        r"""Gets item in enumerable at specified zero-based index
+        return self.to_list().__getitem__(n)
 
-        Parameter
-        --------
-            n: the index of the item to get
+    def __delitem__(self, i: int):
+        """Delete an item"""
+        _l = self.to_list()
+        del _l[i]
+        self._values = SequenceValues(_l, self._type)
 
-        Returns
-        -------
-            The element at the specified index.
+    def __setitem__(self, i: int, value):
+        _l = self.to_list()
+        _l.__setitem__(i, value)
+        self._values = SequenceValues(_l, self._type)
 
-        Raises
-        ------
-            IndexError if n > number of elements in the iterable
-        """
-        return list.__getitem__(self.to_list(), n)
+    def __str__(self):
+        return str(self.to_list())
 
     def append(self, __object: object) -> None:
         r"""Adds element to list

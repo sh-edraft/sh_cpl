@@ -37,9 +37,6 @@ class SequenceABC(ABC):
     def type(self) -> type:
         return self._type
 
-    def reset(self):
-        self._values.reset()
-
     def to_list(self) -> list:
         r"""Converts :class: `cpl_query.base.sequence_abc.SequenceABC` to :class: `list`
 

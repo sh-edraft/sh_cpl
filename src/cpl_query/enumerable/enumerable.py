@@ -1,7 +1,6 @@
-from typing import Union, Callable, Optional, Iterable
+from typing import Union, Callable, Optional
 
 from cpl_query._helper import is_number
-from cpl_query.base.sequence_values import SequenceValues
 from cpl_query.enumerable.enumerable_abc import EnumerableABC
 from cpl_query.enumerable.ordered_enumerable_abc import OrderedEnumerableABC
 from cpl_query.exceptions import ArgumentNoneException, ExceptionArgument, InvalidTypeException, IndexOutOfRangeException
@@ -88,7 +87,7 @@ class Enumerable(EnumerableABC):
         return result
 
     def element_at(self, _index: int) -> any:
-        self.reset()
+        self._values.reset()
         while _index >= 0:
             current = self.next()
             if _index == 0:
@@ -195,7 +194,7 @@ class Enumerable(EnumerableABC):
 
     @staticmethod
     def range(start: int, length: int) -> 'EnumerableABC':
-        return Enumerable(int, range(start, start + length, 1))
+        return Enumerable(int, range(start, length))
 
     def reverse(self: EnumerableABC) -> EnumerableABC:
         if self is None:
@@ -295,7 +294,6 @@ class Enumerable(EnumerableABC):
             raise ArgumentNoneException(ExceptionArgument.index)
 
         _list = self.to_list()
-
         index = len(_list) - _index
 
         if index >= len(_list) or index < 0:
@@ -322,12 +320,4 @@ class Enumerable(EnumerableABC):
         if _func is None:
             raise ArgumentNoneException(ExceptionArgument.func)
 
-        if _func is None:
-            _func = _default_lambda
-
-        result = Enumerable(self.type)
-        for element in self:
-            if _func(element):
-                result.add(element)
-
-        return result
+        return Enumerable(self.type, [x for x in self if _func(x)])

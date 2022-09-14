@@ -19,20 +19,22 @@ class SequenceValues:
         if data is None:
             data = []
 
+        if len(data) > 0:
+            def type_check(_t: type, _l: list):
+                return all(isinstance(x, _t) for x in _l)
+
+            if not type_check(_t, data):
+                raise Exception(f'Unexpected type\nExpected type: {_t}')
+
         if not hasattr(data, '__iter__'):
             raise TypeError(f'{type(self).__name__} must be instantiated with an iterable object')
 
-        self._data = []
-        for element in data:
-            if _t is not None and type(element) != _t and not isinstance(type(element), _t) and not issubclass(type(element), _t):
-                raise Exception(f'Unexpected type: {type(element)}\nExpected type: {_t}')
-            self._data.append(element)
+        self._data = data
         self._index = 0
-        self._len = sum(1 for item in self._data)
         self._cycle = itertools.cycle(self._data)
 
     def __len__(self):
-        return self._len
+        return sum(1 for item in self._data)
 
     def __iter__(self):
         i = 0
