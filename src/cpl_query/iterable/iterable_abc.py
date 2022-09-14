@@ -57,3 +57,13 @@ class IterableABC(SequenceABC, QueryableABC):
             self.append(value)
 
         return self
+
+    def to_enumerable(self) -> 'EnumerableABC':
+        r"""Converts :class: `cpl_query.iterable.iterable_abc.IterableABC` to :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`
+
+        Returns
+        -------
+            :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`
+        """
+        from cpl_query.enumerable.enumerable import Enumerable
+        return Enumerable(self._type, self.to_list())

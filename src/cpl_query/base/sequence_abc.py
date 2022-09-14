@@ -41,7 +41,7 @@ class SequenceABC(ABC):
         self._values.reset()
 
     def to_list(self) -> list:
-        r"""Converts :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC` to :class: `list`
+        r"""Converts :class: `cpl_query.base.sequence_abc.SequenceABC` to :class: `list`
 
         Returns
         -------

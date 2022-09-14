@@ -57,7 +57,7 @@ class Enumerable(EnumerableABC):
         if _value is None:
             raise ArgumentNoneException(ExceptionArgument.value)
 
-        return _value in self
+        return self.where(lambda x: x == _value).count() > 0
 
     def count(self, _func: Callable = None) -> int:
         if self is None:

@@ -65,3 +65,13 @@ class EnumerableABC(SequenceABC, QueryableABC):
 
         # self._values.remove(__object)
         self._values = SequenceValues([x for x in self.to_list() if x != __object], self._type)
+
+    def to_iterable(self) -> 'IterableABC':
+        r"""Converts :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC` to :class: `cpl_query.iterable.iterable_abc.IterableABC`
+
+        Returns
+        -------
+            :class: `cpl_query.iterable.iterable_abc.IterableABC`
+        """
+        from cpl_query.iterable.iterable import Iterable
+        return Iterable(self._type, self.to_list())
