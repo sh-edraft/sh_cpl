@@ -151,6 +151,8 @@ class IterableQueryTestCase(unittest.TestCase):
 
         self.assertEqual(len(res), len(results))
         self.assertEqual(res[0], s_res)
+        self.assertEqual(res[0], res.first())
+        self.assertEqual(res.first(), res.first())
 
     def test_first_or_default(self):
         results = []

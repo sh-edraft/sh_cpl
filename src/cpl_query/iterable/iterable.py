@@ -1,4 +1,4 @@
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, Union, Iterable as IterableType
 
 from cpl_query._helper import is_number
 from cpl_query.exceptions import ArgumentNoneException, ExceptionArgument, InvalidTypeException, IndexOutOfRangeException
@@ -12,7 +12,7 @@ def _default_lambda(x: object):
 
 class Iterable(IterableABC):
 
-    def __init__(self, t: type = None, values: list = None):
+    def __init__(self, t: type = None, values: IterableType = None):
         IterableABC.__init__(self, t, values)
 
     def all(self, _func: Callable = None) -> bool:

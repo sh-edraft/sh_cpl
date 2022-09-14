@@ -206,21 +206,17 @@ class Enumerable(EnumerableABC):
         if _func is None:
             _func = _default_lambda
 
-        result = Enumerable()
-        result.extend(_func(_o) for _o in self)
-        return result
+        _l = [_func(_o) for _o in self]
+        return Enumerable(self._type if len(_l) < 1 else type(_l[0]), _l)
 
     def select_many(self, _func: Callable = None) -> EnumerableABC:
         if _func is None:
             _func = _default_lambda
 
-        result = Enumerable()
-        # The line below is pain. I don't understand anything of it...
+        # The line below is pain. I don't understand anything of the list comprehension...
         # written on 09.11.2022 by Sven Heidemann
-        elements = [_a for _o in self for _a in _func(_o)]
-
-        result.extend(elements)
-        return result
+        _l = [_a for _o in self for _a in _func(_o)]
+        return Enumerable(self._type if len(_l) < 1 else type(_l[0]), _l)
 
     def single(self: EnumerableABC) -> any:
         if self is None:
@@ -237,9 +233,9 @@ class Enumerable(EnumerableABC):
         if self is None:
             raise ArgumentNoneException(ExceptionArgument.list)
 
-        if len(self) > 1:
+        if self.count() > 1:
             raise IndexError('Found more than one element')
-        elif len(self) == 0:
+        elif self.count() == 0:
             return None
 
         return self.element_at(0)

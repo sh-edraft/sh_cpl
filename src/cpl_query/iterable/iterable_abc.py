@@ -11,7 +11,7 @@ class IterableABC(SequenceABC, QueryableABC):
     """
 
     @abstractmethod
-    def __init__(self, t: type = None, values: list = None):
+    def __init__(self, t: type = None, values: Iterable = None):
         SequenceABC.__init__(self, t, values)
 
     def __getitem__(self, n) -> object:
