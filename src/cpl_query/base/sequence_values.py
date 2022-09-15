@@ -19,12 +19,14 @@ class SequenceValues:
         if not hasattr(data, '__iter__'):
             raise TypeError(f'{type(self).__name__} must be instantiated with an iterable object')
 
-        self._data = data
+        self._new_cycle = lambda: itertools.cycle(data)
+        self._len = lambda: len(data)
+
         self._index = 0
-        self._cycle = itertools.cycle(self._data)
+        self._cycle = self._new_cycle()
 
     def __len__(self):
-        return sum(1 for item in self._data)
+        return self._len()
 
     def __iter__(self):
         i = 0
@@ -44,4 +46,4 @@ class SequenceValues:
 
     def reset(self):
         self._index = 0
-        self._cycle = itertools.cycle(self._data)
+        self._cycle = self._new_cycle()

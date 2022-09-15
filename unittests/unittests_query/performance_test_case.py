@@ -5,7 +5,7 @@ import unittest
 from cpl_query.enumerable import Enumerable
 from cpl_query.iterable import Iterable
 
-VALUES = 1000
+VALUES = 10000
 COUNT = 50
 
 
@@ -23,6 +23,7 @@ class PerformanceTestCase(unittest.TestCase):
         enumerable = timeit.timeit(lambda: Enumerable(int, self.values), number=COUNT)
         iterable = timeit.timeit(lambda: Iterable(int, self.values), number=COUNT)
 
+        print('Range')
         print(f'd: {default}')
         print(f'i: {iterable}')
         print(f'e: {enumerable}')
@@ -35,6 +36,7 @@ class PerformanceTestCase(unittest.TestCase):
         iterable = timeit.timeit(lambda: Iterable(int, self.values).where(lambda x: x == 50).single(), number=COUNT)
         enumerable = timeit.timeit(lambda: Enumerable(int, self.values).where(lambda x: x == 50).single(), number=COUNT)
 
+        print('Where single')
         print(f'd: {default}')
         print(f'i: {iterable}')
         print(f'e: {enumerable}')

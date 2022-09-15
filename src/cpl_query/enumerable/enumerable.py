@@ -233,9 +233,9 @@ class Enumerable(EnumerableABC):
         if self is None:
             raise ArgumentNoneException(ExceptionArgument.list)
 
-        if self.count() > 1:
+        if len(self) > 1:
             raise IndexError('Found more than one element')
-        elif self.count() == 0:
+        elif len(self) == 0:
             return None
 
         return self.element_at(0)
@@ -316,4 +316,4 @@ class Enumerable(EnumerableABC):
         if _func is None:
             raise ArgumentNoneException(ExceptionArgument.func)
 
-        return Enumerable(self.type, [x for x in self if _func(x)])
+        return Enumerable(self.type, list(filter(_func, self._values)))
