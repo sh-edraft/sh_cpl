@@ -8,7 +8,7 @@ from cpl_query.extension.list import List
 from unittests_query.models import User, Address
 
 
-class QueryTestCase(unittest.TestCase):
+class IterableQueryTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         self._tests = List(User)
@@ -17,6 +17,13 @@ class QueryTestCase(unittest.TestCase):
             Address(
                 'teststr.',
                 15
+            )
+        )
+        self._t_user2 = User(
+            'Test user',
+            Address(
+                'teststr.',
+                14
             )
         )
 
@@ -35,6 +42,7 @@ class QueryTestCase(unittest.TestCase):
             self._tests.append(user)
 
         self._tests.append(self._t_user)
+        self._tests.append(self._t_user2)
 
     def test_any(self):
         results = []
@@ -143,6 +151,8 @@ class QueryTestCase(unittest.TestCase):
 
         self.assertEqual(len(res), len(results))
         self.assertEqual(res[0], s_res)
+        self.assertEqual(res[0], res.first())
+        self.assertEqual(res.first(), res.first())
 
     def test_first_or_default(self):
         results = []
@@ -169,7 +179,7 @@ class QueryTestCase(unittest.TestCase):
 
     def test_max(self):
         res = self._tests.max(lambda u: u.address.nr)
-        self.assertEqual(self._t_user.address.nr, res)
+        self.assertEqual(res, self._t_user.address.nr)
 
         tests = List(values=list(range(0, 100)))
         self.assertEqual(99, tests.max())
@@ -195,40 +205,41 @@ class QueryTestCase(unittest.TestCase):
 
     def test_order_by(self):
         res = self._tests.order_by(lambda user: user.address.street)
-        res2 = self._tests.order_by(lambda user: user.address.nr)
-        s_res = self._tests
+        res2 = self._tests.order_by(lambda user: user.address.nr).to_list()
+        s_res = self._tests.to_list()
         s_res.sort(key=lambda user: user.address.street)
+        self.assertEqual(res.to_list(), s_res)
 
-        self.assertEqual(res, s_res)
+        s_res = self._tests.to_list()
         s_res.sort(key=lambda user: user.address.nr)
         self.assertEqual(res2, s_res)
 
         self.assertEqual(self._t_user, res.where(lambda u: u.address.nr == self._t_user.address.nr).single())
 
     def test_order_by_descending(self):
-        res = self._tests.order_by_descending(lambda user: user.address.street)
-        res2 = self._tests.order_by_descending(lambda user: user.address.nr)
-        s_res = self._tests
+        res = self._tests.order_by_descending(lambda user: user.address.street).to_list()
+        res2 = self._tests.order_by_descending(lambda user: user.address.nr).to_list()
+        s_res = self._tests.to_list()
         s_res.sort(key=lambda user: user.address.street, reverse=True)
 
         self.assertEqual(res, s_res)
+        s_res = self._tests.to_list()
         s_res.sort(key=lambda user: user.address.nr, reverse=True)
         self.assertEqual(res2, s_res)
 
     def test_then_by(self):
-        res = self._tests.order_by(lambda user: user.address.street[0]).then_by(lambda user: user.address.nr)
+        res = self._tests.order_by(lambda user: user.address.street).then_by(lambda user: user.address.nr).to_list()
 
-        s_res = self._tests
-        s_res.sort(key=lambda user: (user.address.street[0], user.address.nr))
+        s_res = self._tests.to_list()
+        s_res.sort(key=lambda user: (user.address.street, user.address.nr))
 
         self.assertEqual(res, s_res)
 
     def test_then_by_descending(self):
-        res = self._tests.order_by_descending(lambda user: user.address.street[0]).then_by_descending(
-            lambda user: user.address.nr)
+        res = self._tests.order_by_descending(lambda user: user.address.street).then_by_descending(lambda user: user.address.nr).to_list()
 
-        s_res = self._tests
-        s_res.sort(key=lambda user: (user.address.street[0], user.address.nr), reverse=True)
+        s_res = self._tests.to_list()
+        s_res.sort(key=lambda user: (user.address.street, user.address.nr), reverse=True)
 
         self.assertEqual(res, s_res)
 
@@ -237,7 +248,7 @@ class QueryTestCase(unittest.TestCase):
         l_res = self._tests.to_list()
         l_res.reverse()
 
-        self.assertEqual(l_res, res)
+        self.assertEqual(res.to_list(), l_res)
 
     def test_select(self):
         range_list = List(int, range(0, 100))
@@ -251,10 +262,10 @@ class QueryTestCase(unittest.TestCase):
         self.assertEqual(range_list.where(lambda x: x % 2 == 0).to_list(), modulo_range)
 
     def test_select_many(self):
-        range_list = List(int, range(0, 100))
+        range_list = List(int, list(range(0, 100)))
         selected_range = range_list.select(lambda x: [x, x])
 
-        self.assertEqual(selected_range, [[x, x] for x in range(0, 100)])
+        self.assertEqual(selected_range.to_list(), [[x, x] for x in range(0, 100)])
         self.assertEqual(selected_range.select_many(lambda x: x).to_list(), [_x for _l in [2 * [x] for x in range(0, 100)] for _x in _l])
 
         class TestClass:
@@ -285,17 +296,17 @@ class QueryTestCase(unittest.TestCase):
         self.assertIsNone(sn_res)
 
     def test_skip(self):
-        skipped = self._tests.skip(5)
+        skipped = self._tests.skip(5).to_list()
 
-        self.assertEqual(len(self._tests) - 5, len(skipped))
-        self.assertEqual(self._tests[5:], skipped)
+        self.assertEqual(len(skipped), len(self._tests) - 5)
+        self.assertEqual(skipped, self._tests[5:])
 
     def test_skip_last(self):
         skipped = self._tests.skip_last(5)
 
-        self.assertEqual(len(self._tests) - 5, len(skipped))
-        self.assertEqual(self._tests[:-5], skipped)
-        self.assertEqual(self._tests[:-5][len(self._tests[:-5]) - 1], skipped.last())
+        self.assertEqual(skipped.count(), len(self._tests) - 5)
+        self.assertEqual(skipped.to_list(), self._tests[:-5])
+        self.assertEqual(skipped.last(), self._tests[:-5][len(self._tests[:-5]) - 1])
 
     def test_sum(self):
         res = self._tests.sum(lambda u: u.address.nr)
@@ -318,15 +329,15 @@ class QueryTestCase(unittest.TestCase):
     def test_take(self):
         skipped = self._tests.take(5)
 
-        self.assertEqual(5, len(skipped))
-        self.assertEqual(self._tests[:5], skipped)
+        self.assertEqual(skipped.count(), 5)
+        self.assertEqual(skipped.to_list(), self._tests[:5])
 
     def test_take_last(self):
         skipped = self._tests.take_last(5)
 
-        self.assertEqual(5, len(skipped))
-        self.assertEqual(self._tests[-5:], skipped)
-        self.assertEqual(self._tests[len(self._tests) - 1], skipped.last())
+        self.assertEqual(skipped.count(), 5)
+        self.assertEqual(skipped.to_list(), self._tests[-5:])
+        self.assertEqual(skipped.last(), self._tests[len(self._tests) - 1])
 
     def test_where(self):
         results = []

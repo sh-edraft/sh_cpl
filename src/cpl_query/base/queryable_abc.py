@@ -1,29 +1,11 @@
-from abc import ABC, abstractmethod
-from typing import Optional, Callable, Union, Iterable
+from abc import abstractmethod, ABC
+from typing import Optional, Callable, Union
 
 
-class IterableABC(ABC, list):
-    r"""ABC to define functions on list
-    """
+class QueryableABC(ABC):
 
     @abstractmethod
-    def __init__(self, t: type = None, values: list = None):
-        list.__init__(self)
-
-        if t == any:
-            t = None
-        self._type = t
-
-        if values is not None:
-            for value in values:
-                self.append(value)
-
-    @property
-    def type(self) -> type:
-        return self._type
-
-    @abstractmethod
-    def all(self, func: Callable) -> bool:
+    def all(self, _func: Callable = None) -> bool:
         r"""Checks if every element of list equals result found by function
 
         Parameter
@@ -38,7 +20,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def any(self, func: Callable) -> bool:
+    def any(self, _func: Callable = None) -> bool:
         r"""Checks if list contains result found by function
 
         Parameter
@@ -52,24 +34,8 @@ class IterableABC(ABC, list):
         """
         pass
 
-    def append(self, __object: object) -> None:
-        r"""Adds element to list
-
-        Parameter
-        ---------
-            __object: :class:`object`
-                value
-        """
-        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type) and not issubclass(type(__object), self._type):
-            raise Exception(f'Unexpected type: {type(__object)}\nExpected type: {self._type}')
-
-        if len(self) == 0 and self._type is None:
-            self._type = type(__object)
-
-        super().append(__object)
-
     @abstractmethod
-    def average(self, func: Callable = None) -> Union[int, float, complex]:
+    def average(self, _func: Callable = None) -> Union[int, float, complex]:
         r"""Returns average value of list
 
         Parameter
@@ -99,7 +65,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def count(self, func: Callable = None) -> int:
+    def count(self, _func: Callable = None) -> int:
         r"""Returns length of list or count of found elements
 
         Parameter
@@ -114,7 +80,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def distinct(self, func: Callable = None) -> 'IterableABC':
+    def distinct(self, _func: Callable = None) -> 'QueryableABC':
         r"""Returns list without redundancies
 
         Parameter
@@ -124,7 +90,7 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
@@ -158,18 +124,36 @@ class IterableABC(ABC, list):
         """
         pass
 
-    def extend(self, __iterable: Iterable) -> 'IterableABC':
-        r"""Adds elements of given list to list
+    @abstractmethod
+    def first(self) -> any:
+        r"""Returns first element
+
+        Returns
+        -------
+            First element of list: any
+        """
+        pass
+
+    @abstractmethod
+    def first_or_default(self) -> any:
+        r"""Returns first element or None
+
+        Returns
+        -------
+            First element of list: Optional[any]
+        """
+        pass
+
+    @abstractmethod
+    def for_each(self, _func: Callable = None):
+        r"""Runs given function for each element of list
 
         Parameter
         ---------
-            __iterable: :class: `cpl_query.extension.iterable.Iterable`
-                index
+            func: :class: `Callable`
+                function to call
         """
-        for value in __iterable:
-            self.append(value)
-
-        return self
+        pass
 
     @abstractmethod
     def last(self) -> any:
@@ -192,39 +176,8 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def first(self) -> any:
-        r"""Returns first element
-
-        Returns
-        -------
-            First element of list: any
-        """
-        pass
-
-    @abstractmethod
-    def first_or_default(self) -> any:
-        r"""Returns first element or None
-
-        Returns
-        -------
-            First element of list: Optional[any]
-        """
-        pass
-
-    @abstractmethod
-    def for_each(self, func: Callable):
-        r"""Runs given function for each element of list
-
-        Parameter
-        ---------
-            func: :class: `Callable`
-                function to call
-        """
-        pass
-
-    @abstractmethod
-    def max(self, func: Callable = None) -> Union[int, float, complex]:
-        r"""Returns highest value
+    def max(self, _func: Callable = None) -> Union[int, float, complex]:
+        r"""Returns the highest value
 
         Parameter
         ---------
@@ -238,8 +191,18 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def min(self, func: Callable = None) -> Union[int, float, complex]:
-        r"""Returns highest value
+    def median(self) -> Union[int, float]:
+        r"""Return the median value of data elements
+
+        Returns
+        -------
+            Union[int, float]
+        """
+        pass
+
+    @abstractmethod
+    def min(self, _func: Callable = None) -> Union[int, float, complex]:
+        r"""Returns the lowest value
 
         Parameter
         ---------
@@ -253,7 +216,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def order_by(self, func: Callable) -> 'IterableABC':
+    def order_by(self, _func: Callable = None) -> 'QueryableABC':
         r"""Sorts elements by function in ascending order
 
         Parameter
@@ -263,12 +226,12 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
     @abstractmethod
-    def order_by_descending(self, func: Callable) -> 'IterableABC':
+    def order_by_descending(self, _func: Callable = None) -> 'QueryableABC':
         r"""Sorts elements by function in descending order
 
         Parameter
@@ -278,35 +241,37 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
     @abstractmethod
-    def reverse(self) -> 'IterableABC':
+    def reverse(self) -> 'QueryableABC':
         r"""Reverses list
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
-    def select(self, _f: Callable) -> 'IterableABC':
+    @abstractmethod
+    def select(self, _f: Callable) -> 'QueryableABC':
         r"""Formats each element of list to a given format
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
-    def select_many(self, _f: Callable) -> 'IterableABC':
+    @abstractmethod
+    def select_many(self, _f: Callable) -> 'QueryableABC':
         r"""Flattens resulting lists to one
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
@@ -336,7 +301,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def skip(self, index: int) -> 'IterableABC':
+    def skip(self, index: int) -> 'QueryableABC':
         r"""Skips all elements from index
 
         Parameter
@@ -346,12 +311,12 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
     @abstractmethod
-    def skip_last(self, index: int) -> 'IterableABC':
+    def skip_last(self, index: int) -> 'QueryableABC':
         r"""Skips all elements after index
 
         Parameter
@@ -361,12 +326,12 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
     @abstractmethod
-    def sum(self, func: Callable = None) -> Union[int, float, complex]:
+    def sum(self, _func: Callable = None) -> Union[int, float, complex]:
         r"""Sum of all values
 
         Parameter
@@ -381,7 +346,7 @@ class IterableABC(ABC, list):
         pass
 
     @abstractmethod
-    def take(self, index: int) -> 'IterableABC':
+    def take(self, index: int) -> 'QueryableABC':
         r"""Takes all elements from index
 
         Parameter
@@ -391,12 +356,12 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
     @abstractmethod
-    def take_last(self, index: int) -> 'IterableABC':
+    def take_last(self, index: int) -> 'QueryableABC':
         r"""Takes all elements after index
 
         Parameter
@@ -406,21 +371,12 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass
 
-    def to_list(self) -> list:
-        r"""Converts :class: `cpl_query.extension.iterable_abc.IterableABC` to :class: `list`
-
-        Returns
-        -------
-            :class: `list`
-        """
-        return list(self)
-
     @abstractmethod
-    def where(self, func: Callable) -> 'IterableABC':
+    def where(self, _func: Callable = None) -> 'QueryableABC':
         r"""Select element by function
 
         Parameter
@@ -430,6 +386,6 @@ class IterableABC(ABC, list):
 
         Returns
         -------
-            :class: `cpl_query.extension.iterable_abc.IterableABC`
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         pass

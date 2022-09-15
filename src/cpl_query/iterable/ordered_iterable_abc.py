@@ -1,14 +1,15 @@
 from abc import abstractmethod
 from collections.abc import Callable
+from typing import Iterable
 
-from cpl_query.extension.iterable_abc import IterableABC
+from cpl_query.iterable.iterable_abc import IterableABC
 
 
 class OrderedIterableABC(IterableABC):
 
     @abstractmethod
-    def __init__(self, _t: type, _func: Callable = None):
-        IterableABC.__init__(self, _t)
+    def __init__(self, _t: type, _func: Callable = None, _values: Iterable = None):
+        IterableABC.__init__(self, _t, _values)
         self._funcs: list[Callable] = []
         if _func is not None:
             self._funcs.append(_func)
@@ -23,7 +24,7 @@ class OrderedIterableABC(IterableABC):
             
         Returns
         -------
-            list of :class:`cpl_query.extension.OrderedIterableABC`
+            list of :class:`cpl_query.iterable.ordered_iterable_abc.OrderedIterableABC`
         """
         pass
 
@@ -37,6 +38,6 @@ class OrderedIterableABC(IterableABC):
             
         Returns
         -------
-            list of :class:`cpl_query.extension.OrderedIterableABC`
+            list of :class:`cpl_query.iterable.ordered_iterable_abc.OrderedIterableABC`
         """
         pass
