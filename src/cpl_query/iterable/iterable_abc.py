@@ -2,31 +2,32 @@ from abc import abstractmethod
 from typing import Iterable
 
 from cpl_query.base.queryable_abc import QueryableABC
-from cpl_query.base.sequence_abc import SequenceABC
-from cpl_query.base.sequence_values import SequenceValues
 
 
-class IterableABC(SequenceABC, QueryableABC):
+class IterableABC(list, QueryableABC):
     r"""ABC to define functions on list
     """
 
     @abstractmethod
     def __init__(self, t: type = None, values: Iterable = None):
-        SequenceABC.__init__(self, t, values)
+        self._type = t
+        list.__init__(self, [] if values is None else values)
 
-    def __getitem__(self, n) -> object:
-        return self.to_list().__getitem__(n)
+    def __repr__(self):
+        return f'<{type(self).__name__} {list(self).__repr__()}>'
 
-    def __delitem__(self, i: int):
-        """Delete an item"""
-        _l = self.to_list()
-        del _l[i]
-        self._values = SequenceValues(_l, self._type)
+    @property
+    def type(self) -> type:
+        return self._type
 
-    def __setitem__(self, i: int, value):
-        _l = self.to_list()
-        _l.__setitem__(i, value)
-        self._values = SequenceValues(_l, self._type)
+    def to_list(self) -> list:
+        r"""Converts :class: `cpl_query.base.sequence_abc.SequenceABC` to :class: `list`
+
+        Returns
+        -------
+            :class: `list`
+        """
+        return [x for x in self]
 
     def __str__(self):
         return str(self.to_list())
@@ -44,7 +45,8 @@ class IterableABC(SequenceABC, QueryableABC):
         if len(self) == 0 and self._type is None:
             self._type = type(__object)
 
-        self._values = SequenceValues([*self._values, __object], self._type)
+        # self._values = SequenceValues([*self._values, __object], self._type)
+        super().append(__object)
 
     def extend(self, __iterable: Iterable) -> 'IterableABC':
         r"""Adds elements of given list to list

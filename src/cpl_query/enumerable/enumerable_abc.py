@@ -2,18 +2,38 @@ from abc import abstractmethod
 from typing import Iterable
 
 from cpl_query.base.queryable_abc import QueryableABC
-from cpl_query.base.sequence_abc import SequenceABC
 from cpl_query.base.sequence_values import SequenceValues
 
 
-class EnumerableABC(SequenceABC, QueryableABC):
+class EnumerableABC(QueryableABC):
     r"""ABC to define functions on list
     """
 
     @abstractmethod
-    def __init__(self, t: type = None, values: Iterable = None):
-        SequenceABC.__init__(self, t, values)
-        self._remove_error_check = True
+    def __init__(self, t: type = None, values: list = None):
+        if t == any or t is None and values is not None:
+            t = type(values[0])
+
+        self._type, self._values, self._remove_error_check = t, SequenceValues(values, t), True
+
+    def __len__(self):
+        return len(self._values)
+
+    def __iter__(self):
+        return iter(self._values)
+
+    def next(self):
+        return next(self._values)
+
+    def __next__(self):
+        return self.next()
+
+    def __repr__(self):
+        return f'<{type(self).__name__} {list(self).__repr__()}>'
+
+    @property
+    def type(self) -> type:
+        return self._type
 
     def set_remove_error_check(self, _value: bool):
         r"""Set flag to check if element exists before removing
@@ -75,3 +95,12 @@ class EnumerableABC(SequenceABC, QueryableABC):
         """
         from cpl_query.iterable.iterable import Iterable
         return Iterable(self._type, self.to_list())
+
+    def to_list(self) -> list:
+        r"""Converts :class: `cpl_query.base.sequence_abc.SequenceABC` to :class: `list`
+
+        Returns
+        -------
+            :class: `list`
+        """
+        return [x for x in self]

@@ -4,16 +4,6 @@ import itertools
 from cpl_query.exceptions import IndexOutOfRangeException
 
 
-class SequenceEnd:
-
-    def __init__(self):
-        self.is_ended = False
-
-    def set_end(self, value: bool) -> 'SequenceEnd':
-        self.is_ended = value
-        return self
-
-
 class SequenceValues:
     def __init__(self, data, _t: type):
         if data is None:
