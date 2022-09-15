@@ -42,15 +42,25 @@ class VersionTestCase(unittest.TestCase):
             if 7 <= index <= 9:
                 self._block_version += f'{line}\n'
 
-            if 10 <= index <= 15:
+            if 10 <= index <= 16:
                 self._block_cpl_packages += f'{line}\n'
 
-            if index >= 17:
+            if index >= 18:
                 self._block_packages += f'{line}\n'
 
             index += 1
 
     def test_version(self):
+        packages = []
+        cpl_packages = []
+        dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
+        for p in dependencies:
+            if str(p).startswith('cpl-'):
+                cpl_packages.append([p, dependencies[p]])
+                continue
+
+            packages.append([p, dependencies[p]])
+
         version = CLICommands.version()
         self._get_version_output(version)
         reference_banner = colored(text2art(self._name), ForegroundColorEnum.yellow.value).split('\n')
@@ -63,32 +73,11 @@ class VersionTestCase(unittest.TestCase):
             colored(f'OS: {colored(f"{platform.system()} {platform.processor()}")}') + '\n'
         ]
         self.assertEqual('\n'.join(reference_version), self._block_version)
-        packages = []
-        cpl_packages = [
-            'cpl_core',
-            'cpl_cli',
-            'cpl_query'
-        ]
-        for modname in cpl_packages:
-            module = pkgutil.find_loader(modname)
-            if module is None:
-                break
-
-            module = module.load_module(modname)
-            if '__version__' in dir(module):
-                packages.append([f'{modname}', module.__version__])
-
         reference_cpl_packages = [
             colored(colored(f'CPL packages:')),
-            colored(f'{tabulate(packages, headers=["Name", "Version"])}') + '\n'
+            colored(f'{tabulate(cpl_packages, headers=["Name", "Version"])}') + '\n'
         ]
         self.assertEqual('\n'.join(reference_cpl_packages), self._block_cpl_packages)
-
-        packages = []
-        dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
-        for p in dependencies:
-            packages.append([p, dependencies[p]])
-
         reference_packages = [
             colored(colored(f'Python packages:')),
             colored(f'{tabulate(packages, headers=["Name", "Version"])}'),

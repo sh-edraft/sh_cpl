@@ -181,7 +181,7 @@ class IterableQueryTestCase(unittest.TestCase):
         res = self._tests.max(lambda u: u.address.nr)
         self.assertEqual(res, self._t_user.address.nr)
 
-        tests = List(values=list(range(0, 100)))
+        tests = List(int, list(range(0, 100)))
         self.assertEqual(99, tests.max())
 
         def invalid():
@@ -194,7 +194,7 @@ class IterableQueryTestCase(unittest.TestCase):
         res = self._tests.min(lambda u: u.address.nr)
         self.assertEqual(1, res)
 
-        tests = List(values=list(range(0, 100)))
+        tests = List(int, list(range(0, 100)))
         self.assertEqual(0, tests.min())
 
         def invalid():

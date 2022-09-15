@@ -23,7 +23,7 @@ class CLICommands:
     @staticmethod
     def _run_with_output(cmd: str, *args) -> str:
         env_vars = os.environ
-        env_vars['CPL_IS_UNITTEST'] = 'NO'
+        # env_vars['CPL_IS_UNITTEST'] = 'NO'
 
         command = ['python', CLI_PATH, cmd]
         for arg in args:

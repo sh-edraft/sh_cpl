@@ -10,8 +10,13 @@ class IterableABC(list, QueryableABC):
 
     @abstractmethod
     def __init__(self, t: type = None, values: Iterable = None):
+        values = [] if values is None else values
+        list.__init__(self, values)
+
+        if t is None and len(values) > 0:
+            t = type(values[0])
+
         self._type = t
-        list.__init__(self, [] if values is None else values)
 
     def __repr__(self):
         return f'<{type(self).__name__} {list(self).__repr__()}>'
