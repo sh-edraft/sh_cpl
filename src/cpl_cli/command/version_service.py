@@ -31,6 +31,16 @@ class VersionService(CommandABC):
         :param args:
         :return:
         """
+        packages = []
+        cpl_packages = []
+        dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
+        for p in dependencies:
+            if str(p).startswith('cpl-'):
+                cpl_packages.append([p, dependencies[p]])
+                continue
+
+            packages.append([p, dependencies[p]])
+
         Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.banner('CPL CLI')
         Console.set_foreground_color(ForegroundColorEnum.default)
@@ -40,31 +50,8 @@ class VersionService(CommandABC):
 
         Console.write_line(f'Python: ')
         Console.write(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')
-
         Console.write_line(f'OS: {platform.system()} {platform.processor()}')
-
         Console.write_line('\nCPL packages:')
-        cpl_packages = [
-            'cpl_core',
-            'cpl_cli',
-            'cpl_query'
-        ]
-        packages = []
-        for modname in cpl_packages:
-            module = pkgutil.find_loader(modname)
-            if module is None:
-                break
-            
-            module = module.load_module(modname)
-            if '__version__' in dir(module):
-                packages.append([f'{modname}', module.__version__])
-
-        Console.table(['Name', 'Version'], packages)
-
+        Console.table(['Name', 'Version'], cpl_packages)
         Console.write_line('\nPython packages:')
-        packages = []
-        dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
-        for p in dependencies:
-            packages.append([p, dependencies[p]])
-
         Console.table(['Name', 'Version'], packages)

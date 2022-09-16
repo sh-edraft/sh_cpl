@@ -10,7 +10,7 @@ from cpl_discord.helper.to_containers_converter import ToContainersConverter
 from cpl_query.extension import List
 
 
-class Guild(discord.Guild, Container):
+class Guild(Container, discord.Guild):
 
     def __init__(self, _t: discord.Guild):
         self._object: discord.Guild = _t
