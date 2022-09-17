@@ -109,7 +109,7 @@ class ConsoleBuilder:
             templates.append(ApplicationTemplate(src_name, py_src_rel_path, use_async))
 
             if use_startup:
-                templates.append(StartupTemplate(src_name, py_src_rel_path, use_async))
+                templates.append(StartupTemplate(src_name, py_src_rel_path))
                 templates.append(MainWithApplicationHostAndStartupTemplate(src_name, py_src_rel_path, use_async))
             else:
                 templates.append(MainWithApplicationBaseTemplate(src_name, py_src_rel_path, use_async))
