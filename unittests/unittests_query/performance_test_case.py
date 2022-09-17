@@ -5,8 +5,8 @@ import unittest
 from cpl_query.enumerable import Enumerable
 from cpl_query.iterable import Iterable
 
-VALUES = 1000
-COUNT = 75
+VALUES = 10000
+COUNT = 50
 
 
 class PerformanceTestCase(unittest.TestCase):
