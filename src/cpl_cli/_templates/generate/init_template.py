@@ -12,6 +12,9 @@ class InitTemplate(TemplateFileABC):
 
         self._name = f'__init__.py'
         self._class_name = f'{String.first_to_upper(name)}{schematic_upper}'
+        if schematic in name.lower():
+            self._class_name = f'{String.first_to_upper(name)}'
+
         self._path = path
         self._value = textwrap.dedent("""\
         # imports
