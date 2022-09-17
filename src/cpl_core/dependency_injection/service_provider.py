@@ -93,7 +93,7 @@ class ServiceProvider(ServiceProviderABC):
         self._scope = scope
     
     def create_scope(self) -> ScopeABC:
-        sb = ScopeBuilder(ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context))
+        sb = ScopeBuilder(ServiceProvider(self._service_descriptors, self._configuration, self._database_context))
         return sb.build()
 
     def get_service(self, service_type: type) -> Optional[object]:

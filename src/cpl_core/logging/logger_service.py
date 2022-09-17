@@ -4,6 +4,7 @@ import sys
 import traceback
 from string import Template
 
+from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
@@ -33,6 +34,9 @@ class Logger(LoggerABC):
         self._log_settings: LoggingSettings = logging_settings
         self._time_format_settings: TimeFormatSettings = time_format
 
+        self._check_for_settings(self._time_format_settings, TimeFormatSettings)
+        self._check_for_settings(self._log_settings, LoggingSettings)
+
         self._log = Template(self._log_settings.filename).substitute(
             date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
             start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
@@ -42,6 +46,12 @@ class Logger(LoggerABC):
         self._console = self._log_settings.console
 
         self.create()
+
+    def _check_for_settings(self, settings: ConfigurationModelABC, settings_type: type):
+        self._level = LoggingLevelEnum.OFF
+        self._console = LoggingLevelEnum.FATAL
+        if settings is None:
+            self.fatal(__name__, f'Configuration for {settings_type} not found')
 
     def _get_datetime_now(self) -> str:
         r"""Returns the date and time by given format
