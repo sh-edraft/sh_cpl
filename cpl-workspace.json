@@ -108,11 +108,11 @@
       "deploy-prod-translation": "cpl publish-translation; cpl upload-prod-translation",
 
       "pre-deploy-exp": "cpl sv $ARGS; cpl spu --environment=staging;",
-      "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-discord; cpl deploy-exp-query; #cpl deploy-exp-translation;",
+      "deploy-exp": "cpl deploy-exp-cli; cpl deploy-exp-core; cpl deploy-exp-discord; cpl deploy-exp-query; cpl deploy-exp-translation;",
       "de": "cpl deploy-exp $ARGS",
       "deploy-exp-cli": "cpl publish-cli; cpl upload-exp-cli",
       "deploy-exp-core": "cpl publish-core; cpl upload-exp-core",
-      "deploy-exp-discord": "cpl publish-discord; cpl upload-exp-discord",
+      "deploy-exp-discord": "cpl publish-discord; #pl upload-exp-discord",
       "deploy-exp-query": "cpl publish-query; cpl upload-exp-query",
       "deploy-exp-translation": "cpl publish-translation; cpl upload-exp-translation",
 

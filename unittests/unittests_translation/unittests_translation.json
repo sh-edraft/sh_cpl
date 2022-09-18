@@ -3,8 +3,8 @@
     "Name": "unittests_translation",
     "Version": {
       "Major": "2022",
-      "Minor": "7",
-      "Micro": "0"
+      "Minor": "10",
+      "Micro": "rc2"
     },
     "Author": "",
     "AuthorEmail": "",
@@ -16,11 +16,11 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.7.0",
-      "cpl-translation>=2022.7.0"
+      "cpl-core>=2022.10.rc2",
+      "cpl-translation>=2022.10.rc2"
     ],
     "DevDependencies": [
-      "cpl-cli>=2022.7.0"
+      "cpl-cli>=2022.10.rc2"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {
