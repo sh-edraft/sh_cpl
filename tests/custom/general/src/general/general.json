@@ -16,9 +16,13 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl_core==2022.6.1"
+      "cpl-core==2022.10rc2",
+      "cpl-translation==2022.7.0.post2",
+      "cpl-query==2022.7.0"
     ],
-    "DevDependencies": [],
+    "DevDependencies": [
+      "cpl-cli==2022.10.rc2"
+    ],
     "PythonVersion": ">=3.10",
     "PythonPath": {
       "linux": "../../venv/bin/python",

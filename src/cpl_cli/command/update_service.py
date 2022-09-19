@@ -76,7 +76,7 @@ class UpdateService(CommandABC):
                 '--upgrade',
                 '--upgrade-strategy',
                 'eager',
-                source=self._cli_settings.pip_path if 'cpl-' in name else None,
+                source=self._cli_settings.pip_path,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
@@ -168,6 +168,18 @@ class UpdateService(CommandABC):
             args.remove('simulate')
             Console.write_line('Running in simulation mode:')
             self._is_simulation = True
+
+        if 'cpl-prod' in args:
+            args.remove('cpl-prod')
+            self._cli_settings.from_dict({'PipPath': 'https://pip.sh-edraft.de'})
+
+        if 'cpl-exp' in args:
+            args.remove('cpl-exp')
+            self._cli_settings.from_dict({'PipPath': 'https://pip-exp.sh-edraft.de'})
+
+        if 'cpl-dev' in args:
+            args.remove('cpl-dev')
+            self._cli_settings.from_dict({'PipPath': 'https://pip-dev.sh-edraft.de'})
 
         VenvHelper.init_venv(False, self._env, self._project_settings)
 
