@@ -2,11 +2,8 @@ import json
 import os
 from string import ascii_letters
 
-from cpl_core.utils import String
-
-from cpl_core.console import Console
-
 from cpl_core.environment import ApplicationEnvironmentABC
+from cpl_core.utils import String
 
 
 class VersionSetterService:

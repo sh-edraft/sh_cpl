@@ -74,9 +74,8 @@ class Pip:
 
         if result is None:
             return None
-
         for p in str(result.decode()).split('\n'):
-            if p == package:
+            if p.startswith(package):
                 return p
 
         return None

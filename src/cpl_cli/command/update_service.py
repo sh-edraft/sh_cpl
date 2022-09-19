@@ -4,6 +4,7 @@ import subprocess
 import textwrap
 
 from cpl_cli.configuration.venv_helper_service import VenvHelper
+from cpl_cli.migrations.base.migration_service_abc import MigrationServiceABC
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -23,7 +24,8 @@ class UpdateService(CommandABC):
                  env: ApplicationEnvironmentABC,
                  build_settings: BuildSettings,
                  project_settings: ProjectSettings,
-                 cli_settings: CLISettings):
+                 cli_settings: CLISettings,
+                 migrations: MigrationServiceABC):
         """
         Service for the CLI command update
         :param config:
@@ -39,6 +41,7 @@ class UpdateService(CommandABC):
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
+        self._migrations = migrations
         self._is_simulation = False
 
         self._project_file = f'{self._project_settings.name}.json'
@@ -56,7 +59,7 @@ class UpdateService(CommandABC):
         :return:
         """
         dependencies = []
-        for package in self._project_settings.dependencies:
+        for package in [*self._project_settings.dependencies, *self._project_settings.dev_dependencies]:
             name = package
             if '==' in package:
                 name = package.split('==')[0]
@@ -104,6 +107,15 @@ class UpdateService(CommandABC):
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
+
+        if 'cpl-cli' in [y for x, y in dependencies]:
+            import cpl_cli
+
+            Console.spinner(
+                'Running migrations', self._migrations.migrate_from, cpl_cli.__version__,
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
+            )
 
         Console.write_line(f'Found {len(self._project_settings.dependencies)} dependencies.')
 
