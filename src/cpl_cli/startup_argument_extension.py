@@ -42,7 +42,10 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService, True, validators=[ProjectValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'dev', ['d', 'D']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
-            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-prod', ['cp', 'CP']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-exp', ['ce', 'CE']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-dev', ['cd', 'CD'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService, True) \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'console', ['c', 'C'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ') \
@@ -63,7 +66,10 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'update', ['u', 'U'], UpdateService, True, validators=[ProjectValidator]) \
-            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-prod', ['cp', 'CP']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-exp', ['ce', 'CE']) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-dev', ['cd', 'CD'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'version', ['v', 'V'], VersionService, True)
 
         config.for_each_argument(lambda a: a.add_console_argument(ArgumentTypeEnum.Flag, '--', 'help', ['h', 'H']))
