@@ -3,8 +3,8 @@
     "Name": "cpl-core",
     "Version": {
       "Major": "2022",
-      "Minor": "7",
-      "Micro": "0.post5"
+      "Minor": "10",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,16 +16,16 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "art==5.6",
-      "colorama==0.4.4",
+      "art==5.7",
+      "colorama==0.4.5",
       "mysql-connector==2.2.9",
-      "psutil==5.9.0",
+      "psutil==5.9.2",
       "packaging==21.3",
       "pynput==1.7.6",
-      "setuptools==62.1.0",
-      "tabulate==0.8.9",
+      "setuptools==65.3.0",
+      "tabulate==0.8.10",
       "termcolor==1.1.0",
-      "watchdog==2.1.7",
+      "watchdog==2.1.9",
       "wheel==0.37.1"
     ],
     "DevDependencies": [

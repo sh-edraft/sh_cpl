@@ -65,7 +65,7 @@ class Pip:
         """
         result = None
         with suppress(Exception):
-            args = [cls._executable, "-m", "pip", "show", package]
+            args = [cls._executable, "-m", "pip", "freeze"]
 
             result = subprocess.check_output(
                 args,
@@ -74,18 +74,11 @@ class Pip:
 
         if result is None:
             return None
+        for p in str(result.decode()).split('\n'):
+            if p.startswith(package):
+                return p
 
-        new_package: list[str] = str(result, 'utf-8').lower().split('\n')
-        new_version = ''
-
-        for atr in new_package:
-            if 'version' in atr:
-                new_version = atr.split(': ')[1]
-
-        if new_version != '':
-            return f'{package}=={new_version}'
-
-        return package
+        return None
 
     @classmethod
     def get_outdated(cls) -> bytes:

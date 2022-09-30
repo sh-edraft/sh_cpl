@@ -155,16 +155,21 @@ class GenerateService(CommandABC):
             directory = ''
             for subdir in template.path.split('/'):
                 directory = os.path.join(directory, subdir)
-                if subdir != 'src':
-                    file = InitTemplate(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
-                    Console.spinner(
-                        f'Creating {os.path.abspath(directory)}/{file.name}',
-                        self._create_file,
-                        os.path.join(os.path.abspath(directory), file.name),
-                        file.value,
-                        text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.cyan
-                    )
+                if subdir == 'src':
+                    continue
+
+                file = InitTemplate(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
+                if os.path.exists(os.path.join(os.path.abspath(directory), file.name)):
+                    continue
+
+                Console.spinner(
+                    f'Creating {os.path.abspath(directory)}/{file.name}',
+                    self._create_file,
+                    os.path.join(os.path.abspath(directory), file.name),
+                    file.value,
+                    text_foreground_color=ForegroundColorEnum.green,
+                    spinner_foreground_color=ForegroundColorEnum.cyan
+                )
 
         if os.path.isfile(file_path):
             Console.error(f'{String.first_to_upper(schematic)} already exists!\n')

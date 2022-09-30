@@ -5,50 +5,29 @@ from cpl_cli._templates.template_file_abc import TemplateFileABC
 
 class StartupTemplate(TemplateFileABC):
 
-    def __init__(self, name: str, path: str, use_async: bool):
+    def __init__(self, name: str, path: str):
         TemplateFileABC.__init__(self)
 
         self._name = 'startup.py'
         self._path = path
-        
-        if use_async:
-            self._value = textwrap.dedent("""\
-                from cpl_core.application import StartupABC
-                from cpl_core.configuration import ConfigurationABC
-                from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
-                from cpl_core.environment import ApplicationEnvironment
-                
-                
-                class Startup(StartupABC):
-                
-                    def __init__(self):
-                        StartupABC.__init__(self)
-                
-                    async def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
-                        return configuration
-                
-                    async def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
-                        return services.build_service_provider()
-            """)
-        else:
-            self._value = textwrap.dedent("""\
-                from cpl_core.application import StartupABC
-                from cpl_core.configuration import ConfigurationABC
-                from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
-                from cpl_core.environment import ApplicationEnvironment
-                
-                
-                class Startup(StartupABC):
-                
-                    def __init__(self):
-                        StartupABC.__init__(self)
-                
-                    def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
-                        return configuration
-                
-                    def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
-                        return services.build_service_provider()
-            """)
+        self._value = textwrap.dedent("""\
+            from cpl_core.application import StartupABC
+            from cpl_core.configuration import ConfigurationABC
+            from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
+            from cpl_core.environment import ApplicationEnvironment
+            
+            
+            class Startup(StartupABC):
+            
+                def __init__(self):
+                    StartupABC.__init__(self)
+            
+                def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
+                    return configuration
+            
+                def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
+                    return services.build_service_provider()
+        """)
 
     @property
     def name(self) -> str:

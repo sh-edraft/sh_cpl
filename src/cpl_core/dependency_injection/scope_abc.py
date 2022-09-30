@@ -18,7 +18,7 @@ class ScopeABC(ABC):
         pass
     
     @abstractmethod
-    def dispose():
+    def dispose(self):
         r"""Sets service_provider to None
         """
         pass

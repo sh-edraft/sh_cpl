@@ -4,6 +4,7 @@ import subprocess
 import textwrap
 
 from cpl_cli.configuration.venv_helper_service import VenvHelper
+from cpl_cli.migrations.base.migration_service_abc import MigrationServiceABC
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -23,7 +24,8 @@ class UpdateService(CommandABC):
                  env: ApplicationEnvironmentABC,
                  build_settings: BuildSettings,
                  project_settings: ProjectSettings,
-                 cli_settings: CLISettings):
+                 cli_settings: CLISettings,
+                 migrations: MigrationServiceABC):
         """
         Service for the CLI command update
         :param config:
@@ -39,6 +41,7 @@ class UpdateService(CommandABC):
         self._build_settings = build_settings
         self._project_settings = project_settings
         self._cli_settings = cli_settings
+        self._migrations = migrations
         self._is_simulation = False
 
         self._project_file = f'{self._project_settings.name}.json'
@@ -56,7 +59,7 @@ class UpdateService(CommandABC):
         :return:
         """
         dependencies = []
-        for package in self._project_settings.dependencies:
+        for package in [*self._project_settings.dependencies, *self._project_settings.dev_dependencies]:
             name = package
             if '==' in package:
                 name = package.split('==')[0]
@@ -76,7 +79,7 @@ class UpdateService(CommandABC):
                 '--upgrade',
                 '--upgrade-strategy',
                 'eager',
-                source=self._cli_settings.pip_path if 'cpl-' in name else None,
+                source=self._cli_settings.pip_path,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
@@ -104,6 +107,15 @@ class UpdateService(CommandABC):
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
+
+        if 'cpl-cli' in [y for x, y in dependencies]:
+            import cpl_cli
+
+            Console.spinner(
+                'Running migrations', self._migrations.migrate_from, cpl_cli.__version__,
+                text_foreground_color=ForegroundColorEnum.green,
+                spinner_foreground_color=ForegroundColorEnum.cyan
+            )
 
         Console.write_line(f'Found {len(self._project_settings.dependencies)} dependencies.')
 
@@ -168,6 +180,18 @@ class UpdateService(CommandABC):
             args.remove('simulate')
             Console.write_line('Running in simulation mode:')
             self._is_simulation = True
+
+        if 'cpl-prod' in args:
+            args.remove('cpl-prod')
+            self._cli_settings.from_dict({'PipPath': 'https://pip.sh-edraft.de'})
+
+        if 'cpl-exp' in args:
+            args.remove('cpl-exp')
+            self._cli_settings.from_dict({'PipPath': 'https://pip-exp.sh-edraft.de'})
+
+        if 'cpl-dev' in args:
+            args.remove('cpl-dev')
+            self._cli_settings.from_dict({'PipPath': 'https://pip-dev.sh-edraft.de'})
 
         VenvHelper.init_venv(False, self._env, self._project_settings)
 

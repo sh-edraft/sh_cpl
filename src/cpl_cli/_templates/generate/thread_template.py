@@ -11,7 +11,13 @@ class ThreadTemplate(TemplateFileABC):
         TemplateFileABC.__init__(self)
 
         self._name = f'{String.convert_to_snake_case(name)}_{schematic}.py'
+        if schematic in name.lower():
+            self._name = f'{String.convert_to_snake_case(name)}.py'
+
         self._class_name = f'{String.first_to_upper(name)}{schematic_upper}'
+        if schematic in name.lower():
+            self._class_name = f'{String.first_to_upper(name)}'
+
         self._path = path
         self._value = textwrap.dedent("""\
         import threading

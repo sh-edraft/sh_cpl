@@ -4,6 +4,7 @@
 
 - [Description](#description)
 - [Arguments](#arguments)
+- [Flags](#flags)
 
 Removes a project from workspace.
 

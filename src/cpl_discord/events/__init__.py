@@ -15,7 +15,7 @@ __title__ = 'cpl_discord.events'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2021 - 2022 sh-edraft.de'
-__version__ = '2022.7.0.post4'
+__version__ = '2022.10.0'
 
 from collections import namedtuple
 
@@ -62,9 +62,6 @@ from .on_reaction_clear_abc import OnReactionClearABC
 from .on_reaction_clear_emoji_abc import OnReactionClearEmojiABC
 from .on_reaction_remove_abc import OnReactionRemoveABC
 from .on_ready_abc import OnReadyABC
-from .on_relationship_add_abc import OnRelationshipAddABC
-from .on_relationship_remove_abc import OnRelationshipRemoveABC
-from .on_relationship_update_abc import OnRelationshipUpdateABC
 from .on_resume_abc import OnResumeABC
 from .on_typing_abc import OnTypingABC
 from .on_user_update_abc import OnUserUpdateABC
@@ -72,4 +69,4 @@ from .on_voice_state_update_abc import OnVoiceStateUpdateABC
 from .on_webhooks_update_abc import OnWebhooksUpdateABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='7', micro='0.post4')
+version_info = VersionInfo(major='2022', minor='10', micro='0')

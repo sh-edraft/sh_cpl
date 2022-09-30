@@ -5,8 +5,11 @@ from cpl_core.console import Console
 from cpl_core.environment import ApplicationEnvironmentABC
 from cpl_core.logging import LoggerABC, LoggingSettings, LoggingLevelEnum
 from cpl_discord.configuration.discord_bot_settings import DiscordBotSettings
+from cpl_discord.container.guild import Guild
+from cpl_discord.helper.to_containers_converter import ToContainersConverter
 from cpl_discord.service.discord_bot_service_abc import DiscordBotServiceABC
 from cpl_discord.service.discord_service_abc import DiscordServiceABC
+from cpl_query.extension.list import List
 
 
 class DiscordBotService(DiscordBotServiceABC):
@@ -21,28 +24,37 @@ class DiscordBotService(DiscordBotServiceABC):
             discord_service: DiscordServiceABC
     ):
         # services
+        self._config = config
         self._logger = logger
         self._env = env
         self._logging_st = logging_st
         self._discord_service = discord_service
 
         # settings
-        if discord_bot_settings is None:
-            self._discord_settings = DiscordBotSettings()
-            token = config.get_configuration('TOKEN')
-            if token is None:
-                raise Exception('You have to configure discord token by appsettings or environment variables')
-
-            prefix = config.get_configuration('PREFIX')
-            self._discord_settings.from_dict({
-                'Token': token,
-                'Prefix': prefix if prefix is not None else '! '
-            })
-        else:
-            self._discord_settings = discord_bot_settings
+        self._discord_settings = self._get_settings(discord_bot_settings)
 
         # setup super
         DiscordBotServiceABC.__init__(self, command_prefix=self._discord_settings.prefix, help_command=None, intents=discord.Intents().all())
+        self._base = super(DiscordBotServiceABC, self)
+
+    @staticmethod
+    def _is_string_invalid(x):
+        return x is None or x == ''
+
+    def _get_settings(self, settings_from_config: DiscordBotSettings) -> DiscordBotSettings:
+        new_settings = DiscordBotSettings()
+        token = settings_from_config.token
+        prefix = settings_from_config.prefix
+        env_token = self._config.get_configuration('TOKEN')
+        env_prefix = self._config.get_configuration('PREFIX')
+
+        new_settings.from_dict({
+            'Token': env_token if token is None or token == '' else token,
+            'Prefix': ('! ' if self._is_string_invalid(env_prefix) else env_prefix) if self._is_string_invalid(prefix) else prefix
+        })
+        if new_settings.token is None or new_settings.token == '':
+            raise Exception('You have to configure discord token by appsettings or environment variables')
+        return new_settings
 
     async def start_async(self):
         self._logger.trace(__name__, 'Try to connect to discord')
@@ -63,6 +75,13 @@ class DiscordBotService(DiscordBotServiceABC):
         if self._logging_st.console.value >= LoggingLevelEnum.INFO.value:
             Console.banner(self._env.application_name if self._env.application_name != '' else 'A bot')
 
-        self._discord_service.init(self)
+        await self._discord_service.init(self)
+        await self.wait_until_ready()
+        await self.tree.sync()
+        self._logger.debug(__name__, f'Finished syncing commands')
 
         await self._discord_service.on_ready()
+
+    @property
+    def guilds(self) -> List[Guild]:
+        return List(Guild, ToContainersConverter.convert(self._base.guilds, Guild))

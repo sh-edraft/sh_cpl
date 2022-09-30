@@ -3,8 +3,8 @@
     "Name": "cpl-cli",
     "Version": {
       "Major": "2022",
-      "Minor": "7",
-      "Micro": "0.post2"
+      "Minor": "10",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.7.0.post2"
+      "cpl-core>=2022.10.0"
     ],
     "DevDependencies": [],
     "PythonVersion": ">=3.10",

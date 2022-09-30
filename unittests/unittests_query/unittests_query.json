@@ -3,8 +3,8 @@
     "Name": "unittest_query",
     "Version": {
       "Major": "2022",
-      "Minor": "8",
-      "Micro": "1.dev7"
+      "Minor": "10",
+      "Micro": "0"
     },
     "Author": "",
     "AuthorEmail": "",
@@ -16,14 +16,15 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.8.1.dev7",
-      "cpl-query>=2022.8.1.dev7"
+      "cpl-core>=2022.10.0",
+      "cpl-query>=2022.10.0"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {
       "linux": ""
     },
-    "Classifiers": []
+    "Classifiers": [],
+    "DevDependencies": []
   },
   "BuildSettings": {
     "ProjectType": "library",

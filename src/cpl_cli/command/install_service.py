@@ -76,23 +76,33 @@ class InstallService(CommandABC):
             Console.spinner(
                 f'Installing: {dependency}',
                 Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
-                source=self._cli_settings.pip_path if 'cpl-' in dependency else None,
+                '--upgrade',
+                source=self._cli_settings.pip_path,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
                 spinner_foreground_color=ForegroundColorEnum.cyan
             )
+            local_package = Pip.get_package(dependency)
+            if local_package is None:
+                Error.warn(f'Installation of package {dependency} failed!')
+                return
 
         for dependency in self._project_settings.dev_dependencies:
             Console.spinner(
                 f'Installing dev: {dependency}',
                 Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
-                source=self._cli_settings.pip_path if 'cpl-' in dependency else None,
+                '--upgrade',
+                source=self._cli_settings.pip_path,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
                 spinner_foreground_color=ForegroundColorEnum.cyan
             )
+            local_package = Pip.get_package(dependency)
+            if local_package is None:
+                Error.warn(f'Installation of package {dependency} failed!')
+                return
 
         if not self._is_virtual:
             Pip.reset_executable()
@@ -154,7 +164,7 @@ class InstallService(CommandABC):
         Console.spinner(
             f'Installing: {package}' if not self._is_dev else f'Installing dev: {package}',
             Pip.install if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
-            source=self._cli_settings.pip_path if 'cpl-' in package or 'cpl_' in package else None,
+            source=self._cli_settings.pip_path,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
@@ -220,6 +230,18 @@ class InstallService(CommandABC):
             self._is_simulation = True
             args.remove('simulate')
             Console.write_line('Running in simulation mode:')
+
+        if 'cpl-prod' in args:
+            args.remove('cpl-prod')
+            self._cli_settings.from_dict({'PipPath': 'https://pip.sh-edraft.de'})
+
+        if 'cpl-exp' in args:
+            args.remove('cpl-exp')
+            self._cli_settings.from_dict({'PipPath': 'https://pip-exp.sh-edraft.de'})
+
+        if 'cpl-dev' in args:
+            args.remove('cpl-dev')
+            self._cli_settings.from_dict({'PipPath': 'https://pip-dev.sh-edraft.de'})
 
         VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
 
