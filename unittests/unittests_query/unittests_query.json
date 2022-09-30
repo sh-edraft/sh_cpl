@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2022",
       "Minor": "10",
-      "Micro": "rc2"
+      "Micro": "0"
     },
     "Author": "",
     "AuthorEmail": "",
@@ -16,8 +16,8 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.10.rc2",
-      "cpl-query>=2022.10.rc2"
+      "cpl-core>=2022.10.0",
+      "cpl-query>=2022.10.0"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {

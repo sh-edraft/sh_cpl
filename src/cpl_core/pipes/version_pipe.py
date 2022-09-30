@@ -11,4 +11,7 @@ class VersionPipe(PipeABC):
             if atr.value not in value:
                 raise KeyError(atr.value)
 
-        return f'{value[VersionSettingsNameEnum.major.value]}.{value[VersionSettingsNameEnum.minor.value]}.{value[VersionSettingsNameEnum.micro.value]}'
+        v_str = f'{value[VersionSettingsNameEnum.major.value]}.{value[VersionSettingsNameEnum.minor.value]}'
+        if value[VersionSettingsNameEnum.micro.value] is not None:
+            v_str += f'.{value[VersionSettingsNameEnum.micro.value]}'
+        return v_str

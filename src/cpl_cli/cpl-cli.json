@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2022",
       "Minor": "10",
-      "Micro": "11"
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.10.11"
+      "cpl-core>=2022.10.0"
     ],
     "DevDependencies": [],
     "PythonVersion": ">=3.10",

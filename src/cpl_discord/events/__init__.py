@@ -15,7 +15,7 @@ __title__ = 'cpl_discord.events'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2021 - 2022 sh-edraft.de'
-__version__ = '2022.10rc2'
+__version__ = '2022.10.0'
 
 from collections import namedtuple
 
@@ -69,4 +69,4 @@ from .on_voice_state_update_abc import OnVoiceStateUpdateABC
 from .on_webhooks_update_abc import OnWebhooksUpdateABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='10', micro='rc2')
+version_info = VersionInfo(major='2022', minor='10', micro='0')
