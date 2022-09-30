@@ -153,7 +153,6 @@ class GenerateService(CommandABC):
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
             directory = ''
-            print()
             for subdir in template.path.split('/'):
                 directory = os.path.join(directory, subdir)
                 if subdir == 'src':
