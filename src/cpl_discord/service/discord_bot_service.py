@@ -43,8 +43,8 @@ class DiscordBotService(DiscordBotServiceABC):
 
     def _get_settings(self, settings_from_config: DiscordBotSettings) -> DiscordBotSettings:
         new_settings = DiscordBotSettings()
-        token = settings_from_config.token
-        prefix = settings_from_config.prefix
+        token = None if settings_from_config is None else settings_from_config.token
+        prefix = None if settings_from_config is None else settings_from_config.prefix
         env_token = self._config.get_configuration('TOKEN')
         env_prefix = self._config.get_configuration('PREFIX')
 
