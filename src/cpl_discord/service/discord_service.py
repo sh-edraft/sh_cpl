@@ -161,12 +161,12 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
-        self._logger.trace(__name__, f'Received on_message:\n\t{message}\n\t{message.content}')
+        self._logger.trace(__name__, f'Received on_message:\n\t{message}')
         await self._handle_event(OnMessageABC, message)
 
     @commands.Cog.listener()
     async def on_message_delete(self, message: discord.Message):
-        self._logger.trace(__name__, f'Received on_message_delete:\n\t{message}\n\t{message.content}')
+        self._logger.trace(__name__, f'Received on_message_delete:\n\t{message}')
         await self._handle_event(OnMessageDeleteABC, message)
 
     @commands.Cog.listener()
