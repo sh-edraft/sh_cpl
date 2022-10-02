@@ -33,11 +33,13 @@ class ApplicationBuilder(ApplicationBuilderABC):
     def use_startup(self, startup: Type[StartupABC]):
         self._startup = startup()
 
-    def use_extension(self, extension: Type[Union[ApplicationExtensionABC, StartupExtensionABC]]):
+    def use_extension(self, extension: Type[Union[ApplicationExtensionABC, StartupExtensionABC]]) -> 'ApplicationBuilder':
         if issubclass(extension, ApplicationExtensionABC) and extension not in self._app_extensions:
             self._app_extensions.append(extension)
         elif issubclass(extension, StartupExtensionABC) and extension not in self._startup_extensions:
             self._startup_extensions.append(extension)
+
+        return self
 
     def _build_startup(self):
         for ex in self._startup_extensions:
