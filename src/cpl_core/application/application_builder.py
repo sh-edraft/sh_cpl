@@ -30,8 +30,9 @@ class ApplicationBuilder(ApplicationBuilderABC):
         self._app_extensions: list[Callable] = []
         self._startup_extensions: list[Callable] = []
 
-    def use_startup(self, startup: Type[StartupABC]):
+    def use_startup(self, startup: Type[StartupABC]) -> 'ApplicationBuilder':
         self._startup = startup()
+        return self
 
     def use_extension(self, extension: Type[Union[ApplicationExtensionABC, StartupExtensionABC]]) -> 'ApplicationBuilder':
         if issubclass(extension, ApplicationExtensionABC) and extension not in self._app_extensions:
