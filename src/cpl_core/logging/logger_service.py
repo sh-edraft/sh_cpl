@@ -37,15 +37,28 @@ class Logger(LoggerABC):
         self._check_for_settings(self._time_format_settings, TimeFormatSettings)
         self._check_for_settings(self._log_settings, LoggingSettings)
 
-        self._log = Template(self._log_settings.filename).substitute(
-            date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
-            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
-        )
-        self._path = self._log_settings.path
         self._level = self._log_settings.level
         self._console = self._log_settings.console
 
         self.create()
+
+    @property
+    def _log(self) -> str:
+        return Template(self._log_settings.filename).substitute(
+            date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
+            date_now=self._env.date_time_now.strftime(self._time_format_settings.date_format),
+            time_now=self._env.date_time_now.strftime(self._time_format_settings.time_format),
+            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
+        )
+
+    @property
+    def _path(self) -> str:
+        return Template(self._log_settings.path).substitute(
+            date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
+            date_now=self._env.date_time_now.strftime(self._time_format_settings.date_format),
+            time_now=self._env.date_time_now.strftime(self._time_format_settings.time_format),
+            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
+        )
 
     def _check_for_settings(self, settings: ConfigurationModelABC, settings_type: type):
         self._level = LoggingLevelEnum.OFF
