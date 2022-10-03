@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Optional, Sequence, Union, Type
 
 import discord
+from discord import RawReactionActionEvent
 from discord.ext import commands
 from discord.ext.commands import Context, CommandError, Cog, Command
 
@@ -175,9 +176,29 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
         await self._handle_event(OnBulkMessageDeleteABC, messages)
 
     @commands.Cog.listener()
-    async def on_message_edit(self, before: discord.Message, after: discord.Message):
+    async def on_raw_message_edit(self, before: discord.Message, after: discord.Message):
         self._logger.trace(__name__, f'Received on_message_edit:\n\t{before}\n\t{after}')
         await self._handle_event(OnMessageEditABC, before, after)
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload: RawReactionActionEvent):
+        self._logger.trace(__name__, f'Received on_raw_reaction_add')
+        await self._handle_event(OnReactionAddABC, payload)
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_remove(self, payload: RawReactionActionEvent):
+        self._logger.trace(__name__, f'Received on_raw_reaction_remove')
+        await self._handle_event(OnReactionRemoveABC, payload)
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_clear(self, payload: RawReactionActionEvent):
+        self._logger.trace(__name__, f'Received on_raw_reaction_clear')
+        await self._handle_event(OnReactionClearABC, payload)
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_clear_emoji(self, payload: RawReactionActionEvent):
+        self._logger.trace(__name__, f'Received on_raw_reaction_clear_emoji')
+        await self._handle_event(OnReactionClearEmojiABC, payload)
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):

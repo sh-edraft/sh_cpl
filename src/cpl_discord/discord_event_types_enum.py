@@ -37,6 +37,10 @@ from cpl_discord.events.on_private_channel_create_abc import OnPrivateChannelCre
 from cpl_discord.events.on_private_channel_delete_abc import OnPrivateChannelDeleteABC
 from cpl_discord.events.on_private_channel_pins_update_abc import OnPrivateChannelPinsUpdateABC
 from cpl_discord.events.on_private_channel_update_abc import OnPrivateChannelUpdateABC
+from cpl_discord.events.on_raw_reaction_add_abc import OnRawReactionAddABC
+from cpl_discord.events.on_raw_reaction_clear_abc import OnRawReactionClearABC
+from cpl_discord.events.on_raw_reaction_clear_emoji_abc import OnRawReactionClearEmojiABC
+from cpl_discord.events.on_raw_reaction_remove_abc import OnRawReactionRemoveABC
 from cpl_discord.events.on_reaction_add_abc import OnReactionAddABC
 from cpl_discord.events.on_reaction_clear_abc import OnReactionClearABC
 from cpl_discord.events.on_reaction_clear_emoji_abc import OnReactionClearEmojiABC
@@ -87,6 +91,10 @@ class DiscordEventTypesEnum(Enum):
     on_private_channel_delete = OnPrivateChannelDeleteABC
     on_private_channel_pins_update = OnPrivateChannelPinsUpdateABC
     on_private_channel_update = OnPrivateChannelUpdateABC
+    on_raw_reaction_add = OnRawReactionAddABC
+    on_raw_reaction_clear = OnRawReactionClearABC
+    on_raw_reaction_clear_emoji = OnRawReactionClearEmojiABC
+    on_raw_reaction_remove = OnRawReactionRemoveABC
     on_reaction_add = OnReactionAddABC
     on_reaction_clear = OnReactionClearABC
     on_reaction_clear_emoji = OnReactionClearEmojiABC
