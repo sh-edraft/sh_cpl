@@ -47,6 +47,10 @@ from cpl_discord.events.on_private_channel_create_abc import OnPrivateChannelCre
 from cpl_discord.events.on_private_channel_delete_abc import OnPrivateChannelDeleteABC
 from cpl_discord.events.on_private_channel_pins_update_abc import OnPrivateChannelPinsUpdateABC
 from cpl_discord.events.on_private_channel_update_abc import OnPrivateChannelUpdateABC
+from cpl_discord.events.on_raw_reaction_add_abc import OnRawReactionAddABC
+from cpl_discord.events.on_raw_reaction_clear_abc import OnRawReactionClearABC
+from cpl_discord.events.on_raw_reaction_clear_emoji_abc import OnRawReactionClearEmojiABC
+from cpl_discord.events.on_raw_reaction_remove_abc import OnRawReactionRemoveABC
 from cpl_discord.events.on_reaction_add_abc import OnReactionAddABC
 from cpl_discord.events.on_reaction_clear_abc import OnReactionClearABC
 from cpl_discord.events.on_reaction_clear_emoji_abc import OnReactionClearEmojiABC
@@ -183,22 +187,22 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: RawReactionActionEvent):
         self._logger.trace(__name__, f'Received on_raw_reaction_add')
-        await self._handle_event(OnReactionAddABC, payload)
+        await self._handle_event(OnRawReactionAddABC, payload)
 
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload: RawReactionActionEvent):
         self._logger.trace(__name__, f'Received on_raw_reaction_remove')
-        await self._handle_event(OnReactionRemoveABC, payload)
+        await self._handle_event(OnRawReactionRemoveABC, payload)
 
     @commands.Cog.listener()
     async def on_raw_reaction_clear(self, payload: RawReactionActionEvent):
         self._logger.trace(__name__, f'Received on_raw_reaction_clear')
-        await self._handle_event(OnReactionClearABC, payload)
+        await self._handle_event(OnRawReactionClearABC, payload)
 
     @commands.Cog.listener()
     async def on_raw_reaction_clear_emoji(self, payload: RawReactionActionEvent):
         self._logger.trace(__name__, f'Received on_raw_reaction_clear_emoji')
-        await self._handle_event(OnReactionClearEmojiABC, payload)
+        await self._handle_event(OnRawReactionClearEmojiABC, payload)
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
