@@ -176,7 +176,7 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
         await self._handle_event(OnBulkMessageDeleteABC, messages)
 
     @commands.Cog.listener()
-    async def on_raw_message_edit(self, before: discord.Message, after: discord.Message):
+    async def on_message_edit(self, before: discord.Message, after: discord.Message):
         self._logger.trace(__name__, f'Received on_message_edit:\n\t{before}\n\t{after}')
         await self._handle_event(OnMessageEditABC, before, after)
 
