@@ -268,8 +268,6 @@ class Logger(LoggerABC):
             Console.write_line(self._get_string(name, LoggingLevelEnum.WARN, message))
             Console.set_foreground_color(ForegroundColorEnum.default)
 
-        sys.exit()
-
     def _fatal_console(self, name: str, message: str, ex: Exception = None):
         r"""Writes an error to console only
 
