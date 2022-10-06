@@ -263,9 +263,9 @@ class Logger(LoggerABC):
                 Error message
         """
         # check if message can be shown in console
-        if self._console.value >= LoggingLevelEnum.FATAL.value:
-            Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(self._get_string(name, LoggingLevelEnum.ERROR, message))
+        if self._console.value >= LoggingLevelEnum.WARN.value:
+            Console.set_foreground_color(ForegroundColorEnum.yellow)
+            Console.write_line(self._get_string(name, LoggingLevelEnum.WARN, message))
             Console.set_foreground_color(ForegroundColorEnum.default)
 
         sys.exit()
