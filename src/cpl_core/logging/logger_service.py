@@ -125,7 +125,8 @@ class Logger(LoggerABC):
         try:
             # open log file and append always
             if not os.path.isdir(self._path):
-                self._fatal_console(__name__, 'Log directory not found')
+                self._warn_console(__name__, 'Log directory not found, try to recreate logger')
+                self.create()
 
             with open(self._path + self._log, "a+", encoding="utf-8") as f:
                 f.write(string + '\n')
@@ -166,7 +167,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevelEnum.TRACE.value:
             self._append_log(output)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.TRACE.value:
             Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(output)
@@ -179,7 +180,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevelEnum.DEBUG.value:
             self._append_log(output)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.DEBUG.value:
             Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(output)
@@ -192,7 +193,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevelEnum.INFO.value:
             self._append_log(output)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.INFO.value:
             Console.set_foreground_color(ForegroundColorEnum.green)
             Console.write_line(output)
@@ -205,7 +206,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevelEnum.WARN.value:
             self._append_log(output)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.WARN.value:
             Console.set_foreground_color(ForegroundColorEnum.yellow)
             Console.write_line(output)
@@ -224,7 +225,7 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevelEnum.ERROR.value:
             self._append_log(output)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.ERROR.value:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(output)
@@ -243,10 +244,28 @@ class Logger(LoggerABC):
         if self._level.value >= LoggingLevelEnum.FATAL.value:
             self._append_log(output)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.FATAL.value:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(output)
+            Console.set_foreground_color(ForegroundColorEnum.default)
+
+        sys.exit()
+
+    def _warn_console(self, name: str, message: str):
+        r"""Writes a warning to console only
+
+        Parameter
+        ---------
+            name: :class:`str`
+                Error name
+            message: :class:`str`
+                Error message
+        """
+        # check if message can be shown in console
+        if self._console.value >= LoggingLevelEnum.FATAL.value:
+            Console.set_foreground_color(ForegroundColorEnum.red)
+            Console.write_line(self._get_string(name, LoggingLevelEnum.ERROR, message))
             Console.set_foreground_color(ForegroundColorEnum.default)
 
         sys.exit()
@@ -271,7 +290,7 @@ class Logger(LoggerABC):
         else:
             output = self._get_string(name, LoggingLevelEnum.ERROR, message)
 
-        # check if message can be shown in console_old
+        # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.FATAL.value:
             Console.set_foreground_color(ForegroundColorEnum.red)
             Console.write_line(output)
