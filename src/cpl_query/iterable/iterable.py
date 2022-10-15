@@ -262,9 +262,6 @@ class Iterable(IterableABC):
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
-        if _index >= len(self):
-            raise IndexOutOfRangeException()
-
         return Iterable(self.type, values=self[_index:])
 
     def skip_last(self, _index: int) -> IterableABC:
@@ -275,9 +272,6 @@ class Iterable(IterableABC):
             raise ArgumentNoneException(ExceptionArgument.index)
 
         index = len(self) - _index
-
-        if index >= len(self) or index < 0:
-            raise IndexOutOfRangeException()
 
         result = Iterable()
         result.extend(self[:index])
@@ -290,9 +284,6 @@ class Iterable(IterableABC):
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
-        if _index >= len(self):
-            raise IndexOutOfRangeException()
-
         result = Iterable()
         result.extend(self[:_index])
         return result
@@ -300,9 +291,6 @@ class Iterable(IterableABC):
     def take_last(self, _index: int) -> IterableABC:
         if self is None:
             raise ArgumentNoneException(ExceptionArgument.list)
-
-        if _index is None:
-            raise ArgumentNoneException(ExceptionArgument.index)
 
         index = len(self) - _index
 

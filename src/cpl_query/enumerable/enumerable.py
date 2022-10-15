@@ -249,9 +249,6 @@ class Enumerable(EnumerableABC):
 
         _list = self.to_list()
 
-        if _index >= len(_list):
-            raise IndexOutOfRangeException()
-
         return Enumerable(self.type, _list[_index:])
 
     def skip_last(self, _index: int) -> EnumerableABC:
@@ -262,9 +259,6 @@ class Enumerable(EnumerableABC):
             raise ArgumentNoneException(ExceptionArgument.index)
 
         index = len(self) - _index
-
-        if index >= len(self) or index < 0:
-            raise IndexOutOfRangeException()
 
         return self.take(len(self) - _index)
 
@@ -277,9 +271,6 @@ class Enumerable(EnumerableABC):
 
         _list = self.to_list()
 
-        if _index >= len(_list):
-            raise IndexOutOfRangeException()
-
         return Enumerable(self.type, _list[:_index])
 
     def take_last(self, _index: int) -> EnumerableABC:
@@ -291,9 +282,6 @@ class Enumerable(EnumerableABC):
 
         _list = self.to_list()
         index = len(_list) - _index
-
-        if index >= len(_list) or index < 0:
-            raise IndexOutOfRangeException()
 
         return self.skip(index)
 
