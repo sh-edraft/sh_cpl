@@ -71,10 +71,6 @@ class EMailClient(EMailClientABC):
         self._logger.trace(__name__, f'Started {__name__}.send_mail')
         try:
             self.login()
-            email.body += f'\n\nDies ist eine automatische E-Mail.' \
-                          f'\nGesendet von {self._environment.application_name}-{self._environment.environment_name}@{self._environment.host_name} für ' \
-                          f'{self._environment.customer}.'
-
             self._logger.debug(__name__, f'Try to send email to {email.receiver_list}')
             self._server.sendmail(self._mail_settings.user_name, email.receiver_list, email.get_content(self._mail_settings.user_name))
             self._logger.info(__name__, f'Sent email to {email.receiver_list}')

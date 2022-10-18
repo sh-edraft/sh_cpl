@@ -58,4 +58,4 @@ class Application(ApplicationABC):
         Console.write_line('scope', scope)
         with self._services.create_scope() as s:
             Console.write_line('with scope', s)
-        # self.test_send_mail()
+        self.test_send_mail()
