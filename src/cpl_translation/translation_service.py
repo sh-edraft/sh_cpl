@@ -34,7 +34,7 @@ class TranslationService(TranslationServiceABC):
             raise FileNotFoundError()
 
         file_dict = {}
-        with open(f'translation/{lang}.json', 'r', encoding='utf8') as file:
+        with open(f'translation/{lang}.json', 'r', encoding='utf-8') as file:
             file_dict = json.load(file)
             file.close()
 
