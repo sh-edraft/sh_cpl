@@ -433,7 +433,7 @@ class PublisherService(PublisherABC):
         3. Copies all included source files to dist_path/build
         :return:
         """
-        self._env.set_working_directory(os.path.join(self._env.working_directory, '../'))
+        # self._env.set_working_directory(os.path.join(self._env.working_directory, '../')) # probably causing some errors (#125)
         self.exclude(f'*/{self._project_settings.name}.json')
         self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'build'))
 
@@ -456,7 +456,7 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
-        self._env.set_working_directory(os.path.join(self._env.working_directory, '../'))
+        # self._env.set_working_directory(os.path.join(self._env.working_directory, '../')) # probably causing some errors (#125)
         self.exclude(f'*/{self._project_settings.name}.json')
         self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'publish'))
 
