@@ -177,7 +177,7 @@ class Configuration(ConfigurationABC):
 
             Console.write_line()
             self._set_variable('ACTIVE_EXECUTABLE', script)
-            css.run([])
+            css.run(self._additional_arguments)
 
     def _parse_arguments(self, executables: list[ArgumentABC], arg_list: list[str], args_types: list[ArgumentABC]):
         for i in range(0, len(arg_list)):
