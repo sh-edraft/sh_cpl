@@ -334,6 +334,13 @@ class Configuration(ConfigurationABC):
                 cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
                 self._handle_pre_or_post_executables(True, exe, services)
                 self._set_variable('ACTIVE_EXECUTABLE', exe.name)
+                args = self.get_configuration('ARGS')
+                if args is not None:
+                    for arg in args.split(' '):
+                        if arg == '':
+                            continue
+                        self._additional_arguments.append(arg)
+
                 cmd.execute(self._additional_arguments)
                 self._handle_pre_or_post_executables(False, exe, services)
                 prevent = exe.prevent_next_executable
