@@ -79,7 +79,7 @@ class PublishTestCase(unittest.TestCase):
         CLICommands.publish()
         dist_path = './dist'
         setup_path = f'{dist_path}/{self._source}/publish/setup'
-        full_dist_path = f'{dist_path}/{self._source}/publish/'
+        full_dist_path = f'{dist_path}/{self._source}/publish/build/lib/{String.convert_to_snake_case(self._source)}'
         self.assertTrue(os.path.exists(dist_path))
         self.assertTrue(os.path.exists(setup_path))
         self.assertTrue(os.path.exists(os.path.join(setup_path, f'{self._source}-0.0.0.tar.gz')))
@@ -89,4 +89,4 @@ class PublishTestCase(unittest.TestCase):
         with open(f'{full_dist_path}/{self._source}.json', 'w') as file:
             file.write(json.dumps(self._get_project_settings(), indent=2))
             file.close()
-        # self.assertTrue(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))
+        self.assertTrue(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))
