@@ -11,7 +11,7 @@ sh-edraft Common Python library
 
 """
 
-__title__ = 'cpl_core.environment'
+__title__ = 'environment'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'

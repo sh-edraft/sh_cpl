@@ -11,7 +11,7 @@ sh-edraft Common Python library Python integrated Queries
 
 """
 
-__title__ = 'cpl_query'
+__title__ = 'cpl-query'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2021 - 2022 sh-edraft.de'
