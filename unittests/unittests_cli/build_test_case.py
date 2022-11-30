@@ -78,7 +78,7 @@ class BuildTestCase(unittest.TestCase):
     def test_build(self):
         CLICommands.build()
         dist_path = './dist'
-        full_dist_path = f'{dist_path}/{self._source}/build/'
+        full_dist_path = f'{dist_path}/{self._source}/build/{String.convert_to_snake_case(self._source)}'
         self.assertTrue(os.path.exists(dist_path))
         self.assertTrue(os.path.exists(full_dist_path))
         self.assertFalse(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))
