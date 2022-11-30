@@ -11,7 +11,7 @@ CPL internal tool to set version from branch name
 
 """
 
-__title__ = 'set_version'
+__title__ = 'set-version'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2022 sh-edraft.de'

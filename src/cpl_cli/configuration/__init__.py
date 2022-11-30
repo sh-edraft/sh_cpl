@@ -11,7 +11,7 @@ sh-edraft Common Python library Command Line Interface
 
 """
 
-__title__ = 'cpl_cli.configuration'
+__title__ = 'configuration'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2020 - 2022 sh-edraft.de'
