@@ -11,7 +11,7 @@ CPL internal tool to set pip URL for CLI by environment
 
 """
 
-__title__ = 'set-pip-urls'
+__title__ = 'set_pip_urls'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2022 sh-edraft.de'
