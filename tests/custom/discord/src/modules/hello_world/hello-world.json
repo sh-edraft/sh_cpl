@@ -22,9 +22,7 @@
       "cpl-cli>=2022.7.0.post1"
     ],
     "PythonVersion": ">=3.10.4",
-    "PythonPath": {
-      "linux": ""
-    },
+    "PythonPath": {},
     "Classifiers": []
   },
   "BuildSettings": {
