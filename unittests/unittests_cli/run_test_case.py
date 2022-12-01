@@ -1,22 +1,18 @@
 import json
 import os
 import shutil
-import subprocess
-import sys
 import unittest
 
-import pkg_resources
-
 from cpl_core.utils import String
-
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
-class RunTestCase(unittest.TestCase):
+class RunTestCase(CommandTestCase):
 
-    def __init__(self, methodName: str):
-        unittest.TestCase.__init__(self, methodName)
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
         self._source = 'run-test'
         self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
         self._appsettings = f'src/{String.convert_to_snake_case(self._source)}/appsettings.json'
@@ -62,13 +58,6 @@ class RunTestCase(unittest.TestCase):
         with open(os.path.join(os.getcwd(), self._application), 'a', encoding='utf-8') as file:
             file.write(f'\t\t{self._test_code}')
             file.close()
-
-    def cleanUp(self):
-        # remove projects
-        if not os.path.exists(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source))):
-            return
-
-        shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source)))
 
     def test_run(self):
         CLICommands.run()

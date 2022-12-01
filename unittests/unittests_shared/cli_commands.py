@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 from unittests_cli.constants import CLI_PATH
 
@@ -29,7 +30,8 @@ class CLICommands:
         for arg in args:
             command.append(arg)
 
-        return subprocess.run(command, env=env_vars, check=True, capture_output=True, text=True).stdout
+        with subprocess.Popen(command, stdout=subprocess.PIPE, universal_newlines=True) as process:
+            return process.stdout.read()
 
     @classmethod
     def add(cls, source: str, target: str, output=False):

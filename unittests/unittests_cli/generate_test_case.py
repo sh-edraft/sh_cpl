@@ -1,17 +1,18 @@
 import os.path
-import unittest
 
 from cpl_core.utils import String
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
-class GenerateTestCase(unittest.TestCase):
+class GenerateTestCase(CommandTestCase):
     _project = 'test-console'
     _t_path = 'test'
 
     @classmethod
     def setUpClass(cls):
+        CommandTestCase.setUpClass()
         CLICommands.new('console', cls._project, '--ab', '--s', '--venv')
 
     def setUp(self):

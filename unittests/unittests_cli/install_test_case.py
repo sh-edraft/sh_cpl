@@ -6,14 +6,15 @@ import sys
 import unittest
 
 from cpl_core.utils import String
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
-class InstallTestCase(unittest.TestCase):
+class InstallTestCase(CommandTestCase):
 
-    def __init__(self, methodName: str):
-        unittest.TestCase.__init__(self, methodName)
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
         self._source = 'install-test-source'
         self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
 
@@ -38,13 +39,6 @@ class InstallTestCase(unittest.TestCase):
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))
-
-    def cleanUp(self):
-        # remove projects
-        if not os.path.exists(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source))):
-            return
-
-        shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source)))
 
     def _get_installed_packages(self) -> dict:
         reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
