@@ -54,6 +54,7 @@ class NewService(CommandABC):
         self._use_service_providing: bool = False
         self._use_async: bool = False
         self._use_venv: bool = False
+        self._use_base: bool = False
 
     @property
     def help_message(self) -> str:
@@ -159,7 +160,8 @@ class NewService(CommandABC):
         if self._workspace is None:
             project_path = os.path.join(self._env.working_directory, self._rel_path, self._project.name)
         else:
-            project_path = os.path.join(self._env.working_directory, 'src', self._rel_path, String.convert_to_snake_case(self._project.name))
+            base = '' if self._use_base else 'src'
+            project_path = os.path.join(self._env.working_directory, base, self._rel_path, String.convert_to_snake_case(self._project.name))
 
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
             Console.write_line(project_path)
@@ -292,6 +294,9 @@ class NewService(CommandABC):
         if self._env.working_directory.endswith(project):
             project = ''
 
+        if self._workspace is None and self._use_base:
+            project = f'{self._rel_path}/{project}'
+
         VenvHelper.init_venv(
             False,
             self._env,
@@ -335,6 +340,9 @@ class NewService(CommandABC):
         if 'venv' in args:
             self._use_venv = True
             args.remove('venv')
+        if 'base' in args:
+            self._use_base = True
+            args.remove('base')
 
         console = self._config.get_configuration(ProjectTypeEnum.console.value)
         library = self._config.get_configuration(ProjectTypeEnum.library.value)

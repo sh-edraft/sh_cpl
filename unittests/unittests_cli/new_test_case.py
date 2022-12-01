@@ -12,7 +12,7 @@ class NewTestCase(unittest.TestCase):
     def setUp(self):
         os.chdir(os.path.abspath(PLAYGROUND_PATH))
 
-    def _test_project(self, project_type: str, name: str, *args, test_venv=False):
+    def _test_project(self, project_type: str, name: str, *args, test_venv=False, without_ws=False):
         CLICommands.new(project_type, name, *args)
         workspace_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name))
         self.assertTrue(os.path.exists(workspace_path))
@@ -22,7 +22,15 @@ class NewTestCase(unittest.TestCase):
             self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin/python')))
             self.assertTrue(os.path.islink(os.path.join(workspace_path, 'venv/bin/python')))
 
-        project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name, 'src', String.convert_to_snake_case(name)))
+        base = 'src'
+        if '--base' in args and '/' in name:
+            base = name.split('/')[0]
+            name = name.replace(f'{name.split("/")[0]}/', '')
+
+        project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name, base, String.convert_to_snake_case(name)))
+        if without_ws:
+            project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, base, name, 'src/', String.convert_to_snake_case(name)))
+
         self.assertTrue(os.path.exists(project_path))
         self.assertTrue(os.path.join(project_path, f'{name}.json'))
         self.assertTrue(os.path.join(project_path, f'main.py'))
@@ -54,7 +62,12 @@ class NewTestCase(unittest.TestCase):
             self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin/python')))
             self.assertTrue(os.path.islink(os.path.join(workspace_path, 'venv/bin/python')))
 
-        project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, 'src', String.convert_to_snake_case(name)))
+        base = 'src'
+        if '--base' in args and '/' in name:
+            base = name.split('/')[0]
+            name = name.replace(f'{name.split("/")[0]}/', '')
+
+        project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, base, String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
         self.assertTrue(os.path.join(project_path, f'{name}.json'))
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
@@ -88,6 +101,9 @@ class NewTestCase(unittest.TestCase):
     def test_console(self):
         self._test_project('console', 'test-console', '--ab', '--s', '--venv', test_venv=True)
 
+    def test_console_with_other_base(self):
+        self._test_project('console', 'tools/test-console', '--ab', '--s', '--venv', '--base', test_venv=True, without_ws=True)
+
     def test_console_without_s(self):
         self._test_project('console', 'test-console-without-s', '--ab')
 
@@ -99,6 +115,9 @@ class NewTestCase(unittest.TestCase):
 
     def test_sub_console(self):
         self._test_sub_project('console', 'test-sub-console', 'test-console', '--ab', '--s', '--sp', '--venv', test_venv=True)
+
+    def test_sub_console_with_other_base(self):
+        self._test_sub_project('console', 'tools/test-sub-console', 'test-console', '--ab', '--s', '--sp', '--venv', '--base', test_venv=True)
 
     def test_library(self):
         self._test_project('library', 'test-library', '--ab', '--s', '--sp')
