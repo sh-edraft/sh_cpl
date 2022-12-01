@@ -24,14 +24,13 @@ class CLICommands:
     @staticmethod
     def _run_with_output(cmd: str, *args) -> str:
         env_vars = os.environ
-        # env_vars['CPL_IS_UNITTEST'] = 'NO'
+        env_vars['CPL_IS_UNITTEST'] = 'NO'
 
         command = ['python', CLI_PATH, cmd]
         for arg in args:
             command.append(arg)
 
-        with subprocess.Popen(command, stdout=subprocess.PIPE, universal_newlines=True) as process:
-            return process.stdout.read()
+        return subprocess.run(command, env=env_vars, check=True, capture_output=True, text=True).stdout
 
     @classmethod
     def add(cls, source: str, target: str, output=False):
