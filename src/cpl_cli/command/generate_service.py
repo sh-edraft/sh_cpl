@@ -14,6 +14,7 @@ from cpl_cli._templates.generate.thread_template import ThreadTemplate
 from cpl_cli._templates.generate.validator_template import ValidatorTemplate
 from cpl_cli._templates.template_file_abc import TemplateFileABC
 from cpl_cli.command_abc import CommandABC
+from cpl_cli.configuration import WorkspaceSettings
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -22,12 +23,19 @@ from cpl_core.utils.string import String
 
 class GenerateService(CommandABC):
 
-    def __init__(self, configuration: ConfigurationABC):
+    def __init__(
+            self,
+            configuration: ConfigurationABC,
+            workspace: WorkspaceSettings,
+    ):
         """
         Service for the CLI command generate
         :param configuration:
         """
         CommandABC.__init__(self)
+
+        self._config = configuration
+        self._workspace = workspace
 
         self._schematics = {
             "abc": {
@@ -129,27 +137,7 @@ class GenerateService(CommandABC):
             template.write(value)
             template.close()
 
-    def _generate(self, schematic: str, name: str, template: TemplateFileABC):
-        """
-        Generates files by given schematic, name and template
-        :param schematic:
-        :param name:
-        :param template:
-        :return:
-        """
-        class_name = name
-        rel_path = ''
-        if '/' in name:
-            parts = name.split('/')
-            rel_path = '/'.join(parts[:-1])
-            class_name = parts[len(parts) - 1]
-
-        if 'src' not in rel_path and not os.path.exists(os.path.join(self._env.working_directory, rel_path)):
-            rel_path = f'src/{rel_path}'
-
-        template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
-
-        file_path = os.path.join(self._env.working_directory, template.path, template.name)
+    def _create_init_files(self, file_path: str, template: TemplateFileABC, class_name: str, schematic: str, rel_path: str):
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
             directory = ''
@@ -170,6 +158,29 @@ class GenerateService(CommandABC):
                     text_foreground_color=ForegroundColorEnum.green,
                     spinner_foreground_color=ForegroundColorEnum.cyan
                 )
+
+    def _generate(self, schematic: str, name: str, template: TemplateFileABC):
+        """
+        Generates files by given schematic, name and template
+        :param schematic:
+        :param name:
+        :param template:
+        :return:
+        """
+        class_name = name
+        rel_path = ''
+        if '/' in name:
+            parts = name.split('/')
+            rel_path = '/'.join(parts[:-1])
+            class_name = parts[len(parts) - 1]
+
+            if self._workspace is not None and parts[0] in self._workspace.projects:
+                rel_path = os.path.dirname(self._workspace.projects[parts[0]])
+
+        template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
+
+        file_path = os.path.join(self._env.working_directory, template.path, template.name)
+        self._create_init_files(file_path, template, class_name, schematic, rel_path)
 
         if os.path.isfile(file_path):
             Console.error(f'{String.first_to_upper(schematic)} already exists!\n')

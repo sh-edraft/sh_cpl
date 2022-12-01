@@ -20,9 +20,7 @@
       "cpl-cli>=2022.10.0"
     ],
     "PythonVersion": ">=3.10.4",
-    "PythonPath": {
-      "linux": ""
-    },
+    "PythonPath": {},
     "Classifiers": [],
     "DevDependencies": []
   },

@@ -131,7 +131,15 @@
       "di-cli": "pip install cpl-cli --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
       "di-discord": "pip install cpl-discord --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
       "di-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
-      "di-translation": "pip install cpl-translation --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de"
+      "di-translation": "pip install cpl-translation --pre --upgrade --extra-index-url https://pip-dev.sh-edraft.de",
+
+      "prod-install": "cpl pi-core; cpl pi-cli; cpl pi-query; cpl pi-translation;",
+      "pi": "cpl prod-install",
+      "pi-core": "pip install cpl-core --pre --upgrade --extra-index-url https://pip.sh-edraft.de",
+      "pi-cli": "pip install cpl-cli --pre --upgrade --extra-index-url https://pip.sh-edraft.de",
+      "pi-discord": "pip install cpl-discord --pre --upgrade --extra-index-url https://pip.sh-edraft.de",
+      "pi-query": "pip install cpl-query --pre --upgrade --extra-index-url https://pip.sh-edraft.de",
+      "pi-translation": "pip install cpl-translation --pre --upgrade --extra-index-url https://pip.sh-edraft.de"
     }
   }
 }
