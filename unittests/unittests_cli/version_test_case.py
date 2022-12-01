@@ -12,13 +12,14 @@ import cpl_cli
 from cpl_core.console import ForegroundColorEnum
 from termcolor import colored
 
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_shared.cli_commands import CLICommands
 
 
-class VersionTestCase(unittest.TestCase):
+class VersionTestCase(CommandTestCase):
 
-    def __init__(self, methodName: str):
-        unittest.TestCase.__init__(self, methodName)
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
         self._block_banner = ""
         self._block_version = ""
         self._block_package_header = ""

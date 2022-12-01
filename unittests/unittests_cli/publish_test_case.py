@@ -5,15 +5,16 @@ import shutil
 import unittest
 
 from cpl_core.utils import String
+from unittests_cli.abc.command_test_case import CommandTestCase
 
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
-class PublishTestCase(unittest.TestCase):
+class PublishTestCase(CommandTestCase):
 
-    def __init__(self, methodName: str):
-        unittest.TestCase.__init__(self, methodName)
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
         self._source = 'publish-test-source'
         self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
 
@@ -31,17 +32,13 @@ class PublishTestCase(unittest.TestCase):
             project_file.close()
 
     def setUp(self):
-        os.chdir(os.path.abspath(PLAYGROUND_PATH))
+        if not os.path.exists(PLAYGROUND_PATH):
+            os.makedirs(PLAYGROUND_PATH)
+        
+        os.chdir(PLAYGROUND_PATH)
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))
-
-    def cleanUp(self):
-        # remove projects
-        if not os.path.exists(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source))):
-            return
-
-        shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source)))
 
     def _are_dir_trees_equal(self, dir1, dir2):
         """

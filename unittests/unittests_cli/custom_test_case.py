@@ -1,7 +1,7 @@
-import unittest
+from unittests_cli.abc.command_test_case import CommandTestCase
 
 
-class CustomTestCase(unittest.TestCase):
+class CustomTestCase(CommandTestCase):
 
     def setUp(self):
         pass

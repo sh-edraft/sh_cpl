@@ -1,16 +1,16 @@
 import json
 import os
-import unittest
 
 from cpl_core.utils import String
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
-class NewTestCase(unittest.TestCase):
+class NewTestCase(CommandTestCase):
 
-    def setUp(self):
-        os.chdir(os.path.abspath(PLAYGROUND_PATH))
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
 
     def _test_project(self, project_type: str, name: str, *args, test_venv=False, without_ws=False):
         CLICommands.new(project_type, name, *args)
@@ -70,7 +70,6 @@ class NewTestCase(unittest.TestCase):
         project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, base, String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
         self.assertTrue(os.path.join(project_path, f'{name}.json'))
-        os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
 
     def _test_sub_directory_project(self, project_type: str, directory: str, name: str, workspace_name: str, *args):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))
@@ -95,8 +94,6 @@ class NewTestCase(unittest.TestCase):
         self.assertEqual(build_settings['OutputPath'], '../../dist')
         self.assertEqual(build_settings['Main'], f'{String.convert_to_snake_case(name)}.main')
         self.assertEqual(build_settings['EntryPoint'], name)
-
-        os.chdir(os.path.abspath(os.path.join(os.getcwd(), '../')))
 
     def test_console(self):
         self._test_project('console', 'test-console', '--ab', '--s', '--venv', test_venv=True)

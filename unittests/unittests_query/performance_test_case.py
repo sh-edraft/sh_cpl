@@ -19,9 +19,9 @@ class PerformanceTestCase(unittest.TestCase):
             i += 1
 
     def test_range(self):
-        default = timeit.timeit(lambda: list(self.values), number=COUNT)
-        enumerable = timeit.timeit(lambda: Enumerable(int, self.values), number=COUNT)
-        iterable = timeit.timeit(lambda: Iterable(int, self.values), number=COUNT)
+        default = timeit.timeit(lambda: list(range(0, VALUES)), number=COUNT)
+        iterable = timeit.timeit(lambda: Iterable.range(0, VALUES), number=COUNT)
+        enumerable = timeit.timeit(lambda: Enumerable.range(0, VALUES), number=COUNT)
 
         print('Range')
         print(f'd: {default}s')
@@ -32,9 +32,9 @@ class PerformanceTestCase(unittest.TestCase):
         self.assertLess(default, iterable)
 
     def test_where_single(self):
-        default = timeit.timeit(lambda: [x for x in list(self.values) if x == 50], number=COUNT)
-        iterable = timeit.timeit(lambda: Iterable(int, self.values).where(lambda x: x == 50).single(), number=COUNT)
-        enumerable = timeit.timeit(lambda: Enumerable(int, self.values).where(lambda x: x == 50).single(), number=COUNT)
+        default = timeit.timeit(lambda: [x for x in list(range(0, VALUES)) if x == 50], number=COUNT)
+        iterable = timeit.timeit(lambda: Iterable.range(0, VALUES).where(lambda x: x == 50).single(), number=COUNT)
+        enumerable = timeit.timeit(lambda: Enumerable.range(0, VALUES).where(lambda x: x == 50).single(), number=COUNT)
 
         print('Where single')
         print(f'd: {default}s')
@@ -55,7 +55,7 @@ class PerformanceTestCase(unittest.TestCase):
         for i in range(VALUES):
             values.append(TestModel(i, TestModel(i + 1)))
 
-        default = timeit.timeit(lambda: [x for x in list(values) if x.tm.value == 50], number=COUNT)
+        default = timeit.timeit(lambda: [x for x in values if x.tm.value == 50], number=COUNT)
         iterable = timeit.timeit(lambda: Iterable(TestModel, values).where(lambda x: x.tm.value == 50).single(), number=COUNT)
         enumerable = timeit.timeit(lambda: Enumerable(TestModel, values).where(lambda x: x.tm.value == 50).single(), number=COUNT)
 

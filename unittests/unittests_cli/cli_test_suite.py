@@ -75,4 +75,9 @@ class CLITestSuite(unittest.TestSuite):
     def run(self, *args):
         self._setup()
         self._result = super().run(*args)
-        # self._cleanup()
+        self._cleanup()
+
+
+if __name__ == "__main__":
+    runner = unittest.TextTestRunner()
+    runner.run(CLITestSuite())

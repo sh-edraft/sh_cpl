@@ -5,15 +5,16 @@ import time
 import unittest
 
 from cpl_core.utils import String
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_cli.threads.start_test_thread import StartTestThread
 from unittests_shared.cli_commands import CLICommands
 
 
-class StartTestCase(unittest.TestCase):
+class StartTestCase(CommandTestCase):
 
-    def __init__(self, methodName: str):
-        unittest.TestCase.__init__(self, methodName)
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
         self._source = 'start-test'
         self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
         self._appsettings = f'src/{String.convert_to_snake_case(self._source)}/appsettings.json'
@@ -50,7 +51,10 @@ class StartTestCase(unittest.TestCase):
             project_file.close()
 
     def setUp(self):
-        os.chdir(os.path.abspath(PLAYGROUND_PATH))
+        if not os.path.exists(PLAYGROUND_PATH):
+            os.makedirs(PLAYGROUND_PATH)
+        
+        os.chdir(PLAYGROUND_PATH)
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))
@@ -59,13 +63,6 @@ class StartTestCase(unittest.TestCase):
         with open(os.path.join(os.getcwd(), self._application), 'a', encoding='utf-8') as file:
             file.write(f'\t\t{self._test_code}')
             file.close()
-
-    def cleanUp(self):
-        # remove projects
-        if not os.path.exists(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source))):
-            return
-
-        shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH, self._source)))
 
     def test_start(self):
         thread = StartTestThread()
