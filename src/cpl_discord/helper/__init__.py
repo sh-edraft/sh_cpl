@@ -11,7 +11,7 @@ sh-edraft Common Python library link between discord.py and CPL
 
 """
 
-__title__ = 'helper'
+__title__ = 'cpl_discord.helper'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
 __copyright__ = 'Copyright (c) 2021 - 2022 sh-edraft.de'
