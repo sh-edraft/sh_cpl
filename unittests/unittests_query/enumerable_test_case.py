@@ -6,17 +6,9 @@ from cpl_query.enumerable.enumerable import Enumerable
 class EnumerableTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
-        self._list = Enumerable(int)
-
-    def _clear(self):
-        self._list.clear()
-        self.assertEqual(self._list, [])
+        self._list = Enumerable(int, list(range(1, 4)))
 
     def test_append(self):
-        self._list.add(1)
-        self._list.add(2)
-        self._list.add(3)
-
         self.assertEqual(self._list.to_list(), [1, 2, 3])
         self.assertRaises(Exception, lambda v: self._list.add(v), '3')
 
@@ -38,30 +30,7 @@ class EnumerableTestCase(unittest.TestCase):
             n += 1
 
     def test_get(self):
-        self._list.add(1)
-        self._list.add(2)
-        self._list.add(3)
-
         self.assertEqual(self._list.element_at(2), [1, 2, 3][2])
 
     def test_count(self):
-        self._list.add(1)
-        self._list.add(2)
-        self._list.add(3)
-
         self.assertEqual(self._list.count(), 3)
-
-    def test_remove(self):
-        old_values = self._list._values
-        self._list.add(1)
-        self.assertNotEqual(old_values, self._list._values)
-        self._list.add(2)
-        self._list.add(3)
-
-        self.assertEqual(self._list.to_list(), [1, 2, 3])
-        self.assertRaises(Exception, lambda v: self._list.add(v), '3')
-        old_values = self._list._values
-        self._list.remove(3)
-        self.assertNotEqual(old_values, self._list._values)
-        self.assertEqual(self._list.to_list(), [1, 2])
-        self.assertRaises(Exception, lambda v: self._list.add(v), '3')

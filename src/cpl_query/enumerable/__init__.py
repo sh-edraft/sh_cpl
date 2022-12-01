@@ -19,12 +19,9 @@ __version__ = '2022.10.0.post2'
 
 from collections import namedtuple
 
-
 # imports:
 from .enumerable import Enumerable
 from .enumerable_abc import EnumerableABC
-from .ordered_enumerable import OrderedEnumerable
-from .ordered_enumerable_abc import OrderedEnumerableABC
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro')
 version_info = VersionInfo(major='2022', minor='10', micro='0.post2')

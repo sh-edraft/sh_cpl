@@ -11,7 +11,16 @@ from unittests_query.models import User, Address
 class EnumerableQueryTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
-        self._tests = Enumerable(User)
+        users = []
+        for i in range(0, 100):
+            users.append(User(
+                String.random_string(string.ascii_letters, 8).lower(),
+                Address(
+                    String.random_string(string.ascii_letters, 10).lower(),
+                    randint(1, 10)
+                )
+            ))
+
         self._t_user = User(
             'Test user',
             Address(
@@ -27,22 +36,10 @@ class EnumerableQueryTestCase(unittest.TestCase):
             )
         )
 
-        self._generate_test_data()
+        users.append(self._t_user)
+        users.append(self._t_user2)
 
-    def _generate_test_data(self):
-        for i in range(0, 100):
-            user = User(
-                String.random_string(string.ascii_letters, 8).lower(),
-                Address(
-                    String.random_string(string.ascii_letters, 10).lower(),
-                    randint(1, 10)
-                )
-            )
-
-            self._tests.add(user)
-
-        self._tests.add(self._t_user)
-        self._tests.add(self._t_user2)
+        self._tests = Enumerable(User, users)
 
     def test_any(self):
         results = []

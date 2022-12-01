@@ -113,7 +113,7 @@ class IterableQueryTestCase(unittest.TestCase):
 
             addresses.append(u.address.nr)
 
-        res2 = self._tests.distinct(lambda x: x.address.nr).select(lambda x: x.address.nr)
+        res2 = self._tests.distinct(lambda x: x.address.nr).select(lambda x: x.address.nr).to_list()
         self.assertEqual(addresses, res2)
 
     def test_element_at(self):
@@ -199,7 +199,7 @@ class IterableQueryTestCase(unittest.TestCase):
             groups[v].append(v)
             elements.append(v)
 
-        r1, r2 = list(groups.values()), elements.group_by()
+        r1, r2 = list(groups.values()), elements.group_by().select(lambda l: l.to_list()).to_list()
         self.assertEqual(r1, r2)
 
     def test_for_each(self):
