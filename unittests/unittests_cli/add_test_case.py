@@ -26,7 +26,10 @@ class AddTestCase(unittest.TestCase):
         return project_json
 
     def setUp(self):
-        os.chdir(os.path.abspath(PLAYGROUND_PATH))
+        if not os.path.exists(PLAYGROUND_PATH):
+            os.makedirs(PLAYGROUND_PATH)
+
+        os.chdir(PLAYGROUND_PATH)
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))

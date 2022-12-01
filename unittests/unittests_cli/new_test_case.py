@@ -10,7 +10,10 @@ from unittests_shared.cli_commands import CLICommands
 class NewTestCase(unittest.TestCase):
 
     def setUp(self):
-        os.chdir(os.path.abspath(PLAYGROUND_PATH))
+        if not os.path.exists(PLAYGROUND_PATH):
+            os.makedirs(PLAYGROUND_PATH)
+        
+        os.chdir(PLAYGROUND_PATH)
 
     def _test_project(self, project_type: str, name: str, *args, test_venv=False, without_ws=False):
         CLICommands.new(project_type, name, *args)

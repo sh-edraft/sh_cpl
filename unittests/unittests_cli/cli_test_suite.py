@@ -75,4 +75,4 @@ class CLITestSuite(unittest.TestSuite):
     def run(self, *args):
         self._setup()
         self._result = super().run(*args)
-        # self._cleanup()
+        self._cleanup()
