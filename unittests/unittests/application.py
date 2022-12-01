@@ -18,6 +18,6 @@ class Application(ApplicationABC):
 
     def main(self):
         runner = unittest.TextTestRunner()
-        runner.run(CLITestSuite())
+        # runner.run(CLITestSuite())
         runner.run(QueryTestSuite())
-        runner.run(TranslationTestSuite())
+        # runner.run(TranslationTestSuite())

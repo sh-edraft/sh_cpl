@@ -155,6 +155,15 @@ class QueryableABC(ABC):
         """
         pass
 
+    def group_by(self, _func: Callable = None) -> 'QueryableABC':
+        r"""Groups by func
+
+        Returns
+        -------
+            Grouped list[list[any]]: any
+        """
+        pass
+
     @abstractmethod
     def last(self) -> any:
         r"""Returns last element

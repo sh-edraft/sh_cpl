@@ -16,59 +16,36 @@ class Iterable(IterableABC):
         IterableABC.__init__(self, t, values)
 
     def all(self, _func: Callable = None) -> bool:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None:
             _func = _default_lambda
 
-        result = self.where(_func)
-        return len(result) == len(self)
+        return self.where(_func).count() == self.count()
 
     def any(self, _func: Callable = None) -> bool:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None:
             _func = _default_lambda
 
-        result = self.where(_func)
-        return len(result) > 0
+        return self.where(_func).count() > 0
 
     def average(self, _func: Callable = None) -> Union[int, float, complex]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None and not is_number(self.type):
             raise InvalidTypeException()
 
-        if _func is None:
-            _func = _default_lambda
-
-        return float(self.sum(_func)) / float(self.count())
+        return self.sum(_func) / self.count()
 
     def contains(self, _value: object) -> bool:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _value is None:
             raise ArgumentNoneException(ExceptionArgument.value)
 
         return self.where(lambda x: x == _value).count() > 0
 
     def count(self, _func: Callable = None) -> int:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None:
-            return len(self)
+            return self.__len__()
 
-        return len(self.where(_func))
+        return self.where(_func).__len__()
 
-    def distinct(self, _func: Callable = None) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def distinct(self, _func: Callable = None) -> 'Iterable':
         if _func is None:
             _func = _default_lambda
 
@@ -85,18 +62,12 @@ class Iterable(IterableABC):
         return result
 
     def element_at(self, _index: int) -> any:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
         return self[_index]
 
     def element_at_or_default(self, _index: int) -> any:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
@@ -105,56 +76,52 @@ class Iterable(IterableABC):
         except IndexError:
             return None
 
-    def first(self: IterableABC) -> any:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def first(self) -> any:
         if len(self) == 0:
             raise IndexOutOfRangeException()
 
         return self[0]
 
-    def first_or_default(self: IterableABC) -> Optional[any]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def first_or_default(self) -> Optional[any]:
         if len(self) == 0:
             return None
 
         return self[0]
 
-    def last(self: IterableABC) -> any:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
-        if len(self) == 0:
-            raise IndexOutOfRangeException()
-
-        return self[len(self) - 1]
-
-    def last_or_default(self: IterableABC) -> Optional[any]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
-        if len(self) == 0:
-            return None
-
-        return self[len(self) - 1]
-
-    def for_each(self, _func: Callable = None):
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def group_by(self, _func: Callable = None) -> 'Iterable':
         if _func is None:
             _func = _default_lambda
+        groups = {}
 
-        for element in self:
-            _func(element)
+        for v in self:
+            value = _func(v)
+            if v not in groups:
+                groups[value] = Iterable(type(v))
+
+            groups[value].append(v)
+
+        return Iterable(Iterable).extend(groups.values())
+
+    def last(self) -> any:
+        if len(self) == 0:
+            raise IndexOutOfRangeException()
+
+        return self[len(self) - 1]
+
+    def last_or_default(self) -> Optional[any]:
+        if len(self) == 0:
+            return None
+
+        return self[len(self) - 1]
+
+    def for_each(self, _func: Callable = None) -> 'Iterable':
+        if _func is not None:
+            for element in self:
+                _func(element)
+
+        return self
 
     def max(self, _func: Callable = None) -> Union[int, float, complex]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None and not is_number(self.type):
             raise InvalidTypeException()
 
@@ -166,6 +133,7 @@ class Iterable(IterableABC):
     def median(self, _func=None) -> Union[int, float]:
         if _func is None:
             _func = _default_lambda
+
         result = self.order_by(_func).select(_func).to_list()
         length = len(result)
         i = int(length / 2)
@@ -176,9 +144,6 @@ class Iterable(IterableABC):
         )
 
     def min(self, _func: Callable = None) -> Union[int, float, complex]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None and not is_number(self.type):
             raise InvalidTypeException()
 
@@ -188,9 +153,6 @@ class Iterable(IterableABC):
         return _func(min(self, key=_func))
 
     def order_by(self, _func: Callable = None) -> OrderedIterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None:
             _func = _default_lambda
 
@@ -198,22 +160,16 @@ class Iterable(IterableABC):
         return OrderedIterable(self.type, _func, sorted(self, key=_func))
 
     def order_by_descending(self, _func: Callable = None) -> OrderedIterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
         if _func is None:
             _func = _default_lambda
 
         from cpl_query.iterable.ordered_iterable import OrderedIterable
         return OrderedIterable(self.type, _func, sorted(self, key=_func, reverse=True))
 
-    def reverse(self: IterableABC) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
+    def reverse(self) -> 'Iterable':
+        return Iterable().extend(reversed(self))
 
-        return Iterable().extend(reversed(self.to_list()))
-
-    def select(self, _func: Callable = None) -> IterableABC:
+    def select(self, _func: Callable = None) -> 'Iterable':
         if _func is None:
             _func = _default_lambda
 
@@ -221,10 +177,7 @@ class Iterable(IterableABC):
         result.extend(_func(_o) for _o in self)
         return result
 
-    def select_many(self, _func: Callable = None) -> IterableABC:
-        if _func is None:
-            _func = _default_lambda
-
+    def select_many(self, _func: Callable = None) -> 'Iterable':
         result = Iterable()
         # The line below is pain. I don't understand anything of it...
         # written on 09.11.2022 by Sven Heidemann
@@ -233,10 +186,7 @@ class Iterable(IterableABC):
         result.extend(elements)
         return result
 
-    def single(self: IterableABC) -> any:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def single(self) -> any:
         if len(self) > 1:
             raise Exception('Found more than one element')
         elif len(self) == 0:
@@ -244,10 +194,7 @@ class Iterable(IterableABC):
 
         return self[0]
 
-    def single_or_default(self: IterableABC) -> Optional[any]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def single_or_default(self) -> Optional[any]:
         if len(self) > 1:
             raise Exception('Index out of range')
         elif len(self) == 0:
@@ -255,19 +202,13 @@ class Iterable(IterableABC):
 
         return self[0]
 
-    def skip(self, _index: int) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def skip(self, _index: int) -> 'Iterable':
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
         return Iterable(self.type, values=self[_index:])
 
-    def skip_last(self, _index: int) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def skip_last(self, _index: int) -> 'Iterable':
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
@@ -277,10 +218,20 @@ class Iterable(IterableABC):
         result.extend(self[:index])
         return result
 
-    def take(self, _index: int) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
+    def sum(self, _func: Callable = None) -> Union[int, float, complex]:
+        if _func is None and not is_number(self.type):
+            raise InvalidTypeException()
 
+        if _func is None:
+            _func = _default_lambda
+
+        result = 0
+        for x in self:
+            result += _func(x)
+
+        return result
+
+    def take(self, _index: int) -> 'Iterable':
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
@@ -288,10 +239,7 @@ class Iterable(IterableABC):
         result.extend(self[:_index])
         return result
 
-    def take_last(self, _index: int) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def take_last(self, _index: int) -> 'Iterable':
         index = len(self) - _index
 
         if index >= len(self) or index < 0:
@@ -301,22 +249,7 @@ class Iterable(IterableABC):
         result.extend(self[index:])
         return result
 
-    def sum(self, _func: Callable = None) -> Union[int, float, complex]:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
-        if _func is None and not is_number(self.type):
-            raise InvalidTypeException()
-
-        if _func is None:
-            _func = _default_lambda
-
-        return sum([_func(x) for x in self])
-
-    def where(self, _func: Callable = None) -> IterableABC:
-        if self is None:
-            raise ArgumentNoneException(ExceptionArgument.list)
-
+    def where(self, _func: Callable = None) -> 'Iterable':
         if _func is None:
             raise ArgumentNoneException(ExceptionArgument.func)
 

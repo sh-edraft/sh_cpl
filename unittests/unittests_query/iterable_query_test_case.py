@@ -5,6 +5,7 @@ from random import randint
 from cpl_core.utils import String
 from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException
 from cpl_query.extension.list import List
+from cpl_query.iterable import Iterable
 from unittests_query.models import User, Address
 
 
@@ -102,8 +103,18 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(1, self._tests.count(lambda u: u == self._t_user))
 
     def test_distinct(self):
-        res = self._tests.distinct(lambda u: u.address.nr).where(lambda u: u.address.nr == 5)
-        self.assertEqual(1, len(res))
+        res = self._tests.select(lambda u: u.address.nr).where(lambda a: a == 5).distinct()
+        self.assertEqual(1, res.count())
+
+        addresses = []
+        for u in self._tests:
+            if u.address.nr in addresses:
+                continue
+
+            addresses.append(u.address.nr)
+
+        res2 = self._tests.distinct(lambda x: x.address.nr).select(lambda x: x.address.nr)
+        self.assertEqual(addresses, res2)
 
     def test_element_at(self):
         index = randint(0, len(self._tests) - 1)
@@ -167,6 +178,29 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(len(res), len(results))
         self.assertEqual(res[0], s_res)
         self.assertIsNone(sn_res)
+
+    def test_group_by(self):
+        def by_adr(u):
+            return u.address.nr
+
+        t = self._tests.select(by_adr).group_by()
+        res = self._tests.group_by(by_adr)
+        self.assertTrue(isinstance(res.first_or_default(), Iterable))
+        self.assertNotEqual(self._tests.count(), res.count())
+        self.assertEqual(self._tests.distinct(by_adr).count(), res.count())
+
+        elements = List(int)
+        groups = {}
+        for x in range(0, 1000):
+            v = randint(1, 100)
+            if v not in groups:
+                groups[v] = []
+
+            groups[v].append(v)
+            elements.append(v)
+
+        r1, r2 = list(groups.values()), elements.group_by()
+        self.assertEqual(r1, r2)
 
     def test_for_each(self):
         users = []
