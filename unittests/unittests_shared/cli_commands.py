@@ -76,8 +76,12 @@ class CLICommands:
         cls._run('run', project, *args, output=output)
 
     @classmethod
-    def start(cls, output=False):
-        cls._run('start', output=output)
+    def start(cls, is_dev=False, output=False):
+        args = []
+        if is_dev:
+            args.append('--dev')
+
+        cls._run('start', *args, output=output)
 
     @classmethod
     def uninstall(cls, package: str, is_dev=False, output=False):
