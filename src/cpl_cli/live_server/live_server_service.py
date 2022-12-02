@@ -6,6 +6,7 @@ import psutil as psutil
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
+from cpl_cli.publish import PublisherService
 from cpl_core.console.console import Console
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_cli.configuration.build_settings import BuildSettings
@@ -15,8 +16,13 @@ from cpl_cli.live_server.live_server_thread import LiveServerThread
 
 class LiveServerService(FileSystemEventHandler):
 
-    def __init__(self, env: ApplicationEnvironmentABC, project_settings: ProjectSettings,
-                 build_settings: BuildSettings):
+    def __init__(
+            self,
+            env: ApplicationEnvironmentABC,
+            project_settings: ProjectSettings,
+            build_settings: BuildSettings,
+            publisher: PublisherService,
+    ):
         """
         Service for the live development server
         :param env:
@@ -28,12 +34,14 @@ class LiveServerService(FileSystemEventHandler):
         self._env = env
         self._project_settings = project_settings
         self._build_settings = build_settings
+        self._publisher = publisher
 
         self._src_dir = os.path.join(self._env.working_directory, self._build_settings.source_path)
         self._ls_thread = None
         self._observer = None
 
         self._args: list[str] = []
+        self._is_dev = False
 
     def _start_observer(self):
         """
@@ -87,6 +95,11 @@ class LiveServerService(FileSystemEventHandler):
         self._ls_thread.join()
         Console.close()
 
+    def _build(self):
+        if self._is_dev:
+            return
+        self._publisher.build()
+
     def start(self, args: list[str]):
         """
         Starts the CPL live development server
@@ -96,6 +109,12 @@ class LiveServerService(FileSystemEventHandler):
         if self._build_settings.main == '':
             Console.error('Project has no entry point.')
             return
+
+        if 'dev' in args:
+            self._is_dev = True
+            args.remove('dev')
+
+        self._build()
 
         self._args = args
         Console.write_line('** CPL live development server is running **')

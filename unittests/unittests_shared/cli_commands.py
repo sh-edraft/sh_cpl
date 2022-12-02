@@ -65,11 +65,15 @@ class CLICommands:
         cls._run('remove', project, output=output)
 
     @classmethod
-    def run(cls, project: str = None, output=False):
+    def run(cls, project: str = None, is_dev=False, output=False):
+        dev = ''
+        if is_dev:
+            dev = '--dev'
+
         if project is None:
-            cls._run('run', output=output)
+            cls._run('run', dev, output=output)
             return
-        cls._run('run', project, output=output)
+        cls._run('run', project, dev, output=output)
 
     @classmethod
     def start(cls, output=False):

@@ -46,9 +46,6 @@ class RunTestCase(CommandTestCase):
             project_file.close()
 
     def setUp(self):
-        if not os.path.exists(PLAYGROUND_PATH):
-            os.makedirs(PLAYGROUND_PATH)
-        
         os.chdir(PLAYGROUND_PATH)
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
@@ -60,7 +57,7 @@ class RunTestCase(CommandTestCase):
             file.close()
 
     def test_run(self):
-        CLICommands.run()
+        CLICommands.run(is_dev=True, output=True)
         settings = self._get_appsettings()
         self.assertNotEqual(settings, {})
         self.assertIn('RunTest', settings)
@@ -72,7 +69,7 @@ class RunTestCase(CommandTestCase):
 
     def test_run_by_project(self):
         os.chdir(os.path.join(os.getcwd()))
-        CLICommands.run(self._source)
+        CLICommands.run(self._source, is_dev=True)
         settings = self._get_appsettings()
         self.assertNotEqual(settings, {})
         self.assertIn('RunTest', settings)

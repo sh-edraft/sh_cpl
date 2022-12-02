@@ -60,8 +60,10 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'publish', ['p', 'P'], PublishService, True, validators=[ProjectValidator])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'remove', ['r', 'R'], RemoveService, True, validators=[WorkspaceValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'run', [], RunService, True, validators=[ProjectValidator])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['s', 'S'], StartService, True, validators=[ProjectValidator])
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'run', [], RunService, True, validators=[ProjectValidator]) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'dev', ['d', 'D'])
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'start', ['s', 'S'], StartService, True, validators=[ProjectValidator]) \
+            .add_console_argument(ArgumentTypeEnum.Flag, '--', 'dev', ['d', 'D'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'uninstall', ['ui', 'UI'], UninstallService, True, validators=[ProjectValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'dev', ['d', 'D']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \

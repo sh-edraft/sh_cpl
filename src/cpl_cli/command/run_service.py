@@ -8,6 +8,7 @@ from cpl_cli.configuration import WorkspaceSettings
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.live_server.start_executable import StartExecutable
+from cpl_cli.publish import PublisherService
 from cpl_core.configuration import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
@@ -22,7 +23,8 @@ class RunService(CommandABC):
                  services: ServiceProviderABC,
                  project_settings: ProjectSettings,
                  build_settings: BuildSettings,
-                 workspace: WorkspaceSettings
+                 workspace: WorkspaceSettings,
+                 publisher: PublisherService,
                  ):
         """
         Service for the CLI command start
@@ -41,8 +43,10 @@ class RunService(CommandABC):
         self._project_settings = project_settings
         self._build_settings = build_settings
         self._workspace = workspace
+        self._publisher = publisher
 
         self._src_dir = os.path.join(self._env.working_directory, self._build_settings.source_path)
+        self._is_dev = False
 
     @property
     def help_message(self) -> str:
@@ -80,15 +84,26 @@ class RunService(CommandABC):
 
         self._src_dir = os.path.dirname(json_file)
 
+    def _build(self):
+        if self._is_dev:
+            return
+        self._publisher.build()
+
     def execute(self, args: list[str]):
         """
         Entry point of command
         :param args:
         :return:
         """
+        if 'dev' in args:
+            self._is_dev = True
+            args.remove('dev')
+
         if len(args) >= 1:
             self._set_project_by_args(args[0])
             args.remove(args[0])
+
+        self._build()
 
         start_service = StartExecutable(self._env, self._build_settings)
         start_service.run(args, self._project_settings.python_executable, self._src_dir, output=False)
