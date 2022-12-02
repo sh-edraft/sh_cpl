@@ -13,6 +13,7 @@ from cpl_core.configuration import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.utils import String
 
 
 class RunService(CommandABC):
@@ -87,7 +88,16 @@ class RunService(CommandABC):
     def _build(self):
         if self._is_dev:
             return
+
+        self._env.set_working_directory(self._src_dir)
         self._publisher.build()
+        self._src_dir = os.path.abspath(os.path.join(
+            self._src_dir,
+            self._build_settings.output_path,
+            self._project_settings.name,
+            'build',
+            String.convert_to_snake_case(self._project_settings.name)
+        ))
 
     def execute(self, args: list[str]):
         """

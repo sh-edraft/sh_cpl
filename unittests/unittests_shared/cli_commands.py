@@ -66,14 +66,14 @@ class CLICommands:
 
     @classmethod
     def run(cls, project: str = None, is_dev=False, output=False):
-        dev = ''
+        args = []
         if is_dev:
-            dev = '--dev'
+            args.append('--dev')
 
         if project is None:
-            cls._run('run', dev, output=output)
+            cls._run('run', *args, output=output)
             return
-        cls._run('run', project, dev, output=output)
+        cls._run('run', project, *args, output=output)
 
     @classmethod
     def start(cls, output=False):
