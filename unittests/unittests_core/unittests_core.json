@@ -3,7 +3,7 @@
     "Name": "unittest_core",
     "Version": {
       "Major": "2022",
-      "Minor": "10",
+      "Minor": "12",
       "Micro": "0"
     },
     "Author": "",
@@ -16,7 +16,7 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.10.0"
+      "cpl-core>=2022.12.0"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {},

@@ -3,8 +3,8 @@
     "Name": "cpl-core",
     "Version": {
       "Major": "2022",
-      "Minor": "10",
-      "Micro": "0.post9"
+      "Minor": "12",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",

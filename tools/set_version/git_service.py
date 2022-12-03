@@ -1,6 +1,7 @@
-from git import Repo, DiffIndex
+import os
 
 from cpl_core.environment import ApplicationEnvironmentABC
+from git import Repo
 
 
 class GitService:
