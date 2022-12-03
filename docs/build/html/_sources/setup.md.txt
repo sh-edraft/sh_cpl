@@ -27,7 +27,7 @@ Also you need to have the following installed.
 To install the package, open a terminal window and run the following command:
 
 ```sh
-pip install sh_cpl-core --extra-index-url https://pip.sh-edraft.de
+pip install cpl-core --extra-index-url https://pip.sh-edraft.de
 ```
 
 ## Install the CLI
@@ -37,7 +37,7 @@ You use the CPL CLI to create projects, generate application and library code. Y
 To install the CLI, open a terminal window and run the following command:
 
 ```sh
-pip install sh_cpl-cli --extra-index-url https://pip.sh-edraft.de
+pip install cpl-cli --extra-index-url https://pip.sh-edraft.de
 ```
 
 ## Install the query
@@ -45,7 +45,7 @@ pip install sh_cpl-cli --extra-index-url https://pip.sh-edraft.de
 To install the package, open a terminal window and run the following command:
 
 ```sh
-pip install sh_cpl-query --extra-index-url https://pip.sh-edraft.de
+pip install cpl-query --extra-index-url https://pip.sh-edraft.de
 ```
 
 ## Create initial console app

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference &mdash; Common Python Library  documentation</title>
+  <title>API reference &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -42,8 +42,8 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
@@ -57,7 +57,9 @@
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
 
         </div>
@@ -74,7 +76,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>API Reference</li>
+      <li>API reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,7 +87,7 @@
            <div itemprop="articleBody">
              
   <section id="api-reference">
-<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
+<h1>API reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a><ul>
@@ -122,7 +124,6 @@
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.database.context.html#module-cpl_core.database.context.database_context_abc">cpl_core.database.context.database_context_abc</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#cpl-core-database-database-model">cpl_core.database.database_model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum</a></li>
@@ -160,19 +161,14 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl-core-sh-edraft-common-python-library">cpl-core sh-edraft Common Python library</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a><ul>
@@ -201,7 +197,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Sven Heidemann.</p>
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
