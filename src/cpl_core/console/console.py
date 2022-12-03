@@ -500,7 +500,7 @@ class Console:
             return
 
         if cls._hold_back:
-            cls._hold_back_calls.append(ConsoleCall(cls.write, args))
+            cls._hold_back_calls.append(ConsoleCall(cls.write, *args))
             return
 
         string = ' '.join(map(str, args))
@@ -523,7 +523,7 @@ class Console:
             return
 
         if cls._hold_back:
-            cls._hold_back_calls.append(ConsoleCall(cls.write_at, x, y, args))
+            cls._hold_back_calls.append(ConsoleCall(cls.write_at, x, y, *args))
             return
 
         string = ' '.join(map(str, args))
@@ -542,7 +542,7 @@ class Console:
             return
 
         if cls._hold_back:
-            cls._hold_back_calls.append(ConsoleCall(cls.write_line, args))
+            cls._hold_back_calls.append(ConsoleCall(cls.write_line, *args))
             return
 
         string = ' '.join(map(str, args))
@@ -567,7 +567,7 @@ class Console:
             return
 
         if cls._hold_back:
-            cls._hold_back_calls.append(ConsoleCall(cls.write_line_at, x, y, args))
+            cls._hold_back_calls.append(ConsoleCall(cls.write_line_at, x, y, *args))
             return
 
         string = ' '.join(map(str, args))
