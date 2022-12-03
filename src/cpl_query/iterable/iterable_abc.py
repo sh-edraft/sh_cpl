@@ -56,6 +56,20 @@ class IterableABC(QueryableABC):
 
         return self
 
+    def remove(self, _object: object):
+        r"""Removes element from list
+        Parameter
+        ---------
+            _object: :class:`object`
+                value
+        """
+        if _object not in self:
+            raise ValueError
+
+        values = [*self._values]
+        values.remove(_object)
+        self._set_values(values)
+
     def to_enumerable(self) -> 'EnumerableABC':
         r"""Converts :class: `cpl_query.iterable.iterable_abc.IterableABC` to :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`
 

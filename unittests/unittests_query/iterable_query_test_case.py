@@ -342,7 +342,7 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(skipped.to_list(), self._tests[:-5])
         self.assertEqual(skipped.last(), self._tests[:-5][len(self._tests[:-5]) - 1])
 
-    def test_sum(self):
+    def test_sum(self) -> List['int']:
         res = self._tests.sum(lambda u: u.address.nr)
 
         s_res = 0

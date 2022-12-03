@@ -21,6 +21,10 @@ class SequenceABC(ABC):
         self._type = t
         self._set_values(values)
 
+    @classmethod
+    def __class_getitem__(cls, _t: type):
+        return _t
+
     def __len__(self):
         return len(self._values)
 
@@ -71,6 +75,15 @@ class SequenceABC(ABC):
         """
         return [x for x in self]
 
+    def copy(self) -> 'SequenceABC':
+        r"""Creates a copy of sequence
+
+        Returns
+        -------
+            SequenceABC
+        """
+        return type(self)(self._type, self.to_list())
+
     @classmethod
     def empty(cls) -> 'SequenceABC':
         r"""Returns an empty sequence
@@ -80,6 +93,23 @@ class SequenceABC(ABC):
             Sequence object that contains no elements
         """
         return cls()
+
+    def index(self, _object: object) -> int:
+        r"""Returns the index of given element
+
+        Returns
+        -------
+            Index of object
+
+        Raises
+        -------
+            IndexError if object not in sequence
+        """
+        for i, o in enumerate(self):
+            if o == _object:
+                return i
+
+        raise IndexError
 
     @classmethod
     def range(cls, start: int, length: int) -> 'SequenceABC':
