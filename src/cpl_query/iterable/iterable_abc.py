@@ -54,7 +54,7 @@ class IterableABC(QueryableABC):
         if _object not in self:
             raise ValueError
 
-        self.remove(_object)
+        super().remove(_object)
 
     def remove_at(self, _index: int):
         r"""Removes element from list
