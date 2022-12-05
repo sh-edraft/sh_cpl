@@ -67,28 +67,10 @@ class NewService(CommandABC):
             name        Name of the workspace or the project
             
         Types:
-            console
-            library
-            unittest
+            console (c|C)
+            library (l|L)
+            unittest (ut|UT)
         """)
-
-    @staticmethod
-    def _help(message: str):
-        """
-        Internal help output
-        :param message:
-        :return:
-        """
-        Console.error(message)
-
-        schematics = [
-            'console (c|C) <name>',
-            'library (l|L) <name>',
-            'unittest (ut|UT) <name>',
-        ]
-        Console.write_line('Available Schematics:')
-        for name in schematics:
-            Console.write(f'\n\t{name} ')
 
     def _create_project_settings(self):
         self._rel_path = os.path.dirname(self._name)
@@ -369,5 +351,6 @@ class NewService(CommandABC):
                 self._create_venv()
 
         else:
-            self._help('Usage: cpl new <schematic> [options]')
+            Console.error(f'Project type not found')
+            Console.write_line(self.help_message)
             return
