@@ -28,51 +28,28 @@ class GenerateService(CommandABC):
         self._config = configuration
         self._workspace = workspace
 
-        self._schematics = {}
-        #     "abc": {
-        #         "Upper": "ABC",
-        #         "Template": ABCTemplate
-        #     },
-        #     "class": {
-        #         "Upper": "Class",
-        #         "Template": ClassTemplate
-        #     },
-        #     "enum": {
-        #         "Upper": "Enum",
-        #         "Template": EnumTemplate
-        #     },
-        #     "pipe": {
-        #         "Upper": "Pipe",
-        #         "Template": PipeTemplate
-        #     },
-        #     "service": {
-        #         "Upper": "Service",
-        #         "Template": ServiceTemplate
-        #     },
-        #     "settings": {
-        #         "Upper": "Settings",
-        #         "Template": ConfigModelTemplate
-        #     },
-        #     "test_case": {
-        #         "Upper": "TestCase",
-        #         "Template": TestCaseTemplate
-        #     },
-        #     "thread": {
-        #         "Upper": "Thread",
-        #         "Template": ThreadTemplate
-        #     },
-        #     "validator": {
-        #         "Upper": "Validator",
-        #         "Template": ValidatorTemplate
-        #     }
-        # }
-
         self._config = configuration
         self._env = self._config.environment
+        self._schematics = {}
+
+        self._read_custom_schematics_from_path(self._env.runtime_directory)
+        self._read_custom_schematics_from_path(self._env.working_directory)
+        for schematic in GenerateSchematicABC.__subclasses__():
+            schematic.register()
+
+        self._schematics = SchematicCollection.get_schematics()
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        schematics = []
+        for schematic in self._schematics:
+            aliases = '|'.join(self._schematics[schematic]['Aliases'])
+            schematic_str = schematic
+            if len(aliases) > 0:
+                schematic_str = f'{schematic} ({aliases})'
+
+            schematics.append(schematic_str)
+        help_msg = textwrap.dedent("""\
         Generate a file based on schematic.
         Usage: cpl generate <schematic> <name>
         
@@ -80,41 +57,11 @@ class GenerateService(CommandABC):
             schematic:  The schematic to generate.
             name:       The name of the generated file
             
-        Schematics:
-            abc
-            class
-            enum
-            pipe
-            service
-            settings
-            test_case
-            thread
-            validator
-        """)
+        Schematics:""")
 
-    @staticmethod
-    def _help(message: str):
-        """
-        Internal help output
-        :param message:
-        :return:
-        """
-        Console.error(message)
-
-        schematics = [
-            'abc (a|A)',
-            'class (c|C)',
-            'enum (e|E)',
-            'pipe (p|P)',
-            'service (s|S)',
-            'settings (st|ST)',
-            'test-case (tc|TC)',
-            'thread (t|T)',
-            'validator (v|V)'
-        ]
-        Console.write_line('Available Schematics:')
-        for name in schematics:
-            Console.write(f'\n\t{name} ')
+        for schematic in schematics:
+            help_msg += f'\n    {schematic}'
+        return help_msg
 
     @staticmethod
     def _create_file(file_path: str, value: str):
@@ -220,12 +167,6 @@ class GenerateService(CommandABC):
         :param args:
         :return:
         """
-        self._read_custom_schematics_from_path(self._env.runtime_directory)
-        self._read_custom_schematics_from_path(self._env.working_directory)
-        for schematic in GenerateSchematicABC.__subclasses__():
-            schematic.register()
-        self._schematics = SchematicCollection.get_schematics()
-
         schematic = None
         value = None
         for s in self._schematics:
@@ -241,8 +182,8 @@ class GenerateService(CommandABC):
             value = args[1]
 
         if schematic is None:
-            self._help('Usage: cpl generate <schematic> [options]')
-            Console.write_line()
+            Console.error(f'Schematic not found')
+            Console.write_line(self.help_message)
             sys.exit()
 
         name = value
