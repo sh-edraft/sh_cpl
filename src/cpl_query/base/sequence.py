@@ -1,7 +1,4 @@
 from abc import ABC, abstractmethod
-from itertools import islice
-
-from cpl_query.base.sequence_values import SequenceValues
 
 
 class Sequence(list):
