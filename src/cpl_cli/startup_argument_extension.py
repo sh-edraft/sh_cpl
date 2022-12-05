@@ -29,16 +29,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'add', ['a', 'A'], AddService, True, validators=[WorkspaceValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'simulate', ['s', 'S'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'build', ['b', 'B'], BuildService, True, validators=[ProjectValidator])
-        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'generate', ['g', 'G'], GenerateService, True) #\
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'abc', ['a', 'A'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'class', ['c', 'C'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'enum', ['e', 'E'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'pipe', ['p', 'P'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'service', ['s', 'S'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'settings', ['st', 'ST'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'test_case', ['tc', 'TC'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'thread', ['t', 'T'], ' ') \
-            # .add_console_argument(ArgumentTypeEnum.Variable, '', 'validator', ['v', 'V'], ' ')
+        config.create_console_argument(ArgumentTypeEnum.Executable, '', 'generate', ['g', 'G'], GenerateService, True)
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'install', ['i', 'I'], InstallService, True, validators=[ProjectValidator]) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'dev', ['d', 'D']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'virtual', ['v', 'V']) \
