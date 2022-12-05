@@ -11,6 +11,9 @@ class FileTemplateABC(ABC):
         self._path = path
         self._code = code
 
+    def __repr__(self):
+        return f'<{type(self).__name__} {self._path}{self._name}>'
+
     @property
     def name(self) -> str:
         return self._name
@@ -18,11 +21,14 @@ class FileTemplateABC(ABC):
     @property
     def path(self) -> str:
         return self._path
+    
+    @path.setter
+    def path(self, value: str):
+        self._path = value
 
     @property
     def value(self) -> str:
         return self.get_code()
 
     @abstractmethod
-    def get_code(self) -> str:
-        return self._code
+    def get_code(self) -> str: pass

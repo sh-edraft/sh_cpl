@@ -7,9 +7,7 @@ from packaging import version
 
 import cpl_cli
 import cpl_core
-from cpl_cli.abc.project_type_abc import ProjectTypeABC
 from cpl_cli.configuration.venv_helper_service import VenvHelper
-from cpl_cli.source_creator.template_builder import TemplateBuilder
 from cpl_cli.source_creator.unittest_builder import UnittestBuilder
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
@@ -49,7 +47,7 @@ class NewService(CommandABC):
 
         self._name: str = ''
         self._rel_path: str = ''
-        self._project_type: ProjectTypeEnum = ProjectTypeEnum.console
+        self._schematic: ProjectTypeEnum = ProjectTypeEnum.console
         self._use_nothing: bool = False
         self._use_application_api: bool = False
         self._use_startup: bool = False
@@ -109,7 +107,7 @@ class NewService(CommandABC):
 
     def _create_build_settings(self):
         self._build_dict = {
-            BuildSettingsNameEnum.project_type.value: self._project_type,
+            BuildSettingsNameEnum.project_type.value: self._schematic,
             BuildSettingsNameEnum.source_path.value: '',
             BuildSettingsNameEnum.output_path.value: '../../dist',
             BuildSettingsNameEnum.main.value: f'{String.convert_to_snake_case(self._project.name)}.main',
@@ -288,85 +286,6 @@ class NewService(CommandABC):
             explicit_path=os.path.join(self._env.working_directory, project, self._project.python_executable.replace('../', ''))
         )
 
-    @staticmethod
-    def _read_custom_project_types_from_path(path: str):
-        if not os.path.exists(os.path.join(path, '.cpl')):
-            return
-
-        sys.path.insert(0, os.path.join(path, '.cpl'))
-        for r, d, f in os.walk(os.path.join(path, '.cpl')):
-            for file in f:
-                if not file.startswith('project_') or not file.endswith('.py'):
-                    continue
-
-                code = ''
-                with open(os.path.join(r, file), 'r') as py_file:
-                    code = py_file.read()
-                    py_file.close()
-
-                exec(code)
-
-    def _create_project(self):
-        self._read_custom_project_types_from_path(self._env.runtime_directory)
-        self._read_custom_project_types_from_path(self._env.working_directory)
-
-        self._create_project_settings()
-        self._create_build_settings()
-        self._create_project_json()
-        path = self._get_project_path()
-        if path is None:
-            return
-
-        self._get_project_information()
-        project_name = self._project.name
-        if self._rel_path != '':
-            project_name = f'{self._rel_path}/{project_name}'
-
-        project_type = None
-        for p in ProjectTypeABC.__subclasses__():
-            if p.__name__.lower() != self._project_type:
-                continue
-
-            project_type = p
-
-        base = 'src/'
-        split_project_name = project_name.split('/')
-        if self._use_base and len(split_project_name) > 0:
-            base = f'{split_project_name[0]}/'
-
-        project = project_type(
-            base if self._workspace is not None else 'src/',
-            project_name,
-            self._workspace,
-            self._use_application_api,
-            self._use_startup,
-            self._use_service_providing,
-            self._use_async,
-        )
-
-        if self._workspace is None:
-            TemplateBuilder.create_workspace(
-                f'{project_name}/cpl-workspace.json',
-                project_name.split('/')[-1],
-                {
-                    project_name: project_name
-                },
-                {}
-            )
-        else:
-            self._workspace.projects[project_name] = f'{base}{String.convert_to_snake_case(project_name.split("/")[-1])}'
-            TemplateBuilder.create_workspace('cpl-workspace.json', self._workspace.default_project, self._workspace.projects, self._workspace.scripts)
-
-        for template in project.templates:
-            Console.spinner(
-                f'Creating {os.path.join(project_name, template.path, template.name)}',
-                TemplateBuilder.build,
-                project_name,
-                template,
-                text_foreground_color=ForegroundColorEnum.green,
-                spinner_foreground_color=ForegroundColorEnum.cyan
-            )
-
     def execute(self, args: list[str]):
         """
         Entry point of command
@@ -412,22 +331,21 @@ class NewService(CommandABC):
         unittest = self._config.get_configuration(ProjectTypeEnum.unittest.value)
         if console is not None and library is None and unittest is None:
             self._name = console
-            self._project_type = ProjectTypeEnum.console.value
-            self._create_project()
-            # self._console(args)
+            self._schematic = ProjectTypeEnum.console.value
+            self._console(args)
             if self._use_venv:
                 self._create_venv()
 
         elif console is None and library is not None and unittest is None:
             self._name = library
-            self._project_type = ProjectTypeEnum.library.value
+            self._schematic = ProjectTypeEnum.library.value
             self._library(args)
             if self._use_venv:
                 self._create_venv()
 
         elif console is None and library is None and unittest is not None:
             self._name = unittest
-            self._project_type = ProjectTypeEnum.unittest.value
+            self._schematic = ProjectTypeEnum.unittest.value
             self._unittest(args)
             if self._use_venv:
                 self._create_venv()

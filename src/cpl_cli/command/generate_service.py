@@ -144,7 +144,7 @@ class GenerateService(CommandABC):
 
         for r, d, f in os.walk(os.path.join(path, '.cpl')):
             for file in f:
-                if not file.endswith('_schematic.py'):
+                if not file.startswith('schematic_') and not file.endswith('.py'):
                     continue
 
                 code = ''
