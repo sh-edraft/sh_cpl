@@ -89,4 +89,6 @@ These pages go into great detail about everything the Library can do.
    contributing
    cpl_cli
    cpl_core
+   cpl_discord
    cpl_query
+   cpl_translation

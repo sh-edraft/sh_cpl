@@ -25,7 +25,11 @@
       "spu": "cpl set-pip-urls",
       "set-pip-urls": "cpl run set-pip-urls $ARGS; echo '';",
 
-      "docs-build": "echo 'Build Documentation'; cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; sphinx-apidoc -o source/ ../src/cpl_query; make clean; make html; rm source/cpl_query.tests.rst;",
+      "docs-build": "echo 'Build Documentation'; cpl db-core; cpl db-discord; cpl db-query; cpl db-translation; cd docs/; make clean; make html; # rm source/cpl_query.tests.rst;",
+      "db-core": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; cd ../",
+      "db-discord": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_discord; cd ../",
+      "db-query": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_query; cd ../",
+      "db-translation": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_translation; cd ../",
       "db": "cpl docs-build",
 
       "docs-open": "xdg-open $PWD/docs/build/html/index.html &",

@@ -9,4 +9,4 @@ cpl
     cpl_core
     cpl_discord
     cpl_query
-    cpl_translate
+    cpl_translation
