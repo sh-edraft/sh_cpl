@@ -16,12 +16,12 @@ class EnumerableTestCase(unittest.TestCase):
         self.assertEqual(Enumerable.empty().to_list(), [])
         self.assertEqual(Enumerable.range(0, 100).to_list(), list(range(0, 100)))
 
-    def test_iter(self):
-        n = 0
-        elements = Enumerable.range(0, 100)
-        while n < 100:
-            self.assertEqual(elements.next(), n)
-            n += 1
+    # def test_iter(self):
+    #     n = 0
+    #     elements = Enumerable.range(0, 100)
+    #     while n < 100:
+    #         self.assertEqual(elements.next(), n)
+    #         n += 1
 
     def test_for(self):
         n = 0

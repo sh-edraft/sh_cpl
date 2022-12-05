@@ -12,17 +12,6 @@ class IterableABC(QueryableABC):
     def __init__(self, t: type = None, values: Iterable = None):
         QueryableABC.__init__(self, t, values)
 
-    def __setitem__(self, i, val):
-        self._check_type(val)
-        values = [*self._values]
-        values[i] = val
-        self._set_values(values)
-
-    def __delitem__(self, i):
-        values = [*self._values]
-        del values[i]
-        self._set_values(values)
-
     @property
     def type(self) -> type:
         return self._type
@@ -41,8 +30,7 @@ class IterableABC(QueryableABC):
                 value
         """
         self._check_type(_object)
-        values = [*self._values, _object]
-        self._set_values(values)
+        super().append(_object)
 
     def extend(self, __iterable: Iterable) -> 'IterableABC':
         r"""Adds elements of given list to list
@@ -66,9 +54,16 @@ class IterableABC(QueryableABC):
         if _object not in self:
             raise ValueError
 
-        values = [*self._values]
-        values.remove(_object)
-        self._set_values(values)
+        self.remove(_object)
+
+    def remove_at(self, _index: int):
+        r"""Removes element from list
+        Parameter
+        ---------
+            _object: :class:`object`
+                value
+        """
+        self.pop(_index)
 
     def to_enumerable(self) -> 'EnumerableABC':
         r"""Converts :class: `cpl_query.iterable.iterable_abc.IterableABC` to :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`

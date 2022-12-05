@@ -1,7 +1,7 @@
 from typing import Optional, Callable, Union
 
 from cpl_query._helper import is_number
-from cpl_query.base.sequence_abc import SequenceABC
+from cpl_query.base.sequence import Sequence
 from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException, ExceptionArgument, IndexOutOfRangeException
 
 
@@ -9,10 +9,10 @@ def _default_lambda(x: object):
     return x
 
 
-class QueryableABC(SequenceABC):
+class QueryableABC(Sequence):
 
     def __init__(self, t: type = None, values: list = None):
-        SequenceABC.__init__(self, t, values)
+        Sequence.__init__(self, t, values)
 
     def all(self, _func: Callable = None) -> bool:
         r"""Checks if every element of list equals result found by function
@@ -140,6 +140,9 @@ class QueryableABC(SequenceABC):
         """
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
+
+        if _index < 0 or _index >= self.count():
+            raise IndexOutOfRangeException
 
         result = self[_index]
         if result is None:
