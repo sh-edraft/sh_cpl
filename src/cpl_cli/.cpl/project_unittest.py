@@ -5,7 +5,7 @@ from cpl_cli.configuration import WorkspaceSettings
 from cpl_core.utils import String
 
 
-class Console(ProjectTypeABC):
+class Unittest(ProjectTypeABC):
 
     def __init__(
             self,
@@ -19,10 +19,9 @@ class Console(ProjectTypeABC):
             project_file_data: dict,
     ):
         from project_file import ProjectFile
-        from project_file_appsettings import ProjectFileAppsettings
         from project_file_code_application import ProjectFileApplication
         from project_file_code_main import ProjectFileMain
-        from project_file_code_startup import ProjectFileStartup
+        from project_file_code_test_case import ProjectFileTestCase
         from project_file_readme import ProjectFileReadme
         from project_file_license import ProjectFileLicense
         from schematic_init import Init
@@ -38,12 +37,6 @@ class Console(ProjectTypeABC):
             self.add_template(Init('', 'init', f'{base_path}tests/'))
 
         self.add_template(Init('', 'init', project_path))
-        self.add_template(ProjectFileAppsettings(project_path))
-
-        if use_application_api:
-            self.add_template(ProjectFileApplication(project_path, use_application_api, use_startup, use_service_providing, use_async))
-
-        if use_startup:
-            self.add_template(ProjectFileStartup(project_path, use_application_api, use_startup, use_service_providing, use_async))
-
+        self.add_template(ProjectFileApplication(project_path, use_application_api, use_startup, use_service_providing, use_async))
         self.add_template(ProjectFileMain(project_name.split('/')[-1], project_path, use_application_api, use_startup, use_service_providing, use_async))
+        self.add_template(ProjectFileTestCase(project_path, use_application_api, use_startup, use_service_providing, use_async))

@@ -1,5 +1,6 @@
 import json
 import os
+import unittest
 
 from cpl_core.utils import String
 from unittests_cli.abc.command_test_case import CommandTestCase
@@ -32,8 +33,8 @@ class NewTestCase(CommandTestCase):
             project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, base, name, 'src/', String.convert_to_snake_case(name)))
 
         self.assertTrue(os.path.exists(project_path))
-        self.assertTrue(os.path.join(project_path, f'{name}.json'))
-        self.assertTrue(os.path.join(project_path, f'main.py'))
+        self.assertTrue(os.path.exists(os.path.join(project_path, f'{name}.json')))
+        self.assertTrue(os.path.exists(os.path.join(project_path, f'main.py')))
 
         if '--ab' in args:
             self.assertTrue(os.path.isfile(os.path.join(project_path, f'application.py')))
@@ -110,23 +111,23 @@ class NewTestCase(CommandTestCase):
     def test_console_without_anything(self):
         self._test_project('console', 'test-console-without-anything', '--n')
 
-    def test_sub_console(self):
+    def test_console_sub(self):
         self._test_sub_project('console', 'test-sub-console', 'test-console', '--ab', '--s', '--sp', '--venv', test_venv=True)
 
-    def test_sub_console_with_other_base(self):
+    def test_console_sub_with_other_base(self):
         self._test_sub_project('console', 'tools/test-sub-console', 'test-console', '--ab', '--s', '--sp', '--venv', '--base', test_venv=True)
 
     def test_library(self):
         self._test_project('library', 'test-library', '--ab', '--s', '--sp')
 
-    def test_sub_library(self):
+    def test_library_sub(self):
         self._test_sub_project('library', 'test-sub-library', 'test-console', '--ab', '--s', '--sp')
 
-    def test_sub_directory_library(self):
+    def test_library_sub_directory(self):
         self._test_sub_directory_project('library', 'directory', 'test-sub-library', 'test-console', '--ab', '--s', '--sp')
 
     def test_unittest(self):
         self._test_project('unittest', 'test-unittest', '--ab')
 
-    def test_sub_unittest(self):
+    def test_unittest_sub(self):
         self._test_sub_project('unittest', 'test-unittest', 'test-console', '--ab', '--s', '--sp')

@@ -21,8 +21,7 @@ class TestCase(GenerateSchematicABC):
             def test_equal(self):
                 pass
         """
-        x = self.build_code_str(code, Name=self._class_name)
-        return x
+        return self.build_code_str(code, Name=self._class_name)
 
     @classmethod
     def register(cls):

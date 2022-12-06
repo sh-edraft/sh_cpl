@@ -1,6 +1,7 @@
 import os
 import sys
 import textwrap
+import traceback
 from typing import Optional
 
 from packaging import version
@@ -8,24 +9,20 @@ from packaging import version
 import cpl_cli
 import cpl_core
 from cpl_cli.abc.project_type_abc import ProjectTypeABC
-from cpl_cli.configuration.venv_helper_service import VenvHelper
-from cpl_cli.source_creator.template_builder import TemplateBuilder
-from cpl_cli.source_creator.unittest_builder import UnittestBuilder
-
-from cpl_core.configuration.configuration_abc import ConfigurationABC
-from cpl_core.console.foreground_color_enum import ForegroundColorEnum
-from cpl_core.console.console import Console
-from cpl_core.utils.string import String
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
+from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
-from cpl_cli.source_creator.console_builder import ConsoleBuilder
-from cpl_cli.source_creator.library_builder import LibraryBuilder
+from cpl_cli.source_creator.template_builder import TemplateBuilder
+from cpl_core.configuration.configuration_abc import ConfigurationABC
+from cpl_core.console.console import Console
+from cpl_core.console.foreground_color_enum import ForegroundColorEnum
+from cpl_core.utils.string import String
 
 
 class NewService(CommandABC):
@@ -45,7 +42,6 @@ class NewService(CommandABC):
         self._project_dict = {}
         self._build: BuildSettings = BuildSettings()
         self._build_dict = {}
-        self._project_json = {}
 
         self._name: str = ''
         self._rel_path: str = ''
@@ -107,9 +103,9 @@ class NewService(CommandABC):
 
         self._project.from_dict(self._project_dict)
 
-    def _create_build_settings(self):
+    def _create_build_settings(self, project_type: ProjectTypeEnum):
         self._build_dict = {
-            BuildSettingsNameEnum.project_type.value: self._project_type,
+            BuildSettingsNameEnum.project_type.value: project_type.value,
             BuildSettingsNameEnum.source_path.value: '',
             BuildSettingsNameEnum.output_path.value: '../../dist',
             BuildSettingsNameEnum.main.value: f'{String.convert_to_snake_case(self._project.name)}.main',
@@ -178,99 +174,7 @@ class NewService(CommandABC):
 
         Console.set_foreground_color(ForegroundColorEnum.default)
 
-    def _console(self, args: list[str]):
-        """
-        Generates new console project
-        :param args:
-        :return:
-        """
-        self._create_project_settings()
-        self._create_build_settings()
-        self._create_project_json()
-        path = self._get_project_path()
-        if path is None:
-            return
-
-        self._get_project_information()
-        project_name = self._project.name
-        if self._rel_path != '':
-            project_name = f'{self._rel_path}/{project_name}'
-        try:
-            ConsoleBuilder.build(
-                path,
-                self._use_application_api,
-                self._use_startup,
-                self._use_service_providing,
-                self._use_async,
-                project_name,
-                self._project_json,
-                self._workspace
-            )
-        except Exception as e:
-            Console.error('Could not create project', str(e))
-
-    def _unittest(self, args: list[str]):
-        """
-        Generates new unittest project
-        :param args:
-        :return:
-        """
-        self._create_project_settings()
-        self._create_build_settings()
-        self._create_project_json()
-        path = self._get_project_path()
-        if path is None:
-            return
-
-        self._get_project_information(is_unittest=True)
-        project_name = self._project.name
-        if self._rel_path != '':
-            project_name = f'{self._rel_path}/{project_name}'
-        try:
-            UnittestBuilder.build(
-                path,
-                self._use_application_api,
-                self._use_async,
-                project_name,
-                self._project_json,
-                self._workspace
-            )
-        except Exception as e:
-            Console.error('Could not create project', str(e))
-
-    def _library(self, args: list[str]):
-        """
-        Generates new library project
-        :param args:
-        :return:
-        """
-        self._create_project_settings()
-        self._create_build_settings()
-        self._create_project_json()
-        path = self._get_project_path()
-        if path is None:
-            return
-
-        self._get_project_information()
-        project_name = self._project.name
-        if self._rel_path != '':
-            project_name = f'{self._rel_path}/{project_name}'
-        try:
-            LibraryBuilder.build(
-                path,
-                self._use_application_api,
-                self._use_startup,
-                self._use_service_providing,
-                self._use_async,
-                project_name,
-                self._project_json,
-                self._workspace
-            )
-        except Exception as e:
-            Console.error('Could not create project', str(e))
-
     def _create_venv(self):
-
         project = self._project.name
         if self._workspace is not None:
             project = self._workspace.default_project
@@ -296,22 +200,25 @@ class NewService(CommandABC):
         sys.path.insert(0, os.path.join(path, '.cpl'))
         for r, d, f in os.walk(os.path.join(path, '.cpl')):
             for file in f:
-                if not file.startswith('project_') or not file.endswith('.py'):
+                if file.startswith('project_file_') or not file.startswith('project_') or not file.endswith('.py'):
                     continue
 
-                code = ''
-                with open(os.path.join(r, file), 'r') as py_file:
-                    code = py_file.read()
-                    py_file.close()
+                try:
+                    exec(open(os.path.join(r, file), 'r').read())
+                except Exception as e:
+                    Console.error(str(e), traceback.format_exc())
+                    sys.exit(-1)
 
-                exec(code)
-
-    def _create_project(self):
+    def _create_project(self, project_type: ProjectTypeEnum):
         self._read_custom_project_types_from_path(self._env.runtime_directory)
         self._read_custom_project_types_from_path(self._env.working_directory)
 
+        if len(ProjectTypeABC.__subclasses__()) == 0:
+            Console.error(f'No project types found in template directory: .cpl')
+            sys.exit()
+
         self._create_project_settings()
-        self._create_build_settings()
+        self._create_build_settings(project_type)
         self._create_project_json()
         path = self._get_project_path()
         if path is None:
@@ -322,19 +229,23 @@ class NewService(CommandABC):
         if self._rel_path != '':
             project_name = f'{self._rel_path}/{project_name}'
 
-        project_type = None
+        project_class = None
         for p in ProjectTypeABC.__subclasses__():
-            if p.__name__.lower() != self._project_type:
+            if p.__name__.lower() != project_type.value and p.__name__.lower()[0] != project_type.value[0]:
                 continue
 
-            project_type = p
+            project_class = p
+
+        if project_class is None:
+            Console.error(f'Project type {project_type.value} not found in template directory: .cpl/')
+            sys.exit()
 
         base = 'src/'
         split_project_name = project_name.split('/')
         if self._use_base and len(split_project_name) > 0:
             base = f'{split_project_name[0]}/'
 
-        project = project_type(
+        project = project_class(
             base if self._workspace is not None else 'src/',
             project_name,
             self._workspace,
@@ -342,6 +253,7 @@ class NewService(CommandABC):
             self._use_startup,
             self._use_service_providing,
             self._use_async,
+            self._project_json
         )
 
         if self._workspace is None:
@@ -349,23 +261,40 @@ class NewService(CommandABC):
                 f'{project_name}/cpl-workspace.json',
                 project_name.split('/')[-1],
                 {
-                    project_name: project_name
+                    project_name: f'{base if self._workspace is not None else "src/"}{String.convert_to_snake_case(project_name)}/{project_name}.json'
                 },
                 {}
             )
         else:
-            self._workspace.projects[project_name] = f'{base}{String.convert_to_snake_case(project_name.split("/")[-1])}'
+            self._workspace.projects[project_name] = f'{base if self._workspace is not None else "src/"}{String.convert_to_snake_case(project_name)}/{project_name}.json'
             TemplateBuilder.create_workspace('cpl-workspace.json', self._workspace.default_project, self._workspace.projects, self._workspace.scripts)
 
         for template in project.templates:
+            rel_base = '/'.join(project_name.split('/')[:-1])
+            template_path_base = template.path.split('/')[0]
+            if not self._use_base and rel_base != '' and template_path_base != '' and template_path_base != rel_base:
+                template.path = template.path.replace(f'{template_path_base}/', f'{template_path_base}/{rel_base}/')
+
+            if template.name.endswith(f'{project_name.split("/")[-1]}.json'):
+                pass
+
+            file_path = os.path.join(
+                project_name if self._workspace is None else '',
+                template.path,
+                template.name
+            )
+
             Console.spinner(
-                f'Creating {os.path.join(project_name, template.path, template.name)}',
+                f'Creating {file_path}',
                 TemplateBuilder.build,
-                project_name,
+                file_path,
                 template,
                 text_foreground_color=ForegroundColorEnum.green,
                 spinner_foreground_color=ForegroundColorEnum.cyan
             )
+
+        if self._use_venv:
+            self._create_venv()
 
     def execute(self, args: list[str]):
         """
@@ -412,25 +341,15 @@ class NewService(CommandABC):
         unittest = self._config.get_configuration(ProjectTypeEnum.unittest.value)
         if console is not None and library is None and unittest is None:
             self._name = console
-            self._project_type = ProjectTypeEnum.console.value
-            self._create_project()
-            # self._console(args)
-            if self._use_venv:
-                self._create_venv()
+            self._create_project(ProjectTypeEnum.console)
 
         elif console is None and library is not None and unittest is None:
             self._name = library
-            self._project_type = ProjectTypeEnum.library.value
-            self._library(args)
-            if self._use_venv:
-                self._create_venv()
+            self._create_project(ProjectTypeEnum.library)
 
         elif console is None and library is None and unittest is not None:
             self._name = unittest
-            self._project_type = ProjectTypeEnum.unittest.value
-            self._unittest(args)
-            if self._use_venv:
-                self._create_venv()
+            self._create_project(ProjectTypeEnum.unittest)
 
         else:
             Console.error(f'Project type not found')

@@ -17,6 +17,7 @@ class ProjectTypeABC(ABC):
             use_startup: bool,
             use_service_providing: bool,
             use_async: bool,
+            project_file_data: dict,
     ):
         self._templates: list[FileTemplateABC] = []
         self._base_path = base_path
@@ -26,6 +27,7 @@ class ProjectTypeABC(ABC):
         self._use_startup = use_startup
         self._use_service_providing = use_service_providing
         self._use_async = use_async
+        self._project_file_data = project_file_data
 
     @property
     def templates(self) -> list[FileTemplateABC]:

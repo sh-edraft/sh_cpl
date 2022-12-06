@@ -1,8 +1,6 @@
 import json
 import os
-from typing import Union
 
-from cpl_cli._templates.template_file_abc import TemplateFileABC
 from cpl_cli.abc.file_template_abc import FileTemplateABC
 from cpl_cli.configuration import WorkspaceSettings, WorkspaceSettingsNameEnum
 from cpl_core.console import Console, ForegroundColorEnum
@@ -11,7 +9,7 @@ from cpl_core.console import Console, ForegroundColorEnum
 class TemplateBuilder:
 
     @staticmethod
-    def _create_file(file_name: str, content: dict):
+    def build_cpl_file(file_name: str, content: dict):
         if not os.path.isabs(file_name):
             file_name = os.path.abspath(file_name)
 
@@ -35,7 +33,7 @@ class TemplateBuilder:
 
         Console.spinner(
             f'Creating {path}',
-            cls._create_file,
+            cls.build_cpl_file,
             path,
             ws_dict,
             text_foreground_color=ForegroundColorEnum.green,
@@ -43,14 +41,13 @@ class TemplateBuilder:
         )
 
     @staticmethod
-    def build(project_path: str, template: Union[TemplateFileABC, FileTemplateABC]):
+    def build(file_path: str, template: FileTemplateABC):
         """
         Creates template
-        :param project_path:
+        :param file_path:
         :param template:
         :return:
         """
-        file_path = os.path.join(project_path, template.path, template.name)
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 

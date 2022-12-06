@@ -1,6 +1,7 @@
 import os
 import sys
 import textwrap
+import traceback
 
 from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 from cpl_cli.command_abc import CommandABC
@@ -34,6 +35,10 @@ class GenerateService(CommandABC):
 
         self._read_custom_schematics_from_path(self._env.runtime_directory)
         self._read_custom_schematics_from_path(self._env.working_directory)
+
+        if len(GenerateSchematicABC.__subclasses__()) == 0:
+            Console.error(f'No schematics found in template directory: .cpl')
+            sys.exit()
         for schematic in GenerateSchematicABC.__subclasses__():
             schematic.register()
 
@@ -142,17 +147,17 @@ class GenerateService(CommandABC):
         if not os.path.exists(os.path.join(path, '.cpl')):
             return
 
+        sys.path.insert(0, os.path.join(path, '.cpl'))
         for r, d, f in os.walk(os.path.join(path, '.cpl')):
             for file in f:
-                if not file.startswith('schematic_') and not file.endswith('.py'):
+                if not file.startswith('schematic_') or not file.endswith('.py'):
                     continue
 
-                code = ''
-                with open(os.path.join(r, file), 'r') as py_file:
-                    code = py_file.read()
-                    py_file.close()
-
-                exec(code)
+                try:
+                    exec(open(os.path.join(r, file), 'r').read())
+                except Exception as e:
+                    Console.error(str(e), traceback.format_exc())
+                    sys.exit(-1)
 
     def _get_schematic_by_alias(self, schematic: str) -> str:
         for key in self._schematics:

@@ -5,7 +5,7 @@ from cpl_cli.configuration import WorkspaceSettings
 from cpl_core.utils import String
 
 
-class Console(ProjectTypeABC):
+class Library(ProjectTypeABC):
 
     def __init__(
             self,

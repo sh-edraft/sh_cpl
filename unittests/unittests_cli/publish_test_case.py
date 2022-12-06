@@ -12,6 +12,7 @@ from unittests_shared.cli_commands import CLICommands
 
 
 class PublishTestCase(CommandTestCase):
+    CommandTestCase._skip_tear_down = True
 
     def __init__(self, method_name: str):
         CommandTestCase.__init__(self, method_name)
@@ -26,6 +27,14 @@ class PublishTestCase(CommandTestCase):
 
         return project_json
 
+    def _get_appsettings(self):
+        with open(os.path.join(os.getcwd(), os.path.dirname(self._project_file), 'appsettings.json'), 'r', encoding='utf-8') as cfg:
+            # load json
+            project_json = json.load(cfg)
+            cfg.close()
+
+        return project_json
+
     def _save_project_settings(self, settings: dict):
         with open(os.path.join(os.getcwd(), self._project_file), 'w', encoding='utf-8') as project_file:
             project_file.write(json.dumps(settings, indent=2))
@@ -34,7 +43,7 @@ class PublishTestCase(CommandTestCase):
     def setUp(self):
         if not os.path.exists(PLAYGROUND_PATH):
             os.makedirs(PLAYGROUND_PATH)
-        
+
         os.chdir(PLAYGROUND_PATH)
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
@@ -85,5 +94,9 @@ class PublishTestCase(CommandTestCase):
         self.assertFalse(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))
         with open(f'{full_dist_path}/{self._source}.json', 'w') as file:
             file.write(json.dumps(self._get_project_settings(), indent=2))
+            file.close()
+
+        with open(f'{full_dist_path}/appsettings.json', 'w') as file:
+            file.write(json.dumps(self._get_appsettings(), indent=2))
             file.close()
         self.assertTrue(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))

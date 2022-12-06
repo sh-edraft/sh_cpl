@@ -1,5 +1,3 @@
-import textwrap
-
 from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
