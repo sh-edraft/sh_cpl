@@ -7,6 +7,7 @@ from unittests_cli.constants import PLAYGROUND_PATH
 
 
 class CommandTestCase(unittest.TestCase):
+    _skip_tear_down = False
 
     def __init__(self, method_name: str):
         unittest.TestCase.__init__(self, method_name)
@@ -18,7 +19,8 @@ class CommandTestCase(unittest.TestCase):
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH)))
 
-            os.makedirs(PLAYGROUND_PATH)
+            if not os.path.exists(PLAYGROUND_PATH):
+                os.makedirs(PLAYGROUND_PATH)
             os.chdir(PLAYGROUND_PATH)
         except Exception as e:
             print(f'Setup of {__name__} failed: {traceback.format_exc()}')
@@ -28,6 +30,8 @@ class CommandTestCase(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        if cls._skip_tear_down:
+            return
         try:
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH)))

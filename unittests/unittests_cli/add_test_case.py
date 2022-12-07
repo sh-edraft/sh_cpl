@@ -28,7 +28,7 @@ class AddTestCase(CommandTestCase):
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))
-        CLICommands.new('console', self._target, '--ab', '--s')
+        CLICommands.new('library', self._target, '--ab', '--s')
 
     def test_add(self):
         CLICommands.add(self._source, self._target)

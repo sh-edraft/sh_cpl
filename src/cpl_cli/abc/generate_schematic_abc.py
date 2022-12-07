@@ -15,7 +15,10 @@ class GenerateSchematicABC(FileTemplateABC):
         if schematic in name.lower():
             self._name = f'{String.convert_to_snake_case(name)}.py'
 
-        self._class_name = f'{String.first_to_upper(name)}{String.first_to_upper(schematic)}'
+        self._class_name = name
+        if name != '':
+            self._class_name = f'{String.first_to_upper(name)}{String.first_to_upper(schematic)}'
+
         if schematic in name.lower():
             self._class_name = f'{String.first_to_upper(name)}'
 
@@ -24,7 +27,8 @@ class GenerateSchematicABC(FileTemplateABC):
         return self._class_name
 
     @abstractmethod
-    def get_code(self) -> str: pass
+    def get_code(self) -> str:
+        pass
 
     @classmethod
     def build_code_str(cls, code: str, **kwargs) -> str:
