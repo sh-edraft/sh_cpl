@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cpl_discord.events &mdash; Common Python Library  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cpl_discord.helper" href="cpl_discord.helper.html" />
+    <link rel="prev" title="cpl_discord.container" href="cpl_discord.container.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cpl_discord.html">Discord reference</a> &raquo;</li>
+      <li>cpl_discord.events</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cpl_discord.events.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cpl-discord-events">
+<h1>cpl_discord.events<a class="headerlink" href="#cpl-discord-events" title="Permalink to this heading"></a></h1>
+<section id="module-cpl_discord.events.on_bulk_message_delete_abc">
+<span id="cpl-discord-events-on-bulk-message-delete-abc"></span><h2>cpl_discord.events.on_bulk_message_delete_abc<a class="headerlink" href="#module-cpl_discord.events.on_bulk_message_delete_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_bulk_message_delete_abc.</span></span><span class="sig-name descname"><span class="pre">OnBulkMessageDeleteABC</span></span><a class="headerlink" href="#cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC.on_bulk_message_delete">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_bulk_message_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">discord.message.Message</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC.on_bulk_message_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_command_abc">
+<span id="cpl-discord-events-on-command-abc"></span><h2>cpl_discord.events.on_command_abc<a class="headerlink" href="#module-cpl_discord.events.on_command_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_command_abc.OnCommandABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_command_abc.</span></span><span class="sig-name descname"><span class="pre">OnCommandABC</span></span><a class="headerlink" href="#cpl_discord.events.on_command_abc.OnCommandABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_command_abc.OnCommandABC.on_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Context</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_command_abc.OnCommandABC.on_command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_command_completion_abc">
+<span id="cpl-discord-events-on-command-completion-abc"></span><h2>cpl_discord.events.on_command_completion_abc<a class="headerlink" href="#module-cpl_discord.events.on_command_completion_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_command_completion_abc.</span></span><span class="sig-name descname"><span class="pre">OnCommandCompletionABC</span></span><a class="headerlink" href="#cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC.on_command_completion">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_command_completion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Context</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC.on_command_completion" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_command_error_abc">
+<span id="cpl-discord-events-on-command-error-abc"></span><h2>cpl_discord.events.on_command_error_abc<a class="headerlink" href="#module-cpl_discord.events.on_command_error_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_command_error_abc.OnCommandErrorABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_command_error_abc.</span></span><span class="sig-name descname"><span class="pre">OnCommandErrorABC</span></span><a class="headerlink" href="#cpl_discord.events.on_command_error_abc.OnCommandErrorABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_command_error_abc.OnCommandErrorABC.on_command_error">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_command_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Context</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CommandError</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_command_error_abc.OnCommandErrorABC.on_command_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_connect_abc">
+<span id="cpl-discord-events-on-connect-abc"></span><h2>cpl_discord.events.on_connect_abc<a class="headerlink" href="#module-cpl_discord.events.on_connect_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_connect_abc.OnConnectABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_connect_abc.</span></span><span class="sig-name descname"><span class="pre">OnConnectABC</span></span><a class="headerlink" href="#cpl_discord.events.on_connect_abc.OnConnectABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_connect_abc.OnConnectABC.on_connect">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_connect_abc.OnConnectABC.on_connect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_disconnect_abc">
+<span id="cpl-discord-events-on-disconnect-abc"></span><h2>cpl_discord.events.on_disconnect_abc<a class="headerlink" href="#module-cpl_discord.events.on_disconnect_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_disconnect_abc.OnDisconnectABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_disconnect_abc.</span></span><span class="sig-name descname"><span class="pre">OnDisconnectABC</span></span><a class="headerlink" href="#cpl_discord.events.on_disconnect_abc.OnDisconnectABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_disconnect_abc.OnDisconnectABC.on_disconnect">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_disconnect_abc.OnDisconnectABC.on_disconnect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_error_abc">
+<span id="cpl-discord-events-on-error-abc"></span><h2>cpl_discord.events.on_error_abc<a class="headerlink" href="#module-cpl_discord.events.on_error_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_error_abc.OnErrorABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_error_abc.</span></span><span class="sig-name descname"><span class="pre">OnErrorABC</span></span><a class="headerlink" href="#cpl_discord.events.on_error_abc.OnErrorABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_error_abc.OnErrorABC.on_error">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_error_abc.OnErrorABC.on_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_group_join_abc">
+<span id="cpl-discord-events-on-group-join-abc"></span><h2>cpl_discord.events.on_group_join_abc<a class="headerlink" href="#module-cpl_discord.events.on_group_join_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_group_join_abc.OnGroupJoinABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_group_join_abc.</span></span><span class="sig-name descname"><span class="pre">OnGroupJoinABC</span></span><a class="headerlink" href="#cpl_discord.events.on_group_join_abc.OnGroupJoinABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_group_join_abc.OnGroupJoinABC.on_group_join">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_group_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chhanel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GroupChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_group_join_abc.OnGroupJoinABC.on_group_join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_group_remove_abc">
+<span id="cpl-discord-events-on-group-remove-abc"></span><h2>cpl_discord.events.on_group_remove_abc<a class="headerlink" href="#module-cpl_discord.events.on_group_remove_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_group_remove_abc.</span></span><span class="sig-name descname"><span class="pre">OnGroupRemoveABC</span></span><a class="headerlink" href="#cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC.on_group_remove">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_group_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chhanel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GroupChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC.on_group_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_available_abc">
+<span id="cpl-discord-events-on-guild-available-abc"></span><h2>cpl_discord.events.on_guild_available_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_available_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_available_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildAvailableABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC.on_guild_available">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC.on_guild_available" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_channel_create_abc">
+<span id="cpl-discord-events-on-guild-channel-create-abc"></span><h2>cpl_discord.events.on_guild_channel_create_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_channel_create_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_channel_create_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildChannelCreateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC.on_guild_channel_create">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_channel_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC.on_guild_channel_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_channel_delete_abc">
+<span id="cpl-discord-events-on-guild-channel-delete-abc"></span><h2>cpl_discord.events.on_guild_channel_delete_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_channel_delete_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_channel_delete_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildChannelDeleteABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC.on_guild_channel_delete">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_channel_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC.on_guild_channel_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_channel_pins_update_abc">
+<span id="cpl-discord-events-on-guild-channel-pins-update-abc"></span><h2>cpl_discord.events.on_guild_channel_pins_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_channel_pins_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_channel_pins_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildChannelPinsUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_channel_pins_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_channel_update_abc">
+<span id="cpl-discord-events-on-guild-channel-update-abc"></span><h2>cpl_discord.events.on_guild_channel_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_channel_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_channel_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildChannelUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC.on_guild_channel_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_channel_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC.on_guild_channel_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_emojis_update_abc">
+<span id="cpl-discord-events-on-guild-emojis-update-abc"></span><h2>cpl_discord.events.on_guild_emojis_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_emojis_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_emojis_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildEmojisUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC.on_guild_emojis_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_emojis_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Emoji</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Emoji</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC.on_guild_emojis_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_integrations_update_abc">
+<span id="cpl-discord-events-on-guild-integrations-update-abc"></span><h2>cpl_discord.events.on_guild_integrations_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_integrations_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_integrations_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildIntegrationsUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC.on_guild_integrations_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_integrations_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC.on_guild_integrations_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_join_abc">
+<span id="cpl-discord-events-on-guild-join-abc"></span><h2>cpl_discord.events.on_guild_join_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_join_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_join_abc.OnGuildJoinABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_join_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildJoinABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_join_abc.OnGuildJoinABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_join_abc.OnGuildJoinABC.on_guild_join">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_join_abc.OnGuildJoinABC.on_guild_join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_remove_abc">
+<span id="cpl-discord-events-on-guild-remove-abc"></span><h2>cpl_discord.events.on_guild_remove_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_remove_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_remove_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildRemoveABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC.on_guild_remove">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC.on_guild_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_role_create_abc">
+<span id="cpl-discord-events-on-guild-role-create-abc"></span><h2>cpl_discord.events.on_guild_role_create_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_role_create_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_role_create_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildRoleCreateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC.on_guild_role_create">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_role_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC.on_guild_role_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_role_delete_abc">
+<span id="cpl-discord-events-on-guild-role-delete-abc"></span><h2>cpl_discord.events.on_guild_role_delete_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_role_delete_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_role_delete_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildRoleDeleteABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC.on_guild_role_delete">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_role_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC.on_guild_role_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_role_update_abc">
+<span id="cpl-discord-events-on-guild-role-update-abc"></span><h2>cpl_discord.events.on_guild_role_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_role_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_role_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildRoleUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC.on_guild_role_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_role_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC.on_guild_role_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_unavailable_abc">
+<span id="cpl-discord-events-on-guild-unavailable-abc"></span><h2>cpl_discord.events.on_guild_unavailable_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_unavailable_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_unavailable_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildUnavailableABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC.on_guild_unavailable">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_unavailable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC.on_guild_unavailable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_guild_update_abc">
+<span id="cpl-discord-events-on-guild-update-abc"></span><h2>cpl_discord.events.on_guild_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_guild_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_guild_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnGuildUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC.on_guild_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC.on_guild_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_invite_create_abc">
+<span id="cpl-discord-events-on-invite-create-abc"></span><h2>cpl_discord.events.on_invite_create_abc<a class="headerlink" href="#module-cpl_discord.events.on_invite_create_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_invite_create_abc.OnInviteCreateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_invite_create_abc.</span></span><span class="sig-name descname"><span class="pre">OnInviteCreateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_invite_create_abc.OnInviteCreateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_invite_create_abc.OnInviteCreateABC.on_invite_create">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_invite_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Invite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_invite_create_abc.OnInviteCreateABC.on_invite_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_invite_delete_abc">
+<span id="cpl-discord-events-on-invite-delete-abc"></span><h2>cpl_discord.events.on_invite_delete_abc<a class="headerlink" href="#module-cpl_discord.events.on_invite_delete_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_invite_delete_abc.</span></span><span class="sig-name descname"><span class="pre">OnInviteDeleteABC</span></span><a class="headerlink" href="#cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC.on_invite_delete">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_invite_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Invite</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC.on_invite_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_member_ban_abc">
+<span id="cpl-discord-events-on-member-ban-abc"></span><h2>cpl_discord.events.on_member_ban_abc<a class="headerlink" href="#module-cpl_discord.events.on_member_ban_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_ban_abc.OnMemberBanABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_member_ban_abc.</span></span><span class="sig-name descname"><span class="pre">OnMemberBanABC</span></span><a class="headerlink" href="#cpl_discord.events.on_member_ban_abc.OnMemberBanABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_ban_abc.OnMemberBanABC.on_member_ban">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_member_ban</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_member_ban_abc.OnMemberBanABC.on_member_ban" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_member_join_abc">
+<span id="cpl-discord-events-on-member-join-abc"></span><h2>cpl_discord.events.on_member_join_abc<a class="headerlink" href="#module-cpl_discord.events.on_member_join_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_join_abc.OnMemberJoinABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_member_join_abc.</span></span><span class="sig-name descname"><span class="pre">OnMemberJoinABC</span></span><a class="headerlink" href="#cpl_discord.events.on_member_join_abc.OnMemberJoinABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_join_abc.OnMemberJoinABC.on_member_join">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_member_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_member_join_abc.OnMemberJoinABC.on_member_join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_member_remove_abc">
+<span id="cpl-discord-events-on-member-remove-abc"></span><h2>cpl_discord.events.on_member_remove_abc<a class="headerlink" href="#module-cpl_discord.events.on_member_remove_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_member_remove_abc.</span></span><span class="sig-name descname"><span class="pre">OnMemberRemoveABC</span></span><a class="headerlink" href="#cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC.on_member_remove">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_member_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC.on_member_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_member_unban_abc">
+<span id="cpl-discord-events-on-member-unban-abc"></span><h2>cpl_discord.events.on_member_unban_abc<a class="headerlink" href="#module-cpl_discord.events.on_member_unban_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_member_unban_abc.</span></span><span class="sig-name descname"><span class="pre">OnMemberUnbanABC</span></span><a class="headerlink" href="#cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC.on_member_unban">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_member_unban</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">guild</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC.on_member_unban" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_member_update_abc">
+<span id="cpl-discord-events-on-member-update-abc"></span><h2>cpl_discord.events.on_member_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_member_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_update_abc.OnMemberUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_member_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnMemberUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_member_update_abc.OnMemberUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_member_update_abc.OnMemberUpdateABC.on_member_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_member_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_member_update_abc.OnMemberUpdateABC.on_member_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_message_abc">
+<span id="cpl-discord-events-on-message-abc"></span><h2>cpl_discord.events.on_message_abc<a class="headerlink" href="#module-cpl_discord.events.on_message_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_message_abc.OnMessageABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_message_abc.</span></span><span class="sig-name descname"><span class="pre">OnMessageABC</span></span><a class="headerlink" href="#cpl_discord.events.on_message_abc.OnMessageABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_message_abc.OnMessageABC.on_message">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_message_abc.OnMessageABC.on_message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_message_delete_abc">
+<span id="cpl-discord-events-on-message-delete-abc"></span><h2>cpl_discord.events.on_message_delete_abc<a class="headerlink" href="#module-cpl_discord.events.on_message_delete_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_message_delete_abc.</span></span><span class="sig-name descname"><span class="pre">OnMessageDeleteABC</span></span><a class="headerlink" href="#cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC.on_message_delete">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_message_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC.on_message_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_message_edit_abc">
+<span id="cpl-discord-events-on-message-edit-abc"></span><h2>cpl_discord.events.on_message_edit_abc<a class="headerlink" href="#module-cpl_discord.events.on_message_edit_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_message_edit_abc.OnMessageEditABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_message_edit_abc.</span></span><span class="sig-name descname"><span class="pre">OnMessageEditABC</span></span><a class="headerlink" href="#cpl_discord.events.on_message_edit_abc.OnMessageEditABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_message_edit_abc.OnMessageEditABC.on_message_edit">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_message_edit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_message_edit_abc.OnMessageEditABC.on_message_edit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_private_channel_create_abc">
+<span id="cpl-discord-events-on-private-channel-create-abc"></span><h2>cpl_discord.events.on_private_channel_create_abc<a class="headerlink" href="#module-cpl_discord.events.on_private_channel_create_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_private_channel_create_abc.</span></span><span class="sig-name descname"><span class="pre">OnPrivateChannelCreateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC.on_private_channel_create">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_private_channel_create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PrivateChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC.on_private_channel_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_private_channel_delete_abc">
+<span id="cpl-discord-events-on-private-channel-delete-abc"></span><h2>cpl_discord.events.on_private_channel_delete_abc<a class="headerlink" href="#module-cpl_discord.events.on_private_channel_delete_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_private_channel_delete_abc.</span></span><span class="sig-name descname"><span class="pre">OnPrivateChannelDeleteABC</span></span><a class="headerlink" href="#cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC.on_private_channel_delete">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_private_channel_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PrivateChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC.on_private_channel_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_private_channel_pins_update_abc">
+<span id="cpl-discord-events-on-private-channel-pins-update-abc"></span><h2>cpl_discord.events.on_private_channel_pins_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_private_channel_pins_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_private_channel_pins_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnPrivateChannelPinsUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_private_channel_pins_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PrivateChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_private_channel_update_abc">
+<span id="cpl-discord-events-on-private-channel-update-abc"></span><h2>cpl_discord.events.on_private_channel_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_private_channel_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_private_channel_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnPrivateChannelUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC.on_private_channel_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_private_channel_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GroupChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GroupChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC.on_private_channel_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_raw_reaction_add_abc">
+<span id="cpl-discord-events-on-raw-reaction-add-abc"></span><h2>cpl_discord.events.on_raw_reaction_add_abc<a class="headerlink" href="#module-cpl_discord.events.on_raw_reaction_add_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_raw_reaction_add_abc.</span></span><span class="sig-name descname"><span class="pre">OnRawReactionAddABC</span></span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC.on_raw_reaction_add">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_raw_reaction_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RawReactionActionEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC.on_raw_reaction_add" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_raw_reaction_clear_abc">
+<span id="cpl-discord-events-on-raw-reaction-clear-abc"></span><h2>cpl_discord.events.on_raw_reaction_clear_abc<a class="headerlink" href="#module-cpl_discord.events.on_raw_reaction_clear_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_raw_reaction_clear_abc.</span></span><span class="sig-name descname"><span class="pre">OnRawReactionClearABC</span></span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC.on_raw_reaction_clear">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_raw_reaction_clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RawReactionActionEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC.on_raw_reaction_clear" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">
+<span id="cpl-discord-events-on-raw-reaction-clear-emoji-abc"></span><h2>cpl_discord.events.on_raw_reaction_clear_emoji_abc<a class="headerlink" href="#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_raw_reaction_clear_emoji_abc.</span></span><span class="sig-name descname"><span class="pre">OnRawReactionClearEmojiABC</span></span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC.on_raw_reaction_clear_emoji">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_raw_reaction_clear_emoji</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RawReactionActionEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC.on_raw_reaction_clear_emoji" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_raw_reaction_remove_abc">
+<span id="cpl-discord-events-on-raw-reaction-remove-abc"></span><h2>cpl_discord.events.on_raw_reaction_remove_abc<a class="headerlink" href="#module-cpl_discord.events.on_raw_reaction_remove_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_raw_reaction_remove_abc.</span></span><span class="sig-name descname"><span class="pre">OnRawReactionRemoveABC</span></span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC.on_raw_reaction_remove">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_raw_reaction_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RawReactionActionEvent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC.on_raw_reaction_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_reaction_add_abc">
+<span id="cpl-discord-events-on-reaction-add-abc"></span><h2>cpl_discord.events.on_reaction_add_abc<a class="headerlink" href="#module-cpl_discord.events.on_reaction_add_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_add_abc.OnReactionAddABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_reaction_add_abc.</span></span><span class="sig-name descname"><span class="pre">OnReactionAddABC</span></span><a class="headerlink" href="#cpl_discord.events.on_reaction_add_abc.OnReactionAddABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_add_abc.OnReactionAddABC.on_reaction_add">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_reaction_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reaction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Reaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_reaction_add_abc.OnReactionAddABC.on_reaction_add" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_reaction_clear_abc">
+<span id="cpl-discord-events-on-reaction-clear-abc"></span><h2>cpl_discord.events.on_reaction_clear_abc<a class="headerlink" href="#module-cpl_discord.events.on_reaction_clear_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_reaction_clear_abc.</span></span><span class="sig-name descname"><span class="pre">OnReactionClearABC</span></span><a class="headerlink" href="#cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC.on_reaction_clear">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_reaction_clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reactions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">discord.reaction.Reaction</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC.on_reaction_clear" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_reaction_clear_emoji_abc">
+<span id="cpl-discord-events-on-reaction-clear-emoji-abc"></span><h2>cpl_discord.events.on_reaction_clear_emoji_abc<a class="headerlink" href="#module-cpl_discord.events.on_reaction_clear_emoji_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_reaction_clear_emoji_abc.</span></span><span class="sig-name descname"><span class="pre">OnReactionClearEmojiABC</span></span><a class="headerlink" href="#cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC.on_reaction_clear_emoji">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_reaction_clear_emoji</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reaction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Reaction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC.on_reaction_clear_emoji" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_reaction_remove_abc">
+<span id="cpl-discord-events-on-reaction-remove-abc"></span><h2>cpl_discord.events.on_reaction_remove_abc<a class="headerlink" href="#module-cpl_discord.events.on_reaction_remove_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_reaction_remove_abc.</span></span><span class="sig-name descname"><span class="pre">OnReactionRemoveABC</span></span><a class="headerlink" href="#cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC.on_reaction_remove">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_reaction_remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reaction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Reaction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC.on_reaction_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_ready_abc">
+<span id="cpl-discord-events-on-ready-abc"></span><h2>cpl_discord.events.on_ready_abc<a class="headerlink" href="#module-cpl_discord.events.on_ready_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_ready_abc.OnReadyABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_ready_abc.</span></span><span class="sig-name descname"><span class="pre">OnReadyABC</span></span><a class="headerlink" href="#cpl_discord.events.on_ready_abc.OnReadyABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_ready_abc.OnReadyABC.on_ready">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_ready_abc.OnReadyABC.on_ready" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_resume_abc">
+<span id="cpl-discord-events-on-resume-abc"></span><h2>cpl_discord.events.on_resume_abc<a class="headerlink" href="#module-cpl_discord.events.on_resume_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_resume_abc.OnResumeABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_resume_abc.</span></span><span class="sig-name descname"><span class="pre">OnResumeABC</span></span><a class="headerlink" href="#cpl_discord.events.on_resume_abc.OnResumeABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_resume_abc.OnResumeABC.on_resume">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_resume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_resume_abc.OnResumeABC.on_resume" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_typing_abc">
+<span id="cpl-discord-events-on-typing-abc"></span><h2>cpl_discord.events.on_typing_abc<a class="headerlink" href="#module-cpl_discord.events.on_typing_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_typing_abc.OnTypingABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_typing_abc.</span></span><span class="sig-name descname"><span class="pre">OnTypingABC</span></span><a class="headerlink" href="#cpl_discord.events.on_typing_abc.OnTypingABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_typing_abc.OnTypingABC.on_typing">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_typing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Messageable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">User</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Member</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_typing_abc.OnTypingABC.on_typing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_user_update_abc">
+<span id="cpl-discord-events-on-user-update-abc"></span><h2>cpl_discord.events.on_user_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_user_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_user_update_abc.OnUserUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_user_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnUserUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_user_update_abc.OnUserUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_user_update_abc.OnUserUpdateABC.on_user_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_user_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_user_update_abc.OnUserUpdateABC.on_user_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_voice_state_update_abc">
+<span id="cpl-discord-events-on-voice-state-update-abc"></span><h2>cpl_discord.events.on_voice_state_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_voice_state_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_voice_state_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnVoiceStateUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC.on_voice_state_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_voice_state_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">before</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">VoiceState</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">VoiceState</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC.on_voice_state_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.events.on_webhooks_update_abc">
+<span id="cpl-discord-events-on-webhooks-update-abc"></span><h2>cpl_discord.events.on_webhooks_update_abc<a class="headerlink" href="#module-cpl_discord.events.on_webhooks_update_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.on_webhooks_update_abc.</span></span><span class="sig-name descname"><span class="pre">OnWebhooksUpdateABC</span></span><a class="headerlink" href="#cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC.on_webhooks_update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_webhooks_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC.on_webhooks_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cpl_discord.container.html" class="btn btn-neutral float-left" title="cpl_discord.container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.helper.html" class="btn btn-neutral float-right" title="cpl_discord.helper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

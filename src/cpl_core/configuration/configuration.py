@@ -341,7 +341,7 @@ class Configuration(ConfigurationABC):
                             continue
                         self._additional_arguments.append(arg)
 
-                cmd.execute(self._additional_arguments)
+                cmd.run(self._additional_arguments)
                 self._handle_pre_or_post_executables(False, exe, services)
                 prevent = exe.prevent_next_executable
                 success = True

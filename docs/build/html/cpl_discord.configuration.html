@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cpl_discord.configuration &mdash; Common Python Library  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cpl_discord.container" href="cpl_discord.container.html" />
+    <link rel="prev" title="cpl_discord.command" href="cpl_discord.command.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cpl_discord.html">Discord reference</a> &raquo;</li>
+      <li>cpl_discord.configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cpl_discord.configuration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cpl-discord-configuration">
+<h1>cpl_discord.configuration<a class="headerlink" href="#cpl-discord-configuration" title="Permalink to this heading"></a></h1>
+<section id="module-cpl_discord.configuration.discord_bot_settings">
+<span id="cpl-discord-configuration-discord-bot-settings"></span><h2>cpl_discord.configuration.discord_bot_settings<a class="headerlink" href="#module-cpl_discord.configuration.discord_bot_settings" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.configuration.discord_bot_settings.</span></span><span class="sig-name descname"><span class="pre">DiscordBotSettings</span></span><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationModelABC</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict">
+<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Converts attributes to dict</p>
+<blockquote>
+<div><p>settings: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.prefix">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prefix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.prefix" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.token">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.token" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cpl_discord.command.html" class="btn btn-neutral float-left" title="cpl_discord.command" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.container.html" class="btn btn-neutral float-right" title="cpl_discord.container" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

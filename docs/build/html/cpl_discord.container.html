@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cpl_discord.container &mdash; Common Python Library  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cpl_discord.events" href="cpl_discord.events.html" />
+    <link rel="prev" title="cpl_discord.configuration" href="cpl_discord.configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.container">cpl_discord.container.container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.guild">cpl_discord.container.guild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.member">cpl_discord.container.member</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.role">cpl_discord.container.role</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.thread">cpl_discord.container.thread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cpl_discord.html">Discord reference</a> &raquo;</li>
+      <li>cpl_discord.container</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cpl_discord.container.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cpl-discord-container">
+<h1>cpl_discord.container<a class="headerlink" href="#cpl-discord-container" title="Permalink to this heading"></a></h1>
+<section id="module-cpl_discord.container.category_channel">
+<span id="cpl-discord-container-category-channel"></span><h2>cpl_discord.container.category_channel<a class="headerlink" href="#module-cpl_discord.container.category_channel" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.category_channel.</span></span><span class="sig-name descname"><span class="pre">CategoryChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CategoryChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">CategoryChannel</span></code>, <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.category_id">
+<span class="sig-name descname"><span class="pre">category_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.category_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.guild">
+<span class="sig-name descname"><span class="pre">guild</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.guild.Guild" title="cpl_discord.container.guild.Guild"><span class="pre">Guild</span></a></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.guild" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.nsfw">
+<span class="sig-name descname"><span class="pre">nsfw</span></span><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.nsfw" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.position" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.text_channels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">text_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.text_channel.TextChannel" title="cpl_discord.container.text_channel.TextChannel"><span class="pre">TextChannel</span></a></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.text_channels" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">TextChannel</span></code>]: Returns the text channels that are under this category.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel.voice_channels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voice_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.voice_channel.VoiceChannel" title="cpl_discord.container.voice_channel.VoiceChannel"><span class="pre">VoiceChannel</span></a></em><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel.voice_channels" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">VoiceChannel</span></code>]: Returns the voice channels that are under this category.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.container">
+<span id="cpl-discord-container-container"></span><h2>cpl_discord.container.container<a class="headerlink" href="#module-cpl_discord.container.container" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.container.Container">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.container.</span></span><span class="sig-name descname"><span class="pre">Container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.container.Container" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.guild">
+<span id="cpl-discord-container-guild"></span><h2>cpl_discord.container.guild<a class="headerlink" href="#module-cpl_discord.container.guild" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.guild.</span></span><span class="sig-name descname"><span class="pre">Guild</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.guild.Guild" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Guild</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.afk_channel">
+<span class="sig-name descname"><span class="pre">afk_channel</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.afk_channel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.afk_timeout">
+<span class="sig-name descname"><span class="pre">afk_timeout</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.afk_timeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.approximate_member_count">
+<span class="sig-name descname"><span class="pre">approximate_member_count</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.approximate_member_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.approximate_presence_count">
+<span class="sig-name descname"><span class="pre">approximate_presence_count</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.approximate_presence_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.categories">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">categories</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.category_channel.CategoryChannel" title="cpl_discord.container.category_channel.CategoryChannel"><span class="pre">CategoryChannel</span></a></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.categories" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">CategoryChannel</span></code>]: A list of categories that belongs to this guild.</p>
+<p>This is sorted by the position and are in UI order from top to bottom.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.default_notifications">
+<span class="sig-name descname"><span class="pre">default_notifications</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.default_notifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.description" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.emojis">
+<span class="sig-name descname"><span class="pre">emojis</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.emojis" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.explicit_content_filter">
+<span class="sig-name descname"><span class="pre">explicit_content_filter</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.explicit_content_filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.features">
+<span class="sig-name descname"><span class="pre">features</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.features" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.max_members">
+<span class="sig-name descname"><span class="pre">max_members</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.max_members" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.max_presences">
+<span class="sig-name descname"><span class="pre">max_presences</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.max_presences" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.max_video_channel_users">
+<span class="sig-name descname"><span class="pre">max_video_channel_users</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.max_video_channel_users" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.members">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.member.Member" title="cpl_discord.container.member.Member"><span class="pre">Member</span></a></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.members" title="Permalink to this definition"></a></dt>
+<dd><p>Sequence[<code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code>]: A list of members that belong to this guild.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.mfa_level">
+<span class="sig-name descname"><span class="pre">mfa_level</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.mfa_level" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.nsfw_level">
+<span class="sig-name descname"><span class="pre">nsfw_level</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.nsfw_level" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.owner_id">
+<span class="sig-name descname"><span class="pre">owner_id</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.owner_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.preferred_locale">
+<span class="sig-name descname"><span class="pre">preferred_locale</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.preferred_locale" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.premium_progress_bar_enabled">
+<span class="sig-name descname"><span class="pre">premium_progress_bar_enabled</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.premium_progress_bar_enabled" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.premium_subscription_count">
+<span class="sig-name descname"><span class="pre">premium_subscription_count</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.premium_subscription_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.premium_tier">
+<span class="sig-name descname"><span class="pre">premium_tier</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.premium_tier" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.roles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.role.Role" title="cpl_discord.container.role.Role"><span class="pre">Role</span></a></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.roles" title="Permalink to this definition"></a></dt>
+<dd><p>Sequence[<code class="xref py py-class docutils literal notranslate"><span class="pre">Role</span></code>]: Returns a sequence of the guild’s roles in hierarchy order.</p>
+<p>The first element of this sequence will be the lowest role in the
+hierarchy.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.stickers">
+<span class="sig-name descname"><span class="pre">stickers</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.stickers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.text_channels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">text_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.text_channel.TextChannel" title="cpl_discord.container.text_channel.TextChannel"><span class="pre">TextChannel</span></a></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.text_channels" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">TextChannel</span></code>]: A list of text channels that belongs to this guild.</p>
+<p>This is sorted by the position and are in UI order from top to bottom.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.threads">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">threads</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.text_channel.TextChannel" title="cpl_discord.container.text_channel.TextChannel"><span class="pre">TextChannel</span></a></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.threads" title="Permalink to this definition"></a></dt>
+<dd><p>Sequence[<code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code>]: A list of threads that you have permission to view.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.unavailable">
+<span class="sig-name descname"><span class="pre">unavailable</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.unavailable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.vanity_url_code">
+<span class="sig-name descname"><span class="pre">vanity_url_code</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.vanity_url_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.verification_level">
+<span class="sig-name descname"><span class="pre">verification_level</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.verification_level" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.voice_channels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voice_channels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.voice_channel.VoiceChannel" title="cpl_discord.container.voice_channel.VoiceChannel"><span class="pre">VoiceChannel</span></a></em><a class="headerlink" href="#cpl_discord.container.guild.Guild.voice_channels" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">VoiceChannel</span></code>]: A list of voice channels that belongs to this guild.</p>
+<p>This is sorted by the position and are in UI order from top to bottom.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.guild.Guild.widget_enabled">
+<span class="sig-name descname"><span class="pre">widget_enabled</span></span><a class="headerlink" href="#cpl_discord.container.guild.Guild.widget_enabled" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.member">
+<span id="cpl-discord-container-member"></span><h2>cpl_discord.container.member<a class="headerlink" href="#module-cpl_discord.container.member" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.member.</span></span><span class="sig-name descname"><span class="pre">Member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.member.Member" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code>, <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.activities">
+<span class="sig-name descname"><span class="pre">activities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ActivityTypes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.member.Member.activities" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.guild">
+<span class="sig-name descname"><span class="pre">guild</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.guild.Guild" title="cpl_discord.container.guild.Guild"><span class="pre">Guild</span></a></em><a class="headerlink" href="#cpl_discord.container.member.Member.guild" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.joined_at">
+<span class="sig-name descname"><span class="pre">joined_at</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.member.Member.joined_at" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.nick">
+<span class="sig-name descname"><span class="pre">nick</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.member.Member.nick" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.pending">
+<span class="sig-name descname"><span class="pre">pending</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#cpl_discord.container.member.Member.pending" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.premium_since">
+<span class="sig-name descname"><span class="pre">premium_since</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.member.Member.premium_since" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.roles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">roles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.role.Role" title="cpl_discord.container.role.Role"><span class="pre">Role</span></a></em><a class="headerlink" href="#cpl_discord.container.member.Member.roles" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">Role</span></code>]: A <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Role</span></code> that the member belongs to. Note
+that the first element of this list is always the default <a class="reference external" href="mailto:'&#37;&#52;&#48;everyone">‘<span>&#64;</span>everyone</a>’
+role.</p>
+<p>These roles are sorted by their position in the role hierarchy.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.member.Member.timed_out_until">
+<span class="sig-name descname"><span class="pre">timed_out_until</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.member.Member.timed_out_until" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.role">
+<span id="cpl-discord-container-role"></span><h2>cpl_discord.container.role<a class="headerlink" href="#module-cpl_discord.container.role" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.role.</span></span><span class="sig-name descname"><span class="pre">Role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.role.Role" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Role</span></code>, <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.guild">
+<span class="sig-name descname"><span class="pre">guild</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.guild.Guild" title="cpl_discord.container.guild.Guild"><span class="pre">Guild</span></a></em><a class="headerlink" href="#cpl_discord.container.role.Role.guild" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.hoist">
+<span class="sig-name descname"><span class="pre">hoist</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.hoist" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.role.Role.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.managed">
+<span class="sig-name descname"><span class="pre">managed</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.managed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.members">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.member.Member" title="cpl_discord.container.member.Member"><span class="pre">Member</span></a></em><a class="headerlink" href="#cpl_discord.container.role.Role.members" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code>]: Returns all the members with this role.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.mentionable">
+<span class="sig-name descname"><span class="pre">mentionable</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.mentionable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.position">
+<span class="sig-name descname"><span class="pre">position</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.position" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.tags">
+<span class="sig-name descname"><span class="pre">tags</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.tags" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.role.Role.unicode_emoji">
+<span class="sig-name descname"><span class="pre">unicode_emoji</span></span><a class="headerlink" href="#cpl_discord.container.role.Role.unicode_emoji" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.text_channel">
+<span id="cpl-discord-container-text-channel"></span><h2>cpl_discord.container.text_channel<a class="headerlink" href="#module-cpl_discord.container.text_channel" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.text_channel.</span></span><span class="sig-name descname"><span class="pre">TextChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChannel</span></code>, <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.category_id">
+<span class="sig-name descname"><span class="pre">category_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.category_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.default_auto_archive_duration">
+<span class="sig-name descname"><span class="pre">default_auto_archive_duration</span></span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.default_auto_archive_duration" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.guild">
+<span class="sig-name descname"><span class="pre">guild</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.guild.Guild" title="cpl_discord.container.guild.Guild"><span class="pre">Guild</span></a></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.guild" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.last_message_id">
+<span class="sig-name descname"><span class="pre">last_message_id</span></span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.last_message_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.members">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Member</span></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.members" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code>]: Returns all members that can see this channel.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.nsfw">
+<span class="sig-name descname"><span class="pre">nsfw</span></span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.nsfw" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.position" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.slowmode_delay">
+<span class="sig-name descname"><span class="pre">slowmode_delay</span></span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.slowmode_delay" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.threads">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">threads</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.thread.Thread" title="cpl_discord.container.thread.Thread"><span class="pre">Thread</span></a></em><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.threads" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code>]: Returns all the threads that you can see.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel.topic">
+<span class="sig-name descname"><span class="pre">topic</span></span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel.topic" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.thread">
+<span id="cpl-discord-container-thread"></span><h2>cpl_discord.container.thread<a class="headerlink" href="#module-cpl_discord.container.thread" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.thread.</span></span><span class="sig-name descname"><span class="pre">Thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Thread</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.thread.Thread" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code>, <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.archive_timestamp">
+<span class="sig-name descname"><span class="pre">archive_timestamp</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.archive_timestamp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.archived">
+<span class="sig-name descname"><span class="pre">archived</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.archived" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.archiver_id">
+<span class="sig-name descname"><span class="pre">archiver_id</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.archiver_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.auto_archive_duration">
+<span class="sig-name descname"><span class="pre">auto_archive_duration</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.auto_archive_duration" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.guild">
+<span class="sig-name descname"><span class="pre">guild</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.guild.Guild" title="cpl_discord.container.guild.Guild"><span class="pre">Guild</span></a></em><a class="headerlink" href="#cpl_discord.container.thread.Thread.guild" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#cpl_discord.container.thread.Thread.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.invitable">
+<span class="sig-name descname"><span class="pre">invitable</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.invitable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.last_message_id">
+<span class="sig-name descname"><span class="pre">last_message_id</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.last_message_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.locked">
+<span class="sig-name descname"><span class="pre">locked</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.locked" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.me">
+<span class="sig-name descname"><span class="pre">me</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.me" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.member_count">
+<span class="sig-name descname"><span class="pre">member_count</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.member_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.members">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.member.Member" title="cpl_discord.container.member.Member"><span class="pre">Member</span></a></em><a class="headerlink" href="#cpl_discord.container.thread.Thread.members" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">ThreadMember</span></code>]: A list of thread members in this thread.</p>
+<p>This requires <code class="xref py py-attr docutils literal notranslate"><span class="pre">Intents.members</span></code> to be properly filled. Most of the time however,
+this data is not provided by the gateway and a call to <code class="xref py py-meth docutils literal notranslate"><span class="pre">fetch_members()</span></code> is
+needed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.message_count">
+<span class="sig-name descname"><span class="pre">message_count</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.message_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.owner_id">
+<span class="sig-name descname"><span class="pre">owner_id</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.owner_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.parent_id">
+<span class="sig-name descname"><span class="pre">parent_id</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.parent_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.thread.Thread.slowmode_delay">
+<span class="sig-name descname"><span class="pre">slowmode_delay</span></span><a class="headerlink" href="#cpl_discord.container.thread.Thread.slowmode_delay" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.container.voice_channel">
+<span id="cpl-discord-container-voice-channel"></span><h2>cpl_discord.container.voice_channel<a class="headerlink" href="#module-cpl_discord.container.voice_channel" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.voice_channel.VoiceChannel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.voice_channel.</span></span><span class="sig-name descname"><span class="pre">VoiceChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">VoiceChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.voice_channel.VoiceChannel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">VoiceChannel</span></code>, <a class="reference internal" href="#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><code class="xref py py-class docutils literal notranslate"><span class="pre">Container</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_discord.container.voice_channel.VoiceChannel.members">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#cpl_discord.container.member.Member" title="cpl_discord.container.member.Member"><span class="pre">Member</span></a></em><a class="headerlink" href="#cpl_discord.container.voice_channel.VoiceChannel.members" title="Permalink to this definition"></a></dt>
+<dd><p>List[<code class="xref py py-class docutils literal notranslate"><span class="pre">Member</span></code>]: Returns all members that are currently inside this voice channel.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cpl_discord.configuration.html" class="btn btn-neutral float-left" title="cpl_discord.configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.events.html" class="btn btn-neutral float-right" title="cpl_discord.events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

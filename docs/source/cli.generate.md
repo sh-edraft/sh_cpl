@@ -18,10 +18,11 @@ Generates files based on a schematic.
 
 ## Arguments
 
-| Argument          | Description                       | Value type    |
-| ----------------- |:---------------------------------:|:-------------:|
-| ```<schematic>``` | The schematic to generate.        | ```str```     |
-| ```<name>```      | The name of the generated file.   | ```str```     |
+| Argument          |                                                                             Description                                                                             | Value type    |
+|-------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------:|
+| ```<schematic>``` |                                                                     The schematic to generate.                                                                      | ```str```     |
+| ```<name>```      |                                                                   The name of the generated file.                                                                   | ```str```     |
+| ```--base```      | First element of path will be used as base-path not 'src'. For example: 'cpl g c test/Test' will be created at ```src/test/``` with --base it would be ```test/```  | ```str```     |
 
 ## Schematics
 

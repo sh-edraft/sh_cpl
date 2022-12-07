@@ -78,8 +78,8 @@ class GenerateTestCase(CommandTestCase):
         self._test_file_with_project('settings', '_settings', path=self._project)
 
     def test_test_case(self):
-        self._test_file('test_case', '_test_case')
-        self._test_file_with_project('test_case', '_test_case', path=self._project)
+        self._test_file('test-case', '_test_case')
+        self._test_file_with_project('test-case', '_test_case', path=self._project)
 
     def test_thread(self):
         self._test_file('thread', '_thread')

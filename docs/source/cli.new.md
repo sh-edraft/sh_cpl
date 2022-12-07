@@ -18,10 +18,11 @@ Generates a workspace and initial project or add a project to workspace.
 
 If the command is running in a CPL workspace, it will add the new project to the workspace.
 
-| Argument     |                     Description                      | Value type |
-|--------------|:----------------------------------------------------:|:----------:|
-| ```<type>``` | The type of the project, see [types](#project-types) | ```str```  |
-| ```<name>``` |               The name of the project                | ```str```  |
+| Argument     |                                                                            Description                                                                             | Value type |
+|--------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------:|
+| ```<type>``` |                                                        The type of the project, see [types](#project-types)                                                        | ```str```  |
+| ```<name>``` |                                                                      The name of the project                                                                       | ```str```  |
+| ```--base``` | First element of path will be used as base-path not 'src'. For example: 'cpl g c test/Test' will be created at ```src/test/``` with --base it would be ```test/``` | ```str```     |
 
 ## Project types
 
