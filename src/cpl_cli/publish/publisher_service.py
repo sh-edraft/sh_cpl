@@ -404,7 +404,7 @@ class PublisherService(PublisherABC):
                 f'--bdist-dir={os.path.join(self._output_path, "bdist")}',
                 f'--dist-dir={os.path.join(self._output_path, "setup")}'
             ])
-            # os.remove(setup_py)
+            os.remove(setup_py)
         except Exception as e:
             Console.error('Executing setup.py failed', str(e))
 
@@ -492,10 +492,10 @@ class PublisherService(PublisherABC):
 
         Console.write_line('Running setup.py:\n')
         self._run_setup()
-        # Console.spinner(
-        #     'Cleaning dist path:',
-        #     self._clean_dist_files,
-        #     text_foreground_color=ForegroundColorEnum.green,
-        #     spinner_foreground_color=ForegroundColorEnum.blue
-        # )
+        Console.spinner(
+            'Cleaning dist path:',
+            self._clean_dist_files,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue
+        )
         Console.write_line()
