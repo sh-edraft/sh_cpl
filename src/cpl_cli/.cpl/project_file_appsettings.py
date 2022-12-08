@@ -18,7 +18,6 @@ class ProjectFileAppsettings(FileTemplateABC):
             "DateTimeFormat": "%Y-%m-%d %H:%M:%S.%f",
             "DateTimeLogFormat": "%Y-%m-%d_%H-%M-%S"
           },
-        
           "LoggingSettings": {
             "Path": "logs/",
             "Filename": "log_$start_time.log",

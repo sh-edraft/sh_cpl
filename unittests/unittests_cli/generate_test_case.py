@@ -9,7 +9,6 @@ from unittests_shared.cli_commands import CLICommands
 class GenerateTestCase(CommandTestCase):
     _project = 'test-console'
     _t_path = 'test'
-    _skip_tear_down = True
 
     @classmethod
     def setUpClass(cls):
@@ -45,7 +44,6 @@ class GenerateTestCase(CommandTestCase):
 
         CLICommands.generate(schematic, file)
         file_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, excepted_path))
-        print(file_path)
         self.assertTrue(os.path.exists(file_path))
 
     def test_abc(self):

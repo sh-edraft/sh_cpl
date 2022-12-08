@@ -14,7 +14,6 @@ class CommandTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-
         try:
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH)))
