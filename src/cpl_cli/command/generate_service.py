@@ -44,7 +44,14 @@ class GenerateService(CommandABC):
         if len(GenerateSchematicABC.__subclasses__()) == 0:
             Console.error(f'No schematics found in template directory: .cpl')
             sys.exit()
+
+        known_schematics = []
         for schematic in GenerateSchematicABC.__subclasses__():
+            if schematic.__name__ in known_schematics:
+                Console.error(f'Duplicate of schematic {schematic.__name__} found!')
+                sys.exit()
+
+            known_schematics.append(schematic.__name__)
             schematic.register()
 
         self._schematics = SchematicCollection.get_schematics()

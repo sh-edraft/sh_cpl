@@ -6,7 +6,7 @@ from cpl_core.console import Console
 from cpl_core.utils import String
 
 
-class Command(GenerateSchematicABC):
+class Event(GenerateSchematicABC):
 
     def __init__(self, name: str, schematic: str, path: str):
         GenerateSchematicABC.__init__(self, name, schematic, path)
@@ -24,11 +24,17 @@ class Command(GenerateSchematicABC):
 
         if event is None:
             Console.error(f'No valid event found in name {name}')
+            Console.write_line('Available events:')
+            for event_type in DiscordEventTypesEnum:
+                Console.write_line(f'\t{event_type.value.__name__.replace("ABC", "")}')
             sys.exit()
 
         self._event_class = f'{event}ABC'
-        self._name = f'{String.convert_to_snake_case(name)}_{String.convert_to_snake_case(self._event_class.replace("ABC", ""))}_{schematic}.py'
-        self._class_name = f'{String.first_to_upper(name)}{self._event_class.replace("ABC", "")}{String.first_to_upper(schematic)}'
+        self._name = f'{String.convert_to_snake_case(self._event_class.replace("ABC", ""))}_{schematic}.py'
+        self._class_name = f'{self._event_class.replace("ABC", "")}{String.first_to_upper(schematic)}'
+        if name != '':
+            self._name = f'{String.convert_to_snake_case(name)}_{self._name}'
+            self._class_name = f'{String.first_to_upper(name)}{self._class_name}'
 
     def get_code(self) -> str:
         code = """\
