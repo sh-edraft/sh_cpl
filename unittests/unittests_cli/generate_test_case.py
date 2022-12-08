@@ -9,6 +9,7 @@ from unittests_shared.cli_commands import CLICommands
 class GenerateTestCase(CommandTestCase):
     _project = 'test-console'
     _t_path = 'test'
+    _skip_tear_down = True
 
     @classmethod
     def setUpClass(cls):
@@ -19,29 +20,32 @@ class GenerateTestCase(CommandTestCase):
         os.chdir(PLAYGROUND_PATH)
 
     def _test_file(self, schematic: str, suffix: str, path=None):
-        file = 'GeneratedFile'
-        expected_path = f'generated_file{suffix}.py'
+        file = f'GeneratedFile{"OnReady" if schematic == "event" else ""}'
+        expected_path = f'generated_file{"_on_ready" if schematic == "event" else ""}{suffix}.py'
+
         if path is not None:
             file = f'{path}/{file}'
             expected_path = f'{path}/{expected_path}'
+
         CLICommands.generate(schematic, file)
         file_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, expected_path))
         file_exists = os.path.exists(file_path)
         self.assertTrue(file_exists)
 
     def _test_file_with_project(self, schematic: str, suffix: str, path=None, enter=True):
-        file = f'GeneratedFile'
-        excepted_path = f'generated_file{suffix}.py'
+        file = f'GeneratedFile{"OnReady" if schematic == "event" else ""}'
+        excepted_path = f'generated_file{"_on_ready" if schematic == "event" else ""}{suffix}.py'
         if path is not None:
-            excepted_path = f'{self._project}/src/{String.convert_to_snake_case(self._project)}/{path}/generated_file_in_project{suffix}.py'
+            excepted_path = f'{self._project}/src/{String.convert_to_snake_case(self._project)}/{path}/generated_file_in_project{"_on_ready" if schematic == "event" else ""}{suffix}.py'
             if enter:
                 os.chdir(path)
-                excepted_path = f'{path}/src/{String.convert_to_snake_case(self._project)}/generated_file_in_project{suffix}.py'
+                excepted_path = f'{path}/src/{String.convert_to_snake_case(self._project)}/generated_file_in_project{"_on_ready" if schematic == "event" else ""}{suffix}.py'
 
-            file = f'{path}/GeneratedFileInProject'
+            file = f'{path}/GeneratedFileInProject{"OnReady" if schematic == "event" else ""}'
 
         CLICommands.generate(schematic, file)
         file_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, excepted_path))
+        print(file_path)
         self.assertTrue(os.path.exists(file_path))
 
     def test_abc(self):
@@ -88,3 +92,11 @@ class GenerateTestCase(CommandTestCase):
     def test_validator(self):
         self._test_file('validator', '_validator')
         self._test_file_with_project('validator', '_validator', path=self._project)
+
+    def test_discord_command(self):
+        self._test_file('command', '_command')
+        self._test_file_with_project('command', '_command', path=self._project)
+
+    def test_discord_event(self):
+        self._test_file('event', '_event')
+        self._test_file_with_project('event', '_event', path=self._project)

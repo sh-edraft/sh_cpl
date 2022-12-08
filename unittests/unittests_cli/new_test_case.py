@@ -52,6 +52,15 @@ class NewTestCase(CommandTestCase):
         else:
             self.assertFalse(os.path.isfile(os.path.join(project_path, f'test_case.py')))
 
+        if project_type == 'discord-bot':
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/__init__.py')))
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/__init__.py')))
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
+        else:
+            self.assertFalse(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
+            self.assertFalse(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
+
     def _test_sub_project(self, project_type: str, name: str, workspace_name: str, *args, test_venv=False):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))
         CLICommands.new(project_type, name, *args)
@@ -71,6 +80,15 @@ class NewTestCase(CommandTestCase):
         project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, workspace_name, base, String.convert_to_snake_case(name)))
         self.assertTrue(os.path.exists(project_path))
         self.assertTrue(os.path.join(project_path, f'{name}.json'))
+
+        if project_type == 'discord-bot':
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/__init__.py')))
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/__init__.py')))
+            self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
+        else:
+            self.assertFalse(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
+            self.assertFalse(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
 
     def _test_sub_directory_project(self, project_type: str, directory: str, name: str, workspace_name: str, *args):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))
@@ -116,6 +134,12 @@ class NewTestCase(CommandTestCase):
 
     def test_console_sub_with_other_base(self):
         self._test_sub_project('console', 'tools/test-sub-console', 'test-console', '--ab', '--s', '--sp', '--venv', '--base', test_venv=True)
+
+    def test_discord_bot(self):
+        self._test_project('discord-bot', 'test-bot', '--ab', '--s', '--venv', test_venv=True)
+
+    def test_discord_bot_sub(self):
+        self._test_sub_project('discord-bot', 'test-bot-sub', 'test-console', '--ab', '--s', '--venv', test_venv=True)
 
     def test_library(self):
         self._test_project('library', 'test-library', '--ab', '--s', '--sp')
