@@ -1,5 +1,6 @@
 from cpl_core.application import StartupABC
 from cpl_core.configuration import ConfigurationABC
+from cpl_core.console import Console
 from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
 from cpl_core.environment import ApplicationEnvironment
 from cpl_discord import get_discord_collection
@@ -16,7 +17,7 @@ class Startup(StartupABC):
         StartupABC.__init__(self)
 
     def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
-        configuration.add_json_file('appsettings.json', optional=True)
+        configuration.add_json_file('appsettings.json', optional=False)
         configuration.add_environment_variables('CPL_')
         configuration.add_environment_variables('DISCORD_')
 
