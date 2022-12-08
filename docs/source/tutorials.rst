@@ -12,3 +12,4 @@ Tutorials
     tutorials.console
     tutorials.logging
     tutorials.mail
+    tutorials.templating

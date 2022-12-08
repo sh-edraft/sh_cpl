@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using cpl g &amp; cpl n templating &mdash; Common Python Library  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to CPL" href="contributing.html" />
+    <link rel="prev" title="Send mails" href="tutorials.mail.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Common Python Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="getting_started.html">Getting started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started with CPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">Setting up the local environment and workspace</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tutorials.extend-application.html">Extend application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.create-startup.html">Create startup class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.extend-startup.html">Extend startup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.appsettings.html">Using appsettings.json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.console-arguments.html">Handle console arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.console.html">Use cpl_core.console.Console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.logging.html">Use builtin logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials.mail.html">Send mails</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using cpl g &amp; cpl n templating</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#contents">Contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-generate-schematics">cpl generate schematics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-new-project-types">cpl new project types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Common Python Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="getting_started.html">Getting started</a> &raquo;</li>
+          <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
+      <li>Using cpl g &amp; cpl n templating</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tutorials.templating.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-cpl-g-cpl-n-templating">
+<h1>Using cpl g &amp; cpl n templating<a class="headerlink" href="#using-cpl-g-cpl-n-templating" title="Permalink to this heading"></a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Prerequisites</span></p></li>
+<li><p><span class="xref myst">Generate schematics</span></p></li>
+<li><p><span class="xref myst">Project types</span></p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>Create a folder called <code class="docutils literal notranslate"><span class="pre">.cpl</span></code></p>
+</section>
+<section id="cpl-generate-schematics">
+<h2>cpl generate schematics<a class="headerlink" href="#cpl-generate-schematics" title="Permalink to this heading"></a></h2>
+<p>Create a file which begins with <code class="docutils literal notranslate"><span class="pre">schematic_your_schematic.py</span></code>.
+A schematic template is detected by starting with  <code class="docutils literal notranslate"><span class="pre">schematic_</span></code> and endswith <code class="docutils literal notranslate"><span class="pre">.py</span></code>.</p>
+<p>You should replace <code class="docutils literal notranslate"><span class="pre">your_schematic</span></code> with an appropriate name of your schematic. For example, we will choose <code class="docutils literal notranslate"><span class="pre">Enum</span></code>.
+Attention: It is important that you do not overwrite templates by creating a file or class with the same name.</p>
+<p>In the template create a class with the name of your schematic. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cpl_cli.abc.generate_schematic_abc</span> <span class="kn">import</span> <span class="n">GenerateSchematicABC</span>
+
+
+<span class="k">class</span> <span class="nc">Enum</span><span class="p">(</span><span class="n">GenerateSchematicABC</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">GenerateSchematicABC</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">textwrap</span>
+        <span class="n">code</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">        from enum import Enum</span>
+<span class="s2">        </span>
+<span class="s2">        </span>
+<span class="s2">        class $Name(Enum):</span>
+<span class="s2">        </span>
+<span class="s2">            atr = 0</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_code_str</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">Name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_class_name</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">GenerateSchematicABC</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="p">,</span>
+            <span class="s1">&#39;enum&#39;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+</pre></div>
+</div>
+<p>You can test it by calling <code class="docutils literal notranslate"><span class="pre">cpl</span> <span class="pre">g</span> <span class="pre">--help</span></code> your schematic should be listed as available.</p>
+</section>
+<section id="cpl-new-project-types">
+<h2>cpl new project types<a class="headerlink" href="#cpl-new-project-types" title="Permalink to this heading"></a></h2>
+<p>The project templating is a little more complex and is therefore divided into several files.
+First of all, for information, it is very important not to overwrite any existing files or classes!</p>
+<p>Template structure explained by the example of the internal type <code class="docutils literal notranslate"><span class="pre">console</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">project_console</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file_license</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file_appsettings</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file_readme</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file_code_main</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file_code_startup</span><span class="o">.</span><span class="n">py</span>
+<span class="o">-</span> <span class="n">project_file_code_application</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Here the template <code class="docutils literal notranslate"><span class="pre">project_console.py</span></code> defines how a console project has to look like when it is generated. Here is the code to illustrate this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cpl_cli.abc.project_type_abc</span> <span class="kn">import</span> <span class="n">ProjectTypeABC</span>
+<span class="kn">from</span> <span class="nn">cpl_cli.configuration</span> <span class="kn">import</span> <span class="n">WorkspaceSettings</span>
+<span class="kn">from</span> <span class="nn">cpl_core.utils</span> <span class="kn">import</span> <span class="n">String</span>
+
+
+<span class="k">class</span> <span class="nc">Console</span><span class="p">(</span><span class="n">ProjectTypeABC</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">project_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">workspace</span><span class="p">:</span> <span class="n">WorkspaceSettings</span><span class="p">,</span>
+            <span class="n">use_application_api</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+            <span class="n">use_startup</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+            <span class="n">use_service_providing</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+            <span class="n">use_async</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+            <span class="n">project_file_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">project_file</span> <span class="kn">import</span> <span class="n">ProjectFile</span>
+        <span class="kn">from</span> <span class="nn">project_file_appsettings</span> <span class="kn">import</span> <span class="n">ProjectFileAppsettings</span>
+        <span class="kn">from</span> <span class="nn">project_file_code_application</span> <span class="kn">import</span> <span class="n">ProjectFileApplication</span>
+        <span class="kn">from</span> <span class="nn">project_file_code_main</span> <span class="kn">import</span> <span class="n">ProjectFileMain</span>
+        <span class="kn">from</span> <span class="nn">project_file_code_startup</span> <span class="kn">import</span> <span class="n">ProjectFileStartup</span>
+        <span class="kn">from</span> <span class="nn">project_file_readme</span> <span class="kn">import</span> <span class="n">ProjectFileReadme</span>
+        <span class="kn">from</span> <span class="nn">project_file_license</span> <span class="kn">import</span> <span class="n">ProjectFileLicense</span>
+        <span class="kn">from</span> <span class="nn">schematic_init</span> <span class="kn">import</span> <span class="n">Init</span>
+
+        <span class="n">ProjectTypeABC</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_path</span><span class="p">,</span> <span class="n">project_name</span><span class="p">,</span> <span class="n">workspace</span><span class="p">,</span> <span class="n">use_application_api</span><span class="p">,</span> <span class="n">use_startup</span><span class="p">,</span> <span class="n">use_service_providing</span><span class="p">,</span> <span class="n">use_async</span><span class="p">,</span> <span class="n">project_file_data</span><span class="p">)</span>
+
+        <span class="n">project_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}{</span><span class="n">String</span><span class="o">.</span><span class="n">convert_to_snake_case</span><span class="p">(</span><span class="n">project_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="si">}</span><span class="s1">/&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFile</span><span class="p">(</span><span class="n">project_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">project_path</span><span class="p">,</span> <span class="n">project_file_data</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">workspace</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFileLicense</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFileReadme</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">Init</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s1">tests/&#39;</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">Init</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="n">project_path</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFileAppsettings</span><span class="p">(</span><span class="n">project_path</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">use_application_api</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFileApplication</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">use_application_api</span><span class="p">,</span> <span class="n">use_startup</span><span class="p">,</span> <span class="n">use_service_providing</span><span class="p">,</span> <span class="n">use_async</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">use_startup</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFileStartup</span><span class="p">(</span><span class="n">project_path</span><span class="p">,</span> <span class="n">use_application_api</span><span class="p">,</span> <span class="n">use_startup</span><span class="p">,</span> <span class="n">use_service_providing</span><span class="p">,</span> <span class="n">use_async</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_template</span><span class="p">(</span><span class="n">ProjectFileMain</span><span class="p">(</span><span class="n">project_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">project_path</span><span class="p">,</span> <span class="n">use_application_api</span><span class="p">,</span> <span class="n">use_startup</span><span class="p">,</span> <span class="n">use_service_providing</span><span class="p">,</span> <span class="n">use_async</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The class must be named exactly as the project type should be named. It is also checked on the initial letter of the class as alias.
+Now create a class for normal files which inherits from <code class="docutils literal notranslate"><span class="pre">FileTemplateABC</span></code> and a class for code files which inherits from <code class="docutils literal notranslate"><span class="pre">CodeFileTemplateABC</span></code>.</p>
+<p>For example:</p>
+<p>project_file_code_startup.py:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">cpl_cli.abc.code_file_template_abc</span> <span class="kn">import</span> <span class="n">CodeFileTemplateABC</span>
+
+
+<span class="k">class</span> <span class="nc">ProjectFileStartup</span><span class="p">(</span><span class="n">CodeFileTemplateABC</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">use_application_api</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">use_startup</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">use_service_providing</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">use_async</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="n">CodeFileTemplateABC</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;startup&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">use_application_api</span><span class="p">,</span> <span class="n">use_startup</span><span class="p">,</span> <span class="n">use_service_providing</span><span class="p">,</span> <span class="n">use_async</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">textwrap</span>
+
+        <span class="k">return</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">        from cpl_core.application import StartupABC</span>
+<span class="s2">        from cpl_core.configuration import ConfigurationABC</span>
+<span class="s2">        from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC</span>
+<span class="s2">        from cpl_core.environment import ApplicationEnvironment</span>
+<span class="s2">        </span>
+<span class="s2">        </span>
+<span class="s2">        class Startup(StartupABC):</span>
+<span class="s2">        </span>
+<span class="s2">            def __init__(self):</span>
+<span class="s2">                StartupABC.__init__(self)</span>
+<span class="s2">        </span>
+<span class="s2">            def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -&gt; ConfigurationABC:</span>
+<span class="s2">                return configuration</span>
+<span class="s2">        </span>
+<span class="s2">            def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -&gt; ServiceProviderABC:</span>
+<span class="s2">                return services.build_service_provider()</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>project_file.py:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">cpl_cli.abc.file_template_abc</span> <span class="kn">import</span> <span class="n">FileTemplateABC</span>
+
+
+<span class="k">class</span> <span class="nc">ProjectFile</span><span class="p">(</span><span class="n">FileTemplateABC</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">FileTemplateABC</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">.json&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_code</span> <span class="o">=</span> <span class="n">code</span>
+
+    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_code</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorials.mail.html" class="btn btn-neutral float-left" title="Send mails" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to CPL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

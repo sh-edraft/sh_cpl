@@ -6,7 +6,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl_core.typing import T
+from cpl_core.type import T
 
 
 class ConfigurationABC(ABC):

@@ -1,3 +1,3 @@
 # Send mails
 
-## Comming soon
+## Coming soon
