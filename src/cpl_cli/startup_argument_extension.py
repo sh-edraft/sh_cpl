@@ -38,9 +38,6 @@ class StartupArgumentExtension(StartupExtensionABC):
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-exp', ['ce', 'CE']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'cpl-dev', ['cd', 'CD'])
         config.create_console_argument(ArgumentTypeEnum.Executable, '', 'new', ['n', 'N'], NewService, True) \
-            .add_console_argument(ArgumentTypeEnum.Variable, '', 'console', ['c', 'C'], ' ') \
-            .add_console_argument(ArgumentTypeEnum.Variable, '', 'library', ['l', 'L'], ' ') \
-            .add_console_argument(ArgumentTypeEnum.Variable, '', 'unittest', ['ut', 'UT'], ' ') \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'async', ['a', 'A']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'application-base', ['ab', 'AB']) \
             .add_console_argument(ArgumentTypeEnum.Flag, '--', 'startup', ['s', 'S']) \

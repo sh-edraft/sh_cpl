@@ -1,5 +1,3 @@
-import textwrap
-
 from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
@@ -9,16 +7,16 @@ class Enum(GenerateSchematicABC):
         GenerateSchematicABC.__init__(self, *args)
 
     def get_code(self) -> str:
-        code = """\
+        import textwrap
+        code = textwrap.dedent("""\
         from enum import Enum
         
         
         class $Name(Enum):
         
             atr = 0
-        """
-        x = self.build_code_str(code, Name=self._class_name)
-        return x
+        """)
+        return self.build_code_str(code, Name=self._class_name)
 
     @classmethod
     def register(cls):

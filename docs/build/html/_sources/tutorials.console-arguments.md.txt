@@ -1,3 +1,3 @@
 # Handle console arguments
 
-## Comming soon
+## Coming soon

@@ -1,10 +1,14 @@
 from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
+from cpl_core.utils import String
 
 
 class ABC(GenerateSchematicABC):
 
-    def __init__(self, *args):
-        GenerateSchematicABC.__init__(self, *args)
+    def __init__(self, name: str, schematic: str, path: str):
+        GenerateSchematicABC.__init__(self, name, schematic, path)
+        self._class_name = name
+        if name != '':
+            self._class_name = f'{String.first_to_upper(name.replace(schematic, ""))}ABC'
 
     def get_code(self) -> str:
         code = """\

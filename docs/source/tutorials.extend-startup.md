@@ -1,3 +1,3 @@
 # Extend startup
 
-## Comming soon
+## Coming soon

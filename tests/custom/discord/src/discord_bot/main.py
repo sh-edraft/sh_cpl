@@ -7,7 +7,7 @@ from discord_bot.application import Application
 from discord_bot.startup import Startup
 
 
-class Main:
+class Program:
 
     def __init__(self):
         self._app: Optional[Application] = None
@@ -23,8 +23,8 @@ class Main:
 
 
 if __name__ == '__main__':
-    main = Main()
+    program = Program()
     try:
-        asyncio.run(main.main())
+        asyncio.run(program.main())
     except KeyboardInterrupt:
-        asyncio.run(main.stop())
+        asyncio.run(program.stop())

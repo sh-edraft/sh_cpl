@@ -1,3 +1,4 @@
+import importlib
 import os
 import sys
 import textwrap
@@ -7,6 +8,7 @@ from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 from cpl_cli.command_abc import CommandABC
 from cpl_cli.configuration import WorkspaceSettings
 from cpl_cli.configuration.schematic_collection import SchematicCollection
+from cpl_cli.helper.dependencies import Dependencies
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -33,13 +35,23 @@ class GenerateService(CommandABC):
         self._env = self._config.environment
         self._schematics = {}
 
-        self._read_custom_schematics_from_path(self._env.runtime_directory)
+        for package_name in Dependencies.get_cpl_packages():
+            package = importlib.import_module(String.convert_to_snake_case(package_name[0]))
+            self._read_custom_schematics_from_path(os.path.dirname(package.__file__))
+
         self._read_custom_schematics_from_path(self._env.working_directory)
 
         if len(GenerateSchematicABC.__subclasses__()) == 0:
             Console.error(f'No schematics found in template directory: .cpl')
             sys.exit()
+
+        known_schematics = []
         for schematic in GenerateSchematicABC.__subclasses__():
+            if schematic.__name__ in known_schematics:
+                Console.error(f'Duplicate of schematic {schematic.__name__} found!')
+                sys.exit()
+
+            known_schematics.append(schematic.__name__)
             schematic.register()
 
         self._schematics = SchematicCollection.get_schematics()

@@ -1,5 +1,3 @@
-import os
-
 from cpl_cli.abc.project_type_abc import ProjectTypeABC
 from cpl_cli.configuration import WorkspaceSettings
 from cpl_core.utils import String

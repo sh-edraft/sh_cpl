@@ -65,7 +65,7 @@ class Pip:
         """
         result = None
         with suppress(Exception):
-            args = [cls._executable, "-m", "pip", "freeze"]
+            args = [cls._executable, "-m", "pip", "freeze", "--all"]
 
             result = subprocess.check_output(
                 args,

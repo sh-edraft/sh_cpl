@@ -16,6 +16,8 @@ cpl **N** *&lt;type&gt;* *&lt;name&gt;*
 
 Generates a workspace and initial project or add a project to workspace.
 
+You can define custom project types by creating templates in a ```.cpl``` folder.
+
 If the command is running in a CPL workspace, it will add the new project to the workspace.
 
 | Argument     |                                                                            Description                                                                             | Value type |

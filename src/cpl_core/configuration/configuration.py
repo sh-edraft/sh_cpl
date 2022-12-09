@@ -22,7 +22,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
-from cpl_core.typing import T
+from cpl_core.type import T
 
 
 class Configuration(ConfigurationABC):

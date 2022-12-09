@@ -1,3 +1,4 @@
+import importlib
 import os
 import sys
 import textwrap
@@ -18,6 +19,7 @@ from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.configuration.venv_helper_service import VenvHelper
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
+from cpl_cli.helper.dependencies import Dependencies
 from cpl_cli.source_creator.template_builder import TemplateBuilder
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
@@ -103,9 +105,9 @@ class NewService(CommandABC):
 
         self._project.from_dict(self._project_dict)
 
-    def _create_build_settings(self, project_type: ProjectTypeEnum):
+    def _create_build_settings(self, project_type: str):
         self._build_dict = {
-            BuildSettingsNameEnum.project_type.value: project_type.value,
+            BuildSettingsNameEnum.project_type.value: project_type,
             BuildSettingsNameEnum.source_path.value: '',
             BuildSettingsNameEnum.output_path.value: '../../dist',
             BuildSettingsNameEnum.main.value: f'{String.convert_to_snake_case(self._project.name)}.main',
@@ -209,14 +211,35 @@ class NewService(CommandABC):
                     Console.error(str(e), traceback.format_exc())
                     sys.exit(-1)
 
-    def _create_project(self, project_type: ProjectTypeEnum):
-        self._read_custom_project_types_from_path(self._env.runtime_directory)
+    def _create_project(self, project_type: str):
+        for package_name in Dependencies.get_cpl_packages():
+            package = importlib.import_module(String.convert_to_snake_case(package_name[0]))
+            self._read_custom_project_types_from_path(os.path.dirname(package.__file__))
+
         self._read_custom_project_types_from_path(self._env.working_directory)
 
         if len(ProjectTypeABC.__subclasses__()) == 0:
             Console.error(f'No project types found in template directory: .cpl')
             sys.exit()
 
+        project_class = None
+        known_project_types = []
+        for p in ProjectTypeABC.__subclasses__():
+            if p.__name__ in known_project_types:
+                Console.error(f'Duplicate of project type {p.__name__} found!')
+                sys.exit()
+
+            known_project_types.append(p.__name__)
+            if p.__name__.lower() != project_type and p.__name__.lower()[0] != project_type[0]:
+                continue
+
+            project_class = p
+
+        if project_class is None:
+            Console.error(f'Project type {project_type} not found in template directory: .cpl/')
+            sys.exit()
+
+        project_type = String.convert_to_snake_case(project_class.__name__)
         self._create_project_settings()
         self._create_build_settings(project_type)
         self._create_project_json()
@@ -228,17 +251,6 @@ class NewService(CommandABC):
         project_name = self._project.name
         if self._rel_path != '':
             project_name = f'{self._rel_path}/{project_name}'
-
-        project_class = None
-        for p in ProjectTypeABC.__subclasses__():
-            if p.__name__.lower() != project_type.value and p.__name__.lower()[0] != project_type.value[0]:
-                continue
-
-            project_class = p
-
-        if project_class is None:
-            Console.error(f'Project type {project_type.value} not found in template directory: .cpl/')
-            sys.exit()
 
         base = 'src/'
         split_project_name = project_name.split('/')
@@ -336,22 +348,10 @@ class NewService(CommandABC):
             self._use_base = True
             args.remove('base')
 
-        console = self._config.get_configuration(ProjectTypeEnum.console.value)
-        library = self._config.get_configuration(ProjectTypeEnum.library.value)
-        unittest = self._config.get_configuration(ProjectTypeEnum.unittest.value)
-        if console is not None and library is None and unittest is None:
-            self._name = console
-            self._create_project(ProjectTypeEnum.console)
-
-        elif console is None and library is not None and unittest is None:
-            self._name = library
-            self._create_project(ProjectTypeEnum.library)
-
-        elif console is None and library is None and unittest is not None:
-            self._name = unittest
-            self._create_project(ProjectTypeEnum.unittest)
-
-        else:
+        if len(args) <= 1:
             Console.error(f'Project type not found')
             Console.write_line(self.help_message)
             return
+
+        self._name = args[1]
+        self._create_project(args[0])

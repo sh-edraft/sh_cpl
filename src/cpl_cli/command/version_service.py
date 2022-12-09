@@ -5,6 +5,7 @@ import pkg_resources
 import textwrap
 
 import cpl_cli
+from cpl_cli.helper.dependencies import Dependencies
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_cli.command_abc import CommandABC
@@ -31,16 +32,6 @@ class VersionService(CommandABC):
         :param args:
         :return:
         """
-        packages = []
-        cpl_packages = []
-        dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
-        for p in dependencies:
-            if str(p).startswith('cpl-'):
-                cpl_packages.append([p, dependencies[p]])
-                continue
-
-            packages.append([p, dependencies[p]])
-
         Console.set_foreground_color(ForegroundColorEnum.yellow)
         Console.banner('CPL CLI')
         Console.set_foreground_color(ForegroundColorEnum.default)
@@ -52,6 +43,6 @@ class VersionService(CommandABC):
         Console.write(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')
         Console.write_line(f'OS: {platform.system()} {platform.processor()}')
         Console.write_line('\nCPL packages:')
-        Console.table(['Name', 'Version'], cpl_packages)
+        Console.table(['Name', 'Version'], Dependencies.get_cpl_packages())
         Console.write_line('\nPython packages:')
-        Console.table(['Name', 'Version'], packages)
+        Console.table(['Name', 'Version'], Dependencies.get_packages())

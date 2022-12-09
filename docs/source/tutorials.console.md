@@ -1,3 +1,3 @@
 # Use cpl_core.console.Console
 
-## Comming soon
+## Coming soon
