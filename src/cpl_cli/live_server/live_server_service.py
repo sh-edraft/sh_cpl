@@ -103,9 +103,8 @@ class LiveServerService(FileSystemEventHandler):
             return
 
         self._env.set_working_directory(self._src_dir)
-        Console.disable()
         self._publisher.build()
-        Console.enable()
+        self._env.set_working_directory(self._src_dir)
         self._wd = os.path.abspath(os.path.join(
             self._src_dir,
             self._build_settings.output_path,

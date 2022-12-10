@@ -35,11 +35,14 @@ class GenerateService(CommandABC):
         self._env = self._config.environment
         self._schematics = {}
 
-        for package_name in Dependencies.get_cpl_packages():
-            package = importlib.import_module(String.convert_to_snake_case(package_name[0]))
+        for package_name, version in Dependencies.get_cpl_packages():
+            if package_name == 'cpl-cli':
+                continue
+            package = importlib.import_module(String.convert_to_snake_case(package_name))
             self._read_custom_schematics_from_path(os.path.dirname(package.__file__))
 
         self._read_custom_schematics_from_path(self._env.working_directory)
+        self._read_custom_schematics_from_path(self._env.runtime_directory)
 
         if len(GenerateSchematicABC.__subclasses__()) == 0:
             Console.error(f'No schematics found in template directory: .cpl')
