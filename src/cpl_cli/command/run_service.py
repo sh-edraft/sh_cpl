@@ -2,18 +2,18 @@ import os
 import sys
 import textwrap
 
-from cpl_cli import Error
+from cpl_cli.error import Error
 from cpl_cli.command_abc import CommandABC
-from cpl_cli.configuration import WorkspaceSettings
+from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.live_server.start_executable import StartExecutable
-from cpl_cli.publish import PublisherService
-from cpl_core.configuration import ConfigurationABC
+from cpl_cli.publish.publisher_service import PublisherService
+from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
-from cpl_core.dependency_injection import ServiceProviderABC
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl_core.utils import String
+from cpl_core.utils.string import String
 
 
 class RunService(CommandABC):
@@ -91,6 +91,7 @@ class RunService(CommandABC):
 
         self._env.set_working_directory(self._src_dir)
         self._publisher.build()
+        self._env.set_working_directory(self._src_dir)
         self._src_dir = os.path.abspath(os.path.join(
             self._src_dir,
             self._build_settings.output_path,
