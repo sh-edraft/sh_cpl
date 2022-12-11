@@ -221,7 +221,7 @@ class QueryableABC(Sequence):
 
         for v in self:
             value = _func(v)
-            if v not in groups:
+            if value not in groups:
                 groups[value] = []
 
             groups[value].append(v)
