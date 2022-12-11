@@ -431,7 +431,7 @@ class QueryableABC(Sequence):
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
-        return type(self)(self.type, values=self[_index:])
+        return type(self)(self.type, self[_index:])
 
     def skip_last(self, _index: int) -> 'QueryableABC':
         r"""Skips all elements after index
