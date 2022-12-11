@@ -475,6 +475,39 @@ class QueryableABC(Sequence):
 
         return result
 
+    def split(self, _func: Callable) -> 'QueryableABC':
+        r"""Splits the list by given function
+
+
+        Parameter
+        ---------
+            func: :class:`Callable`
+                seperator
+
+        Returns
+        -------
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
+        """
+        groups = []
+        group = []
+        for x in self:
+            v = _func(x)
+            if x == v:
+                groups.append(group)
+                group = []
+
+            group.append(x)
+
+        groups.append(group)
+
+        query_groups = []
+        for g in groups:
+            if len(g) == 0:
+                continue
+            query_groups.append(type(self)(self._type, g))
+
+        return type(self)(self._type, query_groups)
+
     def take(self, _index: int) -> 'QueryableABC':
         r"""Takes all elements from index
 
