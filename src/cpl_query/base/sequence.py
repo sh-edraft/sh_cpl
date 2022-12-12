@@ -1,29 +1,36 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod, ABC
+from typing import Iterable
 
 
-class Sequence(list):
+class Sequence(ABC):
 
     @abstractmethod
-    def __init__(self, t: type = None, values: list = None):
-        list.__init__(self)
-        ABC.__init__(self)
-        values = [] if values is None else values
-        list.__init__(self, values)
+    def __init__(self, t: type, values: Iterable = None):
+        if values is None:
+            values = []
 
-        if t is None and len(values) > 0:
-            t = type(values[0])
+        self._values = list(values)
 
         if t is None:
-            t = any
+            t = object
 
         self._type = t
+
+    def __iter__(self):
+        return iter(self._values)
+
+    def __next__(self):
+        return next(iter(self._values))
+
+    def __len__(self):
+        return self.to_list().__len__()
 
     @classmethod
     def __class_getitem__(cls, _t: type):
         return _t
 
     def __repr__(self):
-        return f'<{type(self).__name__} {list(self).__repr__()}>'
+        return f'<{type(self).__name__} {self.to_list().__repr__()}>'
 
     @property
     def type(self) -> type:
@@ -43,7 +50,7 @@ class Sequence(list):
         -------
             :class: `list`
         """
-        return [x for x in self]
+        return [x for x in self._values]
 
     def copy(self) -> 'Sequence':
         r"""Creates a copy of sequence
@@ -62,7 +69,7 @@ class Sequence(list):
         -------
             Sequence object that contains no elements
         """
-        return cls()
+        return cls(object, [])
 
     def index_of(self, _object: object) -> int:
         r"""Returns the index of given element
@@ -83,4 +90,4 @@ class Sequence(list):
 
     @classmethod
     def range(cls, start: int, length: int) -> 'Sequence':
-        return cls(int, list(range(start, length)))
+        return cls(int, range(start, length))

@@ -1,17 +1,17 @@
-from typing import Optional, Callable, Union
+from typing import Optional, Callable, Union, Iterable
 
 from cpl_query._helper import is_number
 from cpl_query.base.sequence import Sequence
 from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException, ExceptionArgument, IndexOutOfRangeException
 
 
-def _default_lambda(x: object):
+def _default_lambda(x: object) -> object:
     return x
 
 
 class QueryableABC(Sequence):
 
-    def __init__(self, t: type = None, values: list = None):
+    def __init__(self, t: type, values: Iterable = None):
         Sequence.__init__(self, t, values)
 
     def all(self, _func: Callable = None) -> bool:
@@ -97,7 +97,7 @@ class QueryableABC(Sequence):
         if _func is None:
             return self.__len__()
 
-        return self.where(_func).__len__()
+        return self.where(_func).count()
 
     def distinct(self, _func: Callable = None) -> 'QueryableABC':
         r"""Returns list without redundancies
@@ -144,7 +144,7 @@ class QueryableABC(Sequence):
         if _index < 0 or _index >= self.count():
             raise IndexOutOfRangeException
 
-        result = self[_index]
+        result = self._values[_index]
         if result is None:
             raise IndexOutOfRangeException
 
@@ -166,7 +166,7 @@ class QueryableABC(Sequence):
             raise ArgumentNoneException(ExceptionArgument.index)
 
         try:
-            return self[_index]
+            return self._values[_index]
         except IndexError:
             return None
 
@@ -177,10 +177,10 @@ class QueryableABC(Sequence):
         -------
             First element of list: any
         """
-        if len(self) == 0:
+        if self.count() == 0:
             raise IndexOutOfRangeException()
 
-        return self[0]
+        return self._values[0]
 
     def first_or_default(self) -> any:
         r"""Returns first element or None
@@ -189,10 +189,10 @@ class QueryableABC(Sequence):
         -------
             First element of list: Optional[any]
         """
-        if len(self) == 0:
+        if self.count() == 0:
             return None
 
-        return self[0]
+        return self._values[0]
 
     def for_each(self, _func: Callable = None):
         r"""Runs given function for each element of list
@@ -221,14 +221,14 @@ class QueryableABC(Sequence):
 
         for v in self:
             value = _func(v)
-            if value not in groups:
+            if v not in groups:
                 groups[value] = []
 
             groups[value].append(v)
 
         v = []
         for g in groups.values():
-            v.append(type(self)(None, g))
+            v.append(type(self)(object, g))
         x = type(self)(type(self), v)
         return x
 
@@ -239,10 +239,10 @@ class QueryableABC(Sequence):
         -------
             Last element of list: any
         """
-        if len(self) == 0:
+        if self.count() == 0:
             raise IndexOutOfRangeException()
 
-        return self[len(self) - 1]
+        return self._values[self.count() - 1]
 
     def last_or_default(self) -> any:
         r"""Returns last element or None
@@ -251,12 +251,12 @@ class QueryableABC(Sequence):
         -------
             Last element of list: Optional[any]
         """
-        if len(self) == 0:
+        if self.count() == 0:
             return None
 
-        return self[len(self) - 1]
+        return self._values[self.count() - 1]
 
-    def max(self, _func: Callable = None) -> Union[int, float, complex]:
+    def max(self, _func: Callable = None) -> object:
         r"""Returns the highest value
 
         Parameter
@@ -266,7 +266,7 @@ class QueryableABC(Sequence):
 
         Returns
         -------
-            Union[int, float, complex]
+            object
         """
         if _func is None and not is_number(self.type):
             raise InvalidTypeException()
@@ -295,7 +295,7 @@ class QueryableABC(Sequence):
             else (float(result[i - 1]) + float(result[i])) / float(2)
         )
 
-    def min(self, _func: Callable = None) -> Union[int, float, complex]:
+    def min(self, _func: Callable = None) -> object:
         r"""Returns the lowest value
 
         Parameter
@@ -305,7 +305,7 @@ class QueryableABC(Sequence):
 
         Returns
         -------
-            Union[int, float, complex]
+            object
         """
         if _func is None and not is_number(self.type):
             raise InvalidTypeException()
@@ -358,7 +358,7 @@ class QueryableABC(Sequence):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        return type(self)(self._type, list(reversed(self)))
+        return type(self)(self._type, reversed(self._values))
 
     def select(self, _func: Callable) -> 'QueryableABC':
         r"""Formats each element of list to a given format
@@ -370,7 +370,7 @@ class QueryableABC(Sequence):
         if _func is None:
             _func = _default_lambda
 
-        return type(self)(any, [_func(_o) for _o in self])
+        return type(self)(object, [_func(_o) for _o in self])
 
     def select_many(self, _func: Callable) -> 'QueryableABC':
         r"""Flattens resulting lists to one
@@ -381,7 +381,7 @@ class QueryableABC(Sequence):
         """
         # The line below is pain. I don't understand anything of it...
         # written on 09.11.2022 by Sven Heidemann
-        return type(self)(any, [_a for _o in self for _a in _func(_o)])
+        return type(self)(object, [_a for _o in self for _a in _func(_o)])
 
     def single(self) -> any:
         r"""Returns one single element of list
@@ -395,12 +395,12 @@ class QueryableABC(Sequence):
             ArgumentNoneException: when argument is None
             Exception: when argument is None or found more than one element
         """
-        if len(self) > 1:
+        if self.count() > 1:
             raise Exception('Found more than one element')
-        elif len(self) == 0:
+        elif self.count() == 0:
             raise Exception('Found no element')
 
-        return self[0]
+        return self._values[0]
 
     def single_or_default(self) -> Optional[any]:
         r"""Returns one single element of list
@@ -409,12 +409,12 @@ class QueryableABC(Sequence):
         -------
             Found value: Optional[any]
         """
-        if len(self) > 1:
+        if self.count() > 1:
             raise Exception('Index out of range')
-        elif len(self) == 0:
+        elif self.count() == 0:
             return None
 
-        return self[0]
+        return self._values[0]
 
     def skip(self, _index: int) -> 'QueryableABC':
         r"""Skips all elements from index
@@ -431,7 +431,7 @@ class QueryableABC(Sequence):
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
-        return type(self)(self.type, self[_index:])
+        return type(self)(self.type, self._values[_index:])
 
     def skip_last(self, _index: int) -> 'QueryableABC':
         r"""Skips all elements after index
@@ -448,8 +448,8 @@ class QueryableABC(Sequence):
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
-        index = len(self) - _index
-        return type(self)(self._type, self[:index])
+        index = self.count() - _index
+        return type(self)(self._type, self._values[:index])
 
     def sum(self, _func: Callable = None) -> Union[int, float, complex]:
         r"""Sum of all values
@@ -523,7 +523,7 @@ class QueryableABC(Sequence):
         if _index is None:
             raise ArgumentNoneException(ExceptionArgument.index)
 
-        return type(self)(self._type, self[:_index])
+        return type(self)(self._type, self._values[:_index])
 
     def take_last(self, _index: int) -> 'QueryableABC':
         r"""Takes all elements after index
@@ -537,12 +537,12 @@ class QueryableABC(Sequence):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        index = len(self) - _index
+        index = self.count() - _index
 
-        if index >= len(self) or index < 0:
+        if index >= self.count() or index < 0:
             raise IndexOutOfRangeException()
 
-        return type(self)(self._type, self[index:])
+        return type(self)(self._type, self._values[index:])
 
     def where(self, _func: Callable = None) -> 'QueryableABC':
         r"""Select element by function
@@ -562,9 +562,4 @@ class QueryableABC(Sequence):
         if _func is None:
             _func = _default_lambda
 
-        result = []
-        for element in self:
-            if _func(element):
-                result.append(element)
-
-        return type(self)(self.type, result)
+        return type(self)(self.type, filter(_func, self))

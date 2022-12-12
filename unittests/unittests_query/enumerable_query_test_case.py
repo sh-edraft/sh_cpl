@@ -183,7 +183,7 @@ class EnumerableQueryTestCase(unittest.TestCase):
         res = self._tests.max(lambda u: u.address.nr)
         self.assertEqual(res, self._t_user.address.nr)
 
-        tests = Enumerable(values=list(range(0, 100)))
+        tests = Enumerable(int, list(range(0, 100)))
         self.assertEqual(99, tests.max())
 
         def invalid():
@@ -196,7 +196,7 @@ class EnumerableQueryTestCase(unittest.TestCase):
         res = self._tests.min(lambda u: u.address.nr)
         self.assertEqual(1, res)
 
-        tests = Enumerable(values=list(range(0, 100)))
+        tests = Enumerable(int, list(range(0, 100)))
         self.assertEqual(0, tests.min())
 
         def invalid():
@@ -319,7 +319,7 @@ class EnumerableQueryTestCase(unittest.TestCase):
 
         self.assertEqual(s_res, res)
 
-        tests = Enumerable(values=list(range(0, 100)))
+        tests = Enumerable(int, list(range(0, 100)))
         self.assertEqual(0, tests.min())
 
         def invalid():

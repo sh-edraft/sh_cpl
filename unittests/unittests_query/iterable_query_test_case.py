@@ -351,7 +351,7 @@ class IterableQueryTestCase(unittest.TestCase):
 
         self.assertEqual(s_res, res)
 
-        tests = List(values=list(range(0, 100)))
+        tests = List(int, list(range(0, 100)))
         self.assertEqual(0, tests.min())
 
         def invalid():
