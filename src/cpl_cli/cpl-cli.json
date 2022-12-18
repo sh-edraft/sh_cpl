@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2022",
       "Minor": "12",
-      "Micro": "0"
+      "Micro": "dev144"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,7 +16,7 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.12.0"
+      "cpl-core>=2022.12.dev144"
     ],
     "DevDependencies": [],
     "PythonVersion": ">=3.10",
@@ -42,7 +42,8 @@
     ],
     "PackageData": {
       "cpl_cli": [
-        "*.json"
+        "*.json",
+        ".cpl/*.py"
       ]
     },
     "ProjectReferences": []

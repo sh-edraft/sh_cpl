@@ -195,9 +195,8 @@ class GenerateService(CommandABC):
                 schematic = s
                 break
 
-        schematic_by_alias = self._get_schematic_by_alias(args[0])
-        if schematic is None and len(args) >= 1 and (args[0] in self._schematics or schematic_by_alias != args[0]):
-            schematic = schematic_by_alias
+        if schematic is None and len(args) >= 1 and (args[0] in self._schematics or self._get_schematic_by_alias(args[0]) != args[0]):
+            schematic = self._get_schematic_by_alias(args[0])
             self._config.add_configuration(schematic, args[1])
             value = args[1]
 

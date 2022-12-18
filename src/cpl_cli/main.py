@@ -9,6 +9,7 @@ from cpl_cli.startup_migration_extension import StartupMigrationExtension
 from cpl_cli.startup_workspace_extension import StartupWorkspaceExtension
 from cpl_core.application.application_builder import ApplicationBuilder
 from cpl_core.application.startup_extension_abc import StartupExtensionABC
+from cpl_core.console import Console
 
 
 def get_startup_extensions() -> list[Type[StartupExtensionABC]]:
@@ -40,6 +41,7 @@ def main():
         app_builder.use_extension(extension)
 
     app_builder.build().run()
+    Console.write_line()
 
 
 if __name__ == '__main__':
