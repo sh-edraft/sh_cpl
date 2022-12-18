@@ -34,14 +34,14 @@ class InstallTestCase(CommandTestCase):
     def setUp(self):
         if not os.path.exists(PLAYGROUND_PATH):
             os.makedirs(PLAYGROUND_PATH)
-        
+
         os.chdir(PLAYGROUND_PATH)
         # create projects
-        CLICommands.new('console', self._source, '--ab', '--s')
+        CLICommands.new('console', self._source, '--ab', '--s', '--venv')
         os.chdir(os.path.join(os.getcwd(), self._source))
 
     def _get_installed_packages(self) -> dict:
-        reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
+        reqs = subprocess.check_output([os.path.join(os.getcwd(), 'venv/bin/python'), '-m', 'pip', 'freeze'])
         return dict([tuple(r.decode().split('==')) for r in reqs.split()])
 
     def test_install_package(self):
@@ -50,16 +50,20 @@ class InstallTestCase(CommandTestCase):
         package = f'{package_name}=={version}'
         CLICommands.install(package)
         settings = self._get_project_settings()
-        self.assertNotEqual(settings, {})
-        self.assertIn('ProjectSettings', settings)
-        self.assertIn('Dependencies', settings['ProjectSettings'])
-        self.assertIn(
-            package,
-            settings['ProjectSettings']['Dependencies']
-        )
-        packages = self._get_installed_packages()
-        self.assertIn(package_name, packages)
-        self.assertEqual(version, packages[package_name])
+
+        with self.subTest(msg='Project deps'):
+            self.assertNotEqual(settings, {})
+            self.assertIn('ProjectSettings', settings)
+            self.assertIn('Dependencies', settings['ProjectSettings'])
+            self.assertIn(
+                package,
+                settings['ProjectSettings']['Dependencies']
+            )
+
+        with self.subTest(msg='PIP'):
+            packages = self._get_installed_packages()
+            self.assertIn(package_name, packages)
+            self.assertEqual(version, packages[package_name])
 
     def test_dev_install_package(self):
         version = '1.7.3'
@@ -67,21 +71,25 @@ class InstallTestCase(CommandTestCase):
         package = f'{package_name}=={version}'
         CLICommands.install(package, is_dev=True)
         settings = self._get_project_settings()
-        self.assertNotEqual(settings, {})
-        self.assertIn('ProjectSettings', settings)
-        self.assertIn('Dependencies', settings['ProjectSettings'])
-        self.assertIn('DevDependencies', settings['ProjectSettings'])
-        self.assertNotIn(
-            package,
-            settings['ProjectSettings']['Dependencies']
-        )
-        self.assertIn(
-            package,
-            settings['ProjectSettings']['DevDependencies']
-        )
-        packages = self._get_installed_packages()
-        self.assertIn(package_name, packages)
-        self.assertEqual(version, packages[package_name])
+
+        with self.subTest(msg='Project deps'):
+            self.assertNotEqual(settings, {})
+            self.assertIn('ProjectSettings', settings)
+            self.assertIn('Dependencies', settings['ProjectSettings'])
+            self.assertIn('DevDependencies', settings['ProjectSettings'])
+            self.assertNotIn(
+                package,
+                settings['ProjectSettings']['Dependencies']
+            )
+            self.assertIn(
+                package,
+                settings['ProjectSettings']['DevDependencies']
+            )
+
+        with self.subTest(msg='PIP'):
+            packages = self._get_installed_packages()
+            self.assertIn(package_name, packages)
+            self.assertEqual(version, packages[package_name])
 
     def _test_install_all(self):
         version = '1.7.3'
@@ -120,5 +128,3 @@ class InstallTestCase(CommandTestCase):
         packages = self._get_installed_packages()
         self.assertIn(package_name, packages)
         self.assertEqual(version, packages[package_name])
-
-

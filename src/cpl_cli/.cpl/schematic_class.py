@@ -4,8 +4,8 @@ from cpl_core.utils import String
 
 class Class(GenerateSchematicABC):
 
-    def __init__(self, name: str, path: str, schematic: str):
-        GenerateSchematicABC.__init__(self, name, path, schematic)
+    def __init__(self, name: str, schematic: str, path: str):
+        GenerateSchematicABC.__init__(self, name, schematic, path)
         self._name = f'{String.convert_to_snake_case(name)}.py'
         self._class_name = f'{String.first_to_upper(name)}'
 

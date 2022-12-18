@@ -40,7 +40,11 @@
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {},
+    "PackageData": {
+      "cpl_discord": [
+        ".cpl/*.py"
+      ]
+    },
     "ProjectReferences": []
   }
 }
