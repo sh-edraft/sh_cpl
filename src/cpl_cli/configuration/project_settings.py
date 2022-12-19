@@ -130,9 +130,7 @@ class ProjectSettings(ConfigurationModelABC):
                     path = sys.executable
                 else:
                     if not path.endswith('bin/python'):
-                        if not path.endswith('/') and len(path) > 0:
-                            path += '/'
-                        path += 'bin/python'
+                        path = os.path.join('bin/python')
             else:
                 path = sys.executable
 
