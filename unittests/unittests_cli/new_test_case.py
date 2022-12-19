@@ -14,14 +14,15 @@ class NewTestCase(CommandTestCase):
         CommandTestCase.__init__(self, method_name)
 
     def _test_project(self, project_type: str, name: str, *args, test_venv=False, without_ws=False):
-        CLICommands.new(project_type, name, *args)
+        CLICommands.new(project_type, name, *args, output=False)
         workspace_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, name))
         self.assertTrue(os.path.exists(workspace_path))
         if test_venv:
-            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv')))
-            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin')))
-            self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin/python')))
-            self.assertTrue(os.path.islink(os.path.join(workspace_path, 'venv/bin/python')))
+            with self.subTest(msg='Venv exists'):
+                self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv')))
+                self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin')))
+                self.assertTrue(os.path.exists(os.path.join(workspace_path, 'venv/bin/python')))
+                self.assertTrue(os.path.islink(os.path.join(workspace_path, 'venv/bin/python')))
 
         base = 'src'
         if '--base' in args and '/' in name:
@@ -32,34 +33,46 @@ class NewTestCase(CommandTestCase):
         if without_ws:
             project_path = os.path.abspath(os.path.join(PLAYGROUND_PATH, base, name, 'src/', String.convert_to_snake_case(name)))
 
-        self.assertTrue(os.path.exists(project_path))
-        self.assertTrue(os.path.exists(os.path.join(project_path, f'{name}.json')))
-        self.assertTrue(os.path.exists(os.path.join(project_path, f'main.py')))
+        with self.subTest(msg='Project json exists'):
+            self.assertTrue(os.path.exists(project_path))
+            self.assertTrue(os.path.exists(os.path.join(project_path, f'{name}.json')))
 
-        if '--ab' in args:
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'application.py')))
-        else:
-            self.assertFalse(os.path.isfile(os.path.join(project_path, f'application.py')))
+        if project_type == 'library':
+            with self.subTest(msg='Library class1 exists'):
+                self.assertTrue(os.path.exists(os.path.join(project_path, f'class1.py')))
+            return
+
+        with self.subTest(msg='Project main.py exists'):
+            self.assertTrue(os.path.exists(os.path.join(project_path, f'main.py')))
+
+        with self.subTest(msg='Application base'):
+            if '--ab' in args:
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'application.py')))
+            else:
+                self.assertFalse(os.path.isfile(os.path.join(project_path, f'application.py')))
 
         # s depends on ab
-        if '--ab' in args and '--s' in args:
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'startup.py')))
-        else:
-            self.assertFalse(os.path.isfile(os.path.join(project_path, f'startup.py')))
+        with self.subTest(msg='Startup'):
+            if '--ab' in args and '--s' in args:
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'startup.py')))
+            else:
+                self.assertFalse(os.path.isfile(os.path.join(project_path, f'startup.py')))
 
-        if project_type == 'unittest':
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'test_case.py')))
-        else:
-            self.assertFalse(os.path.isfile(os.path.join(project_path, f'test_case.py')))
+        with self.subTest(msg='Unittest'):
+            if project_type == 'unittest':
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'test_case.py')))
+            else:
+                self.assertFalse(os.path.isfile(os.path.join(project_path, f'test_case.py')))
 
-        if project_type == 'discord-bot':
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/__init__.py')))
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/__init__.py')))
-            self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
-        else:
-            self.assertFalse(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
-            self.assertFalse(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
+        with self.subTest(msg='Discord'):
+            if project_type == 'discord-bot':
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/__init__.py')))
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/__init__.py')))
+                self.assertTrue(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
+            else:
+                self.assertFalse(os.path.isfile(os.path.join(project_path, f'events/on_ready_event.py')))
+                self.assertFalse(os.path.isfile(os.path.join(project_path, f'commands/ping_command.py')))
 
     def _test_sub_project(self, project_type: str, name: str, workspace_name: str, *args, test_venv=False):
         os.chdir(os.path.abspath(os.path.join(os.getcwd(), workspace_name)))

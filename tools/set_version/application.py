@@ -56,7 +56,14 @@ class Application(ApplicationABC):
             return
 
         try:
-            if branch.startswith('#'):
+            if suffix != '':
+                self._configuration.add_json_file(self._workspace.projects[self._workspace.default_project], optional=False, output=False)
+                ps: ProjectSettings = self._configuration.get_configuration(ProjectSettings)
+
+                version[VersionSettingsNameEnum.major.value] = ps.version.major
+                version[VersionSettingsNameEnum.minor.value] = ps.version.minor
+                version[VersionSettingsNameEnum.micro.value] = suffix
+            elif branch.startswith('#'):
                 self._configuration.add_json_file(self._workspace.projects[self._workspace.default_project], optional=False, output=False)
                 ps: ProjectSettings = self._configuration.get_configuration(ProjectSettings)
 
@@ -71,8 +78,6 @@ class Application(ApplicationABC):
                         suffix = '0'
                     version[VersionSettingsNameEnum.micro.value] = f'{suffix}'
                 else:
-                    if not suffix.startswith('.') and suffix != '':
-                        suffix = f'.{suffix}'
                     version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
         except Exception as e:
             Console.error(f'Branch {branch} does not contain valid version')

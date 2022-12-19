@@ -123,10 +123,14 @@ class ProjectSettings(ConfigurationModelABC):
             self._python_path = settings[ProjectSettingsNameEnum.python_path.value]
 
             if ProjectSettingsNameEnum.python_path.value in settings and sys.platform in settings[ProjectSettingsNameEnum.python_path.value]:
-                path = f'{settings[ProjectSettingsNameEnum.python_path.value][sys.platform]}/bin/python'
+                path = f'{settings[ProjectSettingsNameEnum.python_path.value][sys.platform]}'
+
                 if path == '' or path is None:
                     Error.warn(f'{ProjectSettingsNameEnum.python_path.value} not set')
                     path = sys.executable
+                else:
+                    if not path.endswith('bin/python'):
+                        path = os.path.join('bin/python')
             else:
                 path = sys.executable
 

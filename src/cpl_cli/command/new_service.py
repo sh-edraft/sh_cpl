@@ -45,6 +45,8 @@ class NewService(CommandABC):
         self._build: BuildSettings = BuildSettings()
         self._build_dict = {}
 
+        self._project_type_classes = set()
+
         self._name: str = ''
         self._rel_path: str = ''
         self._project_type: ProjectTypeEnum = ProjectTypeEnum.console
@@ -98,7 +100,7 @@ class NewService(CommandABC):
             ],
             ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
             ProjectSettingsNameEnum.python_path.value: {
-                sys.platform: '../../venv/bin/python' if self._use_venv else ''
+                sys.platform: '../../venv/' if self._use_venv else ''
             },
             ProjectSettingsNameEnum.classifiers.value: []
         }
@@ -152,17 +154,22 @@ class NewService(CommandABC):
 
         return project_path
 
-    def _get_project_information(self, is_unittest=False):
+    def _get_project_information(self, project_type: str):
         """
         Gets project information's from user
         :return:
         """
+        is_unittest = project_type == 'unittest'
+        is_library = project_type == 'library'
+        if is_library:
+            return
+
         if self._use_application_api or self._use_startup or self._use_service_providing or self._use_async or self._use_nothing:
             Console.set_foreground_color(ForegroundColorEnum.default)
             Console.write_line('Skipping question due to given flags')
             return
 
-        if not is_unittest:
+        if not is_unittest and not is_library:
             self._use_application_api = Console.read('Do you want to use application base? (y/n) ').lower() == 'y'
 
         if not is_unittest and self._use_application_api:
@@ -194,8 +201,7 @@ class NewService(CommandABC):
             explicit_path=os.path.join(self._env.working_directory, project, self._project.python_executable.replace('../', ''))
         )
 
-    @staticmethod
-    def _read_custom_project_types_from_path(path: str):
+    def _read_custom_project_types_from_path(self, path: str):
         if not os.path.exists(os.path.join(path, '.cpl')):
             return
 
@@ -207,28 +213,28 @@ class NewService(CommandABC):
 
                 try:
                     exec(open(os.path.join(r, file), 'r').read())
+                    self._project_type_classes.update(ProjectTypeABC.__subclasses__())
                 except Exception as e:
                     Console.error(str(e), traceback.format_exc())
                     sys.exit(-1)
 
     def _create_project(self, project_type: str):
         for package_name in Dependencies.get_cpl_packages():
+            if package_name == 'cpl-cli':
+                continue
             package = importlib.import_module(String.convert_to_snake_case(package_name[0]))
             self._read_custom_project_types_from_path(os.path.dirname(package.__file__))
 
         self._read_custom_project_types_from_path(self._env.working_directory)
+        self._read_custom_project_types_from_path(self._env.runtime_directory)
 
-        if len(ProjectTypeABC.__subclasses__()) == 0:
+        if len(self._project_type_classes) == 0:
             Console.error(f'No project types found in template directory: .cpl')
             sys.exit()
 
         project_class = None
         known_project_types = []
-        for p in ProjectTypeABC.__subclasses__():
-            if p.__name__ in known_project_types:
-                Console.error(f'Duplicate of project type {p.__name__} found!')
-                sys.exit()
-
+        for p in self._project_type_classes:
             known_project_types.append(p.__name__)
             if p.__name__.lower() != project_type and p.__name__.lower()[0] != project_type[0]:
                 continue
@@ -247,7 +253,7 @@ class NewService(CommandABC):
         if path is None:
             return
 
-        self._get_project_information()
+        self._get_project_information(project_type)
         project_name = self._project.name
         if self._rel_path != '':
             project_name = f'{self._rel_path}/{project_name}'

@@ -10,7 +10,6 @@ from unittests_shared.cli_commands import CLICommands
 
 
 class PublishTestCase(CommandTestCase):
-    _skip_tear_down = True
 
     def __init__(self, method_name: str):
         CommandTestCase.__init__(self, method_name)

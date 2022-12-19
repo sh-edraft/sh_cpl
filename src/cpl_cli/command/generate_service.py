@@ -34,6 +34,7 @@ class GenerateService(CommandABC):
         self._config = configuration
         self._env = self._config.environment
         self._schematics = {}
+        self._schematic_classes = set()
 
         for package_name, version in Dependencies.get_cpl_packages():
             if package_name == 'cpl-cli':
@@ -44,16 +45,12 @@ class GenerateService(CommandABC):
         self._read_custom_schematics_from_path(self._env.working_directory)
         self._read_custom_schematics_from_path(self._env.runtime_directory)
 
-        if len(GenerateSchematicABC.__subclasses__()) == 0:
+        if len(self._schematic_classes) == 0:
             Console.error(f'No schematics found in template directory: .cpl')
             sys.exit()
 
         known_schematics = []
-        for schematic in GenerateSchematicABC.__subclasses__():
-            if schematic.__name__ in known_schematics:
-                Console.error(f'Duplicate of schematic {schematic.__name__} found!')
-                sys.exit()
-
+        for schematic in self._schematic_classes:
             known_schematics.append(schematic.__name__)
             schematic.register()
 
@@ -82,6 +79,23 @@ class GenerateService(CommandABC):
         for schematic in schematics:
             help_msg += f'\n    {schematic}'
         return help_msg
+
+    def _read_custom_schematics_from_path(self, path: str):
+        if not os.path.exists(os.path.join(path, '.cpl')):
+            return
+
+        sys.path.insert(0, os.path.join(path, '.cpl'))
+        for r, d, f in os.walk(os.path.join(path, '.cpl')):
+            for file in f:
+                if not file.startswith('schematic_') or not file.endswith('.py'):
+                    continue
+
+                try:
+                    exec(open(os.path.join(r, file), 'r').read())
+                    self._schematic_classes.update(GenerateSchematicABC.__subclasses__())
+                except Exception as e:
+                    Console.error(str(e), traceback.format_exc())
+                    sys.exit(-1)
 
     @staticmethod
     def _create_file(file_path: str, value: str):
@@ -157,23 +171,6 @@ class GenerateService(CommandABC):
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
 
-    @staticmethod
-    def _read_custom_schematics_from_path(path: str):
-        if not os.path.exists(os.path.join(path, '.cpl')):
-            return
-
-        sys.path.insert(0, os.path.join(path, '.cpl'))
-        for r, d, f in os.walk(os.path.join(path, '.cpl')):
-            for file in f:
-                if not file.startswith('schematic_') or not file.endswith('.py'):
-                    continue
-
-                try:
-                    exec(open(os.path.join(r, file), 'r').read())
-                except Exception as e:
-                    Console.error(str(e), traceback.format_exc())
-                    sys.exit(-1)
-
     def _get_schematic_by_alias(self, schematic: str) -> str:
         for key in self._schematics:
             if schematic in self._schematics[key]['Aliases']:
@@ -195,9 +192,8 @@ class GenerateService(CommandABC):
                 schematic = s
                 break
 
-        schematic_by_alias = self._get_schematic_by_alias(args[0])
-        if schematic is None and len(args) >= 1 and (args[0] in self._schematics or schematic_by_alias != args[0]):
-            schematic = schematic_by_alias
+        if schematic is None and len(args) >= 1 and (args[0] in self._schematics or self._get_schematic_by_alias(args[0]) != args[0]):
+            schematic = self._get_schematic_by_alias(args[0])
             self._config.add_configuration(schematic, args[1])
             value = args[1]
 
