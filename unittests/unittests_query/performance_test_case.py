@@ -28,8 +28,8 @@ class PerformanceTestCase(unittest.TestCase):
         print(f'i: {iterable}s')
         print(f'e: {enumerable}s')
 
-        self.assertLess(default, enumerable)
-        self.assertLess(default, iterable)
+        self.assertAlmostEqual(round(default, 3), round(enumerable, 3))
+        self.assertAlmostEqual(round(default, 3), round(iterable, 3))
 
     def test_where_single(self):
         default = timeit.timeit(lambda: [x for x in list(range(0, VALUES)) if x == 50], number=COUNT)
