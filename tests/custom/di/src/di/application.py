@@ -20,26 +20,23 @@ class Application(ApplicationABC):
         pass
 
     def main(self):
-        Console.write_line('Scope1')
-        scope1: Scope = self._services.create_scope()
-        ts: TestService = scope1.service_provider.get_service(TestService)
-        ts.run()
-        dit: DITesterService = scope1.service_provider.get_service(DITesterService)
-        dit.run()
-        t = scope1
-        b = t.service_provider
-        scope1.dispose()
+        with self._services.create_scope() as scope:
+            Console.write_line('Scope1')
+            ts: TestService = scope.service_provider.get_service(TestService)
+            ts.run()
+            dit: DITesterService = scope.service_provider.get_service(DITesterService)
+            dit.run()
         
         #Console.write_line('Disposed:')
         #ts1: TestService = scope1.service_provider.get_service(TestService)
         #ts1.run()
-        
-        Console.write_line('Scope2')
-        scope2: Scope = self._services.create_scope()
-        ts: TestService = scope2.service_provider.get_service(TestService)
-        ts.run()
-        dit: DITesterService = scope2.service_provider.get_service(DITesterService)
-        dit.run()
+
+        with self._services.create_scope() as scope:
+            Console.write_line('Scope2')
+            ts: TestService = scope.service_provider.get_service(TestService)
+            ts.run()
+            dit: DITesterService = scope.service_provider.get_service(DITesterService)
+            dit.run()
         
         Console.write_line('Global')
         self._part_of_scoped()
