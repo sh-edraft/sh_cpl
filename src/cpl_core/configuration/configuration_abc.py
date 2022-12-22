@@ -76,7 +76,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: Union[str, type], value: any):
+    def add_configuration(self, key_type: T, value: any):
         r"""Add configuration object
 
         Parameter
@@ -126,7 +126,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Optional[T]:
+    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
         r"""Returns value from configuration by given type
 
         Parameter

@@ -2,8 +2,8 @@ from cpl_core.application import StartupABC
 from cpl_core.configuration import ConfigurationABC
 from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
 from cpl_core.environment import ApplicationEnvironment
-from test_service_service import TestService
-from di_tester_service import DITesterService
+from di.test_service_service import TestService
+from di.di_tester_service import DITesterService
 
 
 class Startup(StartupABC):

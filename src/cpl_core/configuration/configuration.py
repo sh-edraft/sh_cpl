@@ -268,7 +268,7 @@ class Configuration(ConfigurationABC):
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
 
-    def add_configuration(self, key_type: Union[str, type], value: any):
+    def add_configuration(self, key_type: T, value: any):
         self._config[key_type] = value
 
     def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
