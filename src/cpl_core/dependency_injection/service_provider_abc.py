@@ -1,18 +1,29 @@
 from abc import abstractmethod, ABC
+from inspect import Signature
 from typing import Type, Optional
 
+
 from cpl_core.dependency_injection.scope_abc import ScopeABC
+from cpl_core.type import T
 
 
 class ServiceProviderABC(ABC):
     r"""ABC for the class :class:`cpl_core.dependency_injection.service_provider.ServiceProvider`"""
 
-    @abstractmethod
-    def __init__(self):
-        pass
+    _provider: Optional['ServiceProviderABC'] = None
 
     @abstractmethod
-    def build_service(self, service_type: Type) -> object:
+    def __init__(self): pass
+
+    @classmethod
+    def set_global_provider(cls, provider: 'ServiceProviderABC'):
+        cls._provider = provider
+
+    @abstractmethod
+    def build_by_signature(self, sig: Signature) -> list[T]: pass
+
+    @abstractmethod
+    def build_service(self, service_type: T) -> object:
         r"""Creates instance of given type
 
         Parameter
@@ -48,7 +59,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: Type) -> Optional[object]:
+    def get_service(self, instance_type: T) -> Optional[T]:
         r"""Returns instance of given type
 
         Parameter
@@ -61,3 +72,8 @@ class ServiceProviderABC(ABC):
             Object of type Optional[Callable[:class:`object`]]
         """
         pass
+
+    # @classmethod
+    # @abstractmethod
+    # def inject(cls):
+    #     pass

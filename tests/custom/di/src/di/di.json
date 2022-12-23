@@ -16,7 +16,10 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "sh_cpl>=2021.10.0.post1"
+      "cpl-core==2022.12.0"
+    ],
+    "DevDependencies": [
+      "cpl-cli==2022.12.0"
     ],
     "PythonVersion": ">=3.9.2",
     "PythonPath": {},

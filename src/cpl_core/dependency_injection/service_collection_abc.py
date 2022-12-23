@@ -5,6 +5,7 @@ from typing import Type
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
+from cpl_core.type import T
 
 
 class ServiceCollectionABC(ABC):
@@ -46,7 +47,7 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_transient(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
+    def add_transient(self, service_type: T, service: T = None) -> 'ServiceCollectionABC':
         r"""Adds a service with transient lifetime
 
         Parameter
@@ -63,7 +64,7 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_scoped(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
+    def add_scoped(self, service_type: T, service: T = None) -> 'ServiceCollectionABC':
         r"""Adds a service with scoped lifetime
 
         Parameter
@@ -80,7 +81,7 @@ class ServiceCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def add_singleton(self, service_type: Type, service: Callable = None) -> 'ServiceCollectionABC':
+    def add_singleton(self, service_type: T, service: T = None) -> 'ServiceCollectionABC':
         r"""Adds a service with singleton lifetime
 
         Parameter

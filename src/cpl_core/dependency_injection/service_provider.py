@@ -1,6 +1,7 @@
 import copy
-from inspect import signature, Parameter
-from typing import Optional
+import functools
+from inspect import signature, Parameter, Signature
+from typing import Optional, Callable
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
@@ -12,6 +13,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.type import T
 
 
 class ServiceProvider(ServiceProviderABC):
@@ -54,17 +56,9 @@ class ServiceProvider(ServiceProviderABC):
 
                 return implementation
 
-    def build_service(self, service_type: type) -> object:
-        for descriptor in self._service_descriptors:
-            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
-                if descriptor.implementation is not None:
-                    service_type = type(descriptor.implementation)
-                else:
-                    service_type = descriptor.service_type
+        # raise Exception(f'Service {parameter.annotation} not found')
 
-                break
-
-        sig = signature(service_type.__init__)
+    def build_by_signature(self, sig: Signature) -> list[T]:
         params = []
         for param in sig.parameters.items():
             parameter = param[1]
@@ -87,16 +81,31 @@ class ServiceProvider(ServiceProviderABC):
                 else:
                     params.append(self._get_service(parameter))
 
+        return params
+
+    def build_service(self, service_type: T) -> object:
+        for descriptor in self._service_descriptors:
+            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+                if descriptor.implementation is not None:
+                    service_type = type(descriptor.implementation)
+                else:
+                    service_type = descriptor.service_type
+
+                break
+
+        sig = signature(service_type.__init__)
+        params = self.build_by_signature(sig)
+
         return service_type(*params)
-    
+
     def set_scope(self, scope: ScopeABC):
         self._scope = scope
-    
+
     def create_scope(self) -> ScopeABC:
-        sb = ScopeBuilder(ServiceProvider(self._service_descriptors, self._configuration, self._database_context))
+        sb = ScopeBuilder(ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context))
         return sb.build()
 
-    def get_service(self, service_type: type) -> Optional[object]:
+    def get_service(self, service_type: T) -> Optional[T]:
         result = self._find_service(service_type)
 
         if result is None:
@@ -110,3 +119,18 @@ class ServiceProvider(ServiceProviderABC):
             result.implementation = implementation
 
         return implementation
+
+    @classmethod
+    def inject(cls, f=None):
+        if f is None:
+            return functools.partial(cls.inject)
+
+        @functools.wraps(f)
+        def inner(*args, **kwargs):
+            if cls._provider is None:
+                raise Exception(f'{cls.__name__} not build!')
+
+            injection = cls._provider.build_by_signature(signature(f))
+            return f(*injection, *args, **kwargs)
+
+        return inner
