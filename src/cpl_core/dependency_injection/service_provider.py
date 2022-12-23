@@ -1,17 +1,16 @@
 import copy
-import functools
+import typing
 from inspect import signature, Parameter, Signature
-from typing import Optional, Callable
+from typing import Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_core.console import Console
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.dependency_injection.scope_abc import ScopeABC
 from cpl_core.dependency_injection.scope_builder import ScopeBuilder
-from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.type import T
 
@@ -44,7 +43,7 @@ class ServiceProvider(ServiceProviderABC):
 
         return None
 
-    def _get_service(self, parameter: Parameter) -> object:
+    def _get_service(self, parameter: Parameter) -> Optional[object]:
         for descriptor in self._service_descriptors:
             if descriptor.service_type == parameter.annotation or issubclass(descriptor.service_type, parameter.annotation):
                 if descriptor.implementation is not None:
@@ -58,12 +57,32 @@ class ServiceProvider(ServiceProviderABC):
 
         # raise Exception(f'Service {parameter.annotation} not found')
 
+    def _get_services(self, t: type) -> list[Optional[object]]:
+        implementations = []
+        for descriptor in self._service_descriptors:
+            if descriptor.service_type == t or issubclass(descriptor.service_type, t):
+                if descriptor.implementation is not None:
+                    implementations.append(descriptor.implementation)
+                    continue
+
+                implementation = self.build_service(descriptor.service_type)
+                if descriptor.lifetime == ServiceLifetimeEnum.singleton:
+                    descriptor.implementation = implementation
+
+                implementations.append(implementation)
+
+        return implementations
+
     def build_by_signature(self, sig: Signature) -> list[T]:
         params = []
         for param in sig.parameters.items():
             parameter = param[1]
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
-                if issubclass(parameter.annotation, ServiceProviderABC):
+
+                if typing.get_origin(parameter.annotation) == list:
+                    params.append(self._get_services(typing.get_args(parameter.annotation)[0]))
+
+                elif issubclass(parameter.annotation, ServiceProviderABC):
                     params.append(self)
 
                 elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
@@ -83,7 +102,7 @@ class ServiceProvider(ServiceProviderABC):
 
         return params
 
-    def build_service(self, service_type: T) -> object:
+    def build_service(self, service_type: type) -> object:
         for descriptor in self._service_descriptors:
             if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
                 if descriptor.implementation is not None:
@@ -120,17 +139,12 @@ class ServiceProvider(ServiceProviderABC):
 
         return implementation
 
-    @classmethod
-    def inject(cls, f=None):
-        if f is None:
-            return functools.partial(cls.inject)
+    def get_services(self, service_type: T) -> list[Optional[T]]:
+        implementations = []
 
-        @functools.wraps(f)
-        def inner(*args, **kwargs):
-            if cls._provider is None:
-                raise Exception(f'{cls.__name__} not build!')
+        if typing.get_origin(service_type) != list:
+            raise Exception(f'Invalid type {service_type}! Expected list of type')
 
-            injection = cls._provider.build_by_signature(signature(f))
-            return f(*injection, *args, **kwargs)
+        implementations.extend(self._get_services(typing.get_args(service_type)[0]))
 
-        return inner
+        return implementations

@@ -1,5 +1,5 @@
 from cpl_core.console.console import Console
-from di.test_service_service import TestService
+from di.test_service import TestService
 
 
 class DITesterService:

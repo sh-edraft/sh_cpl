@@ -1,6 +1,6 @@
 from cpl_core.configuration import ConfigurationABC
 from cpl_core.dependency_injection import ServiceProvider, ServiceProviderABC
-from di.test_service_service import TestService
+from di.test_service import TestService
 
 
 class StaticTest:
