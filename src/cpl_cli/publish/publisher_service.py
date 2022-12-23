@@ -64,7 +64,7 @@ class PublisherService(PublisherABC):
         :return:
         """
         if self._src_path_part in file:
-            file = file.replace(self._src_path_part, '', 1)
+            file = file.split(self._src_path_part)[1].replace(self._src_path_part, '', 1)
 
         dirs = os.path.dirname(file).split(self._path_mark)
         for d in dirs:
