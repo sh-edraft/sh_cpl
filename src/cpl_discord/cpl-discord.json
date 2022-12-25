@@ -11,19 +11,19 @@
     "Description": "sh-edraft Common Python library Discord",
     "LongDescription": "sh-edraft Common Python library link between discord.py and CPL",
     "URL": "https://www.sh-edraft.de",
-    "CopyrightDate": "2021 - 2022",
+    "CopyrightDate": "2021 - 2023",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.12.0",
+      "cpl-core>=2022.12.1",
       "discord.py==2.1.0",
-      "cpl-query>=2022.12.0"
+      "cpl-query>=2022.12.2.post1"
     ],
     "DevDependencies": [
-      "cpl-cli>=2022.12.0"
+      "cpl-cli>=2022.12.1"
     ],
-    "PythonVersion": ">=3.10.4",
+    "PythonVersion": ">=3.10",
     "PythonPath": {},
     "Classifiers": []
   },

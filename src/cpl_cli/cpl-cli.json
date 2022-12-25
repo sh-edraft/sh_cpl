@@ -11,12 +11,12 @@
     "Description": "sh-edraft Common Python library CLI",
     "LongDescription": "sh-edraft Common Python library Command Line Interface",
     "URL": "https://www.sh-edraft.de",
-    "CopyrightDate": "2020 - 2022",
+    "CopyrightDate": "2020 - 2023",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.12.dev144"
+      "cpl-core>=2022.12.1"
     ],
     "DevDependencies": [],
     "PythonVersion": ">=3.10",
