@@ -4,54 +4,29 @@ from typing import Iterable
 from cpl_query.base.queryable_abc import QueryableABC
 
 
-class IterableABC(list, QueryableABC):
+class IterableABC(QueryableABC):
     r"""ABC to define functions on list
     """
 
     @abstractmethod
     def __init__(self, t: type = None, values: Iterable = None):
-        values = [] if values is None else values
-        list.__init__(self, values)
-
-        if t is None and len(values) > 0:
-            t = type(values[0])
-
-        self._type = t
-
-    def __repr__(self):
-        return f'<{type(self).__name__} {list(self).__repr__()}>'
-
-    @property
-    def type(self) -> type:
-        return self._type
-
-    def to_list(self) -> list:
-        r"""Converts :class: `cpl_query.base.sequence_abc.SequenceABC` to :class: `list`
-
-        Returns
-        -------
-            :class: `list`
-        """
-        return [x for x in self]
+        QueryableABC.__init__(self, t, values)
 
     def __str__(self):
         return str(self.to_list())
 
-    def append(self, __object: object) -> None:
+    def append(self, _object: object):
+        self.add(_object)
+
+    def add(self, _object: object):
         r"""Adds element to list
         Parameter
         ---------
-            __object: :class:`object`
+            _object: :class:`object`
                 value
         """
-        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type) and not issubclass(type(__object), self._type):
-            raise Exception(f'Unexpected type: {type(__object)}\nExpected type: {self._type}')
-
-        if len(self) == 0 and self._type is None:
-            self._type = type(__object)
-
-        # self._values = SequenceValues([*self._values, __object], self._type)
-        super().append(__object)
+        self._check_type(_object)
+        self._values.append(_object)
 
     def extend(self, __iterable: Iterable) -> 'IterableABC':
         r"""Adds elements of given list to list
@@ -64,6 +39,27 @@ class IterableABC(list, QueryableABC):
             self.append(value)
 
         return self
+
+    def remove(self, _object: object):
+        r"""Removes element from list
+        Parameter
+        ---------
+            _object: :class:`object`
+                value
+        """
+        if _object not in self:
+            raise ValueError
+
+        self._values.remove(_object)
+
+    def remove_at(self, _index: int):
+        r"""Removes element from list
+        Parameter
+        ---------
+            _object: :class:`object`
+                value
+        """
+        self._values.pop(_index)
 
     def to_enumerable(self) -> 'EnumerableABC':
         r"""Converts :class: `cpl_query.iterable.iterable_abc.IterableABC` to :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`

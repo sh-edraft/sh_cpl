@@ -3,14 +3,15 @@ import os
 import unittest
 
 from cpl_core.utils import String
+from unittests_cli.abc.command_test_case import CommandTestCase
 from unittests_cli.constants import PLAYGROUND_PATH
 from unittests_shared.cli_commands import CLICommands
 
 
-class RemoveTestCase(unittest.TestCase):
+class RemoveTestCase(CommandTestCase):
 
-    def __init__(self, methodName: str):
-        unittest.TestCase.__init__(self, methodName)
+    def __init__(self, method_name: str):
+        CommandTestCase.__init__(self, method_name)
         self._source = 'add-test-project'
         self._target = 'add-test-library'
         self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
@@ -24,7 +25,10 @@ class RemoveTestCase(unittest.TestCase):
         return project_json
 
     def setUp(self):
-        os.chdir(os.path.abspath(PLAYGROUND_PATH))
+        if not os.path.exists(PLAYGROUND_PATH):
+            os.makedirs(PLAYGROUND_PATH)
+        
+        os.chdir(PLAYGROUND_PATH)
         # create projects
         CLICommands.new('console', self._source, '--ab', '--s')
         os.chdir(os.path.join(os.getcwd(), self._source))

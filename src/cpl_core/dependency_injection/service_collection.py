@@ -11,6 +11,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 from cpl_core.logging.logger_abc import LoggerABC
 from cpl_core.logging.logger_service import Logger
 from cpl_core.pipes.pipe_abc import PipeABC
+from cpl_core.type import T
 
 
 class ServiceCollection(ServiceCollectionABC):
@@ -53,22 +54,26 @@ class ServiceCollection(ServiceCollectionABC):
 
     def add_logging(self):
         self.add_singleton(LoggerABC, Logger)
+        return self
 
     def add_pipes(self):
         for pipe in PipeABC.__subclasses__():
             self.add_transient(PipeABC, pipe)
+        return self
 
-    def add_singleton(self, service_type: Union[type, object], service: Union[type, object] = None):
+    def add_singleton(self, service_type: T, service: T = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.singleton, service)
         return self
 
-    def add_scoped(self, service_type: Type, service: Callable = None):
+    def add_scoped(self, service_type: T, service: Callable = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.scoped, service)
         return self
 
-    def add_transient(self, service_type: type, service: type = None):
+    def add_transient(self, service_type: T, service: T = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.transient, service)
         return self
 
     def build_service_provider(self) -> ServiceProviderABC:
-        return ServiceProvider(self._service_descriptors, self._configuration, self._database_context)
+        sp = ServiceProvider(self._service_descriptors, self._configuration, self._database_context)
+        ServiceProviderABC.set_global_provider(sp)
+        return sp

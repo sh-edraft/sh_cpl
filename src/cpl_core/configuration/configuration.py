@@ -22,6 +22,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
+from cpl_core.type import T
 
 
 class Configuration(ConfigurationABC):
@@ -267,7 +268,7 @@ class Configuration(ConfigurationABC):
                     configuration.from_dict(value)
                     self.add_configuration(sub, configuration)
 
-    def add_configuration(self, key_type: Union[str, type], value: Union[str, ConfigurationModelABC]):
+    def add_configuration(self, key_type: T, value: any):
         self._config[key_type] = value
 
     def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
@@ -280,8 +281,7 @@ class Configuration(ConfigurationABC):
         for arg in self._argument_types:
             call(arg)
 
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> \
-            Optional[Union[str, ConfigurationModelABC]]:
+    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name
@@ -341,7 +341,7 @@ class Configuration(ConfigurationABC):
                             continue
                         self._additional_arguments.append(arg)
 
-                cmd.execute(self._additional_arguments)
+                cmd.run(self._additional_arguments)
                 self._handle_pre_or_post_executables(False, exe, services)
                 prevent = exe.prevent_next_executable
                 success = True

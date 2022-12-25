@@ -1,10 +1,9 @@
 cpl\_core.pipes
 =======================
 
-Submodules
-----------
 
-cpl\_core.pipes.bool\_pipe module
+
+cpl\_core.pipes.bool\_pipe
 ---------------------------------
 
 .. automodule:: cpl_core.pipes.bool_pipe
@@ -12,7 +11,7 @@ cpl\_core.pipes.bool\_pipe module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.first\_char\_to\_lower\_pipe module
+cpl\_core.pipes.first\_char\_to\_lower\_pipe
 ---------------------------------------------------
 
 .. automodule:: cpl_core.pipes.first_char_to_lower_pipe
@@ -20,7 +19,7 @@ cpl\_core.pipes.first\_char\_to\_lower\_pipe module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.first\_to\_upper\_pipe module
+cpl\_core.pipes.first\_to\_upper\_pipe
 ---------------------------------------------
 
 .. automodule:: cpl_core.pipes.first_to_upper_pipe
@@ -28,7 +27,7 @@ cpl\_core.pipes.first\_to\_upper\_pipe module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.ip\_address\_pipe module
+cpl\_core.pipes.ip\_address\_pipe
 ----------------------------------------
 
 .. automodule:: cpl_core.pipes.ip_address_pipe
@@ -36,7 +35,7 @@ cpl\_core.pipes.ip\_address\_pipe module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.pipe\_abc module
+cpl\_core.pipes.pipe\_abc
 --------------------------------
 
 .. automodule:: cpl_core.pipes.pipe_abc
@@ -44,7 +43,7 @@ cpl\_core.pipes.pipe\_abc module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.to\_camel\_case\_pipe module
+cpl\_core.pipes.to\_camel\_case\_pipe
 --------------------------------------------
 
 .. automodule:: cpl_core.pipes.to_camel_case_pipe
@@ -52,7 +51,7 @@ cpl\_core.pipes.to\_camel\_case\_pipe module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.to\_snake\_case\_pipe module
+cpl\_core.pipes.to\_snake\_case\_pipe
 --------------------------------------------
 
 .. automodule:: cpl_core.pipes.to_snake_case_pipe
@@ -60,18 +59,10 @@ cpl\_core.pipes.to\_snake\_case\_pipe module
    :undoc-members:
    :show-inheritance:
 
-cpl\_core.pipes.version\_pipe module
+cpl\_core.pipes.version\_pipe
 ------------------------------------
 
 .. automodule:: cpl_core.pipes.version_pipe
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: cpl_core.pipes
    :members:
    :undoc-members:
    :show-inheritance:

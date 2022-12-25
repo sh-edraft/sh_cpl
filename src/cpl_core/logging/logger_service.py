@@ -169,7 +169,7 @@ class Logger(LoggerABC):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.TRACE.value:
-            Console.set_foreground_color(ForegroundColorEnum.green)
+            Console.set_foreground_color(ForegroundColorEnum.grey)
             Console.write_line(output)
             Console.set_foreground_color(ForegroundColorEnum.default)
 
@@ -182,7 +182,7 @@ class Logger(LoggerABC):
 
         # check if message can be shown in console
         if self._console.value >= LoggingLevelEnum.DEBUG.value:
-            Console.set_foreground_color(ForegroundColorEnum.green)
+            Console.set_foreground_color(ForegroundColorEnum.blue)
             Console.write_line(output)
             Console.set_foreground_color(ForegroundColorEnum.default)
 

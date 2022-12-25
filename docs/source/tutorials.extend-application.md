@@ -1,3 +1,3 @@
 # Extend application
 
-## Comming soon
+## Coming soon

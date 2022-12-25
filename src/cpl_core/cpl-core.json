@@ -3,8 +3,8 @@
     "Name": "cpl-core",
     "Version": {
       "Major": "2022",
-      "Minor": "10",
-      "Micro": "0.post9"
+      "Minor": "12",
+      "Micro": "1"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,22 +16,23 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "art==5.7",
-      "colorama==0.4.5",
+      "art==5.8",
+      "colorama==0.4.6",
       "mysql-connector==2.2.9",
-      "psutil==5.9.2",
-      "packaging==21.3",
+      "psutil==5.9.4",
+      "packaging==22.0",
       "pynput==1.7.6",
-      "setuptools==65.3.0",
-      "tabulate==0.8.10",
-      "termcolor==1.1.0",
-      "watchdog==2.1.9",
-      "wheel==0.37.1"
+      "setuptools==65.6.3",
+      "tabulate==0.9.0",
+      "termcolor==2.1.1",
+      "watchdog==2.2.0",
+      "wheel==0.38.4"
     ],
     "DevDependencies": [
-      "sphinx==5.0.2",
-      "sphinx_rtd_theme==1.0.0",
-      "myst_parser==0.18.0"
+      "Sphinx==5.0.2",
+      "sphinx-rtd-theme==1.0.0",
+      "myst-parser==0.18.0",
+      "twine==4.0.2"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},
@@ -52,7 +53,11 @@
       "*/logs",
       "*/tests"
     ],
-    "PackageData": {},
+    "PackageData": {
+      "cpl_core": [
+        ".cpl/*.py"
+      ]
+    },
     "ProjectReferences": []
   }
 }

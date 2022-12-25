@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 from unittests_cli.constants import CLI_PATH
 
@@ -23,7 +24,7 @@ class CLICommands:
     @staticmethod
     def _run_with_output(cmd: str, *args) -> str:
         env_vars = os.environ
-        # env_vars['CPL_IS_UNITTEST'] = 'NO'
+        env_vars['CPL_IS_UNITTEST'] = 'NO'
 
         command = ['python', CLI_PATH, cmd]
         for arg in args:
@@ -64,15 +65,23 @@ class CLICommands:
         cls._run('remove', project, output=output)
 
     @classmethod
-    def run(cls, project: str = None, output=False):
+    def run(cls, project: str = None, is_dev=False, output=False):
+        args = []
+        if is_dev:
+            args.append('--dev')
+
         if project is None:
-            cls._run('run', output=output)
+            cls._run('run', *args, output=output)
             return
-        cls._run('run', project, output=output)
+        cls._run('run', project, *args, output=output)
 
     @classmethod
-    def start(cls, output=False):
-        cls._run('start', output=output)
+    def start(cls, is_dev=False, output=False):
+        args = []
+        if is_dev:
+            args.append('--dev')
+
+        cls._run('start', *args, output=output)
 
     @classmethod
     def uninstall(cls, package: str, is_dev=False, output=False):

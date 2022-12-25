@@ -87,17 +87,17 @@
 
 Install the CPL package
 ```sh
-pip install sh_cpl --extra-index-url https://pip.sh-edraft.de
+pip install cpl --extra-index-url https://pip.sh-edraft.de
 ```
 
 Install the CPL CLI
 ```sh
-pip install sh_cpl-cli --extra-index-url https://pip.sh-edraft.de
+pip install cpl-cli --extra-index-url https://pip.sh-edraft.de
 ```
 
 Create workspace:
 ```sh
-cpl new <console|library> <PROJECT NAME>
+cpl new <console|library|unittest> <PROJECT NAME>
 ```
 
 Run the application:
@@ -110,7 +110,7 @@ cpl start
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/issues) for a list of proposed features (and known issues).
+See the [open issues](https://git.sh-edraft.de/sh-edraft.de/sh_cpl/issues) for a list of proposed features (and known issues).
 
 
 
@@ -139,7 +139,7 @@ Distributed under the MIT License. See [LICENSE] for more information.
 
 Sven Heidemann - sven.heidemann@sh-edraft.de
 
-Project link: [https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib](https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib)
+Project link: [https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib](https://git.sh-edraft.de/sh-edraft.de/sh_cpl)
 
 <!-- External LINKS -->
 [pip_url]: https://pip.sh-edraft.de
@@ -147,7 +147,7 @@ Project link: [https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib](https://g
 [pip]: https://pypi.org/project/pip/
 
 <!-- Internal LINKS -->
-[project]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib
-[quickstart]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/wiki/quickstart
-[contributing]: https://git.sh-edraft.de/sh-edraft.de/sh_common_py_lib/wiki/contributing
+[project]: https://git.sh-edraft.de/sh-edraft.de/sh_cpl
+[quickstart]: https://git.sh-edraft.de/sh-edraft.de/sh_cpl/wiki/quickstart
+[contributing]: https://git.sh-edraft.de/sh-edraft.de/sh_cpl/wiki/contributing
 [license]: LICENSE

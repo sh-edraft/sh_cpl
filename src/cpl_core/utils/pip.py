@@ -33,7 +33,7 @@ class Pip:
             return
 
         cls._executable = executable
-        if not os.path.islink(cls._executable):
+        if not os.path.islink(cls._executable) or not os.path.isfile(executable):
             return
 
         path = os.path.dirname(os.path.dirname(cls._executable))
@@ -65,7 +65,7 @@ class Pip:
         """
         result = None
         with suppress(Exception):
-            args = [cls._executable, "-m", "pip", "freeze"]
+            args = [cls._executable, "-m", "pip", "freeze", "--all"]
 
             result = subprocess.check_output(
                 args,
@@ -119,6 +119,7 @@ class Pip:
         if source is not None:
             pip_args.append(f'--extra-index-url')
             pip_args.append(source)
+
         subprocess.run(pip_args, stdout=stdout, stderr=stderr, env=cls._env)
 
     @classmethod

@@ -6,6 +6,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.type import T
 
 
 class ConfigurationABC(ABC):
@@ -75,14 +76,14 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: Union[str, type], value: Union[str, ConfigurationModelABC]):
+    def add_configuration(self, key_type: T, value: any):
         r"""Add configuration object
 
         Parameter
         ---------
             key_type: Union[:class:`str`, :class:`type`]
                 Type of the value
-            value: Union[:class:`str`, :class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]
+            value: any
                 Object of the value
         """
         pass
@@ -125,8 +126,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Union[str, Type[ConfigurationModelABC]]) -> Union[
-        str, ConfigurationModelABC]:
+    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
         r"""Returns value from configuration by given type
 
         Parameter

@@ -1,19 +1,14 @@
+import importlib
 import os
 import sys
 import textwrap
+import traceback
 
-from cpl_cli._templates.generate.abc_template import ABCTemplate
-from cpl_cli._templates.generate.class_template import ClassTemplate
-from cpl_cli._templates.generate.configmodel_template import ConfigModelTemplate
-from cpl_cli._templates.generate.enum_template import EnumTemplate
-from cpl_cli._templates.generate.init_template import InitTemplate
-from cpl_cli._templates.generate.pipe_template import PipeTemplate
-from cpl_cli._templates.generate.service_template import ServiceTemplate
-from cpl_cli._templates.generate.test_case_template import TestCaseTemplate
-from cpl_cli._templates.generate.thread_template import ThreadTemplate
-from cpl_cli._templates.generate.validator_template import ValidatorTemplate
-from cpl_cli._templates.template_file_abc import TemplateFileABC
+from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 from cpl_cli.command_abc import CommandABC
+from cpl_cli.configuration import WorkspaceSettings
+from cpl_cli.configuration.schematic_collection import SchematicCollection
+from cpl_cli.helper.dependencies import Dependencies
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
@@ -22,58 +17,56 @@ from cpl_core.utils.string import String
 
 class GenerateService(CommandABC):
 
-    def __init__(self, configuration: ConfigurationABC):
+    def __init__(
+            self,
+            configuration: ConfigurationABC,
+            workspace: WorkspaceSettings,
+    ):
         """
         Service for the CLI command generate
         :param configuration:
         """
         CommandABC.__init__(self)
 
-        self._schematics = {
-            "abc": {
-                "Upper": "ABC",
-                "Template": ABCTemplate
-            },
-            "class": {
-                "Upper": "Class",
-                "Template": ClassTemplate
-            },
-            "enum": {
-                "Upper": "Enum",
-                "Template": EnumTemplate
-            },
-            "pipe": {
-                "Upper": "Pipe",
-                "Template": PipeTemplate
-            },
-            "service": {
-                "Upper": "Service",
-                "Template": ServiceTemplate
-            },
-            "settings": {
-                "Upper": "Settings",
-                "Template": ConfigModelTemplate
-            },
-            "test_case": {
-                "Upper": "TestCase",
-                "Template": TestCaseTemplate
-            },
-            "thread": {
-                "Upper": "Thread",
-                "Template": ThreadTemplate
-            },
-            "validator": {
-                "Upper": "Validator",
-                "Template": ValidatorTemplate
-            }
-        }
+        self._config = configuration
+        self._workspace = workspace
 
         self._config = configuration
         self._env = self._config.environment
+        self._schematics = {}
+        self._schematic_classes = set()
+
+        for package_name, version in Dependencies.get_cpl_packages():
+            if package_name == 'cpl-cli':
+                continue
+            package = importlib.import_module(String.convert_to_snake_case(package_name))
+            self._read_custom_schematics_from_path(os.path.dirname(package.__file__))
+
+        self._read_custom_schematics_from_path(self._env.working_directory)
+        self._read_custom_schematics_from_path(self._env.runtime_directory)
+
+        if len(self._schematic_classes) == 0:
+            Console.error(f'No schematics found in template directory: .cpl')
+            sys.exit()
+
+        known_schematics = []
+        for schematic in self._schematic_classes:
+            known_schematics.append(schematic.__name__)
+            schematic.register()
+
+        self._schematics = SchematicCollection.get_schematics()
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        schematics = []
+        for schematic in self._schematics:
+            aliases = '|'.join(self._schematics[schematic]['Aliases'])
+            schematic_str = schematic
+            if len(aliases) > 0:
+                schematic_str = f'{schematic} ({aliases})'
+
+            schematics.append(schematic_str)
+        help_msg = textwrap.dedent("""\
         Generate a file based on schematic.
         Usage: cpl generate <schematic> <name>
         
@@ -81,41 +74,28 @@ class GenerateService(CommandABC):
             schematic:  The schematic to generate.
             name:       The name of the generated file
             
-        Schematics:
-            abc
-            class
-            enum
-            pipe
-            service
-            settings
-            test_case
-            thread
-            validator
-        """)
+        Schematics:""")
 
-    @staticmethod
-    def _help(message: str):
-        """
-        Internal help output
-        :param message:
-        :return:
-        """
-        Console.error(message)
+        for schematic in schematics:
+            help_msg += f'\n    {schematic}'
+        return help_msg
 
-        schematics = [
-            'abc (a|A)',
-            'class (c|C)',
-            'enum (e|E)',
-            'pipe (p|P)',
-            'service (s|S)',
-            'settings (st|ST)',
-            'test-case (tc|TC)',
-            'thread (t|T)',
-            'validator (v|V)'
-        ]
-        Console.write_line('Available Schematics:')
-        for name in schematics:
-            Console.write(f'\n\t{name} ')
+    def _read_custom_schematics_from_path(self, path: str):
+        if not os.path.exists(os.path.join(path, '.cpl')):
+            return
+
+        sys.path.insert(0, os.path.join(path, '.cpl'))
+        for r, d, f in os.walk(os.path.join(path, '.cpl')):
+            for file in f:
+                if not file.startswith('schematic_') or not file.endswith('.py'):
+                    continue
+
+                try:
+                    exec(open(os.path.join(r, file), 'r').read())
+                    self._schematic_classes.update(GenerateSchematicABC.__subclasses__())
+                except Exception as e:
+                    Console.error(str(e), traceback.format_exc())
+                    sys.exit(-1)
 
     @staticmethod
     def _create_file(file_path: str, value: str):
@@ -129,7 +109,29 @@ class GenerateService(CommandABC):
             template.write(value)
             template.close()
 
-    def _generate(self, schematic: str, name: str, template: TemplateFileABC):
+    def _create_init_files(self, file_path: str, template: GenerateSchematicABC, class_name: str, schematic: str, rel_path: str):
+        if not os.path.isdir(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+            directory = ''
+            for subdir in template.path.split('/'):
+                directory = os.path.join(directory, subdir)
+                if subdir == 'src':
+                    continue
+
+                file = self._schematics['init']['Template'](class_name, 'init', rel_path)
+                if os.path.exists(os.path.join(os.path.abspath(directory), file.name)):
+                    continue
+
+                Console.spinner(
+                    f'Creating {os.path.abspath(directory)}/{file.name}',
+                    self._create_file,
+                    os.path.join(os.path.abspath(directory), file.name),
+                    file.get_code(),
+                    text_foreground_color=ForegroundColorEnum.green,
+                    spinner_foreground_color=ForegroundColorEnum.cyan
+                )
+
+    def _generate(self, schematic: str, name: str, template: type):
         """
         Generates files by given schematic, name and template
         :param schematic:
@@ -144,32 +146,13 @@ class GenerateService(CommandABC):
             rel_path = '/'.join(parts[:-1])
             class_name = parts[len(parts) - 1]
 
-        if 'src' not in rel_path and not os.path.exists(os.path.join(self._env.working_directory, rel_path)):
-            rel_path = f'src/{rel_path}'
+            if self._workspace is not None and parts[0] in self._workspace.projects:
+                rel_path = os.path.join(os.path.dirname(self._workspace.projects[parts[0]]), *parts[1:-1])
 
-        template = template(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
+        template = template(class_name, String.convert_to_snake_case(schematic), rel_path)
 
         file_path = os.path.join(self._env.working_directory, template.path, template.name)
-        if not os.path.isdir(os.path.dirname(file_path)):
-            os.makedirs(os.path.dirname(file_path))
-            directory = ''
-            for subdir in template.path.split('/'):
-                directory = os.path.join(directory, subdir)
-                if subdir == 'src':
-                    continue
-
-                file = InitTemplate(class_name, schematic, self._schematics[schematic]["Upper"], rel_path)
-                if os.path.exists(os.path.join(os.path.abspath(directory), file.name)):
-                    continue
-
-                Console.spinner(
-                    f'Creating {os.path.abspath(directory)}/{file.name}',
-                    self._create_file,
-                    os.path.join(os.path.abspath(directory), file.name),
-                    file.value,
-                    text_foreground_color=ForegroundColorEnum.green,
-                    spinner_foreground_color=ForegroundColorEnum.cyan
-                )
+        self._create_init_files(file_path, template, class_name, schematic, rel_path)
 
         if os.path.isfile(file_path):
             Console.error(f'{String.first_to_upper(schematic)} already exists!\n')
@@ -183,10 +166,17 @@ class GenerateService(CommandABC):
             message,
             self._create_file,
             file_path,
-            template.value,
+            template.get_code(),
             text_foreground_color=ForegroundColorEnum.green,
             spinner_foreground_color=ForegroundColorEnum.cyan
         )
+
+    def _get_schematic_by_alias(self, schematic: str) -> str:
+        for key in self._schematics:
+            if schematic in self._schematics[key]['Aliases']:
+                return key
+
+        return schematic
 
     def execute(self, args: list[str]):
         """
@@ -202,9 +192,14 @@ class GenerateService(CommandABC):
                 schematic = s
                 break
 
+        if schematic is None and len(args) >= 1 and (args[0] in self._schematics or self._get_schematic_by_alias(args[0]) != args[0]):
+            schematic = self._get_schematic_by_alias(args[0])
+            self._config.add_configuration(schematic, args[1])
+            value = args[1]
+
         if schematic is None:
-            self._help('Usage: cpl generate <schematic> [options]')
-            Console.write_line()
+            Console.error(f'Schematic not found')
+            Console.write_line(self.help_message)
             sys.exit()
 
         name = value

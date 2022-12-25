@@ -1,17 +1,18 @@
 import copy
-from inspect import signature, Parameter
+import typing
+from inspect import signature, Parameter, Signature
 from typing import Optional
 
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_core.console import Console
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.dependency_injection.scope_abc import ScopeABC
 from cpl_core.dependency_injection.scope_builder import ScopeBuilder
-from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
+from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
+from cpl_core.type import T
 
 
 class ServiceProvider(ServiceProviderABC):
@@ -42,7 +43,7 @@ class ServiceProvider(ServiceProviderABC):
 
         return None
 
-    def _get_service(self, parameter: Parameter) -> object:
+    def _get_service(self, parameter: Parameter) -> Optional[object]:
         for descriptor in self._service_descriptors:
             if descriptor.service_type == parameter.annotation or issubclass(descriptor.service_type, parameter.annotation):
                 if descriptor.implementation is not None:
@@ -54,22 +55,34 @@ class ServiceProvider(ServiceProviderABC):
 
                 return implementation
 
-    def build_service(self, service_type: type) -> object:
+        # raise Exception(f'Service {parameter.annotation} not found')
+
+    def _get_services(self, t: type) -> list[Optional[object]]:
+        implementations = []
         for descriptor in self._service_descriptors:
-            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+            if descriptor.service_type == t or issubclass(descriptor.service_type, t):
                 if descriptor.implementation is not None:
-                    service_type = type(descriptor.implementation)
-                else:
-                    service_type = descriptor.service_type
+                    implementations.append(descriptor.implementation)
+                    continue
 
-                break
+                implementation = self.build_service(descriptor.service_type)
+                if descriptor.lifetime == ServiceLifetimeEnum.singleton:
+                    descriptor.implementation = implementation
 
-        sig = signature(service_type.__init__)
+                implementations.append(implementation)
+
+        return implementations
+
+    def build_by_signature(self, sig: Signature) -> list[T]:
         params = []
         for param in sig.parameters.items():
             parameter = param[1]
             if parameter.name != 'self' and parameter.annotation != Parameter.empty:
-                if issubclass(parameter.annotation, ServiceProviderABC):
+
+                if typing.get_origin(parameter.annotation) == list:
+                    params.append(self._get_services(typing.get_args(parameter.annotation)[0]))
+
+                elif issubclass(parameter.annotation, ServiceProviderABC):
                     params.append(self)
 
                 elif issubclass(parameter.annotation, ApplicationEnvironmentABC):
@@ -87,16 +100,31 @@ class ServiceProvider(ServiceProviderABC):
                 else:
                     params.append(self._get_service(parameter))
 
+        return params
+
+    def build_service(self, service_type: type) -> object:
+        for descriptor in self._service_descriptors:
+            if descriptor.service_type == service_type or issubclass(descriptor.service_type, service_type):
+                if descriptor.implementation is not None:
+                    service_type = type(descriptor.implementation)
+                else:
+                    service_type = descriptor.service_type
+
+                break
+
+        sig = signature(service_type.__init__)
+        params = self.build_by_signature(sig)
+
         return service_type(*params)
-    
+
     def set_scope(self, scope: ScopeABC):
         self._scope = scope
-    
+
     def create_scope(self) -> ScopeABC:
-        sb = ScopeBuilder(ServiceProvider(self._service_descriptors, self._configuration, self._database_context))
+        sb = ScopeBuilder(ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context))
         return sb.build()
 
-    def get_service(self, service_type: type) -> Optional[object]:
+    def get_service(self, service_type: T) -> Optional[T]:
         result = self._find_service(service_type)
 
         if result is None:
@@ -110,3 +138,13 @@ class ServiceProvider(ServiceProviderABC):
             result.implementation = implementation
 
         return implementation
+
+    def get_services(self, service_type: T) -> list[Optional[T]]:
+        implementations = []
+
+        if typing.get_origin(service_type) != list:
+            raise Exception(f'Invalid type {service_type}! Expected list of type')
+
+        implementations.extend(self._get_services(typing.get_args(service_type)[0]))
+
+        return implementations

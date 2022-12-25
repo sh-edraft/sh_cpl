@@ -1,6 +1,7 @@
 import os
 import traceback
 
+from cpl_cli.configuration import ProjectSettings
 from cpl_core.utils import String
 
 from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
@@ -45,51 +46,69 @@ class Application(ApplicationABC):
             return
 
         if len(args) == 1:
-            suffix = f'.{args[0]}'
+            suffix = args[0]
 
         try:
             branch = self._git_service.get_active_branch_name()
             Console.write_line(f'Found branch: {branch}')
         except Exception as e:
-            Console.error('Branch could not be found', traceback.format_exc())
+            Console.error('Branch not found', traceback.format_exc())
             return
 
         try:
+            if suffix != '':
+                self._configuration.add_json_file(self._workspace.projects[self._workspace.default_project], optional=False, output=False)
+                ps: ProjectSettings = self._configuration.get_configuration(ProjectSettings)
 
-            version[VersionSettingsNameEnum.major.value] = branch.split('.')[0]
-            version[VersionSettingsNameEnum.minor.value] = branch.split('.')[1]
-            if len(branch.split('.')) == 2:
-                version[VersionSettingsNameEnum.micro.value] = f'0{suffix}'
+                version[VersionSettingsNameEnum.major.value] = ps.version.major
+                version[VersionSettingsNameEnum.minor.value] = ps.version.minor
+                version[VersionSettingsNameEnum.micro.value] = suffix
+            elif branch.startswith('#'):
+                self._configuration.add_json_file(self._workspace.projects[self._workspace.default_project], optional=False, output=False)
+                ps: ProjectSettings = self._configuration.get_configuration(ProjectSettings)
+
+                version[VersionSettingsNameEnum.major.value] = ps.version.major
+                version[VersionSettingsNameEnum.minor.value] = ps.version.minor
+                version[VersionSettingsNameEnum.micro.value] = f'dev{branch.split("#")[1]}'
             else:
-                branch_version = branch.split(".")[2]
-                if '-#' in branch_version:
-                    branch_version = branch_version.split('-#')[0]
-                version[VersionSettingsNameEnum.micro.value] = f'{branch_version}{suffix}'
+                version[VersionSettingsNameEnum.major.value] = branch.split('.')[0]
+                version[VersionSettingsNameEnum.minor.value] = branch.split('.')[1]
+                if len(branch.split('.')) == 2:
+                    if suffix == '':
+                        suffix = '0'
+                    version[VersionSettingsNameEnum.micro.value] = f'{suffix}'
+                else:
+                    version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
         except Exception as e:
             Console.error(f'Branch {branch} does not contain valid version')
             return
 
         diff_paths = []
         for file in self._git_service.get_diff_files():
+            if file.startswith('tools'):
+                continue
+
             if '/' in file:
-                diff_paths.append(file.split('/')[1])
+                file = file.split('/')[1]
             else:
-                diff_paths.append(os.path.basename(os.path.dirname(file)))
+                file = os.path.basename(os.path.dirname(file))
+
+            if file in diff_paths:
+                continue
+
+            diff_paths.append(file)
 
         try:
             skipped = []
             for project in self._workspace.projects:
                 if project not in diff_paths and String.convert_to_snake_case(project) not in diff_paths and not force:
-                    Console.write_line(f'Skipping {project} due to missing changes')
+                    # Console.write_line(f'Skipping {project} due to missing changes')
                     skipped.append(project)
                     continue
 
                 Console.write_line(f'Set dependencies {self._version_pipe.transform(version)} for {project}')
                 self._version_setter.set_dependencies(self._workspace.projects[project], version, 'Dependencies', skipped=skipped)
                 self._version_setter.set_dependencies(self._workspace.projects[project], version, 'DevDependencies', skipped=skipped)
-                if not project.startswith('cpl') and not project.startswith('unittest'):
-                    Console.write_line(f'Skipping {project}')
-                    continue
 
                 Console.write_line(f'Set version {self._version_pipe.transform(version)} for {project}')
                 self._version_setter.set_version(self._workspace.projects[project], version)

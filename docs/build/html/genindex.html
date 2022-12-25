@@ -39,9 +39,11 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
 
         </div>
@@ -80,11 +82,13 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -97,6 +101,16 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.activities">activities (cpl_discord.container.member.Member attribute)</a>
+</li>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.add">add() (cpl_query.iterable.iterable_abc.IterableABC method)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection.DiscordCollection.add_command">add_command() (cpl_discord.service.discord_collection.DiscordCollection method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection_abc.DiscordCollectionABC.add_command">(cpl_discord.service.discord_collection_abc.DiscordCollectionABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_configuration">add_configuration() (cpl_core.configuration.configuration.Configuration method)</a>
 
       <ul>
@@ -121,6 +135,12 @@
 
       <ul>
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_environment_variables">(cpl_core.configuration.configuration_abc.ConfigurationABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection.DiscordCollection.add_event">add_event() (cpl_discord.service.discord_collection.DiscordCollection method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection_abc.DiscordCollectionABC.add_event">(cpl_discord.service.discord_collection_abc.DiscordCollectionABC method)</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.add_header">add_header() (cpl_core.mailing.email.EMail method)</a>
@@ -163,29 +183,25 @@
         <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient">(cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_translation">add_translation() (cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_translation">add_translation() (cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC method)</a>
+</li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.additional_arguments">additional_arguments (cpl_core.configuration.configuration.Configuration property)</a>
 
       <ul>
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.additional_arguments">(cpl_core.configuration.configuration_abc.ConfigurationABC property)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.all">all() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.all">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.afk_channel">afk_channel (cpl_discord.container.guild.Guild attribute)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.any">any() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.any">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.afk_timeout">afk_timeout (cpl_discord.container.guild.Guild attribute)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.append">append() (cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.all">all() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.any">any() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.append">append() (cpl_query.iterable.iterable_abc.IterableABC method)</a>
 </li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.application_name">application_name (cpl_core.environment.application_environment.ApplicationEnvironment property)</a>
 
@@ -203,6 +219,16 @@
 </li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC">ApplicationEnvironmentABC (class in cpl_core.environment.application_environment_abc)</a>
 </li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.approximate_member_count">approximate_member_count (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.approximate_presence_count">approximate_presence_count (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.archive_timestamp">archive_timestamp (cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.archived">archived (cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.archiver_id">archiver_id (cpl_discord.container.thread.Thread attribute)</a>
+</li>
       <li><a href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall.args">args (cpl_core.console.console_call.ConsoleCall property)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.argument_error_function">argument_error_function (cpl_core.configuration.configuration.Configuration property)</a>
@@ -211,8 +237,6 @@
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.argument_error_function">(cpl_core.configuration.configuration_abc.ConfigurationABC property)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ArgumentNoneException">ArgumentNoneException</a>
-</li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.arguments">arguments (cpl_core.configuration.configuration.Configuration property)</a>
 
       <ul>
@@ -225,12 +249,10 @@
         <li><a href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.auth_plugin">(cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.average">average() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.average">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.auto_archive_duration">auto_archive_duration (cpl_discord.container.thread.Thread attribute)</a>
 </li>
-      </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.average">average() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -295,6 +317,16 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.categories">categories (cpl_discord.container.guild.Guild property)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.category_id">category_id (cpl_discord.container.category_channel.CategoryChannel attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.category_id">(cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel">CategoryChannel (class in cpl_discord.container.category_channel)</a>
+</li>
       <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.charset">charset (cpl_core.database.database_settings.DatabaseSettings property)</a>
 
       <ul>
@@ -308,6 +340,8 @@
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.close">close() (cpl_core.console.console.Console class method)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.color_reset">color_reset() (cpl_core.console.console.Console class method)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.command_error_handler_service.CommandErrorHandlerService">CommandErrorHandlerService (class in cpl_discord.service.command_error_handler_service)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration">Configuration (class in cpl_core.configuration.configuration)</a>
 </li>
@@ -345,22 +379,18 @@
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall">ConsoleCall (class in cpl_core.console.console_call)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.contains">contains() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.contains">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.container.Container">Container (class in cpl_discord.container.container)</a>
 </li>
-      </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.contains">contains() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.helper.html#cpl_discord.helper.to_containers_converter.ToContainersConverter.convert">convert() (cpl_discord.helper.to_containers_converter.ToContainersConverter static method)</a>
+</li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.convert_to_camel_case">convert_to_camel_case() (cpl_core.utils.string.String static method)</a>
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.convert_to_snake_case">convert_to_snake_case() (cpl_core.utils.string.String static method)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.count">count() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.count">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.count">count() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li>
     cpl_core.application.application_abc
 
@@ -543,8 +573,6 @@
         <li><a href="cpl_core.environment.html#module-cpl_core.environment.application_environment">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     cpl_core.environment.application_environment_abc
 
@@ -627,13 +655,6 @@
 
       <ul>
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">module</a>
-</li>
-      </ul></li>
-      <li>
-    cpl_core.pipes
-
-      <ul>
-        <li><a href="cpl_core.pipes.html#module-cpl_core.pipes">module</a>
 </li>
       </ul></li>
       <li>
@@ -728,24 +749,544 @@
 </li>
       </ul></li>
       <li>
-    cpl_query.exceptions
+    cpl_discord.application.discord_bot_application_abc
 
       <ul>
-        <li><a href="cpl_query.exceptions.html#module-cpl_query.exceptions">module</a>
+        <li><a href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">module</a>
 </li>
       </ul></li>
       <li>
-    cpl_query.extension.iterable
+    cpl_discord.command.discord_command_abc
 
       <ul>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.iterable">module</a>
+        <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">module</a>
 </li>
       </ul></li>
       <li>
-    cpl_query.extension.iterable_abc
+    cpl_discord.command.discord_commands_meta
 
       <ul>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.iterable_abc">module</a>
+        <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.configuration.discord_bot_settings
+
+      <ul>
+        <li><a href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.category_channel
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.category_channel">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.container
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.container">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.guild
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.guild">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.member
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.member">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.role
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.role">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.text_channel
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.text_channel">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.thread
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.thread">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container.voice_channel
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_bulk_message_delete_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    cpl_discord.events.on_command_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_command_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_command_completion_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_command_completion_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_command_error_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_command_error_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_connect_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_connect_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_disconnect_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_disconnect_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_error_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_error_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_group_join_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_group_join_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_group_remove_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_group_remove_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_available_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_available_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_channel_create_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_create_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_channel_delete_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_delete_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_channel_pins_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_pins_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_channel_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_emojis_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_emojis_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_integrations_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_integrations_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_join_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_join_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_remove_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_remove_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_role_create_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_create_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_role_delete_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_delete_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_role_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_unavailable_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_unavailable_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_guild_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_invite_create_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_invite_create_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_invite_delete_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_invite_delete_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_member_ban_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_ban_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_member_join_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_join_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_member_remove_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_remove_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_member_unban_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_unban_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_member_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_message_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_message_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_message_delete_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_message_delete_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_message_edit_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_message_edit_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_private_channel_create_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_create_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_private_channel_delete_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_delete_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_private_channel_pins_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_pins_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_private_channel_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_raw_reaction_add_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_add_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_raw_reaction_clear_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_raw_reaction_clear_emoji_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_raw_reaction_remove_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_remove_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_reaction_add_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_add_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_reaction_clear_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_reaction_clear_emoji_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_emoji_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_reaction_remove_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_remove_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_ready_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_ready_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_resume_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_resume_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_typing_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_typing_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_user_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_user_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_voice_state_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_voice_state_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events.on_webhooks_update_abc
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.helper.to_containers_converter
+
+      <ul>
+        <li><a href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.command_error_handler_service
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.discord_bot_service
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.discord_bot_service_abc
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.discord_collection
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_collection">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.discord_collection_abc
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_collection_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.discord_service
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_service">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service.discord_service_abc
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.base.default_lambda
+
+      <ul>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.default_lambda">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.base.ordered_queryable
+
+      <ul>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.base.ordered_queryable_abc
+
+      <ul>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.ordered_queryable_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.base.queryable_abc
+
+      <ul>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.queryable_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.enumerable.enumerable
+
+      <ul>
+        <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.enumerable.enumerable_abc
+
+      <ul>
+        <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">module</a>
 </li>
       </ul></li>
       <li>
@@ -756,17 +1297,45 @@
 </li>
       </ul></li>
       <li>
-    cpl_query.extension.ordered_iterable
+    cpl_query.iterable.iterable
 
       <ul>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.ordered_iterable">module</a>
+        <li><a href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">module</a>
 </li>
       </ul></li>
       <li>
-    cpl_query.extension.ordered_iterable_abc
+    cpl_query.iterable.iterable_abc
 
       <ul>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.ordered_iterable_abc">module</a>
+        <li><a href="cpl_query.iterable.html#module-cpl_query.iterable.iterable_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_translation.translate_pipe
+
+      <ul>
+        <li><a href="cpl_translation.html#module-cpl_translation.translate_pipe">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_translation.translation_service
+
+      <ul>
+        <li><a href="cpl_translation.html#module-cpl_translation.translation_service">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_translation.translation_service_abc
+
+      <ul>
+        <li><a href="cpl_translation.html#module-cpl_translation.translation_service_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_translation.translation_settings
+
+      <ul>
+        <li><a href="cpl_translation.html#module-cpl_translation.translation_settings">module</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.create">create() (cpl_core.logging.logger_service.Logger method)</a>
@@ -861,8 +1430,6 @@
         <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum.date_time_log_format">(cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.date_time_now">date_time_now (cpl_core.environment.application_environment.ApplicationEnvironment property)</a>
 
       <ul>
@@ -879,40 +1446,60 @@
       </ul></li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager.decrypt">decrypt() (cpl_core.utils.credential_manager.CredentialManager static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.default">default (cpl_core.console.background_color_enum.BackgroundColorEnum attribute)</a>
 
       <ul>
         <li><a href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.default">(cpl_core.console.foreground_color_enum.ForegroundColorEnum attribute)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.default_auto_archive_duration">default_auto_archive_duration (cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.default_lambda.default_lambda">default_lambda() (in module cpl_query.base.default_lambda)</a>
+</li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings.default_language">default_language (cpl_translation.translation_settings.TranslationSettings property)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.default_notifications">default_notifications (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.description">description (cpl_discord.container.guild.Guild attribute)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.development">development (cpl_core.environment.environment_name_enum.EnvironmentNameEnum attribute)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.disable">disable() (cpl_core.console.console.Console class method)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.distinct">distinct() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.distinct">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.application.html#cpl_discord.application.discord_bot_application_abc.DiscordBotApplicationABC">DiscordBotApplicationABC (class in cpl_discord.application.discord_bot_application_abc)</a>
 </li>
-      </ul></li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service.DiscordBotService">DiscordBotService (class in cpl_discord.service.discord_bot_service)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC">DiscordBotServiceABC (class in cpl_discord.service.discord_bot_service_abc)</a>
+</li>
+      <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings">DiscordBotSettings (class in cpl_discord.configuration.discord_bot_settings)</a>
+</li>
+      <li><a href="cpl_discord.command.html#cpl_discord.command.discord_commands_meta.DiscordCogMeta">DiscordCogMeta (class in cpl_discord.command.discord_commands_meta)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection.DiscordCollection">DiscordCollection (class in cpl_discord.service.discord_collection)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection_abc.DiscordCollectionABC">DiscordCollectionABC (class in cpl_discord.service.discord_collection_abc)</a>
+</li>
+      <li><a href="cpl_discord.command.html#cpl_discord.command.discord_command_abc.DiscordCommandABC">DiscordCommandABC (class in cpl_discord.command.discord_command_abc)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService">DiscordService (class in cpl_discord.service.discord_service)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC">DiscordServiceABC (class in cpl_discord.service.discord_service_abc)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.distinct">distinct() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.element_at">element_at() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.element_at">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.element_at">element_at() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.element_at_or_default">element_at_or_default() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.element_at_or_default">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.element_at_or_default">element_at_or_default() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email.EMail">EMail (class in cpl_core.mailing.email)</a>
 </li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient">EMailClient (class in cpl_core.mailing.email_client_service)</a>
@@ -922,6 +1509,8 @@
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings">EMailClientSettings (class in cpl_core.mailing.email_client_settings)</a>
 </li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum">EMailClientSettingsNameEnum (class in cpl_core.mailing.email_client_settings_name_enum)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.emojis">emojis (cpl_discord.container.guild.Guild attribute)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.enable">enable() (cpl_core.console.console.Console class method)</a>
 </li>
@@ -933,8 +1522,12 @@
         <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.end_time">(cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC property)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable.Enumerable">Enumerable (class in cpl_query.enumerable.enumerable)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable_abc.EnumerableABC">EnumerableABC (class in cpl_query.enumerable.enumerable_abc)</a>
+</li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.environment">environment (cpl_core.configuration.configuration.Configuration property)</a>
 
       <ul>
@@ -961,11 +1554,11 @@
         <li><a href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.error">(cpl_core.logging.logger_service.Logger method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ExceptionArgument">ExceptionArgument (class in cpl_query.exceptions)</a>
-</li>
       <li><a href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.exit">exit() (cpl_core.console.spinner_thread.SpinnerThread method)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.extend">extend() (cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.explicit_content_filter">explicit_content_filter (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.extend">extend() (cpl_query.iterable.iterable_abc.IterableABC method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -981,6 +1574,8 @@
         <li><a href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.fatal">(cpl_core.logging.logger_service.Logger method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.features">features (cpl_discord.container.guild.Guild attribute)</a>
+</li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.file_level">file_level (cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum attribute)</a>
 </li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.filename">filename (cpl_core.logging.logging_settings.LoggingSettings property)</a>
@@ -989,34 +1584,22 @@
         <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.filename">(cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.first">first() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.first">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.first">first() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.first_or_default">first_or_default() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.first_or_default">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.first_or_default">first_or_default() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.first_to_lower">first_to_lower() (cpl_core.utils.string.String static method)</a>
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.first_to_upper">first_to_upper() (cpl_core.utils.string.String static method)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe">FirstCharToLowerPipe (class in cpl_core.pipes.first_char_to_lower_pipe)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe">FirstToUpperPipe (class in cpl_core.pipes.first_to_upper_pipe)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.for_each">for_each() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.for_each">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.for_each">for_each() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.for_each_argument">for_each_argument() (cpl_core.configuration.configuration.Configuration method)</a>
 
       <ul>
@@ -1038,9 +1621,11 @@
 </li>
         <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.from_dict">(cpl_core.time.time_format_settings.TimeFormatSettings method)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ExceptionArgument.func">func (cpl_query.exceptions.ExceptionArgument attribute)</a>
+        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict">(cpl_discord.configuration.discord_bot_settings.DiscordBotSettings method)</a>
 </li>
+        <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings.from_dict">(cpl_translation.translation_settings.TranslationSettings method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall.function">function (cpl_core.console.console_call.ConsoleCall property)</a>
 </li>
   </ul></td>
@@ -1049,6 +1634,12 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection.DiscordCollection.get_commands">get_commands() (cpl_discord.service.discord_collection.DiscordCollection method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection_abc.DiscordCollectionABC.get_commands">(cpl_discord.service.discord_collection_abc.DiscordCollectionABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.get_configuration">get_configuration() (cpl_core.configuration.configuration.Configuration method)</a>
 
       <ul>
@@ -1057,20 +1648,26 @@
       </ul></li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.get_content">get_content() (cpl_core.mailing.email.EMail method)</a>
 </li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection.DiscordCollection.get_events_by_base">get_events_by_base() (cpl_discord.service.discord_collection.DiscordCollection method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_collection_abc.DiscordCollectionABC.get_events_by_base">(cpl_discord.service.discord_collection_abc.DiscordCollectionABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.get_executable">get_executable() (cpl_core.utils.pip.Pip class method)</a>
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.get_outdated">get_outdated() (cpl_core.utils.pip.Pip class method)</a>
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.get_package">get_package() (cpl_core.utils.pip.Pip class method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.get_service">get_service() (cpl_core.dependency_injection.service_provider.ServiceProvider method)</a>
 
       <ul>
         <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_service">(cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.green">green (cpl_core.console.background_color_enum.BackgroundColorEnum attribute)</a>
 
       <ul>
@@ -1081,6 +1678,28 @@
 
       <ul>
         <li><a href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.grey">(cpl_core.console.foreground_color_enum.ForegroundColorEnum attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.group_by">group_by() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild">Guild (class in cpl_discord.container.guild)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.guild">guild (cpl_discord.container.category_channel.CategoryChannel attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.guild">(cpl_discord.container.member.Member attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.guild">(cpl_discord.container.role.Role attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.guild">(cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.guild">(cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service.DiscordBotService.guilds">guilds (cpl_discord.service.discord_bot_service.DiscordBotService property)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC.guilds">(cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC property)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1099,6 +1718,10 @@
       </ul></li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.header_list">header_list (cpl_core.mailing.email.EMail property)</a>
 </li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.hoist">hoist (cpl_discord.container.role.Role attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.host">host (cpl_core.database.database_settings.DatabaseSettings property)</a>
 
       <ul>
@@ -1109,8 +1732,6 @@
         <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum.host">(cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.host_name">host_name (cpl_core.environment.application_environment.ApplicationEnvironment property)</a>
 
       <ul>
@@ -1123,11 +1744,19 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.id">id (cpl_discord.container.category_channel.CategoryChannel attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.id">(cpl_discord.container.guild.Guild attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.id">(cpl_discord.container.role.Role attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.id">(cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.id">(cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.implementation">implementation (cpl_core.dependency_injection.service_descriptor.ServiceDescriptor property)</a>
-</li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ExceptionArgument.index">index (cpl_query.exceptions.ExceptionArgument attribute)</a>
-</li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.IndexOutOfRangeException">IndexOutOfRangeException</a>
 </li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.INFO">INFO (cpl_core.logging.logging_level_enum.LoggingLevelEnum attribute)</a>
 </li>
@@ -1139,15 +1768,29 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.init">init() (cpl_discord.service.discord_service.DiscordService method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.init">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.install">install() (cpl_core.utils.pip.Pip class method)</a>
 </li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.InvalidTypeException">InvalidTypeException</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.invitable">invitable (cpl_discord.container.thread.Thread attribute)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.ip_address_pipe.IPAddressPipe">IPAddressPipe (class in cpl_core.pipes.ip_address_pipe)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable">Iterable (class in cpl_query.extension.iterable)</a>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable.Iterable">Iterable (class in cpl_query.iterable.iterable)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC">IterableABC (class in cpl_query.extension.iterable_abc)</a>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC">IterableABC (class in cpl_query.iterable.iterable_abc)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.joined_at">joined_at (cpl_discord.container.member.Member attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1155,27 +1798,39 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.last">last() (cpl_query.extension.iterable.Iterable method)</a>
+      <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings.languages">languages (cpl_translation.translation_settings.TranslationSettings property)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.last">last() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.last_message_id">last_message_id (cpl_discord.container.text_channel.TextChannel attribute)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.last">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.last_message_id">(cpl_discord.container.thread.Thread attribute)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.last_or_default">last_or_default() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.last_or_default">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.last_or_default">last_or_default() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.level">level (cpl_core.logging.logging_settings.LoggingSettings property)</a>
 </li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.lifetime">lifetime (cpl_core.dependency_injection.service_descriptor.ServiceDescriptor property)</a>
 </li>
       <li><a href="cpl_query.extension.html#cpl_query.extension.list.List">List (class in cpl_query.extension.list)</a>
 </li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService.load">load() (cpl_translation.translation_service.TranslationService method)</a>
+
+      <ul>
+        <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.load">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ExceptionArgument.list">list (cpl_query.exceptions.ExceptionArgument attribute)</a>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService.load_by_settings">load_by_settings() (cpl_translation.translation_service.TranslationService method)</a>
+
+      <ul>
+        <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.load_by_settings">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.locked">locked (cpl_discord.container.thread.Thread attribute)</a>
 </li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger">Logger (class in cpl_core.logging.logger_service)</a>
 </li>
@@ -1203,23 +1858,43 @@
       </ul></li>
       <li><a href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.main">main() (cpl_core.application.application_abc.ApplicationABC method)</a>
 </li>
-      <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.major">major (cpl_core.pipes.VersionInfo attribute)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.managed">managed (cpl_discord.container.role.Role attribute)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.max">max() (cpl_query.extension.iterable.Iterable method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.max">max() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.max_members">max_members (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.max_presences">max_presences (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.max_video_channel_users">max_video_channel_users (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.me">me (cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.median">median() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member">Member (class in cpl_discord.container.member)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.member_count">member_count (cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.members">members (cpl_discord.container.guild.Guild property)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.max">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.members">(cpl_discord.container.role.Role property)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.members">(cpl_discord.container.text_channel.TextChannel property)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.members">(cpl_discord.container.thread.Thread property)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.voice_channel.VoiceChannel.members">(cpl_discord.container.voice_channel.VoiceChannel property)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.micro">micro (cpl_core.pipes.VersionInfo attribute)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.mentionable">mentionable (cpl_discord.container.role.Role attribute)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.min">min() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.min">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.message_count">message_count (cpl_discord.container.thread.Thread attribute)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.minor">minor (cpl_core.pipes.VersionInfo attribute)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.mfa_level">mfa_level (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.min">min() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
       <li>
     module
@@ -1301,8 +1976,6 @@
 </li>
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum</a>
 </li>
-        <li><a href="cpl_core.pipes.html#module-cpl_core.pipes">cpl_core.pipes</a>
-</li>
         <li><a href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe</a>
 </li>
         <li><a href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe</a>
@@ -1329,17 +2002,173 @@
 </li>
         <li><a href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string</a>
 </li>
-        <li><a href="cpl_query.exceptions.html#module-cpl_query.exceptions">cpl_query.exceptions</a>
+        <li><a href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">cpl_discord.application.discord_bot_application_abc</a>
 </li>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.iterable">cpl_query.extension.iterable</a>
+        <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">cpl_discord.command.discord_command_abc</a>
 </li>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.iterable_abc">cpl_query.extension.iterable_abc</a>
+        <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">cpl_discord.command.discord_commands_meta</a>
+</li>
+        <li><a href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.container">cpl_discord.container.container</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.guild">cpl_discord.container.guild</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.member">cpl_discord.container.member</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.role">cpl_discord.container.role</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.thread">cpl_discord.container.thread</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc</a>
+</li>
+        <li><a href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc</a>
+</li>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.default_lambda">cpl_query.base.default_lambda</a>
+</li>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">cpl_query.base.ordered_queryable</a>
+</li>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.ordered_queryable_abc">cpl_query.base.ordered_queryable_abc</a>
+</li>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.queryable_abc">cpl_query.base.queryable_abc</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">cpl_query.enumerable.enumerable</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">cpl_query.enumerable.enumerable_abc</a>
 </li>
         <li><a href="cpl_query.extension.html#module-cpl_query.extension.list">cpl_query.extension.list</a>
 </li>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.ordered_iterable">cpl_query.extension.ordered_iterable</a>
+        <li><a href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">cpl_query.iterable.iterable</a>
 </li>
-        <li><a href="cpl_query.extension.html#module-cpl_query.extension.ordered_iterable_abc">cpl_query.extension.ordered_iterable_abc</a>
+        <li><a href="cpl_query.iterable.html#module-cpl_query.iterable.iterable_abc">cpl_query.iterable.iterable_abc</a>
+</li>
+        <li><a href="cpl_translation.html#module-cpl_translation.translate_pipe">cpl_translation.translate_pipe</a>
+</li>
+        <li><a href="cpl_translation.html#module-cpl_translation.translation_service">cpl_translation.translation_service</a>
+</li>
+        <li><a href="cpl_translation.html#module-cpl_translation.translation_service_abc">cpl_translation.translation_service_abc</a>
+</li>
+        <li><a href="cpl_translation.html#module-cpl_translation.translation_settings">cpl_translation.translation_settings</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1349,6 +2178,30 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.name">name (cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.name">(cpl_discord.container.category_channel.CategoryChannel attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.name">(cpl_discord.container.guild.Guild attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.name">(cpl_discord.container.role.Role attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.name">(cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.name">(cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.nick">nick (cpl_discord.container.member.Member attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.nsfw">nsfw (cpl_discord.container.category_channel.CategoryChannel attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.nsfw">(cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.nsfw_level">nsfw_level (cpl_discord.container.guild.Guild attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1358,30 +2211,538 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.OFF">OFF (cpl_core.logging.logging_level_enum.LoggingLevelEnum attribute)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.order_by">order_by() (cpl_query.extension.iterable.Iterable method)</a>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC.on_bulk_message_delete">on_bulk_message_delete() (cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC method)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.order_by">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_bulk_message_delete">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_bulk_message_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_abc.OnCommandABC.on_command">on_command() (cpl_discord.events.on_command_abc.OnCommandABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_command">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_command">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC.on_command_completion">on_command_completion() (cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_command_completion">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_command_completion">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_error_abc.OnCommandErrorABC.on_command_error">on_command_error() (cpl_discord.events.on_command_error_abc.OnCommandErrorABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.command_error_handler_service.CommandErrorHandlerService.on_command_error">(cpl_discord.service.command_error_handler_service.CommandErrorHandlerService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_command_error">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_command_error">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_connect_abc.OnConnectABC.on_connect">on_connect() (cpl_discord.events.on_connect_abc.OnConnectABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_connect">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_connect">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_disconnect_abc.OnDisconnectABC.on_disconnect">on_disconnect() (cpl_discord.events.on_disconnect_abc.OnDisconnectABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_disconnect">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_disconnect">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_error_abc.OnErrorABC.on_error">on_error() (cpl_discord.events.on_error_abc.OnErrorABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_error">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_error">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_group_join_abc.OnGroupJoinABC.on_group_join">on_group_join() (cpl_discord.events.on_group_join_abc.OnGroupJoinABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_group_join">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_group_join">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC.on_group_remove">on_group_remove() (cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_group_remove">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_group_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC.on_guild_available">on_guild_available() (cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_available">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_available">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC.on_guild_channel_create">on_guild_channel_create() (cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_channel_create">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC.on_guild_channel_delete">on_guild_channel_delete() (cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_channel_delete">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update">on_guild_channel_pins_update() (cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_channel_pins_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_pins_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC.on_guild_channel_update">on_guild_channel_update() (cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_channel_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC.on_guild_emojis_update">on_guild_emojis_update() (cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_emojis_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_emojis_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC.on_guild_integrations_update">on_guild_integrations_update() (cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_integrations_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_integrations_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_join_abc.OnGuildJoinABC.on_guild_join">on_guild_join() (cpl_discord.events.on_guild_join_abc.OnGuildJoinABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_join">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_join">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC.on_guild_remove">on_guild_remove() (cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_remove">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC.on_guild_role_create">on_guild_role_create() (cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_role_create">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_role_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC.on_guild_role_delete">on_guild_role_delete() (cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_role_delete">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_role_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC.on_guild_role_update">on_guild_role_update() (cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_role_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_role_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC.on_guild_unavailable">on_guild_unavailable() (cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_unavailable">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_unavailable">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC.on_guild_update">on_guild_update() (cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_guild_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_invite_create_abc.OnInviteCreateABC.on_invite_create">on_invite_create() (cpl_discord.events.on_invite_create_abc.OnInviteCreateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_invite_create">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_invite_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC.on_invite_delete">on_invite_delete() (cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_invite_delete">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_invite_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_ban_abc.OnMemberBanABC.on_member_ban">on_member_ban() (cpl_discord.events.on_member_ban_abc.OnMemberBanABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_member_ban">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_ban">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_join_abc.OnMemberJoinABC.on_member_join">on_member_join() (cpl_discord.events.on_member_join_abc.OnMemberJoinABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_member_join">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_join">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC.on_member_remove">on_member_remove() (cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_member_remove">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC.on_member_unban">on_member_unban() (cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_member_unban">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_unban">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_update_abc.OnMemberUpdateABC.on_member_update">on_member_update() (cpl_discord.events.on_member_update_abc.OnMemberUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_member_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_abc.OnMessageABC.on_message">on_message() (cpl_discord.events.on_message_abc.OnMessageABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_message">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC.on_message_delete">on_message_delete() (cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_message_delete">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_edit_abc.OnMessageEditABC.on_message_edit">on_message_edit() (cpl_discord.events.on_message_edit_abc.OnMessageEditABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_message_edit">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message_edit">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC.on_private_channel_create">on_private_channel_create() (cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_private_channel_create">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC.on_private_channel_delete">on_private_channel_delete() (cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_private_channel_delete">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.order_by_descending">order_by_descending() (cpl_query.extension.iterable.Iterable method)</a>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update">on_private_channel_pins_update() (cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC method)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.order_by_descending">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_private_channel_pins_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_pins_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.ordered_iterable.OrderedIterable">OrderedIterable (class in cpl_query.extension.ordered_iterable)</a>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC.on_private_channel_update">on_private_channel_update() (cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_private_channel_update">(cpl_discord.service.discord_service.DiscordService method)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC">OrderedIterableABC (class in cpl_query.extension.ordered_iterable_abc)</a>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC.on_raw_reaction_add">on_raw_reaction_add() (cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_add">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC.on_raw_reaction_clear">on_raw_reaction_clear() (cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_clear">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC.on_raw_reaction_clear_emoji">on_raw_reaction_clear_emoji() (cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_clear_emoji">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC.on_raw_reaction_remove">on_raw_reaction_remove() (cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_remove">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_add_abc.OnReactionAddABC.on_reaction_add">on_reaction_add() (cpl_discord.events.on_reaction_add_abc.OnReactionAddABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_reaction_add">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_add">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC.on_reaction_clear">on_reaction_clear() (cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_reaction_clear">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_clear">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC.on_reaction_clear_emoji">on_reaction_clear_emoji() (cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_reaction_clear_emoji">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_clear_emoji">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC.on_reaction_remove">on_reaction_remove() (cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_reaction_remove">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_ready_abc.OnReadyABC.on_ready">on_ready() (cpl_discord.events.on_ready_abc.OnReadyABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service.DiscordBotService.on_ready">(cpl_discord.service.discord_bot_service.DiscordBotService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC.on_ready">(cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_ready">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_ready">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_resume_abc.OnResumeABC.on_resume">on_resume() (cpl_discord.events.on_resume_abc.OnResumeABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_resume">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_resume">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_typing_abc.OnTypingABC.on_typing">on_typing() (cpl_discord.events.on_typing_abc.OnTypingABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_typing">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_typing">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_user_update_abc.OnUserUpdateABC.on_user_update">on_user_update() (cpl_discord.events.on_user_update_abc.OnUserUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_user_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_user_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC.on_voice_state_update">on_voice_state_update() (cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_voice_state_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_voice_state_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC.on_webhooks_update">on_webhooks_update() (cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_webhooks_update">(cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_webhooks_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC">OnBulkMessageDeleteABC (class in cpl_discord.events.on_bulk_message_delete_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_abc.OnCommandABC">OnCommandABC (class in cpl_discord.events.on_command_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC">OnCommandCompletionABC (class in cpl_discord.events.on_command_completion_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_error_abc.OnCommandErrorABC">OnCommandErrorABC (class in cpl_discord.events.on_command_error_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_connect_abc.OnConnectABC">OnConnectABC (class in cpl_discord.events.on_connect_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_disconnect_abc.OnDisconnectABC">OnDisconnectABC (class in cpl_discord.events.on_disconnect_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_error_abc.OnErrorABC">OnErrorABC (class in cpl_discord.events.on_error_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_group_join_abc.OnGroupJoinABC">OnGroupJoinABC (class in cpl_discord.events.on_group_join_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC">OnGroupRemoveABC (class in cpl_discord.events.on_group_remove_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC">OnGuildAvailableABC (class in cpl_discord.events.on_guild_available_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC">OnGuildChannelCreateABC (class in cpl_discord.events.on_guild_channel_create_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC">OnGuildChannelDeleteABC (class in cpl_discord.events.on_guild_channel_delete_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC">OnGuildChannelPinsUpdateABC (class in cpl_discord.events.on_guild_channel_pins_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC">OnGuildChannelUpdateABC (class in cpl_discord.events.on_guild_channel_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC">OnGuildEmojisUpdateABC (class in cpl_discord.events.on_guild_emojis_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC">OnGuildIntegrationsUpdateABC (class in cpl_discord.events.on_guild_integrations_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_join_abc.OnGuildJoinABC">OnGuildJoinABC (class in cpl_discord.events.on_guild_join_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC">OnGuildRemoveABC (class in cpl_discord.events.on_guild_remove_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC">OnGuildRoleCreateABC (class in cpl_discord.events.on_guild_role_create_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC">OnGuildRoleDeleteABC (class in cpl_discord.events.on_guild_role_delete_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC">OnGuildRoleUpdateABC (class in cpl_discord.events.on_guild_role_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC">OnGuildUnavailableABC (class in cpl_discord.events.on_guild_unavailable_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC">OnGuildUpdateABC (class in cpl_discord.events.on_guild_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_invite_create_abc.OnInviteCreateABC">OnInviteCreateABC (class in cpl_discord.events.on_invite_create_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC">OnInviteDeleteABC (class in cpl_discord.events.on_invite_delete_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_ban_abc.OnMemberBanABC">OnMemberBanABC (class in cpl_discord.events.on_member_ban_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_join_abc.OnMemberJoinABC">OnMemberJoinABC (class in cpl_discord.events.on_member_join_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC">OnMemberRemoveABC (class in cpl_discord.events.on_member_remove_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC">OnMemberUnbanABC (class in cpl_discord.events.on_member_unban_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_update_abc.OnMemberUpdateABC">OnMemberUpdateABC (class in cpl_discord.events.on_member_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_abc.OnMessageABC">OnMessageABC (class in cpl_discord.events.on_message_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC">OnMessageDeleteABC (class in cpl_discord.events.on_message_delete_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_edit_abc.OnMessageEditABC">OnMessageEditABC (class in cpl_discord.events.on_message_edit_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC">OnPrivateChannelCreateABC (class in cpl_discord.events.on_private_channel_create_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC">OnPrivateChannelDeleteABC (class in cpl_discord.events.on_private_channel_delete_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC">OnPrivateChannelPinsUpdateABC (class in cpl_discord.events.on_private_channel_pins_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC">OnPrivateChannelUpdateABC (class in cpl_discord.events.on_private_channel_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC">OnRawReactionAddABC (class in cpl_discord.events.on_raw_reaction_add_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC">OnRawReactionClearABC (class in cpl_discord.events.on_raw_reaction_clear_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC">OnRawReactionClearEmojiABC (class in cpl_discord.events.on_raw_reaction_clear_emoji_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC">OnRawReactionRemoveABC (class in cpl_discord.events.on_raw_reaction_remove_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_add_abc.OnReactionAddABC">OnReactionAddABC (class in cpl_discord.events.on_reaction_add_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC">OnReactionClearABC (class in cpl_discord.events.on_reaction_clear_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC">OnReactionClearEmojiABC (class in cpl_discord.events.on_reaction_clear_emoji_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC">OnReactionRemoveABC (class in cpl_discord.events.on_reaction_remove_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_ready_abc.OnReadyABC">OnReadyABC (class in cpl_discord.events.on_ready_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_resume_abc.OnResumeABC">OnResumeABC (class in cpl_discord.events.on_resume_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_typing_abc.OnTypingABC">OnTypingABC (class in cpl_discord.events.on_typing_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_user_update_abc.OnUserUpdateABC">OnUserUpdateABC (class in cpl_discord.events.on_user_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC">OnVoiceStateUpdateABC (class in cpl_discord.events.on_voice_state_update_abc)</a>
+</li>
+      <li><a href="cpl_discord.events.html#cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC">OnWebhooksUpdateABC (class in cpl_discord.events.on_webhooks_update_abc)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.order_by">order_by() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.order_by_descending">order_by_descending() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.ordered_queryable.OrderedQueryable">OrderedQueryable (class in cpl_query.base.ordered_queryable)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.ordered_queryable_abc.OrderedQueryableABC">OrderedQueryableABC (class in cpl_query.base.ordered_queryable_abc)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.owner_id">owner_id (cpl_discord.container.guild.Guild attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.owner_id">(cpl_discord.container.thread.Thread attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.parent_id">parent_id (cpl_discord.container.thread.Thread attribute)</a>
+</li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.parse_console_arguments">parse_console_arguments() (cpl_core.configuration.configuration.Configuration method)</a>
 
       <ul>
@@ -1400,8 +2761,8 @@
         <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.path">(cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.pending">pending (cpl_discord.container.member.Member attribute)</a>
+</li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip">Pip (class in cpl_core.utils.pip)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.pipe_abc.PipeABC">PipeABC (class in cpl_core.pipes.pipe_abc)</a>
@@ -1416,7 +2777,37 @@
         <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum.port">(cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.position">position (cpl_discord.container.category_channel.CategoryChannel attribute)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.position">(cpl_discord.container.role.Role attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.position">(cpl_discord.container.text_channel.TextChannel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.preferred_locale">preferred_locale (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.prefix">prefix (cpl_discord.configuration.discord_bot_settings.DiscordBotSettings property)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.premium_progress_bar_enabled">premium_progress_bar_enabled (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.premium_since">premium_since (cpl_discord.container.member.Member attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.premium_subscription_count">premium_subscription_count (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.premium_tier">premium_tier (cpl_discord.container.guild.Guild attribute)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production">production (cpl_core.environment.environment_name_enum.EnvironmentNameEnum attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC">QueryableABC (class in cpl_query.base.queryable_abc)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1440,16 +2831,24 @@
         <li><a href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.red">(cpl_core.console.foreground_color_enum.ForegroundColorEnum attribute)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.remove">remove() (cpl_query.iterable.iterable_abc.IterableABC method)</a>
+</li>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.remove_at">remove_at() (cpl_query.iterable.iterable_abc.IterableABC method)</a>
+</li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.reset_cursor_position">reset_cursor_position() (cpl_core.console.console.Console class method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.reset_executable">reset_executable() (cpl_core.utils.pip.Pip class method)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.reverse">reverse() (cpl_query.extension.iterable.Iterable method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.reverse">reverse() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role">Role (class in cpl_discord.container.role)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.roles">roles (cpl_discord.container.guild.Guild property)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.reverse">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.roles">(cpl_discord.container.member.Member property)</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.run">run() (cpl_core.application.application_abc.ApplicationABC method)</a>
@@ -1487,7 +2886,11 @@
 </li>
         <li><a href="cpl_core.database.context.html#cpl_core.database.context.database_context_abc.DatabaseContextABC.select">(cpl_core.database.context.database_context_abc.DatabaseContextABC method)</a>
 </li>
+        <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.select">(cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
       </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.select_many">select_many() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_abc.EMailClientABC.send_mail">send_mail() (cpl_core.mailing.email_client_abc.EMailClientABC method)</a>
 
       <ul>
@@ -1518,20 +2921,32 @@
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.set_cursor_position">set_cursor_position() (cpl_core.console.console.Console class method)</a>
 </li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService.set_default_lang">set_default_lang() (cpl_translation.translation_service.TranslationService method)</a>
+
+      <ul>
+        <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.set_default_lang">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.set_executable">set_executable() (cpl_core.utils.pip.Pip class method)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.set_foreground_color">set_foreground_color() (cpl_core.console.console.Console class method)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.set_hold_back">set_hold_back() (cpl_core.console.console.Console class method)</a>
 </li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService.set_lang">set_lang() (cpl_translation.translation_service.TranslationService method)</a>
+
+      <ul>
+        <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.set_lang">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory">set_runtime_directory() (cpl_core.environment.application_environment.ApplicationEnvironment method)</a>
 
       <ul>
         <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory">(cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.set_scope">set_scope() (cpl_core.dependency_injection.service_provider.ServiceProvider method)</a>
 
       <ul>
@@ -1544,30 +2959,20 @@
         <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory">(cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.single">single() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.single">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.single">single() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.single_or_default">single_or_default() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.single_or_default">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.single_or_default">single_or_default() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum.singleton">singleton (cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum attribute)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.skip">skip() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.skip">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.skip">skip() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.skip_last">skip_last() (cpl_query.extension.iterable.Iterable method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.skip_last">skip_last() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.slowmode_delay">slowmode_delay (cpl_discord.container.text_channel.TextChannel attribute)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.skip_last">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.slowmode_delay">(cpl_discord.container.thread.Thread attribute)</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.spinner">spinner() (cpl_core.console.console.Console class method)</a>
@@ -1576,6 +2981,12 @@
 </li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging">staging (cpl_core.environment.environment_name_enum.EnvironmentNameEnum attribute)</a>
 </li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service.DiscordBotService.start_async">start_async() (cpl_discord.service.discord_bot_service.DiscordBotService method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC.start_async">(cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.start_time">start_time (cpl_core.environment.application_environment.ApplicationEnvironment property)</a>
 
       <ul>
@@ -1584,18 +2995,24 @@
       </ul></li>
       <li><a href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC">StartupABC (class in cpl_core.application.startup_abc)</a>
 </li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.stickers">stickers (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.application.html#cpl_discord.application.discord_bot_application_abc.DiscordBotApplicationABC.stop_async">stop_async() (cpl_discord.application.discord_bot_application_abc.DiscordBotApplicationABC method)</a>
+
+      <ul>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service.DiscordBotService.stop_async">(cpl_discord.service.discord_bot_service.DiscordBotService method)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC.stop_async">(cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.stop_spinning">stop_spinning() (cpl_core.console.spinner_thread.SpinnerThread method)</a>
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String">String (class in cpl_core.utils.string)</a>
 </li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.subject">subject (cpl_core.mailing.email.EMail property)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.sum">sum() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.sum">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.sum">sum() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1604,30 +3021,40 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.table">table() (cpl_core.console.console.Console class method)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.take">take() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.take">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.tags">tags (cpl_discord.container.role.Role attribute)</a>
 </li>
-      </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.take_last">take_last() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.take_last">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.take">take() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.take_last">take_last() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.testing">testing (cpl_core.environment.environment_name_enum.EnvironmentNameEnum attribute)</a>
 </li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.ordered_iterable.OrderedIterable.then_by">then_by() (cpl_query.extension.ordered_iterable.OrderedIterable method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.text_channels">text_channels (cpl_discord.container.category_channel.CategoryChannel property)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC.then_by">(cpl_query.extension.ordered_iterable_abc.OrderedIterableABC method)</a>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.text_channels">(cpl_discord.container.guild.Guild property)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.ordered_iterable.OrderedIterable.then_by_descending">then_by_descending() (cpl_query.extension.ordered_iterable.OrderedIterable method)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel">TextChannel (class in cpl_discord.container.text_channel)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.ordered_queryable.OrderedQueryable.then_by">then_by() (cpl_query.base.ordered_queryable.OrderedQueryable method)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.ordered_iterable_abc.OrderedIterableABC.then_by_descending">(cpl_query.extension.ordered_iterable_abc.OrderedIterableABC method)</a>
+        <li><a href="cpl_query.base.html#cpl_query.base.ordered_queryable_abc.OrderedQueryableABC.then_by">(cpl_query.base.ordered_queryable_abc.OrderedQueryableABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.ordered_queryable.OrderedQueryable.then_by_descending">then_by_descending() (cpl_query.base.ordered_queryable.OrderedQueryable method)</a>
+
+      <ul>
+        <li><a href="cpl_query.base.html#cpl_query.base.ordered_queryable_abc.OrderedQueryableABC.then_by_descending">(cpl_query.base.ordered_queryable_abc.OrderedQueryableABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread">Thread (class in cpl_discord.container.thread)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.threads">threads (cpl_discord.container.guild.Guild property)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.threads">(cpl_discord.container.text_channel.TextChannel property)</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.time_format">time_format (cpl_core.time.time_format_settings.TimeFormatSettings property)</a>
@@ -1636,19 +3063,35 @@
         <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum.time_format">(cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum attribute)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.member.Member.timed_out_until">timed_out_until (cpl_discord.container.member.Member attribute)</a>
+</li>
       <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings">TimeFormatSettings (class in cpl_core.time.time_format_settings)</a>
 </li>
       <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum">TimeFormatSettingsNamesEnum (class in cpl_core.time.time_format_settings_names_enum)</a>
 </li>
-      <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.to_list">to_list() (cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum static method)</a>
+      <li><a href="cpl_query.extension.html#cpl_query.extension.list.List.to_enumerable">to_enumerable() (cpl_query.extension.list.List method)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.to_list">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+        <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.to_enumerable">(cpl_query.iterable.iterable_abc.IterableABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable_abc.EnumerableABC.to_iterable">to_iterable() (cpl_query.enumerable.enumerable_abc.EnumerableABC method)</a>
+
+      <ul>
+        <li><a href="cpl_query.extension.html#cpl_query.extension.list.List.to_iterable">(cpl_query.extension.list.List method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.to_list">to_list() (cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum static method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe">ToCamelCasePipe (class in cpl_core.pipes.to_camel_case_pipe)</a>
+</li>
+      <li><a href="cpl_discord.helper.html#cpl_discord.helper.to_containers_converter.ToContainersConverter">ToContainersConverter (class in cpl_discord.helper.to_containers_converter)</a>
+</li>
+      <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.token">token (cpl_discord.configuration.discord_bot_settings.DiscordBotSettings property)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.topic">topic (cpl_discord.container.text_channel.TextChannel attribute)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe">ToSnakeCasePipe (class in cpl_core.pipes.to_snake_case_pipe)</a>
 </li>
@@ -1679,21 +3122,37 @@
 </li>
         <li><a href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe.transform">(cpl_core.pipes.version_pipe.VersionPipe method)</a>
 </li>
+        <li><a href="cpl_translation.html#cpl_translation.translate_pipe.TranslatePipe.transform">(cpl_translation.translate_pipe.TranslatePipe method)</a>
+</li>
       </ul></li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum.transient">transient (cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum attribute)</a>
 </li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ExceptionArgument.type">type (cpl_query.exceptions.ExceptionArgument attribute)</a>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService.translate">translate() (cpl_translation.translation_service.TranslationService method)</a>
 
       <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.type">(cpl_query.extension.iterable_abc.IterableABC property)</a>
+        <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.translate">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_translation.html#cpl_translation.translate_pipe.TranslatePipe">TranslatePipe (class in cpl_translation.translate_pipe)</a>
+</li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService">TranslationService (class in cpl_translation.translation_service)</a>
+</li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC">TranslationServiceABC (class in cpl_translation.translation_service_abc)</a>
+</li>
+      <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings">TranslationSettings (class in cpl_translation.translation_settings)</a>
+</li>
+      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.type">type (cpl_query.iterable.iterable_abc.IterableABC property)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.unavailable">unavailable (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.unicode_emoji">unicode_emoji (cpl_discord.container.role.Role attribute)</a>
+</li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.uninstall">uninstall() (cpl_core.utils.pip.Pip class method)</a>
 </li>
       <li><a href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.use_extension">use_extension() (cpl_core.application.application_builder.ApplicationBuilder method)</a>
@@ -1704,14 +3163,14 @@
         <li><a href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC.use_startup">(cpl_core.application.application_builder_abc.ApplicationBuilderABC method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.use_unicode">use_unicode (cpl_core.database.database_settings.DatabaseSettings property)</a>
 
       <ul>
         <li><a href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.use_unicode">(cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.user">user (cpl_core.database.database_settings.DatabaseSettings property)</a>
 
       <ul>
@@ -1730,13 +3189,21 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.ExceptionArgument.value">value (cpl_query.exceptions.ExceptionArgument attribute)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.vanity_url_code">vanity_url_code (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.verification_level">verification_level (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe">VersionPipe (class in cpl_core.pipes.version_pipe)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo">VersionInfo (class in cpl_core.pipes)</a>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.voice_channels">voice_channels (cpl_discord.container.category_channel.CategoryChannel property)</a>
+
+      <ul>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.voice_channels">(cpl_discord.container.guild.Guild property)</a>
 </li>
-      <li><a href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe">VersionPipe (class in cpl_core.pipes.version_pipe)</a>
+      </ul></li>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.voice_channel.VoiceChannel">VoiceChannel (class in cpl_discord.container.voice_channel)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1752,12 +3219,8 @@
         <li><a href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.warn">(cpl_core.logging.logger_service.Logger method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_query.extension.html#cpl_query.extension.iterable.Iterable.where">where() (cpl_query.extension.iterable.Iterable method)</a>
-
-      <ul>
-        <li><a href="cpl_query.extension.html#cpl_query.extension.iterable_abc.IterableABC.where">(cpl_query.extension.iterable_abc.IterableABC method)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.where">where() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
-      </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.white">white (cpl_core.console.background_color_enum.BackgroundColorEnum attribute)</a>
 
       <ul>
@@ -1766,6 +3229,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.widget_enabled">widget_enabled (cpl_discord.container.guild.Guild attribute)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.working_directory">working_directory (cpl_core.environment.application_environment.ApplicationEnvironment property)</a>
 
       <ul>
@@ -1779,8 +3244,6 @@
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.write_line">write_line() (cpl_core.console.console.Console class method)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.write_line_at">write_line_at() (cpl_core.console.console.Console class method)</a>
-</li>
-      <li><a href="cpl_query.exceptions.html#cpl_query.exceptions.WrongTypeException">WrongTypeException</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1806,7 +3269,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Sven Heidemann.</p>
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,13 +1,12 @@
 import os
 import subprocess
 import sys
-import threading
 from datetime import datetime
 
 from cpl_core.console.console import Console
 from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl_cli.configuration import BuildSettings
+from cpl_cli.configuration.build_settings import BuildSettings
 
 
 class StartExecutable:
@@ -43,7 +42,10 @@ class StartExecutable:
         self._env_vars['VIRTUAL_ENV'] = path
 
     def run(self, args: list[str], executable: str, path: str, output=True):
-        self._executable = os.path.abspath(executable)
+        self._executable = os.path.abspath(os.path.join(self._env.working_directory, executable))
+        if not os.path.exists(self._executable):
+            Console.error(f'Executable not found')
+            return
 
         main = self._build_settings.main
         if '.' in self._build_settings.main:

@@ -15,15 +15,14 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src/'))
 
+sys.path.insert(0, os.path.abspath('../../src/'))
 
 # -- Project information -----------------------------------------------------
 
 project = 'Common Python Library'
-copyright = '2021, Sven Heidemann'
+copyright = '2021 - 2023, Sven Heidemann'
 author = 'Sven Heidemann'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -55,7 +54,6 @@ exclude_patterns = [
     'cpl_query/tests/*',
     'tests/*'
 ]
-
 
 # -- Options for HTML output -------------------------------------------------
 

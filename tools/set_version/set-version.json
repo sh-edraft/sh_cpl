@@ -3,7 +3,7 @@
     "Name": "set-version",
     "Version": {
       "Major": "2022",
-      "Minor": "7",
+      "Minor": "12",
       "Micro": "0"
     },
     "Author": "Sven Heidemann",
@@ -16,13 +16,13 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2022.10.0",
-      "gitpython==3.1.27"
+      "cpl-core==2022.12.0",
+      "GitPython==3.1.29"
     ],
+    "DevDependencies": [],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {},
-    "Classifiers": [],
-    "DevDependencies": []
+    "Classifiers": []
   },
   "BuildSettings": {
     "ProjectType": "console",

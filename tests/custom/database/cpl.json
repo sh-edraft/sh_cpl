@@ -19,9 +19,7 @@
       "sh_cpl==2021.4.2.dev1"
     ],
     "PythonVersion": ">=3.9.2",
-    "PythonPath": {
-      "linux": ""
-    },
+    "PythonPath": {},
     "Classifiers": []
   },
   "BuildSettings": {

@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="cpl_core.configuration" href="cpl_core.configuration.html" />
-    <link rel="prev" title="API Reference" href="cpl_core.html" /> 
+    <link rel="prev" title="API reference" href="cpl_core.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,8 +42,8 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI Reference</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API Reference</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_abc">cpl_core.application.application_abc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_builder">cpl_core.application.application_builder</a></li>
@@ -63,7 +63,9 @@
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
 
         </div>
@@ -80,7 +82,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_core.html">API Reference</a> &raquo;</li>
+          <li><a href="cpl_core.html">API reference</a> &raquo;</li>
       <li>cpl_core.application</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.application.rst.txt" rel="nofollow"> View page source</a>
@@ -172,12 +174,12 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder.use_extension">
-<span class="sig-name descname"><span class="pre">use_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">ApplicationExtensionABC</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">StartupExtensionABC</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_extension" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">ApplicationExtensionABC</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">StartupExtensionABC</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_builder.ApplicationBuilder" title="cpl_core.application.application_builder.ApplicationBuilder"><span class="pre">ApplicationBuilder</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_extension" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder.use_startup">
-<span class="sig-name descname"><span class="pre">use_startup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">startup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.application.startup_abc.StartupABC" title="cpl_core.application.startup_abc.StartupABC"><span class="pre">StartupABC</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_startup" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_startup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">startup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.application.startup_abc.StartupABC" title="cpl_core.application.startup_abc.StartupABC"><span class="pre">StartupABC</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_builder.ApplicationBuilder" title="cpl_core.application.application_builder.ApplicationBuilder"><span class="pre">ApplicationBuilder</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_startup" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the custom startup class to use async</p>
 <blockquote>
 <div><dl class="simple">
@@ -272,14 +274,14 @@ env: <a class="reference internal" href="cpl_core.environment.html#module-cpl_co
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_core.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="cpl_core.configuration.html" class="btn btn-neutral float-right" title="cpl_core.configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Sven Heidemann.</p>
+    <p>&#169; Copyright 2021 - 2023, Sven Heidemann.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

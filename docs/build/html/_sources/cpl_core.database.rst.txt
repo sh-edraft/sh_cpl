@@ -7,8 +7,7 @@ cpl_core.database
    cpl_core.database.connection
    cpl_core.database.context
 
-Submodules
-----------
+
 
 cpl_core.database.database\_model
 -----------------------------------

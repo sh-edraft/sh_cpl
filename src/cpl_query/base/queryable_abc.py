@@ -1,10 +1,19 @@
-from abc import abstractmethod, ABC
-from typing import Optional, Callable, Union
+from typing import Optional, Callable, Union, Iterable
+
+from cpl_query._helper import is_number
+from cpl_query.base.sequence import Sequence
+from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException, ExceptionArgument, IndexOutOfRangeException
 
 
-class QueryableABC(ABC):
+def _default_lambda(x: object) -> object:
+    return x
 
-    @abstractmethod
+
+class QueryableABC(Sequence):
+
+    def __init__(self, t: type, values: Iterable = None):
+        Sequence.__init__(self, t, values)
+
     def all(self, _func: Callable = None) -> bool:
         r"""Checks if every element of list equals result found by function
 
@@ -17,9 +26,11 @@ class QueryableABC(ABC):
         -------
             bool
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
+        return self.count(_func) == self.count()
+
     def any(self, _func: Callable = None) -> bool:
         r"""Checks if list contains result found by function
 
@@ -32,9 +43,11 @@ class QueryableABC(ABC):
         -------
             bool
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
+        return self.where(_func).count() > 0
+
     def average(self, _func: Callable = None) -> Union[int, float, complex]:
         r"""Returns average value of list
 
@@ -47,10 +60,12 @@ class QueryableABC(ABC):
         -------
             Union[int, float, complex]
         """
-        pass
+        if _func is None and not is_number(self.type):
+            raise InvalidTypeException()
 
-    @abstractmethod
-    def contains(self, value: object) -> bool:
+        return self.sum(_func) / self.count()
+
+    def contains(self, _value: object) -> bool:
         r"""Checks if list contains value given by function
 
         Parameter
@@ -62,9 +77,11 @@ class QueryableABC(ABC):
         -------
             bool
         """
-        pass
+        if _value is None:
+            raise ArgumentNoneException(ExceptionArgument.value)
 
-    @abstractmethod
+        return self.where(lambda x: x == _value).count() > 0
+
     def count(self, _func: Callable = None) -> int:
         r"""Returns length of list or count of found elements
 
@@ -77,9 +94,11 @@ class QueryableABC(ABC):
         -------
             int
         """
-        pass
+        if _func is None:
+            return self.__len__()
 
-    @abstractmethod
+        return self.where(_func).count()
+
     def distinct(self, _func: Callable = None) -> 'QueryableABC':
         r"""Returns list without redundancies
 
@@ -92,39 +111,65 @@ class QueryableABC(ABC):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
-    def element_at(self, index: int) -> any:
+        result = []
+        known_values = []
+        for element in self:
+            value = _func(element)
+            if value in known_values:
+                continue
+
+            known_values.append(value)
+            result.append(element)
+
+        return type(self)(self._type, result)
+
+    def element_at(self, _index: int) -> any:
         r"""Returns element at given index
 
         Parameter
         ---------
-            index: :class:`int`
+            _index: :class:`int`
                 index
 
         Returns
         -------
-            Value at index: any
+            Value at _index: any
         """
-        pass
+        if _index is None:
+            raise ArgumentNoneException(ExceptionArgument.index)
 
-    @abstractmethod
-    def element_at_or_default(self, index: int) -> Optional[any]:
+        if _index < 0 or _index >= self.count():
+            raise IndexOutOfRangeException
+
+        result = self._values[_index]
+        if result is None:
+            raise IndexOutOfRangeException
+
+        return result
+
+    def element_at_or_default(self, _index: int) -> Optional[any]:
         r"""Returns element at given index or None
 
         Parameter
         ---------
-            index: :class:`int`
+            _index: :class:`int`
                 index
 
         Returns
         -------
-            Value at index: Optional[any]
+            Value at _index: Optional[any]
         """
-        pass
+        if _index is None:
+            raise ArgumentNoneException(ExceptionArgument.index)
 
-    @abstractmethod
+        try:
+            return self._values[_index]
+        except IndexError:
+            return None
+
     def first(self) -> any:
         r"""Returns first element
 
@@ -132,9 +177,11 @@ class QueryableABC(ABC):
         -------
             First element of list: any
         """
-        pass
+        if self.count() == 0:
+            raise IndexOutOfRangeException()
 
-    @abstractmethod
+        return self._values[0]
+
     def first_or_default(self) -> any:
         r"""Returns first element or None
 
@@ -142,9 +189,11 @@ class QueryableABC(ABC):
         -------
             First element of list: Optional[any]
         """
-        pass
+        if self.count() == 0:
+            return None
 
-    @abstractmethod
+        return self._values[0]
+
     def for_each(self, _func: Callable = None):
         r"""Runs given function for each element of list
 
@@ -153,9 +202,36 @@ class QueryableABC(ABC):
             func: :class: `Callable`
                 function to call
         """
-        pass
+        if _func is not None:
+            for element in self:
+                _func(element)
 
-    @abstractmethod
+        return self
+
+    def group_by(self, _func: Callable = None) -> 'QueryableABC':
+        r"""Groups by func
+
+        Returns
+        -------
+            Grouped list[list[any]]: any
+        """
+        if _func is None:
+            _func = _default_lambda
+        groups = {}
+
+        for v in self:
+            value = _func(v)
+            if v not in groups:
+                groups[value] = []
+
+            groups[value].append(v)
+
+        v = []
+        for g in groups.values():
+            v.append(type(self)(object, g))
+        x = type(self)(type(self), v)
+        return x
+
     def last(self) -> any:
         r"""Returns last element
 
@@ -163,9 +239,11 @@ class QueryableABC(ABC):
         -------
             Last element of list: any
         """
-        pass
+        if self.count() == 0:
+            raise IndexOutOfRangeException()
 
-    @abstractmethod
+        return self._values[self.count() - 1]
+
     def last_or_default(self) -> any:
         r"""Returns last element or None
 
@@ -173,10 +251,12 @@ class QueryableABC(ABC):
         -------
             Last element of list: Optional[any]
         """
-        pass
+        if self.count() == 0:
+            return None
 
-    @abstractmethod
-    def max(self, _func: Callable = None) -> Union[int, float, complex]:
+        return self._values[self.count() - 1]
+
+    def max(self, _func: Callable = None) -> object:
         r"""Returns the highest value
 
         Parameter
@@ -186,22 +266,36 @@ class QueryableABC(ABC):
 
         Returns
         -------
-            Union[int, float, complex]
+            object
         """
-        pass
+        if _func is None and not is_number(self.type):
+            raise InvalidTypeException()
 
-    @abstractmethod
-    def median(self) -> Union[int, float]:
+        if _func is None:
+            _func = _default_lambda
+
+        return _func(max(self, key=_func))
+
+    def median(self, _func=None) -> Union[int, float]:
         r"""Return the median value of data elements
 
         Returns
         -------
             Union[int, float]
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
-    def min(self, _func: Callable = None) -> Union[int, float, complex]:
+        result = self.order_by(_func).select(_func).to_list()
+        length = len(result)
+        i = int(length / 2)
+        return (
+            result[i]
+            if length % 2 == 1
+            else (float(result[i - 1]) + float(result[i])) / float(2)
+        )
+
+    def min(self, _func: Callable = None) -> object:
         r"""Returns the lowest value
 
         Parameter
@@ -211,11 +305,16 @@ class QueryableABC(ABC):
 
         Returns
         -------
-            Union[int, float, complex]
+            object
         """
-        pass
+        if _func is None and not is_number(self.type):
+            raise InvalidTypeException()
 
-    @abstractmethod
+        if _func is None:
+            _func = _default_lambda
+
+        return _func(min(self, key=_func))
+
     def order_by(self, _func: Callable = None) -> 'QueryableABC':
         r"""Sorts elements by function in ascending order
 
@@ -228,9 +327,12 @@ class QueryableABC(ABC):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
+        from cpl_query.base.ordered_queryable import OrderedQueryable
+        return OrderedQueryable(self.type, sorted(self, key=_func), _func)
+
     def order_by_descending(self, _func: Callable = None) -> 'QueryableABC':
         r"""Sorts elements by function in descending order
 
@@ -243,9 +345,12 @@ class QueryableABC(ABC):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
+        from cpl_query.base.ordered_queryable import OrderedQueryable
+        return OrderedQueryable(self.type, sorted(self, key=_func, reverse=True), _func)
+
     def reverse(self) -> 'QueryableABC':
         r"""Reverses list
 
@@ -253,29 +358,31 @@ class QueryableABC(ABC):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        return type(self)(self._type, reversed(self._values))
 
-    @abstractmethod
-    def select(self, _f: Callable) -> 'QueryableABC':
+    def select(self, _func: Callable) -> 'QueryableABC':
         r"""Formats each element of list to a given format
 
         Returns
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _func is None:
+            _func = _default_lambda
 
-    @abstractmethod
-    def select_many(self, _f: Callable) -> 'QueryableABC':
+        return type(self)(object, [_func(_o) for _o in self])
+
+    def select_many(self, _func: Callable) -> 'QueryableABC':
         r"""Flattens resulting lists to one
 
         Returns
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        # The line below is pain. I don't understand anything of it...
+        # written on 09.11.2022 by Sven Heidemann
+        return type(self)(object, [_a for _o in self for _a in _func(_o)])
 
-    @abstractmethod
     def single(self) -> any:
         r"""Returns one single element of list
 
@@ -288,9 +395,13 @@ class QueryableABC(ABC):
             ArgumentNoneException: when argument is None
             Exception: when argument is None or found more than one element
         """
-        pass
+        if self.count() > 1:
+            raise Exception('Found more than one element')
+        elif self.count() == 0:
+            raise Exception('Found no element')
 
-    @abstractmethod
+        return self._values[0]
+
     def single_or_default(self) -> Optional[any]:
         r"""Returns one single element of list
 
@@ -298,39 +409,48 @@ class QueryableABC(ABC):
         -------
             Found value: Optional[any]
         """
-        pass
+        if self.count() > 1:
+            raise Exception('Index out of range')
+        elif self.count() == 0:
+            return None
 
-    @abstractmethod
-    def skip(self, index: int) -> 'QueryableABC':
+        return self._values[0]
+
+    def skip(self, _index: int) -> 'QueryableABC':
         r"""Skips all elements from index
 
         Parameter
         ---------
-            index: :class:`int`
+            _index: :class:`int`
                 index
 
         Returns
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _index is None:
+            raise ArgumentNoneException(ExceptionArgument.index)
 
-    @abstractmethod
-    def skip_last(self, index: int) -> 'QueryableABC':
+        return type(self)(self.type, self._values[_index:])
+
+    def skip_last(self, _index: int) -> 'QueryableABC':
         r"""Skips all elements after index
 
         Parameter
         ---------
-            index: :class:`int`
+            _index: :class:`int`
                 index
 
         Returns
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _index is None:
+            raise ArgumentNoneException(ExceptionArgument.index)
 
-    @abstractmethod
+        index = self.count() - _index
+        return type(self)(self._type, self._values[:index])
+
     def sum(self, _func: Callable = None) -> Union[int, float, complex]:
         r"""Sum of all values
 
@@ -343,39 +463,87 @@ class QueryableABC(ABC):
         -------
             Union[int, float, complex]
         """
-        pass
+        if _func is None and not is_number(self.type):
+            raise InvalidTypeException()
 
-    @abstractmethod
-    def take(self, index: int) -> 'QueryableABC':
+        if _func is None:
+            _func = _default_lambda
+
+        result = 0
+        for x in self:
+            result += _func(x)
+
+        return result
+
+    def split(self, _func: Callable) -> 'QueryableABC':
+        r"""Splits the list by given function
+
+
+        Parameter
+        ---------
+            func: :class:`Callable`
+                seperator
+
+        Returns
+        -------
+            :class: `cpl_query.base.queryable_abc.QueryableABC`
+        """
+        groups = []
+        group = []
+        for x in self:
+            v = _func(x)
+            if x == v:
+                groups.append(group)
+                group = []
+
+            group.append(x)
+
+        groups.append(group)
+
+        query_groups = []
+        for g in groups:
+            if len(g) == 0:
+                continue
+            query_groups.append(type(self)(self._type, g))
+
+        return type(self)(self._type, query_groups)
+
+    def take(self, _index: int) -> 'QueryableABC':
         r"""Takes all elements from index
 
         Parameter
         ---------
-            index: :class:`int`
+            _index: :class:`int`
                 index
 
         Returns
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _index is None:
+            raise ArgumentNoneException(ExceptionArgument.index)
 
-    @abstractmethod
-    def take_last(self, index: int) -> 'QueryableABC':
+        return type(self)(self._type, self._values[:_index])
+
+    def take_last(self, _index: int) -> 'QueryableABC':
         r"""Takes all elements after index
 
         Parameter
         ---------
-            index: :class:`int`
+            _index: :class:`int`
                 index
 
         Returns
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        index = self.count() - _index
 
-    @abstractmethod
+        if index >= self.count() or index < 0:
+            raise IndexOutOfRangeException()
+
+        return type(self)(self._type, self._values[index:])
+
     def where(self, _func: Callable = None) -> 'QueryableABC':
         r"""Select element by function
 
@@ -388,4 +556,10 @@ class QueryableABC(ABC):
         -------
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
-        pass
+        if _func is None:
+            raise ArgumentNoneException(ExceptionArgument.func)
+
+        if _func is None:
+            _func = _default_lambda
+
+        return type(self)(self.type, filter(_func, self))

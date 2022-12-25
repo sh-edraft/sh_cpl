@@ -32,8 +32,8 @@ class CLITestSuite(unittest.TestSuite):
         active_tests = [
             # nothing needed
             VersionTestCase,
-            GenerateTestCase,
             NewTestCase,
+            GenerateTestCase,
             # project needed
             BuildTestCase,
             PublishTestCase,
@@ -76,3 +76,8 @@ class CLITestSuite(unittest.TestSuite):
         self._setup()
         self._result = super().run(*args)
         self._cleanup()
+
+
+if __name__ == "__main__":
+    runner = unittest.TextTestRunner()
+    runner.run(CLITestSuite())
