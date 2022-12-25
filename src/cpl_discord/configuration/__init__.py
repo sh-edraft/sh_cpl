@@ -6,7 +6,7 @@ cpl-discord sh-edraft Common Python library Discord
 
 sh-edraft Common Python library link between discord.py and CPL
 
-:copyright: (c) 2021 - 2022 sh-edraft.de
+:copyright: (c) 2022 - 2023 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
@@ -14,7 +14,7 @@ sh-edraft Common Python library link between discord.py and CPL
 __title__ = 'cpl_discord.configuration'
 __author__ = 'Sven Heidemann'
 __license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2021 - 2022 sh-edraft.de'
+__copyright__ = 'Copyright (c) 2022 - 2023 sh-edraft.de'
 __version__ = '2022.12.1'
 
 from collections import namedtuple
