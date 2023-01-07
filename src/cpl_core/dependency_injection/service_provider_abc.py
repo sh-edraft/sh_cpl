@@ -13,14 +13,16 @@ class ServiceProviderABC(ABC):
     _provider: Optional['ServiceProviderABC'] = None
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        pass
 
     @classmethod
     def set_global_provider(cls, provider: 'ServiceProviderABC'):
         cls._provider = provider
 
     @abstractmethod
-    def build_by_signature(self, sig: Signature) -> list[T]: pass
+    def build_by_signature(self, sig: Signature) -> list[T]:
+        pass
 
     @abstractmethod
     def build_service(self, service_type: type) -> object:
@@ -108,7 +110,7 @@ class ServiceProviderABC(ABC):
             if cls._provider is None:
                 raise Exception(f'{cls.__name__} not build!')
 
-            injection = cls._provider.build_by_signature(signature(f))
+            injection = [x for x in cls._provider.build_by_signature(signature(f)) if x is not None]
             return f(*injection, *args, **kwargs)
 
         return inner
