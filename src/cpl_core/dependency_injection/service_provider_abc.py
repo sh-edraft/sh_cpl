@@ -25,7 +25,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def build_service(self, service_type: type) -> object:
+    def build_service(self, service_type: type, *args, **kwargs) -> object:
         r"""Creates instance of given type
 
         Parameter
@@ -61,7 +61,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: T) -> Optional[T]:
+    def get_service(self, instance_type: T, *args, **kwargs) -> Optional[T]:
         r"""Returns instance of given type
 
         Parameter
@@ -76,7 +76,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_services(self, service_type: T) -> list[Optional[T]]:
+    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[T]]:
         r"""Returns instance of given type
 
         Parameter

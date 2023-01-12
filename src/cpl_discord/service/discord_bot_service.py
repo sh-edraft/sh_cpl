@@ -21,7 +21,9 @@ class DiscordBotService(DiscordBotServiceABC):
             discord_bot_settings: DiscordBotSettings,
             env: ApplicationEnvironmentABC,
             logging_st: LoggingSettings,
-            discord_service: DiscordServiceABC
+            discord_service: DiscordServiceABC,
+            *args,
+            **kwargs
     ):
         # services
         self._config = config
@@ -34,7 +36,12 @@ class DiscordBotService(DiscordBotServiceABC):
         self._discord_settings = self._get_settings(discord_bot_settings)
 
         # setup super
-        DiscordBotServiceABC.__init__(self, command_prefix=self._discord_settings.prefix, help_command=None, intents=discord.Intents().all())
+        DiscordBotServiceABC.__init__(
+            self,
+            *args,
+            command_prefix=self._discord_settings.prefix, help_command=None, intents=discord.Intents().all(),
+            **kwargs
+        )
         self._base = super(DiscordBotServiceABC, self)
 
     @staticmethod
@@ -50,7 +57,9 @@ class DiscordBotService(DiscordBotServiceABC):
 
         new_settings.from_dict({
             'Token': env_token if token is None or token == '' else token,
-            'Prefix': ('! ' if self._is_string_invalid(env_prefix) else env_prefix) if self._is_string_invalid(prefix) else prefix
+            'Prefix':
+                ('! ' if self._is_string_invalid(env_prefix) else env_prefix)
+                if self._is_string_invalid(prefix) else prefix
         })
         if new_settings.token is None or new_settings.token == '':
             raise Exception('You have to configure discord token by appsettings or environment variables')
