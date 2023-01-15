@@ -111,6 +111,6 @@ class ServiceProviderABC(ABC):
                 raise Exception(f'{cls.__name__} not build!')
 
             injection = [x for x in cls._provider.build_by_signature(signature(f)) if x is not None]
-            return f(*injection, *args, **kwargs)
+            return f(*args, *injection, **kwargs)
 
         return inner
