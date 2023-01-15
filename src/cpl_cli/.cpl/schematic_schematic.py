@@ -40,7 +40,7 @@ class Schematic(GenerateSchematicABC):
                     []
                 )
         """
-        return self.build_code_str(code, Name=self._class_name)
+        return self.build_code_str(code, Name=self._class_name, NameLower=self._class_name.lower())
 
     @classmethod
     def register(cls):
