@@ -57,6 +57,11 @@ from cpl_discord.events.on_reaction_clear_emoji_abc import OnReactionClearEmojiA
 from cpl_discord.events.on_reaction_remove_abc import OnReactionRemoveABC
 from cpl_discord.events.on_ready_abc import OnReadyABC
 from cpl_discord.events.on_resume_abc import OnResumeABC
+from cpl_discord.events.on_scheduled_event_create_abc import OnScheduledEventCreateABC
+from cpl_discord.events.on_scheduled_event_delete_abc import OnScheduledEventDeleteABC
+from cpl_discord.events.on_scheduled_event_update_abc import OnScheduledEventUpdateABC
+from cpl_discord.events.on_scheduled_event_user_add_abc import OnScheduledEventUserAddABC
+from cpl_discord.events.on_scheduled_event_user_remove_abc import OnScheduledEventUserRemoveABC
 from cpl_discord.events.on_typing_abc import OnTypingABC
 from cpl_discord.events.on_user_update_abc import OnUserUpdateABC
 from cpl_discord.events.on_voice_state_update_abc import OnVoiceStateUpdateABC
@@ -338,6 +343,31 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
     async def on_guild_unavailable(self, guild: discord.Guild):
         self._logger.trace(__name__, f'Received on_guild_unavailable:\n\t{guild}')
         await self._handle_event(OnGuildUnavailableABC, guild)
+
+    @commands.Cog.listener()
+    async def on_scheduled_event_create(self, event: discord.ScheduledEvent):
+        self._logger.trace(__name__, f'Received on_scheduled_event_create:\n\t{event}')
+        await self._handle_event(OnScheduledEventCreateABC, event)
+
+    @commands.Cog.listener()
+    async def on_scheduled_event_delete(self, event: discord.ScheduledEvent):
+        self._logger.trace(__name__, f'Received on_scheduled_event_delete:\n\t{event}')
+        await self._handle_event(OnScheduledEventDeleteABC, event)
+
+    @commands.Cog.listener()
+    async def on_scheduled_event_update(self, before: discord.ScheduledEvent, after: discord.ScheduledEvent):
+        self._logger.trace(__name__, f'Received on_scheduled_event_update:\n\t{before}, {after}')
+        await self._handle_event(OnScheduledEventUpdateABC, before, after)
+
+    @commands.Cog.listener()
+    async def on_scheduled_event_user_add(self, event: discord.ScheduledEvent, user: discord.User):
+        self._logger.trace(__name__, f'Received on_scheduled_event_user_add:\n\t{event}, {user}')
+        await self._handle_event(OnScheduledEventUserAddABC, event, user)
+
+    @commands.Cog.listener()
+    async def on_scheduled_event_user_remove(self, event: discord.ScheduledEvent, user: discord.User):
+        self._logger.trace(__name__, f'Received on_scheduled_event_user_remove:\n\t{event}, {user}')
+        await self._handle_event(OnScheduledEventUserRemoveABC, event, user)
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState):
