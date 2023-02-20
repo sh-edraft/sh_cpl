@@ -13,15 +13,14 @@ from cpl_query.extension.list import List
 
 
 class DiscordBotService(DiscordBotServiceABC):
-
     def __init__(
-            self,
-            config: ConfigurationABC,
-            logger: LoggerABC,
-            discord_bot_settings: DiscordBotSettings,
-            env: ApplicationEnvironmentABC,
-            logging_st: LoggingSettings,
-            discord_service: DiscordServiceABC
+        self,
+        config: ConfigurationABC,
+        logger: LoggerABC,
+        discord_bot_settings: DiscordBotSettings,
+        env: ApplicationEnvironmentABC,
+        logging_st: LoggingSettings,
+        discord_service: DiscordServiceABC,
     ):
         # services
         self._config = config
@@ -34,51 +33,57 @@ class DiscordBotService(DiscordBotServiceABC):
         self._discord_settings = self._get_settings(discord_bot_settings)
 
         # setup super
-        DiscordBotServiceABC.__init__(self, command_prefix=self._discord_settings.prefix, help_command=None, intents=discord.Intents().all())
+        DiscordBotServiceABC.__init__(
+            self, command_prefix=self._discord_settings.prefix, help_command=None, intents=discord.Intents().all()
+        )
         self._base = super(DiscordBotServiceABC, self)
 
     @staticmethod
     def _is_string_invalid(x):
-        return x is None or x == ''
+        return x is None or x == ""
 
     def _get_settings(self, settings_from_config: DiscordBotSettings) -> DiscordBotSettings:
         new_settings = DiscordBotSettings()
         token = None if settings_from_config is None else settings_from_config.token
         prefix = None if settings_from_config is None else settings_from_config.prefix
-        env_token = self._config.get_configuration('TOKEN')
-        env_prefix = self._config.get_configuration('PREFIX')
+        env_token = self._config.get_configuration("TOKEN")
+        env_prefix = self._config.get_configuration("PREFIX")
 
-        new_settings.from_dict({
-            'Token': env_token if token is None or token == '' else token,
-            'Prefix': ('! ' if self._is_string_invalid(env_prefix) else env_prefix) if self._is_string_invalid(prefix) else prefix
-        })
-        if new_settings.token is None or new_settings.token == '':
-            raise Exception('You have to configure discord token by appsettings or environment variables')
+        new_settings.from_dict(
+            {
+                "Token": env_token if token is None or token == "" else token,
+                "Prefix": ("! " if self._is_string_invalid(env_prefix) else env_prefix)
+                if self._is_string_invalid(prefix)
+                else prefix,
+            }
+        )
+        if new_settings.token is None or new_settings.token == "":
+            raise Exception("You have to configure discord token by appsettings or environment variables")
         return new_settings
 
     async def start_async(self):
-        self._logger.trace(__name__, 'Try to connect to discord')
+        self._logger.trace(__name__, "Try to connect to discord")
         await self.start(self._discord_settings.token)
         # continue at on_ready
 
     async def stop_async(self):
-        self._logger.trace(__name__, 'Try to disconnect from discord')
+        self._logger.trace(__name__, "Try to disconnect from discord")
         try:
             await self.close()
         except Exception as e:
-            self._logger.error(__name__, 'Stop failed', e)
+            self._logger.error(__name__, "Stop failed", e)
 
     async def on_ready(self):
-        self._logger.info(__name__, 'Connected to discord')
+        self._logger.info(__name__, "Connected to discord")
 
-        self._logger.header(f'{self.user.name}:')
+        self._logger.header(f"{self.user.name}:")
         if self._logging_st.console.value >= LoggingLevelEnum.INFO.value:
-            Console.banner(self._env.application_name if self._env.application_name != '' else 'A bot')
+            Console.banner(self._env.application_name if self._env.application_name != "" else "A bot")
 
         await self._discord_service.init(self)
         await self.wait_until_ready()
         await self.tree.sync()
-        self._logger.debug(__name__, f'Finished syncing commands')
+        self._logger.debug(__name__, f"Finished syncing commands")
 
         await self._discord_service.on_ready()
 

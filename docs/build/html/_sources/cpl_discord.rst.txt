@@ -1,5 +1,8 @@
-Discord reference
+cpl\_discord package
 ====================
+
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
@@ -11,3 +14,22 @@ Discord reference
    cpl_discord.events
    cpl_discord.helper
    cpl_discord.service
+
+Submodules
+----------
+
+cpl\_discord.discord\_event\_types\_enum module
+-----------------------------------------------
+
+.. automodule:: cpl_discord.discord_event_types_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cpl_discord
+   :members:
+   :undoc-members:
+   :show-inheritance:

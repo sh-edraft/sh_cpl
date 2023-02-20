@@ -12,8 +12,7 @@ class LoggerABC(ABC):
     def header(self, string: str):
         r"""Writes a header message
 
-        Parameter
-        ---------
+        Parameter:
             string: :class:`str`
                 String to write as header
         """
@@ -23,8 +22,7 @@ class LoggerABC(ABC):
     def trace(self, name: str, message: str):
         r"""Writes a trace message
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Message name
             message: :class:`str`
@@ -36,8 +34,7 @@ class LoggerABC(ABC):
     def debug(self, name: str, message: str):
         r"""Writes a debug message
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Message name
             message: :class:`str`
@@ -49,8 +46,7 @@ class LoggerABC(ABC):
     def info(self, name: str, message: str):
         r"""Writes an information
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Message name
             message: :class:`str`
@@ -62,8 +58,7 @@ class LoggerABC(ABC):
     def warn(self, name: str, message: str):
         r"""Writes an warning
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Message name
             message: :class:`str`
@@ -75,8 +70,7 @@ class LoggerABC(ABC):
     def error(self, name: str, message: str, ex: Exception = None):
         r"""Writes an error
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Error name
             message: :class:`str`
@@ -90,8 +84,7 @@ class LoggerABC(ABC):
     def fatal(self, name: str, message: str, ex: Exception = None):
         r"""Writes an error and ends the program
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Error name
             message: :class:`str`

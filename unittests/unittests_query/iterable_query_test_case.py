@@ -10,23 +10,10 @@ from unittests_query.models import User, Address
 
 
 class IterableQueryTestCase(unittest.TestCase):
-
     def setUp(self) -> None:
         self._tests = List(User)
-        self._t_user = User(
-            'Test user',
-            Address(
-                'teststr.',
-                15
-            )
-        )
-        self._t_user2 = User(
-            'Test user',
-            Address(
-                'teststr.',
-                14
-            )
-        )
+        self._t_user = User("Test user", Address("teststr.", 15))
+        self._t_user2 = User("Test user", Address("teststr.", 14))
 
         self._generate_test_data()
 
@@ -34,10 +21,7 @@ class IterableQueryTestCase(unittest.TestCase):
         for i in range(0, 100):
             user = User(
                 String.random_string(string.ascii_letters, 8).lower(),
-                Address(
-                    String.random_string(string.ascii_letters, 10).lower(),
-                    randint(1, 10)
-                )
+                Address(String.random_string(string.ascii_letters, 10).lower(), randint(1, 10)),
             )
 
             self._tests.append(user)
@@ -80,7 +64,7 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(avg, res)
 
         def invalid():
-            tests = List(str, ['hello', 'world'])
+            tests = List(str, ["hello", "world"])
             e_res = tests.average()
 
         self.assertRaises(InvalidTypeException, invalid)
@@ -204,10 +188,7 @@ class IterableQueryTestCase(unittest.TestCase):
 
     def test_for_each(self):
         users = []
-        self._tests.for_each(lambda user: (
-            users.append(user)
-        )
-                             )
+        self._tests.for_each(lambda user: (users.append(user)))
 
         self.assertEqual(len(users), len(self._tests))
 
@@ -219,7 +200,7 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(99, tests.max())
 
         def invalid():
-            tests = List(str, ['hello', 'world'])
+            tests = List(str, ["hello", "world"])
             e_res = tests.average()
 
         self.assertRaises(InvalidTypeException, invalid)
@@ -232,7 +213,7 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(0, tests.min())
 
         def invalid():
-            tests = List(str, ['hello', 'world'])
+            tests = List(str, ["hello", "world"])
             e_res = tests.average()
 
         self.assertRaises(InvalidTypeException, invalid)
@@ -270,7 +251,11 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(res, s_res)
 
     def test_then_by_descending(self):
-        res = self._tests.order_by_descending(lambda user: user.address.street).then_by_descending(lambda user: user.address.nr).to_list()
+        res = (
+            self._tests.order_by_descending(lambda user: user.address.street)
+            .then_by_descending(lambda user: user.address.nr)
+            .to_list()
+        )
 
         s_res = self._tests.to_list()
         s_res.sort(key=lambda user: (user.address.street, user.address.nr), reverse=True)
@@ -300,7 +285,10 @@ class IterableQueryTestCase(unittest.TestCase):
         selected_range = range_list.select(lambda x: [x, x])
 
         self.assertEqual(selected_range.to_list(), [[x, x] for x in range(0, 100)])
-        self.assertEqual(selected_range.select_many(lambda x: x).to_list(), [_x for _l in [2 * [x] for x in range(0, 100)] for _x in _l])
+        self.assertEqual(
+            selected_range.select_many(lambda x: x).to_list(),
+            [_x for _l in [2 * [x] for x in range(0, 100)] for _x in _l],
+        )
 
         class TestClass:
             def __init__(self, i, is_sub=False):
@@ -342,7 +330,7 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(skipped.to_list(), self._tests[:-5])
         self.assertEqual(skipped.last(), self._tests[:-5][len(self._tests[:-5]) - 1])
 
-    def test_sum(self) -> List['int']:
+    def test_sum(self) -> List["int"]:
         res = self._tests.sum(lambda u: u.address.nr)
 
         s_res = 0
@@ -355,7 +343,7 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(0, tests.min())
 
         def invalid():
-            tests2 = List(str, ['hello', 'world'])
+            tests2 = List(str, ["hello", "world"])
             e_res = tests2.average()
 
         self.assertRaises(InvalidTypeException, invalid)

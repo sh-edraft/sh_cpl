@@ -6,18 +6,17 @@ from cpl_cli.configuration import WorkspaceSettings
 
 
 class ProjectTypeABC(ABC):
-
     @abstractmethod
     def __init__(
-            self,
-            base_path: str,
-            project_name: str,
-            workspace: Optional[WorkspaceSettings],
-            use_application_api: bool,
-            use_startup: bool,
-            use_service_providing: bool,
-            use_async: bool,
-            project_file_data: dict,
+        self,
+        base_path: str,
+        project_name: str,
+        workspace: Optional[WorkspaceSettings],
+        use_application_api: bool,
+        use_startup: bool,
+        use_service_providing: bool,
+        use_async: bool,
+        project_file_data: dict,
     ):
         self._templates: list[FileTemplateABC] = []
         self._base_path = base_path

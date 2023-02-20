@@ -4,7 +4,6 @@ from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
 class ApplicationExtension(GenerateSchematicABC):
-
     def __init__(self, *args: str):
         GenerateSchematicABC.__init__(self, *args)
 
@@ -28,8 +27,4 @@ class ApplicationExtension(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'application-extension',
-            ['appex', 'APPEX']
-        )
+        GenerateSchematicABC.register(cls, "application-extension", ["appex", "APPEX"])

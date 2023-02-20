@@ -11,19 +11,22 @@ from di.tester import Tester
 
 
 class Startup(StartupABC):
-
     def __init__(self):
         StartupABC.__init__(self)
 
-    def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
+    def configure_configuration(
+        self, configuration: ConfigurationABC, environment: ApplicationEnvironment
+    ) -> ConfigurationABC:
         return configuration
 
-    def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
+    def configure_services(
+        self, services: ServiceCollectionABC, environment: ApplicationEnvironment
+    ) -> ServiceProviderABC:
         services.add_scoped(TestService)
         services.add_scoped(DITesterService)
 
         services.add_singleton(TestABC, Test1Service)
         services.add_singleton(TestABC, Test2Service)
         services.add_singleton(Tester)
-        
+
         return services.build_service_provider()

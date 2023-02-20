@@ -6,12 +6,11 @@ from cpl_core.environment import ApplicationEnvironmentABC
 
 
 class TestStartupExtension(StartupExtensionABC):
-
     def __init__(self):
         StartupExtensionABC.__init__(self)
 
     def configure_configuration(self, config: ConfigurationABC, env: ApplicationEnvironmentABC):
-        Console.write_line('config')
+        Console.write_line("config")
 
     def configure_services(self, services: ServiceCollectionABC, env: ApplicationEnvironmentABC):
-        Console.write_line('services')
+        Console.write_line("services")

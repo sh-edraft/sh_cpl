@@ -1,8 +1,7 @@
 from typing import Optional
 
 import mysql.connector as sql
-from cpl_core.database.connection.database_connection_abc import \
-    DatabaseConnectionABC
+from cpl_core.database.connection.database_connection_abc import DatabaseConnectionABC
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.utils.credential_manager import CredentialManager
 from mysql.connector.abstracts import MySQLConnectionAbstract
@@ -10,8 +9,7 @@ from mysql.connector.cursor import MySQLCursorBuffered
 
 
 class DatabaseConnection(DatabaseConnectionABC):
-    r"""Representation of the database connection
-    """
+    r"""Representation of the database connection"""
 
     def __init__(self):
         DatabaseConnectionABC.__init__(self)
@@ -36,10 +34,9 @@ class DatabaseConnection(DatabaseConnectionABC):
             charset=database_settings.charset,
             use_unicode=database_settings.use_unicode,
             buffered=database_settings.buffered,
-            auth_plugin=database_settings.auth_plugin
+            auth_plugin=database_settings.auth_plugin,
         )
-        connection.cursor().execute(
-            f'CREATE DATABASE IF NOT EXISTS `{database_settings.database}`;')
+        connection.cursor().execute(f"CREATE DATABASE IF NOT EXISTS `{database_settings.database}`;")
         self._database = sql.connect(
             host=database_settings.host,
             port=database_settings.port,
@@ -49,6 +46,6 @@ class DatabaseConnection(DatabaseConnectionABC):
             charset=database_settings.charset,
             use_unicode=database_settings.use_unicode,
             buffered=database_settings.buffered,
-            auth_plugin=database_settings.auth_plugin
+            auth_plugin=database_settings.auth_plugin,
         )
         self._cursor = self._database.cursor()

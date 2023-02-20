@@ -8,8 +8,13 @@ from cpl_core.environment import ApplicationEnvironmentABC
 
 
 class ProjectValidator(ValidatorABC):
-
-    def __init__(self, config: ConfigurationABC, env: ApplicationEnvironmentABC, workspace: WorkspaceSettings, project: ProjectSettings):
+    def __init__(
+        self,
+        config: ConfigurationABC,
+        env: ApplicationEnvironmentABC,
+        workspace: WorkspaceSettings,
+        project: ProjectSettings,
+    ):
         self._config: ConfigurationABC = config
         self._env: ApplicationEnvironmentABC = env
         self._workspace: WorkspaceSettings = workspace
@@ -26,5 +31,5 @@ class ProjectValidator(ValidatorABC):
 
         result = self._project is not None or self._workspace is not None
         if not result:
-            Error.error('The command requires to be run in an CPL project, but a project could not be found.')
+            Error.error("The command requires to be run in an CPL project, but a project could not be found.")
         return result

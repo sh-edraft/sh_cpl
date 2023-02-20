@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_core.environment &mdash; Common Python Library  documentation</title>
+  <title>cpl_core.environment package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_core.logging" href="cpl_core.logging.html" />
-    <link rel="prev" title="cpl_core.dependency_injection" href="cpl_core.dependency_injection.html" /> 
+    <link rel="next" title="cpl_core.logging package" href="cpl_core.logging.html" />
+    <link rel="prev" title="cpl_core.dependency_injection package" href="cpl_core.dependency_injection.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,25 +44,30 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.environment package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.environment">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">cpl_discord package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -82,7 +87,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="cpl_core.html">API reference</a> &raquo;</li>
-      <li>cpl_core.environment</li>
+      <li>cpl_core.environment package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.environment.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,18 +97,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-core-environment">
-<h1>cpl_core.environment<a class="headerlink" href="#cpl-core-environment" title="Permalink to this heading"></a></h1>
+  <section id="cpl-core-environment-package">
+<h1>cpl_core.environment package<a class="headerlink" href="#cpl-core-environment-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_core.environment.application_environment">
-<span id="cpl-core-environment-application-environment"></span><h2>cpl_core.environment.application_environment<a class="headerlink" href="#module-cpl_core.environment.application_environment" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-environment-application-environment-module"></span><h2>cpl_core.environment.application_environment module<a class="headerlink" href="#module-cpl_core.environment.application_environment" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.application_environment.</span></span><span class="sig-name descname"><span class="pre">ApplicationEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="cpl_core.environment.environment_name_enum.EnvironmentNameEnum"><span class="pre">EnvironmentNameEnum</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">EnvironmentNameEnum.production</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC</span></code></a></p>
 <p>Represents environment of the application</p>
-<blockquote>
-<div><p>name: <a class="reference internal" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="cpl_core.environment.environment_name_enum.EnvironmentNameEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.environment_name_enum.EnvironmentNameEnum</span></code></a></p>
-</div></blockquote>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>name: <a class="reference internal" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="cpl_core.environment.environment_name_enum.EnvironmentNameEnum"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.environment_name_enum.EnvironmentNameEnum</span></code></a></p>
+</dd>
+</dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.application_name">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">application_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.application_name" title="Permalink to this definition"></a></dt>
@@ -143,24 +152,26 @@
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory">
 <span class="sig-name descname"><span class="pre">set_runtime_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the current runtime directory</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>runtime_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the runtime directory</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory">
 <span class="sig-name descname"><span class="pre">set_working_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the current working directory</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>working_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the current working directory</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -177,7 +188,7 @@
 
 </section>
 <section id="module-cpl_core.environment.application_environment_abc">
-<span id="cpl-core-environment-application-environment-abc"></span><h2>cpl_core.environment.application_environment_abc<a class="headerlink" href="#module-cpl_core.environment.application_environment_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-environment-application-environment-abc-module"></span><h2>cpl_core.environment.application_environment_abc module<a class="headerlink" href="#module-cpl_core.environment.application_environment_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.application_environment_abc.</span></span><span class="sig-name descname"><span class="pre">ApplicationEnvironmentABC</span></span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="Permalink to this definition"></a></dt>
@@ -222,24 +233,26 @@
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_runtime_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the current runtime directory</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>runtime_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the runtime directory</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_working_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">working_directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the current working directory</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>working_directory: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path of the current working directory</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -256,7 +269,7 @@
 
 </section>
 <section id="module-cpl_core.environment.environment_name_enum">
-<span id="cpl-core-environment-environment-name-enum"></span><h2>cpl_core.environment.environment_name_enum<a class="headerlink" href="#module-cpl_core.environment.environment_name_enum" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-environment-environment-name-enum-module"></span><h2>cpl_core.environment.environment_name_enum module<a class="headerlink" href="#module-cpl_core.environment.environment_name_enum" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.environment.environment_name_enum.EnvironmentNameEnum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.environment_name_enum.</span></span><span class="sig-name descname"><span class="pre">EnvironmentNameEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.environment_name_enum.EnvironmentNameEnum" title="Permalink to this definition"></a></dt>
@@ -285,14 +298,55 @@
 </dd></dl>
 
 </section>
+<section id="module-cpl_core.environment">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_core.environment" title="Permalink to this heading"></a></h2>
+<section id="cpl-core-cpl-core">
+<h3>cpl-core CPL core<a class="headerlink" href="#cpl-core-cpl-core" title="Permalink to this heading"></a></h3>
+<p>CPL core package</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.environment.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.environment.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.environment.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.environment.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_core.environment.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.environment.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_core.environment.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.environment.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_core.environment.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.dependency_injection.html" class="btn btn-neutral float-left" title="cpl_core.dependency_injection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_core.logging.html" class="btn btn-neutral float-right" title="cpl_core.logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.dependency_injection.html" class="btn btn-neutral float-left" title="cpl_core.dependency_injection package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_core.logging.html" class="btn btn-neutral float-right" title="cpl_core.logging package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

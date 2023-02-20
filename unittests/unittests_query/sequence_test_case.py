@@ -6,7 +6,6 @@ from cpl_query.iterable import Iterable
 
 
 class SequenceTestCase(unittest.TestCase):
-
     def test_to_list(self):
         _list = List().extend(range(0, 100))
         enumerable = Enumerable.range(0, 100)

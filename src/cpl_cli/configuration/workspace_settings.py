@@ -7,14 +7,13 @@ from cpl_cli.configuration.workspace_settings_name_enum import WorkspaceSettings
 
 
 class WorkspaceSettings(ConfigurationModelABC):
-
     def __init__(self):
         ConfigurationModelABC.__init__(self)
-        
+
         self._default_project: Optional[str] = None
         self._projects: dict[str, str] = {}
         self._scripts: dict[str, str] = {}
-        
+
     @property
     def default_project(self) -> str:
         return self._default_project
@@ -37,5 +36,5 @@ class WorkspaceSettings(ConfigurationModelABC):
             else:
                 self._scripts = {}
         except Exception as e:
-            Console.error(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
-            Console.error(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
+            Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")

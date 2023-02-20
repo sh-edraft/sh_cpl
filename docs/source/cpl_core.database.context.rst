@@ -1,18 +1,29 @@
-cpl_core.database.context
-============================
+cpl\_core.database.context package
+==================================
 
-cpl_core.database.context.database\_context
----------------------------------------------
+Submodules
+----------
+
+cpl\_core.database.context.database\_context module
+---------------------------------------------------
 
 .. automodule:: cpl_core.database.context.database_context
    :members:
    :undoc-members:
    :show-inheritance:
 
-cpl_core.database.context.database\_context\_abc
---------------------------------------------------
+cpl\_core.database.context.database\_context\_abc module
+--------------------------------------------------------
 
 .. automodule:: cpl_core.database.context.database_context_abc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cpl_core.database.context
    :members:
    :undoc-members:
    :show-inheritance:

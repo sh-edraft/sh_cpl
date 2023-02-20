@@ -17,9 +17,13 @@ from cpl_cli.configuration.settings_helper import SettingsHelper
 
 
 class UninstallService(CommandABC):
-
-    def __init__(self, config: ConfigurationABC, env: ApplicationEnvironmentABC, build_settings: BuildSettings,
-                 project_settings: ProjectSettings):
+    def __init__(
+        self,
+        config: ConfigurationABC,
+        env: ApplicationEnvironmentABC,
+        build_settings: BuildSettings,
+        project_settings: ProjectSettings,
+    ):
         """
         Service for the CLI command uninstall
         :param config:
@@ -33,23 +37,25 @@ class UninstallService(CommandABC):
         self._env = env
         self._build_settings = build_settings
         self._project_settings = project_settings
-        
+
         self._is_simulating = False
         self._is_virtual = False
         self._is_dev = False
 
-        self._project_file = f'{self._project_settings.name}.json'
+        self._project_file = f"{self._project_settings.name}.json"
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        return textwrap.dedent(
+            """\
         Uninstalls given package via pip
         Usage: cpl uninstall <package>
         
         Arguments:
             package     The package to uninstall
-        """)
-        
+        """
+        )
+
     def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
         time.sleep(t)
 
@@ -60,23 +66,23 @@ class UninstallService(CommandABC):
         :return:
         """
         if len(args) == 0:
-            Console.error(f'Expected package')
-            Console.error(f'Usage: cpl uninstall <package>')
+            Console.error(f"Expected package")
+            Console.error(f"Usage: cpl uninstall <package>")
             return
 
-        if 'dev' in args:
+        if "dev" in args:
             self._is_dev = True
-            args.remove('dev')
+            args.remove("dev")
 
-        if '--virtual' in args:
+        if "--virtual" in args:
             self._is_virtual = True
-            args.remove('--virtual')
-            Console.write_line('Running in virtual mode:')
-        
-        if '--simulate' in args:
+            args.remove("--virtual")
+            Console.write_line("Running in virtual mode:")
+
+        if "--simulate" in args:
             self._is_virtual = True
-            args.remove('--simulate')
-            Console.write_line('Running in simulation mode:')
+            args.remove("--simulate")
+            Console.write_line("Running in simulation mode:")
 
         VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
 
@@ -98,19 +104,20 @@ class UninstallService(CommandABC):
                 package = dependency
 
         if not is_in_dependencies and pip_package is None:
-            Console.error(f'Package {package} not found')
+            Console.error(f"Package {package} not found")
             return
 
         elif not is_in_dependencies and pip_package is not None:
             package = pip_package
 
         Console.spinner(
-            f'Uninstalling: {package}' if not self._is_dev else f'Uninstalling dev: {package}',
-            Pip.uninstall if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
+            f"Uninstalling: {package}" if not self._is_dev else f"Uninstalling dev: {package}",
+            Pip.uninstall if not self._is_virtual else self._wait,
+            package if not self._is_virtual else 2,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.cyan
+            spinner_foreground_color=ForegroundColorEnum.cyan,
         )
 
         deps = self._project_settings.dependencies
@@ -122,12 +129,12 @@ class UninstallService(CommandABC):
             if not self._is_simulating:
                 config = {
                     ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
-                    BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
+                    BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings),
                 }
-                with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
+                with open(os.path.join(self._env.working_directory, self._project_file), "w") as project_file:
                     project_file.write(json.dumps(config, indent=2))
                     project_file.close()
 
-        Console.write_line(f'Removed {package}')
+        Console.write_line(f"Removed {package}")
         if not self._is_virtual:
             Pip.reset_executable()

@@ -10,7 +10,6 @@ from model.user_repo import UserRepo
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 
@@ -20,19 +19,19 @@ class Application(ApplicationABC):
         self._logger = self._services.get_service(LoggerABC)
 
     def main(self):
-        self._logger.header(f'{self._configuration.environment.application_name}:')
-        self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
-        self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
-        self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
+        self._logger.header(f"{self._configuration.environment.application_name}:")
+        self._logger.debug(__name__, f"Host: {self._configuration.environment.host_name}")
+        self._logger.debug(__name__, f"Environment: {self._configuration.environment.environment_name}")
+        self._logger.debug(__name__, f"Customer: {self._configuration.environment.customer}")
 
         user_repo: UserRepo = self._services.get_service(UserRepoABC)
         if len(user_repo.get_users()) == 0:
             user_repo.add_test_user()
-        
-        Console.write_line('Users:')
+
+        Console.write_line("Users:")
         for user in user_repo.get_users():
             Console.write_line(user.UserId, user.Name, user.City)
 
-        Console.write_line('Cities:')
+        Console.write_line("Cities:")
         for city in user_repo.get_cities():
             Console.write_line(city.CityId, city.Name, city.ZIP)

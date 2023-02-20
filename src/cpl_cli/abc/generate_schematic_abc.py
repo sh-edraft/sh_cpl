@@ -8,19 +8,18 @@ from cpl_core.utils import String
 
 
 class GenerateSchematicABC(FileTemplateABC):
-
     def __init__(self, name: str, schematic: str, path: str):
-        FileTemplateABC.__init__(self, name, path, '')
-        self._name = f'{String.convert_to_snake_case(name)}_{schematic}.py'
+        FileTemplateABC.__init__(self, name, path, "")
+        self._name = f"{String.convert_to_snake_case(name)}_{schematic}.py"
         if schematic in name.lower():
-            self._name = f'{String.convert_to_snake_case(name)}.py'
+            self._name = f"{String.convert_to_snake_case(name)}.py"
 
         self._class_name = name
-        if name != '':
-            self._class_name = f'{String.first_to_upper(name)}{String.first_to_upper(schematic)}'
+        if name != "":
+            self._class_name = f"{String.first_to_upper(name)}{String.first_to_upper(schematic)}"
 
         if schematic in name.lower():
-            self._class_name = f'{String.first_to_upper(name)}'
+            self._class_name = f"{String.first_to_upper(name)}"
 
     @property
     def class_name(self) -> str:

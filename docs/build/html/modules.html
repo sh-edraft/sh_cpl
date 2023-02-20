@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl &mdash; Common Python Library  documentation</title>
+  <title>Packages &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -42,7 +42,7 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">cpl_discord package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -61,7 +61,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>cpl</li>
+      <li>Packages</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -71,365 +71,405 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl">
-<h1>cpl<a class="headerlink" href="#cpl" title="Permalink to this heading"></a></h1>
+  <section id="packages">
+<h1>Packages<a class="headerlink" href="#packages" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Getting started with CPL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#table-of-contents">Table of Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#create-the-project">Create the project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#create-a-menu">Create a menu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#what-s-next">What’s next</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="setup.html">Setting up the local environment and workspace</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#table-of-contents">Table of Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#install-the-package">Install the package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#install-the-cli">Install the CLI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#install-the-query">Install the query</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#create-initial-console-app">Create initial console app</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#create-initial-library">Create initial library</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#start-the-app">Start the app</a></li>
-<li class="toctree-l3"><a class="reference internal" href="setup.html#what-s-next">What’s next</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials.html">Tutorials</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.extend-application.html">Extend application</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.extend-application.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.create-startup.html">Create startup class</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.create-startup.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.extend-startup.html">Extend startup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.extend-startup.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.appsettings.html">Using appsettings.json</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.appsettings.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.console-arguments.html">Handle console arguments</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.console-arguments.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.console.html">Use cpl_core.console.Console</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.console.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.logging.html">Use builtin logger</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.logging.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.mail.html">Send mails</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.mail.html#coming-soon">Coming soon</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="tutorials.templating.html">Using cpl g &amp; cpl n templating</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.templating.html#contents">Contents</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.templating.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.templating.html#cpl-generate-schematics">cpl generate schematics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tutorials.templating.html#cpl-new-project-types">cpl new project types</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.overview.html">CLI Overview and Command Reference</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.overview.html#table-of-contents">Table of Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.overview.html#basic-workflow">Basic workflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.overview.html#cli-command-language-syntax">CLI command-language syntax</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cli.overview.html#relative-paths">Relative paths</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cli.overview.html#schematics">Schematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.overview.html">CLI Overview and Command Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.overview.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.overview.html#basic-workflow">Basic workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.overview.html#cli-command-language-syntax">CLI command-language syntax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_cli.overview.html#relative-paths">Relative paths</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_cli.overview.html#schematics">Schematics</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="cli.overview.html#command-overview">Command overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.overview.html#command-overview">Command overview</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.add.html">cpl add</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.add.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.add.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.add.html#arguments">Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.add.html#flags">Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.add.html">cpl add</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.add.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.add.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.add.html#arguments">Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.add.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.build.html">cpl build</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.build.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.build.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.build.html">cpl build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.build.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.build.html#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.generate.html">cpl generate</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.generate.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.generate.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.generate.html#arguments">Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.generate.html#schematics">Schematics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.generate.html">cpl generate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.generate.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.generate.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.generate.html#arguments">Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.generate.html#schematics">Schematics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.help.html">cpl help</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.help.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.help.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.help.html#arguments">Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.help.html">cpl help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.help.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.help.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.help.html#arguments">Arguments</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.install.html">cpl install</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.install.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.install.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.install.html#arguments">Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.install.html#flags">Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.install.html">cpl install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.install.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.install.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.install.html#arguments">Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.install.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.new.html">cpl new</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.new.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.new.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.new.html#project-types">Project types</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.new.html#flags">Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.new.html">cpl new</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.new.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.new.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.new.html#project-types">Project types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.new.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.publish.html">cpl publish</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.publish.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.publish.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.publish.html">cpl publish</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.publish.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.publish.html#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.remove.html">cpl remove</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.remove.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.remove.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.remove.html#arguments">Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.remove.html#flags">Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.remove.html">cpl remove</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.remove.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.remove.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.remove.html#arguments">Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.remove.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.start.html">cpl start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.uninstall.html">cpl uninstall</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.uninstall.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.uninstall.html#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.uninstall.html#arguments">Arguments</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.uninstall.html#flags">Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.run.html">cpl run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.start.html">cpl start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.uninstall.html">cpl uninstall</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.uninstall.html#contents">Contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.uninstall.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.uninstall.html#arguments">Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.uninstall.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.update.html">cpl update</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.update.html#flags">Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.update.html">cpl update</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.update.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.version.html">cpl version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.version.html">cpl version</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_abc">cpl_core.application.application_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder">cpl_core.application.application_builder</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl-core-configuration-console-argument">cpl_core.configuration.console_argument</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.background_color_enum">cpl_core.console.background_color_enum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console">cpl_core.console.console</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console_call">cpl_core.console.console_call</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.foreground_color_enum">cpl_core.console.foreground_color_enum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.spinner_thread">cpl_core.console.spinner_thread</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.connection.html">cpl_core.database.connection</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection">cpl_core.database.connection.database_connection</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection_abc">cpl_core.database.connection.database_connection_abc</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.context.html">cpl_core.database.context</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.context.html#module-cpl_core.database.context.database_context">cpl_core.database.context.database_context</a></li>
-<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.context.html#module-cpl_core.database.context.database_context_abc">cpl_core.database.context.database_context_abc</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#cpl-core-database-database-model">cpl_core.database.database_model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_abc">cpl_core.logging.logger_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_service">cpl_core.logging.logger_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_level_enum">cpl_core.logging.logging_level_enum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings">cpl_core.logging.logging_settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings_name_enum">cpl_core.logging.logging_settings_name_enum</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email">cpl_core.mailing.email</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_abc">cpl_core.mailing.email_client_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_service">cpl_core.mailing.email_client_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings">cpl_core.mailing.email_client_settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings">cpl_core.time.time_format_settings</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">cpl_core.time.time_format_settings_names_enum</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.pip">cpl_core.utils.pip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_abc">cpl_core.application.application_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder">cpl_core.application.application_builder module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_extension_abc">cpl_core.application.application_extension_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_extension_abc">cpl_core.application.startup_extension_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">cpl_discord.application.discord_bot_application_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_abc">cpl_core.configuration.argument_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_builder">cpl_core.configuration.argument_builder module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_executable_abc">cpl_core.configuration.argument_executable_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_type_enum">cpl_core.configuration.argument_type_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.executable_argument">cpl_core.configuration.executable_argument module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.flag_argument">cpl_core.configuration.flag_argument module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.validator_abc">cpl_core.configuration.validator_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.variable_argument">cpl_core.configuration.variable_argument module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">cpl_discord.command.discord_command_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">cpl_discord.command.discord_commands_meta</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.background_color_enum">cpl_core.console.background_color_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console">cpl_core.console.console module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console_call">cpl_core.console.console_call module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.foreground_color_enum">cpl_core.console.foreground_color_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.spinner_thread">cpl_core.console.spinner_thread module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.container">cpl_discord.container.container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.guild">cpl_discord.container.guild</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.member">cpl_discord.container.member</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.role">cpl_discord.container.role</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.thread">cpl_discord.container.thread</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.connection.html">cpl_core.database.connection package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.context.html">cpl_core.database.context package</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.table_abc">cpl_core.database.table_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope">cpl_core.dependency_injection.scope module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_abc">cpl_core.dependency_injection.scope_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_builder">cpl_core.dependency_injection.scope_builder module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_abc">cpl_core.logging.logger_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_service">cpl_core.logging.logger_service module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_level_enum">cpl_core.logging.logging_level_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings">cpl_core.logging.logging_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings_name_enum">cpl_core.logging.logging_settings_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email">cpl_core.mailing.email module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_abc">cpl_core.mailing.email_client_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_service">cpl_core.mailing.email_client_service module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings">cpl_core.mailing.email_client_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings">cpl_core.time.time_format_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">cpl_core.time.time_format_settings_names_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.pip">cpl_core.utils.pip module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">cpl_discord package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.application.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">cpl_discord.application.discord_bot_application_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.application.html#module-cpl_discord.application">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.command.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">cpl_discord.command.discord_command_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">cpl_discord.command.discord_commands_meta module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.configuration.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.configuration.html#module-cpl_discord.configuration">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.container">cpl_discord.container.container module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.guild">cpl_discord.container.guild module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.member">cpl_discord.container.member module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.role">cpl_discord.container.role module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.thread">cpl_discord.container.thread module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.helper.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.helper.html#module-cpl_discord.helper">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#module-cpl_discord.discord_event_types_enum">cpl_discord.discord_event_types_enum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#module-cpl_discord">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html">cpl_query.base</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.default_lambda">cpl_query.base.default_lambda</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">cpl_query.base.ordered_queryable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable_abc">cpl_query.base.ordered_queryable_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.queryable_abc">cpl_query.base.queryable_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl-query-base-sequence-abc">cpl_query.base.sequence_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl-query-base-sequence-values">cpl_query.base.sequence_values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html">cpl_query.base package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.default_lambda">cpl_query.base.default_lambda module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">cpl_query.base.ordered_queryable module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable_abc">cpl_query.base.ordered_queryable_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.queryable_abc">cpl_query.base.queryable_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.sequence">cpl_query.base.sequence module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html">cpl_query.enumerable</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">cpl_query.enumerable.enumerable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">cpl_query.enumerable.enumerable_abc</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.extension.html">cpl_query.extension</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#module-cpl_query.extension.list">cpl_query.extension.list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html">cpl_query.enumerable package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">cpl_query.enumerable.enumerable module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">cpl_query.enumerable.enumerable_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.enumerable.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html">cpl_query.iterable</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">cpl_query.iterable.iterable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable_abc">cpl_query.iterable.iterable_abc</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.extension.html">cpl_query.extension package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#module-cpl_query.extension.list">cpl_query.extension.list module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#module-cpl_query.extension">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.extension.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html">cpl_query.iterable package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">cpl_query.iterable.iterable module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable_abc">cpl_query.iterable.iterable_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

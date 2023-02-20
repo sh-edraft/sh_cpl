@@ -4,7 +4,6 @@ from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
 class Service(GenerateSchematicABC):
-
     def __init__(self, *args: str):
         GenerateSchematicABC.__init__(self, *args)
 
@@ -20,8 +19,4 @@ class Service(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'service',
-            ['s', 'S']
-        )
+        GenerateSchematicABC.register(cls, "service", ["s", "S"])

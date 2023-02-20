@@ -2,10 +2,10 @@ import textwrap
 
 
 class InitTemplate:
-
     @staticmethod
     def get_init_py() -> str:
-        string = textwrap.dedent("""\
+        string = textwrap.dedent(
+            """\
             # -*- coding: utf-8 -*-
         
             \"\"\"
@@ -32,6 +32,7 @@ class InitTemplate:
             
             VersionInfo = namedtuple('VersionInfo', 'major minor micro')
             version_info = VersionInfo(major='$Major', minor='$Minor', micro='$Micro')
-        """)
+        """
+        )
 
         return string

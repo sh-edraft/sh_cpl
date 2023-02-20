@@ -1,9 +1,10 @@
-cpl\_discord.container
+cpl\_discord.container package
 ==============================
 
+Submodules
+----------
 
-
-cpl\_discord.container.category\_channel
+cpl\_discord.container.category\_channel module
 -----------------------------------------------
 
 .. automodule:: cpl_discord.container.category_channel
@@ -11,7 +12,7 @@ cpl\_discord.container.category\_channel
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.container
+cpl\_discord.container.container module
 ---------------------------------------
 
 .. automodule:: cpl_discord.container.container
@@ -19,7 +20,7 @@ cpl\_discord.container.container
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.guild
+cpl\_discord.container.guild module
 -----------------------------------
 
 .. automodule:: cpl_discord.container.guild
@@ -27,7 +28,7 @@ cpl\_discord.container.guild
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.member
+cpl\_discord.container.member module
 ------------------------------------
 
 .. automodule:: cpl_discord.container.member
@@ -35,7 +36,7 @@ cpl\_discord.container.member
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.role
+cpl\_discord.container.role module
 ----------------------------------
 
 .. automodule:: cpl_discord.container.role
@@ -43,7 +44,7 @@ cpl\_discord.container.role
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.text\_channel
+cpl\_discord.container.text\_channel module
 -------------------------------------------
 
 .. automodule:: cpl_discord.container.text_channel
@@ -51,7 +52,7 @@ cpl\_discord.container.text\_channel
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.thread
+cpl\_discord.container.thread module
 ------------------------------------
 
 .. automodule:: cpl_discord.container.thread
@@ -59,10 +60,18 @@ cpl\_discord.container.thread
    :undoc-members:
    :show-inheritance:
 
-cpl\_discord.container.voice\_channel
+cpl\_discord.container.voice\_channel module
 --------------------------------------------
 
 .. automodule:: cpl_discord.container.voice_channel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cpl_discord.container
    :members:
    :undoc-members:
    :show-inheritance:

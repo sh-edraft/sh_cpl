@@ -17,16 +17,16 @@ from cpl_core.utils.string import String
 
 
 class RunService(CommandABC):
-
-    def __init__(self,
-                 config: ConfigurationABC,
-                 env: ApplicationEnvironmentABC,
-                 services: ServiceProviderABC,
-                 project_settings: ProjectSettings,
-                 build_settings: BuildSettings,
-                 workspace: WorkspaceSettings,
-                 publisher: PublisherService,
-                 ):
+    def __init__(
+        self,
+        config: ConfigurationABC,
+        env: ApplicationEnvironmentABC,
+        services: ServiceProviderABC,
+        project_settings: ProjectSettings,
+        build_settings: BuildSettings,
+        workspace: WorkspaceSettings,
+        publisher: PublisherService,
+    ):
         """
         Service for the CLI command start
         :param config:
@@ -51,18 +51,20 @@ class RunService(CommandABC):
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        return textwrap.dedent(
+            """\
         Starts your application.
         Usage: cpl run
-        """)
+        """
+        )
 
     def _set_project_by_args(self, name: str):
         if self._workspace is None:
-            Error.error('The command requires to be run in an CPL workspace, but a workspace could not be found.')
+            Error.error("The command requires to be run in an CPL workspace, but a workspace could not be found.")
             sys.exit()
 
         if name not in self._workspace.projects:
-            Error.error(f'Project {name} not found in workspace')
+            Error.error(f"Project {name} not found in workspace")
             sys.exit()
 
         project_path = self._workspace.projects[name]
@@ -70,7 +72,7 @@ class RunService(CommandABC):
         self._config.add_configuration(ProjectSettings, None)
         self._config.add_configuration(BuildSettings, None)
 
-        working_directory = self._config.get_configuration('PATH_WORKSPACE')
+        working_directory = self._config.get_configuration("PATH_WORKSPACE")
         if working_directory is not None:
             self._env.set_working_directory(working_directory)
 
@@ -80,7 +82,7 @@ class RunService(CommandABC):
         self._build_settings: BuildSettings = self._config.get_configuration(BuildSettings)
 
         if self._project_settings is None or self._build_settings is None:
-            Error.error(f'Project {name} not found')
+            Error.error(f"Project {name} not found")
             sys.exit()
 
         self._src_dir = os.path.dirname(json_file)
@@ -92,13 +94,15 @@ class RunService(CommandABC):
         self._env.set_working_directory(self._src_dir)
         self._publisher.build()
         self._env.set_working_directory(self._src_dir)
-        self._src_dir = os.path.abspath(os.path.join(
-            self._src_dir,
-            self._build_settings.output_path,
-            self._project_settings.name,
-            'build',
-            String.convert_to_snake_case(self._project_settings.name)
-        ))
+        self._src_dir = os.path.abspath(
+            os.path.join(
+                self._src_dir,
+                self._build_settings.output_path,
+                self._project_settings.name,
+                "build",
+                String.convert_to_snake_case(self._project_settings.name),
+            )
+        )
 
     def execute(self, args: list[str]):
         """
@@ -106,9 +110,9 @@ class RunService(CommandABC):
         :param args:
         :return:
         """
-        if 'dev' in args:
+        if "dev" in args:
             self._is_dev = True
-            args.remove('dev')
+            args.remove("dev")
 
         if len(args) >= 1:
             self._set_project_by_args(args[0])

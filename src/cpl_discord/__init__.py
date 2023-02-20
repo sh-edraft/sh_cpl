@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 
 """
-cpl-discord sh-edraft Common Python library Discord
+cpl-discord CPL Discord
 ~~~~~~~~~~~~~~~~~~~
 
-sh-edraft Common Python library link between discord.py and CPL
+Link between discord.py and CPL
 
 :copyright: (c) 2022 - 2023 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = 'cpl_discord'
-__author__ = 'Sven Heidemann'
-__license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2022 - 2023 sh-edraft.de'
-__version__ = '2022.12.1'
+__title__ = "cpl_discord"
+__author__ = "Sven Heidemann"
+__license__ = "MIT"
+__copyright__ = "Copyright (c) 2022 - 2023 sh-edraft.de"
+__version__ = "2023.2.0"
 
 from collections import namedtuple
 
@@ -35,24 +35,28 @@ def add_discord(self):
         self.add_singleton(DiscordServiceABC, DiscordService)
         self.add_singleton(DiscordBotServiceABC, DiscordBotService)
     except ImportError as e:
-        Console.error('cpl-discord is not installed', str(e))
+        Console.error("cpl-discord is not installed", str(e))
 
 
 def init():
     from cpl_core.dependency_injection import ServiceCollection
+
     ServiceCollection.add_discord = add_discord
 
 
 init()
 
 
-def get_discord_collection(services: 'ServiceCollectionABC') -> 'DiscordCollectionABC':
+def get_discord_collection(services: "ServiceCollectionABC") -> "DiscordCollectionABC":
     from cpl_discord.service.discord_collection import DiscordCollection
     from cpl_discord.service.discord_collection_abc import DiscordCollectionABC
+
     collection = DiscordCollection(services)
     services.add_singleton(DiscordCollectionABC, collection)
     return collection
+
+
 # build-ignore-end
 
-VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='12', micro='1')
+VersionInfo = namedtuple("VersionInfo", "major minor micro")
+version_info = VersionInfo(major="2023", minor="2", micro="0")

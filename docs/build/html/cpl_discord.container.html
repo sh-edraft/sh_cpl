@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_discord.container &mdash; Common Python Library  documentation</title>
+  <title>cpl_discord.container package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_discord.events" href="cpl_discord.events.html" />
-    <link rel="prev" title="cpl_discord.configuration" href="cpl_discord.configuration.html" /> 
+    <link rel="next" title="cpl_discord.events package" href="cpl_discord.events.html" />
+    <link rel="prev" title="cpl_discord.configuration package" href="cpl_discord.configuration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,24 +44,32 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.container</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.container">cpl_discord.container.container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.guild">cpl_discord.container.guild</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.member">cpl_discord.container.member</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.role">cpl_discord.container.role</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.thread">cpl_discord.container.thread</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">cpl_discord package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="cpl_discord.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cpl_discord.container package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.container">cpl_discord.container.container module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.guild">cpl_discord.container.guild module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.member">cpl_discord.container.member module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.role">cpl_discord.container.role module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.thread">cpl_discord.container.thread module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-cpl_discord.container">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#module-cpl_discord.discord_event_types_enum">cpl_discord.discord_event_types_enum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#module-cpl_discord">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
@@ -82,8 +90,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_discord.html">Discord reference</a> &raquo;</li>
-      <li>cpl_discord.container</li>
+          <li><a href="cpl_discord.html">cpl_discord package</a> &raquo;</li>
+      <li>cpl_discord.container package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_discord.container.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,10 +101,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-discord-container">
-<h1>cpl_discord.container<a class="headerlink" href="#cpl-discord-container" title="Permalink to this heading"></a></h1>
+  <section id="cpl-discord-container-package">
+<h1>cpl_discord.container package<a class="headerlink" href="#cpl-discord-container-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_discord.container.category_channel">
-<span id="cpl-discord-container-category-channel"></span><h2>cpl_discord.container.category_channel<a class="headerlink" href="#module-cpl_discord.container.category_channel" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-category-channel-module"></span><h2>cpl_discord.container.category_channel module<a class="headerlink" href="#module-cpl_discord.container.category_channel" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.category_channel.CategoryChannel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.category_channel.</span></span><span class="sig-name descname"><span class="pre">CategoryChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CategoryChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.category_channel.CategoryChannel" title="Permalink to this definition"></a></dt>
@@ -147,7 +158,7 @@
 
 </section>
 <section id="module-cpl_discord.container.container">
-<span id="cpl-discord-container-container"></span><h2>cpl_discord.container.container<a class="headerlink" href="#module-cpl_discord.container.container" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-container-module"></span><h2>cpl_discord.container.container module<a class="headerlink" href="#module-cpl_discord.container.container" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.container.Container">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.container.</span></span><span class="sig-name descname"><span class="pre">Container</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_o</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.container.Container" title="Permalink to this definition"></a></dt>
@@ -156,7 +167,7 @@
 
 </section>
 <section id="module-cpl_discord.container.guild">
-<span id="cpl-discord-container-guild"></span><h2>cpl_discord.container.guild<a class="headerlink" href="#module-cpl_discord.container.guild" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-guild-module"></span><h2>cpl_discord.container.guild module<a class="headerlink" href="#module-cpl_discord.container.guild" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.guild.Guild">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.guild.</span></span><span class="sig-name descname"><span class="pre">Guild</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Guild</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.guild.Guild" title="Permalink to this definition"></a></dt>
@@ -339,7 +350,7 @@ hierarchy.</p>
 
 </section>
 <section id="module-cpl_discord.container.member">
-<span id="cpl-discord-container-member"></span><h2>cpl_discord.container.member<a class="headerlink" href="#module-cpl_discord.container.member" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-member-module"></span><h2>cpl_discord.container.member module<a class="headerlink" href="#module-cpl_discord.container.member" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.member.Member">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.member.</span></span><span class="sig-name descname"><span class="pre">Member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Member</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.member.Member" title="Permalink to this definition"></a></dt>
@@ -392,7 +403,7 @@ role.</p>
 
 </section>
 <section id="module-cpl_discord.container.role">
-<span id="cpl-discord-container-role"></span><h2>cpl_discord.container.role<a class="headerlink" href="#module-cpl_discord.container.role" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-role-module"></span><h2>cpl_discord.container.role module<a class="headerlink" href="#module-cpl_discord.container.role" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.role.Role">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.role.</span></span><span class="sig-name descname"><span class="pre">Role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.role.Role" title="Permalink to this definition"></a></dt>
@@ -452,7 +463,7 @@ role.</p>
 
 </section>
 <section id="module-cpl_discord.container.text_channel">
-<span id="cpl-discord-container-text-channel"></span><h2>cpl_discord.container.text_channel<a class="headerlink" href="#module-cpl_discord.container.text_channel" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-text-channel-module"></span><h2>cpl_discord.container.text_channel module<a class="headerlink" href="#module-cpl_discord.container.text_channel" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.text_channel.TextChannel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.text_channel.</span></span><span class="sig-name descname"><span class="pre">TextChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.text_channel.TextChannel" title="Permalink to this definition"></a></dt>
@@ -526,7 +537,7 @@ role.</p>
 
 </section>
 <section id="module-cpl_discord.container.thread">
-<span id="cpl-discord-container-thread"></span><h2>cpl_discord.container.thread<a class="headerlink" href="#module-cpl_discord.container.thread" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-thread-module"></span><h2>cpl_discord.container.thread module<a class="headerlink" href="#module-cpl_discord.container.thread" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.thread.Thread">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.thread.</span></span><span class="sig-name descname"><span class="pre">Thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Thread</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.thread.Thread" title="Permalink to this definition"></a></dt>
@@ -624,7 +635,7 @@ needed.</p>
 
 </section>
 <section id="module-cpl_discord.container.voice_channel">
-<span id="cpl-discord-container-voice-channel"></span><h2>cpl_discord.container.voice_channel<a class="headerlink" href="#module-cpl_discord.container.voice_channel" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-container-voice-channel-module"></span><h2>cpl_discord.container.voice_channel module<a class="headerlink" href="#module-cpl_discord.container.voice_channel" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.container.voice_channel.VoiceChannel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.voice_channel.</span></span><span class="sig-name descname"><span class="pre">VoiceChannel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">VoiceChannel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.voice_channel.VoiceChannel" title="Permalink to this definition"></a></dt>
@@ -638,14 +649,55 @@ needed.</p>
 </dd></dl>
 
 </section>
+<section id="module-cpl_discord.container">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_discord.container" title="Permalink to this heading"></a></h2>
+<section id="cpl-discord-cpl-discord">
+<h3>cpl-discord CPL Discord<a class="headerlink" href="#cpl-discord-cpl-discord" title="Permalink to this heading"></a></h3>
+<p>Link between discord.py and CPL</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2022 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.container.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.container.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.container.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_discord.container.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_discord.container.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.container.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_discord.container.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_discord.configuration.html" class="btn btn-neutral float-left" title="cpl_discord.configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_discord.events.html" class="btn btn-neutral float-right" title="cpl_discord.events" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_discord.configuration.html" class="btn btn-neutral float-left" title="cpl_discord.configuration package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.events.html" class="btn btn-neutral float-right" title="cpl_discord.events package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

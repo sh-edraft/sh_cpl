@@ -4,13 +4,13 @@ from cpl_cli.abc.file_template_abc import FileTemplateABC
 
 
 class ProjectFileAppsettings(FileTemplateABC):
-
     def __init__(self, path: str):
-        FileTemplateABC.__init__(self, '', path, '{}')
-        self._name = 'appsettings.json'
+        FileTemplateABC.__init__(self, "", path, "{}")
+        self._name = "appsettings.json"
 
     def get_code(self) -> str:
-        return textwrap.dedent("""\
+        return textwrap.dedent(
+            """\
         {
           "TimeFormatSettings": {
             "DateFormat": "%Y-%m-%d",
@@ -25,4 +25,5 @@ class ProjectFileAppsettings(FileTemplateABC):
             "FileLogLevel": "WARN"
           }
         }
-        """)
+        """
+        )

@@ -4,8 +4,7 @@ from collections.abc import Callable
 class ConsoleCall:
     r"""Represents a console call, for hold back when spinner is active
 
-    Parameter
-    ---------
+    Parameter:
         function: :class:`Callable`
             Function to call
         args: :class:`list`

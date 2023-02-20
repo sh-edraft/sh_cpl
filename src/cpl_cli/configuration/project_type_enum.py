@@ -2,7 +2,6 @@ from enum import Enum
 
 
 class ProjectTypeEnum(Enum):
-
-    console = 'console'
-    library = 'library'
-    unittest = 'unittest'
+    console = "console"
+    library = "library"
+    unittest = "unittest"

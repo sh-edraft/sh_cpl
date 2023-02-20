@@ -2,14 +2,14 @@
   "ProjectSettings": {
     "Name": "cpl-core",
     "Version": {
-      "Major": "2022",
-      "Minor": "12",
-      "Micro": "1"
+      "Major": "2023",
+      "Minor": "2",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
-    "Description": "sh-edraft Common Python library",
-    "LongDescription": "sh-edraft Common Python library",
+    "Description": "CPL core",
+    "LongDescription": "CPL core package",
     "URL": "https://www.sh-edraft.de",
     "CopyrightDate": "2020 - 2023",
     "CopyrightName": "sh-edraft.de",
@@ -31,8 +31,9 @@
     "DevDependencies": [
       "Sphinx==5.0.2",
       "sphinx-rtd-theme==1.0.0",
-      "myst-parser==0.18.0",
-      "twine==4.0.2"
+      "myst-parser==0.18.1",
+      "twine==4.0.2",
+      "sphinx-markdown-builder==0.5.5"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},

@@ -22,7 +22,7 @@ class CommandTestCase(unittest.TestCase):
                 os.makedirs(PLAYGROUND_PATH)
             os.chdir(PLAYGROUND_PATH)
         except Exception as e:
-            print(f'Setup of {__name__} failed: {traceback.format_exc()}')
+            print(f"Setup of {__name__} failed: {traceback.format_exc()}")
 
     def setUp(self):
         os.chdir(PLAYGROUND_PATH)
@@ -35,4 +35,4 @@ class CommandTestCase(unittest.TestCase):
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH)))
         except Exception as e:
-            print(f'Cleanup of {__name__} failed: {traceback.format_exc()}')
+            print(f"Cleanup of {__name__} failed: {traceback.format_exc()}")

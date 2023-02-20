@@ -9,7 +9,6 @@ from cpl_query.extension import List
 
 
 class DiscordCollection(DiscordCollectionABC):
-
     def __init__(self, service_collection: ServiceCollectionABC):
         DiscordCollectionABC.__init__(self)
 

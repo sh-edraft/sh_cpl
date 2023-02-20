@@ -5,8 +5,7 @@ from cpl_query.base.queryable_abc import QueryableABC
 
 
 class IterableABC(QueryableABC):
-    r"""ABC to define functions on list
-    """
+    r"""ABC to define functions on list"""
 
     @abstractmethod
     def __init__(self, t: type = None, values: Iterable = None):
@@ -20,18 +19,18 @@ class IterableABC(QueryableABC):
 
     def add(self, _object: object):
         r"""Adds element to list
-        Parameter
-        ---------
+
+        Parameter:
             _object: :class:`object`
                 value
         """
         self._check_type(_object)
         self._values.append(_object)
 
-    def extend(self, __iterable: Iterable) -> 'IterableABC':
+    def extend(self, __iterable: Iterable) -> "IterableABC":
         r"""Adds elements of given list to list
-        Parameter
-        ---------
+
+        Parameter:
             __iterable: :class: `cpl_query.extension.iterable.Iterable`
                 index
         """
@@ -42,8 +41,8 @@ class IterableABC(QueryableABC):
 
     def remove(self, _object: object):
         r"""Removes element from list
-        Parameter
-        ---------
+
+        Parameter:
             _object: :class:`object`
                 value
         """
@@ -54,19 +53,19 @@ class IterableABC(QueryableABC):
 
     def remove_at(self, _index: int):
         r"""Removes element from list
-        Parameter
-        ---------
+
+        Parameter:
             _object: :class:`object`
                 value
         """
         self._values.pop(_index)
 
-    def to_enumerable(self) -> 'EnumerableABC':
+    def to_enumerable(self) -> "EnumerableABC":
         r"""Converts :class: `cpl_query.iterable.iterable_abc.IterableABC` to :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`
 
-        Returns
-        -------
+        Returns:
             :class: `cpl_query.enumerable.enumerable_abc.EnumerableABC`
         """
         from cpl_query.enumerable.enumerable import Enumerable
+
         return Enumerable(self._type, self.to_list())

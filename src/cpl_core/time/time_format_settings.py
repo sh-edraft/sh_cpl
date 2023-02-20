@@ -57,6 +57,6 @@ class TimeFormatSettings(ConfigurationModelABC):
             self._date_time_log_format = settings[TimeFormatSettingsNamesEnum.date_time_log_format.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
+            Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
             Console.set_foreground_color(ForegroundColorEnum.default)

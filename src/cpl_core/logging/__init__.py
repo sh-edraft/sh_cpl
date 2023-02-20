@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 
 """
-cpl-core sh-edraft Common Python library
+cpl-core CPL core
 ~~~~~~~~~~~~~~~~~~~
 
-sh-edraft Common Python library
+CPL core package
 
 :copyright: (c) 2020 - 2023 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = 'cpl_core.logging'
-__author__ = 'Sven Heidemann'
-__license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2020 - 2023 sh-edraft.de'
-__version__ = '2022.12.1'
+__title__ = "cpl_core.logging"
+__author__ = "Sven Heidemann"
+__license__ = "MIT"
+__copyright__ = "Copyright (c) 2020 - 2023 sh-edraft.de"
+__version__ = "2023.2.0"
 
 from collections import namedtuple
 
@@ -27,5 +27,5 @@ from .logging_level_enum import LoggingLevelEnum
 from .logging_settings import LoggingSettings
 from .logging_settings_name_enum import LoggingSettingsNameEnum
 
-VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='12', micro='1')
+VersionInfo = namedtuple("VersionInfo", "major minor micro")
+version_info = VersionInfo(major="2023", minor="2", micro="0")
