@@ -33,7 +33,8 @@
       "sphinx-rtd-theme==1.0.0",
       "myst-parser==0.18.1",
       "twine==4.0.2",
-      "sphinx-markdown-builder==0.5.5"
+      "sphinx-markdown-builder==0.5.5",
+      "pygount==1.5.1"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},
