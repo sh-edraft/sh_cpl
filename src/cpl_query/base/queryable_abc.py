@@ -315,7 +315,7 @@ class QueryableABC(Sequence):
 
         return _func(min(self, key=_func))
 
-    def order_by(self, _func: Callable = None) -> 'QueryableABC':
+    def order_by(self, _func: Callable = None) -> 'OrderedQueryableABC':
         r"""Sorts elements by function in ascending order
 
         Parameter
@@ -325,7 +325,7 @@ class QueryableABC(Sequence):
 
         Returns
         -------
-            :class: `cpl_query.base.queryable_abc.QueryableABC`
+            :class: `cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         if _func is None:
             _func = _default_lambda
@@ -333,7 +333,7 @@ class QueryableABC(Sequence):
         from cpl_query.base.ordered_queryable import OrderedQueryable
         return OrderedQueryable(self.type, sorted(self, key=_func), _func)
 
-    def order_by_descending(self, _func: Callable = None) -> 'QueryableABC':
+    def order_by_descending(self, _func: Callable = None) -> 'OrderedQueryableABC':
         r"""Sorts elements by function in descending order
 
         Parameter
@@ -343,7 +343,7 @@ class QueryableABC(Sequence):
 
         Returns
         -------
-            :class: `cpl_query.base.queryable_abc.QueryableABC`
+            :class: `cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         if _func is None:
             _func = _default_lambda
