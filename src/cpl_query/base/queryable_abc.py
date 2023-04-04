@@ -1,6 +1,12 @@
+from __future__ import annotations
+
 from typing import Optional, Callable, Union, Iterable, Self
+from typing import TYPE_CHECKING
 
 from cpl_query._helper import is_number
+
+if TYPE_CHECKING:
+    from cpl_query.base.ordered_queryable_abc import OrderedQueryableABC
 from cpl_query.base.sequence import Sequence
 from cpl_query.exceptions import (
     InvalidTypeException,
@@ -315,7 +321,7 @@ class QueryableABC(Sequence):
 
         return _func(min(self, key=_func))
 
-    def order_by(self, _func: Callable = None) -> "OrderedQueryableABC":
+    def order_by(self, _func: Callable = None) -> OrderedQueryableABC:
         r"""Sorts elements by function in ascending order
 
         Parameter

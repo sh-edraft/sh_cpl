@@ -251,6 +251,8 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(res, s_res)
 
     def test_then_by_descending(self):
+        x = List(int, List.range(1, 10)).order_by(lambda x: x).th
+
         res = (
             self._tests.order_by_descending(lambda user: user.address.street)
             .then_by_descending(lambda user: user.address.nr)
