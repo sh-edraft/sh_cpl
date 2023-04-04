@@ -11,11 +11,11 @@ CPL Python integrated Queries
 
 """
 
-__title__ = 'cpl_query.iterable'
-__author__ = 'Sven Heidemann'
-__license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2021 - 2023 sh-edraft.de'
-__version__ = '2023.4.0'
+__title__ = "cpl_query.iterable"
+__author__ = "Sven Heidemann"
+__license__ = "MIT"
+__copyright__ = "Copyright (c) 2021 - 2023 sh-edraft.de"
+__version__ = "2023.4.0"
 
 from collections import namedtuple
 
@@ -24,5 +24,5 @@ from collections import namedtuple
 from .iterable_abc import IterableABC
 from .iterable import Iterable
 
-VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2023', minor='4', micro='0')
+VersionInfo = namedtuple("VersionInfo", "major minor micro")
+version_info = VersionInfo(major="2023", minor="4", micro="0")
