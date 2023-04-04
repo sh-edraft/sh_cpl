@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from abc import abstractmethod
 from collections.abc import Callable
-from typing import Iterable, Self
+from typing import Iterable
 
 from cpl_query.base.queryable_abc import QueryableABC
 
@@ -14,7 +16,7 @@ class OrderedQueryableABC(QueryableABC):
             self._funcs.append(_func)
 
     @abstractmethod
-    def then_by(self, func: Callable) -> Self:
+    def then_by(self, func: Callable) -> OrderedQueryableABC:
         r"""Sorts OrderedList in ascending order by function
 
         Parameter:
@@ -26,7 +28,7 @@ class OrderedQueryableABC(QueryableABC):
         pass
 
     @abstractmethod
-    def then_by_descending(self, func: Callable) -> Self:
+    def then_by_descending(self, func: Callable) -> OrderedQueryableABC:
         r"""Sorts OrderedList in descending order by function
 
         Parameter:
