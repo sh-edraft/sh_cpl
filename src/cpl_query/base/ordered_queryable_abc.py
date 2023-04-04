@@ -21,7 +21,7 @@ class OrderedQueryableABC(QueryableABC):
             func: :class:`Callable`
 
         Returns:
-            list of :class:`cpl_query.iterable.ordered_iterable_abc.OrderedIterableABC`
+            list of :class:`cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         pass
 
@@ -33,6 +33,6 @@ class OrderedQueryableABC(QueryableABC):
             func: :class:`Callable`
 
         Returns:
-            list of :class:`cpl_query.iterable.ordered_iterable_abc.OrderedIterableABC`
+            list of :class:`cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         pass
