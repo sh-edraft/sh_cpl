@@ -66,6 +66,10 @@ class UpdateService(CommandABC):
             name = package
             if "==" in package:
                 name = package.split("==")[0]
+            elif ">=" in package:
+                name = package.split(">=")[0]
+            elif "<=" in package:
+                name = package.split("<=")[0]
 
             dependencies.append((package, name))
 

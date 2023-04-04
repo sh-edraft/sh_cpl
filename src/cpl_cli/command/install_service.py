@@ -136,6 +136,12 @@ class InstallService(CommandABC):
         if "==" in package:
             name = package.split("==")[0]
             package_version = package.split("==")[1]
+        elif ">=" in package:
+            name = package.split(">=")[0]
+            package_version = package.split(">=")[1]
+        elif "<=" in package:
+            name = package.split("<=")[0]
+            package_version = package.split("<=")[1]
 
         to_remove_list = []
         deps = self._project_settings.dependencies
@@ -147,6 +153,10 @@ class InstallService(CommandABC):
 
             if "==" in dependency:
                 dependency_version = dependency.split("==")[1]
+            elif "<=" in dependency:
+                dependency_version = dependency.split("<=")[1]
+            elif ">=" in dependency:
+                dependency_version = dependency.split(">=")[1]
 
             if name in dependency:
                 if package_version != "" and version.parse(package_version) != version.parse(dependency_version):
@@ -185,19 +195,24 @@ class InstallService(CommandABC):
             new_package = name
         else:
             new_package = Pip.get_package(name)
+
         if (
             new_package is None
             or "==" in package
             and version.parse(package.split("==")[1]) != version.parse(new_package.split("==")[1])
+            or "<=" in package
+            and version.parse(package.split("<=")[1]) != version.parse(new_package.split("<=")[1])
+            or ">=" in package
+            and version.parse(package.split(">=")[1]) != version.parse(new_package.split(">=")[1])
         ):
             Console.error(f"Installation of package {package} failed")
             return
 
         if not is_already_in_project:
             new_name = package
-            if "==" in new_package:
+            if "==" in new_package or ">=" in new_package or "<=" in new_package:
                 new_name = new_package
-            elif "==" in name:
+            elif "==" in name or ">=" in name or "<=" in name:
                 new_name = name
 
             if "/" in new_name:
