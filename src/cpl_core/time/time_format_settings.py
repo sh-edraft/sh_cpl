@@ -10,12 +10,18 @@ from cpl_core.time.time_format_settings_names_enum import TimeFormatSettingsName
 class TimeFormatSettings(ConfigurationModelABC):
     r"""Representation of time format settings"""
 
-    def __init__(self):
+    def __init__(
+        self,
+        date_format: str = None,
+        time_format: str = None,
+        date_time_format: str = None,
+        date_time_log_format: str = None,
+    ):
         ConfigurationModelABC.__init__(self)
-        self._date_format: Optional[str] = None
-        self._time_format: Optional[str] = None
-        self._date_time_format: Optional[str] = None
-        self._date_time_log_format: Optional[str] = None
+        self._date_format: Optional[str] = date_format
+        self._time_format: Optional[str] = time_format
+        self._date_time_format: Optional[str] = date_time_format
+        self._date_time_log_format: Optional[str] = date_time_log_format
 
     @property
     def date_format(self) -> str:
@@ -49,14 +55,14 @@ class TimeFormatSettings(ConfigurationModelABC):
     def date_time_log_format(self, date_time_now_format: str) -> None:
         self._date_time_log_format = date_time_now_format
 
-    def from_dict(self, settings: dict):
-        try:
-            self._date_format = settings[TimeFormatSettingsNamesEnum.date_format.value]
-            self._time_format = settings[TimeFormatSettingsNamesEnum.time_format.value]
-            self._date_time_format = settings[TimeFormatSettingsNamesEnum.date_time_format.value]
-            self._date_time_log_format = settings[TimeFormatSettingsNamesEnum.date_time_log_format.value]
-        except Exception as e:
-            Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-            Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
-            Console.set_foreground_color(ForegroundColorEnum.default)
+    # def from_dict(self, settings: dict):
+    #     try:
+    #         self._date_format = settings[TimeFormatSettingsNamesEnum.date_format.value]
+    #         self._time_format = settings[TimeFormatSettingsNamesEnum.time_format.value]
+    #         self._date_time_format = settings[TimeFormatSettingsNamesEnum.date_time_format.value]
+    #         self._date_time_log_format = settings[TimeFormatSettingsNamesEnum.date_time_log_format.value]
+    #     except Exception as e:
+    #         Console.set_foreground_color(ForegroundColorEnum.red)
+    #         Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
+    #         Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
+    #         Console.set_foreground_color(ForegroundColorEnum.default)

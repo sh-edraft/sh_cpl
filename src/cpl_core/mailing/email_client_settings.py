@@ -1,20 +1,22 @@
-import traceback
-
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_core.console.console import Console
-from cpl_core.mailing.email_client_settings_name_enum import EMailClientSettingsNameEnum
 
 
 class EMailClientSettings(ConfigurationModelABC):
     r"""Representation of mailing settings"""
 
-    def __init__(self):
+    def __init__(
+        self,
+        host: str = None,
+        port: int = None,
+        user_name: str = None,
+        credentials: str = None,
+    ):
         ConfigurationModelABC.__init__(self)
 
-        self._host: str = ""
-        self._port: int = 0
-        self._user_name: str = ""
-        self._credentials: str = ""
+        self._host: str = host
+        self._port: int = port
+        self._user_name: str = user_name
+        self._credentials: str = credentials
 
     @property
     def host(self) -> str:
@@ -48,12 +50,12 @@ class EMailClientSettings(ConfigurationModelABC):
     def credentials(self, credentials: str) -> None:
         self._credentials = credentials
 
-    def from_dict(self, settings: dict):
-        try:
-            self._host = settings[EMailClientSettingsNameEnum.host.value]
-            self._port = settings[EMailClientSettingsNameEnum.port.value]
-            self._user_name = settings[EMailClientSettingsNameEnum.user_name.value]
-            self._credentials = settings[EMailClientSettingsNameEnum.credentials.value]
-        except Exception as e:
-            Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-            Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
+    # def from_dict(self, settings: dict):
+    #     try:
+    #         self._host = settings[EMailClientSettingsNameEnum.host.value]
+    #         self._port = settings[EMailClientSettingsNameEnum.port.value]
+    #         self._user_name = settings[EMailClientSettingsNameEnum.user_name.value]
+    #         self._credentials = settings[EMailClientSettingsNameEnum.credentials.value]
+    #     except Exception as e:
+    #         Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
+    #         Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")

@@ -25,6 +25,7 @@ from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
 from cpl_core.type import T
+from cpl_core.utils.json_processor import JSONProcessor
 
 
 class Configuration(ConfigurationABC):
@@ -279,7 +280,18 @@ class Configuration(ConfigurationABC):
             for key, value in config_from_file.items():
                 if sub.__name__ == key or sub.__name__.replace("Settings", "") == key:
                     configuration = sub()
-                    configuration.from_dict(value)
+                    from_dict = getattr(configuration, "from_dict", None)
+
+                    if from_dict is not None and not hasattr(from_dict, "is_base_func"):
+                        Console.set_foreground_color(ForegroundColorEnum.yellow)
+                        Console.write_line(
+                            f"{sub.__name__}.from_dict is deprecated. Instead, set attributes as typed arguments in __init__. They can be None by default!"
+                        )
+                        Console.color_reset()
+                        configuration.from_dict(value)
+                    else:
+                        configuration = JSONProcessor.process(sub, value)
+
                     self.add_configuration(sub, configuration)
 
     def add_configuration(self, key_type: T, value: any):
