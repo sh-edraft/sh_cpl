@@ -127,9 +127,15 @@ class ServiceProvider(ServiceProviderABC):
         self._scope = scope
 
     def create_scope(self) -> ScopeABC:
-        sb = ScopeBuilder(
-            ServiceProvider(copy.deepcopy(self._service_descriptors), self._configuration, self._database_context)
-        )
+        descriptors = []
+
+        for descriptor in self._service_descriptors:
+            if descriptor.lifetime == ServiceLifetimeEnum.singleton:
+                descriptors.append(descriptor)
+            else:
+                descriptors.append(copy.deepcopy(descriptor))
+
+        sb = ScopeBuilder(ServiceProvider(descriptors, self._configuration, self._database_context))
         return sb.build()
 
     def get_service(self, service_type: T, *args, **kwargs) -> Optional[T]:
