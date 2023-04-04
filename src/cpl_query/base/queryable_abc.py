@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional, Callable, Union, Iterable, Self
+from typing import Optional, Callable, Union, Iterable, Self, Any
 from typing import TYPE_CHECKING
 
 from cpl_query._helper import is_number
@@ -378,7 +378,10 @@ class QueryableABC(Sequence):
         if _func is None:
             _func = _default_lambda
 
-        return type(self)(object, [_func(_o) for _o in self])
+        _l = [_func(_o) for _o in self]
+        _t = type(_l[0]) if len(_l) > 0 else Any
+
+        return type(self)(_t, _l)
 
     def select_many(self, _func: Callable) -> Self:
         r"""Flattens resulting lists to one

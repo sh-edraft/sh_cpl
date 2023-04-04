@@ -25,7 +25,7 @@ class Sequence(ABC):
         return self.to_list().__len__()
 
     @classmethod
-    def __class_getitem__(cls, _t: type):
+    def __class_getitem__(cls, _t: type) -> type:
         return _t
 
     def __repr__(self):
