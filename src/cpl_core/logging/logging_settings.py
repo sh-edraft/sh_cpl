@@ -55,15 +55,3 @@ class LoggingSettings(ConfigurationModelABC):
     @level.setter
     def level(self, level: LoggingLevelEnum) -> None:
         self._level = level
-
-    # def from_dict(self, settings: dict):
-    #     try:
-    #         self._path = settings[LoggingSettingsNameEnum.path.value]
-    #         self._filename = settings[LoggingSettingsNameEnum.filename.value]
-    #         self._console = LoggingLevelEnum[settings[LoggingSettingsNameEnum.console_level.value]]
-    #         self._level = LoggingLevelEnum[settings[LoggingSettingsNameEnum.file_level.value]]
-    #     except Exception as e:
-    #         Console.set_foreground_color(ForegroundColorEnum.red)
-    #         Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-    #         Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
-    #         Console.set_foreground_color(ForegroundColorEnum.default)

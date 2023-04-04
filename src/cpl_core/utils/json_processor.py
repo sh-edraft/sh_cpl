@@ -24,8 +24,8 @@ class JSONProcessor:
                 else:
                     value = values[name_first_lower]
 
-                if isinstance(value, dict):
-                    value = JSONProcessor.process(parameter.annotation, value)
+                if isinstance(value, dict) and not issubclass(parameter.annotation, dict):
+                    value = JSONProcessor.process(dict, value)
 
                 if issubclass(parameter.annotation, enum.Enum):
                     value = parameter.annotation[value]

@@ -17,21 +17,15 @@ class ConfigModel(GenerateSchematicABC):
         
         class $Name(ConfigurationModelABC):
         
-            def __init__(self):
+            def __init__(self, atr: str = None):
                 ConfigurationModelABC.__init__(self)
         
-                self._atr = ''
+                self._atr = atr
         
             @property
             def atr(self) -> str:
                 return self._atr
         
-            def from_dict(self, settings: dict):
-                try:
-                    self._atr = settings['atr']
-                except Exception as e:
-                    Console.error(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
-                    Console.error(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
         """
         x = self.build_code_str(code, Name=self._class_name)
         return x

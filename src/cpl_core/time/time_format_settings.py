@@ -54,15 +54,3 @@ class TimeFormatSettings(ConfigurationModelABC):
     @date_time_log_format.setter
     def date_time_log_format(self, date_time_now_format: str) -> None:
         self._date_time_log_format = date_time_now_format
-
-    # def from_dict(self, settings: dict):
-    #     try:
-    #         self._date_format = settings[TimeFormatSettingsNamesEnum.date_format.value]
-    #         self._time_format = settings[TimeFormatSettingsNamesEnum.time_format.value]
-    #         self._date_time_format = settings[TimeFormatSettingsNamesEnum.date_time_format.value]
-    #         self._date_time_log_format = settings[TimeFormatSettingsNamesEnum.date_time_log_format.value]
-    #     except Exception as e:
-    #         Console.set_foreground_color(ForegroundColorEnum.red)
-    #         Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-    #         Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
-    #         Console.set_foreground_color(ForegroundColorEnum.default)

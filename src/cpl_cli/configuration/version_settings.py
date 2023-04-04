@@ -10,7 +10,7 @@ class VersionSettings(ConfigurationModelABC):
 
         self._major: Optional[str] = major
         self._minor: Optional[str] = minor
-        self._micro: Optional[str] = micro
+        self._micro: Optional[str] = micro if micro != "" else None
 
     @property
     def major(self) -> str:
@@ -29,13 +29,6 @@ class VersionSettings(ConfigurationModelABC):
             return f"{self._major}.{self._minor}"
         else:
             return f"{self._major}.{self._minor}.{self._micro}"
-
-    def from_dict(self, settings: dict):
-        self._major = settings[VersionSettingsNameEnum.major.value]
-        self._minor = settings[VersionSettingsNameEnum.minor.value]
-        micro = settings[VersionSettingsNameEnum.micro.value]
-        if micro != "":
-            self._micro = micro
 
     def to_dict(self) -> dict:
         version = {

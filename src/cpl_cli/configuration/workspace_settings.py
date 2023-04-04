@@ -1,18 +1,23 @@
 import traceback
 from typing import Optional
 
+from cpl_cli.configuration.workspace_settings_name_enum import WorkspaceSettingsNameEnum
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.console import Console
-from cpl_cli.configuration.workspace_settings_name_enum import WorkspaceSettingsNameEnum
 
 
 class WorkspaceSettings(ConfigurationModelABC):
-    def __init__(self):
+    def __init__(
+        self,
+        default_project: str = None,
+        projects: dict = None,
+        scripts: dict = None,
+    ):
         ConfigurationModelABC.__init__(self)
 
-        self._default_project: Optional[str] = None
-        self._projects: dict[str, str] = {}
-        self._scripts: dict[str, str] = {}
+        self._default_project: Optional[str] = default_project
+        self._projects: dict[str, str] = {} if projects is None else projects
+        self._scripts: dict[str, str] = {} if scripts is None else scripts
 
     @property
     def default_project(self) -> str:
@@ -25,16 +30,3 @@ class WorkspaceSettings(ConfigurationModelABC):
     @property
     def scripts(self):
         return self._scripts
-
-    def from_dict(self, settings: dict):
-        try:
-            self._default_project = settings[WorkspaceSettingsNameEnum.default_project.value]
-            self._projects = settings[WorkspaceSettingsNameEnum.projects.value]
-
-            if WorkspaceSettingsNameEnum.scripts.value in settings:
-                self._scripts = settings[WorkspaceSettingsNameEnum.scripts.value]
-            else:
-                self._scripts = {}
-        except Exception as e:
-            Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-            Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")

@@ -49,13 +49,3 @@ class EMailClientSettings(ConfigurationModelABC):
     @credentials.setter
     def credentials(self, credentials: str) -> None:
         self._credentials = credentials
-
-    # def from_dict(self, settings: dict):
-    #     try:
-    #         self._host = settings[EMailClientSettingsNameEnum.host.value]
-    #         self._port = settings[EMailClientSettingsNameEnum.port.value]
-    #         self._user_name = settings[EMailClientSettingsNameEnum.user_name.value]
-    #         self._credentials = settings[EMailClientSettingsNameEnum.credentials.value]
-    #     except Exception as e:
-    #         Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-    #         Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
