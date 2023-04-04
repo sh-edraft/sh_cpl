@@ -270,6 +270,12 @@ class IterableQueryTestCase(unittest.TestCase):
         self.assertEqual(res.to_list(), l_res)
 
     def test_select(self):
+        def test(_l: List) -> List[int]:
+            return _l.select(lambda user: user.address.nr)
+
+        self.assertEqual(List[User], self._tests.type)
+        self.assertEqual(List[int], test(self._tests).type)
+
         range_list = List(int, range(0, 100))
         selected_range = range_list.select(lambda x: x + 1)
 

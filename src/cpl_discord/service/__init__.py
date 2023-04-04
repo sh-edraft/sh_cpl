@@ -15,7 +15,7 @@ __title__ = "cpl_discord.service"
 __author__ = "Sven Heidemann"
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2022 - 2023 sh-edraft.de"
-__version__ = "2023.2.0"
+__version__ = "2023.4.0"
 
 from collections import namedtuple
 
@@ -29,4 +29,4 @@ from .discord_service import DiscordService
 from .discord_service_abc import DiscordServiceABC
 
 VersionInfo = namedtuple("VersionInfo", "major minor micro")
-version_info = VersionInfo(major="2023", minor="2", micro="0")
+version_info = VersionInfo(major="2023", minor="4", micro="0")

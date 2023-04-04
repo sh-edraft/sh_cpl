@@ -3,7 +3,7 @@
     "Name": "cpl-translation",
     "Version": {
       "Major": "2023",
-      "Minor": "2",
+      "Minor": "4",
       "Micro": "0"
     },
     "Author": "Sven Heidemann",
@@ -16,10 +16,10 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2023.2.0"
+      "cpl-core>=2023.4.0"
     ],
     "DevDependencies": [
-      "cpl-cli>=2023.2.0"
+      "cpl-cli>=2023.4.0"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},

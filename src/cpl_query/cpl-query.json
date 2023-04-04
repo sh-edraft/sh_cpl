@@ -3,7 +3,7 @@
     "Name": "cpl-query",
     "Version": {
       "Major": "2023",
-      "Minor": "2",
+      "Minor": "4",
       "Micro": "0"
     },
     "Author": "Sven Heidemann",
@@ -17,7 +17,7 @@
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [],
     "DevDependencies": [],
-    "PythonVersion": ">=3.10",
+    "PythonVersion": ">=3.11",
     "PythonPath": {},
     "Classifiers": []
   },

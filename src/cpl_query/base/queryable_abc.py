@@ -1,6 +1,12 @@
-from typing import Optional, Callable, Union, Iterable
+from __future__ import annotations
+
+from typing import Optional, Callable, Union, Iterable, Self, Any
+from typing import TYPE_CHECKING
 
 from cpl_query._helper import is_number
+
+if TYPE_CHECKING:
+    from cpl_query.base.ordered_queryable_abc import OrderedQueryableABC
 from cpl_query.base.sequence import Sequence
 from cpl_query.exceptions import (
     InvalidTypeException,
@@ -103,7 +109,7 @@ class QueryableABC(Sequence):
 
         return self.where(_func).count()
 
-    def distinct(self, _func: Callable = None) -> "QueryableABC":
+    def distinct(self, _func: Callable = None) -> Self:
         r"""Returns list without redundancies
 
         Parameter
@@ -212,7 +218,7 @@ class QueryableABC(Sequence):
 
         return self
 
-    def group_by(self, _func: Callable = None) -> "QueryableABC":
+    def group_by(self, _func: Callable = None) -> Self:
         r"""Groups by func
 
         Returns
@@ -315,7 +321,7 @@ class QueryableABC(Sequence):
 
         return _func(min(self, key=_func))
 
-    def order_by(self, _func: Callable = None) -> "OrderedQueryableABC":
+    def order_by(self, _func: Callable = None) -> OrderedQueryableABC:
         r"""Sorts elements by function in ascending order
 
         Parameter
@@ -353,7 +359,7 @@ class QueryableABC(Sequence):
 
         return OrderedQueryable(self.type, sorted(self, key=_func, reverse=True), _func)
 
-    def reverse(self) -> "QueryableABC":
+    def reverse(self) -> Self:
         r"""Reverses list
 
         Returns
@@ -362,7 +368,7 @@ class QueryableABC(Sequence):
         """
         return type(self)(self._type, reversed(self._values))
 
-    def select(self, _func: Callable) -> "QueryableABC":
+    def select(self, _func: Callable) -> Self:
         r"""Formats each element of list to a given format
 
         Returns
@@ -372,9 +378,12 @@ class QueryableABC(Sequence):
         if _func is None:
             _func = _default_lambda
 
-        return type(self)(object, [_func(_o) for _o in self])
+        _l = [_func(_o) for _o in self]
+        _t = type(_l[0]) if len(_l) > 0 else Any
 
-    def select_many(self, _func: Callable) -> "QueryableABC":
+        return type(self)(_t, _l)
+
+    def select_many(self, _func: Callable) -> Self:
         r"""Flattens resulting lists to one
 
         Returns
@@ -418,7 +427,7 @@ class QueryableABC(Sequence):
 
         return self._values[0]
 
-    def skip(self, _index: int) -> "QueryableABC":
+    def skip(self, _index: int) -> Self:
         r"""Skips all elements from index
 
         Parameter
@@ -435,7 +444,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self.type, self._values[_index:])
 
-    def skip_last(self, _index: int) -> "QueryableABC":
+    def skip_last(self, _index: int) -> Self:
         r"""Skips all elements after index
 
         Parameter
@@ -477,7 +486,7 @@ class QueryableABC(Sequence):
 
         return result
 
-    def split(self, _func: Callable) -> "QueryableABC":
+    def split(self, _func: Callable) -> Self:
         r"""Splits the list by given function
 
 
@@ -510,7 +519,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self._type, query_groups)
 
-    def take(self, _index: int) -> "QueryableABC":
+    def take(self, _index: int) -> Self:
         r"""Takes all elements from index
 
         Parameter
@@ -527,7 +536,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self._type, self._values[:_index])
 
-    def take_last(self, _index: int) -> "QueryableABC":
+    def take_last(self, _index: int) -> Self:
         r"""Takes all elements after index
 
         Parameter
@@ -546,7 +555,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self._type, self._values[index:])
 
-    def where(self, _func: Callable = None) -> "QueryableABC":
+    def where(self, _func: Callable = None) -> Self:
         r"""Select element by function
 
         Parameter
