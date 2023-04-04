@@ -47,6 +47,11 @@ from cpl_discord.events.on_reaction_clear_emoji_abc import OnReactionClearEmojiA
 from cpl_discord.events.on_reaction_remove_abc import OnReactionRemoveABC
 from cpl_discord.events.on_ready_abc import OnReadyABC
 from cpl_discord.events.on_resume_abc import OnResumeABC
+from cpl_discord.events.on_scheduled_event_create_abc import OnScheduledEventCreateABC
+from cpl_discord.events.on_scheduled_event_delete_abc import OnScheduledEventDeleteABC
+from cpl_discord.events.on_scheduled_event_update_abc import OnScheduledEventUpdateABC
+from cpl_discord.events.on_scheduled_event_user_add_abc import OnScheduledEventUserAddABC
+from cpl_discord.events.on_scheduled_event_user_remove_abc import OnScheduledEventUserRemoveABC
 from cpl_discord.events.on_typing_abc import OnTypingABC
 from cpl_discord.events.on_user_update_abc import OnUserUpdateABC
 from cpl_discord.events.on_voice_state_update_abc import OnVoiceStateUpdateABC
@@ -76,6 +81,11 @@ class DiscordEventTypesEnum(Enum):
     on_guild_role_delete = OnGuildRoleDeleteABC
     on_guild_role_update = OnGuildRoleUpdateABC
     on_guild_unavailable = OnGuildUnavailableABC
+    on_scheduled_event_create = OnScheduledEventCreateABC
+    on_scheduled_event_delete = OnScheduledEventDeleteABC
+    on_scheduled_event_update = OnScheduledEventUpdateABC
+    on_scheduled_event_user_add = OnScheduledEventUserAddABC
+    on_scheduled_event_user_remove = OnScheduledEventUserRemoveABC
     on_guild_update = OnGuildUpdateABC
     on_invite_create = OnInviteCreateABC
     on_invite_delete = OnInviteDeleteABC

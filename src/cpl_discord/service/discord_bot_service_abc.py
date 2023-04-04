@@ -7,22 +7,19 @@ from cpl_query.extension.list import List
 
 
 class DiscordBotServiceABC(commands.Bot):
-    def __init__(self, **kwargs):
-        commands.Bot.__init__(self, **kwargs)
+
+    def __init__(self, *args, **kwargs):
+        commands.Bot.__init__(self, *args, **kwargs)
 
     @abstractmethod
-    async def start_async(self):
-        pass
+    async def start_async(self): pass
 
     @abstractmethod
-    async def stop_async(self):
-        pass
+    async def stop_async(self): pass
 
     @abstractmethod
-    async def on_ready(self):
-        pass
+    async def on_ready(self): pass
 
     @property
     @abstractmethod
-    def guilds(self) -> List[Guild]:
-        pass
+    def guilds(self) -> List[Guild]: pass
