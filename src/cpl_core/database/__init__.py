@@ -11,11 +11,11 @@ CPL core package
 
 """
 
-__title__ = "cpl_core.database"
-__author__ = "Sven Heidemann"
-__license__ = "MIT"
-__copyright__ = "Copyright (c) 2020 - 2023 sh-edraft.de"
-__version__ = "2023.2.0"
+__title__ = 'cpl_core.database'
+__author__ = 'Sven Heidemann'
+__license__ = 'MIT'
+__copyright__ = 'Copyright (c) 2020 - 2023 sh-edraft.de'
+__version__ = '2023.4.0'
 
 from collections import namedtuple
 
@@ -25,5 +25,5 @@ from .database_settings_name_enum import DatabaseSettingsNameEnum
 from .database_settings import DatabaseSettings
 from .table_abc import TableABC
 
-VersionInfo = namedtuple("VersionInfo", "major minor micro")
-version_info = VersionInfo(major="2023", minor="2", micro="0")
+VersionInfo = namedtuple('VersionInfo', 'major minor micro')
+version_info = VersionInfo(major='2023', minor='4', micro='0')
