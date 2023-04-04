@@ -2,5 +2,4 @@ from enum import Enum
 
 
 class CLISettingsNameEnum(Enum):
-
-    pip_path = 'PipPath'
+    pip_path = "PipPath"

@@ -1,6 +1,6 @@
 {
   "WorkspaceSettings": {
-    "DefaultProject": "cpl-cli",
+    "DefaultProject": "cpl-core",
     "Projects": {
       "cpl-cli": "src/cpl_cli/cpl-cli.json",
       "cpl-core": "src/cpl_core/cpl-core.json",
@@ -19,13 +19,15 @@
     "Scripts": {
       "hello-world": "echo 'Hello World'",
 
+      "format": "echo 'Formatting:'; black ./",
+
       "sv": "cpl set-version",
       "set-version": "cpl run set-version --dev $ARGS; echo '';",
 
       "spu": "cpl set-pip-urls",
       "set-pip-urls": "cpl run set-pip-urls --dev $ARGS; echo '';",
 
-      "docs-build": "echo 'Build Documentation'; cpl db-core; cpl db-discord; cpl db-query; cpl db-translation; cd docs/; make clean; make html; # rm source/cpl_query.tests.rst;",
+      "docs-build": "cpl format; echo 'Build Documentation'; cpl db-core; cpl db-discord; cpl db-query; cpl db-translation; cd docs/; make clean; make html;",
       "db-core": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_core; cd ../",
       "db-discord": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_discord; cd ../",
       "db-query": "cd docs/; sphinx-apidoc -o source/ ../src/cpl_query; cd ../",

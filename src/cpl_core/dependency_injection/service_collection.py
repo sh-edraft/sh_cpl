@@ -35,7 +35,7 @@ class ServiceCollection(ServiceCollectionABC):
             if not isinstance(service, type):
                 service_type = type(service)
 
-            raise Exception(f'Service of type {service_type} already exists')
+            raise Exception(f"Service of type {service_type} already exists")
 
         self._service_descriptors.append(ServiceDescriptor(service, lifetime, base_type))
 

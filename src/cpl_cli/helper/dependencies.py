@@ -7,7 +7,7 @@ class Dependencies:
 
     _dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
     for p in _dependencies:
-        if str(p).startswith('cpl-'):
+        if str(p).startswith("cpl-"):
             _cpl_packages.append([p, _dependencies[p]])
             continue
 

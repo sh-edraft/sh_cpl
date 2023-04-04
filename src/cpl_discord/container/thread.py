@@ -7,7 +7,6 @@ from cpl_query.extension import List
 
 
 class Thread(discord.Thread, Container):
-
     def __init__(self, _t: discord.Thread):
         Container.__init__(self, _t, Thread)
 

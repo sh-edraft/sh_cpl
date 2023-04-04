@@ -17,7 +17,6 @@ from unittests_shared.cli_commands import CLICommands
 
 
 class VersionTestCase(CommandTestCase):
-
     def __init__(self, method_name: str):
         CommandTestCase.__init__(self, method_name)
         self._block_banner = ""
@@ -33,21 +32,21 @@ class VersionTestCase(CommandTestCase):
     def _get_version_output(self, version: str):
         index = 0
 
-        for line in version.split('\n'):
+        for line in version.split("\n"):
             if line == "":
                 continue
 
             if index <= 5:
-                self._block_banner += f'{line}\n'
+                self._block_banner += f"{line}\n"
 
             if 7 <= index <= 9:
-                self._block_version += f'{line}\n'
+                self._block_version += f"{line}\n"
 
             if 10 <= index <= 16:
-                self._block_cpl_packages += f'{line}\n'
+                self._block_cpl_packages += f"{line}\n"
 
             if index >= 18:
-                self._block_packages += f'{line}\n'
+                self._block_packages += f"{line}\n"
 
             index += 1
 
@@ -56,7 +55,7 @@ class VersionTestCase(CommandTestCase):
         cpl_packages = []
         dependencies = dict(tuple(str(ws).split()) for ws in pkg_resources.working_set)
         for p in dependencies:
-            if str(p).startswith('cpl-'):
+            if str(p).startswith("cpl-"):
                 cpl_packages.append([p, dependencies[p]])
                 continue
 
@@ -64,32 +63,34 @@ class VersionTestCase(CommandTestCase):
 
         version = CLICommands.version()
         self._get_version_output(version)
-        reference_banner = colored(text2art(self._name), ForegroundColorEnum.yellow.value).split('\n')
-        reference_banner = "\n".join(reference_banner[:len(reference_banner) - 1]) + '\n'
+        reference_banner = colored(text2art(self._name), ForegroundColorEnum.yellow.value).split("\n")
+        reference_banner = "\n".join(reference_banner[: len(reference_banner) - 1]) + "\n"
 
-        with self.subTest(msg='Block banner'):
+        with self.subTest(msg="Block banner"):
             self.assertEqual(reference_banner, self._block_banner)
 
         reference_version = [
             colored(f'{colored("Common Python library CLI: ")}{colored(cpl_cli.__version__)}'),
-            colored(f'{colored("Python: ")}{colored(f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")}'),
-            colored(f'OS: {colored(f"{platform.system()} {platform.processor()}")}') + '\n'
+            colored(
+                f'{colored("Python: ")}{colored(f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")}'
+            ),
+            colored(f'OS: {colored(f"{platform.system()} {platform.processor()}")}') + "\n",
         ]
-        with self.subTest(msg='Block version'):
-            self.assertEqual('\n'.join(reference_version), self._block_version)
+        with self.subTest(msg="Block version"):
+            self.assertEqual("\n".join(reference_version), self._block_version)
         reference_cpl_packages = [
-            colored(colored(f'CPL packages:')),
-            colored(f'{tabulate(cpl_packages, headers=["Name", "Version"])}') + '\n'
+            colored(colored(f"CPL packages:")),
+            colored(f'{tabulate(cpl_packages, headers=["Name", "Version"])}') + "\n",
         ]
-        with self.subTest(msg='Block cpl packages'):
-            self.assertEqual('\n'.join(reference_cpl_packages), self._block_cpl_packages)
+        with self.subTest(msg="Block cpl packages"):
+            self.assertEqual("\n".join(reference_cpl_packages), self._block_cpl_packages)
         reference_packages = [
-            colored(colored(f'Python packages:')),
+            colored(colored(f"Python packages:")),
             colored(f'{tabulate(packages, headers=["Name", "Version"])}'),
-            '\x1b[0m\x1b[0m\n\x1b[0m\x1b[0m\n\x1b[0m\x1b[0m\n'  # fix colored codes
+            "\x1b[0m\x1b[0m\n\x1b[0m\x1b[0m\n\x1b[0m\x1b[0m\n",  # fix colored codes
         ]
 
         self.maxDiff = None
-        with self.subTest(msg='Block packages'):
-            ref_packages = '\n'.join(reference_packages)
+        with self.subTest(msg="Block packages"):
+            ref_packages = "\n".join(reference_packages)
             self.assertEqual(ref_packages, self._block_packages)

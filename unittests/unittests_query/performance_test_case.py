@@ -10,7 +10,6 @@ COUNT = 50
 
 
 class PerformanceTestCase(unittest.TestCase):
-
     def setUp(self):
         i = 0
         self.values = []
@@ -23,10 +22,10 @@ class PerformanceTestCase(unittest.TestCase):
         iterable = timeit.timeit(lambda: Iterable.range(0, VALUES), number=COUNT)
         enumerable = timeit.timeit(lambda: Enumerable.range(0, VALUES), number=COUNT)
 
-        print('Range')
-        print(f'd: {default}s')
-        print(f'i: {iterable}s')
-        print(f'e: {enumerable}s')
+        print("Range")
+        print(f"d: {default}s")
+        print(f"i: {iterable}s")
+        print(f"e: {enumerable}s")
 
         self.assertAlmostEqual(round(default, 3), round(enumerable, 3))
         self.assertAlmostEqual(round(default, 3), round(iterable, 3))
@@ -36,17 +35,16 @@ class PerformanceTestCase(unittest.TestCase):
         iterable = timeit.timeit(lambda: Iterable.range(0, VALUES).where(lambda x: x == 50).single(), number=COUNT)
         enumerable = timeit.timeit(lambda: Enumerable.range(0, VALUES).where(lambda x: x == 50).single(), number=COUNT)
 
-        print('Where single')
-        print(f'd: {default}s')
-        print(f'i: {iterable}s')
-        print(f'e: {enumerable}s')
+        print("Where single")
+        print(f"d: {default}s")
+        print(f"i: {iterable}s")
+        print(f"e: {enumerable}s")
 
         self.assertLess(default, enumerable)
         self.assertLess(default, iterable)
 
     def test_where_single_complex(self):
         class TestModel:
-
             def __init__(self, v, tm=None):
                 self.value = v
                 self.tm = tm
@@ -56,13 +54,17 @@ class PerformanceTestCase(unittest.TestCase):
             values.append(TestModel(i, TestModel(i + 1)))
 
         default = timeit.timeit(lambda: [x for x in values if x.tm.value == 50], number=COUNT)
-        iterable = timeit.timeit(lambda: Iterable(TestModel, values).where(lambda x: x.tm.value == 50).single(), number=COUNT)
-        enumerable = timeit.timeit(lambda: Enumerable(TestModel, values).where(lambda x: x.tm.value == 50).single(), number=COUNT)
+        iterable = timeit.timeit(
+            lambda: Iterable(TestModel, values).where(lambda x: x.tm.value == 50).single(), number=COUNT
+        )
+        enumerable = timeit.timeit(
+            lambda: Enumerable(TestModel, values).where(lambda x: x.tm.value == 50).single(), number=COUNT
+        )
 
-        print('Complex where single')
-        print(f'd: {default}s')
-        print(f'i: {iterable}s')
-        print(f'e: {enumerable}s')
+        print("Complex where single")
+        print(f"d: {default}s")
+        print(f"i: {iterable}s")
+        print(f"e: {enumerable}s")
 
         self.assertLess(default, enumerable)
         self.assertLess(default, iterable)

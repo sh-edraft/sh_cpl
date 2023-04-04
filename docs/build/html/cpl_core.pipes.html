@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_core.pipes &mdash; Common Python Library  documentation</title>
+  <title>cpl_core.pipes package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_core.time" href="cpl_core.time.html" />
-    <link rel="prev" title="cpl_core.mailing" href="cpl_core.mailing.html" /> 
+    <link rel="next" title="cpl_core.time package" href="cpl_core.time.html" />
+    <link rel="prev" title="cpl_core.mailing package" href="cpl_core.mailing.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,30 +44,35 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.pipes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.pipes package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.pipes">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -87,7 +92,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="cpl_core.html">API reference</a> &raquo;</li>
-      <li>cpl_core.pipes</li>
+      <li>cpl_core.pipes package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.pipes.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,10 +102,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-core-pipes">
-<h1>cpl_core.pipes<a class="headerlink" href="#cpl-core-pipes" title="Permalink to this heading"></a></h1>
+  <section id="cpl-core-pipes-package">
+<h1>cpl_core.pipes package<a class="headerlink" href="#cpl-core-pipes-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_core.pipes.bool_pipe">
-<span id="cpl-core-pipes-bool-pipe"></span><h2>cpl_core.pipes.bool_pipe<a class="headerlink" href="#module-cpl_core.pipes.bool_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-bool-pipe-module"></span><h2>cpl_core.pipes.bool_pipe module<a class="headerlink" href="#module-cpl_core.pipes.bool_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.bool_pipe.BoolPipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.bool_pipe.</span></span><span class="sig-name descname"><span class="pre">BoolPipe</span></span><a class="headerlink" href="#cpl_core.pipes.bool_pipe.BoolPipe" title="Permalink to this definition"></a></dt>
@@ -114,7 +122,7 @@
 
 </section>
 <section id="module-cpl_core.pipes.first_char_to_lower_pipe">
-<span id="cpl-core-pipes-first-char-to-lower-pipe"></span><h2>cpl_core.pipes.first_char_to_lower_pipe<a class="headerlink" href="#module-cpl_core.pipes.first_char_to_lower_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-first-char-to-lower-pipe-module"></span><h2>cpl_core.pipes.first_char_to_lower_pipe module<a class="headerlink" href="#module-cpl_core.pipes.first_char_to_lower_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.first_char_to_lower_pipe.</span></span><span class="sig-name descname"><span class="pre">FirstCharToLowerPipe</span></span><a class="headerlink" href="#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe" title="Permalink to this definition"></a></dt>
@@ -123,22 +131,22 @@
 <dt class="sig sig-object py" id="cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe.transform" title="Permalink to this definition"></a></dt>
 <dd><p>Converts first char to lower</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>value: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String with first char as lower</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String with first char as lower</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.pipes.first_to_upper_pipe">
-<span id="cpl-core-pipes-first-to-upper-pipe"></span><h2>cpl_core.pipes.first_to_upper_pipe<a class="headerlink" href="#module-cpl_core.pipes.first_to_upper_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-first-to-upper-pipe-module"></span><h2>cpl_core.pipes.first_to_upper_pipe module<a class="headerlink" href="#module-cpl_core.pipes.first_to_upper_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.first_to_upper_pipe.</span></span><span class="sig-name descname"><span class="pre">FirstToUpperPipe</span></span><a class="headerlink" href="#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe" title="Permalink to this definition"></a></dt>
@@ -147,22 +155,22 @@
 <dt class="sig sig-object py" id="cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe.transform" title="Permalink to this definition"></a></dt>
 <dd><p>Converts first char to upper</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String with first char as upper</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String with first char as upper</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.pipes.ip_address_pipe">
-<span id="cpl-core-pipes-ip-address-pipe"></span><h2>cpl_core.pipes.ip_address_pipe<a class="headerlink" href="#module-cpl_core.pipes.ip_address_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-ip-address-pipe-module"></span><h2>cpl_core.pipes.ip_address_pipe module<a class="headerlink" href="#module-cpl_core.pipes.ip_address_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.ip_address_pipe.IPAddressPipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.ip_address_pipe.</span></span><span class="sig-name descname"><span class="pre">IPAddressPipe</span></span><a class="headerlink" href="#cpl_core.pipes.ip_address_pipe.IPAddressPipe" title="Permalink to this definition"></a></dt>
@@ -176,7 +184,7 @@
 
 </section>
 <section id="module-cpl_core.pipes.pipe_abc">
-<span id="cpl-core-pipes-pipe-abc"></span><h2>cpl_core.pipes.pipe_abc<a class="headerlink" href="#module-cpl_core.pipes.pipe_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-pipe-abc-module"></span><h2>cpl_core.pipes.pipe_abc module<a class="headerlink" href="#module-cpl_core.pipes.pipe_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.pipe_abc.PipeABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.pipe_abc.</span></span><span class="sig-name descname"><span class="pre">PipeABC</span></span><a class="headerlink" href="#cpl_core.pipes.pipe_abc.PipeABC" title="Permalink to this definition"></a></dt>
@@ -190,7 +198,7 @@
 
 </section>
 <section id="module-cpl_core.pipes.to_camel_case_pipe">
-<span id="cpl-core-pipes-to-camel-case-pipe"></span><h2>cpl_core.pipes.to_camel_case_pipe<a class="headerlink" href="#module-cpl_core.pipes.to_camel_case_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-to-camel-case-pipe-module"></span><h2>cpl_core.pipes.to_camel_case_pipe module<a class="headerlink" href="#module-cpl_core.pipes.to_camel_case_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.to_camel_case_pipe.</span></span><span class="sig-name descname"><span class="pre">ToCamelCasePipe</span></span><a class="headerlink" href="#cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe" title="Permalink to this definition"></a></dt>
@@ -199,22 +207,22 @@
 <dt class="sig sig-object py" id="cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe.transform" title="Permalink to this definition"></a></dt>
 <dd><p>Converts string to camel case</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String converted to CamelCase</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String converted to CamelCase</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.pipes.to_snake_case_pipe">
-<span id="cpl-core-pipes-to-snake-case-pipe"></span><h2>cpl_core.pipes.to_snake_case_pipe<a class="headerlink" href="#module-cpl_core.pipes.to_snake_case_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-to-snake-case-pipe-module"></span><h2>cpl_core.pipes.to_snake_case_pipe module<a class="headerlink" href="#module-cpl_core.pipes.to_snake_case_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.to_snake_case_pipe.</span></span><span class="sig-name descname"><span class="pre">ToSnakeCasePipe</span></span><a class="headerlink" href="#cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe" title="Permalink to this definition"></a></dt>
@@ -223,22 +231,22 @@
 <dt class="sig sig-object py" id="cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe.transform" title="Permalink to this definition"></a></dt>
 <dd><p>Converts string to snake case</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String converted to snake_case</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String converted to snake_case</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.pipes.version_pipe">
-<span id="cpl-core-pipes-version-pipe"></span><h2>cpl_core.pipes.version_pipe<a class="headerlink" href="#module-cpl_core.pipes.version_pipe" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-pipes-version-pipe-module"></span><h2>cpl_core.pipes.version_pipe module<a class="headerlink" href="#module-cpl_core.pipes.version_pipe" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.pipes.version_pipe.VersionPipe">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.version_pipe.</span></span><span class="sig-name descname"><span class="pre">VersionPipe</span></span><a class="headerlink" href="#cpl_core.pipes.version_pipe.VersionPipe" title="Permalink to this definition"></a></dt>
@@ -251,14 +259,55 @@
 </dd></dl>
 
 </section>
+<section id="module-cpl_core.pipes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_core.pipes" title="Permalink to this heading"></a></h2>
+<section id="cpl-core-cpl-core">
+<h3>cpl-core CPL core<a class="headerlink" href="#cpl-core-cpl-core" title="Permalink to this heading"></a></h3>
+<p>CPL core package</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.pipes.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.pipes.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.pipes.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.pipes.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_core.pipes.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.pipes.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_core.pipes.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.pipes.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_core.pipes.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.mailing.html" class="btn btn-neutral float-left" title="cpl_core.mailing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_core.time.html" class="btn btn-neutral float-right" title="cpl_core.time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.mailing.html" class="btn btn-neutral float-left" title="cpl_core.mailing package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_core.time.html" class="btn btn-neutral float-right" title="cpl_core.time package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_core.configuration &mdash; Common Python Library  documentation</title>
+  <title>cpl_core.configuration package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_core.console" href="cpl_core.console.html" />
-    <link rel="prev" title="cpl_core.application" href="cpl_core.application.html" /> 
+    <link rel="next" title="cpl_core.console package" href="cpl_core.console.html" />
+    <link rel="prev" title="cpl_core.application package" href="cpl_core.application.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,27 +44,39 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cpl-core-configuration-console-argument">cpl_core.configuration.console_argument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.configuration package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.argument_abc">cpl_core.configuration.argument_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.argument_builder">cpl_core.configuration.argument_builder module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.argument_executable_abc">cpl_core.configuration.argument_executable_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.argument_type_enum">cpl_core.configuration.argument_type_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.executable_argument">cpl_core.configuration.executable_argument module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.flag_argument">cpl_core.configuration.flag_argument module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.validator_abc">cpl_core.configuration.validator_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration.variable_argument">cpl_core.configuration.variable_argument module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.configuration">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -84,7 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="cpl_core.html">API reference</a> &raquo;</li>
-      <li>cpl_core.configuration</li>
+      <li>cpl_core.configuration package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.configuration.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,58 +106,166 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-core-configuration">
-<h1>cpl_core.configuration<a class="headerlink" href="#cpl-core-configuration" title="Permalink to this heading"></a></h1>
+  <section id="cpl-core-configuration-package">
+<h1>cpl_core.configuration package<a class="headerlink" href="#cpl-core-configuration-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-cpl_core.configuration.argument_abc">
+<span id="cpl-core-configuration-argument-abc-module"></span><h2>cpl_core.configuration.argument_abc module<a class="headerlink" href="#module-cpl_core.configuration.argument_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.argument_abc.</span></span><span class="sig-name descname"><span class="pre">ArgumentABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prevent_next_executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console_arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ArgumentABC'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC.add_console_argument">
+<span class="sig-name descname"><span class="pre">add_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum" title="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum"><span class="pre">ArgumentTypeEnum</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">ArgumentABC</span></a></span></span><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC.add_console_argument" title="Permalink to this definition"></a></dt>
+<dd><p>Creates and adds a console argument to known console arguments</p>
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
+<dt>arg_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies the specific type of the argument</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>self <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgument</span></code> not created argument!</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC.aliases">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aliases</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC.aliases" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC.console_arguments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">console_arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ArgumentABC'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC.console_arguments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC.prevent_next_executable">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prevent_next_executable</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC.prevent_next_executable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_abc.ArgumentABC.token">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_core.configuration.argument_abc.ArgumentABC.token" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration.argument_builder">
+<span id="cpl-core-configuration-argument-builder-module"></span><h2>cpl_core.configuration.argument_builder module<a class="headerlink" href="#module-cpl_core.configuration.argument_builder" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_builder.ArgumentBuilder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.argument_builder.</span></span><span class="sig-name descname"><span class="pre">ArgumentBuilder</span></span><a class="headerlink" href="#cpl_core.configuration.argument_builder.ArgumentBuilder" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_builder.ArgumentBuilder.build_argument">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum" title="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum"><span class="pre">ArgumentTypeEnum</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.executable_argument.ExecutableArgument" title="cpl_core.configuration.executable_argument.ExecutableArgument"><span class="pre">ExecutableArgument</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#cpl_core.configuration.flag_argument.FlagArgument" title="cpl_core.configuration.flag_argument.FlagArgument"><span class="pre">FlagArgument</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#cpl_core.configuration.variable_argument.VariableArgument" title="cpl_core.configuration.variable_argument.VariableArgument"><span class="pre">VariableArgument</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.configuration.argument_builder.ArgumentBuilder.build_argument" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration.argument_executable_abc">
+<span id="cpl-core-configuration-argument-executable-abc-module"></span><h2>cpl_core.configuration.argument_executable_abc module<a class="headerlink" href="#module-cpl_core.configuration.argument_executable_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.argument_executable_abc.</span></span><span class="sig-name descname"><span class="pre">ArgumentExecutableABC</span></span><a class="headerlink" href="#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration.argument_type_enum">
+<span id="cpl-core-configuration-argument-type-enum-module"></span><h2>cpl_core.configuration.argument_type_enum module<a class="headerlink" href="#module-cpl_core.configuration.argument_type_enum" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.argument_type_enum.</span></span><span class="sig-name descname"><span class="pre">ArgumentTypeEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Executable">
+<span class="sig-name descname"><span class="pre">Executable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Executable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Flag">
+<span class="sig-name descname"><span class="pre">Flag</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Flag" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Variable">
+<span class="sig-name descname"><span class="pre">Variable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Variable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-cpl_core.configuration.configuration">
-<span id="cpl-core-configuration-configuration"></span><h2>cpl_core.configuration.configuration<a class="headerlink" href="#module-cpl_core.configuration.configuration" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-configuration-configuration-module"></span><h2>cpl_core.configuration.configuration module<a class="headerlink" href="#module-cpl_core.configuration.configuration" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.configuration.</span></span><span class="sig-name descname"><span class="pre">Configuration</span></span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationABC</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.add_configuration">
-<span class="sig-name descname"><span class="pre">add_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.add_configuration" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.add_configuration" title="Permalink to this definition"></a></dt>
 <dd><p>Add configuration object</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>key_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>]</dt><dd><p>Type of the value</p>
 </dd>
 <dt>value: any</dt><dd><p>Object of the value</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.add_console_argument">
-<span class="sig-name descname"><span class="pre">add_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ArgumentABC</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.add_console_argument" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">ArgumentABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.add_console_argument" title="Permalink to this definition"></a></dt>
 <dd><p>Adds console argument to known console arguments</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>argument: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></dt><dd><p>Specifies the console argument</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.add_environment_variables">
 <span class="sig-name descname"><span class="pre">add_environment_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.add_environment_variables" title="Permalink to this definition"></a></dt>
 <dd><p>Reads the environment variables</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>prefix: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Prefix of the variables</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.add_json_file">
 <span class="sig-name descname"><span class="pre">add_json_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.add_json_file" title="Permalink to this definition"></a></dt>
 <dd><p>Reads and saves settings from given json file</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Name of the file</p>
 </dd>
 <dt>optional: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies whether an error should occur if the file was not found</p>
@@ -155,7 +275,8 @@
 <dt>path: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path in which the file should be stored</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -170,15 +291,15 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.arguments">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">cpl_core.configuration.argument_abc.ArgumentABC</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.arguments" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">cpl_core.configuration.argument_abc.ArgumentABC</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.arguments" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.create_console_argument">
-<span class="sig-name descname"><span class="pre">create_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ArgumentTypeEnum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentABC</span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.create_console_argument" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum" title="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum"><span class="pre">ArgumentTypeEnum</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">ArgumentABC</span></a></span></span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.create_console_argument" title="Permalink to this definition"></a></dt>
 <dd><p>Creates and adds a console argument to known console arguments</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>token: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies optional beginning of argument</p>
 </dd>
 <dt>name <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies name of argument</p>
@@ -192,10 +313,10 @@
 <dt>runnable: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></dt><dd><p>Specifies class to run when called if value is not None</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Object of <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Object of <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -207,97 +328,101 @@
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.for_each_argument">
 <span class="sig-name descname"><span class="pre">for_each_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.for_each_argument" title="Permalink to this definition"></a></dt>
 <dd><p>Iterates through all arguments and calls the call function</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>call: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Call for each argument</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.get_configuration">
 <span class="sig-name descname"><span class="pre">get_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.get_configuration" title="Permalink to this definition"></a></dt>
 <dd><p>Returns value from configuration by given type</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>search_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Type[<a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</dt><dd><p>Type to search for</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Object of Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Object of Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration.Configuration.parse_console_arguments">
 <span class="sig-name descname"><span class="pre">parse_console_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">services</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><span class="pre">ServiceProviderABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration.Configuration.parse_console_arguments" title="Permalink to this definition"></a></dt>
 <dd><p>Reads the console arguments</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>error: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Defines is invalid argument error will be shown or not</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Bool to specify if executables were executed or not.</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Bool to specify if executables were executed or not.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.configuration.configuration_abc">
-<span id="cpl-core-configuration-configuration-abc"></span><h2>cpl_core.configuration.configuration_abc<a class="headerlink" href="#module-cpl_core.configuration.configuration_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-configuration-configuration-abc-module"></span><h2>cpl_core.configuration.configuration_abc module<a class="headerlink" href="#module-cpl_core.configuration.configuration_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.configuration_abc.</span></span><span class="sig-name descname"><span class="pre">ConfigurationABC</span></span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.add_configuration">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">type</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.add_configuration" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.add_configuration" title="Permalink to this definition"></a></dt>
 <dd><p>Add configuration object</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>key_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>]</dt><dd><p>Type of the value</p>
 </dd>
 <dt>value: any</dt><dd><p>Object of the value</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.add_console_argument">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ArgumentABC</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.add_console_argument" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">ArgumentABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.add_console_argument" title="Permalink to this definition"></a></dt>
 <dd><p>Adds console argument to known console arguments</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>argument: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></dt><dd><p>Specifies the console argument</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.add_environment_variables">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_environment_variables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.add_environment_variables" title="Permalink to this definition"></a></dt>
 <dd><p>Reads the environment variables</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>prefix: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Prefix of the variables</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.add_json_file">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_json_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.add_json_file" title="Permalink to this definition"></a></dt>
 <dd><p>Reads and saves settings from given json file</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>name: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Name of the file</p>
 </dd>
 <dt>optional: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies whether an error should occur if the file was not found</p>
@@ -307,7 +432,8 @@
 <dt>path: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Path in which the file should be stored</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -322,15 +448,15 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.arguments">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">cpl_core.configuration.argument_abc.ArgumentABC</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.arguments" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">cpl_core.configuration.argument_abc.ArgumentABC</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.arguments" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.create_console_argument">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ArgumentTypeEnum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ArgumentABC</span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.create_console_argument" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_console_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum" title="cpl_core.configuration.argument_type_enum.ArgumentTypeEnum"><span class="pre">ArgumentTypeEnum</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><span class="pre">ArgumentABC</span></a></span></span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.create_console_argument" title="Permalink to this definition"></a></dt>
 <dd><p>Creates and adds a console argument to known console arguments</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>token: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies optional beginning of argument</p>
 </dd>
 <dt>name <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Specifies name of argument</p>
@@ -344,10 +470,10 @@
 <dt>runnable: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></dt><dd><p>Specifies class to run when called if value is not None</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Object of <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Object of <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.console_argument.ConsoleArgumentABC</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -359,49 +485,50 @@
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.for_each_argument">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">for_each_argument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.for_each_argument" title="Permalink to this definition"></a></dt>
 <dd><p>Iterates through all arguments and calls the call function</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>call: <code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></dt><dd><p>Call for each argument</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.get_configuration">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><span class="pre">ConfigurationModelABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.get_configuration" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.get_configuration" title="Permalink to this definition"></a></dt>
 <dd><p>Returns value from configuration by given type</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>search_type: Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, Type[<a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]]</dt><dd><p>Type to search for</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Object of Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Object of Union[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_model_abc.ConfigurationModelABC</span></code></a>]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_abc.ConfigurationABC.parse_console_arguments">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parse_console_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">services</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><span class="pre">ServiceProviderABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cpl_core.configuration.configuration_abc.ConfigurationABC.parse_console_arguments" title="Permalink to this definition"></a></dt>
 <dd><p>Reads the console arguments</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>error: <code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Defines is invalid argument error will be shown or not</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Bool to specify if executables were executed or not.</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Bool to specify if executables were executed or not.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.configuration.configuration_model_abc">
-<span id="cpl-core-configuration-configuration-model-abc"></span><h2>cpl_core.configuration.configuration_model_abc<a class="headerlink" href="#module-cpl_core.configuration.configuration_model_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-configuration-configuration-model-abc-module"></span><h2>cpl_core.configuration.configuration_model_abc module<a class="headerlink" href="#module-cpl_core.configuration.configuration_model_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.configuration_model_abc.</span></span><span class="sig-name descname"><span class="pre">ConfigurationModelABC</span></span><a class="headerlink" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="Permalink to this definition"></a></dt>
@@ -410,16 +537,17 @@
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC.from_dict">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC.from_dict" title="Permalink to this definition"></a></dt>
 <dd><p>Converts attributes to dict</p>
-<blockquote>
-<div><p>settings: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
-</div></blockquote>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>settings: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.configuration.configuration_variable_name_enum">
-<span id="cpl-core-configuration-configuration-variable-name-enum"></span><h2>cpl_core.configuration.configuration_variable_name_enum<a class="headerlink" href="#module-cpl_core.configuration.configuration_variable_name_enum" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-configuration-configuration-variable-name-enum-module"></span><h2>cpl_core.configuration.configuration_variable_name_enum module<a class="headerlink" href="#module-cpl_core.configuration.configuration_variable_name_enum" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.configuration_variable_name_enum.</span></span><span class="sig-name descname"><span class="pre">ConfigurationVariableNameEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum" title="Permalink to this definition"></a></dt>
@@ -448,8 +576,123 @@
 </dd></dl>
 
 </section>
-<section id="cpl-core-configuration-console-argument">
-<h2>cpl_core.configuration.console_argument<a class="headerlink" href="#cpl-core-configuration-console-argument" title="Permalink to this heading"></a></h2>
+<section id="module-cpl_core.configuration.executable_argument">
+<span id="cpl-core-configuration-executable-argument-module"></span><h2>cpl_core.configuration.executable_argument module<a class="headerlink" href="#module-cpl_core.configuration.executable_argument" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.executable_argument.ExecutableArgument">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.executable_argument.</span></span><span class="sig-name descname"><span class="pre">ExecutableArgument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC" title="cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC"><span class="pre">ArgumentExecutableABC</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prevent_next_executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.validator_abc.ValidatorABC" title="cpl_core.configuration.validator_abc.ValidatorABC"><span class="pre">cpl_core.configuration.validator_abc.ValidatorABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console_arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ArgumentABC'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.executable_argument.ExecutableArgument" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentABC</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.executable_argument.ExecutableArgument.executable_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">executable_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">type</span></em><a class="headerlink" href="#cpl_core.configuration.executable_argument.ExecutableArgument.executable_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.executable_argument.ExecutableArgument.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.executable_argument.ExecutableArgument.run" title="Permalink to this definition"></a></dt>
+<dd><p>Executes runnable if exists</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.executable_argument.ExecutableArgument.set_executable">
+<span class="sig-name descname"><span class="pre">set_executable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC" title="cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC"><span class="pre">ArgumentExecutableABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.executable_argument.ExecutableArgument.set_executable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.executable_argument.ExecutableArgument.validators">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validators</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.configuration.validator_abc.ValidatorABC" title="cpl_core.configuration.validator_abc.ValidatorABC"><span class="pre">cpl_core.configuration.validator_abc.ValidatorABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.configuration.executable_argument.ExecutableArgument.validators" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration.flag_argument">
+<span id="cpl-core-configuration-flag-argument-module"></span><h2>cpl_core.configuration.flag_argument module<a class="headerlink" href="#module-cpl_core.configuration.flag_argument" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.flag_argument.FlagArgument">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.flag_argument.</span></span><span class="sig-name descname"><span class="pre">FlagArgument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prevent_next_executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console_arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ArgumentABC'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.flag_argument.FlagArgument" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentABC</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration.validator_abc">
+<span id="cpl-core-configuration-validator-abc-module"></span><h2>cpl_core.configuration.validator_abc module<a class="headerlink" href="#module-cpl_core.configuration.validator_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.validator_abc.ValidatorABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.validator_abc.</span></span><span class="sig-name descname"><span class="pre">ValidatorABC</span></span><a class="headerlink" href="#cpl_core.configuration.validator_abc.ValidatorABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.validator_abc.ValidatorABC.validate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#cpl_core.configuration.validator_abc.ValidatorABC.validate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration.variable_argument">
+<span id="cpl-core-configuration-variable-argument-module"></span><h2>cpl_core.configuration.variable_argument module<a class="headerlink" href="#module-cpl_core.configuration.variable_argument" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.variable_argument.VariableArgument">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.variable_argument.</span></span><span class="sig-name descname"><span class="pre">VariableArgument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aliases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prevent_next_executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console_arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'ArgumentABC'</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.variable_argument.VariableArgument" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#cpl_core.configuration.argument_abc.ArgumentABC" title="cpl_core.configuration.argument_abc.ArgumentABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentABC</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.configuration.variable_argument.VariableArgument.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.variable_argument.VariableArgument.set_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.variable_argument.VariableArgument.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_core.configuration.variable_argument.VariableArgument.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cpl_core.configuration.variable_argument.VariableArgument.value_token">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value_token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_core.configuration.variable_argument.VariableArgument.value_token" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.configuration">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_core.configuration" title="Permalink to this heading"></a></h2>
+<section id="cpl-core-cpl-core">
+<h3>cpl-core CPL core<a class="headerlink" href="#cpl-core-cpl-core" title="Permalink to this heading"></a></h3>
+<p>CPL core package</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.configuration.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.configuration.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.configuration.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.configuration.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_core.configuration.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.configuration.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_core.configuration.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.configuration.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_core.configuration.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 </section>
 
@@ -457,8 +700,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.application.html" class="btn btn-neutral float-left" title="cpl_core.application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_core.console.html" class="btn btn-neutral float-right" title="cpl_core.console" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.application.html" class="btn btn-neutral float-left" title="cpl_core.application package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_core.console.html" class="btn btn-neutral float-right" title="cpl_core.console package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

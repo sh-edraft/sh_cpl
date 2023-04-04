@@ -5,12 +5,14 @@ from cpl_core.dependency_injection import ServiceProviderABC
 
 
 class ApplicationExtensionABC(ABC):
+    @abstractmethod
+    def __init__(self):
+        pass
 
     @abstractmethod
-    def __init__(self): pass
+    def run(self, config: ConfigurationABC, services: ServiceProviderABC):
+        pass
 
     @abstractmethod
-    def run(self, config: ConfigurationABC, services: ServiceProviderABC): pass
-    
-    @abstractmethod
-    async def run(self, config: ConfigurationABC, services: ServiceProviderABC): pass
+    async def run(self, config: ConfigurationABC, services: ServiceProviderABC):
+        pass

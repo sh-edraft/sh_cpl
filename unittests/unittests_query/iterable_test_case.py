@@ -4,7 +4,6 @@ from cpl_query.extension.list import List
 
 
 class IterableTestCase(unittest.TestCase):
-
     def setUp(self) -> None:
         self._list = List(int)
 
@@ -18,7 +17,7 @@ class IterableTestCase(unittest.TestCase):
         self._list.append(3)
 
         self.assertEqual(self._list.to_list(), [1, 2, 3])
-        self.assertRaises(Exception, lambda v: self._list.append(v), '3')
+        self.assertRaises(Exception, lambda v: self._list.append(v), "3")
 
     def test_assign(self):
         self._list.append(1)
@@ -32,4 +31,4 @@ class IterableTestCase(unittest.TestCase):
         del self._list[3]
 
         self.assertEqual(self._list.to_list(), [1, 2, 3])
-        self.assertRaises(Exception, lambda v: self._list.append(v), '3')
+        self.assertRaises(Exception, lambda v: self._list.append(v), "3")

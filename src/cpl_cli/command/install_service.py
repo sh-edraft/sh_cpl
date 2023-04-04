@@ -21,9 +21,14 @@ from cpl_core.utils.pip import Pip
 
 
 class InstallService(CommandABC):
-
-    def __init__(self, config: ConfigurationABC, env: ApplicationEnvironmentABC, build_settings: BuildSettings,
-                 project_settings: ProjectSettings, cli_settings: CLISettings):
+    def __init__(
+        self,
+        config: ConfigurationABC,
+        env: ApplicationEnvironmentABC,
+        build_settings: BuildSettings,
+        project_settings: ProjectSettings,
+        cli_settings: CLISettings,
+    ):
         """
         Service for the CLI command install
         :param config:
@@ -44,17 +49,19 @@ class InstallService(CommandABC):
         self._is_virtual = False
         self._is_dev = False
 
-        self._project_file = f'{self._project_settings.name}.json'
+        self._project_file = f"{self._project_settings.name}.json"
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        return textwrap.dedent(
+            """\
         Installs given package via pip
         Usage: cpl install <package>
         
         Arguments:
             package    The package to install 
-        """)
+        """
+        )
 
     def _wait(self, t: int, *args, source: str = None, stdout=None, stderr=None):
         time.sleep(t)
@@ -65,43 +72,45 @@ class InstallService(CommandABC):
         :return:
         """
         if self._project_settings is None or self._build_settings is None:
-            Error.error('The command requires to be run in an CPL project, but a project could not be found.')
+            Error.error("The command requires to be run in an CPL project, but a project could not be found.")
             return
 
         if self._project_settings.dependencies is None:
-            Error.error(f'Found invalid dependencies in {self._project_file}.')
+            Error.error(f"Found invalid dependencies in {self._project_file}.")
             return
 
         for dependency in self._project_settings.dependencies:
             Console.spinner(
-                f'Installing: {dependency}',
-                Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
-                '--upgrade',
+                f"Installing: {dependency}",
+                Pip.install if not self._is_virtual else self._wait,
+                dependency if not self._is_virtual else 2,
+                "--upgrade",
                 source=self._cli_settings.pip_path,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
-                spinner_foreground_color=ForegroundColorEnum.cyan
+                spinner_foreground_color=ForegroundColorEnum.cyan,
             )
             local_package = Pip.get_package(dependency)
             if local_package is None:
-                Error.warn(f'Installation of package {dependency} failed!')
+                Error.warn(f"Installation of package {dependency} failed!")
                 return
 
         for dependency in self._project_settings.dev_dependencies:
             Console.spinner(
-                f'Installing dev: {dependency}',
-                Pip.install if not self._is_virtual else self._wait, dependency if not self._is_virtual else 2,
-                '--upgrade',
+                f"Installing dev: {dependency}",
+                Pip.install if not self._is_virtual else self._wait,
+                dependency if not self._is_virtual else 2,
+                "--upgrade",
                 source=self._cli_settings.pip_path,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 text_foreground_color=ForegroundColorEnum.green,
-                spinner_foreground_color=ForegroundColorEnum.cyan
+                spinner_foreground_color=ForegroundColorEnum.cyan,
             )
             local_package = Pip.get_package(dependency)
             if local_package is None:
-                Error.warn(f'Installation of package {dependency} failed!')
+                Error.warn(f"Installation of package {dependency} failed!")
                 return
 
         if not self._is_virtual:
@@ -115,18 +124,18 @@ class InstallService(CommandABC):
         """
         is_already_in_project = False
         if self._project_settings is None or self._build_settings is None:
-            Error.error('The command requires to be run in an CPL project, but a project could not be found.')
+            Error.error("The command requires to be run in an CPL project, but a project could not be found.")
             return
 
         if self._project_settings.dependencies is None:
-            Error.error(f'Found invalid dependencies in {self._project_file}.')
+            Error.error(f"Found invalid dependencies in {self._project_file}.")
             return
 
-        package_version = ''
+        package_version = ""
         name = package
-        if '==' in package:
-            name = package.split('==')[0]
-            package_version = package.split('==')[1]
+        if "==" in package:
+            name = package.split("==")[0]
+            package_version = package.split("==")[1]
 
         to_remove_list = []
         deps = self._project_settings.dependencies
@@ -134,13 +143,13 @@ class InstallService(CommandABC):
             deps = self._project_settings.dev_dependencies
 
         for dependency in deps:
-            dependency_version = ''
+            dependency_version = ""
 
-            if '==' in dependency:
-                dependency_version = dependency.split('==')[1]
+            if "==" in dependency:
+                dependency_version = dependency.split("==")[1]
 
             if name in dependency:
-                if package_version != '' and version.parse(package_version) != version.parse(dependency_version):
+                if package_version != "" and version.parse(package_version) != version.parse(dependency_version):
                     to_remove_list.append(dependency)
                     break
                 else:
@@ -154,45 +163,48 @@ class InstallService(CommandABC):
 
         local_package = Pip.get_package(package)
         if local_package is not None and local_package in self._project_settings.dependencies:
-            Error.warn(f'Package {local_package} is already installed.')
+            Error.warn(f"Package {local_package} is already installed.")
             return
 
         elif is_already_in_project:
-            Error.warn(f'Package {package} is already installed.')
+            Error.warn(f"Package {package} is already installed.")
             return
 
         Console.spinner(
-            f'Installing: {package}' if not self._is_dev else f'Installing dev: {package}',
-            Pip.install if not self._is_virtual else self._wait, package if not self._is_virtual else 2,
+            f"Installing: {package}" if not self._is_dev else f"Installing dev: {package}",
+            Pip.install if not self._is_virtual else self._wait,
+            package if not self._is_virtual else 2,
             source=self._cli_settings.pip_path,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.cyan
+            spinner_foreground_color=ForegroundColorEnum.cyan,
         )
 
         if self._is_virtual:
             new_package = name
         else:
             new_package = Pip.get_package(name)
-        if new_package is None \
-                or '==' in package and \
-                version.parse(package.split('==')[1]) != version.parse(new_package.split('==')[1]):
-            Console.error(f'Installation of package {package} failed')
+        if (
+            new_package is None
+            or "==" in package
+            and version.parse(package.split("==")[1]) != version.parse(new_package.split("==")[1])
+        ):
+            Console.error(f"Installation of package {package} failed")
             return
 
         if not is_already_in_project:
             new_name = package
-            if '==' in new_package:
+            if "==" in new_package:
                 new_name = new_package
-            elif '==' in name:
+            elif "==" in name:
                 new_name = name
 
-            if '/' in new_name:
-                new_name = new_name.split('/')[0]
+            if "/" in new_name:
+                new_name = new_name.split("/")[0]
 
-            if '\r' in new_name:
-                new_name = new_name.replace('\r', '')
+            if "\r" in new_name:
+                new_name = new_name.replace("\r", "")
 
             if self._is_dev:
                 self._project_settings.dev_dependencies.append(new_name)
@@ -202,10 +214,10 @@ class InstallService(CommandABC):
             if not self._is_simulation:
                 config = {
                     ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
-                    BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings)
+                    BuildSettings.__name__: SettingsHelper.get_build_settings_dict(self._build_settings),
                 }
 
-                with open(os.path.join(self._env.working_directory, self._project_file), 'w') as project_file:
+                with open(os.path.join(self._env.working_directory, self._project_file), "w") as project_file:
                     project_file.write(json.dumps(config, indent=2))
                     project_file.close()
 
@@ -217,31 +229,31 @@ class InstallService(CommandABC):
         :param args:
         :return:
         """
-        if 'dev' in args:
+        if "dev" in args:
             self._is_dev = True
-            args.remove('dev')
+            args.remove("dev")
 
-        if 'virtual' in args:
+        if "virtual" in args:
             self._is_virtual = True
-            args.remove('virtual')
-            Console.write_line('Running in virtual mode:')
+            args.remove("virtual")
+            Console.write_line("Running in virtual mode:")
 
-        if 'simulate' in args:
+        if "simulate" in args:
             self._is_simulation = True
-            args.remove('simulate')
-            Console.write_line('Running in simulation mode:')
+            args.remove("simulate")
+            Console.write_line("Running in simulation mode:")
 
-        if 'cpl-prod' in args:
-            args.remove('cpl-prod')
-            self._cli_settings.from_dict({'PipPath': 'https://pip.sh-edraft.de'})
+        if "cpl-prod" in args:
+            args.remove("cpl-prod")
+            self._cli_settings.from_dict({"PipPath": "https://pip.sh-edraft.de"})
 
-        if 'cpl-exp' in args:
-            args.remove('cpl-exp')
-            self._cli_settings.from_dict({'PipPath': 'https://pip-exp.sh-edraft.de'})
+        if "cpl-exp" in args:
+            args.remove("cpl-exp")
+            self._cli_settings.from_dict({"PipPath": "https://pip-exp.sh-edraft.de"})
 
-        if 'cpl-dev' in args:
-            args.remove('cpl-dev')
-            self._cli_settings.from_dict({'PipPath': 'https://pip-dev.sh-edraft.de'})
+        if "cpl-dev" in args:
+            args.remove("cpl-dev")
+            self._cli_settings.from_dict({"PipPath": "https://pip-dev.sh-edraft.de"})
 
         VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
 

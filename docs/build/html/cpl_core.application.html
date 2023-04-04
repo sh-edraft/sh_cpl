@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_core.application &mdash; Common Python Library  documentation</title>
+  <title>cpl_core.application package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_core.configuration" href="cpl_core.configuration.html" />
+    <link rel="next" title="cpl_core.configuration package" href="cpl_core.configuration.html" />
     <link rel="prev" title="API reference" href="cpl_core.html" /> 
 </head>
 
@@ -44,26 +44,33 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.application</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_abc">cpl_core.application.application_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_builder">cpl_core.application.application_builder</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.application package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_abc">cpl_core.application.application_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_builder">cpl_core.application.application_builder module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.application_extension_abc">cpl_core.application.application_extension_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application.startup_extension_abc">cpl_core.application.startup_extension_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.application">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -83,7 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="cpl_core.html">API reference</a> &raquo;</li>
-      <li>cpl_core.application</li>
+      <li>cpl_core.application package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.application.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,23 +100,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-core-application">
-<h1>cpl_core.application<a class="headerlink" href="#cpl-core-application" title="Permalink to this heading"></a></h1>
+  <section id="cpl-core-application-package">
+<h1>cpl_core.application package<a class="headerlink" href="#cpl-core-application-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_core.application.application_abc">
-<span id="cpl-core-application-application-abc"></span><h2>cpl_core.application.application_abc<a class="headerlink" href="#module-cpl_core.application.application_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-application-application-abc-module"></span><h2>cpl_core.application.application_abc module<a class="headerlink" href="#module-cpl_core.application.application_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.application.application_abc.ApplicationABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.application_abc.</span></span><span class="sig-name descname"><span class="pre">ApplicationABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">services</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><span class="pre">ServiceProviderABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_abc.ApplicationABC" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>ABC for the Application class</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameters:</dt><dd><dl class="simple">
 <dt>config: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a></dt><dd><p>Contains object loaded from appsettings</p>
 </dd>
 <dt>services: <a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC</span></code></a></dt><dd><p>Contains instances of prepared objects</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_abc.ApplicationABC.configure">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_abc.ApplicationABC.configure" title="Permalink to this definition"></a></dt>
@@ -142,58 +153,62 @@
 
 </section>
 <section id="module-cpl_core.application.application_builder">
-<span id="cpl-core-application-application-builder"></span><h2>cpl_core.application.application_builder<a class="headerlink" href="#module-cpl_core.application.application_builder" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-application-application-builder-module"></span><h2>cpl_core.application.application_builder module<a class="headerlink" href="#module-cpl_core.application.application_builder" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.application_builder.</span></span><span class="sig-name descname"><span class="pre">ApplicationBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><span class="pre">ApplicationABC</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl_core.application.application_builder_abc.ApplicationBuilderABC" title="cpl_core.application.application_builder_abc.ApplicationBuilderABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplicationBuilderABC</span></code></a></p>
 <p>This is class is used to build an object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>app: Type[<a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a>]</dt><dd><p>Application to build</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder.build">
 <span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><span class="pre">ApplicationABC</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.build" title="Permalink to this definition"></a></dt>
 <dd><p>Creates custom application object</p>
-<blockquote>
-<div><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
-</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder.build_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_async</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><span class="pre">ApplicationABC</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.build_async" title="Permalink to this definition"></a></dt>
 <dd><p>Creates custom application object async</p>
-<blockquote>
-<div><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
-</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder.use_extension">
-<span class="sig-name descname"><span class="pre">use_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">ApplicationExtensionABC</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">StartupExtensionABC</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_builder.ApplicationBuilder" title="cpl_core.application.application_builder.ApplicationBuilder"><span class="pre">ApplicationBuilder</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_extension" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.application.application_extension_abc.ApplicationExtensionABC" title="cpl_core.application.application_extension_abc.ApplicationExtensionABC"><span class="pre">ApplicationExtensionABC</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#cpl_core.application.startup_extension_abc.StartupExtensionABC" title="cpl_core.application.startup_extension_abc.StartupExtensionABC"><span class="pre">StartupExtensionABC</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_builder.ApplicationBuilder" title="cpl_core.application.application_builder.ApplicationBuilder"><span class="pre">ApplicationBuilder</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_extension" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder.ApplicationBuilder.use_startup">
 <span class="sig-name descname"><span class="pre">use_startup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">startup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.application.startup_abc.StartupABC" title="cpl_core.application.startup_abc.StartupABC"><span class="pre">StartupABC</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_builder.ApplicationBuilder" title="cpl_core.application.application_builder.ApplicationBuilder"><span class="pre">ApplicationBuilder</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder.ApplicationBuilder.use_startup" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the custom startup class to use async</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>startup: Type[<a class="reference internal" href="#cpl_core.application.startup_abc.StartupABC" title="cpl_core.application.startup_abc.StartupABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.startup_abc.StartupABC</span></code></a>]</dt><dd><p>Startup class to use</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.application.application_builder_abc">
-<span id="cpl-core-application-application-builder-abc"></span><h2>cpl_core.application.application_builder_abc<a class="headerlink" href="#module-cpl_core.application.application_builder_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-application-application-builder-abc-module"></span><h2>cpl_core.application.application_builder_abc module<a class="headerlink" href="#module-cpl_core.application.application_builder_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder_abc.ApplicationBuilderABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.application_builder_abc.</span></span><span class="sig-name descname"><span class="pre">ApplicationBuilderABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_builder_abc.ApplicationBuilderABC" title="Permalink to this definition"></a></dt>
@@ -203,37 +218,54 @@
 <dt class="sig sig-object py" id="cpl_core.application.application_builder_abc.ApplicationBuilderABC.build">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><span class="pre">ApplicationABC</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder_abc.ApplicationBuilderABC.build" title="Permalink to this definition"></a></dt>
 <dd><p>Creates custom application object</p>
-<blockquote>
-<div><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
-</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder_abc.ApplicationBuilderABC.build_async">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_async</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><span class="pre">ApplicationABC</span></a></span></span><a class="headerlink" href="#cpl_core.application.application_builder_abc.ApplicationBuilderABC.build_async" title="Permalink to this definition"></a></dt>
 <dd><p>Creates custom application object async</p>
-<blockquote>
-<div><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
-</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Object of <a class="reference internal" href="#cpl_core.application.application_abc.ApplicationABC" title="cpl_core.application.application_abc.ApplicationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.application_abc.ApplicationABC</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.application_builder_abc.ApplicationBuilderABC.use_startup">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">use_startup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">startup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.application.startup_abc.StartupABC" title="cpl_core.application.startup_abc.StartupABC"><span class="pre">StartupABC</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_builder_abc.ApplicationBuilderABC.use_startup" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the custom startup class to use async</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>startup: Type[<a class="reference internal" href="#cpl_core.application.startup_abc.StartupABC" title="cpl_core.application.startup_abc.StartupABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.application.startup_abc.StartupABC</span></code></a>]</dt><dd><p>Startup class to use</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
+<section id="module-cpl_core.application.application_extension_abc">
+<span id="cpl-core-application-application-extension-abc-module"></span><h2>cpl_core.application.application_extension_abc module<a class="headerlink" href="#module-cpl_core.application.application_extension_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.application.application_extension_abc.ApplicationExtensionABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.application_extension_abc.</span></span><span class="sig-name descname"><span class="pre">ApplicationExtensionABC</span></span><a class="headerlink" href="#cpl_core.application.application_extension_abc.ApplicationExtensionABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.application.application_extension_abc.ApplicationExtensionABC.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">services</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><span class="pre">ServiceProviderABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.application_extension_abc.ApplicationExtensionABC.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-cpl_core.application.startup_abc">
-<span id="cpl-core-application-startup-abc"></span><h2>cpl_core.application.startup_abc<a class="headerlink" href="#module-cpl_core.application.startup_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-application-startup-abc-module"></span><h2>cpl_core.application.startup_abc module<a class="headerlink" href="#module-cpl_core.application.startup_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.application.startup_abc.StartupABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.startup_abc.</span></span><span class="sig-name descname"><span class="pre">StartupABC</span></span><a class="headerlink" href="#cpl_core.application.startup_abc.StartupABC" title="Permalink to this definition"></a></dt>
@@ -243,30 +275,103 @@
 <dt class="sig sig-object py" id="cpl_core.application.startup_abc.StartupABC.configure_configuration">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">ApplicationEnvironmentABC</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></span><a class="headerlink" href="#cpl_core.application.startup_abc.StartupABC.configure_configuration" title="Permalink to this definition"></a></dt>
 <dd><p>Creates configuration of application</p>
-<blockquote>
-<div><p>config: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>config: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a>
 env: <a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc" title="cpl_core.environment.application_environment_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.application_environment_abc</span></code></a></p>
-</div></blockquote>
-<blockquote>
-<div><p>Object of <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a></p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Object of <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.application.startup_abc.StartupABC.configure_services">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">ApplicationEnvironmentABC</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><span class="pre">ServiceProviderABC</span></a></span></span><a class="headerlink" href="#cpl_core.application.startup_abc.StartupABC.configure_services" title="Permalink to this definition"></a></dt>
 <dd><p>Creates service provider</p>
-<blockquote>
-<div><p>services: <a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc" title="cpl_core.dependency_injection.service_collection_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_collection_abc</span></code></a>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>services: <a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc" title="cpl_core.dependency_injection.service_collection_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_collection_abc</span></code></a>
 env: <a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc" title="cpl_core.environment.application_environment_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.application_environment_abc</span></code></a></p>
-</div></blockquote>
-<blockquote>
-<div><p>Object of <a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC</span></code></a></p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Object of <a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
+</section>
+<section id="module-cpl_core.application.startup_extension_abc">
+<span id="cpl-core-application-startup-extension-abc-module"></span><h2>cpl_core.application.startup_extension_abc module<a class="headerlink" href="#module-cpl_core.application.startup_extension_abc" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.application.startup_extension_abc.StartupExtensionABC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.startup_extension_abc.</span></span><span class="sig-name descname"><span class="pre">StartupExtensionABC</span></span><a class="headerlink" href="#cpl_core.application.startup_extension_abc.StartupExtensionABC" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>ABC for startup extension classes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_configuration">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">ApplicationEnvironmentABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Creates configuration of application</p>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>config: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a>
+env: <a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc" title="cpl_core.environment.application_environment_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.application_environment_abc</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_services">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">ApplicationEnvironmentABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_services" title="Permalink to this definition"></a></dt>
+<dd><p>Creates service provider</p>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>services: <a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc" title="cpl_core.dependency_injection.service_collection_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_collection_abc</span></code></a>
+env: <a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc" title="cpl_core.environment.application_environment_abc"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.environment.application_environment_abc</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_core.application">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_core.application" title="Permalink to this heading"></a></h2>
+<section id="cpl-core-cpl-core">
+<h3>cpl-core CPL core<a class="headerlink" href="#cpl-core-cpl-core" title="Permalink to this heading"></a></h3>
+<p>CPL core package</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.application.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.application.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.application.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.application.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_core.application.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.application.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_core.application.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.application.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_core.application.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 </section>
 
@@ -275,7 +380,7 @@ env: <a class="reference internal" href="cpl_core.environment.html#module-cpl_co
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="cpl_core.html" class="btn btn-neutral float-left" title="API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_core.configuration.html" class="btn btn-neutral float-right" title="cpl_core.configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.configuration.html" class="btn btn-neutral float-right" title="cpl_core.configuration package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

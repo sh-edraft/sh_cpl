@@ -9,7 +9,6 @@ from unittests_translation.translation_test_suite import TranslationTestSuite
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 

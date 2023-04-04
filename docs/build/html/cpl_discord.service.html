@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_discord.service &mdash; Common Python Library  documentation</title>
+  <title>cpl_discord.service package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Query reference" href="cpl_query.html" />
-    <link rel="prev" title="cpl_discord.helper" href="cpl_discord.helper.html" /> 
+    <link rel="prev" title="cpl_discord.helper package" href="cpl_discord.helper.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,23 +44,29 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.service</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.service package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.service">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#module-cpl_discord.discord_event_types_enum">cpl_discord.discord_event_types_enum module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
@@ -81,8 +87,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_discord.html">Discord reference</a> &raquo;</li>
-      <li>cpl_discord.service</li>
+          <li><a href="cpl_discord.html">Discord Reference</a> &raquo;</li>
+      <li>cpl_discord.service package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_discord.service.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,10 +98,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-discord-service">
-<h1>cpl_discord.service<a class="headerlink" href="#cpl-discord-service" title="Permalink to this heading"></a></h1>
+  <section id="cpl-discord-service-package">
+<h1>cpl_discord.service package<a class="headerlink" href="#cpl-discord-service-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_discord.service.command_error_handler_service">
-<span id="cpl-discord-service-command-error-handler-service"></span><h2>cpl_discord.service.command_error_handler_service<a class="headerlink" href="#module-cpl_discord.service.command_error_handler_service" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-command-error-handler-service-module"></span><h2>cpl_discord.service.command_error_handler_service module<a class="headerlink" href="#module-cpl_discord.service.command_error_handler_service" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.command_error_handler_service.CommandErrorHandlerService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.command_error_handler_service.</span></span><span class="sig-name descname"><span class="pre">CommandErrorHandlerService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC" title="cpl_core.logging.logger_abc.LoggerABC"><span class="pre">LoggerABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.service.command_error_handler_service.CommandErrorHandlerService" title="Permalink to this definition"></a></dt>
@@ -109,7 +118,7 @@
 
 </section>
 <section id="module-cpl_discord.service.discord_bot_service">
-<span id="cpl-discord-service-discord-bot-service"></span><h2>cpl_discord.service.discord_bot_service<a class="headerlink" href="#module-cpl_discord.service.discord_bot_service" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-discord-bot-service-module"></span><h2>cpl_discord.service.discord_bot_service module<a class="headerlink" href="#module-cpl_discord.service.discord_bot_service" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.discord_bot_service.DiscordBotService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.discord_bot_service.</span></span><span class="sig-name descname"><span class="pre">DiscordBotService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC" title="cpl_core.logging.logger_abc.LoggerABC"><span class="pre">LoggerABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">discord_bot_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings" title="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings"><span class="pre">DiscordBotSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC" title="cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><span class="pre">ApplicationEnvironmentABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_st</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings" title="cpl_core.logging.logging_settings.LoggingSettings"><span class="pre">LoggingSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">discord_service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_discord.service.discord_service_abc.DiscordServiceABC" title="cpl_discord.service.discord_service_abc.DiscordServiceABC"><span class="pre">DiscordServiceABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.service.discord_bot_service.DiscordBotService" title="Permalink to this definition"></a></dt>
@@ -139,7 +148,7 @@
 
 </section>
 <section id="module-cpl_discord.service.discord_bot_service_abc">
-<span id="cpl-discord-service-discord-bot-service-abc"></span><h2>cpl_discord.service.discord_bot_service_abc<a class="headerlink" href="#module-cpl_discord.service.discord_bot_service_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-discord-bot-service-abc-module"></span><h2>cpl_discord.service.discord_bot_service_abc module<a class="headerlink" href="#module-cpl_discord.service.discord_bot_service_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.discord_bot_service_abc.</span></span><span class="sig-name descname"><span class="pre">DiscordBotServiceABC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.service.discord_bot_service_abc.DiscordBotServiceABC" title="Permalink to this definition"></a></dt>
@@ -169,7 +178,7 @@
 
 </section>
 <section id="module-cpl_discord.service.discord_collection">
-<span id="cpl-discord-service-discord-collection"></span><h2>cpl_discord.service.discord_collection<a class="headerlink" href="#module-cpl_discord.service.discord_collection" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-discord-collection-module"></span><h2>cpl_discord.service.discord_collection module<a class="headerlink" href="#module-cpl_discord.service.discord_collection" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.discord_collection.DiscordCollection">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.discord_collection.</span></span><span class="sig-name descname"><span class="pre">DiscordCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_collection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.service.discord_collection.DiscordCollection" title="Permalink to this definition"></a></dt>
@@ -198,7 +207,7 @@
 
 </section>
 <section id="module-cpl_discord.service.discord_collection_abc">
-<span id="cpl-discord-service-discord-collection-abc"></span><h2>cpl_discord.service.discord_collection_abc<a class="headerlink" href="#module-cpl_discord.service.discord_collection_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-discord-collection-abc-module"></span><h2>cpl_discord.service.discord_collection_abc module<a class="headerlink" href="#module-cpl_discord.service.discord_collection_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.discord_collection_abc.DiscordCollectionABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.discord_collection_abc.</span></span><span class="sig-name descname"><span class="pre">DiscordCollectionABC</span></span><a class="headerlink" href="#cpl_discord.service.discord_collection_abc.DiscordCollectionABC" title="Permalink to this definition"></a></dt>
@@ -227,7 +236,7 @@
 
 </section>
 <section id="module-cpl_discord.service.discord_service">
-<span id="cpl-discord-service-discord-service"></span><h2>cpl_discord.service.discord_service<a class="headerlink" href="#module-cpl_discord.service.discord_service" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-discord-service-module"></span><h2>cpl_discord.service.discord_service module<a class="headerlink" href="#module-cpl_discord.service.discord_service" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.discord_service.DiscordService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.discord_service.</span></span><span class="sig-name descname"><span class="pre">DiscordService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.service.discord_service.DiscordService" title="Permalink to this definition"></a></dt>
@@ -496,7 +505,7 @@
 
 </section>
 <section id="module-cpl_discord.service.discord_service_abc">
-<span id="cpl-discord-service-discord-service-abc"></span><h2>cpl_discord.service.discord_service_abc<a class="headerlink" href="#module-cpl_discord.service.discord_service_abc" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-service-discord-service-abc-module"></span><h2>cpl_discord.service.discord_service_abc module<a class="headerlink" href="#module-cpl_discord.service.discord_service_abc" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.service.discord_service_abc.DiscordServiceABC">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.discord_service_abc.</span></span><span class="sig-name descname"><span class="pre">DiscordServiceABC</span></span><a class="headerlink" href="#cpl_discord.service.discord_service_abc.DiscordServiceABC" title="Permalink to this definition"></a></dt>
@@ -744,13 +753,54 @@
 </dd></dl>
 
 </section>
+<section id="module-cpl_discord.service">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_discord.service" title="Permalink to this heading"></a></h2>
+<section id="cpl-discord-cpl-discord">
+<h3>cpl-discord CPL Discord<a class="headerlink" href="#cpl-discord-cpl-discord" title="Permalink to this heading"></a></h3>
+<p>Link between discord.py and CPL</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2022 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.service.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.service.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.service.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.service.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_discord.service.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.service.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_discord.service.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.service.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_discord.service.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_discord.helper.html" class="btn btn-neutral float-left" title="cpl_discord.helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.helper.html" class="btn btn-neutral float-left" title="cpl_discord.helper package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="cpl_query.html" class="btn btn-neutral float-right" title="Query reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="CLI Overview and Command Reference" href="cli.overview.html" />
+    <link rel="next" title="CLI Overview and Command Reference" href="cpl_cli.overview.html" />
     <link rel="prev" title="Contributing to CPL" href="contributing.html" /> 
 </head>
 
@@ -43,23 +43,24 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CLI reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.overview.html">CLI Overview and Command Reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.add.html">cpl add</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.build.html">cpl build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.generate.html">cpl generate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.help.html">cpl help</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.install.html">cpl install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.new.html">cpl new</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.publish.html">cpl publish</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.remove.html">cpl remove</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.start.html">cpl start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.uninstall.html">cpl uninstall</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.update.html">cpl update</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.version.html">cpl version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.overview.html">CLI Overview and Command Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.add.html">cpl add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.build.html">cpl build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.generate.html">cpl generate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.help.html">cpl help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.install.html">cpl install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.new.html">cpl new</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.publish.html">cpl publish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.remove.html">cpl remove</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.run.html">cpl run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.start.html">cpl start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.uninstall.html">cpl uninstall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.update.html">cpl update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.version.html">cpl version</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -92,81 +93,82 @@
 <h1>CLI reference<a class="headerlink" href="#cli-reference" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.overview.html">CLI Overview and Command Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.overview.html#table-of-contents">Table of Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.overview.html#basic-workflow">Basic workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.overview.html#cli-command-language-syntax">CLI command-language syntax</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cli.overview.html#relative-paths">Relative paths</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cli.overview.html#schematics">Schematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.overview.html">CLI Overview and Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.overview.html#table-of-contents">Table of Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.overview.html#basic-workflow">Basic workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.overview.html#cli-command-language-syntax">CLI command-language syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.overview.html#relative-paths">Relative paths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_cli.overview.html#schematics">Schematics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cli.overview.html#command-overview">Command overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.overview.html#command-overview">Command overview</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.add.html">cpl add</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.add.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.add.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.add.html#arguments">Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.add.html#flags">Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.add.html">cpl add</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.add.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.add.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.add.html#arguments">Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.add.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.build.html">cpl build</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.build.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.build.html#description">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.build.html">cpl build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.build.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.build.html#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.generate.html">cpl generate</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.generate.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.generate.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.generate.html#arguments">Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.generate.html#schematics">Schematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.generate.html">cpl generate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.generate.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.generate.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.generate.html#arguments">Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.generate.html#schematics">Schematics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.help.html">cpl help</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.help.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.help.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.help.html#arguments">Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.help.html">cpl help</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.help.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.help.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.help.html#arguments">Arguments</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.install.html">cpl install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.install.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.install.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.install.html#arguments">Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.install.html#flags">Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.install.html">cpl install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.install.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.install.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.install.html#arguments">Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.install.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.new.html">cpl new</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.new.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.new.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.new.html#project-types">Project types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.new.html#flags">Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.new.html">cpl new</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.new.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.new.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.new.html#project-types">Project types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.new.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.publish.html">cpl publish</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.publish.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.publish.html#description">Description</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.publish.html">cpl publish</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.publish.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.publish.html#description">Description</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.remove.html">cpl remove</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.remove.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.remove.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.remove.html#arguments">Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.remove.html#flags">Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.remove.html">cpl remove</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.remove.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.remove.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.remove.html#arguments">Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.remove.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.start.html">cpl start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli.uninstall.html">cpl uninstall</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.uninstall.html#contents">Contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.uninstall.html#description">Description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.uninstall.html#arguments">Arguments</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cli.uninstall.html#flags">Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.run.html">cpl run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.start.html">cpl start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.uninstall.html">cpl uninstall</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.uninstall.html#contents">Contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.uninstall.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.uninstall.html#arguments">Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.uninstall.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.update.html">cpl update</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cli.update.html#flags">Flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.update.html">cpl update</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_cli.update.html#flags">Flags</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cli.version.html">cpl version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_cli.version.html">cpl version</a></li>
 </ul>
 </div>
 </section>
@@ -176,7 +178,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing to CPL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cli.overview.html" class="btn btn-neutral float-right" title="CLI Overview and Command Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_cli.overview.html" class="btn btn-neutral float-right" title="CLI Overview and Command Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

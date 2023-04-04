@@ -4,8 +4,7 @@ import re
 class EMail:
     r"""Represents an email
 
-    Parameter
-    ---------
+    Parameter:
         header: list[:class:`str`]
             Header of the E-Mail
         subject: :class:`str`
@@ -18,8 +17,14 @@ class EMail:
             Receiver of the E-Mail
     """
 
-    def __init__(self, header: list[str] = None, subject: str = None, body: str = None, transceiver: str = None,
-                 receiver: list[str] = None):
+    def __init__(
+        self,
+        header: list[str] = None,
+        subject: str = None,
+        body: str = None,
+        transceiver: str = None,
+        receiver: list[str] = None,
+    ):
         self._header: list[str] = header
 
         self._subject: str = subject
@@ -30,7 +35,7 @@ class EMail:
 
     @property
     def header(self) -> str:
-        return '\r\n'.join(self._header)
+        return "\r\n".join(self._header)
 
     @property
     def header_list(self) -> list[str]:
@@ -65,11 +70,11 @@ class EMail:
         if self.check_mail(transceiver):
             self._transceiver = transceiver
         else:
-            raise Exception(f'Invalid email: {transceiver}')
+            raise Exception(f"Invalid email: {transceiver}")
 
     @property
     def receiver(self) -> str:
-        return ','.join(self._receiver)
+        return ",".join(self._receiver)
 
     @property
     def receiver_list(self) -> list[str]:
@@ -83,22 +88,19 @@ class EMail:
     def check_mail(address: str) -> bool:
         r"""Checks if an email is valid
 
-        Parameter
-        ---------
+        Parameter:
             address: :class:`str`
                 The address to check
 
-        Returns
-        -------
+        Returns:
             Result if E-Mail is valid or not
         """
-        return bool(re.search('^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(.\\w{2,3})+$', address))
+        return bool(re.search("^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(.\\w{2,3})+$", address))
 
     def add_header(self, header: str):
         r"""Adds header
 
-        Parameter
-        ---------
+        Parameter:
             header: :class:`str`
                 The header of the E-Mail
         """
@@ -110,8 +112,7 @@ class EMail:
     def add_receiver(self, receiver: str):
         r"""Adds receiver
 
-        Parameter
-        ---------
+        Parameter:
             receiver: :class:`str`
                 The receiver of the E-Mail
         """
@@ -121,20 +122,18 @@ class EMail:
         if self.check_mail(receiver):
             self._receiver.append(receiver)
         else:
-            raise Exception(f'Invalid email: {receiver}')
+            raise Exception(f"Invalid email: {receiver}")
 
     def get_content(self, transceiver: str):
         r"""Returns the mail as string
 
-        Parameter
-        ---------
+        Parameter:
             transceiver: :class:`str`
                 The transceiver of the E-Mail
 
-        Returns
-        -------
+        Returns:
             E-Mail as string
         """
         return str(
-            f'From: {transceiver}\r\nTo: {self.receiver}\r\n{self.header}\r\nSubject: {self.subject}\r\n{self.body}').encode(
-            'utf-8')
+            f"From: {transceiver}\r\nTo: {self.receiver}\r\n{self.header}\r\nSubject: {self.subject}\r\n{self.body}"
+        ).encode("utf-8")

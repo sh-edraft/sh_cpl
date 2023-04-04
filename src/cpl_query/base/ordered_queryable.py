@@ -6,8 +6,7 @@ from cpl_query.iterable.iterable import Iterable
 
 
 class OrderedQueryable(OrderedQueryableABC):
-    r"""Implementation of :class: `cpl_query.extension.Iterable` `cpl_query.extension.OrderedIterableABC`
-    """
+    r"""Implementation of :class: `cpl_query.extension.Iterable` `cpl_query.extension.OrderedIterableABC`"""
 
     def __init__(self, _t: type, _values: Iterable = None, _func: Callable = None):
         OrderedQueryableABC.__init__(self, _t, _values, _func)
@@ -31,4 +30,6 @@ class OrderedQueryable(OrderedQueryableABC):
             raise ArgumentNoneException(ExceptionArgument.func)
 
         self._funcs.append(_func)
-        return OrderedQueryable(self.type, sorted(self, key=lambda *args: [f(*args) for f in self._funcs], reverse=True), _func)
+        return OrderedQueryable(
+            self.type, sorted(self, key=lambda *args: [f(*args) for f in self._funcs], reverse=True), _func
+        )

@@ -1,9 +1,10 @@
-cpl\_query.base
+cpl\_query.base package
 =======================
 
+Submodules
+----------
 
-
-cpl\_query.base.default\_lambda
+cpl\_query.base.default\_lambda module
 --------------------------------------
 
 .. automodule:: cpl_query.base.default_lambda
@@ -11,7 +12,7 @@ cpl\_query.base.default\_lambda
    :undoc-members:
    :show-inheritance:
 
-cpl\_query.base.ordered\_queryable
+cpl\_query.base.ordered\_queryable module
 -----------------------------------------
 
 .. automodule:: cpl_query.base.ordered_queryable
@@ -19,7 +20,7 @@ cpl\_query.base.ordered\_queryable
    :undoc-members:
    :show-inheritance:
 
-cpl\_query.base.ordered\_queryable\_abc
+cpl\_query.base.ordered\_queryable\_abc module
 ----------------------------------------------
 
 .. automodule:: cpl_query.base.ordered_queryable_abc
@@ -27,7 +28,7 @@ cpl\_query.base.ordered\_queryable\_abc
    :undoc-members:
    :show-inheritance:
 
-cpl\_query.base.queryable\_abc
+cpl\_query.base.queryable\_abc module
 -------------------------------------
 
 .. automodule:: cpl_query.base.queryable_abc
@@ -35,18 +36,18 @@ cpl\_query.base.queryable\_abc
    :undoc-members:
    :show-inheritance:
 
-cpl\_query.base.sequence\_abc
-------------------------------------
+cpl\_query.base.sequence module
+-------------------------------
 
-.. automodule:: cpl_query.base.sequence_abc
+.. automodule:: cpl_query.base.sequence
    :members:
    :undoc-members:
    :show-inheritance:
 
-cpl\_query.base.sequence\_values
----------------------------------------
+Module contents
+---------------
 
-.. automodule:: cpl_query.base.sequence_values
+.. automodule:: cpl_query.base
    :members:
    :undoc-members:
    :show-inheritance:

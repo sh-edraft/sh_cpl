@@ -4,7 +4,6 @@ from cpl_discord.container.container import Container
 
 
 class ToContainersConverter:
-
     @staticmethod
     def convert(_l: Union[list[object], Sequence[object]], _t: type) -> list[Container]:
         values = []

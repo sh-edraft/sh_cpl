@@ -4,7 +4,6 @@ from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
 class StartupExtension(GenerateSchematicABC):
-
     def __init__(self, *args: str):
         GenerateSchematicABC.__init__(self, *args)
 
@@ -32,8 +31,4 @@ class StartupExtension(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'startup-extension',
-            ['stupex', 'STUPEX']
-        )
+        GenerateSchematicABC.register(cls, "startup-extension", ["stupex", "STUPEX"])

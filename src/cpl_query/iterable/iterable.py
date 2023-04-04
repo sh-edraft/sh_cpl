@@ -8,6 +8,5 @@ def _default_lambda(x: object):
 
 
 class Iterable(IterableABC):
-
     def __init__(self, t: type = None, values: TIterable = None):
         IterableABC.__init__(self, t, values)

@@ -12,8 +12,7 @@ from cpl_core.console.foreground_color_enum import ForegroundColorEnum
 class SpinnerThread(threading.Thread):
     r"""Thread to show spinner in terminal
 
-    Parameter
-    ---------
+    Parameter:
         msg_len: :class:`int`
             Length of the message
         foreground_color: :class:`cpl_core.console.foreground_color.ForegroundColorEnum`
@@ -36,7 +35,7 @@ class SpinnerThread(threading.Thread):
     def _spinner():
         r"""Selects active spinner char"""
         while True:
-            for cursor in '|/-\\':
+            for cursor in "|/-\\":
                 yield cursor
 
     def _get_color_args(self) -> list[str]:
@@ -53,37 +52,37 @@ class SpinnerThread(threading.Thread):
     def run(self) -> None:
         r"""Entry point of thread, shows the spinner"""
         columns = 0
-        if sys.platform == 'win32':
+        if sys.platform == "win32":
             columns = os.get_terminal_size().columns
         else:
-            term_rows, term_columns = os.popen('stty size', 'r').read().split()
+            term_rows, term_columns = os.popen("stty size", "r").read().split()
             columns = int(term_columns)
 
-        end_msg = 'done'
+        end_msg = "done"
         end_msg_pos = columns - self._msg_len - len(end_msg)
         if end_msg_pos > 0:
-            print(f'{"" : >{end_msg_pos}}', end='')
+            print(f'{"" : >{end_msg_pos}}', end="")
         else:
-            print('', end='')
+            print("", end="")
 
         first = True
         spinner = self._spinner()
         while self._is_spinning:
             if first:
                 first = False
-                print(colored(f'{next(spinner): >{len(end_msg) - 1}}', *self._get_color_args()), end='')
+                print(colored(f"{next(spinner): >{len(end_msg) - 1}}", *self._get_color_args()), end="")
             else:
-                print(colored(f'{next(spinner): >{len(end_msg)}}', *self._get_color_args()), end='')
+                print(colored(f"{next(spinner): >{len(end_msg)}}", *self._get_color_args()), end="")
             time.sleep(0.1)
-            back = ''
+            back = ""
             for i in range(0, len(end_msg)):
-                back += '\b'
+                back += "\b"
 
-            print(back, end='')
+            print(back, end="")
             sys.stdout.flush()
 
         if not self._exit:
-            print(colored(end_msg, *self._get_color_args()), end='')
+            print(colored(end_msg, *self._get_color_args()), end="")
 
     def stop_spinning(self):
         r"""Stops the spinner"""

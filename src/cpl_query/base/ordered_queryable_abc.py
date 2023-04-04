@@ -6,7 +6,6 @@ from cpl_query.base.queryable_abc import QueryableABC
 
 
 class OrderedQueryableABC(QueryableABC):
-
     @abstractmethod
     def __init__(self, _t: type, _values: Iterable = None, _func: Callable = None):
         QueryableABC.__init__(self, _t, _values)
@@ -15,29 +14,25 @@ class OrderedQueryableABC(QueryableABC):
             self._funcs.append(_func)
 
     @abstractmethod
-    def then_by(self, func: Callable) -> 'OrderedQueryableABC':
+    def then_by(self, func: Callable) -> "OrderedQueryableABC":
         r"""Sorts OrderedList in ascending order by function
 
-        Parameter
-        ---------
+        Parameter:
             func: :class:`Callable`
-            
-        Returns
-        -------
-            list of :class:`cpl_query.iterable.ordered_iterable_abc.OrderedIterableABC`
+
+        Returns:
+            list of :class:`cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         pass
 
     @abstractmethod
-    def then_by_descending(self, func: Callable) -> 'OrderedQueryableABC':
+    def then_by_descending(self, func: Callable) -> "OrderedQueryableABC":
         r"""Sorts OrderedList in descending order by function
 
-        Parameter
-        ---------
+        Parameter:
             func: :class:`Callable`
-            
-        Returns
-        -------
-            list of :class:`cpl_query.iterable.ordered_iterable_abc.OrderedIterableABC`
+
+        Returns:
+            list of :class:`cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         pass

@@ -62,8 +62,7 @@ class DatabaseSettings(ConfigurationModelABC):
     def from_dict(self, settings: dict):
         r"""Sets attributes from given dict
 
-        Parameter
-        ---------
+        Parameter:
         settings: :class:`dict`
         """
         try:
@@ -75,20 +74,20 @@ class DatabaseSettings(ConfigurationModelABC):
             self._user = settings[DatabaseSettingsNameEnum.user.value]
             self._password = settings[DatabaseSettingsNameEnum.password.value]
             self._databse = settings[DatabaseSettingsNameEnum.database.value]
-            
+
             if DatabaseSettingsNameEnum.charset.value in settings:
                 self._charset = settings[DatabaseSettingsNameEnum.charset.value]
-            
+
             if DatabaseSettingsNameEnum.buffered.value in settings:
                 self._use_unicode = bool(settings[DatabaseSettingsNameEnum.use_unicode.value])
-            
+
             if DatabaseSettingsNameEnum.buffered.value in settings:
                 self._buffered = bool(settings[DatabaseSettingsNameEnum.buffered.value])
-            
+
             if DatabaseSettingsNameEnum.auth_plugin.value in settings:
                 self._auth_plugin = settings[DatabaseSettingsNameEnum.auth_plugin.value]
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
+            Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
             Console.set_foreground_color(ForegroundColorEnum.default)

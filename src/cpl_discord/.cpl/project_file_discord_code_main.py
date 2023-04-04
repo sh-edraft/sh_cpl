@@ -3,15 +3,25 @@ from cpl_core.utils import String
 
 
 class DiscordBotProjectFileMain(CodeFileTemplateABC):
-
-    def __init__(self, name: str, path: str, use_application_api: bool, use_startup: bool, use_service_providing: bool, use_async: bool):
-        CodeFileTemplateABC.__init__(self, 'main', path, '', use_application_api, use_startup, use_service_providing, use_async)
+    def __init__(
+        self,
+        name: str,
+        path: str,
+        use_application_api: bool,
+        use_startup: bool,
+        use_service_providing: bool,
+        use_async: bool,
+    ):
+        CodeFileTemplateABC.__init__(
+            self, "main", path, "", use_application_api, use_startup, use_service_providing, use_async
+        )
 
         import textwrap
 
-        import_pkg = f'{String.convert_to_snake_case(name)}.'
+        import_pkg = f"{String.convert_to_snake_case(name)}."
 
-        self._main_with_application_host_and_startup = textwrap.dedent(f"""\
+        self._main_with_application_host_and_startup = textwrap.dedent(
+            f"""\
             import asyncio
             from typing import Optional
             
@@ -41,7 +51,8 @@ class DiscordBotProjectFileMain(CodeFileTemplateABC):
                     asyncio.run(program.main())
                 except KeyboardInterrupt:
                     asyncio.run(program.stop())
-        """)
+        """
+        )
 
     def get_code(self) -> str:
         return self._main_with_application_host_and_startup

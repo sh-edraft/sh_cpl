@@ -10,8 +10,7 @@ from cpl_core.environment.application_environment_abc import ApplicationEnvironm
 class ApplicationABC(ABC):
     r"""ABC for the Application class
 
-    Parameters
-    ----------
+    Parameters:
         config: :class:`cpl_core.configuration.configuration_abc.ConfigurationABC`
             Contains object loaded from appsettings
         services: :class:`cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC`
@@ -34,7 +33,7 @@ class ApplicationABC(ABC):
             self.main()
         except KeyboardInterrupt:
             Console.close()
-    
+
     async def run_async(self):
         r"""Entry point
 

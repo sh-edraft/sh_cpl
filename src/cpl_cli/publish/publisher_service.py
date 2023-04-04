@@ -19,9 +19,9 @@ from cpl_cli._templates.publish.setup_template import SetupTemplate
 
 
 class PublisherService(PublisherABC):
-
-    def __init__(self, config: ConfigurationABC,
-                 env: ApplicationEnvironmentABC, project: ProjectSettings, build: BuildSettings):
+    def __init__(
+        self, config: ConfigurationABC, env: ApplicationEnvironmentABC, project: ProjectSettings, build: BuildSettings
+    ):
         """
         Service to build or publish files for distribution
         :param config:
@@ -43,11 +43,11 @@ class PublisherService(PublisherABC):
         self._included_dirs: list[str] = []
         self._distributed_files: list[str] = []
 
-        self._path_mark = '/'
-        if sys.platform == 'win32':
-            self._path_mark = '\\'
+        self._path_mark = "/"
+        if sys.platform == "win32":
+            self._path_mark = "\\"
 
-        self._src_path_part = f'src{self._path_mark}'
+        self._src_path_part = f"src{self._path_mark}"
 
     @property
     def source_path(self) -> str:
@@ -64,17 +64,17 @@ class PublisherService(PublisherABC):
         :return:
         """
         if self._src_path_part in file:
-            file = file.split(self._src_path_part)[1].replace(self._src_path_part, '', 1)
+            file = file.split(self._src_path_part)[1].replace(self._src_path_part, "", 1)
 
         dirs = os.path.dirname(file).split(self._path_mark)
         for d in dirs:
-            if d.__contains__('.'):
+            if d.__contains__("."):
                 dirs.remove(d)
 
         if len(dirs) == 0:
             return os.path.basename(file)
         else:
-            return '.'.join(dirs)
+            return ".".join(dirs)
 
     @staticmethod
     def _delete_path(path: str):
@@ -87,7 +87,7 @@ class PublisherService(PublisherABC):
             try:
                 shutil.rmtree(path)
             except Exception as e:
-                Console.error(f'{e}')
+                Console.error(f"{e}")
                 sys.exit()
 
     @staticmethod
@@ -101,7 +101,7 @@ class PublisherService(PublisherABC):
             try:
                 os.makedirs(path)
             except Exception as e:
-                Console.error(f'{e}')
+                Console.error(f"{e}")
                 sys.exit()
 
     def _is_path_included(self, path: str) -> bool:
@@ -111,8 +111,8 @@ class PublisherService(PublisherABC):
         :return:
         """
         for included in self._build_settings.included:
-            if included.startswith('*'):
-                included = included.replace('*', '')
+            if included.startswith("*"):
+                included = included.replace("*", "")
 
             if included in path and path not in self._build_settings.excluded:
                 return True
@@ -126,8 +126,8 @@ class PublisherService(PublisherABC):
         :return:
         """
         for excluded in self._build_settings.excluded:
-            if excluded.startswith('*'):
-                excluded = excluded.replace('*', '')
+            if excluded.startswith("*"):
+                excluded = excluded.replace("*", "")
 
             if excluded in path and not self._is_path_included(path):
                 return True
@@ -141,8 +141,8 @@ class PublisherService(PublisherABC):
         :return:
         """
         for excluded in self._build_settings.excluded:
-            if excluded.startswith('*'):
-                excluded = excluded.replace('*', '')
+            if excluded.startswith("*"):
+                excluded = excluded.replace("*", "")
 
             if excluded in file and not self._is_path_included(file):
                 return True
@@ -194,10 +194,10 @@ class PublisherService(PublisherABC):
         for project in self._build_settings.project_references:
             project = os.path.abspath(os.path.join(self._source_path, project))
             if not os.path.isfile(os.path.abspath(project)):
-                Console.error(f'Cannot import project: {project}')
+                Console.error(f"Cannot import project: {project}")
                 return
 
-            self.exclude(f'*/{os.path.basename(project)}')
+            self.exclude(f"*/{os.path.basename(project)}")
             self._read_sources_from_path(os.path.dirname(project))
 
     def _create_packages(self):
@@ -206,44 +206,48 @@ class PublisherService(PublisherABC):
         :return:
         """
         for file in self._included_files:
-            if not file.endswith('__init__.py'):
+            if not file.endswith("__init__.py"):
                 continue
 
-            template_content = ''
+            template_content = ""
             module_file_lines: list[str] = []
 
             title = self._get_module_name_from_dirs(file)
-            if title == '':
+            if title == "":
                 title = self._project_settings.name
 
             module_py_lines: list[str] = []
-            imports = ''
+            imports = ""
 
-            with open(file, 'r') as py_file:
+            with open(file, "r") as py_file:
                 module_file_lines = py_file.readlines()
                 py_file.close()
 
             if len(module_file_lines) == 0:
-                imports = '# imports:'
+                imports = "# imports:"
             else:
                 is_started = False
                 build_ignore = False
                 for line in module_file_lines:
-                    if line.__contains__('# imports'):
+                    if line.__contains__("# imports"):
                         is_started = True
 
-                    if line.__contains__('# build-ignore'):
+                    if line.__contains__("# build-ignore"):
                         build_ignore = True
 
-                    if line.__contains__('# build-ignore-end') and is_started:
-                        module_py_lines.append('# build-ignore-end'.replace('\n', ''))
+                    if line.__contains__("# build-ignore-end") and is_started:
+                        module_py_lines.append("# build-ignore-end".replace("\n", ""))
                         build_ignore = False
 
-                    if ((line.__contains__('from') or line.__contains__('import')) and is_started) or line.startswith('__cli_startup_extension__') or build_ignore:
-                        module_py_lines.append(line.replace('\n', ''))
+                    if (
+                        ((line.__contains__("from") or line.__contains__("import")) and is_started)
+                        or line.startswith("__cli_startup_extension__")
+                        or build_ignore
+                    ):
+                        module_py_lines.append(line.replace("\n", ""))
 
                 if len(module_py_lines) > 0:
-                    imports = '\n'.join(module_py_lines)
+                    imports = "\n".join(module_py_lines)
 
             template_content = stringTemplate(InitTemplate.get_init_py()).substitute(
                 Name=self._project_settings.name,
@@ -253,16 +257,16 @@ class PublisherService(PublisherABC):
                 CopyrightName=self._project_settings.copyright_name,
                 LicenseName=self._project_settings.license_name,
                 LicenseDescription=self._project_settings.license_description,
-                Title=title if title is not None and title != '' else self._project_settings.name,
+                Title=title if title is not None and title != "" else self._project_settings.name,
                 Author=self._project_settings.author,
                 Version=version.parse(self._project_settings.version.to_str()),
                 Major=self._project_settings.version.major,
                 Minor=self._project_settings.version.minor,
                 Micro=self._project_settings.version.micro,
-                Imports=imports
+                Imports=imports,
             )
 
-            with open(file, 'w+') as py_file:
+            with open(file, "w+") as py_file:
                 py_file.write(template_content)
                 py_file.close()
 
@@ -278,7 +282,7 @@ class PublisherService(PublisherABC):
         for file in self._included_files:
             dist_file = file
             if self._src_path_part in dist_file:
-                dist_file = dist_file.replace(self._src_path_part, '', 1)
+                dist_file = dist_file.replace(self._src_path_part, "", 1)
 
             output_path = os.path.join(build_path, os.path.dirname(dist_file))
             output_file = os.path.join(build_path, dist_file)
@@ -287,20 +291,20 @@ class PublisherService(PublisherABC):
                 if not os.path.isdir(output_path):
                     os.makedirs(output_path, exist_ok=True)
             except Exception as e:
-                Console.error(__name__, f'Cannot create directories: {output_path} -> {e}')
+                Console.error(__name__, f"Cannot create directories: {output_path} -> {e}")
                 return
 
             try:
                 self._distributed_files.append(output_file)
                 shutil.copy(os.path.abspath(file), output_file)
             except Exception as e:
-                Console.error(__name__, f'Cannot copy file: {file} to {output_path} -> {e}')
+                Console.error(__name__, f"Cannot copy file: {file} to {output_path} -> {e}")
                 return
 
         for empty_dir in self._included_dirs:
             dist_dir = empty_dir
             if self._src_path_part in dist_dir:
-                dist_dir = dist_dir.replace(self._src_path_part, '', 1)
+                dist_dir = dist_dir.replace(self._src_path_part, "", 1)
 
             output_path = os.path.join(build_path, dist_dir)
             if not os.path.isdir(output_path):
@@ -329,7 +333,7 @@ class PublisherService(PublisherABC):
         Dependencies: ProjectSettings, BuildSettings
         :return:
         """
-        setup_file = os.path.join(self._output_path, 'setup.py')
+        setup_file = os.path.join(self._output_path, "setup.py")
         if os.path.isfile(setup_file):
             os.remove(setup_file)
 
@@ -339,19 +343,19 @@ class PublisherService(PublisherABC):
             try:
                 main_name = self._build_settings.main
 
-                if '.' in self._build_settings.main:
-                    length = len(self._build_settings.main.split('.'))
-                    main_name = self._build_settings.main.split('.')[length - 1]
+                if "." in self._build_settings.main:
+                    length = len(self._build_settings.main.split("."))
+                    main_name = self._build_settings.main.split(".")[length - 1]
 
-                sys.path.insert(0, os.path.join(self._source_path, '../'))
+                sys.path.insert(0, os.path.join(self._source_path, "../"))
                 main_mod = __import__(self._build_settings.main)
                 main = getattr(main_mod, main_name)
             except Exception as e:
-                Console.error('Could not find entry point', str(e))
+                Console.error("Could not find entry point", str(e))
                 return
 
-            if main is None or not callable(main) and not hasattr(main, 'main'):
-                Console.error('Could not find entry point')
+            if main is None or not callable(main) and not hasattr(main, "main"):
+                Console.error("Could not find entry point")
                 return
 
             if callable(main):
@@ -361,13 +365,9 @@ class PublisherService(PublisherABC):
                 mod_name = main.__name__
                 func_name = main.main.__name__
 
-            entry_points = {
-                'console_scripts': [
-                    f'{self._build_settings.entry_point} = {mod_name}:{func_name}'
-                ]
-            }
+            entry_points = {"console_scripts": [f"{self._build_settings.entry_point} = {mod_name}:{func_name}"]}
 
-        with open(setup_file, 'w+') as setup_py:
+        with open(setup_file, "w+") as setup_py:
             setup_string = stringTemplate(SetupTemplate.get_setup_py()).substitute(
                 Name=self._project_settings.name,
                 Version=self._project_settings.version.to_str(),
@@ -381,7 +381,7 @@ class PublisherService(PublisherABC):
                 PyRequires=self._project_settings.python_version,
                 Dependencies=self._project_settings.dependencies,
                 EntryPoints=entry_points,
-                PackageData=self._build_settings.package_data
+                PackageData=self._build_settings.package_data,
             )
             setup_py.write(setup_string)
             setup_py.close()
@@ -391,22 +391,25 @@ class PublisherService(PublisherABC):
         Starts setup.py
         :return:
         """
-        setup_py = os.path.join(self._output_path, 'setup.py')
+        setup_py = os.path.join(self._output_path, "setup.py")
         if not os.path.isfile(setup_py):
-            Console.error(__name__, f'setup.py not found in {self._output_path}')
+            Console.error(__name__, f"setup.py not found in {self._output_path}")
             return
 
         try:
-            sandbox.run_setup(os.path.abspath(setup_py), [
-                'sdist',
-                f'--dist-dir={os.path.join(self._output_path, "setup")}',
-                'bdist_wheel',
-                f'--bdist-dir={os.path.join(self._output_path, "bdist")}',
-                f'--dist-dir={os.path.join(self._output_path, "setup")}'
-            ])
+            sandbox.run_setup(
+                os.path.abspath(setup_py),
+                [
+                    "sdist",
+                    f'--dist-dir={os.path.join(self._output_path, "setup")}',
+                    "bdist_wheel",
+                    f'--bdist-dir={os.path.join(self._output_path, "bdist")}',
+                    f'--dist-dir={os.path.join(self._output_path, "setup")}',
+                ],
+            )
             os.remove(setup_py)
         except Exception as e:
-            Console.error('Executing setup.py failed', str(e))
+            Console.error("Executing setup.py failed", str(e))
 
     def include(self, path: str):
         """
@@ -433,17 +436,30 @@ class PublisherService(PublisherABC):
         3. Copies all included source files to dist_path/build
         :return:
         """
-        self._env.set_working_directory(os.path.join(self._env.working_directory, '../'))  # probably causing some errors (#125)
-        self.exclude(f'*/{self._project_settings.name}.json')
-        self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'build'))
+        self._env.set_working_directory(
+            os.path.join(self._env.working_directory, "../")
+        )  # probably causing some errors (#125)
+        self.exclude(f"*/{self._project_settings.name}.json")
+        self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, "build"))
 
-        Console.spinner('Reading source files:', self._read_sources, text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Creating internal packages:', self._create_packages,
-                        text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
-        Console.spinner('Building application:', self._dist_files, text_foreground_color=ForegroundColorEnum.green,
-                        spinner_foreground_color=ForegroundColorEnum.blue)
+        Console.spinner(
+            "Reading source files:",
+            self._read_sources,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue,
+        )
+        Console.spinner(
+            "Creating internal packages:",
+            self._create_packages,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue,
+        )
+        Console.spinner(
+            "Building application:",
+            self._dist_files,
+            text_foreground_color=ForegroundColorEnum.green,
+            spinner_foreground_color=ForegroundColorEnum.blue,
+        )
         Console.write_line()
 
     def publish(self):
@@ -456,46 +472,48 @@ class PublisherService(PublisherABC):
         4. Remove all included source from dist_path/publish
         :return:
         """
-        self._env.set_working_directory(os.path.join(self._env.working_directory, '../'))  # probably causing some errors (#125)
-        self.exclude(f'*/{self._project_settings.name}.json')
-        self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, 'publish'))
+        self._env.set_working_directory(
+            os.path.join(self._env.working_directory, "../")
+        )  # probably causing some errors (#125)
+        self.exclude(f"*/{self._project_settings.name}.json")
+        self._output_path = os.path.abspath(os.path.join(self._output_path, self._project_settings.name, "publish"))
 
-        Console.write_line('Build:')
+        Console.write_line("Build:")
         Console.spinner(
-            'Reading source files:',
+            "Reading source files:",
             self._read_sources,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.blue
+            spinner_foreground_color=ForegroundColorEnum.blue,
         )
 
         Console.spinner(
-            'Creating internal packages:',
+            "Creating internal packages:",
             self._create_packages,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.blue
+            spinner_foreground_color=ForegroundColorEnum.blue,
         )
 
         Console.spinner(
-            'Building application:',
+            "Building application:",
             self._dist_files,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.blue
+            spinner_foreground_color=ForegroundColorEnum.blue,
         )
 
-        Console.write_line('\nPublish:')
+        Console.write_line("\nPublish:")
         Console.spinner(
-            'Generating setup.py:',
+            "Generating setup.py:",
             self._create_setup,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.blue
+            spinner_foreground_color=ForegroundColorEnum.blue,
         )
 
-        Console.write_line('Running setup.py:\n')
+        Console.write_line("Running setup.py:\n")
         self._run_setup()
         Console.spinner(
-            'Cleaning dist path:',
+            "Cleaning dist path:",
             self._clean_dist_files,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.blue
+            spinner_foreground_color=ForegroundColorEnum.blue,
         )
         Console.write_line()

@@ -4,7 +4,6 @@ from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
 class Validator(GenerateSchematicABC):
-
     def __init__(self, *args: str):
         GenerateSchematicABC.__init__(self, *args)
 
@@ -26,8 +25,4 @@ class Validator(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'validator',
-            ['v', 'V']
-        )
+        GenerateSchematicABC.register(cls, "validator", ["v", "V"])

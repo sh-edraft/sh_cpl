@@ -6,17 +6,16 @@ from cpl_core.configuration.validator_abc import ValidatorABC
 
 
 class ExecutableArgument(ArgumentABC):
-
-    def __init__(self,
-                 token: str,
-                 name: str,
-                 aliases: list[str],
-                 executable: Type[ArgumentExecutableABC],
-                 prevent_next_executable: bool = False,
-                 validators: list[Type[ValidatorABC]] = None,
-                 console_arguments: list['ArgumentABC'] = None
-                 ):
-
+    def __init__(
+        self,
+        token: str,
+        name: str,
+        aliases: list[str],
+        executable: Type[ArgumentExecutableABC],
+        prevent_next_executable: bool = False,
+        validators: list[Type[ValidatorABC]] = None,
+        console_arguments: list["ArgumentABC"] = None,
+    ):
         self._executable_type = executable
         self._validators = validators
         self._executable: Optional[ArgumentExecutableABC] = None
@@ -35,8 +34,7 @@ class ExecutableArgument(ArgumentABC):
         return self._validators
 
     def run(self, args: list[str]):
-        r"""Executes runnable if exists
-        """
+        r"""Executes runnable if exists"""
         if self._executable is None:
             return
         self._executable.execute(args)

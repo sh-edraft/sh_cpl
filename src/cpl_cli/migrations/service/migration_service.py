@@ -6,7 +6,6 @@ from cpl_core.dependency_injection import ServiceProviderABC
 
 
 class MigrationService(MigrationServiceABC):
-
     def __init__(self, services: ServiceProviderABC):
         MigrationServiceABC.__init__(self)
 

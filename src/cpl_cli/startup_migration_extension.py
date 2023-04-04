@@ -9,7 +9,6 @@ from cpl_core.environment.application_environment_abc import ApplicationEnvironm
 
 
 class StartupMigrationExtension(StartupExtensionABC):
-
     def __init__(self):
         pass
 

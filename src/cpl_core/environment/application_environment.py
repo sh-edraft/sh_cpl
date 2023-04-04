@@ -10,8 +10,7 @@ from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
 class ApplicationEnvironment(ApplicationEnvironmentABC):
     r"""Represents environment of the application
 
-    Parameter
-    ---------
+    Parameter:
         name: :class:`cpl_core.environment.environment_name_enum.EnvironmentNameEnum`
     """
 
@@ -37,7 +36,7 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
     @property
     def application_name(self) -> str:
-        return self._app_name if self._app_name is not None else ''
+        return self._app_name if self._app_name is not None else ""
 
     @application_name.setter
     def application_name(self, application_name: str):
@@ -45,7 +44,7 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
 
     @property
     def customer(self) -> str:
-        return self._customer if self._customer is not None else ''
+        return self._customer if self._customer is not None else ""
 
     @customer.setter
     def customer(self, customer: str):
@@ -80,17 +79,17 @@ class ApplicationEnvironment(ApplicationEnvironmentABC):
         return str(self._runtime_directory)
 
     def set_runtime_directory(self, runtime_directory: str):
-        if runtime_directory != '':
+        if runtime_directory != "":
             self._runtime_directory = runtime_directory
             return
 
         self._runtime_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     def set_working_directory(self, working_directory: str):
-        if working_directory != '':
+        if working_directory != "":
             self._working_directory = working_directory
             os.chdir(self._working_directory)
             return
 
-        self._working_directory = os.path.abspath('./')
+        self._working_directory = os.path.abspath("./")
         os.chdir(self._working_directory)

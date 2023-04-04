@@ -7,7 +7,6 @@ from cpl_core.console import Console, ForegroundColorEnum
 
 
 class TemplateBuilder:
-
     @staticmethod
     def build_cpl_file(file_name: str, content: dict):
         if not os.path.isabs(file_name):
@@ -17,7 +16,7 @@ class TemplateBuilder:
         if not os.path.isdir(path):
             os.makedirs(path)
 
-        with open(file_name, 'w') as project_json:
+        with open(file_name, "w") as project_json:
             project_json.write(json.dumps(content, indent=2))
             project_json.close()
 
@@ -27,17 +26,17 @@ class TemplateBuilder:
             WorkspaceSettings.__name__: {
                 WorkspaceSettingsNameEnum.default_project.value: project_name,
                 WorkspaceSettingsNameEnum.projects.value: projects,
-                WorkspaceSettingsNameEnum.scripts.value: scripts
+                WorkspaceSettingsNameEnum.scripts.value: scripts,
             }
         }
 
         Console.spinner(
-            f'Creating {path}',
+            f"Creating {path}",
             cls.build_cpl_file,
             path,
             ws_dict,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.cyan
+            spinner_foreground_color=ForegroundColorEnum.cyan,
         )
 
     @staticmethod
@@ -51,6 +50,6 @@ class TemplateBuilder:
         if not os.path.isdir(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
-        with open(file_path, 'w') as file:
+        with open(file_path, "w") as file:
             file.write(template.value)
             file.close()

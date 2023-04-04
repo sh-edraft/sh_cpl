@@ -10,7 +10,6 @@ from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 
 
 class BuildSettings(ConfigurationModelABC):
-
     def __init__(self):
         ConfigurationModelABC.__init__(self)
 
@@ -82,27 +81,26 @@ class BuildSettings(ConfigurationModelABC):
             else:
                 self._project_references = []
 
-            if sys.platform == 'win32':
-                self._source_path = str(self._source_path).replace('/', '\\')
-                self._output_path = str(self._output_path).replace('/', '\\')
+            if sys.platform == "win32":
+                self._source_path = str(self._source_path).replace("/", "\\")
+                self._output_path = str(self._output_path).replace("/", "\\")
 
                 # windows paths for excluded files
                 excluded = []
                 for ex in self._excluded:
-                    excluded.append(str(ex).replace('/', '\\'))
+                    excluded.append(str(ex).replace("/", "\\"))
 
                 self._excluded = excluded
 
                 # windows paths for included files
                 included = []
                 for inc in self._included:
-                    included.append(str(inc).replace('/', '\\'))
+                    included.append(str(inc).replace("/", "\\"))
 
                 self._included = included
 
         except Exception as e:
             Console.set_foreground_color(ForegroundColorEnum.red)
-            Console.write_line(
-                f'[ ERROR ] [ {__name__} ]: Reading error in {BuildSettings.__name__} settings')
-            Console.write_line(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.write_line(f"[ ERROR ] [ {__name__} ]: Reading error in {BuildSettings.__name__} settings")
+            Console.write_line(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
             Console.set_foreground_color(ForegroundColorEnum.default)

@@ -8,10 +8,10 @@ from cpl_core.console import Console
 
 
 class ArgumentBuilder:
-
     @staticmethod
-    def build_argument(arg_type: ArgumentTypeEnum, *args, **kwargs) -> Union[
-        ExecutableArgument, FlagArgument, VariableArgument]:
+    def build_argument(
+        arg_type: ArgumentTypeEnum, *args, **kwargs
+    ) -> Union[ExecutableArgument, FlagArgument, VariableArgument]:
         argument = None
         try:
             match arg_type:
@@ -22,7 +22,7 @@ class ArgumentBuilder:
                 case ArgumentTypeEnum.Variable:
                     argument = VariableArgument(*args, **kwargs)
                 case _:
-                    Console.error('Invalid argument type')
+                    Console.error("Invalid argument type")
                     Console.close()
         except TypeError as e:
             Console.error(str(e))

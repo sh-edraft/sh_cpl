@@ -14,7 +14,6 @@ from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 
 
 class AddService(CommandABC):
-
     def __init__(self, config: ConfigurationABC, workspace: WorkspaceSettings):
         """
         Service for CLI command add
@@ -27,23 +26,30 @@ class AddService(CommandABC):
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        return textwrap.dedent(
+            """\
         Adds a project reference to given project.
         Usage: cpl add <source-project> <target-project>
         
         Arguments:
             source-project:  Name of the project to which the reference has to be
             target-project:  Name of the project to be referenced
-        """)
+        """
+        )
 
     def _edit_project_file(self, source: str, project_settings: ProjectSettings, build_settings: BuildSettings):
         if self._is_simulation:
             return
-        with open(source, 'w') as file:
-            file.write(json.dumps({
-                ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(project_settings),
-                BuildSettings.__name__: SettingsHelper.get_build_settings_dict(build_settings)
-            }, indent=2))
+        with open(source, "w") as file:
+            file.write(
+                json.dumps(
+                    {
+                        ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(project_settings),
+                        BuildSettings.__name__: SettingsHelper.get_build_settings_dict(build_settings),
+                    },
+                    indent=2,
+                )
+            )
             file.close()
 
     def execute(self, args: list[str]):
@@ -52,17 +58,17 @@ class AddService(CommandABC):
         :param args:
         :return:
         """
-        if 'simulate' in args:
-            args.remove('simulate')
-            Console.write_line('Running in simulation mode:')
+        if "simulate" in args:
+            args.remove("simulate")
+            Console.write_line("Running in simulation mode:")
             self._is_simulation = True
 
         if len(args) == 0:
-            Console.error('Expected source and target project')
+            Console.error("Expected source and target project")
             return
 
         elif len(args) == 1:
-            Console.error('Expected target project')
+            Console.error("Expected target project")
             return
 
         elif len(args) > 2:
@@ -103,30 +109,30 @@ class AddService(CommandABC):
             is_invalid_source = True
 
         if is_invalid_source:
-            Console.error(f'Invalid source: {source}')
+            Console.error(f"Invalid source: {source}")
             return
 
         if is_invalid_target or source == target or not os.path.isfile(target):
-            Console.error(f'Invalid target: {target}')
+            Console.error(f"Invalid target: {target}")
             return
 
         if self._workspace is None:
-            target = f'../{target}'
+            target = f"../{target}"
         else:
-            target = target.replace('src', '..')
+            target = target.replace("src", "..")
 
         if target in build_settings.project_references:
-            Console.error(f'Project reference already exists.')
+            Console.error(f"Project reference already exists.")
             return
 
         build_settings.project_references.append(target)
 
         Console.spinner(
-            f'Editing {source}',
+            f"Editing {source}",
             self._edit_project_file,
             source,
             project_settings,
             build_settings,
             text_foreground_color=ForegroundColorEnum.green,
-            spinner_foreground_color=ForegroundColorEnum.cyan
+            spinner_foreground_color=ForegroundColorEnum.cyan,
         )

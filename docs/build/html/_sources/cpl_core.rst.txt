@@ -1,5 +1,5 @@
 API reference
-===========
+=============
 
 .. toctree::
     :maxdepth: 4
@@ -15,3 +15,4 @@ API reference
     cpl_core.pipes
     cpl_core.time
     cpl_core.utils
+

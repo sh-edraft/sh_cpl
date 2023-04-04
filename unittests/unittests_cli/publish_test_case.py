@@ -10,11 +10,10 @@ from unittests_shared.cli_commands import CLICommands
 
 
 class PublishTestCase(CommandTestCase):
-
     def __init__(self, method_name: str):
         CommandTestCase.__init__(self, method_name)
-        self._source = 'publish-test-source'
-        self._project_file = f'src/{String.convert_to_snake_case(self._source)}/{self._source}.json'
+        self._source = "publish-test-source"
+        self._project_file = f"src/{String.convert_to_snake_case(self._source)}/{self._source}.json"
 
     def setUp(self):
         if not os.path.exists(PLAYGROUND_PATH):
@@ -22,7 +21,7 @@ class PublishTestCase(CommandTestCase):
 
         os.chdir(PLAYGROUND_PATH)
         # create projects
-        CLICommands.new('console', self._source, '--ab', '--s')
+        CLICommands.new("console", self._source, "--ab", "--s")
         os.chdir(os.path.join(os.getcwd(), self._source))
 
     def _are_dir_trees_equal(self, dir1, dir2):
@@ -38,7 +37,7 @@ class PublishTestCase(CommandTestCase):
         @return: True if the directory trees are the same and
             there were no errors while accessing the directories or files,
             False otherwise.
-       """
+        """
 
         dirs_cmp = filecmp.dircmp(dir1, dir2)
         if len(dirs_cmp.left_only) > 0 or len(dirs_cmp.right_only) > 0 or len(dirs_cmp.funny_files) > 0:
@@ -59,17 +58,28 @@ class PublishTestCase(CommandTestCase):
 
     def test_publish(self):
         CLICommands.publish()
-        dist_path = './dist'
-        setup_path = f'{dist_path}/{self._source}/publish/setup'
-        full_dist_path = f'{dist_path}/{self._source}/publish/build/lib/{String.convert_to_snake_case(self._source)}'
+        dist_path = "./dist"
+        setup_path = f"{dist_path}/{self._source}/publish/setup"
+        full_dist_path = f"{dist_path}/{self._source}/publish/build/lib/{String.convert_to_snake_case(self._source)}"
         self.assertTrue(os.path.exists(dist_path))
         self.assertTrue(os.path.exists(setup_path))
-        self.assertTrue(os.path.exists(os.path.join(setup_path, f'{self._source}-0.0.0.tar.gz')))
-        self.assertTrue(os.path.exists(os.path.join(setup_path, f'{String.convert_to_snake_case(self._source)}-0.0.0-py3-none-any.whl')))
+        self.assertTrue(os.path.exists(os.path.join(setup_path, f"{self._source}-0.0.0.tar.gz")))
+        self.assertTrue(
+            os.path.exists(
+                os.path.join(setup_path, f"{String.convert_to_snake_case(self._source)}-0.0.0-py3-none-any.whl")
+            )
+        )
         self.assertTrue(os.path.exists(full_dist_path))
-        self.assertFalse(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))
+        self.assertFalse(
+            self._are_dir_trees_equal(f"./src/{String.convert_to_snake_case(self._source)}", full_dist_path)
+        )
 
-        shutil.copyfile(os.path.join(os.getcwd(), self._project_file), f'{full_dist_path}/{self._source}.json')
-        shutil.copyfile(os.path.join(os.getcwd(), os.path.dirname(self._project_file), 'appsettings.json'), f'{full_dist_path}/appsettings.json')
+        shutil.copyfile(os.path.join(os.getcwd(), self._project_file), f"{full_dist_path}/{self._source}.json")
+        shutil.copyfile(
+            os.path.join(os.getcwd(), os.path.dirname(self._project_file), "appsettings.json"),
+            f"{full_dist_path}/appsettings.json",
+        )
 
-        self.assertTrue(self._are_dir_trees_equal(f'./src/{String.convert_to_snake_case(self._source)}', full_dist_path))
+        self.assertTrue(
+            self._are_dir_trees_equal(f"./src/{String.convert_to_snake_case(self._source)}", full_dist_path)
+        )

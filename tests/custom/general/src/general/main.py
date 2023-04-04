@@ -15,5 +15,5 @@ def main():
     app_builder.build().run()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

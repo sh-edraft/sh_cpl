@@ -5,13 +5,7 @@ from cpl_cli.configuration.version_settings_name_enum import VersionSettingsName
 
 
 class VersionSettings(ConfigurationModelABC):
-
-    def __init__(
-            self,
-            major: str = None,
-            minor: str = None,
-            micro: str = None
-    ):
+    def __init__(self, major: str = None, minor: str = None, micro: str = None):
         ConfigurationModelABC.__init__(self)
 
         self._major: Optional[str] = major
@@ -32,15 +26,15 @@ class VersionSettings(ConfigurationModelABC):
 
     def to_str(self) -> str:
         if self._micro is None:
-            return f'{self._major}.{self._minor}'
+            return f"{self._major}.{self._minor}"
         else:
-            return f'{self._major}.{self._minor}.{self._micro}'
+            return f"{self._major}.{self._minor}.{self._micro}"
 
     def from_dict(self, settings: dict):
         self._major = settings[VersionSettingsNameEnum.major.value]
         self._minor = settings[VersionSettingsNameEnum.minor.value]
         micro = settings[VersionSettingsNameEnum.micro.value]
-        if micro != '':
+        if micro != "":
             self._micro = micro
 
     def to_dict(self) -> dict:

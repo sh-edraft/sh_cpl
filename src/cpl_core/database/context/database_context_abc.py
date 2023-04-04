@@ -13,33 +13,31 @@ class DatabaseContextABC(ABC):
 
     @property
     @abstractmethod
-    def cursor(self) -> MySQLCursorBuffered: pass
-    
+    def cursor(self) -> MySQLCursorBuffered:
+        pass
+
     @abstractmethod
     def connect(self, database_settings: DatabaseSettings):
         r"""Connects to a database by connection settings
 
-        Parameter
-        ---------
+        Parameter:
             database_settings :class:`cpl_core.database.database_settings.DatabaseSettings`
         """
         pass
-    
+
     @abstractmethod
     def save_changes(self):
         r"""Saves changes of the database"""
         pass
-    
+
     @abstractmethod
     def select(self, statement: str) -> list[tuple]:
         r"""Runs SQL Statements
-        
-        Parameter
-        ---------
+
+        Parameter:
             statement: :class:`str`
-        
-        Returns
-        -------
+
+        Returns:
             list: Fetched list of selected elements
         """
         pass

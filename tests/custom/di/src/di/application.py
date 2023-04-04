@@ -11,7 +11,6 @@ from di.tester import Tester
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 
@@ -24,20 +23,20 @@ class Application(ApplicationABC):
 
     def main(self):
         with self._services.create_scope() as scope:
-            Console.write_line('Scope1')
+            Console.write_line("Scope1")
             ts: TestService = scope.service_provider.get_service(TestService)
             ts.run()
             dit: DITesterService = scope.service_provider.get_service(DITesterService)
             dit.run()
 
         with self._services.create_scope() as scope:
-            Console.write_line('Scope2')
+            Console.write_line("Scope2")
             ts: TestService = scope.service_provider.get_service(TestService)
             ts.run()
             dit: DITesterService = scope.service_provider.get_service(DITesterService)
             dit.run()
 
-        Console.write_line('Global')
+        Console.write_line("Global")
         self._part_of_scoped()
         StaticTest.test()
 

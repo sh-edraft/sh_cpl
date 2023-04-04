@@ -7,7 +7,6 @@ from cpl_cli.cli_settings_name_enum import CLISettingsNameEnum
 
 
 class CLISettings(ConfigurationModelABC):
-
     def __init__(self):
         ConfigurationModelABC.__init__(self)
 
@@ -21,5 +20,5 @@ class CLISettings(ConfigurationModelABC):
         try:
             self._pip_path = settings[CLISettingsNameEnum.pip_path.value]
         except Exception as e:
-            Console.error(f'[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings')
-            Console.error(f'[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}')
+            Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
+            Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")

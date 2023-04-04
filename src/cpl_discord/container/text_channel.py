@@ -8,7 +8,6 @@ from cpl_query.extension import List
 
 
 class TextChannel(discord.TextChannel, Container):
-
     def __init__(self, _t: discord.TextChannel):
         Container.__init__(self, _t, TextChannel)
 

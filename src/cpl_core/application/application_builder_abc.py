@@ -16,8 +16,7 @@ class ApplicationBuilderABC(ABC):
     def use_startup(self, startup: Type[StartupABC]):
         r"""Sets the custom startup class to use
 
-        Parameter
-        ---------
+        Parameter:
             startup: Type[:class:`cpl_core.application.startup_abc.StartupABC`]
                 Startup class to use
         """
@@ -27,8 +26,7 @@ class ApplicationBuilderABC(ABC):
     async def use_startup(self, startup: Type[StartupABC]):
         r"""Sets the custom startup class to use async
 
-        Parameter
-        ---------
+        Parameter:
             startup: Type[:class:`cpl_core.application.startup_abc.StartupABC`]
                 Startup class to use
         """
@@ -38,8 +36,7 @@ class ApplicationBuilderABC(ABC):
     def build(self) -> ApplicationABC:
         r"""Creates custom application object
 
-        Returns
-        -------
+        Returns:
             Object of :class:`cpl_core.application.application_abc.ApplicationABC`
         """
         pass
@@ -48,8 +45,7 @@ class ApplicationBuilderABC(ABC):
     async def build_async(self) -> ApplicationABC:
         r"""Creates custom application object async
 
-        Returns
-        -------
+        Returns:
             Object of :class:`cpl_core.application.application_abc.ApplicationABC`
         """
         pass

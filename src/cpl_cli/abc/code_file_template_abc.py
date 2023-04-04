@@ -5,17 +5,16 @@ from cpl_core.utils import String
 
 
 class CodeFileTemplateABC(FileTemplateABC):
-
     @abstractmethod
     def __init__(
-            self,
-            name: str,
-            path: str,
-            code: str,
-            use_application_api: bool,
-            use_startup: bool,
-            use_service_providing: bool,
-            use_async: bool,
+        self,
+        name: str,
+        path: str,
+        code: str,
+        use_application_api: bool,
+        use_startup: bool,
+        use_service_providing: bool,
+        use_async: bool,
     ):
         FileTemplateABC.__init__(self, name, path, code)
         self._use_application_api = use_application_api

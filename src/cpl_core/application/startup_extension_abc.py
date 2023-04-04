@@ -9,14 +9,14 @@ class StartupExtensionABC(ABC):
     r"""ABC for startup extension classes"""
 
     @abstractmethod
-    def __init__(self): pass
+    def __init__(self):
+        pass
 
     @abstractmethod
     def configure_configuration(self, config: ConfigurationABC, env: ApplicationEnvironmentABC):
         r"""Creates configuration of application
 
-        Parameter
-        ---------
+        Parameter:
             config: :class:`cpl_core.configuration.configuration_abc.ConfigurationABC`
             env: :class:`cpl_core.environment.application_environment_abc`
         """
@@ -26,8 +26,7 @@ class StartupExtensionABC(ABC):
     def configure_services(self, service: ServiceCollectionABC, env: ApplicationEnvironmentABC):
         r"""Creates service provider
 
-        Parameter
-        ---------
+        Parameter:
             services: :class:`cpl_core.dependency_injection.service_collection_abc`
             env: :class:`cpl_core.environment.application_environment_abc`
         """

@@ -5,7 +5,6 @@ from git import Repo
 
 
 class GitService:
-
     def __init__(self, env: ApplicationEnvironmentABC):
         self._env = env
         self._repo = Repo(env.working_directory)

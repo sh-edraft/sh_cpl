@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_core.utils &mdash; Common Python Library  documentation</title>
+  <title>cpl_core.utils package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Discord reference" href="cpl_discord.html" />
-    <link rel="prev" title="cpl_core.time" href="cpl_core.time.html" /> 
+    <link rel="next" title="Discord Reference" href="cpl_discord.html" />
+    <link rel="prev" title="cpl_core.time package" href="cpl_core.time.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,25 +44,30 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.utils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils.pip">cpl_core.utils.pip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils.string">cpl_core.utils.string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.utils package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils.pip">cpl_core.utils.pip module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils.string">cpl_core.utils.string module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.utils">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-core-cpl-core">cpl-core CPL core</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -82,7 +87,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="cpl_core.html">API reference</a> &raquo;</li>
-      <li>cpl_core.utils</li>
+      <li>cpl_core.utils package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.utils.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,10 +97,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-core-utils">
-<h1>cpl_core.utils<a class="headerlink" href="#cpl-core-utils" title="Permalink to this heading"></a></h1>
+  <section id="cpl-core-utils-package">
+<h1>cpl_core.utils package<a class="headerlink" href="#cpl-core-utils-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_core.utils.credential_manager">
-<span id="cpl-core-utils-credential-manager"></span><h2>cpl_core.utils.credential_manager<a class="headerlink" href="#module-cpl_core.utils.credential_manager" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-utils-credential-manager-module"></span><h2>cpl_core.utils.credential_manager module<a class="headerlink" href="#module-cpl_core.utils.credential_manager" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.utils.credential_manager.CredentialManager">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.utils.credential_manager.</span></span><span class="sig-name descname"><span class="pre">CredentialManager</span></span><a class="headerlink" href="#cpl_core.utils.credential_manager.CredentialManager" title="Permalink to this definition"></a></dt>
@@ -105,54 +113,54 @@
 <dt class="sig sig-object py" id="cpl_core.utils.credential_manager.CredentialManager.build_string">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.utils.credential_manager.CredentialManager.build_string" title="Permalink to this definition"></a></dt>
 <dd><p>Builds string with credentials in it</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>string: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String in which the variable is replaced by credentials</p>
 </dd>
 <dt>credentials: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to encode</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Decoded string</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Decoded string</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.credential_manager.CredentialManager.decrypt">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.credential_manager.CredentialManager.decrypt" title="Permalink to this definition"></a></dt>
 <dd><p>Decode with base64</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>string: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to decode</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Decoded string</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Decoded string</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.credential_manager.CredentialManager.encrypt">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encrypt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.credential_manager.CredentialManager.encrypt" title="Permalink to this definition"></a></dt>
 <dd><p>Encode with base64</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>string: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to encode</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>Encoded string</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Encoded string</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.utils.pip">
-<span id="cpl-core-utils-pip"></span><h2>cpl_core.utils.pip<a class="headerlink" href="#module-cpl_core.utils.pip" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-utils-pip-module"></span><h2>cpl_core.utils.pip module<a class="headerlink" href="#module-cpl_core.utils.pip" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.utils.pip.Pip">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.utils.pip.</span></span><span class="sig-name descname"><span class="pre">Pip</span></span><a class="headerlink" href="#cpl_core.utils.pip.Pip" title="Permalink to this definition"></a></dt>
@@ -167,29 +175,30 @@
 <dt class="sig sig-object py" id="cpl_core.utils.pip.Pip.get_outdated">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_outdated</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="headerlink" href="#cpl_core.utils.pip.Pip.get_outdated" title="Permalink to this definition"></a></dt>
 <dd><p>Gets table of outdated packages</p>
-<blockquote>
-<div><p>Bytes string of the command result</p>
-</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Bytes string of the command result</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.pip.Pip.get_package">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_package</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.utils.pip.Pip.get_package" title="Permalink to this definition"></a></dt>
 <dd><p>Gets given package py local pip list</p>
-<blockquote>
-<div><p>package: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
-</div></blockquote>
-<blockquote>
-<div><p>The package name as string</p>
-</div></blockquote>
+<dl class="simple">
+<dt>Parameter:</dt><dd><p>package: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+<dt>Returns:</dt><dd><p>The package name as string</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.pip.Pip.install">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.utils.pip.Pip.install" title="Permalink to this definition"></a></dt>
 <dd><p>Installs given package</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>package: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The name of the package</p>
 </dd>
 <dt>args: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></dt><dd><p>Arguments for the command</p>
@@ -201,7 +210,8 @@
 <dt>stderr: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Stderr of subprocess.run</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -214,20 +224,21 @@
 <dt class="sig sig-object py" id="cpl_core.utils.pip.Pip.set_executable">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_executable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.utils.pip.Pip.set_executable" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the executable</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>executable: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The python command</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.pip.Pip.uninstall">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">uninstall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stderr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.utils.pip.Pip.uninstall" title="Permalink to this definition"></a></dt>
 <dd><p>Uninstalls given package</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>package: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>The name of the package</p>
 </dd>
 <dt>stdout: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Stdout of subprocess.run</p>
@@ -235,14 +246,15 @@
 <dt>stderr: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>Stderr of subprocess.run</p>
 </dd>
 </dl>
-</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-cpl_core.utils.string">
-<span id="cpl-core-utils-string"></span><h2>cpl_core.utils.string<a class="headerlink" href="#module-cpl_core.utils.string" title="Permalink to this heading"></a></h2>
+<span id="cpl-core-utils-string-module"></span><h2>cpl_core.utils.string module<a class="headerlink" href="#module-cpl_core.utils.string" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.utils.string.String">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.utils.string.</span></span><span class="sig-name descname"><span class="pre">String</span></span><a class="headerlink" href="#cpl_core.utils.string.String" title="Permalink to this definition"></a></dt>
@@ -252,73 +264,115 @@
 <dt class="sig sig-object py" id="cpl_core.utils.string.String.convert_to_camel_case">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_to_camel_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.string.String.convert_to_camel_case" title="Permalink to this definition"></a></dt>
 <dd><p>Converts string to camel case</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String converted to CamelCase</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String converted to CamelCase</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.string.String.convert_to_snake_case">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert_to_snake_case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.string.String.convert_to_snake_case" title="Permalink to this definition"></a></dt>
 <dd><p>Converts string to snake case</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String converted to snake_case</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String converted to snake_case</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.string.String.first_to_lower">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">first_to_lower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.string.String.first_to_lower" title="Permalink to this definition"></a></dt>
 <dd><p>Converts first char to lower</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String with first char as lower</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String with first char as lower</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.string.String.first_to_upper">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">first_to_upper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.string.String.first_to_upper" title="Permalink to this definition"></a></dt>
 <dd><p>Converts first char to upper</p>
-<blockquote>
-<div><dl class="simple">
+<dl class="simple">
+<dt>Parameter:</dt><dd><dl class="simple">
 <dt>chars: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></dt><dd><p>String to convert</p>
 </dd>
 </dl>
-</div></blockquote>
-<blockquote>
-<div><p>String with first char as upper</p>
-</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>String with first char as upper</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.utils.string.String.random_string">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#cpl_core.utils.string.String.random_string" title="Permalink to this definition"></a></dt>
 <dd><p>Creates random string by given chars and length</p>
-<blockquote>
-<div><p>String of random chars</p>
-</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>String of random chars</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
+</section>
+<section id="module-cpl_core.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_core.utils" title="Permalink to this heading"></a></h2>
+<section id="cpl-core-cpl-core">
+<h3>cpl-core CPL core<a class="headerlink" href="#cpl-core-cpl-core" title="Permalink to this heading"></a></h3>
+<p>CPL core package</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright</dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2020 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license</dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_core.utils.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.utils.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.utils.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.utils.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_core.utils.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.utils.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_core.utils.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_core.utils.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_core.utils.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 </section>
 
@@ -326,8 +380,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.time.html" class="btn btn-neutral float-left" title="cpl_core.time" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_discord.html" class="btn btn-neutral float-right" title="Discord reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.time.html" class="btn btn-neutral float-left" title="cpl_core.time package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.html" class="btn btn-neutral float-right" title="Discord Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

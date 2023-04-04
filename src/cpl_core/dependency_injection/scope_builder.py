@@ -5,15 +5,14 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 
 class ScopeBuilder:
     r"""Class to build :class:`cpl_core.dependency_injection.scope.Scope`"""
-    
+
     def __init__(self, service_provider: ServiceProviderABC) -> None:
         self._service_provider = service_provider
-    
+
     def build(self) -> ScopeABC:
         r"""Returns scope
 
-        Returns
-        -------
+        Returns:
             Object of type :class:`cpl_core.dependency_injection.scope.Scope`
         """
         return Scope(self._service_provider)

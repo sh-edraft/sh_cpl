@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Discord reference &mdash; Common Python Library  documentation</title>
+  <title>Discord Reference &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_discord.application" href="cpl_discord.application.html" />
-    <link rel="prev" title="cpl_core.utils" href="cpl_core.utils.html" /> 
+    <link rel="next" title="cpl_discord.application package" href="cpl_discord.application.html" />
+    <link rel="prev" title="cpl_core.utils package" href="cpl_core.utils.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,14 +44,15 @@
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Discord reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Discord Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cpl_discord.discord_event_types_enum">cpl_discord.discord_event_types_enum module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
@@ -72,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Discord reference</li>
+      <li>Discord Reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_discord.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -83,111 +84,411 @@
            <div itemprop="articleBody">
              
   <section id="discord-reference">
-<h1>Discord reference<a class="headerlink" href="#discord-reference" title="Permalink to this heading"></a></h1>
+<h1>Discord Reference<a class="headerlink" href="#discord-reference" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">cpl_discord.application.discord_bot_application_abc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">cpl_discord.application.discord_bot_application_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html#module-cpl_discord.application">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.application.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">cpl_discord.command.discord_command_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">cpl_discord.command.discord_commands_meta</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">cpl_discord.command.discord_command_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">cpl_discord.command.discord_commands_meta module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html#module-cpl_discord.command">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.command.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.container">cpl_discord.container.container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.guild">cpl_discord.container.guild</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.member">cpl_discord.container.member</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.role">cpl_discord.container.role</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.thread">cpl_discord.container.thread</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html#module-cpl_discord.configuration">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.configuration.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.container">cpl_discord.container.container module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.guild">cpl_discord.container.guild module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.member">cpl_discord.container.member module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.role">cpl_discord.container.role module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.text_channel">cpl_discord.container.text_channel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.thread">cpl_discord.container.thread module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html#module-cpl_discord.container">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.container.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html#module-cpl_discord.events">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.events.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.helper.html">cpl_discord.helper package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.helper.html#module-cpl_discord.helper">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.helper.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service">cpl_discord.service.discord_bot_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_bot_service_abc">cpl_discord.service.discord_bot_service_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection">cpl_discord.service.discord_collection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_collection_abc">cpl_discord.service.discord_collection_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service">cpl_discord.service.discord_service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html#module-cpl_discord.service">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_discord.service.html#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
+<section id="module-cpl_discord.discord_event_types_enum">
+<span id="cpl-discord-discord-event-types-enum-module"></span><h2>cpl_discord.discord_event_types_enum module<a class="headerlink" href="#module-cpl_discord.discord_event_types_enum" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.discord_event_types_enum.</span></span><span class="sig-name descname"><span class="pre">DiscordEventTypesEnum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_bulk_message_delete">
+<span class="sig-name descname"><span class="pre">on_bulk_message_delete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_bulk_message_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command">
+<span class="sig-name descname"><span class="pre">on_command</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_command_abc.OnCommandABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command_completion">
+<span class="sig-name descname"><span class="pre">on_command_completion</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command_completion" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command_error">
+<span class="sig-name descname"><span class="pre">on_command_error</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_command_error_abc.OnCommandErrorABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_connect">
+<span class="sig-name descname"><span class="pre">on_connect</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_connect_abc.OnConnectABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_connect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_disconnect">
+<span class="sig-name descname"><span class="pre">on_disconnect</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_disconnect_abc.OnDisconnectABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_disconnect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_error">
+<span class="sig-name descname"><span class="pre">on_error</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_error_abc.OnErrorABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_group_join">
+<span class="sig-name descname"><span class="pre">on_group_join</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_group_join_abc.OnGroupJoinABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_group_join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_group_remove">
+<span class="sig-name descname"><span class="pre">on_group_remove</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_group_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_available">
+<span class="sig-name descname"><span class="pre">on_guild_available</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_available" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_create">
+<span class="sig-name descname"><span class="pre">on_guild_channel_create</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_delete">
+<span class="sig-name descname"><span class="pre">on_guild_channel_delete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_pins_update">
+<span class="sig-name descname"><span class="pre">on_guild_channel_pins_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_pins_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_update">
+<span class="sig-name descname"><span class="pre">on_guild_channel_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_emojis_update">
+<span class="sig-name descname"><span class="pre">on_guild_emojis_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_emojis_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_integrations_update">
+<span class="sig-name descname"><span class="pre">on_guild_integrations_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_integrations_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_join">
+<span class="sig-name descname"><span class="pre">on_guild_join</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_join_abc.OnGuildJoinABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_remove">
+<span class="sig-name descname"><span class="pre">on_guild_remove</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_create">
+<span class="sig-name descname"><span class="pre">on_guild_role_create</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_delete">
+<span class="sig-name descname"><span class="pre">on_guild_role_delete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_update">
+<span class="sig-name descname"><span class="pre">on_guild_role_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_unavailable">
+<span class="sig-name descname"><span class="pre">on_guild_unavailable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_unavailable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_update">
+<span class="sig-name descname"><span class="pre">on_guild_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_invite_create">
+<span class="sig-name descname"><span class="pre">on_invite_create</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_invite_create_abc.OnInviteCreateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_invite_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_invite_delete">
+<span class="sig-name descname"><span class="pre">on_invite_delete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_invite_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_ban">
+<span class="sig-name descname"><span class="pre">on_member_ban</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_member_ban_abc.OnMemberBanABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_ban" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_join">
+<span class="sig-name descname"><span class="pre">on_member_join</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_member_join_abc.OnMemberJoinABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_join" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_remove">
+<span class="sig-name descname"><span class="pre">on_member_remove</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_unban">
+<span class="sig-name descname"><span class="pre">on_member_unban</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_unban" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_update">
+<span class="sig-name descname"><span class="pre">on_member_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_member_update_abc.OnMemberUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message">
+<span class="sig-name descname"><span class="pre">on_message</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_message_abc.OnMessageABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_delete">
+<span class="sig-name descname"><span class="pre">on_message_delete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_edit">
+<span class="sig-name descname"><span class="pre">on_message_edit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_message_edit_abc.OnMessageEditABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_edit" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_create">
+<span class="sig-name descname"><span class="pre">on_private_channel_create</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_create" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_delete">
+<span class="sig-name descname"><span class="pre">on_private_channel_delete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_pins_update">
+<span class="sig-name descname"><span class="pre">on_private_channel_pins_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_pins_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_update">
+<span class="sig-name descname"><span class="pre">on_private_channel_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_add">
+<span class="sig-name descname"><span class="pre">on_raw_reaction_add</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_add" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_clear">
+<span class="sig-name descname"><span class="pre">on_raw_reaction_clear</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_clear" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_clear_emoji">
+<span class="sig-name descname"><span class="pre">on_raw_reaction_clear_emoji</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_clear_emoji" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_remove">
+<span class="sig-name descname"><span class="pre">on_raw_reaction_remove</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_add">
+<span class="sig-name descname"><span class="pre">on_reaction_add</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_reaction_add_abc.OnReactionAddABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_add" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_clear">
+<span class="sig-name descname"><span class="pre">on_reaction_clear</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_clear" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_clear_emoji">
+<span class="sig-name descname"><span class="pre">on_reaction_clear_emoji</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_clear_emoji" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_remove">
+<span class="sig-name descname"><span class="pre">on_reaction_remove</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_ready">
+<span class="sig-name descname"><span class="pre">on_ready</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_ready_abc.OnReadyABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_ready" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_resume">
+<span class="sig-name descname"><span class="pre">on_resume</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_resume_abc.OnResumeABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_resume" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_typing">
+<span class="sig-name descname"><span class="pre">on_typing</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_typing_abc.OnTypingABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_typing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_user_update">
+<span class="sig-name descname"><span class="pre">on_user_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_user_update_abc.OnUserUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_user_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_voice_state_update">
+<span class="sig-name descname"><span class="pre">on_voice_state_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_voice_state_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_webhooks_update">
+<span class="sig-name descname"><span class="pre">on_webhooks_update</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;class</span> <span class="pre">'cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC'&gt;</span></em><a class="headerlink" href="#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_webhooks_update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_core.utils.html" class="btn btn-neutral float-left" title="cpl_core.utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_discord.application.html" class="btn btn-neutral float-right" title="cpl_discord.application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_core.utils.html" class="btn btn-neutral float-left" title="cpl_core.utils package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.application.html" class="btn btn-neutral float-right" title="cpl_discord.application package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

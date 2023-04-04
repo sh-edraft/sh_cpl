@@ -12,18 +12,21 @@ from modules.hello_world.purge_command import PurgeCommand
 
 
 class Startup(StartupABC):
-
     def __init__(self):
         StartupABC.__init__(self)
 
-    def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
-        configuration.add_json_file('appsettings.json', optional=False)
-        configuration.add_environment_variables('CPL_')
-        configuration.add_environment_variables('DISCORD_')
+    def configure_configuration(
+        self, configuration: ConfigurationABC, environment: ApplicationEnvironment
+    ) -> ConfigurationABC:
+        configuration.add_json_file("appsettings.json", optional=False)
+        configuration.add_environment_variables("CPL_")
+        configuration.add_environment_variables("DISCORD_")
 
         return configuration
 
-    def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
+    def configure_services(
+        self, services: ServiceCollectionABC, environment: ApplicationEnvironment
+    ) -> ServiceProviderABC:
         services.add_logging()
         services.add_discord()
         dc_collection = get_discord_collection(services)

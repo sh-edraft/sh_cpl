@@ -12,7 +12,6 @@ from cpl_core.utils.string import String
 
 
 class StartupWorkspaceExtension(StartupExtensionABC):
-
     def __init__(self):
         pass
 
@@ -22,9 +21,12 @@ class StartupWorkspaceExtension(StartupExtensionABC):
         name = os.path.basename(working_directory)
         for r, d, f in os.walk(working_directory):
             for file in f:
-                if file.endswith('.json'):
-                    f_name = file.split('.json')[0]
-                    if f_name == name or String.convert_to_camel_case(f_name).lower() == String.convert_to_camel_case(name).lower():
+                if file.endswith(".json"):
+                    f_name = file.split(".json")[0]
+                    if (
+                        f_name == name
+                        or String.convert_to_camel_case(f_name).lower() == String.convert_to_camel_case(name).lower()
+                    ):
                         project_name = f_name
                         break
 
@@ -32,15 +34,15 @@ class StartupWorkspaceExtension(StartupExtensionABC):
 
     def _read_cpl_environment(self, config: ConfigurationABC, env: ApplicationEnvironmentABC):
         workspace: Optional[WorkspaceSettings] = config.get_configuration(WorkspaceSettings)
-        config.add_configuration('PATH_WORKSPACE', env.working_directory)
+        config.add_configuration("PATH_WORKSPACE", env.working_directory)
         if workspace is not None:
             for script in workspace.scripts:
-                config.create_console_argument(ArgumentTypeEnum.Executable, '', script, [], CustomScriptService)
+                config.create_console_argument(ArgumentTypeEnum.Executable, "", script, [], CustomScriptService)
             return
 
         project = self._search_project_json(env.working_directory)
         if project is not None:
-            project = f'{project}.json'
+            project = f"{project}.json"
 
         if project is None:
             return
@@ -48,7 +50,7 @@ class StartupWorkspaceExtension(StartupExtensionABC):
         config.add_json_file(project, optional=True, output=False)
 
     def configure_configuration(self, config: ConfigurationABC, env: ApplicationEnvironmentABC):
-        config.add_json_file('cpl-workspace.json', path=env.working_directory, optional=True, output=False)
+        config.add_json_file("cpl-workspace.json", path=env.working_directory, optional=True, output=False)
         self._read_cpl_environment(config, env)
 
     def configure_services(self, services: ServiceCollectionABC, env: ApplicationEnvironmentABC):
