@@ -7,7 +7,6 @@ from cpl_core.utils import String
 
 
 class Event(GenerateSchematicABC):
-
     def __init__(self, name: str, schematic: str, path: str):
         GenerateSchematicABC.__init__(self, name, schematic, path)
 
@@ -15,8 +14,9 @@ class Event(GenerateSchematicABC):
         event_class = None
 
         from cpl_discord.discord_event_types_enum import DiscordEventTypesEnum
+
         for event_type in DiscordEventTypesEnum:
-            event_name = event_type.value.__name__.replace("ABC", '')
+            event_name = event_type.value.__name__.replace("ABC", "")
 
             if name.endswith(event_name):
                 name = name.replace(event_name, "")
@@ -25,29 +25,30 @@ class Event(GenerateSchematicABC):
                 break
 
         if event is None:
-            Console.error(f'No valid event found in name {name}')
-            Console.write_line('Available events:')
+            Console.error(f"No valid event found in name {name}")
+            Console.write_line("Available events:")
             for event_type in DiscordEventTypesEnum:
                 Console.write_line(f'\t{event_type.value.__name__.replace("ABC", "")}')
             sys.exit()
 
-        self._event_class_name = f'{event}ABC'
+        self._event_class_name = f"{event}ABC"
         event_snake_case = String.convert_to_snake_case(self._event_class_name.replace("ABC", ""))
 
         if event_snake_case.lower() not in dir(event_class):
-            Console.error(f'Error in event {event}: Function {event_snake_case} not found!')
+            Console.error(f"Error in event {event}: Function {event_snake_case} not found!")
             sys.exit()
 
-        self._name = f'{event_snake_case}_{schematic}.py'
+        self._name = f"{event_snake_case}_{schematic}.py"
         self._class_name = f'{self._event_class_name.replace("ABC", "")}{String.first_to_upper(schematic)}'
 
         from inspect import signature
+
         self._func_name = event_snake_case
         self._signature = str(signature(getattr(event_class, event_snake_case)))[1:][:-1]
 
-        if name != '':
-                self._name = f'{String.convert_to_snake_case(name)}_{self._name}'
-                self._class_name = f'{String.first_to_upper(name)}{self._class_name}'
+        if name != "":
+            self._name = f"{String.convert_to_snake_case(name)}_{self._name}"
+            self._class_name = f"{String.first_to_upper(name)}{self._class_name}"
 
     def get_code(self) -> str:
         code = """\
@@ -77,13 +78,9 @@ class Event(GenerateSchematicABC):
             Name=self._class_name,
             EventClass=self._event_class_name,
             Func=self._func_name,
-            Signature=self._signature
+            Signature=self._signature,
         )
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'event',
-            []
-        )
+        GenerateSchematicABC.register(cls, "event", [])

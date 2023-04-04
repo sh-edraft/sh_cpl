@@ -10,14 +10,14 @@ from cpl_core.type import T
 class ServiceProviderABC(ABC):
     r"""ABC for the class :class:`cpl_core.dependency_injection.service_provider.ServiceProvider`"""
 
-    _provider: Optional['ServiceProviderABC'] = None
+    _provider: Optional["ServiceProviderABC"] = None
 
     @abstractmethod
     def __init__(self):
         pass
 
     @classmethod
-    def set_global_provider(cls, provider: 'ServiceProviderABC'):
+    def set_global_provider(cls, provider: "ServiceProviderABC"):
         cls._provider = provider
 
     @abstractmethod
@@ -108,7 +108,7 @@ class ServiceProviderABC(ABC):
         @functools.wraps(f)
         def inner(*args, **kwargs):
             if cls._provider is None:
-                raise Exception(f'{cls.__name__} not build!')
+                raise Exception(f"{cls.__name__} not build!")
 
             injection = [x for x in cls._provider.build_by_signature(signature(f)) if x is not None]
             return f(*args, *injection, **kwargs)
