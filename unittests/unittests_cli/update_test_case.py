@@ -22,7 +22,7 @@ class UpdateTestCase(CommandTestCase):
         self._old_package = f"{self._old_package_name}=={self._old_version}"
 
         # todo: better way to do shit required
-        self._new_version = "2.1.0"
+        self._new_version = "2.2.2"
         self._new_package_name = "discord.py"
         self._new_package = f"{self._new_package_name}=={self._new_version}"
 
