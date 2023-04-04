@@ -36,7 +36,7 @@
       "sphinx-markdown-builder==0.5.5",
       "pygount==1.5.1"
     ],
-    "PythonVersion": ">=3.10",
+    "PythonVersion": ">=3.11",
     "PythonPath": {},
     "Classifiers": []
   },
