@@ -34,7 +34,7 @@ class SettingsHelper:
     @staticmethod
     def get_build_settings_dict(build: BuildSettings) -> dict:
         return {
-            BuildSettingsNameEnum.project_type.value: build.project_type,
+            BuildSettingsNameEnum.project_type.value: build.project_type.value,
             BuildSettingsNameEnum.source_path.value: build.source_path,
             BuildSettingsNameEnum.output_path.value: build.output_path,
             BuildSettingsNameEnum.main.value: build.main,

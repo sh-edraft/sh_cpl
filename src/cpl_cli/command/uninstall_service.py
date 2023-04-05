@@ -84,7 +84,7 @@ class UninstallService(CommandABC):
             args.remove("--simulate")
             Console.write_line("Running in simulation mode:")
 
-        VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
+        VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings.python_executable)
 
         package = args[0]
         is_in_dependencies = False

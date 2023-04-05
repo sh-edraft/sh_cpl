@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cpl_discord.events package &mdash; Common Python Library  documentation</title>
@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord Reference</a><ul class="current">
@@ -51,59 +56,213 @@
 <li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.events package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC"><code class="docutils literal notranslate"><span class="pre">OnBulkMessageDeleteABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_abc">cpl_discord.events.on_command_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_command_abc.OnCommandABC"><code class="docutils literal notranslate"><span class="pre">OnCommandABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_completion_abc">cpl_discord.events.on_command_completion_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC"><code class="docutils literal notranslate"><span class="pre">OnCommandCompletionABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_command_error_abc">cpl_discord.events.on_command_error_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_command_error_abc.OnCommandErrorABC"><code class="docutils literal notranslate"><span class="pre">OnCommandErrorABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_connect_abc">cpl_discord.events.on_connect_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_connect_abc.OnConnectABC"><code class="docutils literal notranslate"><span class="pre">OnConnectABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_disconnect_abc">cpl_discord.events.on_disconnect_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_disconnect_abc.OnDisconnectABC"><code class="docutils literal notranslate"><span class="pre">OnDisconnectABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_error_abc">cpl_discord.events.on_error_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_error_abc.OnErrorABC"><code class="docutils literal notranslate"><span class="pre">OnErrorABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_group_join_abc">cpl_discord.events.on_group_join_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_group_join_abc.OnGroupJoinABC"><code class="docutils literal notranslate"><span class="pre">OnGroupJoinABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_group_remove_abc">cpl_discord.events.on_group_remove_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC"><code class="docutils literal notranslate"><span class="pre">OnGroupRemoveABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_available_abc">cpl_discord.events.on_guild_available_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC"><code class="docutils literal notranslate"><span class="pre">OnGuildAvailableABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_create_abc">cpl_discord.events.on_guild_channel_create_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildChannelCreateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_delete_abc">cpl_discord.events.on_guild_channel_delete_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC"><code class="docutils literal notranslate"><span class="pre">OnGuildChannelDeleteABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_pins_update_abc">cpl_discord.events.on_guild_channel_pins_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildChannelPinsUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_channel_update_abc">cpl_discord.events.on_guild_channel_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildChannelUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_emojis_update_abc">cpl_discord.events.on_guild_emojis_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildEmojisUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_integrations_update_abc">cpl_discord.events.on_guild_integrations_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildIntegrationsUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_join_abc">cpl_discord.events.on_guild_join_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_join_abc.OnGuildJoinABC"><code class="docutils literal notranslate"><span class="pre">OnGuildJoinABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_remove_abc">cpl_discord.events.on_guild_remove_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC"><code class="docutils literal notranslate"><span class="pre">OnGuildRemoveABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_create_abc">cpl_discord.events.on_guild_role_create_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildRoleCreateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_delete_abc">cpl_discord.events.on_guild_role_delete_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC"><code class="docutils literal notranslate"><span class="pre">OnGuildRoleDeleteABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_role_update_abc">cpl_discord.events.on_guild_role_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildRoleUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_unavailable_abc">cpl_discord.events.on_guild_unavailable_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC"><code class="docutils literal notranslate"><span class="pre">OnGuildUnavailableABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_guild_update_abc">cpl_discord.events.on_guild_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnGuildUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_invite_create_abc">cpl_discord.events.on_invite_create_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_invite_create_abc.OnInviteCreateABC"><code class="docutils literal notranslate"><span class="pre">OnInviteCreateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_invite_delete_abc">cpl_discord.events.on_invite_delete_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC"><code class="docutils literal notranslate"><span class="pre">OnInviteDeleteABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_ban_abc">cpl_discord.events.on_member_ban_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_member_ban_abc.OnMemberBanABC"><code class="docutils literal notranslate"><span class="pre">OnMemberBanABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_join_abc">cpl_discord.events.on_member_join_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_member_join_abc.OnMemberJoinABC"><code class="docutils literal notranslate"><span class="pre">OnMemberJoinABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_remove_abc">cpl_discord.events.on_member_remove_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC"><code class="docutils literal notranslate"><span class="pre">OnMemberRemoveABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_unban_abc">cpl_discord.events.on_member_unban_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC"><code class="docutils literal notranslate"><span class="pre">OnMemberUnbanABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_member_update_abc">cpl_discord.events.on_member_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_member_update_abc.OnMemberUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnMemberUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_abc">cpl_discord.events.on_message_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_message_abc.OnMessageABC"><code class="docutils literal notranslate"><span class="pre">OnMessageABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_delete_abc">cpl_discord.events.on_message_delete_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC"><code class="docutils literal notranslate"><span class="pre">OnMessageDeleteABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_message_edit_abc">cpl_discord.events.on_message_edit_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_message_edit_abc.OnMessageEditABC"><code class="docutils literal notranslate"><span class="pre">OnMessageEditABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_create_abc">cpl_discord.events.on_private_channel_create_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC"><code class="docutils literal notranslate"><span class="pre">OnPrivateChannelCreateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_delete_abc">cpl_discord.events.on_private_channel_delete_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC"><code class="docutils literal notranslate"><span class="pre">OnPrivateChannelDeleteABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_pins_update_abc">cpl_discord.events.on_private_channel_pins_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnPrivateChannelPinsUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_private_channel_update_abc">cpl_discord.events.on_private_channel_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnPrivateChannelUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_add_abc">cpl_discord.events.on_raw_reaction_add_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC"><code class="docutils literal notranslate"><span class="pre">OnRawReactionAddABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_clear_abc">cpl_discord.events.on_raw_reaction_clear_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC"><code class="docutils literal notranslate"><span class="pre">OnRawReactionClearABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_clear_emoji_abc">cpl_discord.events.on_raw_reaction_clear_emoji_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC"><code class="docutils literal notranslate"><span class="pre">OnRawReactionClearEmojiABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_raw_reaction_remove_abc">cpl_discord.events.on_raw_reaction_remove_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC"><code class="docutils literal notranslate"><span class="pre">OnRawReactionRemoveABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_add_abc">cpl_discord.events.on_reaction_add_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_reaction_add_abc.OnReactionAddABC"><code class="docutils literal notranslate"><span class="pre">OnReactionAddABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_clear_abc">cpl_discord.events.on_reaction_clear_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC"><code class="docutils literal notranslate"><span class="pre">OnReactionClearABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_clear_emoji_abc">cpl_discord.events.on_reaction_clear_emoji_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC"><code class="docutils literal notranslate"><span class="pre">OnReactionClearEmojiABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_reaction_remove_abc">cpl_discord.events.on_reaction_remove_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC"><code class="docutils literal notranslate"><span class="pre">OnReactionRemoveABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_ready_abc">cpl_discord.events.on_ready_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_ready_abc.OnReadyABC"><code class="docutils literal notranslate"><span class="pre">OnReadyABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_resume_abc">cpl_discord.events.on_resume_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_resume_abc.OnResumeABC"><code class="docutils literal notranslate"><span class="pre">OnResumeABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_typing_abc">cpl_discord.events.on_typing_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_typing_abc.OnTypingABC"><code class="docutils literal notranslate"><span class="pre">OnTypingABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_user_update_abc">cpl_discord.events.on_user_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_user_update_abc.OnUserUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnUserUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_voice_state_update_abc">cpl_discord.events.on_voice_state_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnVoiceStateUpdateABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC"><code class="docutils literal notranslate"><span class="pre">OnWebhooksUpdateABC</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.events">Module contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.events.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -130,9 +289,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_discord.html">Discord Reference</a> &raquo;</li>
-      <li>cpl_discord.events package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cpl_discord.html">Discord Reference</a></li>
+      <li class="breadcrumb-item active">cpl_discord.events package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_discord.events.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -323,7 +482,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_channel_pins_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_guild_channel_pins_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GuildChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -645,7 +804,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_private_channel_pins_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PrivateChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_private_channel_pins_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PrivateChannel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -813,7 +972,7 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_discord.events.on_typing_abc.OnTypingABC.on_typing">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_typing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Messageable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">User</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Member</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_typing_abc.OnTypingABC.on_typing" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">on_typing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Messageable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Member</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.on_typing_abc.OnTypingABC.on_typing" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -867,15 +1026,16 @@
 <h3>cpl-discord CPL Discord<a class="headerlink" href="#cpl-discord-cpl-discord" title="Permalink to this heading"></a></h3>
 <p>Link between discord.py and CPL</p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><ol class="loweralpha simple" start="3">
 <li><p>2022 - 2023 sh-edraft.de</p></li>
 </ol>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>MIT, see LICENSE for more details.</p>
 </dd>
 </dl>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.events.VersionInfo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.events.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.events.VersionInfo" title="Permalink to this definition"></a></dt>
@@ -900,7 +1060,6 @@
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

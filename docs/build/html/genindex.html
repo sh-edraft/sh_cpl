@@ -10,11 +10,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -25,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -39,6 +43,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
@@ -59,8 +64,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -278,6 +283,8 @@
       <li><a href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum">BackgroundColorEnum (class in cpl_core.console.background_color_enum)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.banner">banner() (cpl_core.console.console.Console class method)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.base_func">base_func() (in module cpl_core.configuration.configuration_model_abc)</a>
 </li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.base_type">base_type (cpl_core.dependency_injection.service_descriptor.ServiceDescriptor property)</a>
 </li>
@@ -1928,14 +1935,14 @@
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.first_to_upper">first_to_upper() (cpl_core.utils.string.String static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe">FirstCharToLowerPipe (class in cpl_core.pipes.first_char_to_lower_pipe)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe">FirstToUpperPipe (class in cpl_core.pipes.first_to_upper_pipe)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Flag">Flag (cpl_core.configuration.argument_type_enum.ArgumentTypeEnum attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.flag_argument.FlagArgument">FlagArgument (class in cpl_core.configuration.flag_argument)</a>
 </li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.for_each">for_each() (cpl_query.base.queryable_abc.QueryableABC method)</a>
@@ -1951,21 +1958,7 @@
       <li><a href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum">ForegroundColorEnum (class in cpl_core.console.foreground_color_enum)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC.from_dict">from_dict() (cpl_core.configuration.configuration_model_abc.ConfigurationModelABC method)</a>
-
-      <ul>
-        <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.from_dict">(cpl_core.database.database_settings.DatabaseSettings method)</a>
 </li>
-        <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.from_dict">(cpl_core.logging.logging_settings.LoggingSettings method)</a>
-</li>
-        <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.from_dict">(cpl_core.mailing.email_client_settings.EMailClientSettings method)</a>
-</li>
-        <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.from_dict">(cpl_core.time.time_format_settings.TimeFormatSettings method)</a>
-</li>
-        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict">(cpl_discord.configuration.discord_bot_settings.DiscordBotSettings method)</a>
-</li>
-        <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings.from_dict">(cpl_translation.translation_settings.TranslationSettings method)</a>
-</li>
-      </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall.function">function (cpl_core.console.console_call.ConsoleCall property)</a>
 </li>
   </ul></td>
@@ -3119,8 +3112,6 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_edit">on_message_edit (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
 </li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_edit_abc.OnMessageEditABC.on_message_edit">on_message_edit() (cpl_discord.events.on_message_edit_abc.OnMessageEditABC method)</a>
@@ -3133,6 +3124,8 @@
       </ul></li>
       <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_create">on_private_channel_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC.on_private_channel_create">on_private_channel_create() (cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC method)</a>
 
       <ul>
@@ -3267,6 +3260,26 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_resume">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_create">on_scheduled_event_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_create">on_scheduled_event_create() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_delete">on_scheduled_event_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_delete">on_scheduled_event_delete() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_update">on_scheduled_event_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_update">on_scheduled_event_update() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_user_add">on_scheduled_event_user_add (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_user_add">on_scheduled_event_user_add() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_user_remove">on_scheduled_event_user_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_user_remove">on_scheduled_event_user_remove() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
       <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_typing">on_typing (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
 </li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_typing_abc.OnTypingABC.on_typing">on_typing() (cpl_discord.events.on_typing_abc.OnTypingABC method)</a>

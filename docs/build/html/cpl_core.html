@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API reference &mdash; Common Python Library  documentation</title>
@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a></li>
@@ -75,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>API reference</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,47 +97,289 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_abc">cpl_core.application.application_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder">cpl_core.application.application_builder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_extension_abc">cpl_core.application.application_extension_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_extension_abc">cpl_core.application.startup_extension_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_abc">cpl_core.application.application_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC"><code class="docutils literal notranslate"><span class="pre">ApplicationABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.configure"><code class="docutils literal notranslate"><span class="pre">ApplicationABC.configure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.main"><code class="docutils literal notranslate"><span class="pre">ApplicationABC.main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.run"><code class="docutils literal notranslate"><span class="pre">ApplicationABC.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.run_async"><code class="docutils literal notranslate"><span class="pre">ApplicationABC.run_async()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder">cpl_core.application.application_builder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.build"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilder.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.build_async"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilder.build_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.use_extension"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilder.use_extension()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.use_startup"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilder.use_startup()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilderABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC.build"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilderABC.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC.build_async"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilderABC.build_async()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC.use_startup"><code class="docutils literal notranslate"><span class="pre">ApplicationBuilderABC.use_startup()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.application_extension_abc">cpl_core.application.application_extension_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_extension_abc.ApplicationExtensionABC"><code class="docutils literal notranslate"><span class="pre">ApplicationExtensionABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.application_extension_abc.ApplicationExtensionABC.run"><code class="docutils literal notranslate"><span class="pre">ApplicationExtensionABC.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC"><code class="docutils literal notranslate"><span class="pre">StartupABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC.configure_configuration"><code class="docutils literal notranslate"><span class="pre">StartupABC.configure_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC.configure_services"><code class="docutils literal notranslate"><span class="pre">StartupABC.configure_services()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application.startup_extension_abc">cpl_core.application.startup_extension_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.startup_extension_abc.StartupExtensionABC"><code class="docutils literal notranslate"><span class="pre">StartupExtensionABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_configuration"><code class="docutils literal notranslate"><span class="pre">StartupExtensionABC.configure_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_services"><code class="docutils literal notranslate"><span class="pre">StartupExtensionABC.configure_services()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html#module-cpl_core.application">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.application.html#cpl_core.application.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.configuration.html">cpl_core.configuration package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_abc">cpl_core.configuration.argument_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_builder">cpl_core.configuration.argument_builder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_executable_abc">cpl_core.configuration.argument_executable_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_type_enum">cpl_core.configuration.argument_type_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.executable_argument">cpl_core.configuration.executable_argument module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.flag_argument">cpl_core.configuration.flag_argument module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.validator_abc">cpl_core.configuration.validator_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.variable_argument">cpl_core.configuration.variable_argument module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_abc">cpl_core.configuration.argument_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC"><code class="docutils literal notranslate"><span class="pre">ArgumentABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.add_console_argument"><code class="docutils literal notranslate"><span class="pre">ArgumentABC.add_console_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.aliases"><code class="docutils literal notranslate"><span class="pre">ArgumentABC.aliases</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.console_arguments"><code class="docutils literal notranslate"><span class="pre">ArgumentABC.console_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.name"><code class="docutils literal notranslate"><span class="pre">ArgumentABC.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.prevent_next_executable"><code class="docutils literal notranslate"><span class="pre">ArgumentABC.prevent_next_executable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.token"><code class="docutils literal notranslate"><span class="pre">ArgumentABC.token</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_builder">cpl_core.configuration.argument_builder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_builder.ArgumentBuilder"><code class="docutils literal notranslate"><span class="pre">ArgumentBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_builder.ArgumentBuilder.build_argument"><code class="docutils literal notranslate"><span class="pre">ArgumentBuilder.build_argument()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_executable_abc">cpl_core.configuration.argument_executable_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC"><code class="docutils literal notranslate"><span class="pre">ArgumentExecutableABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC.run"><code class="docutils literal notranslate"><span class="pre">ArgumentExecutableABC.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.argument_type_enum">cpl_core.configuration.argument_type_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum"><code class="docutils literal notranslate"><span class="pre">ArgumentTypeEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Executable"><code class="docutils literal notranslate"><span class="pre">ArgumentTypeEnum.Executable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Flag"><code class="docutils literal notranslate"><span class="pre">ArgumentTypeEnum.Flag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Variable"><code class="docutils literal notranslate"><span class="pre">ArgumentTypeEnum.Variable</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration"><code class="docutils literal notranslate"><span class="pre">Configuration</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_configuration"><code class="docutils literal notranslate"><span class="pre">Configuration.add_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_console_argument"><code class="docutils literal notranslate"><span class="pre">Configuration.add_console_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_environment_variables"><code class="docutils literal notranslate"><span class="pre">Configuration.add_environment_variables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_json_file"><code class="docutils literal notranslate"><span class="pre">Configuration.add_json_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.additional_arguments"><code class="docutils literal notranslate"><span class="pre">Configuration.additional_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.argument_error_function"><code class="docutils literal notranslate"><span class="pre">Configuration.argument_error_function</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.arguments"><code class="docutils literal notranslate"><span class="pre">Configuration.arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.create_console_argument"><code class="docutils literal notranslate"><span class="pre">Configuration.create_console_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.environment"><code class="docutils literal notranslate"><span class="pre">Configuration.environment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.for_each_argument"><code class="docutils literal notranslate"><span class="pre">Configuration.for_each_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.get_configuration"><code class="docutils literal notranslate"><span class="pre">Configuration.get_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.parse_console_arguments"><code class="docutils literal notranslate"><span class="pre">Configuration.parse_console_arguments()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_abc">cpl_core.configuration.configuration_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_configuration"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.add_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_console_argument"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.add_console_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_environment_variables"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.add_environment_variables()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_json_file"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.add_json_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.additional_arguments"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.additional_arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.argument_error_function"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.argument_error_function</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.arguments"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.arguments</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.create_console_argument"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.create_console_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.environment"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.environment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.for_each_argument"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.for_each_argument()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.get_configuration"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.get_configuration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.parse_console_arguments"><code class="docutils literal notranslate"><span class="pre">ConfigurationABC.parse_console_arguments()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="docutils literal notranslate"><span class="pre">ConfigurationModelABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC.from_dict"><code class="docutils literal notranslate"><span class="pre">ConfigurationModelABC.from_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.base_func"><code class="docutils literal notranslate"><span class="pre">base_func()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum"><code class="docutils literal notranslate"><span class="pre">ConfigurationVariableNameEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.customer"><code class="docutils literal notranslate"><span class="pre">ConfigurationVariableNameEnum.customer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.environment"><code class="docutils literal notranslate"><span class="pre">ConfigurationVariableNameEnum.environment</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.name"><code class="docutils literal notranslate"><span class="pre">ConfigurationVariableNameEnum.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.to_list"><code class="docutils literal notranslate"><span class="pre">ConfigurationVariableNameEnum.to_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.executable_argument">cpl_core.configuration.executable_argument module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument"><code class="docutils literal notranslate"><span class="pre">ExecutableArgument</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.executable_type"><code class="docutils literal notranslate"><span class="pre">ExecutableArgument.executable_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.run"><code class="docutils literal notranslate"><span class="pre">ExecutableArgument.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.set_executable"><code class="docutils literal notranslate"><span class="pre">ExecutableArgument.set_executable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.validators"><code class="docutils literal notranslate"><span class="pre">ExecutableArgument.validators</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.flag_argument">cpl_core.configuration.flag_argument module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.flag_argument.FlagArgument"><code class="docutils literal notranslate"><span class="pre">FlagArgument</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.validator_abc">cpl_core.configuration.validator_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.validator_abc.ValidatorABC"><code class="docutils literal notranslate"><span class="pre">ValidatorABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.validator_abc.ValidatorABC.validate"><code class="docutils literal notranslate"><span class="pre">ValidatorABC.validate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration.variable_argument">cpl_core.configuration.variable_argument module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument"><code class="docutils literal notranslate"><span class="pre">VariableArgument</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument.set_value"><code class="docutils literal notranslate"><span class="pre">VariableArgument.set_value()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument.value"><code class="docutils literal notranslate"><span class="pre">VariableArgument.value</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument.value_token"><code class="docutils literal notranslate"><span class="pre">VariableArgument.value_token</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.configuration.html#module-cpl_core.configuration">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.console.html">cpl_core.console package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.background_color_enum">cpl_core.console.background_color_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console">cpl_core.console.console module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console_call">cpl_core.console.console_call module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.foreground_color_enum">cpl_core.console.foreground_color_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.spinner_thread">cpl_core.console.spinner_thread module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.background_color_enum">cpl_core.console.background_color_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.blue"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.blue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.cyan"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.cyan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.default"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.default</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.green"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.green</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.grey"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.grey</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.magenta"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.magenta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.red"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.red</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.white"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.white</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.yellow"><code class="docutils literal notranslate"><span class="pre">BackgroundColorEnum.yellow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console">cpl_core.console.console module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console"><code class="docutils literal notranslate"><span class="pre">Console</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.background_color"><code class="docutils literal notranslate"><span class="pre">Console.background_color</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.banner"><code class="docutils literal notranslate"><span class="pre">Console.banner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.clear"><code class="docutils literal notranslate"><span class="pre">Console.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.close"><code class="docutils literal notranslate"><span class="pre">Console.close()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.color_reset"><code class="docutils literal notranslate"><span class="pre">Console.color_reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.disable"><code class="docutils literal notranslate"><span class="pre">Console.disable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.enable"><code class="docutils literal notranslate"><span class="pre">Console.enable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.error"><code class="docutils literal notranslate"><span class="pre">Console.error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.foreground_color"><code class="docutils literal notranslate"><span class="pre">Console.foreground_color</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.read"><code class="docutils literal notranslate"><span class="pre">Console.read()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.read_line"><code class="docutils literal notranslate"><span class="pre">Console.read_line()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.reset_cursor_position"><code class="docutils literal notranslate"><span class="pre">Console.reset_cursor_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.select"><code class="docutils literal notranslate"><span class="pre">Console.select()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.set_background_color"><code class="docutils literal notranslate"><span class="pre">Console.set_background_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.set_cursor_position"><code class="docutils literal notranslate"><span class="pre">Console.set_cursor_position()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.set_foreground_color"><code class="docutils literal notranslate"><span class="pre">Console.set_foreground_color()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.set_hold_back"><code class="docutils literal notranslate"><span class="pre">Console.set_hold_back()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.spinner"><code class="docutils literal notranslate"><span class="pre">Console.spinner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.table"><code class="docutils literal notranslate"><span class="pre">Console.table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.write"><code class="docutils literal notranslate"><span class="pre">Console.write()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.write_at"><code class="docutils literal notranslate"><span class="pre">Console.write_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.write_line"><code class="docutils literal notranslate"><span class="pre">Console.write_line()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console.Console.write_line_at"><code class="docutils literal notranslate"><span class="pre">Console.write_line_at()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.console_call">cpl_core.console.console_call module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall"><code class="docutils literal notranslate"><span class="pre">ConsoleCall</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall.args"><code class="docutils literal notranslate"><span class="pre">ConsoleCall.args</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall.function"><code class="docutils literal notranslate"><span class="pre">ConsoleCall.function</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.foreground_color_enum">cpl_core.console.foreground_color_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.blue"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.blue</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.cyan"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.cyan</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.default"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.default</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.green"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.green</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.grey"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.grey</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.magenta"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.magenta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.red"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.red</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.white"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.white</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.yellow"><code class="docutils literal notranslate"><span class="pre">ForegroundColorEnum.yellow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console.spinner_thread">cpl_core.console.spinner_thread module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread"><code class="docutils literal notranslate"><span class="pre">SpinnerThread</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.exit"><code class="docutils literal notranslate"><span class="pre">SpinnerThread.exit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.run"><code class="docutils literal notranslate"><span class="pre">SpinnerThread.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.stop_spinning"><code class="docutils literal notranslate"><span class="pre">SpinnerThread.stop_spinning()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.console.html#module-cpl_core.console">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.console.html#cpl_core.console.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -156,102 +403,517 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.table_abc">cpl_core.database.table_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.auth_plugin"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.auth_plugin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.buffered"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.buffered</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.charset"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.charset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.database"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.database</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.host"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.host</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.password"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.port"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.use_unicode"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.use_unicode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.user"><code class="docutils literal notranslate"><span class="pre">DatabaseSettings.user</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.auth_plugin"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.auth_plugin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.buffered"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.buffered</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.charset"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.charset</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.database"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.database</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.host"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.host</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.password"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.port"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.use_unicode"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.use_unicode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.user"><code class="docutils literal notranslate"><span class="pre">DatabaseSettingsNameEnum.user</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database.table_abc">cpl_core.database.table_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.table_abc.TableABC"><code class="docutils literal notranslate"><span class="pre">TableABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.created_at"><code class="docutils literal notranslate"><span class="pre">TableABC.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.delete_string"><code class="docutils literal notranslate"><span class="pre">TableABC.delete_string</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.insert_string"><code class="docutils literal notranslate"><span class="pre">TableABC.insert_string</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.modified_at"><code class="docutils literal notranslate"><span class="pre">TableABC.modified_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.udpate_string"><code class="docutils literal notranslate"><span class="pre">TableABC.udpate_string</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html#module-cpl_core.database">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.database.html#cpl_core.database.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.dependency_injection.html">cpl_core.dependency_injection package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope">cpl_core.dependency_injection.scope module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_abc">cpl_core.dependency_injection.scope_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_builder">cpl_core.dependency_injection.scope_builder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope">cpl_core.dependency_injection.scope module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope.Scope"><code class="docutils literal notranslate"><span class="pre">Scope</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope.Scope.dispose"><code class="docutils literal notranslate"><span class="pre">Scope.dispose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope.Scope.service_provider"><code class="docutils literal notranslate"><span class="pre">Scope.service_provider</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_abc">cpl_core.dependency_injection.scope_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="docutils literal notranslate"><span class="pre">ScopeABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_abc.ScopeABC.dispose"><code class="docutils literal notranslate"><span class="pre">ScopeABC.dispose()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_abc.ScopeABC.service_provider"><code class="docutils literal notranslate"><span class="pre">ScopeABC.service_provider</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_builder">cpl_core.dependency_injection.scope_builder module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_builder.ScopeBuilder"><code class="docutils literal notranslate"><span class="pre">ScopeBuilder</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_builder.ScopeBuilder.build"><code class="docutils literal notranslate"><span class="pre">ScopeBuilder.build()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection"><code class="docutils literal notranslate"><span class="pre">ServiceCollection</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.add_db_context"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.add_db_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.add_logging"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.add_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.add_pipes"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.add_pipes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.add_scoped"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.add_scoped()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.add_singleton"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.add_singleton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.add_transient"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.add_transient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection.ServiceCollection.build_service_provider"><code class="docutils literal notranslate"><span class="pre">ServiceCollection.build_service_provider()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_db_context"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_db_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_discord"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_discord()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_logging"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_pipes"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_pipes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_scoped"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_scoped()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_singleton"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_singleton()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_transient()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_translation"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.add_translation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.build_service_provider"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC.build_service_provider()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor"><code class="docutils literal notranslate"><span class="pre">ServiceDescriptor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.base_type"><code class="docutils literal notranslate"><span class="pre">ServiceDescriptor.base_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.implementation"><code class="docutils literal notranslate"><span class="pre">ServiceDescriptor.implementation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.lifetime"><code class="docutils literal notranslate"><span class="pre">ServiceDescriptor.lifetime</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.service_type"><code class="docutils literal notranslate"><span class="pre">ServiceDescriptor.service_type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum"><code class="docutils literal notranslate"><span class="pre">ServiceLifetimeEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum.scoped"><code class="docutils literal notranslate"><span class="pre">ServiceLifetimeEnum.scoped</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum.singleton"><code class="docutils literal notranslate"><span class="pre">ServiceLifetimeEnum.singleton</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum.transient"><code class="docutils literal notranslate"><span class="pre">ServiceLifetimeEnum.transient</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider"><code class="docutils literal notranslate"><span class="pre">ServiceProvider</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.build_by_signature"><code class="docutils literal notranslate"><span class="pre">ServiceProvider.build_by_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.build_service"><code class="docutils literal notranslate"><span class="pre">ServiceProvider.build_service()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.create_scope"><code class="docutils literal notranslate"><span class="pre">ServiceProvider.create_scope()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.get_service"><code class="docutils literal notranslate"><span class="pre">ServiceProvider.get_service()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.get_services"><code class="docutils literal notranslate"><span class="pre">ServiceProvider.get_services()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.set_scope"><code class="docutils literal notranslate"><span class="pre">ServiceProvider.set_scope()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.build_by_signature"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.build_by_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.build_service"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.build_service()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.create_scope"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.create_scope()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_service"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.get_service()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_services"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.get_services()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.inject"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.inject()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.set_global_provider"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.set_global_provider()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.set_scope"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC.set_scope()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.environment.html">cpl_core.environment package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.application_name"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.application_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.customer"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.customer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.date_time_now"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.date_time_now</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.end_time"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.environment_name"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.environment_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.host_name"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.host_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.runtime_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.runtime_directory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.set_runtime_directory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.set_working_directory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.start_time"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.working_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironment.working_directory</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.application_name"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.application_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.customer"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.customer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.date_time_now"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.date_time_now</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.end_time"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.environment_name"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.environment_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.host_name"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.host_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.runtime_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.runtime_directory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_runtime_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.set_runtime_directory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.set_working_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.set_working_directory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.start_time"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC.working_directory"><code class="docutils literal notranslate"><span class="pre">ApplicationEnvironmentABC.working_directory</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum"><code class="docutils literal notranslate"><span class="pre">EnvironmentNameEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.development"><code class="docutils literal notranslate"><span class="pre">EnvironmentNameEnum.development</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production"><code class="docutils literal notranslate"><span class="pre">EnvironmentNameEnum.production</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging"><code class="docutils literal notranslate"><span class="pre">EnvironmentNameEnum.staging</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.testing"><code class="docutils literal notranslate"><span class="pre">EnvironmentNameEnum.testing</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.environment.html#module-cpl_core.environment">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.environment.html#cpl_core.environment.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.logging.html">cpl_core.logging package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_abc">cpl_core.logging.logger_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_service">cpl_core.logging.logger_service module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_level_enum">cpl_core.logging.logging_level_enum module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings">cpl_core.logging.logging_settings module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings_name_enum">cpl_core.logging.logging_settings_name_enum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_abc">cpl_core.logging.logger_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC"><code class="docutils literal notranslate"><span class="pre">LoggerABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.debug"><code class="docutils literal notranslate"><span class="pre">LoggerABC.debug()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.error"><code class="docutils literal notranslate"><span class="pre">LoggerABC.error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.fatal"><code class="docutils literal notranslate"><span class="pre">LoggerABC.fatal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.header"><code class="docutils literal notranslate"><span class="pre">LoggerABC.header()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.info"><code class="docutils literal notranslate"><span class="pre">LoggerABC.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.trace"><code class="docutils literal notranslate"><span class="pre">LoggerABC.trace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.warn"><code class="docutils literal notranslate"><span class="pre">LoggerABC.warn()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logger_service">cpl_core.logging.logger_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.create"><code class="docutils literal notranslate"><span class="pre">Logger.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.debug"><code class="docutils literal notranslate"><span class="pre">Logger.debug()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.error"><code class="docutils literal notranslate"><span class="pre">Logger.error()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.fatal"><code class="docutils literal notranslate"><span class="pre">Logger.fatal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.header"><code class="docutils literal notranslate"><span class="pre">Logger.header()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.info"><code class="docutils literal notranslate"><span class="pre">Logger.info()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.trace"><code class="docutils literal notranslate"><span class="pre">Logger.trace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.warn"><code class="docutils literal notranslate"><span class="pre">Logger.warn()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_level_enum">cpl_core.logging.logging_level_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.DEBUG"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.DEBUG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.ERROR"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.FATAL"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.FATAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.INFO"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.INFO</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.OFF"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.OFF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.TRACE"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.TRACE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.WARN"><code class="docutils literal notranslate"><span class="pre">LoggingLevelEnum.WARN</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings">cpl_core.logging.logging_settings module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings"><code class="docutils literal notranslate"><span class="pre">LoggingSettings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.console"><code class="docutils literal notranslate"><span class="pre">LoggingSettings.console</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.filename"><code class="docutils literal notranslate"><span class="pre">LoggingSettings.filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.level"><code class="docutils literal notranslate"><span class="pre">LoggingSettings.level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.path"><code class="docutils literal notranslate"><span class="pre">LoggingSettings.path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging.logging_settings_name_enum">cpl_core.logging.logging_settings_name_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum"><code class="docutils literal notranslate"><span class="pre">LoggingSettingsNameEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.console_level"><code class="docutils literal notranslate"><span class="pre">LoggingSettingsNameEnum.console_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.file_level"><code class="docutils literal notranslate"><span class="pre">LoggingSettingsNameEnum.file_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.filename"><code class="docutils literal notranslate"><span class="pre">LoggingSettingsNameEnum.filename</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.path"><code class="docutils literal notranslate"><span class="pre">LoggingSettingsNameEnum.path</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.logging.html#module-cpl_core.logging">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.logging.html#cpl_core.logging.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.mailing.html">cpl_core.mailing package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email">cpl_core.mailing.email module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_abc">cpl_core.mailing.email_client_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_service">cpl_core.mailing.email_client_service module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings">cpl_core.mailing.email_client_settings module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email">cpl_core.mailing.email module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail"><code class="docutils literal notranslate"><span class="pre">EMail</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.add_header"><code class="docutils literal notranslate"><span class="pre">EMail.add_header()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.add_receiver"><code class="docutils literal notranslate"><span class="pre">EMail.add_receiver()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.body"><code class="docutils literal notranslate"><span class="pre">EMail.body</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.check_mail"><code class="docutils literal notranslate"><span class="pre">EMail.check_mail()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.get_content"><code class="docutils literal notranslate"><span class="pre">EMail.get_content()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.header"><code class="docutils literal notranslate"><span class="pre">EMail.header</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.header_list"><code class="docutils literal notranslate"><span class="pre">EMail.header_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.receiver"><code class="docutils literal notranslate"><span class="pre">EMail.receiver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.receiver_list"><code class="docutils literal notranslate"><span class="pre">EMail.receiver_list</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.subject"><code class="docutils literal notranslate"><span class="pre">EMail.subject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email.EMail.transceiver"><code class="docutils literal notranslate"><span class="pre">EMail.transceiver</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_abc">cpl_core.mailing.email_client_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_abc.EMailClientABC"><code class="docutils literal notranslate"><span class="pre">EMailClientABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_abc.EMailClientABC.connect"><code class="docutils literal notranslate"><span class="pre">EMailClientABC.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_abc.EMailClientABC.send_mail"><code class="docutils literal notranslate"><span class="pre">EMailClientABC.send_mail()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_service">cpl_core.mailing.email_client_service module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient"><code class="docutils literal notranslate"><span class="pre">EMailClient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient.connect"><code class="docutils literal notranslate"><span class="pre">EMailClient.connect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient.create"><code class="docutils literal notranslate"><span class="pre">EMailClient.create()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient.login"><code class="docutils literal notranslate"><span class="pre">EMailClient.login()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient.send_mail"><code class="docutils literal notranslate"><span class="pre">EMailClient.send_mail()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings">cpl_core.mailing.email_client_settings module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings"><code class="docutils literal notranslate"><span class="pre">EMailClientSettings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.credentials"><code class="docutils literal notranslate"><span class="pre">EMailClientSettings.credentials</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.host"><code class="docutils literal notranslate"><span class="pre">EMailClientSettings.host</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.port"><code class="docutils literal notranslate"><span class="pre">EMailClientSettings.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.user_name"><code class="docutils literal notranslate"><span class="pre">EMailClientSettings.user_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum"><code class="docutils literal notranslate"><span class="pre">EMailClientSettingsNameEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum.credentials"><code class="docutils literal notranslate"><span class="pre">EMailClientSettingsNameEnum.credentials</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum.host"><code class="docutils literal notranslate"><span class="pre">EMailClientSettingsNameEnum.host</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum.port"><code class="docutils literal notranslate"><span class="pre">EMailClientSettingsNameEnum.port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings_name_enum.EMailClientSettingsNameEnum.user_name"><code class="docutils literal notranslate"><span class="pre">EMailClientSettingsNameEnum.user_name</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.mailing.html#module-cpl_core.mailing">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.pipes.html">cpl_core.pipes package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.bool_pipe.BoolPipe"><code class="docutils literal notranslate"><span class="pre">BoolPipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.bool_pipe.BoolPipe.transform"><code class="docutils literal notranslate"><span class="pre">BoolPipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_char_to_lower_pipe">cpl_core.pipes.first_char_to_lower_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe"><code class="docutils literal notranslate"><span class="pre">FirstCharToLowerPipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe.transform"><code class="docutils literal notranslate"><span class="pre">FirstCharToLowerPipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.first_to_upper_pipe">cpl_core.pipes.first_to_upper_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe"><code class="docutils literal notranslate"><span class="pre">FirstToUpperPipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe.transform"><code class="docutils literal notranslate"><span class="pre">FirstToUpperPipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.ip_address_pipe">cpl_core.pipes.ip_address_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.ip_address_pipe.IPAddressPipe"><code class="docutils literal notranslate"><span class="pre">IPAddressPipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.ip_address_pipe.IPAddressPipe.transform"><code class="docutils literal notranslate"><span class="pre">IPAddressPipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.pipe_abc">cpl_core.pipes.pipe_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.pipe_abc.PipeABC"><code class="docutils literal notranslate"><span class="pre">PipeABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.pipe_abc.PipeABC.transform"><code class="docutils literal notranslate"><span class="pre">PipeABC.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_camel_case_pipe">cpl_core.pipes.to_camel_case_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe"><code class="docutils literal notranslate"><span class="pre">ToCamelCasePipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe.transform"><code class="docutils literal notranslate"><span class="pre">ToCamelCasePipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.to_snake_case_pipe">cpl_core.pipes.to_snake_case_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe"><code class="docutils literal notranslate"><span class="pre">ToSnakeCasePipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe.transform"><code class="docutils literal notranslate"><span class="pre">ToSnakeCasePipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe"><code class="docutils literal notranslate"><span class="pre">VersionPipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe.transform"><code class="docutils literal notranslate"><span class="pre">VersionPipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.pipes.html#module-cpl_core.pipes">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.time.html">cpl_core.time package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings">cpl_core.time.time_format_settings module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">cpl_core.time.time_format_settings_names_enum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings">cpl_core.time.time_format_settings module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.date_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettings.date_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.date_time_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettings.date_time_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.date_time_log_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettings.date_time_log_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.time_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettings.time_format</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">cpl_core.time.time_format_settings_names_enum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettingsNamesEnum</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum.date_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettingsNamesEnum.date_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum.date_time_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettingsNamesEnum.date_time_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum.date_time_log_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettingsNamesEnum.date_time_log_format</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.time_format_settings_names_enum.TimeFormatSettingsNamesEnum.time_format"><code class="docutils literal notranslate"><span class="pre">TimeFormatSettingsNamesEnum.time_format</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.time.html#module-cpl_core.time">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.time.html#cpl_core.time.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.utils.html">cpl_core.utils package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.pip">cpl_core.utils.pip module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager"><code class="docutils literal notranslate"><span class="pre">CredentialManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager.build_string"><code class="docutils literal notranslate"><span class="pre">CredentialManager.build_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager.decrypt"><code class="docutils literal notranslate"><span class="pre">CredentialManager.decrypt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager.encrypt"><code class="docutils literal notranslate"><span class="pre">CredentialManager.encrypt()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.pip">cpl_core.utils.pip module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip"><code class="docutils literal notranslate"><span class="pre">Pip</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.get_executable"><code class="docutils literal notranslate"><span class="pre">Pip.get_executable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.get_outdated"><code class="docutils literal notranslate"><span class="pre">Pip.get_outdated()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.get_package"><code class="docutils literal notranslate"><span class="pre">Pip.get_package()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.install"><code class="docutils literal notranslate"><span class="pre">Pip.install()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.reset_executable"><code class="docutils literal notranslate"><span class="pre">Pip.reset_executable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.set_executable"><code class="docutils literal notranslate"><span class="pre">Pip.set_executable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.pip.Pip.uninstall"><code class="docutils literal notranslate"><span class="pre">Pip.uninstall()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.string.String"><code class="docutils literal notranslate"><span class="pre">String</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.string.String.convert_to_camel_case"><code class="docutils literal notranslate"><span class="pre">String.convert_to_camel_case()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.string.String.convert_to_snake_case"><code class="docutils literal notranslate"><span class="pre">String.convert_to_snake_case()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.string.String.first_to_lower"><code class="docutils literal notranslate"><span class="pre">String.first_to_lower()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.string.String.first_to_upper"><code class="docutils literal notranslate"><span class="pre">String.first_to_upper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.string.String.random_string"><code class="docutils literal notranslate"><span class="pre">String.random_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.utils.html#module-cpl_core.utils">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_core.utils.html#cpl_core.utils.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

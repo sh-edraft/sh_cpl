@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cpl_core.dependency_injection package &mdash; Common Python Library  documentation</title>
@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_core.html">API reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.application.html">cpl_core.application package</a></li>
@@ -50,17 +55,45 @@
 <li class="toctree-l2"><a class="reference internal" href="cpl_core.database.html">cpl_core.database package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_core.dependency_injection package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.scope">cpl_core.dependency_injection.scope module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.scope_abc">cpl_core.dependency_injection.scope_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.scope_builder">cpl_core.dependency_injection.scope_builder module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.scope">cpl_core.dependency_injection.scope module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.scope.Scope"><code class="docutils literal notranslate"><span class="pre">Scope</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.scope_abc">cpl_core.dependency_injection.scope_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="docutils literal notranslate"><span class="pre">ScopeABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.scope_builder">cpl_core.dependency_injection.scope_builder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.scope_builder.ScopeBuilder"><code class="docutils literal notranslate"><span class="pre">ScopeBuilder</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection.ServiceCollection"><code class="docutils literal notranslate"><span class="pre">ServiceCollection</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_collection_abc">cpl_core.dependency_injection.service_collection_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><code class="docutils literal notranslate"><span class="pre">ServiceCollectionABC</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_descriptor">cpl_core.dependency_injection.service_descriptor module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor"><code class="docutils literal notranslate"><span class="pre">ServiceDescriptor</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_lifetime_enum">cpl_core.dependency_injection.service_lifetime_enum module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum"><code class="docutils literal notranslate"><span class="pre">ServiceLifetimeEnum</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_provider">cpl_core.dependency_injection.service_provider module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.service_provider.ServiceProvider"><code class="docutils literal notranslate"><span class="pre">ServiceProvider</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="docutils literal notranslate"><span class="pre">ServiceProviderABC</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-cpl_core.dependency_injection">Module contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cpl-core-cpl-core">cpl-core CPL core</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_core.dependency_injection.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -91,9 +124,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_core.html">API reference</a> &raquo;</li>
-      <li>cpl_core.dependency_injection package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cpl_core.html">API reference</a></li>
+      <li class="breadcrumb-item active">cpl_core.dependency_injection package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_core.dependency_injection.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -213,7 +246,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_collection.ServiceCollection.add_scoped">
-<span class="sig-name descname"><span class="pre">add_scoped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection.ServiceCollection.add_scoped" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_scoped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection.ServiceCollection.add_scoped" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a service with scoped lifetime</p>
 <dl class="simple">
 <dt>Parameter:</dt><dd><dl class="simple">
@@ -230,7 +263,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_collection.ServiceCollection.add_singleton">
-<span class="sig-name descname"><span class="pre">add_singleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection.ServiceCollection.add_singleton" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_singleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection.ServiceCollection.add_singleton" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a service with singleton lifetime</p>
 <dl class="simple">
 <dt>Parameter:</dt><dd><dl class="simple">
@@ -247,7 +280,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_collection.ServiceCollection.add_transient">
-<span class="sig-name descname"><span class="pre">add_transient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection.ServiceCollection.add_transient" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_transient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection.ServiceCollection.add_transient" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a service with transient lifetime</p>
 <dl class="simple">
 <dt>Parameter:</dt><dd><dl class="simple">
@@ -315,7 +348,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_scoped">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_scoped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_scoped" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_scoped</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_scoped" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a service with scoped lifetime</p>
 <dl class="simple">
 <dt>Parameter:</dt><dd><dl class="simple">
@@ -332,7 +365,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_singleton">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_singleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_singleton" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_singleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_singleton" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a service with singleton lifetime</p>
 <dl class="simple">
 <dt>Parameter:</dt><dd><dl class="simple">
@@ -349,7 +382,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_transient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_transient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC" title="cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC"><span class="pre">ServiceCollectionABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient" title="Permalink to this definition"></a></dt>
 <dd><p>Adds a service with transient lifetime</p>
 <dl class="simple">
 <dt>Parameter:</dt><dd><dl class="simple">
@@ -387,7 +420,7 @@
 <span id="cpl-core-dependency-injection-service-descriptor-module"></span><h2>cpl_core.dependency_injection.service_descriptor module<a class="headerlink" href="#module-cpl_core.dependency_injection.service_descriptor" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_descriptor.ServiceDescriptor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.dependency_injection.service_descriptor.</span></span><span class="sig-name descname"><span class="pre">ServiceDescriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">implementation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lifetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum" title="cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum"><span class="pre">ServiceLifetimeEnum</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.dependency_injection.service_descriptor.</span></span><span class="sig-name descname"><span class="pre">ServiceDescriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">implementation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lifetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum" title="cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum"><span class="pre">ServiceLifetimeEnum</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Descriptor of a service</p>
 <dl class="simple">
@@ -406,7 +439,7 @@
 
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.implementation">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">implementation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.implementation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">implementation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">type</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">object</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.implementation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -451,11 +484,13 @@
 <span id="cpl-core-dependency-injection-service-provider-module"></span><h2>cpl_core.dependency_injection.service_provider module<a class="headerlink" href="#module-cpl_core.dependency_injection.service_provider" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.dependency_injection.service_provider.</span></span><span class="sig-name descname"><span class="pre">ServiceProvider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_descriptors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor" title="cpl_core.dependency_injection.service_descriptor.ServiceDescriptor"><span class="pre">cpl_core.dependency_injection.service_descriptor.ServiceDescriptor</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cpl_core.database.context.html#cpl_core.database.context.database_context_abc.DatabaseContextABC" title="cpl_core.database.context.database_context_abc.DatabaseContextABC"><span class="pre">DatabaseContextABC</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.dependency_injection.service_provider.</span></span><span class="sig-name descname"><span class="pre">ServiceProvider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_descriptors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor" title="cpl_core.dependency_injection.service_descriptor.ServiceDescriptor"><span class="pre">cpl_core.dependency_injection.service_descriptor.ServiceDescriptor</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><span class="pre">ConfigurationABC</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="cpl_core.database.context.html#cpl_core.database.context.database_context_abc.DatabaseContextABC" title="cpl_core.database.context.database_context_abc.DatabaseContextABC"><span class="pre">DatabaseContextABC</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC" title="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ServiceProviderABC</span></code></a></p>
 <p>Provider for the services</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="parameter">
+<h3>Parameter<a class="headerlink" href="#parameter" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
 <dt>service_descriptors: list[<a class="reference internal" href="#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor" title="cpl_core.dependency_injection.service_descriptor.ServiceDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.service_descriptor.ServiceDescriptor</span></code></a>]</dt><dd><p>Descriptor of the service</p>
 </dd>
 <dt>config: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC" title="cpl_core.configuration.configuration_abc.ConfigurationABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.configuration.configuration_abc.ConfigurationABC</span></code></a></dt><dd><p>CPL Configuration</p>
@@ -463,8 +498,7 @@
 <dt>db_context: Optional[<a class="reference internal" href="cpl_core.database.context.html#cpl_core.database.context.database_context_abc.DatabaseContextABC" title="cpl_core.database.context.database_context_abc.DatabaseContextABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.database.context.database_context_abc.DatabaseContextABC</span></code></a>]</dt><dd><p>Database representation</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider.build_by_signature">
 <span class="sig-name descname"><span class="pre">build_by_signature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Signature</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.build_by_signature" title="Permalink to this definition"></a></dt>
@@ -472,72 +506,95 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider.build_service">
-<span class="sig-name descname"><span class="pre">build_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.build_service" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.build_service" title="Permalink to this definition"></a></dt>
 <dd><p>Creates instance of given type</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id1">
+<h4>Parameter<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><dl class="simple">
 <dt>instance_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>The type of the searched instance</p>
 </dd>
 </dl>
-</dd>
-<dt>Returns:</dt><dd><p>Object of the given type</p>
-</dd>
-</dl>
+</div></blockquote>
+</section>
+<section id="returns">
+<h4>Returns<a class="headerlink" href="#returns" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><p>Object of the given type</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider.create_scope">
 <span class="sig-name descname"><span class="pre">create_scope</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><span class="pre">ScopeABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.create_scope" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a service scope</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>Object of type <a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.scope_abc.ScopeABC</span></code></a></p>
-</dd>
-</dl>
+<section id="id2">
+<h4>Returns<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><p>Object of type <a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.scope_abc.ScopeABC</span></code></a></p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider.get_service">
-<span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.get_service" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.get_service" title="Permalink to this definition"></a></dt>
 <dd><p>Returns instance of given type</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id3">
+<h4>Parameter<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><dl class="simple">
 <dt>instance_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code></dt><dd><p>The type of the searched instance</p>
 </dd>
 </dl>
-</dd>
-<dt>Returns:</dt><dd><p>Object of type Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
-</dd>
-</dl>
+</div></blockquote>
+</section>
+<section id="id4">
+<h4>Returns<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><p>Object of type Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider.get_services">
-<span class="sig-name descname"><span class="pre">get_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.get_services" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.get_services" title="Permalink to this definition"></a></dt>
 <dd><p>Returns instance of given type</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id5">
+<h4>Parameter<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><dl class="simple">
 <dt>instance_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code></dt><dd><p>The type of the searched instance</p>
 </dd>
 </dl>
-</dd>
-<dt>Returns:</dt><dd><p>Object of type list[Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
-</dd>
-</dl>
+</div></blockquote>
+</section>
+<section id="id6">
+<h4>Returns<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><p>Object of type list[Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider.ServiceProvider.set_scope">
 <span class="sig-name descname"><span class="pre">set_scope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scope</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><span class="pre">ScopeABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider.ServiceProvider.set_scope" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the scope of service provider</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id7">
+<h4>Parameter<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h4>
+<blockquote>
+<div><dl class="simple">
 <dt>Object of type <a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.scope_abc.ScopeABC</span></code></a></dt><dd><p>Service scope</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</div></blockquote>
+</section>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 </section>
@@ -555,69 +612,95 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.build_service">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.build_service" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.build_service" title="Permalink to this definition"></a></dt>
 <dd><p>Creates instance of given type</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id8">
+<h3>Parameter<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
 <dt>instance_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></dt><dd><p>The type of the searched instance</p>
 </dd>
 </dl>
-</dd>
-<dt>Returns:</dt><dd><p>Object of the given type</p>
-</dd>
-</dl>
+</div></blockquote>
+</section>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Object of the given type</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.create_scope">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_scope</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><span class="pre">ScopeABC</span></a></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.create_scope" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a service scope</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>Object of type <a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.scope_abc.ScopeABC</span></code></a></p>
-</dd>
-</dl>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Object of type <a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.scope_abc.ScopeABC</span></code></a></p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_service">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_service" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_service" title="Permalink to this definition"></a></dt>
 <dd><p>Returns instance of given type</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id11">
+<h3>Parameter<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
 <dt>instance_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code></dt><dd><p>The type of the searched instance</p>
 </dd>
 </dl>
-</dd>
-<dt>Returns:</dt><dd><p>Object of type Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
-</dd>
-</dl>
+</div></blockquote>
+</section>
+<section id="id12">
+<h3>Returns<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Object of type Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_services">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_services" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_services</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_services" title="Permalink to this definition"></a></dt>
 <dd><p>Returns instance of given type</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id13">
+<h3>Parameter<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
 <dt>instance_type: <code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code></dt><dd><p>The type of the searched instance</p>
 </dd>
 </dl>
-</dd>
-<dt>Returns:</dt><dd><p>Object of type list[Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
-</dd>
-</dl>
+</div></blockquote>
+</section>
+<section id="id14">
+<h3>Returns<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Object of type list[Optional[<code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.type.T</span></code>]</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.inject">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">inject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.inject" title="Permalink to this definition"></a></dt>
 <dd><p>Decorator to allow injection into static and class methods</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><p>f: Callable</p>
-</dd>
-<dt>Returns:</dt><dd><p>function</p>
-</dd>
-</dl>
+<section id="id15">
+<h3>Parameter<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>f: Callable</p>
+</div></blockquote>
+</section>
+<section id="id16">
+<h3>Returns<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>function</p>
+</div></blockquote>
+</section>
 </dd></dl>
 
 <dl class="py method">
@@ -629,13 +712,15 @@
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.set_scope">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_scope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scope</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><span class="pre">ScopeABC</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.set_scope" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the scope of service provider</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><dl class="simple">
+<section id="id17">
+<h3>Parameter<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><dl class="simple">
 <dt>Object of type <a class="reference internal" href="#cpl_core.dependency_injection.scope_abc.ScopeABC" title="cpl_core.dependency_injection.scope_abc.ScopeABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">cpl_core.dependency_injection.scope_abc.ScopeABC</span></code></a></dt><dd><p>Service scope</p>
 </dd>
 </dl>
-</dd>
-</dl>
+</div></blockquote>
+</section>
 </dd></dl>
 
 </dd></dl>
@@ -647,15 +732,16 @@
 <h3>cpl-core CPL core<a class="headerlink" href="#cpl-core-cpl-core" title="Permalink to this heading"></a></h3>
 <p>CPL core package</p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><ol class="loweralpha simple" start="3">
 <li><p>2020 - 2023 sh-edraft.de</p></li>
 </ol>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>MIT, see LICENSE for more details.</p>
 </dd>
 </dl>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_core.dependency_injection.VersionInfo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_core.dependency_injection.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_core.dependency_injection.VersionInfo" title="Permalink to this definition"></a></dt>
@@ -680,7 +766,6 @@
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

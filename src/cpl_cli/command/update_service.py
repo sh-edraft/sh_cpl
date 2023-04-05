@@ -206,7 +206,7 @@ class UpdateService(CommandABC):
             args.remove("cpl-dev")
             self._cli_settings.from_dict({"PipPath": "https://pip-dev.sh-edraft.de"})
 
-        VenvHelper.init_venv(False, self._env, self._project_settings)
+        VenvHelper.init_venv(False, self._env, self._project_settings.python_executable)
 
         self._check_project_dependencies()
         self._check_outdated()

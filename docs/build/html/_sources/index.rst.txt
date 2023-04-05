@@ -14,7 +14,7 @@ This CPL docs help you learn, understand and use the package. From your first ap
 Features
 --------
 - cpl-core
-   - Expandle
+   - Expandable
    - Application base
        - Standardized application classes
        - Application object builder
@@ -87,6 +87,7 @@ These pages go into great detail about everything the Library can do.
    introduction
    getting_started
    contributing
+   deprecated
    cpl_cli
    cpl_core
    cpl_discord

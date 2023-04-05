@@ -11,13 +11,12 @@ import cpl_cli
 import cpl_core
 from cpl_cli.abc.project_type_abc import ProjectTypeABC
 from cpl_cli.command_abc import CommandABC
+from cpl_cli.configuration import VersionSettings
 from cpl_cli.configuration.build_settings import BuildSettings
-from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_settings import ProjectSettings
-from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
+from cpl_cli.configuration.settings_helper import SettingsHelper
 from cpl_cli.configuration.venv_helper_service import VenvHelper
-from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.helper.dependencies import Dependencies
 from cpl_cli.source_creator.template_builder import TemplateBuilder
@@ -39,10 +38,10 @@ class NewService(CommandABC):
         self._env = self._config.environment
 
         self._workspace: WorkspaceSettings = self._config.get_configuration(WorkspaceSettings)
-        self._project: ProjectSettings = ProjectSettings()
         self._project_dict = {}
-        self._build: BuildSettings = BuildSettings()
         self._build_dict = {}
+        self._project_name = ""
+        self._python_executable = ""
 
         self._project_type_classes = set()
 
@@ -76,46 +75,48 @@ class NewService(CommandABC):
         )
 
     def _create_project_settings(self):
+        self._project_name = os.path.basename(self._name)
+        self._python_executable = ProjectSettings(
+            python_path={sys.platform: "../../venv/" if self._use_venv else ""}
+        ).python_executable
         self._rel_path = os.path.dirname(self._name)
-        self._project_dict = {
-            ProjectSettingsNameEnum.name.value: os.path.basename(self._name),
-            ProjectSettingsNameEnum.version.value: {
-                VersionSettingsNameEnum.major.value: "0",
-                VersionSettingsNameEnum.minor.value: "0",
-                VersionSettingsNameEnum.micro.value: "0",
-            },
-            ProjectSettingsNameEnum.author.value: "",
-            ProjectSettingsNameEnum.author_email.value: "",
-            ProjectSettingsNameEnum.description.value: "",
-            ProjectSettingsNameEnum.long_description.value: "",
-            ProjectSettingsNameEnum.url.value: "",
-            ProjectSettingsNameEnum.copyright_date.value: "",
-            ProjectSettingsNameEnum.copyright_name.value: "",
-            ProjectSettingsNameEnum.license_name.value: "",
-            ProjectSettingsNameEnum.license_description.value: "",
-            ProjectSettingsNameEnum.dependencies.value: [f"cpl-core>={version.parse(cpl_core.__version__)}"],
-            ProjectSettingsNameEnum.dev_dependencies.value: [f"cpl-cli>={version.parse(cpl_cli.__version__)}"],
-            ProjectSettingsNameEnum.python_version.value: f'>={sys.version.split(" ")[0]}',
-            ProjectSettingsNameEnum.python_path.value: {sys.platform: "../../venv/" if self._use_venv else ""},
-            ProjectSettingsNameEnum.classifiers.value: [],
-        }
-
-        self._project.from_dict(self._project_dict)
+        self._project_dict = SettingsHelper.get_project_settings_dict(
+            ProjectSettings(
+                os.path.basename(self._name),
+                VersionSettings("0", "0", "0"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                [f"cpl-core>={version.parse(cpl_core.__version__)}"],
+                [f"cpl-cli>={version.parse(cpl_cli.__version__)}"],
+                f'>={sys.version.split(" ")[0]}',
+                {sys.platform: "../../venv/" if self._use_venv else ""},
+                None,
+                [],
+            )
+        )
 
     def _create_build_settings(self, project_type: str):
-        self._build_dict = {
-            BuildSettingsNameEnum.project_type.value: project_type,
-            BuildSettingsNameEnum.source_path.value: "",
-            BuildSettingsNameEnum.output_path.value: "../../dist",
-            BuildSettingsNameEnum.main.value: f"{String.convert_to_snake_case(self._project.name)}.main",
-            BuildSettingsNameEnum.entry_point.value: self._project.name,
-            BuildSettingsNameEnum.include_package_data.value: False,
-            BuildSettingsNameEnum.included.value: [],
-            BuildSettingsNameEnum.excluded.value: ["*/__pycache__", "*/logs", "*/tests"],
-            BuildSettingsNameEnum.package_data.value: {},
-            BuildSettingsNameEnum.project_references.value: [],
-        }
-        self._build.from_dict(self._build_dict)
+        self._build_dict = SettingsHelper.get_build_settings_dict(
+            BuildSettings(
+                ProjectTypeEnum[project_type],
+                "",
+                "../../dist",
+                f"{String.convert_to_snake_case(self._project_name)}.main",
+                self._project_name,
+                False,
+                [],
+                ["*/__pycache__", "*/logs", "*/tests"],
+                {},
+                [],
+            )
+        )
 
     def _create_project_json(self):
         """
@@ -130,11 +131,11 @@ class NewService(CommandABC):
         :return:
         """
         if self._workspace is None:
-            project_path = os.path.join(self._env.working_directory, self._rel_path, self._project.name)
+            project_path = os.path.join(self._env.working_directory, self._rel_path, self._project_name)
         else:
             base = "" if self._use_base else "src"
             project_path = os.path.join(
-                self._env.working_directory, base, self._rel_path, String.convert_to_snake_case(self._project.name)
+                self._env.working_directory, base, self._rel_path, String.convert_to_snake_case(self._project_name)
             )
 
         if os.path.isdir(project_path) and len(os.listdir(project_path)) > 0:
@@ -180,7 +181,7 @@ class NewService(CommandABC):
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _create_venv(self):
-        project = self._project.name
+        project = self._project_name
         if self._workspace is not None:
             project = self._workspace.default_project
 
@@ -193,9 +194,9 @@ class NewService(CommandABC):
         VenvHelper.init_venv(
             False,
             self._env,
-            self._project,
+            self._python_executable,
             explicit_path=os.path.join(
-                self._env.working_directory, project, self._project.python_executable.replace("../", "")
+                self._env.working_directory, project, self._python_executable.replace("../", "")
             ),
         )
 
@@ -252,7 +253,7 @@ class NewService(CommandABC):
             return
 
         self._get_project_information(project_type)
-        project_name = self._project.name
+        project_name = self._project_name
         if self._rel_path != "":
             project_name = f"{self._rel_path}/{project_name}"
 
