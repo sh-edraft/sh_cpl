@@ -1,18 +1,13 @@
-import traceback
-
-from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
-
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_core.console import Console
 
 
 class PIPSettings(ConfigurationModelABC):
-    def __init__(self):
+    def __init__(self, production: str = None, staging: str = None, development: str = None):
         ConfigurationModelABC.__init__(self)
 
-        self._production = ""
-        self._staging = ""
-        self._development = ""
+        self._production = production
+        self._staging = staging
+        self._development = development
 
     @property
     def production(self):
@@ -25,12 +20,3 @@ class PIPSettings(ConfigurationModelABC):
     @property
     def development(self):
         return self._development
-
-    def from_dict(self, settings: dict):
-        try:
-            self._production = settings[EnvironmentNameEnum.production.value]
-            self._staging = settings[EnvironmentNameEnum.staging.value]
-            self._development = settings[EnvironmentNameEnum.development.value]
-        except Exception as e:
-            Console.error(f"[ ERROR ] [ {__name__} ]: Reading error in {type(self).__name__} settings")
-            Console.error(f"[ EXCEPTION ] [ {__name__} ]: {e} -> {traceback.format_exc()}")
