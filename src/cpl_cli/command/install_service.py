@@ -270,7 +270,7 @@ class InstallService(CommandABC):
             args.remove("cpl-dev")
             self._cli_settings.from_dict({"PipPath": "https://pip-dev.sh-edraft.de"})
 
-        VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings)
+        VenvHelper.init_venv(self._is_virtual, self._env, self._project_settings.python_executable)
 
         if len(args) == 0:
             self._install_project()

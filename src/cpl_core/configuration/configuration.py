@@ -290,7 +290,6 @@ class Configuration(ConfigurationABC):
                         Console.color_reset()
                         configuration.from_dict(value)
                     else:
-                        Console.error(sub, 1)
                         configuration = JSONProcessor.process(sub, value)
 
                     self.add_configuration(sub, configuration)
