@@ -17,7 +17,7 @@
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
       "cpl-core>=2023.4.0",
-      "discord.py==2.1.0",
+      "discord.py>=2.2.2",
       "cpl-query>=2023.4.0"
     ],
     "DevDependencies": [
