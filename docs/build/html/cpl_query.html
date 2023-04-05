@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Query reference &mdash; Common Python Library  documentation</title>
@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
@@ -68,8 +73,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Query reference</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Query reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_query.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,42 +90,160 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.base.html">cpl_query.base package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.default_lambda">cpl_query.base.default_lambda module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">cpl_query.base.ordered_queryable module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable_abc">cpl_query.base.ordered_queryable_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.queryable_abc">cpl_query.base.queryable_abc module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.sequence">cpl_query.base.sequence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.default_lambda">cpl_query.base.default_lambda module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.default_lambda.default_lambda"><code class="docutils literal notranslate"><span class="pre">default_lambda()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">cpl_query.base.ordered_queryable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.ordered_queryable.OrderedQueryable"><code class="docutils literal notranslate"><span class="pre">OrderedQueryable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.ordered_queryable.OrderedQueryable.then_by"><code class="docutils literal notranslate"><span class="pre">OrderedQueryable.then_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.ordered_queryable.OrderedQueryable.then_by_descending"><code class="docutils literal notranslate"><span class="pre">OrderedQueryable.then_by_descending()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.ordered_queryable_abc">cpl_query.base.ordered_queryable_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.ordered_queryable_abc.OrderedQueryableABC"><code class="docutils literal notranslate"><span class="pre">OrderedQueryableABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.ordered_queryable_abc.OrderedQueryableABC.then_by"><code class="docutils literal notranslate"><span class="pre">OrderedQueryableABC.then_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.ordered_queryable_abc.OrderedQueryableABC.then_by_descending"><code class="docutils literal notranslate"><span class="pre">OrderedQueryableABC.then_by_descending()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.queryable_abc">cpl_query.base.queryable_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC"><code class="docutils literal notranslate"><span class="pre">QueryableABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.all"><code class="docutils literal notranslate"><span class="pre">QueryableABC.all()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.any"><code class="docutils literal notranslate"><span class="pre">QueryableABC.any()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.average"><code class="docutils literal notranslate"><span class="pre">QueryableABC.average()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.contains"><code class="docutils literal notranslate"><span class="pre">QueryableABC.contains()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.count"><code class="docutils literal notranslate"><span class="pre">QueryableABC.count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.distinct"><code class="docutils literal notranslate"><span class="pre">QueryableABC.distinct()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.element_at"><code class="docutils literal notranslate"><span class="pre">QueryableABC.element_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.element_at_or_default"><code class="docutils literal notranslate"><span class="pre">QueryableABC.element_at_or_default()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.first"><code class="docutils literal notranslate"><span class="pre">QueryableABC.first()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.first_or_default"><code class="docutils literal notranslate"><span class="pre">QueryableABC.first_or_default()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.for_each"><code class="docutils literal notranslate"><span class="pre">QueryableABC.for_each()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.group_by"><code class="docutils literal notranslate"><span class="pre">QueryableABC.group_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.last"><code class="docutils literal notranslate"><span class="pre">QueryableABC.last()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.last_or_default"><code class="docutils literal notranslate"><span class="pre">QueryableABC.last_or_default()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.max"><code class="docutils literal notranslate"><span class="pre">QueryableABC.max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.median"><code class="docutils literal notranslate"><span class="pre">QueryableABC.median()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.min"><code class="docutils literal notranslate"><span class="pre">QueryableABC.min()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.order_by"><code class="docutils literal notranslate"><span class="pre">QueryableABC.order_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.order_by_descending"><code class="docutils literal notranslate"><span class="pre">QueryableABC.order_by_descending()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.reverse"><code class="docutils literal notranslate"><span class="pre">QueryableABC.reverse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.select"><code class="docutils literal notranslate"><span class="pre">QueryableABC.select()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.select_many"><code class="docutils literal notranslate"><span class="pre">QueryableABC.select_many()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.single"><code class="docutils literal notranslate"><span class="pre">QueryableABC.single()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.single_or_default"><code class="docutils literal notranslate"><span class="pre">QueryableABC.single_or_default()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.skip"><code class="docutils literal notranslate"><span class="pre">QueryableABC.skip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.skip_last"><code class="docutils literal notranslate"><span class="pre">QueryableABC.skip_last()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.split"><code class="docutils literal notranslate"><span class="pre">QueryableABC.split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.sum"><code class="docutils literal notranslate"><span class="pre">QueryableABC.sum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.take"><code class="docutils literal notranslate"><span class="pre">QueryableABC.take()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.take_last"><code class="docutils literal notranslate"><span class="pre">QueryableABC.take_last()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.where"><code class="docutils literal notranslate"><span class="pre">QueryableABC.where()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base.sequence">cpl_query.base.sequence module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence.copy"><code class="docutils literal notranslate"><span class="pre">Sequence.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence.empty"><code class="docutils literal notranslate"><span class="pre">Sequence.empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence.index_of"><code class="docutils literal notranslate"><span class="pre">Sequence.index_of()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence.range"><code class="docutils literal notranslate"><span class="pre">Sequence.range()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence.to_list"><code class="docutils literal notranslate"><span class="pre">Sequence.to_list()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.sequence.Sequence.type"><code class="docutils literal notranslate"><span class="pre">Sequence.type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.base.html#module-cpl_query.base">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.base.html#cpl_query.base.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.enumerable.html">cpl_query.enumerable package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">cpl_query.enumerable.enumerable module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">cpl_query.enumerable.enumerable_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">cpl_query.enumerable.enumerable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable.Enumerable"><code class="docutils literal notranslate"><span class="pre">Enumerable</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">cpl_query.enumerable.enumerable_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable_abc.EnumerableABC"><code class="docutils literal notranslate"><span class="pre">EnumerableABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable_abc.EnumerableABC.to_iterable"><code class="docutils literal notranslate"><span class="pre">EnumerableABC.to_iterable()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.enumerable.html#module-cpl_query.enumerable">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.extension.html">cpl_query.extension package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.extension.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.extension.html#module-cpl_query.extension.list">cpl_query.extension.list module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.extension.html#module-cpl_query.extension.list">cpl_query.extension.list module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.list.List"><code class="docutils literal notranslate"><span class="pre">List</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.list.List.to_enumerable"><code class="docutils literal notranslate"><span class="pre">List.to_enumerable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.list.List.to_iterable"><code class="docutils literal notranslate"><span class="pre">List.to_iterable()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.extension.html#module-cpl_query.extension">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.extension.html#cpl_query.extension.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.iterable.html">cpl_query.iterable package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">cpl_query.iterable.iterable module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable_abc">cpl_query.iterable.iterable_abc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">cpl_query.iterable.iterable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable.Iterable"><code class="docutils literal notranslate"><span class="pre">Iterable</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable.iterable_abc">cpl_query.iterable.iterable_abc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC"><code class="docutils literal notranslate"><span class="pre">IterableABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.add"><code class="docutils literal notranslate"><span class="pre">IterableABC.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.append"><code class="docutils literal notranslate"><span class="pre">IterableABC.append()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.extend"><code class="docutils literal notranslate"><span class="pre">IterableABC.extend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.remove"><code class="docutils literal notranslate"><span class="pre">IterableABC.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.remove_at"><code class="docutils literal notranslate"><span class="pre">IterableABC.remove_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.to_enumerable"><code class="docutils literal notranslate"><span class="pre">IterableABC.to_enumerable()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cpl_query.iterable.html#module-cpl_query.iterable">Module contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#cpl-query-cpl-queries">cpl-query CPL Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo.major"><code class="docutils literal notranslate"><span class="pre">VersionInfo.major</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo.micro"><code class="docutils literal notranslate"><span class="pre">VersionInfo.micro</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo.minor"><code class="docutils literal notranslate"><span class="pre">VersionInfo.minor</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

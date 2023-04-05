@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>cpl_discord.configuration package &mdash; Common Python Library  documentation</title>
@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,6 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord Reference</a><ul class="current">
@@ -49,9 +54,13 @@
 <li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.configuration package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings"><code class="docutils literal notranslate"><span class="pre">DiscordBotSettings</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.configuration">Module contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.configuration.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -80,9 +89,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_discord.html">Discord Reference</a> &raquo;</li>
-      <li>cpl_discord.configuration package</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cpl_discord.html">Discord Reference</a></li>
+      <li class="breadcrumb-item active">cpl_discord.configuration package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_discord.configuration.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,18 +110,8 @@
 <span id="cpl-discord-configuration-discord-bot-settings-module"></span><h2>cpl_discord.configuration.discord_bot_settings module<a class="headerlink" href="#module-cpl_discord.configuration.discord_bot_settings" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.configuration.discord_bot_settings.</span></span><span class="sig-name descname"><span class="pre">DiscordBotSettings</span></span><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.configuration.discord_bot_settings.</span></span><span class="sig-name descname"><span class="pre">DiscordBotSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationModelABC</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict">
-<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict" title="Permalink to this definition"></a></dt>
-<dd><p>Converts attributes to dict</p>
-<dl class="simple">
-<dt>Parameter:</dt><dd><p>settings: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.prefix">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prefix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.prefix" title="Permalink to this definition"></a></dt>
@@ -132,15 +131,16 @@
 <h3>cpl-discord CPL Discord<a class="headerlink" href="#cpl-discord-cpl-discord" title="Permalink to this heading"></a></h3>
 <p>Link between discord.py and CPL</p>
 <dl class="field-list simple">
-<dt class="field-odd">copyright</dt>
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
 <dd class="field-odd"><ol class="loweralpha simple" start="3">
 <li><p>2022 - 2023 sh-edraft.de</p></li>
 </ol>
 </dd>
-<dt class="field-even">license</dt>
+<dt class="field-even">license<span class="colon">:</span></dt>
 <dd class="field-even"><p>MIT, see LICENSE for more details.</p>
 </dd>
 </dl>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.configuration.VersionInfo">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.configuration.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.configuration.VersionInfo" title="Permalink to this definition"></a></dt>
@@ -165,7 +165,6 @@
 
 </dd></dl>
 
-</section>
 </section>
 </section>
 

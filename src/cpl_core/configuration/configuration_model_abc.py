@@ -14,7 +14,8 @@ class ConfigurationModelABC(ABC):
 
     @base_func
     def from_dict(self, settings: dict):
-        r"""Converts attributes to dict
+        r"""DEPRECATED: Set attributes as typed arguments in __init__ instead. See <> for further information
+        Converts attributes to dict
 
         Parameter:
             settings: :class:`dict`
