@@ -8,7 +8,6 @@ from unittests_shared.cli_commands import CLICommands
 
 
 class AddTestCase(CommandTestCase):
-
     def __init__(self, method_name: str):
         CommandTestCase.__init__(self, method_name)
         self._source = "add-test-project"

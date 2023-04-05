@@ -3,9 +3,9 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 
 class DiscordBotSettings(ConfigurationModelABC):
     def __init__(
-            self,
-            token: str = None,
-            prefix: str = None,
+        self,
+        token: str = None,
+        prefix: str = None,
     ):
         ConfigurationModelABC.__init__(self)
 

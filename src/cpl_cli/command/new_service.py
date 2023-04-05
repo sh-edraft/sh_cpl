@@ -80,39 +80,43 @@ class NewService(CommandABC):
             python_path={sys.platform: "../../venv/" if self._use_venv else ""}
         ).python_executable
         self._rel_path = os.path.dirname(self._name)
-        self._project_dict = SettingsHelper.get_project_settings_dict(ProjectSettings(
-            os.path.basename(self._name),
-            VersionSettings("0", "0", "0"),
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            [f"cpl-core>={version.parse(cpl_core.__version__)}"],
-            [f"cpl-cli>={version.parse(cpl_cli.__version__)}"],
-            f'>={sys.version.split(" ")[0]}',
-            {sys.platform: "../../venv/" if self._use_venv else ""},
-            None,
-            [],
-        ))
+        self._project_dict = SettingsHelper.get_project_settings_dict(
+            ProjectSettings(
+                os.path.basename(self._name),
+                VersionSettings("0", "0", "0"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                [f"cpl-core>={version.parse(cpl_core.__version__)}"],
+                [f"cpl-cli>={version.parse(cpl_cli.__version__)}"],
+                f'>={sys.version.split(" ")[0]}',
+                {sys.platform: "../../venv/" if self._use_venv else ""},
+                None,
+                [],
+            )
+        )
 
     def _create_build_settings(self, project_type: str):
-        self._build_dict = SettingsHelper.get_build_settings_dict(BuildSettings(
-            ProjectTypeEnum[project_type],
-            "",
-            "../../dist",
-            f"{String.convert_to_snake_case(self._project_name)}.main",
-            self._project_name,
-            False,
-            [],
-            ["*/__pycache__", "*/logs", "*/tests"],
-            {},
-            [],
-        ))
+        self._build_dict = SettingsHelper.get_build_settings_dict(
+            BuildSettings(
+                ProjectTypeEnum[project_type],
+                "",
+                "../../dist",
+                f"{String.convert_to_snake_case(self._project_name)}.main",
+                self._project_name,
+                False,
+                [],
+                ["*/__pycache__", "*/logs", "*/tests"],
+                {},
+                [],
+            )
+        )
 
     def _create_project_json(self):
         """
