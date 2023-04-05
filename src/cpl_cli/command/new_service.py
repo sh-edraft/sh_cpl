@@ -11,13 +11,13 @@ import cpl_cli
 import cpl_core
 from cpl_cli.abc.project_type_abc import ProjectTypeABC
 from cpl_cli.command_abc import CommandABC
+from cpl_cli.configuration import VersionSettings, VersionSettingsNameEnum
 from cpl_cli.configuration.build_settings import BuildSettings
 from cpl_cli.configuration.build_settings_name_enum import BuildSettingsNameEnum
 from cpl_cli.configuration.project_settings import ProjectSettings
 from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsNameEnum
 from cpl_cli.configuration.project_type_enum import ProjectTypeEnum
 from cpl_cli.configuration.venv_helper_service import VenvHelper
-from cpl_cli.configuration.version_settings_name_enum import VersionSettingsNameEnum
 from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 from cpl_cli.helper.dependencies import Dependencies
 from cpl_cli.source_creator.template_builder import TemplateBuilder
@@ -101,6 +101,25 @@ class NewService(CommandABC):
         }
 
         self._project.from_dict(self._project_dict)
+        self._project = ProjectSettings(
+            os.path.basename(self._name),
+            VersionSettings("0", "0", "0"),
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            [f"cpl-core>={version.parse(cpl_core.__version__)}"],
+            [f"cpl-cli>={version.parse(cpl_cli.__version__)}"],
+            f'>={sys.version.split(" ")[0]}',
+            {sys.platform: "../../venv/" if self._use_venv else ""},
+            None,
+            [],
+        )
 
     def _create_build_settings(self, project_type: str):
         self._build_dict = {
@@ -115,7 +134,19 @@ class NewService(CommandABC):
             BuildSettingsNameEnum.package_data.value: {},
             BuildSettingsNameEnum.project_references.value: [],
         }
-        self._build.from_dict(self._build_dict)
+        # self._build.from_dict(self._build_dict)
+        self._build = BuildSettings(
+            ProjectTypeEnum[project_type],
+            "",
+            "../../dist",
+            f"{String.convert_to_snake_case(self._project.name)}.main",
+            self._project.name,
+            False,
+            [],
+            ["*/__pycache__", "*/logs", "*/tests"],
+            {},
+            [],
+        )
 
     def _create_project_json(self):
         """
