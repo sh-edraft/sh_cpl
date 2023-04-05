@@ -14,7 +14,7 @@ class ConfigurationModelABC(ABC):
 
     @base_func
     def from_dict(self, settings: dict):
-        r"""DEPRECATED: Set attributes as typed arguments in __init__ instead. See <> for further information
+        r"""DEPRECATED: Set attributes as typed arguments in __init__ instead. See https://docs.sh-edraft.de/cpl/deprecated.html#ConfigurationModelABC-from_dict-method for further information
         Converts attributes to dict
 
         Parameter:
