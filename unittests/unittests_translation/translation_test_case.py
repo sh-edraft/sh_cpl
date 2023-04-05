@@ -15,8 +15,7 @@ class TranslationTestCase(unittest.TestCase):
     def setUp(self):
         os.chdir(os.path.abspath(TRANSLATION_PATH))
         self._translation = TranslationService()
-        settings = TranslationSettings()
-        settings.from_dict({"Languages": ["de", "en"], "DefaultLanguage": "en"})
+        settings = TranslationSettings(["de", "en"], "en")
         self._translation.load_by_settings(settings)
         self._translation.set_default_lang("de")
         self._translate = TranslatePipe(self._translation)

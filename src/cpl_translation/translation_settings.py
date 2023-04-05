@@ -4,7 +4,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 class TranslationSettings(ConfigurationModelABC):
     def __init__(
         self,
-        languages: str = None,
+        languages: list = None,
         default_lang: str = None,
     ):
         ConfigurationModelABC.__init__(self)
