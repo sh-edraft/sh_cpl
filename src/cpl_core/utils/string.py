@@ -37,8 +37,18 @@ class String:
             String converted to snake_case
         """
         # convert to train-case to CamelCase
+        if "_" in chars:
+            chars = chars.replace("_", "-")
+
         if "-" in chars:
             chars = "".join(word.title() for word in chars.split("-"))
+
+        if " " in chars:
+            new_chars = ""
+            for word in chars.split(" "):
+                new_chars += String.first_to_upper(word)
+
+            chars = new_chars
 
         pattern1 = re.compile(r"(.)([A-Z][a-z]+)")
         pattern2 = re.compile(r"([a-z0-9])([A-Z])")
