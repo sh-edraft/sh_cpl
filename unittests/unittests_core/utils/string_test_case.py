@@ -5,7 +5,6 @@ from cpl_core.utils import String
 
 
 class StringTestCase(unittest.TestCase):
-
     def setUp(self):
         pass
 
