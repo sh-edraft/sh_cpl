@@ -8,7 +8,7 @@ from unittests_query.iterable_test_case import IterableTestCase
 from unittests_query.sequence_test_case import SequenceTestCase
 
 
-class QueryTestSuite(unittest.TestSuite):
+class CoreTestSuite(unittest.TestSuite):
     def __init__(self):
         unittest.TestSuite.__init__(self)
 
@@ -21,4 +21,4 @@ class QueryTestSuite(unittest.TestSuite):
 
 if __name__ == "__main__":
     runner = unittest.TextTestRunner()
-    runner.run(QueryTestSuite())
+    runner.run(CoreTestSuite())
