@@ -12,6 +12,7 @@ class StringTestCase(unittest.TestCase):
         expected = "HelloWorld"
 
         self.assertEqual(expected, String.convert_to_camel_case("hello-world"))
+        self.assertEqual(expected, String.convert_to_camel_case("hello-World"))
         self.assertEqual(expected, String.convert_to_camel_case("hello_world"))
         self.assertEqual("helloWorld", String.convert_to_camel_case("helloWorld"))
         self.assertEqual(expected, String.convert_to_camel_case("Hello_world"))

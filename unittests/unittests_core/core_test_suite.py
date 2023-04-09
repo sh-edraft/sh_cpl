@@ -1,5 +1,6 @@
 import unittest
 
+from unittests_core.configuration.environment_test_case import EnvironmentTestCase
 from unittests_core.pipes.bool_pipe_test_case import BoolPipeTestCase
 from unittests_core.pipes.ip_address_pipe_test_case import IPAddressTestCase
 from unittests_core.pipes.version_pipe_test_case import VersionPipeTestCase
@@ -14,6 +15,8 @@ class CoreTestSuite(unittest.TestSuite):
 
         loader = unittest.TestLoader()
         tests = [
+            # config
+            EnvironmentTestCase,
             # pipes
             BoolPipeTestCase,
             IPAddressTestCase,
