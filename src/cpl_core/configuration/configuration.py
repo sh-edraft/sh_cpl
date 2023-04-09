@@ -314,7 +314,7 @@ class Configuration(ConfigurationABC):
         for arg in self._argument_types:
             call(arg)
 
-    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[T]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name

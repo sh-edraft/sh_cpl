@@ -1,8 +1,11 @@
 import os
+import sys
 import unittest
+from unittest.mock import Mock, MagicMock
 
-from cpl_core.configuration import Configuration
+from cpl_core.configuration import Configuration, ArgumentTypeEnum
 from cpl_core.database import DatabaseSettings
+from cpl_core.dependency_injection import ServiceProvider, ServiceCollection
 from cpl_core.mailing import EMailClientSettings
 
 
@@ -35,3 +38,31 @@ class ConfigurationTestCase(unittest.TestCase):
         self.assertTrue(db.buffered)
         self.assertEqual("mysql_native_password", db.auth_plugin)
         self.assertIsNone(self._config.get_configuration(EMailClientSettings))
+
+    def test_add_config(self):
+        self.assertIsNone(self._config.get_configuration("Test"))
+        self._config.add_configuration("Test", "Hello World")
+        self.assertIsNotNone(self._config.get_configuration("Test"))
+        self.assertEqual("Hello World", self._config.get_configuration("Test"))
+
+    def test_console_argument(self):
+        sc = ServiceCollection(self._config)
+        self.assertEqual([], sys.argv[1:])
+        sys.argv.append("flag")
+        sys.argv.append("exec")
+        sys.argv.append("var=test")
+        self.assertNotEqual([], sys.argv[1:])
+
+        self._config.create_console_argument(ArgumentTypeEnum.Flag, "", "flag", [])
+        mocked_exec = Mock()
+        mocked_exec.run = MagicMock()
+        sc.add_transient(mocked_exec)
+        self._config.create_console_argument(ArgumentTypeEnum.Executable, "", "exec", [], Mock)
+        self._config.create_console_argument(ArgumentTypeEnum.Variable, "", "var", [], "=")
+
+        self.assertIsNone(self._config.get_configuration("var"))
+        self._config.parse_console_arguments(sc.build_service_provider())
+        mocked_exec.run.assert_called()
+
+        self.assertEqual("test", self._config.get_configuration("var"))
+        self.assertIn("flag", self._config.additional_arguments)
