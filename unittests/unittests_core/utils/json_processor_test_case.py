@@ -26,7 +26,7 @@ class JSONProcessorTestCase(unittest.TestCase):
             "i": 10,
             "s": "Hello World",
             "d": {"test": "Test"},
-            "l": range(0, 11),
+            "l": list(range(0, 11)),
             "value": {"value": "Hello World"},
         }
         test: TestClass = JSONProcessor.process(TestClass, test_dict)

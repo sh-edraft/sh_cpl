@@ -30,6 +30,9 @@ class JSONProcessor:
                 if issubclass(parameter.annotation, enum.Enum):
                     value = parameter.annotation[value]
 
+                if type(value) != parameter.annotation:
+                    value = parameter.annotation(value)
+
                 args.append(value)
 
             elif parameter.default != Parameter.empty:
