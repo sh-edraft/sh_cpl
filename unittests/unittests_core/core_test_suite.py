@@ -3,6 +3,8 @@ import unittest
 from unittests_core.configuration.console_arguments_test_case import ConsoleArgumentsTestCase
 from unittests_core.configuration.configuration_test_case import ConfigurationTestCase
 from unittests_core.configuration.environment_test_case import EnvironmentTestCase
+from unittests_core.di.service_collection_test_case import ServiceCollectionTestCase
+from unittests_core.di.service_provider_test_case import ServiceProviderTestCase
 from unittests_core.pipes.bool_pipe_test_case import BoolPipeTestCase
 from unittests_core.pipes.ip_address_pipe_test_case import IPAddressTestCase
 from unittests_core.pipes.version_pipe_test_case import VersionPipeTestCase
@@ -21,6 +23,9 @@ class CoreTestSuite(unittest.TestSuite):
             ConfigurationTestCase,
             ConsoleArgumentsTestCase,
             EnvironmentTestCase,
+            # di
+            ServiceCollectionTestCase,
+            ServiceProviderTestCase,
             # pipes
             BoolPipeTestCase,
             IPAddressTestCase,
