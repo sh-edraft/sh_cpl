@@ -1,5 +1,6 @@
 import unittest
 
+from unittests_core.configuration.console_arguments_test_case import ConsoleArgumentsTestCase
 from unittests_core.configuration.configuration_test_case import ConfigurationTestCase
 from unittests_core.configuration.environment_test_case import EnvironmentTestCase
 from unittests_core.pipes.bool_pipe_test_case import BoolPipeTestCase
@@ -18,6 +19,7 @@ class CoreTestSuite(unittest.TestSuite):
         tests = [
             # config
             ConfigurationTestCase,
+            ConsoleArgumentsTestCase,
             EnvironmentTestCase,
             # pipes
             BoolPipeTestCase,
