@@ -8,6 +8,7 @@ from unittests_cli.constants import PLAYGROUND_PATH
 
 class CommandTestCase(unittest.TestCase):
     _skip_tear_down = False
+    _cwd = os.getcwd()
 
     def __init__(self, method_name: str):
         unittest.TestCase.__init__(self, method_name)
@@ -32,6 +33,7 @@ class CommandTestCase(unittest.TestCase):
         if cls._skip_tear_down:
             return
         try:
+            os.chdir(cls._cwd)
             if os.path.exists(PLAYGROUND_PATH):
                 shutil.rmtree(os.path.abspath(os.path.join(PLAYGROUND_PATH)))
         except Exception as e:
