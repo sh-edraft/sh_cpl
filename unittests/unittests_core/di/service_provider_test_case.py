@@ -10,20 +10,23 @@ class ServiceCount:
 
 
 class TestService:
-    def __init__(self, count: ServiceCount):
+    def __init__(self, sp: ServiceProviderABC, count: ServiceCount):
         count.count += 1
+        self.sp = sp
         self.id = count.count
 
 
 class DifferentService:
-    def __init__(self, count: ServiceCount):
+    def __init__(self, sp: ServiceProviderABC, count: ServiceCount):
         count.count += 1
+        self.sp = sp
         self.id = count.count
 
 
 class MoreDifferentService:
-    def __init__(self, count: ServiceCount):
+    def __init__(self, sp: ServiceProviderABC, count: ServiceCount):
         count.count += 1
+        self.sp = sp
         self.id = count.count
 
 
@@ -67,15 +70,25 @@ class ServiceProviderTestCase(unittest.TestCase):
     def test_scoped(self):
         scoped_id = 0
         singleton = self._services.get_service(TestService)
+        transient = self._services.get_service(DifferentService)
         with self._services.create_scope() as scope:
             sp: ServiceProviderABC = scope.service_provider
+            self.assertNotEqual(sp, self._services)
             y = sp.get_service(DifferentService)
             self.assertIsNotNone(y)
-            self.assertEqual(2, y.id)
+            self.assertEqual(3, y.id)
             x = sp.get_service(MoreDifferentService)
             self.assertIsNotNone(x)
-            self.assertEqual(3, x.id)
-            scoped_id = 3
+            self.assertEqual(4, x.id)
+            scoped_id = 4
+            self.assertEqual(singleton.sp, self._services)
+            self.assertEqual(transient.sp, self._services)
+            self.assertEqual(x.sp, sp)
+            self.assertNotEqual(x.sp, singleton.sp)
+            transient_in_scope = sp.get_service(DifferentService)
+            self.assertEqual(transient_in_scope.sp, sp)
+            self.assertNotEqual(transient.sp, transient_in_scope.sp)
+
             self.assertEqual(x.id, sp.get_service(MoreDifferentService).id)
             self.assertEqual(x.id, sp.get_service(MoreDifferentService).id)
             self.assertNotEqual(x, self._services.get_service(MoreDifferentService))
