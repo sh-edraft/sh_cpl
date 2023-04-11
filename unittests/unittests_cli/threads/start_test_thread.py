@@ -9,4 +9,4 @@ class StartTestThread(threading.Thread):
         self._is_dev = is_dev
 
     def run(self):
-        CLICommands.start(is_dev=self._is_dev, output=True)
+        CLICommands.start(is_dev=self._is_dev)
