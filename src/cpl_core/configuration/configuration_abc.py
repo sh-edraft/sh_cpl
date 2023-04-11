@@ -124,7 +124,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[T]:
         r"""Returns value from configuration by given type
 
         Parameter:

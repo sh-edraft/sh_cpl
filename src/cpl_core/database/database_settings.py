@@ -12,11 +12,11 @@ class DatabaseSettings(ConfigurationModelABC):
         port: int = None,
         user: str = None,
         password: str = None,
-        databse: str = None,
+        database: str = None,
         charset: str = None,
         use_unicode: bool = None,
         buffered: bool = None,
-        auth_plugin: bool = None,
+        auth_plugin: str = None,
     ):
         ConfigurationModelABC.__init__(self)
 
@@ -24,7 +24,7 @@ class DatabaseSettings(ConfigurationModelABC):
         self._port: Optional[int] = port
         self._user: Optional[str] = user
         self._password: Optional[str] = password
-        self._databse: Optional[str] = databse
+        self._databse: Optional[str] = database
         self._charset: Optional[str] = charset
         self._use_unicode: Optional[bool] = use_unicode
         self._buffered: Optional[bool] = buffered

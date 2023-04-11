@@ -1,6 +1,7 @@
 import textwrap
 
 from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
+from cpl_core.utils import String
 
 
 class StartupExtension(GenerateSchematicABC):
@@ -26,7 +27,7 @@ class StartupExtension(GenerateSchematicABC):
             def configure_services(self, services: ServiceCollectionABC, env: ApplicationEnvironmentABC):
                 pass
         """
-        x = self.build_code_str(code, Name=self._class_name)
+        x = self.build_code_str(code, Name=String.convert_to_camel_case(self._class_name))
         return x
 
     @classmethod

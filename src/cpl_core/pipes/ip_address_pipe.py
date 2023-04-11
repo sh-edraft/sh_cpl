@@ -13,7 +13,7 @@ class IPAddressPipe(PipeABC):
 
         for i in range(0, len(value)):
             byte = value[i]
-            if byte > 255:
+            if byte > 255 or byte < 0:
                 raise Exception("Invalid IP")
 
             if i == len(value) - 1:
