@@ -77,7 +77,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: T, value: any):
+    def add_configuration(self, key_type: Type[T], value: any):
         r"""Add configuration object
 
         Parameter:
