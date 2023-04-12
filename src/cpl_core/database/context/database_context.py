@@ -1,11 +1,9 @@
-
 from typing import Optional
 
 import mysql
 
 from cpl_core.database.connection.database_connection import DatabaseConnection
-from cpl_core.database.connection.database_connection_abc import \
-    DatabaseConnectionABC
+from cpl_core.database.connection.database_connection_abc import DatabaseConnectionABC
 from cpl_core.database.context.database_context_abc import DatabaseContextABC
 from cpl_core.database.database_settings import DatabaseSettings
 from cpl_core.database.table_abc import TableABC
@@ -15,8 +13,7 @@ from mysql.connector.cursor import MySQLCursorBuffered
 class DatabaseContext(DatabaseContextABC):
     r"""Representation of the database context
 
-    Parameter
-    ---------
+    Parameter:
         database_settings: :class:`cpl_core.database.database_settings.DatabaseSettings`
     """
 
@@ -38,7 +35,7 @@ class DatabaseContext(DatabaseContextABC):
         except mysql.connector.Error as err:
             # reconnect your cursor as you did in __init__ or wherever
             if self._settings is None:
-                raise Exception('Call DatabaseContext.connect first')
+                raise Exception("Call DatabaseContext.connect first")
             self.connect(self._settings)
 
     def connect(self, database_settings: DatabaseSettings):
@@ -53,7 +50,7 @@ class DatabaseContext(DatabaseContextABC):
     def save_changes(self):
         self._ping_and_reconnect()
         self._db.server.commit()
-        
+
     def select(self, statement: str) -> list[tuple]:
         self._ping_and_reconnect()
         self._db.cursor.execute(statement)

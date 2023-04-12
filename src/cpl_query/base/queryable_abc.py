@@ -1,16 +1,22 @@
-from typing import Optional, Callable, Union, Iterable
+from __future__ import annotations
+
+from typing import Optional, Callable, Union, Iterable, Any, TYPE_CHECKING
 
 from cpl_query._helper import is_number
+from cpl_query.base import default_lambda
+
+if TYPE_CHECKING:
+    from cpl_query.base.ordered_queryable_abc import OrderedQueryableABC
 from cpl_query.base.sequence import Sequence
-from cpl_query.exceptions import InvalidTypeException, ArgumentNoneException, ExceptionArgument, IndexOutOfRangeException
-
-
-def _default_lambda(x: object) -> object:
-    return x
+from cpl_query.exceptions import (
+    InvalidTypeException,
+    ArgumentNoneException,
+    ExceptionArgument,
+    IndexOutOfRangeException,
+)
 
 
 class QueryableABC(Sequence):
-
     def __init__(self, t: type, values: Iterable = None):
         Sequence.__init__(self, t, values)
 
@@ -27,7 +33,7 @@ class QueryableABC(Sequence):
             bool
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         return self.count(_func) == self.count()
 
@@ -44,7 +50,7 @@ class QueryableABC(Sequence):
             bool
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         return self.where(_func).count() > 0
 
@@ -99,7 +105,7 @@ class QueryableABC(Sequence):
 
         return self.where(_func).count()
 
-    def distinct(self, _func: Callable = None) -> 'QueryableABC':
+    def distinct(self, _func: Callable = None) -> QueryableABC:
         r"""Returns list without redundancies
 
         Parameter
@@ -112,7 +118,7 @@ class QueryableABC(Sequence):
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         result = []
         known_values = []
@@ -208,7 +214,7 @@ class QueryableABC(Sequence):
 
         return self
 
-    def group_by(self, _func: Callable = None) -> 'QueryableABC':
+    def group_by(self, _func: Callable = None) -> QueryableABC:
         r"""Groups by func
 
         Returns
@@ -216,7 +222,7 @@ class QueryableABC(Sequence):
             Grouped list[list[any]]: any
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
         groups = {}
 
         for v in self:
@@ -272,7 +278,7 @@ class QueryableABC(Sequence):
             raise InvalidTypeException()
 
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         return _func(max(self, key=_func))
 
@@ -284,16 +290,12 @@ class QueryableABC(Sequence):
             Union[int, float]
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         result = self.order_by(_func).select(_func).to_list()
         length = len(result)
         i = int(length / 2)
-        return (
-            result[i]
-            if length % 2 == 1
-            else (float(result[i - 1]) + float(result[i])) / float(2)
-        )
+        return result[i] if length % 2 == 1 else (float(result[i - 1]) + float(result[i])) / float(2)
 
     def min(self, _func: Callable = None) -> object:
         r"""Returns the lowest value
@@ -311,11 +313,11 @@ class QueryableABC(Sequence):
             raise InvalidTypeException()
 
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         return _func(min(self, key=_func))
 
-    def order_by(self, _func: Callable = None) -> 'OrderedQueryableABC':
+    def order_by(self, _func: Callable = None) -> OrderedQueryableABC:
         r"""Sorts elements by function in ascending order
 
         Parameter
@@ -328,12 +330,13 @@ class QueryableABC(Sequence):
             :class: `cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         from cpl_query.base.ordered_queryable import OrderedQueryable
+
         return OrderedQueryable(self.type, sorted(self, key=_func), _func)
 
-    def order_by_descending(self, _func: Callable = None) -> 'OrderedQueryableABC':
+    def order_by_descending(self, _func: Callable = None) -> "OrderedQueryableABC":
         r"""Sorts elements by function in descending order
 
         Parameter
@@ -346,12 +349,13 @@ class QueryableABC(Sequence):
             :class: `cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         from cpl_query.base.ordered_queryable import OrderedQueryable
+
         return OrderedQueryable(self.type, sorted(self, key=_func, reverse=True), _func)
 
-    def reverse(self) -> 'QueryableABC':
+    def reverse(self) -> QueryableABC:
         r"""Reverses list
 
         Returns
@@ -360,7 +364,7 @@ class QueryableABC(Sequence):
         """
         return type(self)(self._type, reversed(self._values))
 
-    def select(self, _func: Callable) -> 'QueryableABC':
+    def select(self, _func: Callable) -> QueryableABC:
         r"""Formats each element of list to a given format
 
         Returns
@@ -368,11 +372,14 @@ class QueryableABC(Sequence):
             :class: `cpl_query.base.queryable_abc.QueryableABC`
         """
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
-        return type(self)(object, [_func(_o) for _o in self])
+        _l = [_func(_o) for _o in self]
+        _t = type(_l[0]) if len(_l) > 0 else Any
 
-    def select_many(self, _func: Callable) -> 'QueryableABC':
+        return type(self)(_t, _l)
+
+    def select_many(self, _func: Callable) -> QueryableABC:
         r"""Flattens resulting lists to one
 
         Returns
@@ -396,9 +403,9 @@ class QueryableABC(Sequence):
             Exception: when argument is None or found more than one element
         """
         if self.count() > 1:
-            raise Exception('Found more than one element')
+            raise Exception("Found more than one element")
         elif self.count() == 0:
-            raise Exception('Found no element')
+            raise Exception("Found no element")
 
         return self._values[0]
 
@@ -410,13 +417,13 @@ class QueryableABC(Sequence):
             Found value: Optional[any]
         """
         if self.count() > 1:
-            raise Exception('Index out of range')
+            raise Exception("Index out of range")
         elif self.count() == 0:
             return None
 
         return self._values[0]
 
-    def skip(self, _index: int) -> 'QueryableABC':
+    def skip(self, _index: int) -> QueryableABC:
         r"""Skips all elements from index
 
         Parameter
@@ -433,7 +440,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self.type, self._values[_index:])
 
-    def skip_last(self, _index: int) -> 'QueryableABC':
+    def skip_last(self, _index: int) -> QueryableABC:
         r"""Skips all elements after index
 
         Parameter
@@ -467,7 +474,7 @@ class QueryableABC(Sequence):
             raise InvalidTypeException()
 
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         result = 0
         for x in self:
@@ -475,7 +482,7 @@ class QueryableABC(Sequence):
 
         return result
 
-    def split(self, _func: Callable) -> 'QueryableABC':
+    def split(self, _func: Callable) -> QueryableABC:
         r"""Splits the list by given function
 
 
@@ -508,7 +515,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self._type, query_groups)
 
-    def take(self, _index: int) -> 'QueryableABC':
+    def take(self, _index: int) -> QueryableABC:
         r"""Takes all elements from index
 
         Parameter
@@ -525,7 +532,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self._type, self._values[:_index])
 
-    def take_last(self, _index: int) -> 'QueryableABC':
+    def take_last(self, _index: int) -> QueryableABC:
         r"""Takes all elements after index
 
         Parameter
@@ -544,7 +551,7 @@ class QueryableABC(Sequence):
 
         return type(self)(self._type, self._values[index:])
 
-    def where(self, _func: Callable = None) -> 'QueryableABC':
+    def where(self, _func: Callable = None) -> QueryableABC:
         r"""Select element by function
 
         Parameter
@@ -560,6 +567,6 @@ class QueryableABC(Sequence):
             raise ArgumentNoneException(ExceptionArgument.func)
 
         if _func is None:
-            _func = _default_lambda
+            _func = default_lambda
 
         return type(self)(self.type, filter(_func, self))

@@ -19,8 +19,7 @@ class EMailClientABC(ABC):
     def send_mail(self, email: EMail):
         r"""Sends email
 
-        Parameter
-        ---------
+        Parameter:
             email: :class:`cpl_core.mailing.email.EMail`
                 Object of the E-Mail to send
         """

@@ -4,7 +4,6 @@ from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionA
 
 
 class Startup(StartupABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceCollectionABC):
         StartupABC.__init__(self)
 
@@ -17,4 +16,3 @@ class Startup(StartupABC):
 
     def configure_services(self) -> ServiceProviderABC:
         return self._services.build_service_provider()
-

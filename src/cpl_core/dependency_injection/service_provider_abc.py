@@ -1,7 +1,7 @@
 import functools
 from abc import abstractmethod, ABC
 from inspect import Signature, signature
-from typing import Type, Optional
+from typing import Optional, Type
 
 from cpl_core.dependency_injection.scope_abc import ScopeABC
 from cpl_core.type import T
@@ -10,14 +10,14 @@ from cpl_core.type import T
 class ServiceProviderABC(ABC):
     r"""ABC for the class :class:`cpl_core.dependency_injection.service_provider.ServiceProvider`"""
 
-    _provider: Optional['ServiceProviderABC'] = None
+    _provider: Optional["ServiceProviderABC"] = None
 
     @abstractmethod
     def __init__(self):
         pass
 
     @classmethod
-    def set_global_provider(cls, provider: 'ServiceProviderABC'):
+    def set_global_provider(cls, provider: "ServiceProviderABC"):
         cls._provider = provider
 
     @abstractmethod
@@ -61,7 +61,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: T, *args, **kwargs) -> Optional[T]:
+    def get_service(self, instance_type: Type[T], *args, **kwargs) -> Optional[T]:
         r"""Returns instance of given type
 
         Parameter
@@ -76,7 +76,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[T]]:
+    def get_services(self, service_type: Type[T], *args, **kwargs) -> list[Optional[T]]:
         r"""Returns instance of given type
 
         Parameter
@@ -108,7 +108,7 @@ class ServiceProviderABC(ABC):
         @functools.wraps(f)
         def inner(*args, **kwargs):
             if cls._provider is None:
-                raise Exception(f'{cls.__name__} not build!')
+                raise Exception(f"{cls.__name__} not build!")
 
             injection = [x for x in cls._provider.build_by_signature(signature(f)) if x is not None]
             return f(*args, *injection, **kwargs)

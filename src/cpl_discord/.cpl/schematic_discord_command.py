@@ -4,7 +4,6 @@ from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
 
 
 class Command(GenerateSchematicABC):
-
     def __init__(self, *args: str):
         GenerateSchematicABC.__init__(self, *args)
 
@@ -37,8 +36,4 @@ class Command(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'command',
-            []
-        )
+        GenerateSchematicABC.register(cls, "command", [])

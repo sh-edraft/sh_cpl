@@ -87,7 +87,7 @@
 
 Install the CPL package
 ```sh
-pip install cpl --extra-index-url https://pip.sh-edraft.de
+pip install cpl-core --extra-index-url https://pip.sh-edraft.de
 ```
 
 Install the CPL CLI

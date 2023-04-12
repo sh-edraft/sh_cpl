@@ -10,11 +10,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -25,11 +25,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -39,9 +43,10 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -59,8 +64,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -117,9 +122,11 @@
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_configuration">(cpl_core.configuration.configuration_abc.ConfigurationABC method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_console_argument">add_console_argument() (cpl_core.configuration.configuration.Configuration method)</a>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.add_console_argument">add_console_argument() (cpl_core.configuration.argument_abc.ArgumentABC method)</a>
 
       <ul>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.add_console_argument">(cpl_core.configuration.configuration.Configuration method)</a>
+</li>
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.add_console_argument">(cpl_core.configuration.configuration_abc.ConfigurationABC method)</a>
 </li>
       </ul></li>
@@ -183,8 +190,6 @@
         <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_transient">(cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC.add_translation">add_translation() (cpl_core.dependency_injection.service_collection_abc.ServiceCollectionABC method)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.additional_arguments">additional_arguments (cpl_core.configuration.configuration.Configuration property)</a>
@@ -193,9 +198,13 @@
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.additional_arguments">(cpl_core.configuration.configuration_abc.ConfigurationABC property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.afk_channel">afk_channel (cpl_discord.container.guild.Guild attribute)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.afk_timeout">afk_timeout (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.aliases">aliases (cpl_core.configuration.argument_abc.ArgumentABC property)</a>
 </li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.all">all() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
@@ -219,6 +228,8 @@
 </li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment_abc.ApplicationEnvironmentABC">ApplicationEnvironmentABC (class in cpl_core.environment.application_environment_abc)</a>
 </li>
+      <li><a href="cpl_core.application.html#cpl_core.application.application_extension_abc.ApplicationExtensionABC">ApplicationExtensionABC (class in cpl_core.application.application_extension_abc)</a>
+</li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.approximate_member_count">approximate_member_count (cpl_discord.container.guild.Guild attribute)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.approximate_presence_count">approximate_presence_count (cpl_discord.container.guild.Guild attribute)</a>
@@ -237,12 +248,20 @@
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.argument_error_function">(cpl_core.configuration.configuration_abc.ConfigurationABC property)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC">ArgumentABC (class in cpl_core.configuration.argument_abc)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_builder.ArgumentBuilder">ArgumentBuilder (class in cpl_core.configuration.argument_builder)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC">ArgumentExecutableABC (class in cpl_core.configuration.argument_executable_abc)</a>
+</li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.arguments">arguments (cpl_core.configuration.configuration.Configuration property)</a>
 
       <ul>
         <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_abc.ConfigurationABC.arguments">(cpl_core.configuration.configuration_abc.ConfigurationABC property)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum">ArgumentTypeEnum (class in cpl_core.configuration.argument_type_enum)</a>
+</li>
       <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.auth_plugin">auth_plugin (cpl_core.database.database_settings.DatabaseSettings property)</a>
 
       <ul>
@@ -265,6 +284,8 @@
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.banner">banner() (cpl_core.console.console.Console class method)</a>
 </li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.base_func">base_func() (in module cpl_core.configuration.configuration_model_abc)</a>
+</li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.base_type">base_type (cpl_core.dependency_injection.service_descriptor.ServiceDescriptor property)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.blue">blue (cpl_core.console.background_color_enum.BackgroundColorEnum attribute)</a>
@@ -283,18 +304,28 @@
         <li><a href="cpl_core.database.html#cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum.buffered">(cpl_core.database.database_settings_name_enum.DatabaseSettingsNameEnum attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.build">build() (cpl_core.application.application_builder.ApplicationBuilder method)</a>
 
       <ul>
         <li><a href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC.build">(cpl_core.application.application_builder_abc.ApplicationBuilderABC method)</a>
 </li>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_builder.ScopeBuilder.build">(cpl_core.dependency_injection.scope_builder.ScopeBuilder method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_builder.ArgumentBuilder.build_argument">build_argument() (cpl_core.configuration.argument_builder.ArgumentBuilder static method)</a>
+</li>
       <li><a href="cpl_core.application.html#cpl_core.application.application_builder.ApplicationBuilder.build_async">build_async() (cpl_core.application.application_builder.ApplicationBuilder method)</a>
 
       <ul>
         <li><a href="cpl_core.application.html#cpl_core.application.application_builder_abc.ApplicationBuilderABC.build_async">(cpl_core.application.application_builder_abc.ApplicationBuilderABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.build_by_signature">build_by_signature() (cpl_core.dependency_injection.service_provider.ServiceProvider method)</a>
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.build_by_signature">(cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC method)</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.build_service">build_service() (cpl_core.dependency_injection.service_provider.ServiceProvider method)</a>
@@ -354,9 +385,17 @@
       <li><a href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.configure">configure() (cpl_core.application.application_abc.ApplicationABC method)</a>
 </li>
       <li><a href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC.configure_configuration">configure_configuration() (cpl_core.application.startup_abc.StartupABC method)</a>
+
+      <ul>
+        <li><a href="cpl_core.application.html#cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_configuration">(cpl_core.application.startup_extension_abc.StartupExtensionABC method)</a>
 </li>
+      </ul></li>
       <li><a href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC.configure_services">configure_services() (cpl_core.application.startup_abc.StartupABC method)</a>
+
+      <ul>
+        <li><a href="cpl_core.application.html#cpl_core.application.startup_extension_abc.StartupExtensionABC.configure_services">(cpl_core.application.startup_extension_abc.StartupExtensionABC method)</a>
 </li>
+      </ul></li>
       <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.database_connection.DatabaseConnection.connect">connect() (cpl_core.database.connection.database_connection.DatabaseConnection method)</a>
 
       <ul>
@@ -375,6 +414,8 @@
 </li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.console">console (cpl_core.logging.logging_settings.LoggingSettings property)</a>
 </li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.console_arguments">console_arguments (cpl_core.configuration.argument_abc.ArgumentABC property)</a>
+</li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum.console_level">console_level (cpl_core.logging.logging_settings_name_enum.LoggingSettingsNameEnum attribute)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall">ConsoleCall (class in cpl_core.console.console_call)</a>
@@ -389,8 +430,17 @@
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.convert_to_snake_case">convert_to_snake_case() (cpl_core.utils.string.String static method)</a>
 </li>
+      <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence.copy">copy() (cpl_query.base.sequence.Sequence method)</a>
+</li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.count">count() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
+      <li>
+    cpl_core.application
+
+      <ul>
+        <li><a href="cpl_core.application.html#module-cpl_core.application">module</a>
+</li>
+      </ul></li>
       <li>
     cpl_core.application.application_abc
 
@@ -413,10 +463,59 @@
 </li>
       </ul></li>
       <li>
+    cpl_core.application.application_extension_abc
+
+      <ul>
+        <li><a href="cpl_core.application.html#module-cpl_core.application.application_extension_abc">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_core.application.startup_abc
 
       <ul>
         <li><a href="cpl_core.application.html#module-cpl_core.application.startup_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.application.startup_extension_abc
+
+      <ul>
+        <li><a href="cpl_core.application.html#module-cpl_core.application.startup_extension_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.argument_abc
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.argument_builder
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_builder">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.argument_executable_abc
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_executable_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.argument_type_enum
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_type_enum">module</a>
 </li>
       </ul></li>
       <li>
@@ -445,6 +544,41 @@
 
       <ul>
         <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.executable_argument
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.executable_argument">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.flag_argument
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.flag_argument">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.validator_abc
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.validator_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.configuration.variable_argument
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.variable_argument">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.console
+
+      <ul>
+        <li><a href="cpl_core.console.html#module-cpl_core.console">module</a>
 </li>
       </ul></li>
       <li>
@@ -483,6 +617,20 @@
 </li>
       </ul></li>
       <li>
+    cpl_core.database
+
+      <ul>
+        <li><a href="cpl_core.database.html#module-cpl_core.database">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.database.connection
+
+      <ul>
+        <li><a href="cpl_core.database.connection.html#module-cpl_core.database.connection">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_core.database.connection.database_connection
 
       <ul>
@@ -494,6 +642,13 @@
 
       <ul>
         <li><a href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.database.context
+
+      <ul>
+        <li><a href="cpl_core.database.context.html#module-cpl_core.database.context">module</a>
 </li>
       </ul></li>
       <li>
@@ -522,6 +677,41 @@
 
       <ul>
         <li><a href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.database.table_abc
+
+      <ul>
+        <li><a href="cpl_core.database.html#module-cpl_core.database.table_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.dependency_injection
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.dependency_injection.scope
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.dependency_injection.scope_abc
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.dependency_injection.scope_builder
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_builder">module</a>
 </li>
       </ul></li>
       <li>
@@ -567,6 +757,13 @@
 </li>
       </ul></li>
       <li>
+    cpl_core.environment
+
+      <ul>
+        <li><a href="cpl_core.environment.html#module-cpl_core.environment">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_core.environment.application_environment
 
       <ul>
@@ -585,6 +782,13 @@
 
       <ul>
         <li><a href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.logging
+
+      <ul>
+        <li><a href="cpl_core.logging.html#module-cpl_core.logging">module</a>
 </li>
       </ul></li>
       <li>
@@ -623,6 +827,13 @@
 </li>
       </ul></li>
       <li>
+    cpl_core.mailing
+
+      <ul>
+        <li><a href="cpl_core.mailing.html#module-cpl_core.mailing">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_core.mailing.email
 
       <ul>
@@ -655,6 +866,13 @@
 
       <ul>
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.pipes
+
+      <ul>
+        <li><a href="cpl_core.pipes.html#module-cpl_core.pipes">module</a>
 </li>
       </ul></li>
       <li>
@@ -714,6 +932,13 @@
 </li>
       </ul></li>
       <li>
+    cpl_core.time
+
+      <ul>
+        <li><a href="cpl_core.time.html#module-cpl_core.time">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_core.time.time_format_settings
 
       <ul>
@@ -725,6 +950,13 @@
 
       <ul>
         <li><a href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_core.utils
+
+      <ul>
+        <li><a href="cpl_core.utils.html#module-cpl_core.utils">module</a>
 </li>
       </ul></li>
       <li>
@@ -749,10 +981,24 @@
 </li>
       </ul></li>
       <li>
+    cpl_discord.application
+
+      <ul>
+        <li><a href="cpl_discord.application.html#module-cpl_discord.application">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_discord.application.discord_bot_application_abc
 
       <ul>
         <li><a href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.command
+
+      <ul>
+        <li><a href="cpl_discord.command.html#module-cpl_discord.command">module</a>
 </li>
       </ul></li>
       <li>
@@ -769,11 +1015,27 @@
         <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    cpl_discord.configuration
+
+      <ul>
+        <li><a href="cpl_discord.configuration.html#module-cpl_discord.configuration">module</a>
+</li>
+      </ul></li>
       <li>
     cpl_discord.configuration.discord_bot_settings
 
       <ul>
         <li><a href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.container
+
+      <ul>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container">module</a>
 </li>
       </ul></li>
       <li>
@@ -833,14 +1095,26 @@
 </li>
       </ul></li>
       <li>
+    cpl_discord.discord_event_types_enum
+
+      <ul>
+        <li><a href="cpl_discord.html#module-cpl_discord.discord_event_types_enum">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.events
+
+      <ul>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_discord.events.on_bulk_message_delete_abc
 
       <ul>
         <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     cpl_discord.events.on_command_abc
 
@@ -1192,10 +1466,24 @@
 </li>
       </ul></li>
       <li>
+    cpl_discord.helper
+
+      <ul>
+        <li><a href="cpl_discord.helper.html#module-cpl_discord.helper">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_discord.helper.to_containers_converter
 
       <ul>
         <li><a href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_discord.service
+
+      <ul>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service">module</a>
 </li>
       </ul></li>
       <li>
@@ -1248,6 +1536,13 @@
 </li>
       </ul></li>
       <li>
+    cpl_query.base
+
+      <ul>
+        <li><a href="cpl_query.base.html#module-cpl_query.base">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_query.base.default_lambda
 
       <ul>
@@ -1276,6 +1571,20 @@
 </li>
       </ul></li>
       <li>
+    cpl_query.base.sequence
+
+      <ul>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.sequence">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.enumerable
+
+      <ul>
+        <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_query.enumerable.enumerable
 
       <ul>
@@ -1290,10 +1599,24 @@
 </li>
       </ul></li>
       <li>
+    cpl_query.extension
+
+      <ul>
+        <li><a href="cpl_query.extension.html#module-cpl_query.extension">module</a>
+</li>
+      </ul></li>
+      <li>
     cpl_query.extension.list
 
       <ul>
         <li><a href="cpl_query.extension.html#module-cpl_query.extension.list">module</a>
+</li>
+      </ul></li>
+      <li>
+    cpl_query.iterable
+
+      <ul>
+        <li><a href="cpl_query.iterable.html#module-cpl_query.iterable">module</a>
 </li>
       </ul></li>
       <li>
@@ -1356,6 +1679,8 @@
         <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.create_scope">(cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.created_at">created_at (cpl_core.database.table_abc.TableABC property)</a>
+</li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager">CredentialManager (class in cpl_core.utils.credential_manager)</a>
 </li>
       <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.credentials">credentials (cpl_core.mailing.email_client_settings.EMailClientSettings property)</a>
@@ -1446,14 +1771,14 @@
       </ul></li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager.decrypt">decrypt() (cpl_core.utils.credential_manager.CredentialManager static method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.console.html#cpl_core.console.background_color_enum.BackgroundColorEnum.default">default (cpl_core.console.background_color_enum.BackgroundColorEnum attribute)</a>
 
       <ul>
         <li><a href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum.default">(cpl_core.console.foreground_color_enum.ForegroundColorEnum attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.default_auto_archive_duration">default_auto_archive_duration (cpl_discord.container.text_channel.TextChannel attribute)</a>
 </li>
       <li><a href="cpl_query.base.html#cpl_query.base.default_lambda.default_lambda">default_lambda() (in module cpl_query.base.default_lambda)</a>
@@ -1461,6 +1786,8 @@
       <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings.default_language">default_language (cpl_translation.translation_settings.TranslationSettings property)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.default_notifications">default_notifications (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.delete_string">delete_string (cpl_core.database.table_abc.TableABC property)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.description">description (cpl_discord.container.guild.Guild attribute)</a>
 </li>
@@ -1484,10 +1811,18 @@
 </li>
       <li><a href="cpl_discord.command.html#cpl_discord.command.discord_command_abc.DiscordCommandABC">DiscordCommandABC (class in cpl_discord.command.discord_command_abc)</a>
 </li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum">DiscordEventTypesEnum (class in cpl_discord.discord_event_types_enum)</a>
+</li>
       <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService">DiscordService (class in cpl_discord.service.discord_service)</a>
 </li>
       <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC">DiscordServiceABC (class in cpl_discord.service.discord_service_abc)</a>
 </li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope.Scope.dispose">dispose() (cpl_core.dependency_injection.scope.Scope method)</a>
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_abc.ScopeABC.dispose">(cpl_core.dependency_injection.scope_abc.ScopeABC method)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.distinct">distinct() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
   </ul></td>
@@ -1512,6 +1847,8 @@
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.emojis">emojis (cpl_discord.container.guild.Guild attribute)</a>
 </li>
+      <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence.empty">empty() (cpl_query.base.sequence.Sequence class method)</a>
+</li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.enable">enable() (cpl_core.console.console.Console class method)</a>
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.credential_manager.CredentialManager.encrypt">encrypt() (cpl_core.utils.credential_manager.CredentialManager static method)</a>
@@ -1524,10 +1861,10 @@
       </ul></li>
       <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable.Enumerable">Enumerable (class in cpl_query.enumerable.enumerable)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.enumerable_abc.EnumerableABC">EnumerableABC (class in cpl_query.enumerable.enumerable_abc)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.environment">environment (cpl_core.configuration.configuration.Configuration property)</a>
 
       <ul>
@@ -1554,6 +1891,12 @@
         <li><a href="cpl_core.logging.html#cpl_core.logging.logger_service.Logger.error">(cpl_core.logging.logger_service.Logger method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Executable">Executable (cpl_core.configuration.argument_type_enum.ArgumentTypeEnum attribute)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.executable_type">executable_type (cpl_core.configuration.executable_argument.ExecutableArgument property)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument">ExecutableArgument (class in cpl_core.configuration.executable_argument)</a>
+</li>
       <li><a href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.exit">exit() (cpl_core.console.spinner_thread.SpinnerThread method)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.explicit_content_filter">explicit_content_filter (cpl_discord.container.guild.Guild attribute)</a>
@@ -1592,12 +1935,16 @@
 </li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.first_to_upper">first_to_upper() (cpl_core.utils.string.String static method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.first_char_to_lower_pipe.FirstCharToLowerPipe">FirstCharToLowerPipe (class in cpl_core.pipes.first_char_to_lower_pipe)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.first_to_upper_pipe.FirstToUpperPipe">FirstToUpperPipe (class in cpl_core.pipes.first_to_upper_pipe)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Flag">Flag (cpl_core.configuration.argument_type_enum.ArgumentTypeEnum attribute)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.flag_argument.FlagArgument">FlagArgument (class in cpl_core.configuration.flag_argument)</a>
+</li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.for_each">for_each() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration.Configuration.for_each_argument">for_each_argument() (cpl_core.configuration.configuration.Configuration method)</a>
@@ -1611,21 +1958,7 @@
       <li><a href="cpl_core.console.html#cpl_core.console.foreground_color_enum.ForegroundColorEnum">ForegroundColorEnum (class in cpl_core.console.foreground_color_enum)</a>
 </li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC.from_dict">from_dict() (cpl_core.configuration.configuration_model_abc.ConfigurationModelABC method)</a>
-
-      <ul>
-        <li><a href="cpl_core.database.html#cpl_core.database.database_settings.DatabaseSettings.from_dict">(cpl_core.database.database_settings.DatabaseSettings method)</a>
 </li>
-        <li><a href="cpl_core.logging.html#cpl_core.logging.logging_settings.LoggingSettings.from_dict">(cpl_core.logging.logging_settings.LoggingSettings method)</a>
-</li>
-        <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_settings.EMailClientSettings.from_dict">(cpl_core.mailing.email_client_settings.EMailClientSettings method)</a>
-</li>
-        <li><a href="cpl_core.time.html#cpl_core.time.time_format_settings.TimeFormatSettings.from_dict">(cpl_core.time.time_format_settings.TimeFormatSettings method)</a>
-</li>
-        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.from_dict">(cpl_discord.configuration.discord_bot_settings.DiscordBotSettings method)</a>
-</li>
-        <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings.from_dict">(cpl_translation.translation_settings.TranslationSettings method)</a>
-</li>
-      </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.console_call.ConsoleCall.function">function (cpl_core.console.console_call.ConsoleCall property)</a>
 </li>
   </ul></td>
@@ -1664,6 +1997,12 @@
 
       <ul>
         <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_service">(cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC method)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider.ServiceProvider.get_services">get_services() (cpl_core.dependency_injection.service_provider.ServiceProvider method)</a>
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.get_services">(cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1758,6 +2097,8 @@
       </ul></li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.implementation">implementation (cpl_core.dependency_injection.service_descriptor.ServiceDescriptor property)</a>
 </li>
+      <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence.index_of">index_of() (cpl_query.base.sequence.Sequence method)</a>
+</li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.INFO">INFO (cpl_core.logging.logging_level_enum.LoggingLevelEnum attribute)</a>
 </li>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logger_abc.LoggerABC.info">info() (cpl_core.logging.logger_abc.LoggerABC method)</a>
@@ -1774,6 +2115,10 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.init">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.inject">inject() (cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC class method)</a>
+</li>
+      <li><a href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.insert_string">insert_string (cpl_core.database.table_abc.TableABC property)</a>
+</li>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.install">install() (cpl_core.utils.pip.Pip class method)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.thread.Thread.invitable">invitable (cpl_discord.container.thread.Thread attribute)</a>
@@ -1858,6 +2203,56 @@
       </ul></li>
       <li><a href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.main">main() (cpl_core.application.application_abc.ApplicationABC method)</a>
 </li>
+      <li><a href="cpl_core.application.html#cpl_core.application.VersionInfo.major">major (cpl_core.application.VersionInfo attribute)</a>
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo.major">(cpl_core.configuration.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.console.html#cpl_core.console.VersionInfo.major">(cpl_core.console.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.VersionInfo.major">(cpl_core.database.connection.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.context.html#cpl_core.database.context.VersionInfo.major">(cpl_core.database.context.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.html#cpl_core.database.VersionInfo.major">(cpl_core.database.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo.major">(cpl_core.dependency_injection.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.environment.html#cpl_core.environment.VersionInfo.major">(cpl_core.environment.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.logging.html#cpl_core.logging.VersionInfo.major">(cpl_core.logging.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo.major">(cpl_core.mailing.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.major">(cpl_core.pipes.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.time.html#cpl_core.time.VersionInfo.major">(cpl_core.time.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.utils.html#cpl_core.utils.VersionInfo.major">(cpl_core.utils.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.application.html#cpl_discord.application.VersionInfo.major">(cpl_discord.application.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.command.html#cpl_discord.command.VersionInfo.major">(cpl_discord.command.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.VersionInfo.major">(cpl_discord.configuration.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.VersionInfo.major">(cpl_discord.container.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.events.html#cpl_discord.events.VersionInfo.major">(cpl_discord.events.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.helper.html#cpl_discord.helper.VersionInfo.major">(cpl_discord.helper.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.VersionInfo.major">(cpl_discord.service.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.base.html#cpl_query.base.VersionInfo.major">(cpl_query.base.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo.major">(cpl_query.enumerable.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.extension.html#cpl_query.extension.VersionInfo.major">(cpl_query.extension.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo.major">(cpl_query.iterable.VersionInfo attribute)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.managed">managed (cpl_discord.container.role.Role attribute)</a>
 </li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.max">max() (cpl_query.base.queryable_abc.QueryableABC method)</a>
@@ -1894,19 +2289,137 @@
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.mfa_level">mfa_level (cpl_discord.container.guild.Guild attribute)</a>
 </li>
+      <li><a href="cpl_core.application.html#cpl_core.application.VersionInfo.micro">micro (cpl_core.application.VersionInfo attribute)</a>
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo.micro">(cpl_core.configuration.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.console.html#cpl_core.console.VersionInfo.micro">(cpl_core.console.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.VersionInfo.micro">(cpl_core.database.connection.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.context.html#cpl_core.database.context.VersionInfo.micro">(cpl_core.database.context.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.html#cpl_core.database.VersionInfo.micro">(cpl_core.database.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo.micro">(cpl_core.dependency_injection.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.environment.html#cpl_core.environment.VersionInfo.micro">(cpl_core.environment.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.logging.html#cpl_core.logging.VersionInfo.micro">(cpl_core.logging.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo.micro">(cpl_core.mailing.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.micro">(cpl_core.pipes.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.time.html#cpl_core.time.VersionInfo.micro">(cpl_core.time.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.utils.html#cpl_core.utils.VersionInfo.micro">(cpl_core.utils.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.application.html#cpl_discord.application.VersionInfo.micro">(cpl_discord.application.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.command.html#cpl_discord.command.VersionInfo.micro">(cpl_discord.command.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.VersionInfo.micro">(cpl_discord.configuration.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.VersionInfo.micro">(cpl_discord.container.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.events.html#cpl_discord.events.VersionInfo.micro">(cpl_discord.events.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.helper.html#cpl_discord.helper.VersionInfo.micro">(cpl_discord.helper.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.VersionInfo.micro">(cpl_discord.service.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.base.html#cpl_query.base.VersionInfo.micro">(cpl_query.base.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo.micro">(cpl_query.enumerable.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.extension.html#cpl_query.extension.VersionInfo.micro">(cpl_query.extension.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo.micro">(cpl_query.iterable.VersionInfo attribute)</a>
+</li>
+      </ul></li>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.min">min() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
+      <li><a href="cpl_core.application.html#cpl_core.application.VersionInfo.minor">minor (cpl_core.application.VersionInfo attribute)</a>
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo.minor">(cpl_core.configuration.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.console.html#cpl_core.console.VersionInfo.minor">(cpl_core.console.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.VersionInfo.minor">(cpl_core.database.connection.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.context.html#cpl_core.database.context.VersionInfo.minor">(cpl_core.database.context.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.database.html#cpl_core.database.VersionInfo.minor">(cpl_core.database.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo.minor">(cpl_core.dependency_injection.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.environment.html#cpl_core.environment.VersionInfo.minor">(cpl_core.environment.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.logging.html#cpl_core.logging.VersionInfo.minor">(cpl_core.logging.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo.minor">(cpl_core.mailing.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo.minor">(cpl_core.pipes.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.time.html#cpl_core.time.VersionInfo.minor">(cpl_core.time.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_core.utils.html#cpl_core.utils.VersionInfo.minor">(cpl_core.utils.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.application.html#cpl_discord.application.VersionInfo.minor">(cpl_discord.application.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.command.html#cpl_discord.command.VersionInfo.minor">(cpl_discord.command.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.VersionInfo.minor">(cpl_discord.configuration.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.VersionInfo.minor">(cpl_discord.container.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.events.html#cpl_discord.events.VersionInfo.minor">(cpl_discord.events.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.helper.html#cpl_discord.helper.VersionInfo.minor">(cpl_discord.helper.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.VersionInfo.minor">(cpl_discord.service.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.base.html#cpl_query.base.VersionInfo.minor">(cpl_query.base.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo.minor">(cpl_query.enumerable.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.extension.html#cpl_query.extension.VersionInfo.minor">(cpl_query.extension.VersionInfo attribute)</a>
+</li>
+        <li><a href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo.minor">(cpl_query.iterable.VersionInfo attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.modified_at">modified_at (cpl_core.database.table_abc.TableABC property)</a>
 </li>
       <li>
     module
 
       <ul>
+        <li><a href="cpl_core.application.html#module-cpl_core.application">cpl_core.application</a>
+</li>
         <li><a href="cpl_core.application.html#module-cpl_core.application.application_abc">cpl_core.application.application_abc</a>
 </li>
         <li><a href="cpl_core.application.html#module-cpl_core.application.application_builder">cpl_core.application.application_builder</a>
 </li>
         <li><a href="cpl_core.application.html#module-cpl_core.application.application_builder_abc">cpl_core.application.application_builder_abc</a>
 </li>
+        <li><a href="cpl_core.application.html#module-cpl_core.application.application_extension_abc">cpl_core.application.application_extension_abc</a>
+</li>
         <li><a href="cpl_core.application.html#module-cpl_core.application.startup_abc">cpl_core.application.startup_abc</a>
+</li>
+        <li><a href="cpl_core.application.html#module-cpl_core.application.startup_extension_abc">cpl_core.application.startup_extension_abc</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration">cpl_core.configuration</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_abc">cpl_core.configuration.argument_abc</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_builder">cpl_core.configuration.argument_builder</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_executable_abc">cpl_core.configuration.argument_executable_abc</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.argument_type_enum">cpl_core.configuration.argument_type_enum</a>
 </li>
         <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.configuration">cpl_core.configuration.configuration</a>
 </li>
@@ -1915,6 +2428,16 @@
         <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_model_abc">cpl_core.configuration.configuration_model_abc</a>
 </li>
         <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.configuration_variable_name_enum">cpl_core.configuration.configuration_variable_name_enum</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.executable_argument">cpl_core.configuration.executable_argument</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.flag_argument">cpl_core.configuration.flag_argument</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.validator_abc">cpl_core.configuration.validator_abc</a>
+</li>
+        <li><a href="cpl_core.configuration.html#module-cpl_core.configuration.variable_argument">cpl_core.configuration.variable_argument</a>
+</li>
+        <li><a href="cpl_core.console.html#module-cpl_core.console">cpl_core.console</a>
 </li>
         <li><a href="cpl_core.console.html#module-cpl_core.console.background_color_enum">cpl_core.console.background_color_enum</a>
 </li>
@@ -1926,9 +2449,15 @@
 </li>
         <li><a href="cpl_core.console.html#module-cpl_core.console.spinner_thread">cpl_core.console.spinner_thread</a>
 </li>
+        <li><a href="cpl_core.database.html#module-cpl_core.database">cpl_core.database</a>
+</li>
+        <li><a href="cpl_core.database.connection.html#module-cpl_core.database.connection">cpl_core.database.connection</a>
+</li>
         <li><a href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection">cpl_core.database.connection.database_connection</a>
 </li>
         <li><a href="cpl_core.database.connection.html#module-cpl_core.database.connection.database_connection_abc">cpl_core.database.connection.database_connection_abc</a>
+</li>
+        <li><a href="cpl_core.database.context.html#module-cpl_core.database.context">cpl_core.database.context</a>
 </li>
         <li><a href="cpl_core.database.context.html#module-cpl_core.database.context.database_context">cpl_core.database.context.database_context</a>
 </li>
@@ -1937,6 +2466,16 @@
         <li><a href="cpl_core.database.html#module-cpl_core.database.database_settings">cpl_core.database.database_settings</a>
 </li>
         <li><a href="cpl_core.database.html#module-cpl_core.database.database_settings_name_enum">cpl_core.database.database_settings_name_enum</a>
+</li>
+        <li><a href="cpl_core.database.html#module-cpl_core.database.table_abc">cpl_core.database.table_abc</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection">cpl_core.dependency_injection</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope">cpl_core.dependency_injection.scope</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_abc">cpl_core.dependency_injection.scope_abc</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.scope_builder">cpl_core.dependency_injection.scope_builder</a>
 </li>
         <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_collection">cpl_core.dependency_injection.service_collection</a>
 </li>
@@ -1950,11 +2489,15 @@
 </li>
         <li><a href="cpl_core.dependency_injection.html#module-cpl_core.dependency_injection.service_provider_abc">cpl_core.dependency_injection.service_provider_abc</a>
 </li>
+        <li><a href="cpl_core.environment.html#module-cpl_core.environment">cpl_core.environment</a>
+</li>
         <li><a href="cpl_core.environment.html#module-cpl_core.environment.application_environment">cpl_core.environment.application_environment</a>
 </li>
         <li><a href="cpl_core.environment.html#module-cpl_core.environment.application_environment_abc">cpl_core.environment.application_environment_abc</a>
 </li>
         <li><a href="cpl_core.environment.html#module-cpl_core.environment.environment_name_enum">cpl_core.environment.environment_name_enum</a>
+</li>
+        <li><a href="cpl_core.logging.html#module-cpl_core.logging">cpl_core.logging</a>
 </li>
         <li><a href="cpl_core.logging.html#module-cpl_core.logging.logger_abc">cpl_core.logging.logger_abc</a>
 </li>
@@ -1966,6 +2509,8 @@
 </li>
         <li><a href="cpl_core.logging.html#module-cpl_core.logging.logging_settings_name_enum">cpl_core.logging.logging_settings_name_enum</a>
 </li>
+        <li><a href="cpl_core.mailing.html#module-cpl_core.mailing">cpl_core.mailing</a>
+</li>
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email">cpl_core.mailing.email</a>
 </li>
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_abc">cpl_core.mailing.email_client_abc</a>
@@ -1975,6 +2520,8 @@
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings">cpl_core.mailing.email_client_settings</a>
 </li>
         <li><a href="cpl_core.mailing.html#module-cpl_core.mailing.email_client_settings_name_enum">cpl_core.mailing.email_client_settings_name_enum</a>
+</li>
+        <li><a href="cpl_core.pipes.html#module-cpl_core.pipes">cpl_core.pipes</a>
 </li>
         <li><a href="cpl_core.pipes.html#module-cpl_core.pipes.bool_pipe">cpl_core.pipes.bool_pipe</a>
 </li>
@@ -1992,9 +2539,13 @@
 </li>
         <li><a href="cpl_core.pipes.html#module-cpl_core.pipes.version_pipe">cpl_core.pipes.version_pipe</a>
 </li>
+        <li><a href="cpl_core.time.html#module-cpl_core.time">cpl_core.time</a>
+</li>
         <li><a href="cpl_core.time.html#module-cpl_core.time.time_format_settings">cpl_core.time.time_format_settings</a>
 </li>
         <li><a href="cpl_core.time.html#module-cpl_core.time.time_format_settings_names_enum">cpl_core.time.time_format_settings_names_enum</a>
+</li>
+        <li><a href="cpl_core.utils.html#module-cpl_core.utils">cpl_core.utils</a>
 </li>
         <li><a href="cpl_core.utils.html#module-cpl_core.utils.credential_manager">cpl_core.utils.credential_manager</a>
 </li>
@@ -2002,13 +2553,21 @@
 </li>
         <li><a href="cpl_core.utils.html#module-cpl_core.utils.string">cpl_core.utils.string</a>
 </li>
+        <li><a href="cpl_discord.application.html#module-cpl_discord.application">cpl_discord.application</a>
+</li>
         <li><a href="cpl_discord.application.html#module-cpl_discord.application.discord_bot_application_abc">cpl_discord.application.discord_bot_application_abc</a>
+</li>
+        <li><a href="cpl_discord.command.html#module-cpl_discord.command">cpl_discord.command</a>
 </li>
         <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_command_abc">cpl_discord.command.discord_command_abc</a>
 </li>
         <li><a href="cpl_discord.command.html#module-cpl_discord.command.discord_commands_meta">cpl_discord.command.discord_commands_meta</a>
 </li>
+        <li><a href="cpl_discord.configuration.html#module-cpl_discord.configuration">cpl_discord.configuration</a>
+</li>
         <li><a href="cpl_discord.configuration.html#module-cpl_discord.configuration.discord_bot_settings">cpl_discord.configuration.discord_bot_settings</a>
+</li>
+        <li><a href="cpl_discord.container.html#module-cpl_discord.container">cpl_discord.container</a>
 </li>
         <li><a href="cpl_discord.container.html#module-cpl_discord.container.category_channel">cpl_discord.container.category_channel</a>
 </li>
@@ -2025,6 +2584,10 @@
         <li><a href="cpl_discord.container.html#module-cpl_discord.container.thread">cpl_discord.container.thread</a>
 </li>
         <li><a href="cpl_discord.container.html#module-cpl_discord.container.voice_channel">cpl_discord.container.voice_channel</a>
+</li>
+        <li><a href="cpl_discord.html#module-cpl_discord.discord_event_types_enum">cpl_discord.discord_event_types_enum</a>
+</li>
+        <li><a href="cpl_discord.events.html#module-cpl_discord.events">cpl_discord.events</a>
 </li>
         <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_bulk_message_delete_abc">cpl_discord.events.on_bulk_message_delete_abc</a>
 </li>
@@ -2128,7 +2691,11 @@
 </li>
         <li><a href="cpl_discord.events.html#module-cpl_discord.events.on_webhooks_update_abc">cpl_discord.events.on_webhooks_update_abc</a>
 </li>
+        <li><a href="cpl_discord.helper.html#module-cpl_discord.helper">cpl_discord.helper</a>
+</li>
         <li><a href="cpl_discord.helper.html#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter</a>
+</li>
+        <li><a href="cpl_discord.service.html#module-cpl_discord.service">cpl_discord.service</a>
 </li>
         <li><a href="cpl_discord.service.html#module-cpl_discord.service.command_error_handler_service">cpl_discord.service.command_error_handler_service</a>
 </li>
@@ -2144,6 +2711,8 @@
 </li>
         <li><a href="cpl_discord.service.html#module-cpl_discord.service.discord_service_abc">cpl_discord.service.discord_service_abc</a>
 </li>
+        <li><a href="cpl_query.base.html#module-cpl_query.base">cpl_query.base</a>
+</li>
         <li><a href="cpl_query.base.html#module-cpl_query.base.default_lambda">cpl_query.base.default_lambda</a>
 </li>
         <li><a href="cpl_query.base.html#module-cpl_query.base.ordered_queryable">cpl_query.base.ordered_queryable</a>
@@ -2152,11 +2721,19 @@
 </li>
         <li><a href="cpl_query.base.html#module-cpl_query.base.queryable_abc">cpl_query.base.queryable_abc</a>
 </li>
+        <li><a href="cpl_query.base.html#module-cpl_query.base.sequence">cpl_query.base.sequence</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable">cpl_query.enumerable</a>
+</li>
         <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable">cpl_query.enumerable.enumerable</a>
 </li>
         <li><a href="cpl_query.enumerable.html#module-cpl_query.enumerable.enumerable_abc">cpl_query.enumerable.enumerable_abc</a>
 </li>
+        <li><a href="cpl_query.extension.html#module-cpl_query.extension">cpl_query.extension</a>
+</li>
         <li><a href="cpl_query.extension.html#module-cpl_query.extension.list">cpl_query.extension.list</a>
+</li>
+        <li><a href="cpl_query.iterable.html#module-cpl_query.iterable">cpl_query.iterable</a>
 </li>
         <li><a href="cpl_query.iterable.html#module-cpl_query.iterable.iterable">cpl_query.iterable.iterable</a>
 </li>
@@ -2177,9 +2754,11 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.name">name (cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum attribute)</a>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.name">name (cpl_core.configuration.argument_abc.ArgumentABC property)</a>
 
       <ul>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.name">(cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum attribute)</a>
+</li>
         <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.name">(cpl_discord.container.category_channel.CategoryChannel attribute)</a>
 </li>
         <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.name">(cpl_discord.container.guild.Guild attribute)</a>
@@ -2211,6 +2790,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.logging.html#cpl_core.logging.logging_level_enum.LoggingLevelEnum.OFF">OFF (cpl_core.logging.logging_level_enum.LoggingLevelEnum attribute)</a>
 </li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_bulk_message_delete">on_bulk_message_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC.on_bulk_message_delete">on_bulk_message_delete() (cpl_discord.events.on_bulk_message_delete_abc.OnBulkMessageDeleteABC method)</a>
 
       <ul>
@@ -2219,6 +2800,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_bulk_message_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command">on_command (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_abc.OnCommandABC.on_command">on_command() (cpl_discord.events.on_command_abc.OnCommandABC method)</a>
 
       <ul>
@@ -2227,6 +2810,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_command">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command_completion">on_command_completion (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC.on_command_completion">on_command_completion() (cpl_discord.events.on_command_completion_abc.OnCommandCompletionABC method)</a>
 
       <ul>
@@ -2235,6 +2820,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_command_completion">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_command_error">on_command_error (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_command_error_abc.OnCommandErrorABC.on_command_error">on_command_error() (cpl_discord.events.on_command_error_abc.OnCommandErrorABC method)</a>
 
       <ul>
@@ -2245,6 +2832,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_command_error">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_connect">on_connect (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_connect_abc.OnConnectABC.on_connect">on_connect() (cpl_discord.events.on_connect_abc.OnConnectABC method)</a>
 
       <ul>
@@ -2253,6 +2842,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_connect">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_disconnect">on_disconnect (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_disconnect_abc.OnDisconnectABC.on_disconnect">on_disconnect() (cpl_discord.events.on_disconnect_abc.OnDisconnectABC method)</a>
 
       <ul>
@@ -2261,6 +2852,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_disconnect">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_error">on_error (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_error_abc.OnErrorABC.on_error">on_error() (cpl_discord.events.on_error_abc.OnErrorABC method)</a>
 
       <ul>
@@ -2269,6 +2862,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_error">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_group_join">on_group_join (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_group_join_abc.OnGroupJoinABC.on_group_join">on_group_join() (cpl_discord.events.on_group_join_abc.OnGroupJoinABC method)</a>
 
       <ul>
@@ -2277,6 +2872,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_group_join">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_group_remove">on_group_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC.on_group_remove">on_group_remove() (cpl_discord.events.on_group_remove_abc.OnGroupRemoveABC method)</a>
 
       <ul>
@@ -2285,6 +2882,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_group_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_available">on_guild_available (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC.on_guild_available">on_guild_available() (cpl_discord.events.on_guild_available_abc.OnGuildAvailableABC method)</a>
 
       <ul>
@@ -2293,6 +2892,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_available">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_create">on_guild_channel_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC.on_guild_channel_create">on_guild_channel_create() (cpl_discord.events.on_guild_channel_create_abc.OnGuildChannelCreateABC method)</a>
 
       <ul>
@@ -2301,6 +2902,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_delete">on_guild_channel_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC.on_guild_channel_delete">on_guild_channel_delete() (cpl_discord.events.on_guild_channel_delete_abc.OnGuildChannelDeleteABC method)</a>
 
       <ul>
@@ -2309,6 +2912,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_pins_update">on_guild_channel_pins_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC.on_guild_channel_pins_update">on_guild_channel_pins_update() (cpl_discord.events.on_guild_channel_pins_update_abc.OnGuildChannelPinsUpdateABC method)</a>
 
       <ul>
@@ -2317,6 +2922,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_pins_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_channel_update">on_guild_channel_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC.on_guild_channel_update">on_guild_channel_update() (cpl_discord.events.on_guild_channel_update_abc.OnGuildChannelUpdateABC method)</a>
 
       <ul>
@@ -2325,6 +2932,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_channel_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_emojis_update">on_guild_emojis_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC.on_guild_emojis_update">on_guild_emojis_update() (cpl_discord.events.on_guild_emojis_update_abc.OnGuildEmojisUpdateABC method)</a>
 
       <ul>
@@ -2333,6 +2942,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_emojis_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_integrations_update">on_guild_integrations_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC.on_guild_integrations_update">on_guild_integrations_update() (cpl_discord.events.on_guild_integrations_update_abc.OnGuildIntegrationsUpdateABC method)</a>
 
       <ul>
@@ -2341,6 +2952,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_integrations_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_join">on_guild_join (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_join_abc.OnGuildJoinABC.on_guild_join">on_guild_join() (cpl_discord.events.on_guild_join_abc.OnGuildJoinABC method)</a>
 
       <ul>
@@ -2349,6 +2962,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_join">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_remove">on_guild_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC.on_guild_remove">on_guild_remove() (cpl_discord.events.on_guild_remove_abc.OnGuildRemoveABC method)</a>
 
       <ul>
@@ -2357,6 +2972,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_create">on_guild_role_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC.on_guild_role_create">on_guild_role_create() (cpl_discord.events.on_guild_role_create_abc.OnGuildRoleCreateABC method)</a>
 
       <ul>
@@ -2365,6 +2982,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_role_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_delete">on_guild_role_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC.on_guild_role_delete">on_guild_role_delete() (cpl_discord.events.on_guild_role_delete_abc.OnGuildRoleDeleteABC method)</a>
 
       <ul>
@@ -2373,6 +2992,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_role_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_role_update">on_guild_role_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC.on_guild_role_update">on_guild_role_update() (cpl_discord.events.on_guild_role_update_abc.OnGuildRoleUpdateABC method)</a>
 
       <ul>
@@ -2381,6 +3002,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_role_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_unavailable">on_guild_unavailable (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC.on_guild_unavailable">on_guild_unavailable() (cpl_discord.events.on_guild_unavailable_abc.OnGuildUnavailableABC method)</a>
 
       <ul>
@@ -2389,6 +3012,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_unavailable">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_guild_update">on_guild_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC.on_guild_update">on_guild_update() (cpl_discord.events.on_guild_update_abc.OnGuildUpdateABC method)</a>
 
       <ul>
@@ -2397,6 +3022,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_guild_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_invite_create">on_invite_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_invite_create_abc.OnInviteCreateABC.on_invite_create">on_invite_create() (cpl_discord.events.on_invite_create_abc.OnInviteCreateABC method)</a>
 
       <ul>
@@ -2405,6 +3032,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_invite_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_invite_delete">on_invite_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC.on_invite_delete">on_invite_delete() (cpl_discord.events.on_invite_delete_abc.OnInviteDeleteABC method)</a>
 
       <ul>
@@ -2413,6 +3042,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_invite_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_ban">on_member_ban (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_ban_abc.OnMemberBanABC.on_member_ban">on_member_ban() (cpl_discord.events.on_member_ban_abc.OnMemberBanABC method)</a>
 
       <ul>
@@ -2421,6 +3052,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_ban">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_join">on_member_join (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_join_abc.OnMemberJoinABC.on_member_join">on_member_join() (cpl_discord.events.on_member_join_abc.OnMemberJoinABC method)</a>
 
       <ul>
@@ -2429,6 +3062,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_join">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_remove">on_member_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC.on_member_remove">on_member_remove() (cpl_discord.events.on_member_remove_abc.OnMemberRemoveABC method)</a>
 
       <ul>
@@ -2437,6 +3072,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_unban">on_member_unban (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC.on_member_unban">on_member_unban() (cpl_discord.events.on_member_unban_abc.OnMemberUnbanABC method)</a>
 
       <ul>
@@ -2445,6 +3082,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_unban">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_member_update">on_member_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_member_update_abc.OnMemberUpdateABC.on_member_update">on_member_update() (cpl_discord.events.on_member_update_abc.OnMemberUpdateABC method)</a>
 
       <ul>
@@ -2453,6 +3092,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_member_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message">on_message (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_abc.OnMessageABC.on_message">on_message() (cpl_discord.events.on_message_abc.OnMessageABC method)</a>
 
       <ul>
@@ -2461,6 +3102,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_delete">on_message_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC.on_message_delete">on_message_delete() (cpl_discord.events.on_message_delete_abc.OnMessageDeleteABC method)</a>
 
       <ul>
@@ -2469,6 +3112,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_message_edit">on_message_edit (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_message_edit_abc.OnMessageEditABC.on_message_edit">on_message_edit() (cpl_discord.events.on_message_edit_abc.OnMessageEditABC method)</a>
 
       <ul>
@@ -2477,6 +3122,10 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_message_edit">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_create">on_private_channel_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC.on_private_channel_create">on_private_channel_create() (cpl_discord.events.on_private_channel_create_abc.OnPrivateChannelCreateABC method)</a>
 
       <ul>
@@ -2485,6 +3134,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_create">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_delete">on_private_channel_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC.on_private_channel_delete">on_private_channel_delete() (cpl_discord.events.on_private_channel_delete_abc.OnPrivateChannelDeleteABC method)</a>
 
       <ul>
@@ -2493,8 +3144,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_delete">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_pins_update">on_private_channel_pins_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC.on_private_channel_pins_update">on_private_channel_pins_update() (cpl_discord.events.on_private_channel_pins_update_abc.OnPrivateChannelPinsUpdateABC method)</a>
 
       <ul>
@@ -2503,6 +3154,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_pins_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_private_channel_update">on_private_channel_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC.on_private_channel_update">on_private_channel_update() (cpl_discord.events.on_private_channel_update_abc.OnPrivateChannelUpdateABC method)</a>
 
       <ul>
@@ -2511,30 +3164,40 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_private_channel_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_add">on_raw_reaction_add (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC.on_raw_reaction_add">on_raw_reaction_add() (cpl_discord.events.on_raw_reaction_add_abc.OnRawReactionAddABC method)</a>
 
       <ul>
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_add">(cpl_discord.service.discord_service.DiscordService method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_clear">on_raw_reaction_clear (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC.on_raw_reaction_clear">on_raw_reaction_clear() (cpl_discord.events.on_raw_reaction_clear_abc.OnRawReactionClearABC method)</a>
 
       <ul>
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_clear">(cpl_discord.service.discord_service.DiscordService method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_clear_emoji">on_raw_reaction_clear_emoji (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC.on_raw_reaction_clear_emoji">on_raw_reaction_clear_emoji() (cpl_discord.events.on_raw_reaction_clear_emoji_abc.OnRawReactionClearEmojiABC method)</a>
 
       <ul>
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_clear_emoji">(cpl_discord.service.discord_service.DiscordService method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_raw_reaction_remove">on_raw_reaction_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC.on_raw_reaction_remove">on_raw_reaction_remove() (cpl_discord.events.on_raw_reaction_remove_abc.OnRawReactionRemoveABC method)</a>
 
       <ul>
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_raw_reaction_remove">(cpl_discord.service.discord_service.DiscordService method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_add">on_reaction_add (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_add_abc.OnReactionAddABC.on_reaction_add">on_reaction_add() (cpl_discord.events.on_reaction_add_abc.OnReactionAddABC method)</a>
 
       <ul>
@@ -2543,6 +3206,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_add">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_clear">on_reaction_clear (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC.on_reaction_clear">on_reaction_clear() (cpl_discord.events.on_reaction_clear_abc.OnReactionClearABC method)</a>
 
       <ul>
@@ -2551,6 +3216,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_clear">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_clear_emoji">on_reaction_clear_emoji (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC.on_reaction_clear_emoji">on_reaction_clear_emoji() (cpl_discord.events.on_reaction_clear_emoji_abc.OnReactionClearEmojiABC method)</a>
 
       <ul>
@@ -2559,6 +3226,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_clear_emoji">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_reaction_remove">on_reaction_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC.on_reaction_remove">on_reaction_remove() (cpl_discord.events.on_reaction_remove_abc.OnReactionRemoveABC method)</a>
 
       <ul>
@@ -2567,6 +3236,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_reaction_remove">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_ready">on_ready (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_ready_abc.OnReadyABC.on_ready">on_ready() (cpl_discord.events.on_ready_abc.OnReadyABC method)</a>
 
       <ul>
@@ -2579,6 +3250,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_ready">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_resume">on_resume (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_resume_abc.OnResumeABC.on_resume">on_resume() (cpl_discord.events.on_resume_abc.OnResumeABC method)</a>
 
       <ul>
@@ -2587,6 +3260,28 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_resume">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_create">on_scheduled_event_create (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_create">on_scheduled_event_create() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_delete">on_scheduled_event_delete (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_delete">on_scheduled_event_delete() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_update">on_scheduled_event_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_update">on_scheduled_event_update() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_user_add">on_scheduled_event_user_add (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_user_add">on_scheduled_event_user_add() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_scheduled_event_user_remove">on_scheduled_event_user_remove (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
+      <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service.DiscordService.on_scheduled_event_user_remove">on_scheduled_event_user_remove() (cpl_discord.service.discord_service.DiscordService method)</a>
+</li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_typing">on_typing (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_typing_abc.OnTypingABC.on_typing">on_typing() (cpl_discord.events.on_typing_abc.OnTypingABC method)</a>
 
       <ul>
@@ -2595,6 +3290,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_typing">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_user_update">on_user_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_user_update_abc.OnUserUpdateABC.on_user_update">on_user_update() (cpl_discord.events.on_user_update_abc.OnUserUpdateABC method)</a>
 
       <ul>
@@ -2603,6 +3300,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_user_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_voice_state_update">on_voice_state_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC.on_voice_state_update">on_voice_state_update() (cpl_discord.events.on_voice_state_update_abc.OnVoiceStateUpdateABC method)</a>
 
       <ul>
@@ -2611,6 +3310,8 @@
         <li><a href="cpl_discord.service.html#cpl_discord.service.discord_service_abc.DiscordServiceABC.on_voice_state_update">(cpl_discord.service.discord_service_abc.DiscordServiceABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_discord.html#cpl_discord.discord_event_types_enum.DiscordEventTypesEnum.on_webhooks_update">on_webhooks_update (cpl_discord.discord_event_types_enum.DiscordEventTypesEnum attribute)</a>
+</li>
       <li><a href="cpl_discord.events.html#cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC.on_webhooks_update">on_webhooks_update() (cpl_discord.events.on_webhooks_update_abc.OnWebhooksUpdateABC method)</a>
 
       <ul>
@@ -2799,6 +3500,8 @@
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.premium_tier">premium_tier (cpl_discord.container.guild.Guild attribute)</a>
 </li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.prevent_next_executable">prevent_next_executable (cpl_core.configuration.argument_abc.ArgumentABC property)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.production">production (cpl_core.environment.environment_name_enum.EnvironmentNameEnum attribute)</a>
 </li>
   </ul></td>
@@ -2816,6 +3519,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.utils.html#cpl_core.utils.string.String.random_string">random_string() (cpl_core.utils.string.String static method)</a>
+</li>
+      <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence.range">range() (cpl_query.base.sequence.Sequence class method)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.read">read() (cpl_core.console.console.Console class method)</a>
 </li>
@@ -2837,10 +3542,10 @@
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.reset_cursor_position">reset_cursor_position() (cpl_core.console.console.Console class method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.reset_executable">reset_executable() (cpl_core.utils.pip.Pip class method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.reverse">reverse() (cpl_query.base.queryable_abc.QueryableABC method)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role">Role (class in cpl_discord.container.role)</a>
@@ -2854,6 +3559,12 @@
       <li><a href="cpl_core.application.html#cpl_core.application.application_abc.ApplicationABC.run">run() (cpl_core.application.application_abc.ApplicationABC method)</a>
 
       <ul>
+        <li><a href="cpl_core.application.html#cpl_core.application.application_extension_abc.ApplicationExtensionABC.run">(cpl_core.application.application_extension_abc.ApplicationExtensionABC method)</a>
+</li>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC.run">(cpl_core.configuration.argument_executable_abc.ArgumentExecutableABC method)</a>
+</li>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.run">(cpl_core.configuration.executable_argument.ExecutableArgument method)</a>
+</li>
         <li><a href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread.run">(cpl_core.console.spinner_thread.SpinnerThread method)</a>
 </li>
       </ul></li>
@@ -2877,6 +3588,12 @@
         <li><a href="cpl_core.database.context.html#cpl_core.database.context.database_context_abc.DatabaseContextABC.save_changes">(cpl_core.database.context.database_context_abc.DatabaseContextABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope.Scope">Scope (class in cpl_core.dependency_injection.scope)</a>
+</li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_abc.ScopeABC">ScopeABC (class in cpl_core.dependency_injection.scope_abc)</a>
+</li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_builder.ScopeBuilder">ScopeBuilder (class in cpl_core.dependency_injection.scope_builder)</a>
+</li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum.scoped">scoped (cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum attribute)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.select">select() (cpl_core.console.console.Console class method)</a>
@@ -2897,10 +3614,18 @@
         <li><a href="cpl_core.mailing.html#cpl_core.mailing.email_client_service.EMailClient.send_mail">(cpl_core.mailing.email_client_service.EMailClient method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence">Sequence (class in cpl_query.base.sequence)</a>
+</li>
       <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.database_connection.DatabaseConnection.server">server (cpl_core.database.connection.database_connection.DatabaseConnection property)</a>
 
       <ul>
         <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.database_connection_abc.DatabaseConnectionABC.server">(cpl_core.database.connection.database_connection_abc.DatabaseConnectionABC property)</a>
+</li>
+      </ul></li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope.Scope.service_provider">service_provider (cpl_core.dependency_injection.scope.Scope property)</a>
+
+      <ul>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.scope_abc.ScopeABC.service_provider">(cpl_core.dependency_injection.scope_abc.ScopeABC property)</a>
 </li>
       </ul></li>
       <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_descriptor.ServiceDescriptor.service_type">service_type (cpl_core.dependency_injection.service_descriptor.ServiceDescriptor property)</a>
@@ -2927,20 +3652,26 @@
         <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.set_default_lang">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
 </li>
       </ul></li>
-      <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.set_executable">set_executable() (cpl_core.utils.pip.Pip class method)</a>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.set_executable">set_executable() (cpl_core.configuration.executable_argument.ExecutableArgument method)</a>
+
+      <ul>
+        <li><a href="cpl_core.utils.html#cpl_core.utils.pip.Pip.set_executable">(cpl_core.utils.pip.Pip class method)</a>
 </li>
+      </ul></li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.set_foreground_color">set_foreground_color() (cpl_core.console.console.Console class method)</a>
+</li>
+      <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.set_global_provider">set_global_provider() (cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC class method)</a>
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.set_hold_back">set_hold_back() (cpl_core.console.console.Console class method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_translation.html#cpl_translation.translation_service.TranslationService.set_lang">set_lang() (cpl_translation.translation_service.TranslationService method)</a>
 
       <ul>
         <li><a href="cpl_translation.html#cpl_translation.translation_service_abc.TranslationServiceABC.set_lang">(cpl_translation.translation_service_abc.TranslationServiceABC method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.set_runtime_directory">set_runtime_directory() (cpl_core.environment.application_environment.ApplicationEnvironment method)</a>
 
       <ul>
@@ -2953,6 +3684,8 @@
         <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC.set_scope">(cpl_core.dependency_injection.service_provider_abc.ServiceProviderABC method)</a>
 </li>
       </ul></li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument.set_value">set_value() (cpl_core.configuration.variable_argument.VariableArgument method)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.application_environment.ApplicationEnvironment.set_working_directory">set_working_directory() (cpl_core.environment.application_environment.ApplicationEnvironment method)</a>
 
       <ul>
@@ -2979,6 +3712,8 @@
 </li>
       <li><a href="cpl_core.console.html#cpl_core.console.spinner_thread.SpinnerThread">SpinnerThread (class in cpl_core.console.spinner_thread)</a>
 </li>
+      <li><a href="cpl_query.base.html#cpl_query.base.queryable_abc.QueryableABC.split">split() (cpl_query.base.queryable_abc.QueryableABC method)</a>
+</li>
       <li><a href="cpl_core.environment.html#cpl_core.environment.environment_name_enum.EnvironmentNameEnum.staging">staging (cpl_core.environment.environment_name_enum.EnvironmentNameEnum attribute)</a>
 </li>
       <li><a href="cpl_discord.service.html#cpl_discord.service.discord_bot_service.DiscordBotService.start_async">start_async() (cpl_discord.service.discord_bot_service.DiscordBotService method)</a>
@@ -2994,6 +3729,8 @@
 </li>
       </ul></li>
       <li><a href="cpl_core.application.html#cpl_core.application.startup_abc.StartupABC">StartupABC (class in cpl_core.application.startup_abc)</a>
+</li>
+      <li><a href="cpl_core.application.html#cpl_core.application.startup_extension_abc.StartupExtensionABC">StartupExtensionABC (class in cpl_core.application.startup_extension_abc)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.stickers">stickers (cpl_discord.container.guild.Guild attribute)</a>
 </li>
@@ -3020,6 +3757,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.console.html#cpl_core.console.console.Console.table">table() (cpl_core.console.console.Console class method)</a>
+</li>
+      <li><a href="cpl_core.database.html#cpl_core.database.table_abc.TableABC">TableABC (class in cpl_core.database.table_abc)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.tags">tags (cpl_discord.container.role.Role attribute)</a>
 </li>
@@ -3082,15 +3821,23 @@
 </li>
       </ul></li>
       <li><a href="cpl_core.configuration.html#cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum.to_list">to_list() (cpl_core.configuration.configuration_variable_name_enum.ConfigurationVariableNameEnum static method)</a>
+
+      <ul>
+        <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence.to_list">(cpl_query.base.sequence.Sequence method)</a>
 </li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.to_camel_case_pipe.ToCamelCasePipe">ToCamelCasePipe (class in cpl_core.pipes.to_camel_case_pipe)</a>
 </li>
       <li><a href="cpl_discord.helper.html#cpl_discord.helper.to_containers_converter.ToContainersConverter">ToContainersConverter (class in cpl_discord.helper.to_containers_converter)</a>
 </li>
-      <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.token">token (cpl_discord.configuration.discord_bot_settings.DiscordBotSettings property)</a>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_abc.ArgumentABC.token">token (cpl_core.configuration.argument_abc.ArgumentABC property)</a>
+
+      <ul>
+        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.discord_bot_settings.DiscordBotSettings.token">(cpl_discord.configuration.discord_bot_settings.DiscordBotSettings property)</a>
 </li>
+      </ul></li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.text_channel.TextChannel.topic">topic (cpl_discord.container.text_channel.TextChannel attribute)</a>
 </li>
       <li><a href="cpl_core.pipes.html#cpl_core.pipes.to_snake_case_pipe.ToSnakeCasePipe">ToSnakeCasePipe (class in cpl_core.pipes.to_snake_case_pipe)</a>
@@ -3141,7 +3888,7 @@
 </li>
       <li><a href="cpl_translation.html#cpl_translation.translation_settings.TranslationSettings">TranslationSettings (class in cpl_translation.translation_settings)</a>
 </li>
-      <li><a href="cpl_query.iterable.html#cpl_query.iterable.iterable_abc.IterableABC.type">type (cpl_query.iterable.iterable_abc.IterableABC property)</a>
+      <li><a href="cpl_query.base.html#cpl_query.base.sequence.Sequence.type">type (cpl_query.base.sequence.Sequence property)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3149,6 +3896,8 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_core.database.html#cpl_core.database.table_abc.TableABC.udpate_string">udpate_string (cpl_core.database.table_abc.TableABC property)</a>
+</li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.unavailable">unavailable (cpl_discord.container.guild.Guild attribute)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.role.Role.unicode_emoji">unicode_emoji (cpl_discord.container.role.Role attribute)</a>
@@ -3189,14 +3938,78 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.validator_abc.ValidatorABC.validate">validate() (cpl_core.configuration.validator_abc.ValidatorABC method)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.validator_abc.ValidatorABC">ValidatorABC (class in cpl_core.configuration.validator_abc)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.executable_argument.ExecutableArgument.validators">validators (cpl_core.configuration.executable_argument.ExecutableArgument property)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument.value">value (cpl_core.configuration.variable_argument.VariableArgument property)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument.value_token">value_token (cpl_core.configuration.variable_argument.VariableArgument property)</a>
+</li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.vanity_url_code">vanity_url_code (cpl_discord.container.guild.Guild attribute)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.argument_type_enum.ArgumentTypeEnum.Variable">Variable (cpl_core.configuration.argument_type_enum.ArgumentTypeEnum attribute)</a>
+</li>
+      <li><a href="cpl_core.configuration.html#cpl_core.configuration.variable_argument.VariableArgument">VariableArgument (class in cpl_core.configuration.variable_argument)</a>
 </li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.guild.Guild.verification_level">verification_level (cpl_discord.container.guild.Guild attribute)</a>
 </li>
-      <li><a href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe">VersionPipe (class in cpl_core.pipes.version_pipe)</a>
+      <li><a href="cpl_core.application.html#cpl_core.application.VersionInfo">VersionInfo (class in cpl_core.application)</a>
+
+      <ul>
+        <li><a href="cpl_core.configuration.html#cpl_core.configuration.VersionInfo">(class in cpl_core.configuration)</a>
 </li>
+        <li><a href="cpl_core.console.html#cpl_core.console.VersionInfo">(class in cpl_core.console)</a>
+</li>
+        <li><a href="cpl_core.database.html#cpl_core.database.VersionInfo">(class in cpl_core.database)</a>
+</li>
+        <li><a href="cpl_core.database.connection.html#cpl_core.database.connection.VersionInfo">(class in cpl_core.database.connection)</a>
+</li>
+        <li><a href="cpl_core.database.context.html#cpl_core.database.context.VersionInfo">(class in cpl_core.database.context)</a>
+</li>
+        <li><a href="cpl_core.dependency_injection.html#cpl_core.dependency_injection.VersionInfo">(class in cpl_core.dependency_injection)</a>
+</li>
+        <li><a href="cpl_core.environment.html#cpl_core.environment.VersionInfo">(class in cpl_core.environment)</a>
+</li>
+        <li><a href="cpl_core.logging.html#cpl_core.logging.VersionInfo">(class in cpl_core.logging)</a>
+</li>
+        <li><a href="cpl_core.mailing.html#cpl_core.mailing.VersionInfo">(class in cpl_core.mailing)</a>
+</li>
+        <li><a href="cpl_core.pipes.html#cpl_core.pipes.VersionInfo">(class in cpl_core.pipes)</a>
+</li>
+        <li><a href="cpl_core.time.html#cpl_core.time.VersionInfo">(class in cpl_core.time)</a>
+</li>
+        <li><a href="cpl_core.utils.html#cpl_core.utils.VersionInfo">(class in cpl_core.utils)</a>
+</li>
+        <li><a href="cpl_discord.application.html#cpl_discord.application.VersionInfo">(class in cpl_discord.application)</a>
+</li>
+        <li><a href="cpl_discord.command.html#cpl_discord.command.VersionInfo">(class in cpl_discord.command)</a>
+</li>
+        <li><a href="cpl_discord.configuration.html#cpl_discord.configuration.VersionInfo">(class in cpl_discord.configuration)</a>
+</li>
+        <li><a href="cpl_discord.container.html#cpl_discord.container.VersionInfo">(class in cpl_discord.container)</a>
+</li>
+        <li><a href="cpl_discord.events.html#cpl_discord.events.VersionInfo">(class in cpl_discord.events)</a>
+</li>
+        <li><a href="cpl_discord.helper.html#cpl_discord.helper.VersionInfo">(class in cpl_discord.helper)</a>
+</li>
+        <li><a href="cpl_discord.service.html#cpl_discord.service.VersionInfo">(class in cpl_discord.service)</a>
+</li>
+        <li><a href="cpl_query.base.html#cpl_query.base.VersionInfo">(class in cpl_query.base)</a>
+</li>
+        <li><a href="cpl_query.enumerable.html#cpl_query.enumerable.VersionInfo">(class in cpl_query.enumerable)</a>
+</li>
+        <li><a href="cpl_query.extension.html#cpl_query.extension.VersionInfo">(class in cpl_query.extension)</a>
+</li>
+        <li><a href="cpl_query.iterable.html#cpl_query.iterable.VersionInfo">(class in cpl_query.iterable)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpl_core.pipes.html#cpl_core.pipes.version_pipe.VersionPipe">VersionPipe (class in cpl_core.pipes.version_pipe)</a>
+</li>
       <li><a href="cpl_discord.container.html#cpl_discord.container.category_channel.CategoryChannel.voice_channels">voice_channels (cpl_discord.container.category_channel.CategoryChannel property)</a>
 
       <ul>

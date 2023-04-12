@@ -11,7 +11,9 @@ from cpl_core.configuration.argument_executable_abc import ArgumentExecutableABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.configuration.configuration_abc import ConfigurationABC
 from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
-from cpl_core.configuration.configuration_variable_name_enum import ConfigurationVariableNameEnum
+from cpl_core.configuration.configuration_variable_name_enum import (
+    ConfigurationVariableNameEnum,
+)
 from cpl_core.configuration.executable_argument import ExecutableArgument
 from cpl_core.configuration.flag_argument import FlagArgument
 from cpl_core.configuration.validator_abc import ValidatorABC
@@ -23,10 +25,10 @@ from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
 from cpl_core.type import T
+from cpl_core.utils.json_processor import JSONProcessor
 
 
 class Configuration(ConfigurationABC):
-
     def __init__(self):
         r"""Representation of configuration"""
         ConfigurationABC.__init__(self)
@@ -65,52 +67,48 @@ class Configuration(ConfigurationABC):
     def _print_info(name: str, message: str):
         r"""Prints an info message
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Info name
             message: :class:`str`
                 Info message
         """
         Console.set_foreground_color(ForegroundColorEnum.green)
-        Console.write_line(f'[{name}] {message}')
+        Console.write_line(f"[{name}] {message}")
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     @staticmethod
     def _print_warn(name: str, message: str):
         r"""Prints a warning
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Warning name
             message: :class:`str`
                 Warning message
         """
         Console.set_foreground_color(ForegroundColorEnum.yellow)
-        Console.write_line(f'[{name}] {message}')
+        Console.write_line(f"[{name}] {message}")
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     @staticmethod
     def _print_error(name: str, message: str):
         r"""Prints an error
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Error name
             message: :class:`str`
                 Error message
         """
         Console.set_foreground_color(ForegroundColorEnum.red)
-        Console.write_line(f'[{name}] {message}')
+        Console.write_line(f"[{name}] {message}")
         Console.set_foreground_color(ForegroundColorEnum.default)
 
     def _set_variable(self, name: str, value: any):
         r"""Sets variable to given value
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Name of the variable
             value: :class:`any`
@@ -131,34 +129,33 @@ class Configuration(ConfigurationABC):
     def _load_json_file(self, file: str, output: bool) -> dict:
         r"""Reads the json file
 
-        Parameter
-        ---------
+        Parameter:
             file: :class:`str`
                 Name of the file
             output: :class:`bool`
                 Specifies whether an output should take place
 
-        Returns
-        -------
+        Returns:
             Object of :class:`dict`
         """
         try:
             # open config file, create if not exists
-            with open(file, encoding='utf-8') as cfg:
+            with open(file, encoding="utf-8") as cfg:
                 # load json
                 json_cfg = json.load(cfg)
                 if output:
-                    self._print_info(__name__, f'Loaded config file: {file}')
+                    self._print_info(__name__, f"Loaded config file: {file}")
 
                 return json_cfg
         except Exception as e:
-            self._print_error(__name__, f'Cannot load config file: {file}! -> {e}')
+            self._print_error(__name__, f"Cannot load config file: {file}! -> {e}")
             return {}
 
     def _handle_pre_or_post_executables(self, pre: bool, argument: ExecutableArgument, services: ServiceProviderABC):
-        script_type = 'pre-' if pre else 'post-'
+        script_type = "pre-" if pre else "post-"
 
         from cpl_cli.configuration.workspace_settings import WorkspaceSettings
+
         workspace: Optional[WorkspaceSettings] = self.get_configuration(WorkspaceSettings)
         if workspace is None or len(workspace.scripts) == 0:
             return
@@ -172,15 +169,21 @@ class Configuration(ConfigurationABC):
                 continue
 
             from cpl_cli.command.custom_script_service import CustomScriptService
+
             css: CustomScriptService = services.get_service(CustomScriptService)
             if css is None:
                 continue
 
             Console.write_line()
-            self._set_variable('ACTIVE_EXECUTABLE', script)
+            self._set_variable("ACTIVE_EXECUTABLE", script)
             css.run(self._additional_arguments)
 
-    def _parse_arguments(self, executables: list[ArgumentABC], arg_list: list[str], args_types: list[ArgumentABC]):
+    def _parse_arguments(
+        self,
+        executables: list[ArgumentABC],
+        arg_list: list[str],
+        args_types: list[ArgumentABC],
+    ):
         for i in range(0, len(arg_list)):
             arg_str = arg_list[i]
             for n in range(0, len(args_types)):
@@ -191,10 +194,14 @@ class Configuration(ConfigurationABC):
 
                 # executable
                 if isinstance(arg, ExecutableArgument):
-                    if arg_str.startswith(arg.token) and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
+                    if (
+                        arg_str.startswith(arg.token)
+                        and arg_str_without_token == arg.name
+                        or arg_str_without_token in arg.aliases
+                    ):
                         executables.append(arg)
                         self._handled_args.append(arg_str)
-                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
+                        self._parse_arguments(executables, arg_list[i + 1 :], arg.console_arguments)
 
                 # variables
                 elif isinstance(arg, VariableArgument):
@@ -202,24 +209,32 @@ class Configuration(ConfigurationABC):
                     if arg.value_token in arg_str_without_value:
                         arg_str_without_value = arg_str_without_token.split(arg.value_token)[0]
 
-                    if arg_str.startswith(arg.token) and arg_str_without_value == arg.name or arg_str_without_value in arg.aliases:
-                        if arg.value_token != ' ':
+                    if (
+                        arg_str.startswith(arg.token)
+                        and arg_str_without_value == arg.name
+                        or arg_str_without_value in arg.aliases
+                    ):
+                        if arg.value_token != " ":
                             value = arg_str_without_token.split(arg.value_token)[1]
                         else:
                             value = arg_list[i + 1]
                         self._set_variable(arg.name, value)
                         self._handled_args.append(arg_str)
                         self._handled_args.append(value)
-                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
+                        self._parse_arguments(executables, arg_list[i + 1 :], arg.console_arguments)
 
                 # flags
                 elif isinstance(arg, FlagArgument):
-                    if arg_str.startswith(arg.token) and arg_str_without_token == arg.name or arg_str_without_token in arg.aliases:
+                    if (
+                        arg_str.startswith(arg.token)
+                        and arg_str_without_token == arg.name
+                        or arg_str_without_token in arg.aliases
+                    ):
                         if arg_str in self._additional_arguments:
                             self._additional_arguments.remove(arg_str)
                         self._additional_arguments.append(arg.name)
                         self._handled_args.append(arg_str)
-                        self._parse_arguments(executables, arg_list[i + 1:], arg.console_arguments)
+                        self._parse_arguments(executables, arg_list[i + 1 :], arg.console_arguments)
 
             # add left over values to args
             if arg_str not in self._additional_arguments and arg_str not in self._handled_args:
@@ -230,7 +245,7 @@ class Configuration(ConfigurationABC):
             if not env_var.startswith(prefix):
                 continue
 
-            self._set_variable(env_var.replace(prefix, ''), os.environ[env_var])
+            self._set_variable(env_var.replace(prefix, ""), os.environ[env_var])
 
     def add_console_argument(self, argument: ArgumentABC):
         self._argument_types.append(argument)
@@ -243,36 +258,54 @@ class Configuration(ConfigurationABC):
             if path is not None:
                 path_root = path
 
-            if str(path_root).endswith('/') and not name.startswith('/'):
-                file_path = f'{path_root}{name}'
+            if str(path_root).endswith("/") and not name.startswith("/"):
+                file_path = f"{path_root}{name}"
             else:
-                file_path = f'{path_root}/{name}'
+                file_path = f"{path_root}/{name}"
 
         if not os.path.isfile(file_path):
             if optional is not True:
                 if output:
-                    self._print_error(__name__, f'File not found: {file_path}')
+                    self._print_error(__name__, f"File not found: {file_path}")
 
                 sys.exit()
 
             if output:
-                self._print_warn(__name__, f'Not Loaded config file: {file_path}')
+                self._print_warn(__name__, f"Not Loaded config file: {file_path}")
 
             return None
 
         config_from_file = self._load_json_file(file_path, output)
         for sub in ConfigurationModelABC.__subclasses__():
             for key, value in config_from_file.items():
-                if sub.__name__ == key or sub.__name__.replace('Settings', '') == key:
+                if sub.__name__ == key or sub.__name__.replace("Settings", "") == key:
                     configuration = sub()
-                    configuration.from_dict(value)
+                    from_dict = getattr(configuration, "from_dict", None)
+
+                    if from_dict is not None and not hasattr(from_dict, "is_base_func"):
+                        Console.set_foreground_color(ForegroundColorEnum.yellow)
+                        Console.write_line(
+                            f"{sub.__name__}.from_dict is deprecated. Instead, set attributes as typed arguments in __init__. They can be None by default!"
+                        )
+                        Console.color_reset()
+                        configuration.from_dict(value)
+                    else:
+                        configuration = JSONProcessor.process(sub, value)
+
                     self.add_configuration(sub, configuration)
 
-    def add_configuration(self, key_type: T, value: any):
+    def add_configuration(self, key_type: Type[T], value: any):
         self._config[key_type] = value
 
-    def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
-                                *args, **kwargs) -> ArgumentABC:
+    def create_console_argument(
+        self,
+        arg_type: ArgumentTypeEnum,
+        token: str,
+        name: str,
+        aliases: list[str],
+        *args,
+        **kwargs,
+    ) -> ArgumentABC:
         argument = ArgumentBuilder.build_argument(arg_type, token, name, aliases, *args, **kwargs)
         self._argument_types.append(argument)
         return argument
@@ -281,7 +314,7 @@ class Configuration(ConfigurationABC):
         for arg in self._argument_types:
             call(arg)
 
-    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[T]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name
@@ -302,7 +335,7 @@ class Configuration(ConfigurationABC):
     def parse_console_arguments(self, services: ServiceProviderABC, error: bool = None) -> bool:
         # sets environment variables as possible arguments as: --VAR=VALUE
         for arg_name in ConfigurationVariableNameEnum.to_list():
-            self.add_console_argument(VariableArgument('--', str(arg_name).upper(), [str(arg_name).lower()], '='))
+            self.add_console_argument(VariableArgument("--", str(arg_name).upper(), [str(arg_name).lower()], "="))
 
         success = False
         try:
@@ -310,7 +343,7 @@ class Configuration(ConfigurationABC):
             executables: list[ExecutableArgument] = []
             self._parse_arguments(executables, arg_list, self._argument_types)
         except Exception as e:
-            Console.error('An error occurred while parsing arguments.')
+            Console.error("An error occurred while parsing arguments.")
             sys.exit()
 
         try:
@@ -333,11 +366,11 @@ class Configuration(ConfigurationABC):
 
                 cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
                 self._handle_pre_or_post_executables(True, exe, services)
-                self._set_variable('ACTIVE_EXECUTABLE', exe.name)
-                args = self.get_configuration('ARGS')
+                self._set_variable("ACTIVE_EXECUTABLE", exe.name)
+                args = self.get_configuration("ARGS")
                 if args is not None:
-                    for arg in args.split(' '):
-                        if arg == '':
+                    for arg in args.split(" "):
+                        if arg == "":
                             continue
                         self._additional_arguments.append(arg)
 
@@ -346,7 +379,7 @@ class Configuration(ConfigurationABC):
                 prevent = exe.prevent_next_executable
                 success = True
         except Exception as e:
-            Console.error('An error occurred while executing arguments.', traceback.format_exc())
+            Console.error("An error occurred while executing arguments.", traceback.format_exc())
             sys.exit()
 
         return success

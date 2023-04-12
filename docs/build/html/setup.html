@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Setting up the local environment and workspace &mdash; Common Python Library  documentation</title>
@@ -11,11 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,9 +62,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -78,9 +83,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="getting_started.html">Getting started</a> &raquo;</li>
-      <li>Setting up the local environment and workspace</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="getting_started.html">Getting started</a></li>
+      <li class="breadcrumb-item active">Setting up the local environment and workspace</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/setup.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,14 +100,14 @@
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p><span class="xref myst">Prerequisites</span></p></li>
-<li><p><span class="xref myst">Install the package</span></p></li>
-<li><p><span class="xref myst">Install the CLI</span></p></li>
-<li><p><span class="xref myst">Install the query</span></p></li>
-<li><p><span class="xref myst">Create a initial application</span></p></li>
-<li><p><span class="xref myst">Create a initial library</span></p></li>
-<li><p><span class="xref myst">Start the application</span></p></li>
-<li><p><span class="xref myst">What’s next</span></p></li>
+<li><p><a class="reference internal" href="#prerequisites"><span class="xref myst">Prerequisites</span></a></p></li>
+<li><p><a class="reference internal" href="#install-the-package"><span class="xref myst">Install the package</span></a></p></li>
+<li><p><a class="reference internal" href="#install-the-cli"><span class="xref myst">Install the CLI</span></a></p></li>
+<li><p><a class="reference internal" href="#install-the-query"><span class="xref myst">Install the query</span></a></p></li>
+<li><p><a class="reference internal" href="#create-initial-console-app"><span class="xref myst">Create a initial application</span></a></p></li>
+<li><p><a class="reference internal" href="#create-initial-library"><span class="xref myst">Create a initial library</span></a></p></li>
+<li><p><a class="reference internal" href="#start-the-app"><span class="xref myst">Start the application</span></a></p></li>
+<li><p><a class="reference internal" href="#whats-next"><span class="xref myst">What’s next</span></a></p></li>
 </ol>
 </section>
 <section id="prerequisites">
@@ -120,7 +125,7 @@
 <section id="install-the-package">
 <h2>Install the package<a class="headerlink" href="#install-the-package" title="Permalink to this heading"></a></h2>
 <p>To install the package, open a terminal window and run the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install cpl-core --extra-index-url https://pip.sh-edraft.de
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpl-core<span class="w"> </span>--extra-index-url<span class="w"> </span>https://pip.sh-edraft.de
 </pre></div>
 </div>
 </section>
@@ -128,14 +133,14 @@
 <h2>Install the CLI<a class="headerlink" href="#install-the-cli" title="Permalink to this heading"></a></h2>
 <p>You use the CPL CLI to create projects, generate application and library code. You also use the CLI to build and publish your python packages.</p>
 <p>To install the CLI, open a terminal window and run the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install cpl-cli --extra-index-url https://pip.sh-edraft.de
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpl-cli<span class="w"> </span>--extra-index-url<span class="w"> </span>https://pip.sh-edraft.de
 </pre></div>
 </div>
 </section>
 <section id="install-the-query">
 <h2>Install the query<a class="headerlink" href="#install-the-query" title="Permalink to this heading"></a></h2>
 <p>To install the package, open a terminal window and run the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install cpl-query --extra-index-url https://pip.sh-edraft.de
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cpl-query<span class="w"> </span>--extra-index-url<span class="w"> </span>https://pip.sh-edraft.de
 </pre></div>
 </div>
 </section>
@@ -144,7 +149,7 @@
 <p>You develop apps and packages in the context of an CPL project which is defined in an cpl_core.json.</p>
 <ol class="arabic">
 <li><p>Run the CLI command <code class="docutils literal notranslate"><span class="pre">cpl</span> <span class="pre">new</span> <span class="pre">console</span></code> and provide the name my-app, as shown here:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpl new console my-app
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpl<span class="w"> </span>new<span class="w"> </span>console<span class="w"> </span>my-app
 </pre></div>
 </div>
 </li>
@@ -157,7 +162,7 @@
 <p>You develop apps and packages in the context of an CPL project which is defined in an cpl_core.json.</p>
 <ol class="arabic">
 <li><p>Run the CLI command <code class="docutils literal notranslate"><span class="pre">cpl</span> <span class="pre">new</span> <span class="pre">library</span></code> and provide the name my-lib, as shown here:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpl new library my-lib
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpl<span class="w"> </span>new<span class="w"> </span>library<span class="w"> </span>my-lib
 </pre></div>
 </div>
 </li>
@@ -171,27 +176,27 @@
 <ol class="arabic">
 <li><p>Open a terminal window</p></li>
 <li><p>To navigate to your project workspace, run the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /path/to/project/name
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/project/name
 </pre></div>
 </div>
 </li>
 <li><p>To run the app run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpl start
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cpl<span class="w"> </span>start
 </pre></div>
 </div>
 </li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">cpl</span> <span class="pre">start</span></code> command launches the server, watches your source files, and restarts the app as you make chnages to thoses source files.</p>
 <p>If your installation and setup was successful, you should see a output similar to the following:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Hello World
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Hello<span class="w"> </span>World
 </pre></div>
 </div>
 </section>
 <section id="what-s-next">
 <h2>What’s next<a class="headerlink" href="#what-s-next" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>To learn more about the CPL CLI, see the <a class="reference internal" href="cli.overview.html"><span class="doc std std-doc">CLI Overview</span></a></p></li>
-<li><p>Fore more informations about the Pyhton files generated by <code class="docutils literal notranslate"><span class="pre">cpl</span> <span class="pre">new</span></code>, see <a class="reference internal" href="cli.new.html"><span class="doc std std-doc">New Command</span></a></p></li>
+<li><p>To learn more about the CPL CLI, see the <a class="reference internal" href="cpl_cli.overview.html"><span class="doc std std-doc">CLI Overview</span></a></p></li>
+<li><p>Fore more informations about the Pyhton files generated by <code class="docutils literal notranslate"><span class="pre">cpl</span> <span class="pre">new</span></code>, see <a class="reference internal" href="cpl_cli.new.html"><span class="doc std std-doc">New Command</span></a></p></li>
 </ul>
 <!-- LINKS -->
 </section>

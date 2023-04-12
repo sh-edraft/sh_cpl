@@ -5,7 +5,6 @@ from cpl_core.dependency_injection import ServiceProviderABC
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 
@@ -13,4 +12,4 @@ class Application(ApplicationABC):
         pass
 
     async def main(self):
-        Console.write_line('Hello World')
+        Console.write_line("Hello World")

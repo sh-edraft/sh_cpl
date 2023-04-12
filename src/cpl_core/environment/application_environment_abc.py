@@ -11,66 +11,79 @@ class ApplicationEnvironmentABC(ABC):
 
     @property
     @abstractmethod
-    def environment_name(self) -> str: pass
+    def environment_name(self) -> str:
+        pass
 
     @environment_name.setter
     @abstractmethod
-    def environment_name(self, environment_name: str): pass
+    def environment_name(self, environment_name: str):
+        pass
 
     @property
     @abstractmethod
-    def application_name(self) -> str: pass
+    def application_name(self) -> str:
+        pass
 
     @application_name.setter
     @abstractmethod
-    def application_name(self, application_name: str): pass
+    def application_name(self, application_name: str):
+        pass
 
     @property
     @abstractmethod
-    def customer(self) -> str: pass
+    def customer(self) -> str:
+        pass
 
     @customer.setter
     @abstractmethod
-    def customer(self, customer: str): pass
+    def customer(self, customer: str):
+        pass
 
     @property
     @abstractmethod
-    def host_name(self) -> str: pass
+    def host_name(self) -> str:
+        pass
 
     @property
     @abstractmethod
-    def start_time(self) -> datetime: pass
+    def start_time(self) -> datetime:
+        pass
 
     @start_time.setter
     @abstractmethod
-    def start_time(self, start_time: datetime): pass
+    def start_time(self, start_time: datetime):
+        pass
 
     @property
     @abstractmethod
-    def end_time(self): pass
+    def end_time(self):
+        pass
 
     @end_time.setter
     @abstractmethod
-    def end_time(self, end_time: datetime): pass
+    def end_time(self, end_time: datetime):
+        pass
 
     @property
     @abstractmethod
-    def date_time_now(self) -> datetime: pass
+    def date_time_now(self) -> datetime:
+        pass
 
     @property
     @abstractmethod
-    def working_directory(self) -> str: pass
+    def working_directory(self) -> str:
+        pass
 
     @property
     @abstractmethod
-    def runtime_directory(self) -> str: pass
+    def runtime_directory(self) -> str:
+        pass
 
     @abstractmethod
     def set_runtime_directory(self, runtime_directory: str):
         r"""Sets the current runtime directory
 
-        Parameter
-        ---------
+        Parameter:
             runtime_directory: :class:`str`
                 Path of the runtime directory
         """
@@ -80,8 +93,7 @@ class ApplicationEnvironmentABC(ABC):
     def set_working_directory(self, working_directory: str):
         r"""Sets the current working directory
 
-        Parameter
-        ---------
+        Parameter:
             working_directory: :class:`str`
                 Path of the current working directory
         """

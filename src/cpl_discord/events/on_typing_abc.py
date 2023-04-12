@@ -5,9 +5,12 @@ import discord
 
 
 class OnTypingABC(ABC):
+    @abstractmethod
+    def __init__(self):
+        pass
 
     @abstractmethod
-    def __init__(self): pass
-    
-    @abstractmethod
-    async def on_typing(self, channel: discord.abc.Messageable, user: Union[discord.User, discord.Member], when: datetime): pass
+    async def on_typing(
+        self, channel: discord.abc.Messageable, user: Union[discord.User, discord.Member], when: datetime
+    ):
+        pass

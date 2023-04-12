@@ -1,18 +1,29 @@
-cpl_core.time
-================
+cpl\_core.time package
+======================
 
-cpl_core.time.time\_format\_settings
---------------------------------------
+Submodules
+----------
+
+cpl\_core.time.time\_format\_settings module
+--------------------------------------------
 
 .. automodule:: cpl_core.time.time_format_settings
    :members:
    :undoc-members:
    :show-inheritance:
 
-cpl_core.time.time\_format\_settings\_names\_enum
----------------------------------------------------
+cpl\_core.time.time\_format\_settings\_names\_enum module
+---------------------------------------------------------
 
 .. automodule:: cpl_core.time.time_format_settings_names_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: cpl_core.time
    :members:
    :undoc-members:
    :show-inheritance:

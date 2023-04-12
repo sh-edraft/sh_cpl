@@ -5,12 +5,15 @@ from cpl_core.environment import ApplicationEnvironment
 
 
 class Startup(StartupABC):
-
     def __init__(self):
         StartupABC.__init__(self)
 
-    async def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironment) -> ConfigurationABC:
+    async def configure_configuration(
+        self, configuration: ConfigurationABC, environment: ApplicationEnvironment
+    ) -> ConfigurationABC:
         return configuration
 
-    async def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironment) -> ServiceProviderABC:
+    async def configure_services(
+        self, services: ServiceCollectionABC, environment: ApplicationEnvironment
+    ) -> ServiceProviderABC:
         return services.build_service_provider()

@@ -8,7 +8,6 @@ from unittests_query.sequence_test_case import SequenceTestCase
 
 
 class QueryTestSuite(unittest.TestSuite):
-
     def __init__(self):
         unittest.TestSuite.__init__(self)
 

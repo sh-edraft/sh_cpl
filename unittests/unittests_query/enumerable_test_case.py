@@ -4,13 +4,12 @@ from cpl_query.enumerable.enumerable import Enumerable
 
 
 class EnumerableTestCase(unittest.TestCase):
-
     def setUp(self) -> None:
         self._list = Enumerable(int, list(range(1, 4)))
 
     def test_append(self):
         self.assertEqual(self._list.to_list(), [1, 2, 3])
-        self.assertRaises(Exception, lambda v: self._list.add(v), '3')
+        self.assertRaises(Exception, lambda v: self._list.add(v), "3")
 
     def test_default(self):
         self.assertEqual(Enumerable.empty().to_list(), [])

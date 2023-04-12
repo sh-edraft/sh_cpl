@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 
 """
-cpl-translation sh-edraft Common Python library Translation
+cpl-translation CPL Translation
 ~~~~~~~~~~~~~~~~~~~
 
-sh-edraft Common Python library Python Translation
+CPL translation extension
 
 :copyright: (c) 2022 - 2023 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = 'cpl_translation'
-__author__ = 'Sven Heidemann'
-__license__ = 'MIT'
-__copyright__ = 'Copyright (c) 2022 - 2023 sh-edraft.de'
-__version__ = '2022.12.1'
+__title__ = "cpl_translation"
+__author__ = "Sven Heidemann"
+__license__ = "MIT"
+__copyright__ = "Copyright (c) 2022 - 2023 sh-edraft.de"
+__version__ = "2023.4.0"
 
 from collections import namedtuple
 
@@ -25,6 +25,7 @@ from .translate_pipe import TranslatePipe
 from .translation_service import TranslationService
 from .translation_service_abc import TranslationServiceABC
 from .translation_settings import TranslationSettings
+
 # build-ignore
 
 
@@ -39,16 +40,17 @@ def add_translation(self):
         self.add_singleton(TranslationServiceABC, TranslationService)
         self.add_transient(PipeABC, TranslatePipe)
     except ImportError as e:
-        Console.error('cpl-translation is not installed', str(e))
+        Console.error("cpl-translation is not installed", str(e))
 
 
 def init():
     from cpl_core.dependency_injection import ServiceCollection
+
     ServiceCollection.add_translation = add_translation
 
 
 init()
 # build-ignore-end
 
-VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-version_info = VersionInfo(major='2022', minor='12', micro='1')
+VersionInfo = namedtuple("VersionInfo", "major minor micro")
+version_info = VersionInfo(major="2023", minor="4", micro="0")

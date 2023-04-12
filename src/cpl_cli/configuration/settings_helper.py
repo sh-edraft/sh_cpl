@@ -6,7 +6,6 @@ from cpl_cli.configuration.project_settings_name_enum import ProjectSettingsName
 
 
 class SettingsHelper:
-
     @staticmethod
     def get_project_settings_dict(project: ProjectSettings) -> dict:
         return {
@@ -14,7 +13,7 @@ class SettingsHelper:
             ProjectSettingsNameEnum.version.value: {
                 VersionSettingsNameEnum.major.value: project.version.major,
                 VersionSettingsNameEnum.minor.value: project.version.minor,
-                VersionSettingsNameEnum.micro.value: project.version.micro
+                VersionSettingsNameEnum.micro.value: project.version.micro,
             },
             ProjectSettingsNameEnum.author.value: project.author,
             ProjectSettingsNameEnum.author_email.value: project.author_email,
@@ -29,13 +28,13 @@ class SettingsHelper:
             ProjectSettingsNameEnum.dev_dependencies.value: project.dev_dependencies,
             ProjectSettingsNameEnum.python_version.value: project.python_version,
             ProjectSettingsNameEnum.python_path.value: project.python_path,
-            ProjectSettingsNameEnum.classifiers.value: project.classifiers
+            ProjectSettingsNameEnum.classifiers.value: project.classifiers,
         }
 
     @staticmethod
     def get_build_settings_dict(build: BuildSettings) -> dict:
         return {
-            BuildSettingsNameEnum.project_type.value: build.project_type,
+            BuildSettingsNameEnum.project_type.value: build.project_type.value,
             BuildSettingsNameEnum.source_path.value: build.source_path,
             BuildSettingsNameEnum.output_path.value: build.output_path,
             BuildSettingsNameEnum.main.value: build.main,
@@ -44,5 +43,5 @@ class SettingsHelper:
             BuildSettingsNameEnum.included.value: build.included,
             BuildSettingsNameEnum.excluded.value: build.excluded,
             BuildSettingsNameEnum.package_data.value: build.package_data,
-            BuildSettingsNameEnum.project_references.value: build.project_references
+            BuildSettingsNameEnum.project_references.value: build.project_references,
         }

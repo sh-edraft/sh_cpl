@@ -2,14 +2,14 @@
   "ProjectSettings": {
     "Name": "cpl-query",
     "Version": {
-      "Major": "2022",
-      "Minor": "12",
-      "Micro": "2.post2"
+      "Major": "2023",
+      "Minor": "4",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
-    "Description": "sh-edraft Common Python library Query",
-    "LongDescription": "sh-edraft Common Python library Python integrated Queries",
+    "Description": "CPL Queries",
+    "LongDescription": "CPL Python integrated Queries",
     "URL": "https://www.sh-edraft.de",
     "CopyrightDate": "2021 - 2023",
     "CopyrightName": "sh-edraft.de",
@@ -37,7 +37,8 @@
     "PackageData": {
       "cpl_query": [
         ".cpl/*.py"
-      ]},
+      ]
+    },
     "ProjectReferences": []
   }
 }

@@ -16,13 +16,12 @@ from cpl_core.utils import String
 
 
 class LiveServerService(FileSystemEventHandler):
-
     def __init__(
-            self,
-            env: ApplicationEnvironmentABC,
-            project_settings: ProjectSettings,
-            build_settings: BuildSettings,
-            publisher: PublisherService,
+        self,
+        env: ApplicationEnvironmentABC,
+        project_settings: ProjectSettings,
+        build_settings: BuildSettings,
+        publisher: PublisherService,
     ):
         """
         Service for the live development server
@@ -51,7 +50,7 @@ class LiveServerService(FileSystemEventHandler):
         :return:
         """
         self._observer = Observer()
-        self._observer.schedule(self, path=os.path.abspath(os.path.join(self._src_dir, '../')), recursive=True)
+        self._observer.schedule(self, path=os.path.abspath(os.path.join(self._src_dir, "../")), recursive=True)
         self._observer.start()
 
     def _restart(self):
@@ -64,7 +63,7 @@ class LiveServerService(FileSystemEventHandler):
                 if proc.cmdline() == self._ls_thread.command:
                     proc.kill()
 
-        Console.write_line('Restart\n')
+        Console.write_line("Restart\n")
         while self._ls_thread.is_alive():
             time.sleep(1)
 
@@ -80,7 +79,7 @@ class LiveServerService(FileSystemEventHandler):
             return None
 
         # Event is modified, you can process it now
-        if str(event.src_path).endswith('.py'):
+        if str(event.src_path).endswith(".py"):
             self._observer.stop()
             self._restart()
 
@@ -88,11 +87,7 @@ class LiveServerService(FileSystemEventHandler):
         self._build()
         self._start_observer()
         self._ls_thread = LiveServerThread(
-            self._project_settings.python_executable,
-            self._wd,
-            self._args,
-            self._env,
-            self._build_settings
+            self._project_settings.python_executable, self._wd, self._args, self._env, self._build_settings
         )
         self._ls_thread.start()
         self._ls_thread.join()
@@ -105,13 +100,15 @@ class LiveServerService(FileSystemEventHandler):
         self._env.set_working_directory(self._src_dir)
         self._publisher.build()
         self._env.set_working_directory(self._src_dir)
-        self._wd = os.path.abspath(os.path.join(
-            self._src_dir,
-            self._build_settings.output_path,
-            self._project_settings.name,
-            'build',
-            String.convert_to_snake_case(self._project_settings.name)
-        ))
+        self._wd = os.path.abspath(
+            os.path.join(
+                self._src_dir,
+                self._build_settings.output_path,
+                self._project_settings.name,
+                "build",
+                String.convert_to_snake_case(self._project_settings.name),
+            )
+        )
 
     def start(self, args: list[str]):
         """
@@ -119,14 +116,14 @@ class LiveServerService(FileSystemEventHandler):
         :param args:
         :return:
         """
-        if self._build_settings.main == '':
-            Console.error('Project has no entry point.')
+        if self._build_settings.main == "":
+            Console.error("Project has no entry point.")
             return
 
-        if 'dev' in args:
+        if "dev" in args:
             self._is_dev = True
-            args.remove('dev')
+            args.remove("dev")
 
         self._args = args
-        Console.write_line('** CPL live development server is running **')
+        Console.write_line("** CPL live development server is running **")
         self._start()

@@ -8,7 +8,6 @@ from cpl_query.extension import List
 
 
 class CategoryChannel(discord.CategoryChannel, Container):
-
     def __init__(self, _t: discord.CategoryChannel):
         Container.__init__(self, _t, CategoryChannel)
 

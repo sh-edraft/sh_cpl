@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Translation reference &mdash; Common Python Library  documentation</title>
@@ -11,15 +11,15 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="cpl_query.iterable" href="cpl_query.iterable.html" /> 
+    <link rel="prev" title="cpl_query.iterable package" href="cpl_query.iterable.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -27,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -41,15 +45,49 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Translation reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translate_pipe">cpl_translation.translate_pipe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translation_service">cpl_translation.translation_service</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translation_service_abc">cpl_translation.translation_service_abc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translation_settings">cpl_translation.translation_settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translate_pipe">cpl_translation.translate_pipe</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cpl_translation.translate_pipe.TranslatePipe"><code class="docutils literal notranslate"><span class="pre">TranslatePipe</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translate_pipe.TranslatePipe.transform"><code class="docutils literal notranslate"><span class="pre">TranslatePipe.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translation_service">cpl_translation.translation_service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cpl_translation.translation_service.TranslationService"><code class="docutils literal notranslate"><span class="pre">TranslationService</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service.TranslationService.load"><code class="docutils literal notranslate"><span class="pre">TranslationService.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service.TranslationService.load_by_settings"><code class="docutils literal notranslate"><span class="pre">TranslationService.load_by_settings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service.TranslationService.set_default_lang"><code class="docutils literal notranslate"><span class="pre">TranslationService.set_default_lang()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service.TranslationService.set_lang"><code class="docutils literal notranslate"><span class="pre">TranslationService.set_lang()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service.TranslationService.translate"><code class="docutils literal notranslate"><span class="pre">TranslationService.translate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translation_service_abc">cpl_translation.translation_service_abc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cpl_translation.translation_service_abc.TranslationServiceABC"><code class="docutils literal notranslate"><span class="pre">TranslationServiceABC</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service_abc.TranslationServiceABC.load"><code class="docutils literal notranslate"><span class="pre">TranslationServiceABC.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service_abc.TranslationServiceABC.load_by_settings"><code class="docutils literal notranslate"><span class="pre">TranslationServiceABC.load_by_settings()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service_abc.TranslationServiceABC.set_default_lang"><code class="docutils literal notranslate"><span class="pre">TranslationServiceABC.set_default_lang()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service_abc.TranslationServiceABC.set_lang"><code class="docutils literal notranslate"><span class="pre">TranslationServiceABC.set_lang()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_service_abc.TranslationServiceABC.translate"><code class="docutils literal notranslate"><span class="pre">TranslationServiceABC.translate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-cpl_translation.translation_settings">cpl_translation.translation_settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cpl_translation.translation_settings.TranslationSettings"><code class="docutils literal notranslate"><span class="pre">TranslationSettings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_settings.TranslationSettings.default_language"><code class="docutils literal notranslate"><span class="pre">TranslationSettings.default_language</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_translation.translation_settings.TranslationSettings.languages"><code class="docutils literal notranslate"><span class="pre">TranslationSettings.languages</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -67,8 +105,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Translation reference</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Translation reference</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_translation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -166,21 +204,12 @@
 <span id="cpl-translation-translation-settings"></span><h2>cpl_translation.translation_settings<a class="headerlink" href="#module-cpl_translation.translation_settings" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_translation.translation_settings.TranslationSettings">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_translation.translation_settings.</span></span><span class="sig-name descname"><span class="pre">TranslationSettings</span></span><a class="headerlink" href="#cpl_translation.translation_settings.TranslationSettings" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_translation.translation_settings.</span></span><span class="sig-name descname"><span class="pre">TranslationSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">languages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_lang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_translation.translation_settings.TranslationSettings" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="cpl_core.configuration.html#cpl_core.configuration.configuration_model_abc.ConfigurationModelABC" title="cpl_core.configuration.configuration_model_abc.ConfigurationModelABC"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigurationModelABC</span></code></a></p>
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_translation.translation_settings.TranslationSettings.default_language">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default_language</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#cpl_translation.translation_settings.TranslationSettings.default_language" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="cpl_translation.translation_settings.TranslationSettings.from_dict">
-<span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_translation.translation_settings.TranslationSettings.from_dict" title="Permalink to this definition"></a></dt>
-<dd><p>Converts attributes to dict</p>
-<blockquote>
-<div><p>settings: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
-</div></blockquote>
-</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="cpl_translation.translation_settings.TranslationSettings.languages">
@@ -196,7 +225,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_query.iterable.html" class="btn btn-neutral float-left" title="cpl_query.iterable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_query.iterable.html" class="btn btn-neutral float-left" title="cpl_query.iterable package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

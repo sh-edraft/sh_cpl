@@ -13,18 +13,18 @@ from cpl_core.console import Console
 
 
 def get_startup_extensions() -> list[Type[StartupExtensionABC]]:
-    blacklisted_packages = ['cpl-cli']
+    blacklisted_packages = ["cpl-cli"]
     startup_extensions = []
 
     installed_packages = pkg_resources.working_set
     for p in installed_packages:
-        package = str(p).split(' ')[0]
-        if not package.startswith('cpl-') or package in blacklisted_packages:
+        package = str(p).split(" ")[0]
+        if not package.startswith("cpl-") or package in blacklisted_packages:
             continue
 
-        package = package.replace('-', '_')
+        package = package.replace("-", "_")
         loaded_package = __import__(package)
-        if '__cli_startup_extension__' not in dir(loaded_package):
+        if "__cli_startup_extension__" not in dir(loaded_package):
             continue
         startup_extensions.append(loaded_package.__cli_startup_extension__)
 
@@ -44,7 +44,7 @@ def main():
     Console.write_line()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 #         ((

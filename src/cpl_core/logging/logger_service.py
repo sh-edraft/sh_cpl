@@ -17,8 +17,7 @@ from cpl_core.time.time_format_settings import TimeFormatSettings
 class Logger(LoggerABC):
     r"""Service for logging
 
-    Parameter
-    ---------
+    Parameter:
         logging_settings: :class:`cpl_core.logging.logging_settings.LoggingSettings`
             Settings for the logger
         time_format: :class:`cpl_core.time.time_format_settings.TimeFormatSettings`
@@ -27,7 +26,9 @@ class Logger(LoggerABC):
             Environment of the application
     """
 
-    def __init__(self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, env: ApplicationEnvironmentABC):
+    def __init__(
+        self, logging_settings: LoggingSettings, time_format: TimeFormatSettings, env: ApplicationEnvironmentABC
+    ):
         LoggerABC.__init__(self)
 
         self._env = env
@@ -48,7 +49,7 @@ class Logger(LoggerABC):
             date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
             date_now=self._env.date_time_now.strftime(self._time_format_settings.date_format),
             time_now=self._env.date_time_now.strftime(self._time_format_settings.time_format),
-            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
+            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format),
         )
 
     @property
@@ -57,38 +58,36 @@ class Logger(LoggerABC):
             date_time_now=self._env.date_time_now.strftime(self._time_format_settings.date_time_format),
             date_now=self._env.date_time_now.strftime(self._time_format_settings.date_format),
             time_now=self._env.date_time_now.strftime(self._time_format_settings.time_format),
-            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format)
+            start_time=self._env.start_time.strftime(self._time_format_settings.date_time_log_format),
         )
 
     def _check_for_settings(self, settings: ConfigurationModelABC, settings_type: type):
         self._level = LoggingLevelEnum.OFF
         self._console = LoggingLevelEnum.FATAL
         if settings is None:
-            self.fatal(__name__, f'Configuration for {settings_type} not found')
+            self.fatal(__name__, f"Configuration for {settings_type} not found")
 
     def _get_datetime_now(self) -> str:
         r"""Returns the date and time by given format
 
-        Returns
-        -------
+        Returns:
             Date and time in given format
         """
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_time_format)
         except Exception as e:
-            self.error(__name__, 'Cannot get time', ex=e)
+            self.error(__name__, "Cannot get time", ex=e)
 
     def _get_date(self) -> str:
         r"""Returns the date by given format
 
-        Returns
-        -------
+        Returns:
             Date in given format
         """
         try:
             return datetime.datetime.now().strftime(self._time_format_settings.date_format)
         except Exception as e:
-            self.error(__name__, 'Cannot get date', ex=e)
+            self.error(__name__, "Cannot get date", ex=e)
 
     def create(self) -> None:
         r"""Creates path tree and logfile"""
@@ -99,46 +98,44 @@ class Logger(LoggerABC):
             if not os.path.exists(self._path):
                 os.makedirs(self._path)
         except Exception as e:
-            self._fatal_console(__name__, 'Cannot create log dir', ex=e)
+            self._fatal_console(__name__, "Cannot create log dir", ex=e)
 
         """ create new log file """
         try:
             # open log file, create if not exists
-            path = f'{self._path}{self._log}'
-            permission = 'a+'
+            path = f"{self._path}{self._log}"
+            permission = "a+"
             if not os.path.isfile(path):
-                permission = 'w+'
+                permission = "w+"
 
             f = open(path, permission)
-            Console.write_line(f'[{__name__}]: Using log file: {path}')
+            Console.write_line(f"[{__name__}]: Using log file: {path}")
             f.close()
         except Exception as e:
-            self._fatal_console(__name__, 'Cannot open log file', ex=e)
+            self._fatal_console(__name__, "Cannot open log file", ex=e)
 
     def _append_log(self, string: str):
         r"""Writes to logfile
 
-        Parameter
-        ---------
+        Parameter:
             string: :class:`str`
         """
         try:
             # open log file and append always
             if not os.path.isdir(self._path):
-                self._warn_console(__name__, 'Log directory not found, try to recreate logger')
+                self._warn_console(__name__, "Log directory not found, try to recreate logger")
                 self.create()
 
             with open(self._path + self._log, "a+", encoding="utf-8") as f:
-                f.write(string + '\n')
+                f.write(string + "\n")
                 f.close()
         except Exception as e:
-            self._fatal_console(__name__, f'Cannot append log file, message: {string}', ex=e)
+            self._fatal_console(__name__, f"Cannot append log file, message: {string}", ex=e)
 
     def _get_string(self, name: str, level: LoggingLevelEnum, message: str) -> str:
         r"""Returns input as log entry format
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Name of the message
             level: :class:`cpl_core.logging.logging_level_enum.LoggingLevelEnum`
@@ -146,12 +143,11 @@ class Logger(LoggerABC):
             message: :class:`str`
                 Log message
 
-        Returns
-        -------
+        Returns:
             Formatted string for logging
         """
         log_level = level.name
-        return f'<{self._get_datetime_now()}> [ {log_level} ] [ {name} ]: {message}'
+        return f"<{self._get_datetime_now()}> [ {log_level} ] [ {name} ]: {message}"
 
     def header(self, string: str):
         # append log and print message
@@ -213,11 +209,11 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def error(self, name: str, message: str, ex: Exception = None):
-        output = ''
+        output = ""
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevelEnum.ERROR, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevelEnum.ERROR, f"{ex} -> {tb}")
         else:
             output = self._get_string(name, LoggingLevelEnum.ERROR, message)
 
@@ -232,11 +228,11 @@ class Logger(LoggerABC):
             Console.set_foreground_color(ForegroundColorEnum.default)
 
     def fatal(self, name: str, message: str, ex: Exception = None):
-        output = ''
+        output = ""
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevelEnum.FATAL, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevelEnum.FATAL, f"{ex} -> {tb}")
         else:
             output = self._get_string(name, LoggingLevelEnum.FATAL, message)
 
@@ -255,8 +251,7 @@ class Logger(LoggerABC):
     def _warn_console(self, name: str, message: str):
         r"""Writes a warning to console only
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Error name
             message: :class:`str`
@@ -271,8 +266,7 @@ class Logger(LoggerABC):
     def _fatal_console(self, name: str, message: str, ex: Exception = None):
         r"""Writes an error to console only
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Error name
             message: :class:`str`
@@ -280,11 +274,11 @@ class Logger(LoggerABC):
             ex: :class:`Exception`
                 Thrown exception
         """
-        output = ''
+        output = ""
         if ex is not None:
             tb = traceback.format_exc()
             self.error(name, message)
-            output = self._get_string(name, LoggingLevelEnum.ERROR, f'{ex} -> {tb}')
+            output = self._get_string(name, LoggingLevelEnum.ERROR, f"{ex} -> {tb}")
         else:
             output = self._get_string(name, LoggingLevelEnum.ERROR, message)
 

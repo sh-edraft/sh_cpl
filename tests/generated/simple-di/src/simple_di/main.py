@@ -16,8 +16,8 @@ def configure_services(config: ConfigurationABC) -> ServiceProviderABC:
 def main():
     config = configure_configuration()
     provider = configure_services(config)
-    Console.write_line('Hello World')
+    Console.write_line("Hello World")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -4,10 +4,10 @@ from discord import RawReactionActionEvent
 
 
 class OnRawReactionAddABC(ABC):
+    @abstractmethod
+    def __init__(self):
+        pass
 
     @abstractmethod
-    def __init__(self): pass
-
-    @abstractmethod
-    async def on_raw_reaction_add(self, payload: RawReactionActionEvent): pass
-    
+    async def on_raw_reaction_add(self, payload: RawReactionActionEvent):
+        pass

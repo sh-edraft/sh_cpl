@@ -12,7 +12,6 @@ from test_service import TestService
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
         self._logger: Optional[LoggerABC] = None
@@ -20,12 +19,12 @@ class Application(ApplicationABC):
 
     def test_send_mail(self):
         mail = EMail()
-        mail.add_header('Mime-Version: 1.0')
-        mail.add_header('Content-Type: text/plain; charset=utf-8')
-        mail.add_header('Content-Transfer-Encoding: quoted-printable')
-        mail.add_receiver('sven.heidemann@sh-edraft.de')
-        mail.subject = f'Test - {self._configuration.environment.host_name}'
-        mail.body = 'Dies ist ein Test :D'
+        mail.add_header("Mime-Version: 1.0")
+        mail.add_header("Content-Type: text/plain; charset=utf-8")
+        mail.add_header("Content-Transfer-Encoding: quoted-printable")
+        mail.add_receiver("sven.heidemann@sh-edraft.de")
+        mail.subject = f"Test - {self._configuration.environment.host_name}"
+        mail.body = "Dies ist ein Test :D"
         self._mailer.send_mail(mail)
 
     @staticmethod
@@ -39,23 +38,23 @@ class Application(ApplicationABC):
     def main(self):
         self._configuration.parse_console_arguments(self._services)
 
-        if self._configuration.environment.application_name != '':
-            self._logger.header(f'{self._configuration.environment.application_name}:')
-        self._logger.debug(__name__, f'Args: {self._configuration.additional_arguments}')
-        self._logger.debug(__name__, f'Host: {self._configuration.environment.host_name}')
-        self._logger.debug(__name__, f'Environment: {self._configuration.environment.environment_name}')
-        self._logger.debug(__name__, f'Customer: {self._configuration.environment.customer}')
-        Console.spinner('Test', self._wait, 2, spinner_foreground_color='red')
+        if self._configuration.environment.application_name != "":
+            self._logger.header(f"{self._configuration.environment.application_name}:")
+        self._logger.debug(__name__, f"Args: {self._configuration.additional_arguments}")
+        self._logger.debug(__name__, f"Host: {self._configuration.environment.host_name}")
+        self._logger.debug(__name__, f"Environment: {self._configuration.environment.environment_name}")
+        self._logger.debug(__name__, f"Customer: {self._configuration.environment.customer}")
+        Console.spinner("Test", self._wait, 2, spinner_foreground_color="red")
         test: TestService = self._services.get_service(TestService)
         ip_pipe: IPAddressPipe = self._services.get_service(IPAddressPipe)
         test.run()
         test2: TestService = self._services.get_service(TestService)
         ip_pipe2: IPAddressPipe = self._services.get_service(IPAddressPipe)
-        Console.write_line(f'DI working: {test == test2 and ip_pipe != ip_pipe2}')
+        Console.write_line(f"DI working: {test == test2 and ip_pipe != ip_pipe2}")
         Console.write_line(self._services.get_service(LoggerABC))
 
         scope = self._services.create_scope()
-        Console.write_line('scope', scope)
+        Console.write_line("scope", scope)
         with self._services.create_scope() as s:
-            Console.write_line('with scope', s)
-        self.test_send_mail()
+            Console.write_line("with scope", s)
+        # self.test_send_mail()

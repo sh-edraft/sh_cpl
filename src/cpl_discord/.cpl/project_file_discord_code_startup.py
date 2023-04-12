@@ -3,17 +3,27 @@ from cpl_core.utils import String
 
 
 class DiscordBotProjectFileStartup(CodeFileTemplateABC):
-
-    def __init__(self, project_name: str, path: str, use_application_api: bool, use_startup: bool, use_service_providing: bool, use_async: bool):
-        CodeFileTemplateABC.__init__(self, 'startup', path, '', use_application_api, use_startup, use_service_providing, use_async)
+    def __init__(
+        self,
+        project_name: str,
+        path: str,
+        use_application_api: bool,
+        use_startup: bool,
+        use_service_providing: bool,
+        use_async: bool,
+    ):
+        CodeFileTemplateABC.__init__(
+            self, "startup", path, "", use_application_api, use_startup, use_service_providing, use_async
+        )
         self._project_name = project_name
 
     def get_code(self) -> str:
         import textwrap
 
-        import_pkg = f'{String.convert_to_snake_case(self._project_name)}.'
+        import_pkg = f"{String.convert_to_snake_case(self._project_name)}."
 
-        return textwrap.dedent(f"""\
+        return textwrap.dedent(
+            f"""\
         from cpl_core.application import StartupABC
         from cpl_core.configuration import ConfigurationABC
         from cpl_core.dependency_injection import ServiceProviderABC, ServiceCollectionABC
@@ -44,4 +54,5 @@ class DiscordBotProjectFileStartup(CodeFileTemplateABC):
                 dc_collection.add_command(PingCommand)
         
                 return services.build_service_provider()
-        """)
+        """
+        )

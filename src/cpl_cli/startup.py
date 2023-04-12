@@ -32,26 +32,31 @@ from cpl_core.environment.application_environment_abc import ApplicationEnvironm
 
 
 class Startup(StartupABC):
-
     def __init__(self):
         StartupABC.__init__(self)
 
-    def configure_configuration(self, configuration: ConfigurationABC, environment: ApplicationEnvironmentABC) -> ConfigurationABC:
+    def configure_configuration(
+        self, configuration: ConfigurationABC, environment: ApplicationEnvironmentABC
+    ) -> ConfigurationABC:
         environment.set_runtime_directory(os.path.dirname(__file__))
         configuration.argument_error_function = Error.error
 
-        configuration.add_environment_variables('PYTHON_')
-        configuration.add_environment_variables('CPL_')
+        configuration.add_environment_variables("PYTHON_")
+        configuration.add_environment_variables("CPL_")
 
-        is_unittest = configuration.get_configuration('IS_UNITTEST')
-        if is_unittest == 'YES':
+        is_unittest = configuration.get_configuration("IS_UNITTEST")
+        if is_unittest == "YES":
             Console.disable()
 
-        configuration.add_json_file('appsettings.json', path=environment.runtime_directory, optional=False, output=False)
+        configuration.add_json_file(
+            "appsettings.json", path=environment.runtime_directory, optional=False, output=False
+        )
 
         return configuration
 
-    def configure_services(self, services: ServiceCollectionABC, environment: ApplicationEnvironmentABC) -> ServiceProviderABC:
+    def configure_services(
+        self, services: ServiceCollectionABC, environment: ApplicationEnvironmentABC
+    ) -> ServiceProviderABC:
         services.add_transient(PublisherABC, PublisherService)
         services.add_transient(LiveServerService)
 

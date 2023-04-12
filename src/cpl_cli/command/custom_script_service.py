@@ -10,7 +10,6 @@ from cpl_cli.configuration.workspace_settings import WorkspaceSettings
 
 
 class CustomScriptService(CommandABC):
-
     def __init__(self, config: ConfigurationABC, env: ApplicationEnvironmentABC, ws: WorkspaceSettings):
         """
         Service for CLI scripts
@@ -23,11 +22,11 @@ class CustomScriptService(CommandABC):
 
     @property
     def help_message(self) -> str:
-        return ''
+        return ""
 
     def execute(self, args: list[str]):
-        cmd = self._config.get_configuration('ACTIVE_EXECUTABLE')
-        wd = self._config.get_configuration('PATH_WORKSPACE')
+        cmd = self._config.get_configuration("ACTIVE_EXECUTABLE")
+        wd = self._config.get_configuration("PATH_WORKSPACE")
         if wd is not None:
             self._env.set_working_directory(wd)
 
@@ -35,16 +34,16 @@ class CustomScriptService(CommandABC):
             if script != cmd:
                 continue
 
-            command = ''
-            external_args = self._config.get_configuration('ARGS')
+            command = ""
+            external_args = self._config.get_configuration("ARGS")
             if external_args is not None:
                 command += f'ARGS="{external_args}";'
 
             command += self._workspace.scripts[script]
             env_vars = os.environ
-            env_vars['CPL_ARGS'] = " ".join(args)
+            env_vars["CPL_ARGS"] = " ".join(args)
 
             try:
-                subprocess.run(command, shell=True if os.name == 'posix' else None)
+                subprocess.run(command, shell=True if os.name == "posix" else None)
             except Exception as e:
                 Console.error(str(e))

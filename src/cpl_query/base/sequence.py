@@ -3,7 +3,6 @@ from typing import Iterable
 
 
 class Sequence(ABC):
-
     @abstractmethod
     def __init__(self, t: type, values: Iterable = None):
         if values is None:
@@ -26,11 +25,11 @@ class Sequence(ABC):
         return self.to_list().__len__()
 
     @classmethod
-    def __class_getitem__(cls, _t: type):
+    def __class_getitem__(cls, _t: type) -> type:
         return _t
 
     def __repr__(self):
-        return f'<{type(self).__name__} {self.to_list().__repr__()}>'
+        return f"<{type(self).__name__} {self.to_list().__repr__()}>"
 
     @property
     def type(self) -> type:
@@ -40,33 +39,35 @@ class Sequence(ABC):
         if self._type == any:
             return
 
-        if self._type is not None and type(__object) != self._type and not isinstance(type(__object), self._type) and not issubclass(type(__object), self._type):
-            raise Exception(f'Unexpected type: {type(__object)}\nExpected type: {self._type}')
+        if (
+            self._type is not None
+            and type(__object) != self._type
+            and not isinstance(type(__object), self._type)
+            and not issubclass(type(__object), self._type)
+        ):
+            raise Exception(f"Unexpected type: {type(__object)}\nExpected type: {self._type}")
 
     def to_list(self) -> list:
         r"""Converts :class: `cpl_query.base.sequence_abc.SequenceABC` to :class: `list`
 
-        Returns
-        -------
+        Returns:
             :class: `list`
         """
         return [x for x in self._values]
 
-    def copy(self) -> 'Sequence':
+    def copy(self) -> "Sequence":
         r"""Creates a copy of sequence
 
-        Returns
-        -------
+        Returns:
             Sequence
         """
         return type(self)(self._type, self.to_list())
 
     @classmethod
-    def empty(cls) -> 'Sequence':
+    def empty(cls) -> "Sequence":
         r"""Returns an empty sequence
 
-        Returns
-        -------
+        Returns:
             Sequence object that contains no elements
         """
         return cls(object, [])
@@ -74,12 +75,10 @@ class Sequence(ABC):
     def index_of(self, _object: object) -> int:
         r"""Returns the index of given element
 
-        Returns
-        -------
+        Returns:
             Index of object
 
-        Raises
-        -------
+        Raises:
             IndexError if object not in sequence
         """
         for i, o in enumerate(self):
@@ -89,5 +88,5 @@ class Sequence(ABC):
         raise IndexError
 
     @classmethod
-    def range(cls, start: int, length: int) -> 'Sequence':
+    def range(cls, start: int, length: int) -> "Sequence":
         return cls(int, range(start, length))

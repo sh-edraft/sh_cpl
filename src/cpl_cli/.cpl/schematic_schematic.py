@@ -3,11 +3,10 @@ from cpl_core.utils import String
 
 
 class Schematic(GenerateSchematicABC):
-
     def __init__(self, name: str, path: str, schematic: str):
         GenerateSchematicABC.__init__(self, name, path, schematic)
-        self._name = f'schematic_{String.convert_to_snake_case(name)}.py'
-        self._path = '.cpl/'
+        self._name = f"schematic_{String.convert_to_snake_case(name)}.py"
+        self._path = ".cpl/"
         self._class_name = String.convert_to_camel_case(name)
 
     def get_code(self) -> str:
@@ -44,8 +43,4 @@ class Schematic(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'schematic',
-            ['scheme', 'SCHEME']
-        )
+        GenerateSchematicABC.register(cls, "schematic", ["scheme", "SCHEME"])

@@ -13,7 +13,6 @@ from set_pip_urls.pip_settings import PIPSettings
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 
@@ -24,7 +23,7 @@ class Application(ApplicationABC):
 
     def main(self):
         if self._pip_settings is None:
-            Console.error('appsettings.json not found')
+            Console.error("appsettings.json not found")
             sys.exit()
 
         url = None
@@ -36,13 +35,11 @@ class Application(ApplicationABC):
             case EnvironmentNameEnum.development.value:
                 url = self._pip_settings.development
 
-        cli_json = {
-            "CLI": {
-                "PipPath": url
-            }
-        }
-        file = os.path.abspath(os.path.join(self._environment.working_directory, '../../src/cpl_cli', 'appsettings.json'))
-        Console.write_line(f'Writing PipPath: {url} to {file}')
-        with open(file, 'w') as f:
+        cli_json = {"CLI": {"PipPath": url}}
+        file = os.path.abspath(
+            os.path.join(self._environment.working_directory, "../../src/cpl_cli", "appsettings.json")
+        )
+        Console.write_line(f"Writing PipPath: {url} to {file}")
+        with open(file, "w") as f:
             f.write(json.dumps(cli_json, indent=2))
             f.close()

@@ -3,7 +3,6 @@ from typing import Callable
 
 
 class Container:
-
     def __init__(self, _o: object, _t: type):
         self._object = _o
         self._type = _t

@@ -8,7 +8,6 @@ from discord_bot.startup import Startup
 
 
 class Program:
-
     def __init__(self):
         self._app: Optional[Application] = None
 
@@ -22,7 +21,7 @@ class Program:
         await self._app.stop_async()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     program = Program()
     try:
         asyncio.run(program.main())

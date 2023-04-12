@@ -7,8 +7,7 @@ from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeE
 class ServiceDescriptor:
     r"""Descriptor of a service
 
-    Parameter
-    ---------
+    Parameter:
         implementation: Union[:class:`type`, Optional[:class:`object`]]
             Object or type of service
         lifetime: :class:`cpl_core.dependency_injection.service_lifetime_enum.ServiceLifetimeEnum`
@@ -16,7 +15,6 @@ class ServiceDescriptor:
     """
 
     def __init__(self, implementation: Union[type, Optional[object]], lifetime: ServiceLifetimeEnum, base_type=None):
-
         self._service_type = implementation
         self._implementation = implementation
         self._lifetime = lifetime

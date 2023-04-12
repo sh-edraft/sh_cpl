@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contributing to CPL &mdash; Common Python Library  documentation</title>
@@ -11,15 +11,15 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="CLI reference" href="cpl_cli.html" />
+    <link rel="next" title="Deprecated" href="deprecated.html" />
     <link rel="prev" title="Using cpl g &amp; cpl n templating" href="tutorials.templating.html" /> 
 </head>
 
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -57,9 +61,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpl_discord.html">Discord Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_translation.html">Translation reference</a></li>
 </ul>
@@ -77,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Contributing to CPL</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing to CPL</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/contributing.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -92,22 +97,22 @@
 <h1>Contributing to CPL<a class="headerlink" href="#contributing-to-cpl" title="Permalink to this heading"></a></h1>
 <p>We would love for you to contribute to CPL and help make it even better than it is today! As a contributor, here are the guidelines we would like you to follow:</p>
 <ul class="simple">
-<li><p><span class="xref myst">Issuses and Bugs</span></p></li>
-<li><p><span class="xref myst">Feature Request</span></p></li>
-<li><p><span class="xref myst">Submission Guidelines</span></p></li>
-<li><p><span class="xref myst">Coding Rules</span></p></li>
-<li><p><span class="xref myst">License</span></p></li>
+<li><p><a class="reference internal" href="#found-a-bug"><span class="xref myst">Issuses and Bugs</span></a></p></li>
+<li><p><a class="reference internal" href="#feature-request"><span class="xref myst">Feature Request</span></a></p></li>
+<li><p><a class="reference internal" href="#submission-guidelines"><span class="xref myst">Submission Guidelines</span></a></p></li>
+<li><p><a class="reference internal" href="#coding-rules"><span class="xref myst">Coding Rules</span></a></p></li>
+<li><p><a class="reference internal" href="#license"><span class="xref myst">License</span></a></p></li>
 </ul>
 <section id="found-a-bug">
 <h2>Found a Bug?<a class="headerlink" href="#found-a-bug" title="Permalink to this heading"></a></h2>
-<p>If you find a bug in the source code, you can help us by <span class="xref myst">submitting an issue</span> to our <a class="reference external" href="https://git.sh-edraft.de/sh-edraft.de/sh_cpl/">Gitea Repository</a>. Even better, you can <span class="xref myst">submit a Pull Request</span> with a fix.</p>
+<p>If you find a bug in the source code, you can help us by <a class="reference internal" href="#submitting-an-issue"><span class="xref myst">submitting an issue</span></a> to our <a class="reference external" href="https://git.sh-edraft.de/sh-edraft.de/sh_cpl/">Gitea Repository</a>. Even better, you can <a class="reference internal" href="#submitting-a-pull-request"><span class="xref myst">submit a Pull Request</span></a> with a fix.</p>
 </section>
 <section id="feature-request">
 <h2>Feature Request<a class="headerlink" href="#feature-request" title="Permalink to this heading"></a></h2>
 <p>You can request a new feature by submitting an issue to our <a class="reference external" href="https://git.sh-edraft.de/sh-edraft.de/sh_cpl/">Gitea Repository</a>. If you would like to implement a new feature, please consider the size of the change in order to determine the right steps to proceed:</p>
 <p>For a Major Feature, first open an issue and outline your proposal so that it can be discussed. This process allows us to better coordinate our efforts, prevent duplication of work, and help you to craft the change so that it is successfully accepted into the project.</p>
 <p>Note: Adding a new topic to the documentation, or significantly re-writing a topic, counts as a major feature.</p>
-<p>Small Features can be crafted and directly submitted as a <span class="xref myst">Pull Request</span>.</p>
+<p>Small Features can be crafted and directly submitted as a <a class="reference internal" href="#submit-pr"><span class="xref myst">Pull Request</span></a>.</p>
 </section>
 <section id="submission-guidelines">
 <h2>Submission Guidelines<a class="headerlink" href="#submission-guidelines" title="Permalink to this heading"></a></h2>
@@ -127,7 +132,7 @@
 <li><p>Be sure that an issue describes the problem you’re fixing, or documents the design for the feature you’d like to add. Discussing the design upfront helps to ensure that we’re ready to accept your work.</p></li>
 <li><p>Fork the sh-edraft.de/cpl repo.</p></li>
 <li><p>In your forked repository, make your changes in a new git branch:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git checkout -b my-fix-branch master
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-fix-branch<span class="w"> </span>master
 </pre></div>
 </div>
 </li>
@@ -136,13 +141,13 @@
 <!-- 6. Follow our [Coding Rules](coding-rules). -->
 <ol class="arabic" start="6">
 <li><p>Commit your changes.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git commit --all
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>--all
 </pre></div>
 </div>
 <p>Note: the optional commit <code class="docutils literal notranslate"><span class="pre">-a</span></code> command line option will automatically “add” and “rm” edited files.</p>
 </li>
 <li><p>Push your branch to the <a class="reference external" href="https://git.sh-edraft.de/sh-edraft.de/sh_cpl/">repository</a>:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git push origin my-fix-branch
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>my-fix-branch
 </pre></div>
 </div>
 </li>
@@ -151,15 +156,15 @@
 </section>
 <section id="reviewing-a-pull-request">
 <h3>Reviewing a Pull Request<a class="headerlink" href="#reviewing-a-pull-request" title="Permalink to this heading"></a></h3>
-<p>The sh-edraft.de team reserves the right not to accept pull requests from community members who haven’t been good citizens of the community. Such behavior includes not following the CPL <span class="xref myst">coding rules</span> and applies within or outside of CPL managed channels.</p>
+<p>The sh-edraft.de team reserves the right not to accept pull requests from community members who haven’t been good citizens of the community. Such behavior includes not following the CPL <a class="reference internal" href="#coding-rules"><span class="xref myst">coding rules</span></a> and applies within or outside of CPL managed channels.</p>
 <section id="addressing-review-feedback">
 <h4>Addressing review feedback<a class="headerlink" href="#addressing-review-feedback" title="Permalink to this heading"></a></h4>
 <p>If we ask for changes via code reviews then:</p>
 <ol class="arabic">
 <li><p>Make the required updates to the code.</p></li>
 <li><p>Create a fixup commit and push to your repository (this will update your Pull Request):</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git commit --all --fixup HEAD
-git push
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>--all<span class="w"> </span>--fixup<span class="w"> </span>HEAD
+git<span class="w"> </span>push
 </pre></div>
 </div>
 </li>
@@ -190,7 +195,7 @@ See <a class="reference external" href="https://git.sh-edraft.de/sh-edraft.de/cp
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="tutorials.templating.html" class="btn btn-neutral float-left" title="Using cpl g &amp; cpl n templating" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_cli.html" class="btn btn-neutral float-right" title="CLI reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="deprecated.html" class="btn btn-neutral float-right" title="Deprecated" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

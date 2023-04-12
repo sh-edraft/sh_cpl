@@ -16,7 +16,6 @@ from set_version.version_setter_service import VersionSetterService
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 
@@ -30,15 +29,15 @@ class Application(ApplicationABC):
         self._configuration.parse_console_arguments(self._services)
 
     def main(self):
-        Console.write_line('Set versions:')
+        Console.write_line("Set versions:")
 
         args = self._configuration.additional_arguments
         version = {}
         branch = ""
         suffix = ""
         force = False
-        if '--force' in args:
-            args.remove('--force')
+        if "--force" in args:
+            args.remove("--force")
             force = True
 
         if len(args) > 1:
@@ -50,46 +49,50 @@ class Application(ApplicationABC):
 
         try:
             branch = self._git_service.get_active_branch_name()
-            Console.write_line(f'Found branch: {branch}')
+            Console.write_line(f"Found branch: {branch}")
         except Exception as e:
-            Console.error('Branch not found', traceback.format_exc())
+            Console.error("Branch not found", traceback.format_exc())
             return
 
         try:
-            if suffix != '':
-                self._configuration.add_json_file(self._workspace.projects[self._workspace.default_project], optional=False, output=False)
+            if suffix != "":
+                self._configuration.add_json_file(
+                    self._workspace.projects[self._workspace.default_project], optional=False, output=False
+                )
                 ps: ProjectSettings = self._configuration.get_configuration(ProjectSettings)
 
                 version[VersionSettingsNameEnum.major.value] = ps.version.major
                 version[VersionSettingsNameEnum.minor.value] = ps.version.minor
                 version[VersionSettingsNameEnum.micro.value] = suffix
-            elif branch.startswith('#'):
-                self._configuration.add_json_file(self._workspace.projects[self._workspace.default_project], optional=False, output=False)
+            elif branch.startswith("#"):
+                self._configuration.add_json_file(
+                    self._workspace.projects[self._workspace.default_project], optional=False, output=False
+                )
                 ps: ProjectSettings = self._configuration.get_configuration(ProjectSettings)
 
                 version[VersionSettingsNameEnum.major.value] = ps.version.major
                 version[VersionSettingsNameEnum.minor.value] = ps.version.minor
                 version[VersionSettingsNameEnum.micro.value] = f'dev{branch.split("#")[1]}'
             else:
-                version[VersionSettingsNameEnum.major.value] = branch.split('.')[0]
-                version[VersionSettingsNameEnum.minor.value] = branch.split('.')[1]
-                if len(branch.split('.')) == 2:
-                    if suffix == '':
-                        suffix = '0'
-                    version[VersionSettingsNameEnum.micro.value] = f'{suffix}'
+                version[VersionSettingsNameEnum.major.value] = branch.split(".")[0]
+                version[VersionSettingsNameEnum.minor.value] = branch.split(".")[1]
+                if len(branch.split(".")) == 2:
+                    if suffix == "":
+                        suffix = "0"
+                    version[VersionSettingsNameEnum.micro.value] = f"{suffix}"
                 else:
                     version[VersionSettingsNameEnum.micro.value] = f'{branch.split(".")[2]}{suffix}'
         except Exception as e:
-            Console.error(f'Branch {branch} does not contain valid version')
+            Console.error(f"Branch {branch} does not contain valid version")
             return
 
         diff_paths = []
         for file in self._git_service.get_diff_files():
-            if file.startswith('tools'):
+            if file.startswith("tools"):
                 continue
 
-            if '/' in file:
-                file = file.split('/')[1]
+            if "/" in file:
+                file = file.split("/")[1]
             else:
                 file = os.path.basename(os.path.dirname(file))
 
@@ -106,12 +109,16 @@ class Application(ApplicationABC):
                     skipped.append(project)
                     continue
 
-                Console.write_line(f'Set dependencies {self._version_pipe.transform(version)} for {project}')
-                self._version_setter.set_dependencies(self._workspace.projects[project], version, 'Dependencies', skipped=skipped)
-                self._version_setter.set_dependencies(self._workspace.projects[project], version, 'DevDependencies', skipped=skipped)
+                Console.write_line(f"Set dependencies {self._version_pipe.transform(version)} for {project}")
+                self._version_setter.set_dependencies(
+                    self._workspace.projects[project], version, "Dependencies", skipped=skipped
+                )
+                self._version_setter.set_dependencies(
+                    self._workspace.projects[project], version, "DevDependencies", skipped=skipped
+                )
 
-                Console.write_line(f'Set version {self._version_pipe.transform(version)} for {project}')
+                Console.write_line(f"Set version {self._version_pipe.transform(version)} for {project}")
                 self._version_setter.set_version(self._workspace.projects[project], version)
         except Exception as e:
-            Console.error('Version could not be set', traceback.format_exc())
+            Console.error("Version could not be set", traceback.format_exc())
             return

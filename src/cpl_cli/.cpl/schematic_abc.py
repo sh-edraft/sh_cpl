@@ -3,11 +3,10 @@ from cpl_core.utils import String
 
 
 class ABC(GenerateSchematicABC):
-
     def __init__(self, name: str, schematic: str, path: str):
         GenerateSchematicABC.__init__(self, name, schematic, path)
         self._class_name = name
-        if name != '':
+        if name != "":
             self._class_name = f'{String.first_to_upper(name.replace(schematic, ""))}ABC'
 
     def get_code(self) -> str:
@@ -25,8 +24,4 @@ class ABC(GenerateSchematicABC):
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'abc',
-            ['a', 'A']
-        )
+        GenerateSchematicABC.register(cls, "abc", ["a", "A"])

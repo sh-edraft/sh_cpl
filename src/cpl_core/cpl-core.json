@@ -2,37 +2,39 @@
   "ProjectSettings": {
     "Name": "cpl-core",
     "Version": {
-      "Major": "2022",
-      "Minor": "12",
-      "Micro": "1.post3"
+      "Major": "2023",
+      "Minor": "4",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
-    "Description": "sh-edraft Common Python library",
-    "LongDescription": "sh-edraft Common Python library",
+    "Description": "CPL core",
+    "LongDescription": "CPL core package",
     "URL": "https://www.sh-edraft.de",
     "CopyrightDate": "2020 - 2023",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "art==5.8",
-      "colorama==0.4.6",
-      "mysql-connector==2.2.9",
-      "psutil==5.9.4",
-      "packaging==22.0",
-      "pynput==1.7.6",
-      "setuptools==65.6.3",
-      "tabulate==0.9.0",
-      "termcolor==2.1.1",
-      "watchdog==2.2.0",
-      "wheel==0.38.4"
+      "art>=5.9",
+      "colorama>=0.4.6",
+      "mysql-connector>=2.2.9",
+      "psutil>=5.9.4",
+      "packaging>=23.0",
+      "pynput>=1.7.6",
+      "setuptools>=67.6.1",
+      "tabulate>=0.9.0",
+      "termcolor>=2.2.0",
+      "watchdog>=3.0.0",
+      "wheel>=0.40.0"
     ],
     "DevDependencies": [
       "Sphinx==5.0.2",
       "sphinx-rtd-theme==1.0.0",
-      "myst-parser==0.18.0",
-      "twine==4.0.2"
+      "myst-parser==0.18.1",
+      "twine==4.0.2",
+      "sphinx-markdown-builder==0.5.5",
+      "pygount==1.5.1"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},

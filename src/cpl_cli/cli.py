@@ -9,7 +9,6 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 
 
 class CLI(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         """
         CPL CLI
@@ -33,11 +32,11 @@ class CLI(ApplicationABC):
                 return
 
             if len(self._configuration.additional_arguments) == 0:
-                Error.error('Expected command')
+                Error.error("Expected command")
                 return
 
-            unexpected_arguments = ', '.join(self._configuration.additional_arguments)
-            Error.error(f'Unexpected argument(s): {unexpected_arguments}')
+            unexpected_arguments = ", ".join(self._configuration.additional_arguments)
+            Error.error(f"Unexpected argument(s): {unexpected_arguments}")
             Console.write_line()
         except KeyboardInterrupt:
             Console.write_line()

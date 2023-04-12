@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class MigrationABC(ABC):
-
     @abstractmethod
     def __init__(self, version: str):
         self._version = version
@@ -12,4 +11,5 @@ class MigrationABC(ABC):
         return self._version
 
     @abstractmethod
-    def migrate(self): pass
+    def migrate(self):
+        pass

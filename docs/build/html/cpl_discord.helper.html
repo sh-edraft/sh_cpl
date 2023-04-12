@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>cpl_discord.helper &mdash; Common Python Library  documentation</title>
+  <title>cpl_discord.helper package &mdash; Common Python Library  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="cpl_discord.service" href="cpl_discord.service.html" />
-    <link rel="prev" title="cpl_discord.events" href="cpl_discord.events.html" /> 
+    <link rel="next" title="cpl_discord.service package" href="cpl_discord.service.html" />
+    <link rel="prev" title="cpl_discord.events package" href="cpl_discord.events.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Common Python Library
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Common Python Library
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -42,19 +46,30 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to the CPL Docs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to CPL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecated.html">Deprecated</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_cli.html">CLI reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_core.html">API reference</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.helper</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpl_discord.html">Discord Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.application.html">cpl_discord.application package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.command.html">cpl_discord.command package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.configuration.html">cpl_discord.configuration package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.container.html">cpl_discord.container package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.events.html">cpl_discord.events package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpl_discord.helper package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.helper.to_containers_converter">cpl_discord.helper.to_containers_converter module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.helper.to_containers_converter.ToContainersConverter"><code class="docutils literal notranslate"><span class="pre">ToContainersConverter</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cpl_discord.helper">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cpl-discord-cpl-discord">cpl-discord CPL Discord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cpl_discord.helper.VersionInfo"><code class="docutils literal notranslate"><span class="pre">VersionInfo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.service.html">cpl_discord.service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpl_discord.html#module-cpl_discord.discord_event_types_enum">cpl_discord.discord_event_types_enum module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cpl_query.html">Query reference</a></li>
@@ -74,9 +89,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cpl_discord.html">Discord reference</a> &raquo;</li>
-      <li>cpl_discord.helper</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cpl_discord.html">Discord Reference</a></li>
+      <li class="breadcrumb-item active">cpl_discord.helper package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/cpl_discord.helper.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,18 +101,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cpl-discord-helper">
-<h1>cpl_discord.helper<a class="headerlink" href="#cpl-discord-helper" title="Permalink to this heading"></a></h1>
+  <section id="cpl-discord-helper-package">
+<h1>cpl_discord.helper package<a class="headerlink" href="#cpl-discord-helper-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
 <section id="module-cpl_discord.helper.to_containers_converter">
-<span id="cpl-discord-helper-to-containers-converter"></span><h2>cpl_discord.helper.to_containers_converter<a class="headerlink" href="#module-cpl_discord.helper.to_containers_converter" title="Permalink to this heading"></a></h2>
+<span id="cpl-discord-helper-to-containers-converter-module"></span><h2>cpl_discord.helper.to_containers_converter module<a class="headerlink" href="#module-cpl_discord.helper.to_containers_converter" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="cpl_discord.helper.to_containers_converter.ToContainersConverter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.helper.to_containers_converter.</span></span><span class="sig-name descname"><span class="pre">ToContainersConverter</span></span><a class="headerlink" href="#cpl_discord.helper.to_containers_converter.ToContainersConverter" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cpl_discord.helper.to_containers_converter.ToContainersConverter.convert">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cpl_discord.container.html#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><span class="pre">cpl_discord.container.container.Container</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_discord.helper.to_containers_converter.ToContainersConverter.convert" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_l</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">object</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="cpl_discord.container.html#cpl_discord.container.container.Container" title="cpl_discord.container.container.Container"><span class="pre">cpl_discord.container.container.Container</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#cpl_discord.helper.to_containers_converter.ToContainersConverter.convert" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-cpl_discord.helper">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cpl_discord.helper" title="Permalink to this heading"></a></h2>
+<section id="cpl-discord-cpl-discord">
+<h3>cpl-discord CPL Discord<a class="headerlink" href="#cpl-discord-cpl-discord" title="Permalink to this heading"></a></h3>
+<p>Link between discord.py and CPL</p>
+<dl class="field-list simple">
+<dt class="field-odd">copyright<span class="colon">:</span></dt>
+<dd class="field-odd"><ol class="loweralpha simple" start="3">
+<li><p>2022 - 2023 sh-edraft.de</p></li>
+</ol>
+</dd>
+<dt class="field-even">license<span class="colon">:</span></dt>
+<dd class="field-even"><p>MIT, see LICENSE for more details.</p>
+</dd>
+</dl>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="cpl_discord.helper.VersionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cpl_discord.helper.</span></span><span class="sig-name descname"><span class="pre">VersionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">major</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">micro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cpl_discord.helper.VersionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.helper.VersionInfo.major">
+<span class="sig-name descname"><span class="pre">major</span></span><a class="headerlink" href="#cpl_discord.helper.VersionInfo.major" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.helper.VersionInfo.micro">
+<span class="sig-name descname"><span class="pre">micro</span></span><a class="headerlink" href="#cpl_discord.helper.VersionInfo.micro" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cpl_discord.helper.VersionInfo.minor">
+<span class="sig-name descname"><span class="pre">minor</span></span><a class="headerlink" href="#cpl_discord.helper.VersionInfo.minor" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -108,8 +167,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cpl_discord.events.html" class="btn btn-neutral float-left" title="cpl_discord.events" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="cpl_discord.service.html" class="btn btn-neutral float-right" title="cpl_discord.service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cpl_discord.events.html" class="btn btn-neutral float-left" title="cpl_discord.events package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cpl_discord.service.html" class="btn btn-neutral float-right" title="cpl_discord.service package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

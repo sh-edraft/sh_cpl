@@ -8,7 +8,6 @@ from cpl_translation.translation_settings import TranslationSettings
 
 
 class Application(ApplicationABC):
-
     def __init__(self, config: ConfigurationABC, services: ServiceProviderABC):
         ApplicationABC.__init__(self, config, services)
 
@@ -17,13 +16,13 @@ class Application(ApplicationABC):
         self._translation_settings: TranslationSettings = config.get_configuration(TranslationSettings)
 
         self._translation.load_by_settings(config.get_configuration(TranslationSettings))
-        self._translation.set_default_lang('de')
+        self._translation.set_default_lang("de")
 
     def configure(self):
         pass
 
     def main(self):
-        Console.write_line(self._translate.transform('main.text.hello_world'))
-        self._translation.set_lang('en')
-        Console.write_line(self._translate.transform('main.text.hello_world'))
-        Console.write_line(self._translate.transform('main.text.hello'))
+        Console.write_line(self._translate.transform("main.text.hello_world"))
+        self._translation.set_lang("en")
+        Console.write_line(self._translate.transform("main.text.hello_world"))
+        Console.write_line(self._translate.transform("main.text.hello"))

@@ -2,8 +2,8 @@
   "ProjectSettings": {
     "Name": "unittests_translation",
     "Version": {
-      "Major": "2022",
-      "Minor": "12",
+      "Major": "2023",
+      "Minor": "2",
       "Micro": "0"
     },
     "Author": "",
@@ -16,11 +16,11 @@
     "LicenseName": "",
     "LicenseDescription": "",
     "Dependencies": [
-      "cpl-core>=2022.12.0",
-      "cpl-translation>=2022.12.0"
+      "cpl-core>=2023.2.0",
+      "cpl-translation>=2023.2.0"
     ],
     "DevDependencies": [
-      "cpl-cli>=2022.12.0"
+      "cpl-cli>=2023.2.0"
     ],
     "PythonVersion": ">=3.10.4",
     "PythonPath": {},

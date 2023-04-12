@@ -12,7 +12,6 @@ from cpl_cli.command_abc import CommandABC
 
 
 class VersionService(CommandABC):
-
     def __init__(self):
         """
         Service for the CLI command version
@@ -21,10 +20,12 @@ class VersionService(CommandABC):
 
     @property
     def help_message(self) -> str:
-        return textwrap.dedent("""\
+        return textwrap.dedent(
+            """\
         Lists the version of CPL, CPL CLI and all installed packages from pip.
         Usage: cpl version
-        """)
+        """
+        )
 
     def execute(self, args: list[str]):
         """
@@ -33,16 +34,16 @@ class VersionService(CommandABC):
         :return:
         """
         Console.set_foreground_color(ForegroundColorEnum.yellow)
-        Console.banner('CPL CLI')
+        Console.banner("CPL CLI")
         Console.set_foreground_color(ForegroundColorEnum.default)
-        if '__version__' in dir(cpl_cli):
-            Console.write_line(f'Common Python library CLI: ')
+        if "__version__" in dir(cpl_cli):
+            Console.write_line(f"Common Python library CLI: ")
             Console.write(cpl_cli.__version__)
 
-        Console.write_line(f'Python: ')
-        Console.write(f'{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}')
-        Console.write_line(f'OS: {platform.system()} {platform.processor()}')
-        Console.write_line('\nCPL packages:')
-        Console.table(['Name', 'Version'], Dependencies.get_cpl_packages())
-        Console.write_line('\nPython packages:')
-        Console.table(['Name', 'Version'], Dependencies.get_packages())
+        Console.write_line(f"Python: ")
+        Console.write(f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}")
+        Console.write_line(f"OS: {platform.system()} {platform.processor()}")
+        Console.write_line("\nCPL packages:")
+        Console.table(["Name", "Version"], Dependencies.get_cpl_packages())
+        Console.write_line("\nPython packages:")
+        Console.table(["Name", "Version"], Dependencies.get_packages())

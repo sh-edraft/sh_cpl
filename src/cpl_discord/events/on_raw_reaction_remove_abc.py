@@ -4,10 +4,10 @@ from discord import RawReactionActionEvent
 
 
 class OnRawReactionRemoveABC(ABC):
+    @abstractmethod
+    def __init__(self):
+        pass
 
     @abstractmethod
-    def __init__(self): pass
-
-    @abstractmethod
-    async def on_raw_reaction_remove(self, payload: RawReactionActionEvent): pass
-    
+    async def on_raw_reaction_remove(self, payload: RawReactionActionEvent):
+        pass

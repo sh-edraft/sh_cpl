@@ -1,10 +1,10 @@
 import textwrap
 
 from cpl_cli.abc.generate_schematic_abc import GenerateSchematicABC
+from cpl_core.utils import String
 
 
 class StartupExtension(GenerateSchematicABC):
-
     def __init__(self, *args: str):
         GenerateSchematicABC.__init__(self, *args)
 
@@ -27,13 +27,9 @@ class StartupExtension(GenerateSchematicABC):
             def configure_services(self, services: ServiceCollectionABC, env: ApplicationEnvironmentABC):
                 pass
         """
-        x = self.build_code_str(code, Name=self._class_name)
+        x = self.build_code_str(code, Name=String.convert_to_camel_case(self._class_name))
         return x
 
     @classmethod
     def register(cls):
-        GenerateSchematicABC.register(
-            cls,
-            'startup-extension',
-            ['stupex', 'STUPEX']
-        )
+        GenerateSchematicABC.register(cls, "startup-extension", ["stupex", "STUPEX"])

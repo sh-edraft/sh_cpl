@@ -10,7 +10,6 @@ from cpl_core.type import T
 
 
 class ConfigurationABC(ABC):
-
     @abstractmethod
     def __init__(self):
         r"""ABC for the :class:`cpl_core.configuration.configuration.Configuration`"""
@@ -18,30 +17,34 @@ class ConfigurationABC(ABC):
 
     @property
     @abstractmethod
-    def environment(self) -> ApplicationEnvironmentABC: pass
+    def environment(self) -> ApplicationEnvironmentABC:
+        pass
 
     @property
     @abstractmethod
-    def additional_arguments(self) -> list[str]: pass
+    def additional_arguments(self) -> list[str]:
+        pass
 
     @property
     @abstractmethod
-    def argument_error_function(self) -> Optional[Callable]: pass
+    def argument_error_function(self) -> Optional[Callable]:
+        pass
 
     @argument_error_function.setter
     @abstractmethod
-    def argument_error_function(self, argument_error_function: Callable): pass
+    def argument_error_function(self, argument_error_function: Callable):
+        pass
 
     @property
     @abstractmethod
-    def arguments(self) -> list[ArgumentABC]: pass
+    def arguments(self) -> list[ArgumentABC]:
+        pass
 
     @abstractmethod
     def add_environment_variables(self, prefix: str):
         r"""Reads the environment variables
 
-        Parameter
-        ---------
+        Parameter:
             prefix: :class:`str`
                 Prefix of the variables
         """
@@ -51,8 +54,7 @@ class ConfigurationABC(ABC):
     def add_console_argument(self, argument: ArgumentABC):
         r"""Adds console argument to known console arguments
 
-        Parameter
-        ---------
+        Parameter:
             argument: :class:`cpl_core.configuration.console_argument.ConsoleArgumentABC`
                 Specifies the console argument
         """
@@ -62,8 +64,7 @@ class ConfigurationABC(ABC):
     def add_json_file(self, name: str, optional: bool = None, output: bool = True, path: str = None):
         r"""Reads and saves settings from given json file
 
-        Parameter
-        ---------
+        Parameter:
             name: :class:`str`
                 Name of the file
             optional: :class:`str`
@@ -76,11 +77,10 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: T, value: any):
+    def add_configuration(self, key_type: Type[T], value: any):
         r"""Add configuration object
 
-        Parameter
-        ---------
+        Parameter:
             key_type: Union[:class:`str`, :class:`type`]
                 Type of the value
             value: any
@@ -89,12 +89,12 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def create_console_argument(self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str],
-                                *args, **kwargs) -> ArgumentABC:
+    def create_console_argument(
+        self, arg_type: ArgumentTypeEnum, token: str, name: str, aliases: list[str], *args, **kwargs
+    ) -> ArgumentABC:
         r"""Creates and adds a console argument to known console arguments
 
-        Parameter
-        ---------
+        Parameter:
             token: :class:`str`
                 Specifies optional beginning of argument
             name :class:`str`
@@ -108,8 +108,7 @@ class ConfigurationABC(ABC):
             runnable: :class:`cpl_core.configuration.console_argument.ConsoleArgumentABC`
                 Specifies class to run when called if value is not None
 
-        Returns
-        ------
+        Returns:
             Object of :class:`cpl_core.configuration.console_argument.ConsoleArgumentABC`
         """
         pass
@@ -118,39 +117,34 @@ class ConfigurationABC(ABC):
     def for_each_argument(self, call: Callable):
         r"""Iterates through all arguments and calls the call function
 
-        Parameter
-        ---------
+        Parameter:
             call: :class:`Callable`
                 Call for each argument
         """
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[T]:
         r"""Returns value from configuration by given type
 
-        Parameter
-        ---------
+        Parameter:
             search_type: Union[:class:`str`, Type[:class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]]
                 Type to search for
 
-        Returns
-        -------
+        Returns:
             Object of Union[:class:`str`, :class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]
         """
         pass
 
     @abstractmethod
-    def parse_console_arguments(self, services: 'ServiceProviderABC', error: bool = None) -> bool:
+    def parse_console_arguments(self, services: "ServiceProviderABC", error: bool = None) -> bool:
         r"""Reads the console arguments
 
-        Parameter
-        ---------
+        Parameter:
             error: :class:`bool`
                 Defines is invalid argument error will be shown or not
 
-        Returns
-        -------
+        Returns:
             Bool to specify if executables were executed or not.
         """
         pass
