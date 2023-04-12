@@ -17,12 +17,14 @@ class JSONProcessor:
 
             name = String.first_to_upper(String.convert_to_camel_case(parameter.name))
             name_first_lower = String.first_to_lower(name)
-            if name in values or name_first_lower in values:
+            if name in values or name_first_lower in values or name.upper() in values:
                 value = ""
                 if name in values:
                     value = values[name]
-                else:
+                elif name_first_lower in values:
                     value = values[name_first_lower]
+                else:
+                    value = values[name.upper()]
 
                 if isinstance(value, dict) and not issubclass(parameter.annotation, dict):
                     value = JSONProcessor.process(parameter.annotation, value)

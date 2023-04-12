@@ -18,10 +18,10 @@ class BuildSettings(ConfigurationModelABC):
         main: str = None,
         entry_point: str = None,
         include_package_data: bool = None,
-        included: list[str] = None,
-        excluded: list[str] = None,
-        package_data: dict[str, list[str]] = None,
-        project_references: list[str] = None,
+        included: list = None,
+        excluded: list = None,
+        package_data: dict = None,
+        project_references: list = None,
     ):
         ConfigurationModelABC.__init__(self)
 
