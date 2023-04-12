@@ -49,7 +49,7 @@ class ProjectSettings(ConfigurationModelABC):
         self._python_executable: Optional[str] = python_executable
         self._classifiers: Optional[list[str]] = [] if classifiers is None else classifiers
 
-        if python_path is not None:
+        if python_path is not None and sys.platform in python_path:
             path = f"{python_path[sys.platform]}"
 
             if path == "" or path is None:
