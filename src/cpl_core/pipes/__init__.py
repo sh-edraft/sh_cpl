@@ -19,6 +19,7 @@ __version__ = "2023.4.0"
 
 from collections import namedtuple
 
+
 # imports:
 from .bool_pipe import BoolPipe
 from .ip_address_pipe import IPAddressPipe

@@ -19,6 +19,7 @@ __version__ = "2023.4.0"
 
 from collections import namedtuple
 
+
 # imports:
 from .default_lambda import default_lambda
 from .ordered_queryable import OrderedQueryable
