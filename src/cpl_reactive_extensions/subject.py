@@ -34,7 +34,7 @@ class Subject(Observable, Observer):
         self._raise_if_closed()
 
         if not isinstance(value, self._t):
-            raise TypeError()
+            raise TypeError(f"Expected {self._t.__name__} not {type(value).__name__}")
 
         if self.is_stopped:
             return
