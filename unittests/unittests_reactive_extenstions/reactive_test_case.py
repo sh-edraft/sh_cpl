@@ -4,6 +4,7 @@ import unittest
 from threading import Timer
 
 from cpl_core.console import Console
+from cpl_reactive_extensions.behavior_subject import BehaviorSubject
 from cpl_reactive_extensions.observable import Observable
 from cpl_reactive_extensions.observer import Observer
 from cpl_reactive_extensions.subject import Subject
@@ -114,3 +115,14 @@ class ReactiveTestCase(unittest.TestCase):
         observable.subscribe(subject, self._on_error)
 
         self.assertFalse(self._error)
+
+    def test_behavior_subject(self):
+        subject = BehaviorSubject(int, 0)
+
+        subject.subscribe(lambda x: Console.write_line("a", x))
+
+        subject.next(1)
+        subject.next(2)
+
+        subject.subscribe(lambda x: Console.write_line("b", x))
+        subject.next(3)
