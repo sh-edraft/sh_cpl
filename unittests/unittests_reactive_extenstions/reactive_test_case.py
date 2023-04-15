@@ -148,3 +148,27 @@ class ReactiveTestCase(unittest.TestCase):
         sub.unsubscribe()
         end = datetime.now()
         self.assertEqual(round((end - start).total_seconds()), wait)
+
+    def test_interval_custom(self):
+        wait = 10
+        i = 0
+        n = 0
+
+        def callback(x: Observer):
+            nonlocal n
+            x.next(n)
+            n += 1
+
+        def test_sub(x):
+            nonlocal i
+            self.assertEqual(x, i)
+            i += 1
+
+        observable = Interval(1.0, callback)
+        sub = observable.subscribe(test_sub)
+        start = datetime.now()
+
+        time.sleep(wait)
+        sub.unsubscribe()
+        end = datetime.now()
+        self.assertEqual(round((end - start).total_seconds()), wait)
