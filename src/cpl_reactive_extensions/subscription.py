@@ -6,13 +6,18 @@ from cpl_reactive_extensions.abc.unsubscribable import Unsubscribable
 
 
 class Subscription(Unsubscribable):
+    @staticmethod
+    def empty():
+        empty = Subscription()
+        empty.closed = True
+        return empty
+
     def __init__(self, initial_teardown: Optional[Callable] = None):
         Unsubscribable.__init__(self)
 
         self._initial_teardown = initial_teardown
 
         self._closed = False
-        self._subscriptions = []
 
         self._parentage: list[Subscription] = []
         self._finalizers: list[Subscription] = []
@@ -21,8 +26,19 @@ class Subscription(Unsubscribable):
     def closed(self) -> bool:
         return self._closed
 
+    @closed.setter
+    def closed(self, value: bool):
+        self._closed = value
+
     def _add_parent(self, parent: Subscription):
         self._parentage.append(parent)
+
+    def _remove_parent(self, parent: Subscription):
+        if self == parent:
+            self._parentage.clear()
+            return
+
+        self._parentage.remove(parent)
 
     def _has_parent(self, parent: Subscription) -> bool:
         return parent in self._parentage
@@ -52,7 +68,7 @@ class Subscription(Unsubscribable):
             except Exception as e:
                 print(e)
 
-        self._subscriptions.clear()
+        self._finalizers = None
 
     def add(self, tear_down: Union[Subscription, Unsubscribable]):
         if tear_down is None or tear_down == self:
@@ -68,7 +84,10 @@ class Subscription(Unsubscribable):
 
             tear_down._add_parent(self)
 
-        self._subscriptions.append(tear_down)
+        self._finalizers.append(tear_down)
 
     def remove(self, tear_down: Union[Subscription, Unsubscribable]):
-        self._subscriptions.remove(tear_down)
+        self._finalizers.remove(tear_down)
+
+        if isinstance(tear_down, Subscription):
+            tear_down._remove_parent(self)

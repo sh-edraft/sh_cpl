@@ -1,9 +1,10 @@
-from typing import Callable, Union, Any, Optional
+from typing import Callable, Any, Optional
 
 from cpl_reactive_extensions.abc.operator import Operator
 from cpl_reactive_extensions.abc.subscribable import Subscribable
 from cpl_reactive_extensions.subscriber import Observer, Subscriber
 from cpl_reactive_extensions.subscription import Subscription
+from cpl_reactive_extensions.type import ObserverOrCallable
 
 
 class Observable(Subscribable):
@@ -49,8 +50,14 @@ class Observable(Subscribable):
     def _subscribe(self, subscriber: Subscriber) -> Subscription:
         return self._source.subscribe(subscriber)
 
+    def _try_subscribe(self, subscriber: Subscriber) -> Subscription:
+        try:
+            return self._subscribe(subscriber)
+        except Exception as e:
+            subscriber.error(e)
+
     def subscribe(
-        self, observer_or_next: Union[Callable, Observer], on_error: Callable = None, on_complete: Callable = None
+        self, observer_or_next: ObserverOrCallable, on_error: Callable = None, on_complete: Callable = None
     ) -> Subscription:
         subscriber = (
             observer_or_next
@@ -67,12 +74,6 @@ class Observable(Subscribable):
         )
 
         return subscriber
-
-    def _try_subscribe(self, subscriber: Subscriber):
-        try:
-            return self._subscribe(subscriber)
-        except Exception as e:
-            subscriber.error(e)
 
     def _call(self, observer: Observer):
         try:

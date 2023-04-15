@@ -100,16 +100,18 @@ class ReactiveTestCase(unittest.TestCase):
     def test_subject(self):
         expected_x = 1
 
-        def _next(x):
+        def _next(calc, x):
             nonlocal expected_x
             self.assertEqual(expected_x, x)
+            if not calc:
+                return
             expected_x += 1
             if expected_x == 4:
                 expected_x = 1
 
         subject = Subject(int)
-        subject.subscribe(_next, self._on_error)
-        subject.subscribe(_next, self._on_error)
+        subject.subscribe(lambda x: _next(False, x), self._on_error)
+        subject.subscribe(lambda x: _next(True, x), self._on_error)
 
         observable = Observable.from_list([1, 2, 3])
         observable.subscribe(subject, self._on_error)

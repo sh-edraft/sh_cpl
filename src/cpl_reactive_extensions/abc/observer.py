@@ -1,11 +1,11 @@
-from abc import abstractmethod, ABC
+from abc import abstractmethod
 
 from cpl_core.type import T
 
 
-class Observer(ABC):
+class Observer:
     def __init__(self):
-        ABC.__init__(self)
+        pass
 
     @abstractmethod
     def next(self, value: T):

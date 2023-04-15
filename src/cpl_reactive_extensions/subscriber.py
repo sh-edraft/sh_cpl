@@ -3,14 +3,22 @@ from typing import Callable
 from cpl_core.type import T
 from cpl_reactive_extensions.abc.observer import Observer
 from cpl_reactive_extensions.subscription import Subscription
+from cpl_reactive_extensions.type import ObserverOrCallable
 
 
 class Subscriber(Subscription, Observer):
-    def __init__(self, on_next: Callable, on_error: Callable = None, on_complete: Callable = None):
+    def __init__(
+        self, on_next_or_observer: ObserverOrCallable, on_error: Callable = None, on_complete: Callable = None
+    ):
         Subscription.__init__(self)
-        self._on_next = on_next
-        self._on_error = on_error
-        self._on_complete = on_complete
+        if isinstance(on_next_or_observer, Observer):
+            self._on_next = on_next_or_observer.next
+            self._on_error = on_next_or_observer.error
+            self._on_complete = on_next_or_observer.complete
+        else:
+            self._on_next = on_next_or_observer
+            self._on_error = on_error
+            self._on_complete = on_complete
 
     def next(self, value: T):
         if self._closed:
@@ -29,3 +37,9 @@ class Subscriber(Subscription, Observer):
             return
 
         self._on_complete()
+
+    def unsubscribe(self):
+        if self._closed:
+            return
+
+        super().unsubscribe()
