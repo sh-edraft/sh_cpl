@@ -16,6 +16,9 @@ class Observer:
         return self._closed
 
     def next(self, value: T):
+        if self._closed:
+            raise Exception("Observer is closed")
+
         self._on_next(value)
 
     def error(self, ex: Exception):
@@ -24,6 +27,7 @@ class Observer:
         self._on_error(ex)
 
     def complete(self):
+        self._closed = True
         if self._on_complete is None:
             return
 

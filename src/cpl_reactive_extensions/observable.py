@@ -1,4 +1,4 @@
-from typing import Callable, Union
+from typing import Callable, Union, Optional
 
 from cpl_reactive_extensions.observer import Observer
 
@@ -31,10 +31,12 @@ class Observable:
     def subscribe(
         self, observer_or_next: Union[Callable, Observer], on_error: Callable = None, on_complete: Callable = None
     ) -> Observer:
+        observable: Optional[Observable] = None
+        if isinstance(observer_or_next, Observable):
+            observable = observer_or_next
+
         if isinstance(observer_or_next, Callable):
             observer = Observer(observer_or_next, on_error, on_complete)
-        elif isinstance(observer_or_next, Observable):
-            observer = observer_or_next
         else:
             observer = observer_or_next
 
@@ -42,8 +44,8 @@ class Observable:
             self._observers.append(observer)
             return observer
 
-        if len(observer._observers) > 0:
-            for observer in observer._observers:
+        if observable is not None and len(observable._observers) > 0:
+            for observer in observable._observers:
                 self._call(observer)
         else:
             self._call(observer)

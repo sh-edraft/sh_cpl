@@ -1,3 +1,4 @@
+import time
 import traceback
 import unittest
 from threading import Timer
@@ -15,7 +16,7 @@ class ReactiveTestCase(unittest.TestCase):
 
     def _on_error(self, ex: Exception):
         tb = traceback.format_exc()
-        Console.error(f"Somthing went wrong: {ex}", tb)
+        Console.error(f"Got error from observable: {ex}", tb)
         self._error = True
 
     def _on_complete(self):
@@ -67,6 +68,19 @@ class ReactiveTestCase(unittest.TestCase):
 
         Timer(1.0, complete).start()
 
+        time.sleep(2)
+
+        def _test_complete(x: Observer):
+            x.next(1)
+            x.next(2)
+            x.complete()
+            x.next(3)
+
+        observable2 = Observable(_test_complete)
+
+        observable2.subscribe(lambda x: x, self._on_error)
+        self.assertTrue(self._error)
+
     def test_observable_from(self):
         expected_x = 1
 
@@ -93,10 +107,10 @@ class ReactiveTestCase(unittest.TestCase):
                 expected_x = 1
 
         subject = Subject(int)
-        subject.subscribe(_next, self._on_error, self._on_complete)
-        subject.subscribe(_next, self._on_error, self._on_complete)
+        subject.subscribe(_next, self._on_error)
+        subject.subscribe(_next, self._on_error)
 
         observable = Observable.from_list([1, 2, 3])
-        observable.subscribe(subject, self._on_error, self._on_complete)
+        observable.subscribe(subject, self._on_error)
 
         self.assertFalse(self._error)
