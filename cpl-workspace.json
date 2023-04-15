@@ -42,12 +42,13 @@
       "test": "cpl run unittests",
 
       "pre-build-all": "cpl sv $ARGS; cpl spu $ARGS;",
-      "build-all": "cpl build-cli; cpl build-core; cpl build-discord; cpl build-query; cpl build-translation; cpl build-set-pip-urls; cpl build-set-version",
+      "build-all": "cpl build-cli; cpl build-core; cpl build-discord; cpl build-query; cpl build-reactive-extensions; cpl build-translation; cpl build-set-pip-urls; cpl build-set-version",
       "ba": "cpl build-all $ARGS",
       "build-cli": "echo 'Build cpl-cli'; cd ./src/cpl_cli; cpl build; cd ../../;",
       "build-core": "echo 'Build cpl-core'; cd ./src/cpl_core; cpl build; cd ../../;",
       "build-discord": "echo 'Build cpl-discord'; cd ./src/cpl_discord; cpl build; cd ../../;",
       "build-query": "echo 'Build cpl-query'; cd ./src/cpl_query; cpl build; cd ../../;",
+      "build-reactive-extensions": "echo 'Build cpl-reactive-x'; cd ./src/cpl_reactive_extensions; cpl build; cd ../../;",
       "build-translation": "echo 'Build cpl-translation'; cd ./src/cpl_translation; cpl build; cd ../../;",
       "build-set-pip-urls": "echo 'Build set-pip-urls'; cd ./tools/set_pip_urls; cpl build; cd ../../;",
       "build-set-version": "echo 'Build set-version'; cd ./tools/set_version; cpl build; cd ../../;",
@@ -59,6 +60,7 @@
       "publish-core": "echo 'Publish cpl-core'; cd ./src/cpl_core; cpl publish; cd ../../;",
       "publish-discord": "echo 'Publish cpl-discord'; cd ./src/cpl_discord; cpl publish; cd ../../;",
       "publish-query": "echo 'Publish cpl-query'; cd ./src/cpl_query; cpl publish; cd ../../;",
+      "publish-reactive-extensions": "echo 'Publish cpl-reactive-x'; cd ./src/cpl_reactive_extensions; cpl publish; cd ../../;",
       "publish-translation": "echo 'Publish cpl-translation'; cd ./src/cpl_translation; cpl publish; cd ../../;",
 
       "upload-prod-cli": "echo 'PROD Upload cpl-cli'; cpl upl-prod-cli;",
@@ -72,6 +74,9 @@
 
       "upload-prod-query": "echo 'PROD Upload cpl-query'; cpl upl-prod-query;",
       "upl-prod-query": "twine upload -r pip.sh-edraft.de dist/cpl-query/publish/setup/*",
+
+      "upload-prod-reactive-extensions": "echo 'PROD Upload cpl-reactive-extensions'; cpl upl-prod-query;",
+      "upl-prod-reactive-extensions": "twine upload -r pip.sh-edraft.de dist/cpl-reactive-extensions/publish/setup/*",
 
       "upload-prod-translation": "echo 'PROD Upload cpl-translation'; cpl upl-prod-translation;",
       "upl-prod-translation": "twine upload -r pip.sh-edraft.de dist/cpl-translation/publish/setup/*",
@@ -88,6 +93,9 @@
       "upload-exp-query": "echo 'EXP Upload cpl-query'; cpl upl-exp-query;",
       "upl-exp-query": "twine upload -r pip-exp.sh-edraft.de dist/cpl-query/publish/setup/*",
 
+      "upload-exp-reactive-extensions": "echo 'EXP Upload cpl-reactive-extensions'; cpl upl-exp-query;",
+      "upl-exp-reactive-extensions": "twine upload -r pip-exp.sh-edraft.de dist/cpl-reactive-extensions/publish/setup/*",
+
       "upload-exp-translation": "echo 'EXP Upload cpl-translation'; cpl upl-exp-translation;",
       "upl-exp-translation": "twine upload -r pip-exp.sh-edraft.de dist/cpl-translation/publish/setup/*",
 
@@ -102,6 +110,9 @@
 
       "upload-dev-query": "echo 'DEV Upload cpl-query'; cpl upl-dev-query;",
       "upl-dev-query": "twine upload -r pip-dev.sh-edraft.de dist/cpl-query/publish/setup/*",
+
+      "upload-dev-reactive-extensions": "echo 'DEV Upload cpl-reactive-extensions'; cpl upl-dev-query;",
+      "upl-dev-reactive-extensions": "twine upload -r pip-dev.sh-edraft.de dist/cpl-reactive-extensions/publish/setup/*",
 
       "upload-dev-translation": "echo 'DEV Upload cpl-translation'; cpl upl-dev-translation;",
       "upl-dev-translation": "twine upload -r pip-dev.sh-edraft.de dist/cpl-translation/publish/setup/*",

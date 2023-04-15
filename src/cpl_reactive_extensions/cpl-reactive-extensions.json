@@ -2,19 +2,19 @@
   "ProjectSettings": {
     "Name": "cpl-reactive-extensions",
     "Version": {
-      "Major": "0",
-      "Minor": "0",
-      "Micro": "0"
+      "Major": "2023",
+      "Minor": "4",
+      "Micro": "dev170"
     },
-    "Author": "",
-    "AuthorEmail": "",
-    "Description": "",
-    "LongDescription": "",
-    "URL": "",
-    "CopyrightDate": "",
-    "CopyrightName": "",
-    "LicenseName": "",
-    "LicenseDescription": "",
+    "Author": "Sven Heidemann",
+    "AuthorEmail": "sven.heidemann@sh-edraft.de",
+    "Description": "CPL Simple ReactiveX implementation",
+    "LongDescription": "CPL Simple ReactiveX implementation, see RxJS and RxPy for detailed implementation.",
+    "URL": "https://www.sh-edraft.de",
+    "CopyrightDate": "2023",
+    "CopyrightName": "sh-edraft.de",
+    "LicenseName": "MIT",
+    "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
       "cpl-core>=2023.4.0"
     ],
@@ -22,17 +22,15 @@
       "cpl-cli>=2023.4.0"
     ],
     "PythonVersion": ">=3.10.4",
-    "PythonPath": {
-      "linux": ""
-    },
+    "PythonPath": {},
     "Classifiers": []
   },
   "BuildSettings": {
     "ProjectType": "library",
     "SourcePath": "",
     "OutputPath": "../../dist",
-    "Main": "cpl_reactive_extensions.main",
-    "EntryPoint": "cpl-reactive-extensions",
+    "Main": "",
+    "EntryPoint": "",
     "IncludePackageData": false,
     "Included": [],
     "Excluded": [
