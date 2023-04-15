@@ -8,6 +8,7 @@ from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging import LoggerABC
 from cpl_core.mailing import EMailClientABC, EMail
 from cpl_core.pipes import IPAddressPipe
+from general.test_settings import TestSettings
 from test_service import TestService
 
 
@@ -57,4 +58,13 @@ class Application(ApplicationABC):
         Console.write_line("scope", scope)
         with self._services.create_scope() as s:
             Console.write_line("with scope", s)
+
+        test_settings = self._configuration.get_configuration(TestSettings)
+        Console.write_line(test_settings.value)
+        Console.write_line("reload config")
+        self._configuration.add_json_file(f"appsettings.json")
+        self._configuration.add_json_file(f"appsettings.{self._environment.environment_name}.json")
+        self._configuration.add_json_file(f"appsettings.{self._environment.host_name}.json", optional=True)
+        test_settings1 = self._configuration.get_configuration(TestSettings)
+        Console.write_line(test_settings1.value)
         # self.test_send_mail()
