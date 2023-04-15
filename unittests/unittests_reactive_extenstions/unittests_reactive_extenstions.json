@@ -1,0 +1,46 @@
+{
+  "ProjectSettings": {
+    "Name": "unittests_reactive_extenstions",
+    "Version": {
+      "Major": "0",
+      "Minor": "0",
+      "Micro": "0"
+    },
+    "Author": "",
+    "AuthorEmail": "",
+    "Description": "",
+    "LongDescription": "",
+    "URL": "",
+    "CopyrightDate": "",
+    "CopyrightName": "",
+    "LicenseName": "",
+    "LicenseDescription": "",
+    "Dependencies": [
+      "cpl-core>=2023.4.0"
+    ],
+    "DevDependencies": [
+      "cpl-cli>=2023.4.0"
+    ],
+    "PythonVersion": ">=3.10.4",
+    "PythonPath": {
+      "linux": ""
+    },
+    "Classifiers": []
+  },
+  "BuildSettings": {
+    "ProjectType": "unittest",
+    "SourcePath": "",
+    "OutputPath": "../../dist",
+    "Main": "unittests_reactive_extenstions.main",
+    "EntryPoint": "unittests_reactive_extenstions",
+    "IncludePackageData": false,
+    "Included": [],
+    "Excluded": [
+      "*/__pycache__",
+      "*/logs",
+      "*/tests"
+    ],
+    "PackageData": {},
+    "ProjectReferences": []
+  }
+}

@@ -6,6 +6,7 @@
       "cpl-core": "src/cpl_core/cpl-core.json",
       "cpl-discord": "src/cpl_discord/cpl-discord.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
+      "cpl-reactive-extensions": "src/cpl_reactive_extensions/cpl-reactive-extensions.json",
       "cpl-translation": "src/cpl_translation/cpl-translation.json",
       "set-version": "tools/set_version/set-version.json",
       "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json",
@@ -14,7 +15,8 @@
       "unittests_core": "unittests/unittests_core/unittests_core.json",
       "unittests_query": "unittests/unittests_query/unittests_query.json",
       "unittests_shared": "unittests/unittests_shared/unittests_shared.json",
-      "unittests_translation": "unittests/unittests_translation/unittests_translation.json"
+      "unittests_translation": "unittests/unittests_translation/unittests_translation.json",
+      "unittests_reactive_extenstions": "unittests/unittests_reactive_extenstions/unittests_reactive_extenstions.json"
     },
     "Scripts": {
       "hello-world": "echo 'Hello World'",
