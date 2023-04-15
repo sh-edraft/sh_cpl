@@ -1,13 +1,15 @@
 import time
 import traceback
 import unittest
+from datetime import datetime
 from threading import Timer
 
 from cpl_core.console import Console
 from cpl_reactive_extensions.behavior_subject import BehaviorSubject
+from cpl_reactive_extensions.interval import Interval
 from cpl_reactive_extensions.observable import Observable
-from cpl_reactive_extensions.subscriber import Observer
 from cpl_reactive_extensions.subject import Subject
+from cpl_reactive_extensions.subscriber import Observer
 
 
 class ReactiveTestCase(unittest.TestCase):
@@ -128,3 +130,21 @@ class ReactiveTestCase(unittest.TestCase):
 
         subject.subscribe(lambda x: Console.write_line("b", x))
         subject.next(3)
+
+    def test_interval_default(self):
+        wait = 10
+        i = 0
+
+        def test_sub(x):
+            nonlocal i
+            self.assertEqual(x, i)
+            i += 1
+
+        observable = Interval(1.0)
+        sub = observable.subscribe(test_sub)
+        start = datetime.now()
+
+        time.sleep(wait)
+        sub.unsubscribe()
+        end = datetime.now()
+        self.assertEqual(round((end - start).total_seconds()), wait)
