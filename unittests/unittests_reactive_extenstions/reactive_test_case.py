@@ -6,7 +6,7 @@ from threading import Timer
 from cpl_core.console import Console
 from cpl_reactive_extensions.behavior_subject import BehaviorSubject
 from cpl_reactive_extensions.observable import Observable
-from cpl_reactive_extensions.observer import Observer
+from cpl_reactive_extensions.subscriber import Observer
 from cpl_reactive_extensions.subject import Subject
 
 

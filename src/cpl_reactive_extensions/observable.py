@@ -1,19 +1,22 @@
 from typing import Callable, Union, Optional
 
-from cpl_reactive_extensions.observer import Observer
+from cpl_reactive_extensions.abc.subscribable import Subscribable
+from cpl_reactive_extensions.subscriber import Observer, Subscriber
+from cpl_reactive_extensions.subscription import Subscription
 
 
-class Observable:
+class Observable(Subscribable):
     def __init__(self, callback: Callable = None):
+        Subscribable.__init__(self)
         self._callback = callback
 
-        self._observers: list[Observer] = []
+        self._subscribers: list[Observer] = []
 
     @staticmethod
     def from_list(values: list):
         i = 0
 
-        def callback(x: Observer):
+        def callback(x: Subscriber):
             nonlocal i
             if i == len(values):
                 i = 0
@@ -30,27 +33,27 @@ class Observable:
 
     def subscribe(
         self, observer_or_next: Union[Callable, Observer], on_error: Callable = None, on_complete: Callable = None
-    ) -> Observer:
+    ) -> Subscription:
         observable: Optional[Observable] = None
         if isinstance(observer_or_next, Observable):
             observable = observer_or_next
 
         if isinstance(observer_or_next, Callable):
-            observer = Observer(observer_or_next, on_error, on_complete)
+            subscriber = Subscriber(observer_or_next, on_error, on_complete)
         else:
-            observer = observer_or_next
+            subscriber = observer_or_next
 
         if self._callback is None:
-            self._observers.append(observer)
-            return observer
+            self._subscribers.append(subscriber)
+            return subscriber
 
-        if observable is not None and len(observable._observers) > 0:
-            for observer in observable._observers:
-                self._call(observer)
+        if observable is not None and len(observable._subscribers) > 0:
+            for subscriber in observable._subscribers:
+                self._call(subscriber)
         else:
-            self._call(observer)
+            self._call(subscriber)
 
-        return observer
+        return subscriber
 
     def _call(self, observer: Observer):
         try:

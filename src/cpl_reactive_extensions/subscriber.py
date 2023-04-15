@@ -1,19 +1,16 @@
 from typing import Callable
 
 from cpl_core.type import T
+from cpl_reactive_extensions.abc.observer import Observer
+from cpl_reactive_extensions.subscription import Subscription
 
 
-class Observer:
+class Subscriber(Subscription, Observer):
     def __init__(self, on_next: Callable, on_error: Callable = None, on_complete: Callable = None):
+        Subscription.__init__(self)
         self._on_next = on_next
         self._on_error = on_error
         self._on_complete = on_complete
-
-        self._closed = False
-
-    @property
-    def closed(self) -> bool:
-        return self._closed
 
     def next(self, value: T):
         if self._closed:
