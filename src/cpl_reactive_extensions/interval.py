@@ -3,8 +3,8 @@ import threading
 import time
 from typing import Callable
 
+from cpl_reactive_extensions.internal.subscriber import Subscriber
 from cpl_reactive_extensions.observable import Observable
-from cpl_reactive_extensions.subscriber import Subscriber
 
 
 class Interval(Observable):

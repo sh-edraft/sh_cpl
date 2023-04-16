@@ -5,11 +5,11 @@ from datetime import datetime
 from threading import Timer
 
 from cpl_core.console import Console
-from cpl_reactive_extensions.behavior_subject import BehaviorSubject
+from cpl_reactive_extensions.subject.behavior_subject import BehaviorSubject
 from cpl_reactive_extensions.interval import Interval
 from cpl_reactive_extensions.observable import Observable
-from cpl_reactive_extensions.subject import Subject
-from cpl_reactive_extensions.subscriber import Observer
+from cpl_reactive_extensions.subject.subject import Subject
+from cpl_reactive_extensions.internal.subscriber import Observer
 
 
 class ReactiveTestCase(unittest.TestCase):

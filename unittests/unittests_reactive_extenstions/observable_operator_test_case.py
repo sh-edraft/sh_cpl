@@ -3,7 +3,9 @@ import traceback
 import unittest
 
 from cpl_core.console import Console
-from cpl_reactive_extensions import Subject
+from cpl_reactive_extensions.observable import Observable
+from cpl_reactive_extensions.operators import debounce_time
+from cpl_reactive_extensions.subject.subject import Subject
 from cpl_reactive_extensions.interval import Interval
 from cpl_reactive_extensions.operators.take import take
 from cpl_reactive_extensions.operators.take_until import take_until
@@ -65,3 +67,17 @@ class ObservableOperatorTestCase(unittest.TestCase):
         unsubscriber.next(None)
         unsubscriber.complete()
         self.assertEqual(count, timer * 10 - 1)
+
+    def test_debounce_time(self):
+        def call(x):
+            x.next(1)
+            x.next(2)
+            x.next(3)
+            x.next(4)
+            x.next(5)
+            x.next(6)
+            x.complete()
+
+        observable = Observable(call)
+
+        observable.pipe(debounce_time(600)).subscribe(lambda x: Console.write_line("Hey", x))

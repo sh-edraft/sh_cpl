@@ -21,11 +21,6 @@ from collections import namedtuple
 
 
 # imports
-from .observer import Observer
-from .operator import Operator
-from .subscribable import Subscribable
-from .unsubscribable import Unsubscribable
-
 
 VersionInfo = namedtuple("VersionInfo", "major minor micro")
 version_info = VersionInfo(major="2023", minor="4", micro="dev170")

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
 """
-cpl-core CPL core
+cpl-reactive-extensions CPL Simple ReactiveX implementation
 ~~~~~~~~~~~~~~~~~~~
 
-CPL core package
+CPL Simple ReactiveX implementation, see RxJS and RxPy for detailed implementation.
 
-:copyright: (c) 2020 - 2023 sh-edraft.de
+:copyright: (c) 2023 sh-edraft.de
 :license: MIT, see LICENSE for more details.
 
 """
 
-__title__ = "cpl_core"
+__title__ = "cpl_reactive_extensions.helper"
 __author__ = "Sven Heidemann"
 __license__ = "MIT"
-__copyright__ = "Copyright (c) 2020 - 2023 sh-edraft.de"
+__copyright__ = "Copyright (c) 2023 sh-edraft.de"
 __version__ = "2023.4.dev170"
 
 from collections import namedtuple

@@ -1,7 +1,8 @@
 import unittest
 
-from unittests_reactive_extenstions.observable_operator import ObservableOperatorTestCase
+from unittests_reactive_extenstions.observable_operator_test_case import ObservableOperatorTestCase
 from unittests_reactive_extenstions.reactive_test_case import ReactiveTestCase
+from unittests_reactive_extenstions.scheduler_test_case import SchedulerTestCase
 
 
 class ReactiveTestSuite(unittest.TestSuite):
@@ -11,6 +12,7 @@ class ReactiveTestSuite(unittest.TestSuite):
         loader = unittest.TestLoader()
         self.addTests(loader.loadTestsFromTestCase(ReactiveTestCase))
         self.addTests(loader.loadTestsFromTestCase(ObservableOperatorTestCase))
+        self.addTests(loader.loadTestsFromTestCase(SchedulerTestCase))
 
     def run(self, *args):
         super().run(*args)

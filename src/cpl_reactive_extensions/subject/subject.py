@@ -4,8 +4,8 @@ from typing import Any, Optional, Type
 from cpl_core.type import T
 from cpl_reactive_extensions.abc.observer import Observer
 from cpl_reactive_extensions.observable import Observable
-from cpl_reactive_extensions.subscriber import Subscriber
-from cpl_reactive_extensions.subscription import Subscription
+from cpl_reactive_extensions.internal.subscriber import Subscriber
+from cpl_reactive_extensions.internal.subscription import Subscription
 
 
 class Subject(Observable, Observer):

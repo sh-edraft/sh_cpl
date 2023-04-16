@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from typing import Callable, Any, Optional, Type
+from typing import Callable, Any, Optional
 
 from cpl_core.type import T
+from cpl_reactive_extensions.abc.observer import Observer
 from cpl_reactive_extensions.abc.subscribable import Subscribable
-from cpl_reactive_extensions.subscriber import Observer, Subscriber
-from cpl_reactive_extensions.subscription import Subscription
+from cpl_reactive_extensions.internal.subscriber import Subscriber
+from cpl_reactive_extensions.internal.subscription import Subscription
 from cpl_reactive_extensions.type import ObserverOrCallable
 
 

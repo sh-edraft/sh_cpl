@@ -1,6 +1,7 @@
 from typing import Callable
 
-from cpl_reactive_extensions import Observable, Subscriber
+from cpl_reactive_extensions.observable import Observable
+from cpl_reactive_extensions.internal.subscriber import Subscriber
 
 
 def operate(init: Callable[[Observable, Subscriber], None]):
