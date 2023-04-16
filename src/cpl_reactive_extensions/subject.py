@@ -1,4 +1,5 @@
-from typing import Any, Optional
+from types import NoneType
+from typing import Any, Optional, Type
 
 from cpl_core.type import T
 from cpl_reactive_extensions.abc.observer import Observer
@@ -8,11 +9,11 @@ from cpl_reactive_extensions.subscription import Subscription
 
 
 class Subject(Observable, Observer):
-    def __init__(self, _t: type):
+    def __init__(self, _t: Type[T]):
         Observable.__init__(self)
 
         self.is_closed = False
-        self._t = _t
+        self._t = _t if _t is not None else NoneType
         self._current_observers: Optional[list[Observer]] = None
 
         self.closed = False

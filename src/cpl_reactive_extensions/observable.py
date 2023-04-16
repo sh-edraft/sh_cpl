@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from typing import Callable, Any, Optional
+from typing import Callable, Any, Optional, Type
 
 from cpl_core.type import T
-from cpl_reactive_extensions.abc.operator import Operator
 from cpl_reactive_extensions.abc.subscribable import Subscribable
 from cpl_reactive_extensions.subscriber import Observer, Subscriber
 from cpl_reactive_extensions.subscription import Subscription
@@ -18,6 +17,16 @@ class Observable(Subscribable):
 
         self._source: Optional[Observable] = None
         self._operator: Optional[Callable] = None
+
+    @staticmethod
+    def from_observable(obs: Observable):
+        def inner(subscriber: Subscriber):
+            if "subscribe" not in dir(obs):
+                raise TypeError("Unable to lift unknown Observable type")
+
+            return obs.subscribe(subscriber)
+
+        return Observable(inner)
 
     @staticmethod
     def from_list(values: list):
