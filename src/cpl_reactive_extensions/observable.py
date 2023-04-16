@@ -17,7 +17,7 @@ class Observable(Subscribable):
             self._subscribe = subscribe
 
         self._source: Optional[Observable] = None
-        self._operator: Optional[Operator] = None
+        self._operator: Optional[Callable] = None
 
     @staticmethod
     def from_list(values: list):
@@ -38,7 +38,7 @@ class Observable(Subscribable):
         observable = Observable(callback)
         return observable
 
-    def lift(self, operator: Operator) -> Observable:
+    def lift(self, operator: Callable) -> Observable:
         observable = Observable()
         observable._source = self
         observable._operator = operator
@@ -75,7 +75,7 @@ class Observable(Subscribable):
         )
 
         subscriber.add(
-            self._operator.call(subscriber, self._source)
+            self._operator(subscriber, self._source)
             if self._operator is not None
             else self._subscribe(subscriber)
             if self._source is not None
@@ -84,18 +84,8 @@ class Observable(Subscribable):
 
         return subscriber
 
-    def _call(self, observer: Observer):
-        try:
-            self._subscribe(observer)
-        except Exception as e:
-            observer.error(e)
-
     def pipe(self, *args) -> Observable:
-        # observables = []
-        # for arg in args:
-        #     observable = arg(self)
-        #     observables.append(observable)
-        return self._pipe_from_array(args)
+        return self._pipe_from_array(args)(self)
 
     def _pipe_from_array(self, args):
         if len(args) == 0:

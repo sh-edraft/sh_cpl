@@ -8,7 +8,7 @@ from cpl_reactive_extensions.subscriber import Subscriber
 
 
 class Interval(Observable):
-    def __init__(self, interval: float, callback: Callable = None):
+    def __init__(self, interval: float, callback: Callable = None, not_in_background=False):
         self._interval = interval
         callback = callback if callback is not None else self._default_callback
 
@@ -26,7 +26,7 @@ class Interval(Observable):
             t = threading.Thread(target=schedule, args=(x,))
             t.start()
 
-        Observable.__init__(self, thread)
+        Observable.__init__(self, schedule if not_in_background else thread)
         self._i = 0
 
     def _run(self, scheduler, x: Subscriber, callback: Callable):

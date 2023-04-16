@@ -23,5 +23,5 @@ class ObservableOperatorTestCase(unittest.TestCase):
         def sub(x):
             Console.write_line(x)
 
-        observable = Interval(1.0)
+        observable = Interval(0.1)
         sub = observable.pipe(take(2)).subscribe(sub)

@@ -11,7 +11,7 @@ def take(count: int):
     def init(source: Observable, subscriber: Subscriber):
         seen = 0
 
-        def sub(value: T):
+        def on_next(value: T):
             nonlocal seen
 
             if seen + 1 <= count:
@@ -20,7 +20,9 @@ def take(count: int):
 
                 if count <= seen:
                     subscriber.complete()
+            else:
+                sub.unsubscribe()
 
-        source.subscribe(OperatorSubscriber(subscriber, sub))
+        sub = source.subscribe(OperatorSubscriber(subscriber, on_next))
 
     return operate(init)

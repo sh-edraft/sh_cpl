@@ -21,29 +21,45 @@ class Subscriber(Subscription, Observer):
             self._on_error = on_error
             self._on_complete = on_complete
 
+    def _next(self, value: T):
+        self._on_next(value)
+
     def next(self, value: T):
         if self.is_stopped:
             raise Exception("Observer is closed")
 
-        self._on_next(value)
+        self._next(value)
+
+    def _error(self, ex: Exception):
+        try:
+            self._on_error(ex)
+        finally:
+            self.unsubscribe()
 
     def error(self, ex: Exception):
         if self.is_stopped:
             return
-        self._on_error(ex)
+        self._error(ex)
+
+    def _complete(self):
+        try:
+            self._on_complete()
+        finally:
+            self.unsubscribe()
 
     def complete(self):
         if self.is_stopped:
             return
 
         self.is_stopped = True
-        self._on_complete()
+        self._complete()
 
     def unsubscribe(self):
         if self._closed:
             return
 
-        super().unsubscribe()
+        self.is_stopped = True
+        Subscription.unsubscribe(self)
         self._on_next = None
         self._on_error = None
         self._on_complete = None

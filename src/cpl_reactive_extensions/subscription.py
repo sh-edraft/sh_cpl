@@ -62,13 +62,13 @@ class Subscription(Unsubscribable):
             except Exception as e:
                 print(e)
 
-        for finalizer in self._finalizers:
+        finalizers = self._finalizers
+        self._finalizers = None
+        for finalizer in finalizers:
             try:
                 self._exec_finalizer(finalizer)
             except Exception as e:
                 print(e)
-
-        self._finalizers = None
 
     def add(self, tear_down: Union[Subscription, Unsubscribable]):
         if tear_down is None or tear_down == self:
