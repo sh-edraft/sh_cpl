@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import traceback
 from typing import Union, Callable, Optional
 
+from cpl_core.console import Console
 from cpl_reactive_extensions.abc.unsubscribable import Unsubscribable
 
 
@@ -60,7 +62,7 @@ class Subscription(Unsubscribable):
             try:
                 self._initial_teardown()
             except Exception as e:
-                print(e)
+                Console.error(e, traceback.format_exc())
 
         finalizers = self._finalizers
         self._finalizers = None
@@ -68,7 +70,7 @@ class Subscription(Unsubscribable):
             try:
                 self._exec_finalizer(finalizer)
             except Exception as e:
-                print(e)
+                Console.error(e, traceback.format_exc())
 
     def add(self, tear_down: Union[Subscription, Unsubscribable]):
         if tear_down is None or tear_down == self:
@@ -87,7 +89,8 @@ class Subscription(Unsubscribable):
         self._finalizers.append(tear_down)
 
     def remove(self, tear_down: Union[Subscription, Unsubscribable]):
-        self._finalizers.remove(tear_down)
+        if self._finalizers is not None:
+            self._finalizers.remove(tear_down)
 
         if isinstance(tear_down, Subscription):
             tear_down._remove_parent(self)

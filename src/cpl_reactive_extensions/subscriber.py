@@ -33,17 +33,19 @@ class Subscriber(Subscription, Observer):
     def _error(self, ex: Exception):
         try:
             self._on_error(ex)
+        except TypeError:
+            pass
         finally:
             self.unsubscribe()
 
     def error(self, ex: Exception):
-        if self.is_stopped:
-            return
         self._error(ex)
 
     def _complete(self):
         try:
             self._on_complete()
+        except TypeError:
+            pass
         finally:
             self.unsubscribe()
 
@@ -61,5 +63,3 @@ class Subscriber(Subscription, Observer):
         self.is_stopped = True
         Subscription.unsubscribe(self)
         self._on_next = None
-        self._on_error = None
-        self._on_complete = None

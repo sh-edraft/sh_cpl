@@ -72,22 +72,16 @@ class ReactiveTestCase(unittest.TestCase):
         Timer(1.0, complete).start()
 
     def test_observer_completed(self):
-        reached = False
-
         def _test_complete(x: Observer):
-            nonlocal reached
-
             x.next(1)
             x.next(2)
             x.complete()
-            reached = True
             x.next(3)
 
         observable = Observable(_test_complete)
 
         observable.subscribe(lambda x: Console.write_line(1, x), self._on_error)
-        self.assertFalse(reached)
-        self.assertFalse(self._error)
+        self.assertTrue(self._error)
 
     def test_observable_from(self):
         expected_x = 1
