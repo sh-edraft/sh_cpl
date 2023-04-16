@@ -80,4 +80,7 @@ class ObservableOperatorTestCase(unittest.TestCase):
 
         observable = Observable(call)
 
-        observable.pipe(debounce_time(600)).subscribe(lambda x: Console.write_line("Hey", x))
+        sub = observable.pipe(debounce_time(600)).subscribe(lambda x: Console.write_line("Hey", x))
+
+        time.sleep(2)
+        sub.unsubscribe()
