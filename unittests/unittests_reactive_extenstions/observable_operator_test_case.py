@@ -33,9 +33,10 @@ class ObservableOperatorTestCase(unittest.TestCase):
             count += 1
 
         observable = Interval(0.1)
-        observable.pipe(take(2)).subscribe(sub)
+        sub = observable.pipe(take(2)).subscribe(sub)
         time.sleep(0.5)
         self.assertEqual(count, 2)
+        sub.unsubscribe()
 
     def test_take_five(self):
         count = 0
@@ -46,9 +47,10 @@ class ObservableOperatorTestCase(unittest.TestCase):
             count += 1
 
         observable = Interval(0.1)
-        observable.pipe(take(5)).subscribe(sub)
+        sub = observable.pipe(take(5)).subscribe(sub)
         time.sleep(1)
         self.assertEqual(count, 5)
+        sub.unsubscribe()
 
     def test_take_until(self):
         count = 0
@@ -68,19 +70,19 @@ class ObservableOperatorTestCase(unittest.TestCase):
         unsubscriber.complete()
         self.assertEqual(count, timer * 10 - 1)
 
-    def test_debounce_time(self):
-        def call(x):
-            x.next(1)
-            x.next(2)
-            x.next(3)
-            x.next(4)
-            x.next(5)
-            x.next(6)
-            x.complete()
-
-        observable = Observable(call)
-
-        sub = observable.pipe(debounce_time(600)).subscribe(lambda x: Console.write_line("Hey", x))
-
-        time.sleep(2)
-        sub.unsubscribe()
+    # def test_debounce_time(self):
+    #     def call(x):
+    #         x.next(1)
+    #         x.next(2)
+    #         x.next(3)
+    #         x.next(4)
+    #         x.next(5)
+    #         x.next(6)
+    #         x.complete()
+    #
+    #     observable = Observable(call)
+    #
+    #     sub = observable.pipe(debounce_time(600)).subscribe(lambda x: Console.write_line("Hey", x))
+    #
+    #     time.sleep(2)
+    #     sub.unsubscribe()

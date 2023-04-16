@@ -92,11 +92,12 @@ class ReactiveTestCase(unittest.TestCase):
             expected_x += 1
 
         observable = Observable.from_list([1, 2, 3, 4])
-        observable.subscribe(
+        sub = observable.subscribe(
             _next,
             self._on_error,
         )
         self.assertFalse(self._error)
+        sub.unsubscribe()
 
     def test_subject(self):
         expected_x = 1
@@ -115,9 +116,10 @@ class ReactiveTestCase(unittest.TestCase):
         subject.subscribe(lambda x: _next(True, x), self._on_error)
 
         observable = Observable.from_list([1, 2, 3])
-        observable.subscribe(subject, self._on_error)
+        sub = observable.subscribe(subject, self._on_error)
 
         self.assertFalse(self._error)
+        sub.unsubscribe()
 
     def test_behavior_subject(self):
         subject = BehaviorSubject(int, 0)
@@ -129,6 +131,7 @@ class ReactiveTestCase(unittest.TestCase):
 
         subject.subscribe(lambda x: Console.write_line("b", x))
         subject.next(3)
+        subject.unsubscribe()
 
     def test_interval_default(self):
         wait = 10

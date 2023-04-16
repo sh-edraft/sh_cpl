@@ -84,14 +84,20 @@ class AsyncAction(Action):
         if self.closed:
             return
 
-        self._scheduler.actions.remove(self)
-
-        if self._timer is not None:
-            self._timer = self.recycle_async_timer(self._scheduler, self.timer, None)
+        timer = self.timer
+        scheduler = self._scheduler
+        actions = self._scheduler.actions
 
         self._work = None
         self.state = None
         self._scheduler = None
         self._pending = False
         self.delay = None
+
+        if self in actions:
+            actions.remove(self)
+
+        if self.timer is not None:
+            self.timer = self.recycle_async_timer(scheduler, timer, None)
+
         Action.unsubscribe(self)
