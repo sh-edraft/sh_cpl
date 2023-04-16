@@ -10,6 +10,7 @@ class Subscriber(Subscription, Observer):
     def __init__(
         self, on_next_or_observer: ObserverOrCallable, on_error: Callable = None, on_complete: Callable = None
     ):
+        self.is_stopped = False
         Subscription.__init__(self)
         if isinstance(on_next_or_observer, Observer):
             self._on_next = on_next_or_observer.next
@@ -21,21 +22,21 @@ class Subscriber(Subscription, Observer):
             self._on_complete = on_complete
 
     def next(self, value: T):
-        if self._closed:
+        if self.is_stopped:
             raise Exception("Observer is closed")
 
         self._on_next(value)
 
     def error(self, ex: Exception):
-        if self._on_error is None:
+        if self.is_stopped:
             return
         self._on_error(ex)
 
     def complete(self):
-        self._closed = True
-        if self._on_complete is None:
+        if self.is_stopped:
             return
 
+        self.is_stopped = True
         self._on_complete()
 
     def unsubscribe(self):
@@ -43,3 +44,6 @@ class Subscriber(Subscription, Observer):
             return
 
         super().unsubscribe()
+        self._on_next = None
+        self._on_error = None
+        self._on_complete = None

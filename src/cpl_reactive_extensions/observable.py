@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 from typing import Callable, Any, Optional
 
+from cpl_core.type import T
 from cpl_reactive_extensions.abc.operator import Operator
 from cpl_reactive_extensions.abc.subscribable import Subscribable
 from cpl_reactive_extensions.subscriber import Observer, Subscriber
@@ -33,6 +36,12 @@ class Observable(Subscribable):
                     callback(x)
 
         observable = Observable(callback)
+        return observable
+
+    def lift(self, operator: Operator) -> Observable:
+        observable = Observable()
+        observable._source = self
+        observable._operator = operator
         return observable
 
     @staticmethod
@@ -80,3 +89,26 @@ class Observable(Subscribable):
             self._subscribe(observer)
         except Exception as e:
             observer.error(e)
+
+    def pipe(self, *args) -> Observable:
+        # observables = []
+        # for arg in args:
+        #     observable = arg(self)
+        #     observables.append(observable)
+        return self._pipe_from_array(args)
+
+    def _pipe_from_array(self, args):
+        if len(args) == 0:
+            return lambda x: x
+
+        if len(args) == 1:
+            return args[0]
+
+        def piped(input: T):
+            return Observable._reduce(lambda prev, fn: fn(prev), input)
+
+        return piped
+
+    @staticmethod
+    def _reduce(func: Callable, input: T):
+        return func(input)

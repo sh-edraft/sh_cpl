@@ -1,10 +1,6 @@
 import unittest
 
-from unittests_query.enumerable_query_test_case import EnumerableQueryTestCase
-from unittests_query.enumerable_test_case import EnumerableTestCase
-from unittests_query.iterable_query_test_case import IterableQueryTestCase
-from unittests_query.iterable_test_case import IterableTestCase
-from unittests_query.sequence_test_case import SequenceTestCase
+from unittests_reactive_extenstions.observable_operator import ObservableOperatorTestCase
 from unittests_reactive_extenstions.reactive_test_case import ReactiveTestCase
 
 
@@ -14,6 +10,7 @@ class ReactiveTestSuite(unittest.TestSuite):
 
         loader = unittest.TestLoader()
         self.addTests(loader.loadTestsFromTestCase(ReactiveTestCase))
+        self.addTests(loader.loadTestsFromTestCase(ObservableOperatorTestCase))
 
     def run(self, *args):
         super().run(*args)
