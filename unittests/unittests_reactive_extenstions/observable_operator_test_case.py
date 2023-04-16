@@ -4,7 +4,7 @@ import unittest
 
 from cpl_core.console import Console
 from cpl_reactive_extensions.observable import Observable
-from cpl_reactive_extensions.operators import debounce_time
+from cpl_reactive_extensions.operators.debounce_time import debounce_time
 from cpl_reactive_extensions.subject.subject import Subject
 from cpl_reactive_extensions.interval import Interval
 from cpl_reactive_extensions.operators.take import take

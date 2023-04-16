@@ -1,7 +1,7 @@
 from typing import Optional
 
 from cpl_core.type import T, Number
-from cpl_reactive_extensions.abc import SchedulerAction
+from cpl_reactive_extensions.abc.scheduler_action import SchedulerAction
 from cpl_reactive_extensions.internal.operator_subscriber import OperatorSubscriber
 from cpl_reactive_extensions.internal.subscriber import Subscriber
 from cpl_reactive_extensions.internal.subscription import Subscription

@@ -1,7 +1,7 @@
 from typing import Callable
 
 from cpl_core.type import T
-from cpl_reactive_extensions.abc import Observer
+from cpl_reactive_extensions.abc.observer import Observer
 from cpl_reactive_extensions.internal.subscriber import Subscriber
 
 
