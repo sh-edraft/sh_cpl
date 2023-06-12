@@ -154,6 +154,24 @@ class UpdateService(CommandABC):
             Console.write_line(f"\tUpdate with {Pip.get_executable()} -m pip install --upgrade <package>")
             Console.set_foreground_color(ForegroundColorEnum.default)
 
+    def _save_formatted_package_name_to_deps_collection(self, deps: [str], old_package: str, new_package: str):
+        if old_package not in deps:
+            return
+
+        initial_package = new_package
+
+        if "/" in new_package:
+            new_package = new_package.split("/")[0]
+
+        if "\r" in new_package:
+            new_package = new_package.replace("\r", "")
+
+        if new_package == initial_package:
+            return
+
+        index = self._project_settings.dependencies.index(old_package)
+        deps[index] = new_package
+
     def _project_json_update_dependency(self, old_package: str, new_package: str):
         """
         Writes new package version to project.json
@@ -164,15 +182,12 @@ class UpdateService(CommandABC):
         if self._is_simulation:
             return
 
-        if old_package in self._project_settings.dependencies:
-            index = self._project_settings.dependencies.index(old_package)
-            if "/" in new_package:
-                new_package = new_package.split("/")[0]
-
-            if "\r" in new_package:
-                new_package = new_package.replace("\r", "")
-
-            self._project_settings.dependencies[index] = new_package
+        self._save_formatted_package_name_to_deps_collection(
+            self._project_settings.dependencies, old_package, new_package
+        )
+        self._save_formatted_package_name_to_deps_collection(
+            self._project_settings.dev_dependencies, old_package, new_package
+        )
 
         config = {
             ProjectSettings.__name__: SettingsHelper.get_project_settings_dict(self._project_settings),
