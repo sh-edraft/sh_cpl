@@ -5,7 +5,7 @@ from cpl_discord.command.discord_command_abc import DiscordCommandABC
 from cpl_discord.discord_event_types_enum import DiscordEventTypesEnum
 from cpl_discord.service.command_error_handler_service import CommandErrorHandlerService
 from cpl_discord.service.discord_collection_abc import DiscordCollectionABC
-from cpl_query.extension import List
+from cpl_query.extension.list import List
 
 
 class DiscordCollection(DiscordCollectionABC):

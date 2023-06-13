@@ -1,14 +1,14 @@
 from collections.abc import Callable
 
+from cpl_query.base.queryable_abc import QueryableABC
 from cpl_query.base.ordered_queryable_abc import OrderedQueryableABC
 from cpl_query.exceptions import ArgumentNoneException, ExceptionArgument
-from cpl_query.iterable.iterable import Iterable
 
 
 class OrderedQueryable(OrderedQueryableABC):
     r"""Implementation of :class: `cpl_query.base.ordered_queryable_abc.OrderedQueryableABC`"""
 
-    def __init__(self, _t: type, _values: Iterable = None, _func: Callable = None):
+    def __init__(self, _t: type, _values: QueryableABC = None, _func: Callable = None):
         OrderedQueryableABC.__init__(self, _t, _values, _func)
 
     def then_by(self, _func: Callable) -> OrderedQueryableABC:

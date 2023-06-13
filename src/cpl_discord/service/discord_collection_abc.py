@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Type
 
 from cpl_discord.command import DiscordCommandABC
-from cpl_query.extension import List
+from cpl_query.extension.list import List
 
 
 class DiscordCollectionABC(ABC):

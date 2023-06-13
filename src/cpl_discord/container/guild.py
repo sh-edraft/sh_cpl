@@ -7,7 +7,7 @@ from cpl_discord.container.role import Role
 from cpl_discord.container.text_channel import TextChannel
 from cpl_discord.container.voice_channel import VoiceChannel
 from cpl_discord.helper.to_containers_converter import ToContainersConverter
-from cpl_query.extension import List
+from cpl_query.extension.list import List
 
 
 class Guild(Container, discord.Guild):
