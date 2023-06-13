@@ -4,7 +4,7 @@
     "Version": {
       "Major": "2023",
       "Minor": "4",
-      "Micro": "0.post2"
+      "Micro": "0.post3"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,12 +16,12 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2023.4.0",
-      "discord.py>=2.2.2",
-      "cpl-query>=2023.4.0"
+      "cpl-core>=2023.4.0.post2",
+      "discord.py>=2.3.0",
+      "cpl-query>=2023.4.0.post1"
     ],
     "DevDependencies": [
-      "cpl-cli>=2023.4.0"
+      "cpl-cli>=2023.4.0.post3"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},
