@@ -166,7 +166,7 @@ class UpdateService(CommandABC):
         if "\r" in new_package:
             new_package = new_package.replace("\r", "")
 
-        if new_package == initial_package:
+        if new_package == old_package:
             return
 
         index = self._project_settings.dependencies.index(old_package)
