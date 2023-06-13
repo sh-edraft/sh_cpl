@@ -56,14 +56,13 @@ class DiscordBotService(DiscordBotServiceABC):
         env_token = self._config.get_configuration("TOKEN")
         env_prefix = self._config.get_configuration("PREFIX")
 
-        new_settings.from_dict(
-            {
-                "Token": env_token if token is None or token == "" else token,
-                "Prefix": ("! " if self._is_string_invalid(env_prefix) else env_prefix)
-                if self._is_string_invalid(prefix)
-                else prefix,
-            }
+        new_settings = DiscordBotSettings(
+            env_token if token is None or token == "" else token,
+            ("! " if self._is_string_invalid(env_prefix) else env_prefix)
+            if self._is_string_invalid(prefix)
+            else prefix,
         )
+
         if new_settings.token is None or new_settings.token == "":
             raise Exception("You have to configure discord token by appsettings or environment variables")
         return new_settings
