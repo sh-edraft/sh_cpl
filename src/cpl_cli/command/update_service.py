@@ -169,7 +169,7 @@ class UpdateService(CommandABC):
         if new_package == old_package:
             return
 
-        index = self._project_settings.dependencies.index(old_package)
+        index = deps.index(old_package)
         deps[index] = new_package
 
     def _project_json_update_dependency(self, old_package: str, new_package: str):
