@@ -9,7 +9,7 @@ class DatabaseSettings(ConfigurationModelABC):
     def __init__(
         self,
         host: str = None,
-        port: int = None,
+        port: int = 3306,
         user: str = None,
         password: str = None,
         database: str = None,
