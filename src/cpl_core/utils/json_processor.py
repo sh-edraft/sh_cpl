@@ -22,10 +22,13 @@ class JSONProcessor:
                 value = ""
                 if name in values:
                     value = values[name]
+                    values.pop(name)
                 elif name_first_lower in values:
                     value = values[name_first_lower]
+                    values.pop(name_first_lower)
                 else:
                     value = values[name.upper()]
+                    values.pop(name.upper())
 
                 if isinstance(value, dict) and not issubclass(parameter.annotation, dict):
                     value = JSONProcessor.process(parameter.annotation, value)
