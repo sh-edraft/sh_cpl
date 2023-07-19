@@ -8,6 +8,7 @@ class JSONProcessor:
     @staticmethod
     def process(_t: type, values: dict) -> object:
         args = []
+        kwargs = {}
 
         sig = signature(_t.__init__)
         for param in sig.parameters.items():
@@ -46,4 +47,4 @@ class JSONProcessor:
             else:
                 args.append(None)
 
-        return _t(*args)
+        return _t(*args, **kwargs)
