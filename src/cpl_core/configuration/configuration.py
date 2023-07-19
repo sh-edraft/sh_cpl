@@ -278,21 +278,23 @@ class Configuration(ConfigurationABC):
         config_from_file = self._load_json_file(file_path, output)
         for sub in ConfigurationModelABC.__subclasses__():
             for key, value in config_from_file.items():
-                if sub.__name__ == key or sub.__name__.replace("Settings", "") == key:
-                    configuration = sub()
-                    from_dict = getattr(configuration, "from_dict", None)
+                if sub.__name__ != key and sub.__name__.replace("Settings", "") != key:
+                    continue
 
-                    if from_dict is not None and not hasattr(from_dict, "is_base_func"):
-                        Console.set_foreground_color(ForegroundColorEnum.yellow)
-                        Console.write_line(
-                            f"{sub.__name__}.from_dict is deprecated. Instead, set attributes as typed arguments in __init__. They can be None by default!"
-                        )
-                        Console.color_reset()
-                        configuration.from_dict(value)
-                    else:
-                        configuration = JSONProcessor.process(sub, value)
+                configuration = sub()
+                from_dict = getattr(configuration, "from_dict", None)
 
-                    self.add_configuration(sub, configuration)
+                if from_dict is not None and not hasattr(from_dict, "is_base_func"):
+                    Console.set_foreground_color(ForegroundColorEnum.yellow)
+                    Console.write_line(
+                        f"{sub.__name__}.from_dict is deprecated. Instead, set attributes as typed arguments in __init__. They can be None by default!"
+                    )
+                    Console.color_reset()
+                    configuration.from_dict(value)
+                else:
+                    configuration = JSONProcessor.process(sub, value)
+
+                self.add_configuration(sub, configuration)
 
     def add_configuration(self, key_type: Type[T], value: any):
         self._config[key_type] = value

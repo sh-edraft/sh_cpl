@@ -37,6 +37,9 @@ class JSONProcessor:
 
                 args.append(value)
 
+            elif parameter.name == "kwargs" and parameter.annotation == dict:
+                kwargs = values
+
             elif parameter.default != Parameter.empty:
                 args.append(parameter.default)
 
