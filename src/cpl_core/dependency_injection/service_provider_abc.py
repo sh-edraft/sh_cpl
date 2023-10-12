@@ -76,7 +76,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_services(self, service_type: Type[T], *args, **kwargs) -> list[Optional[T]]:
+    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[T]]:
         r"""Returns instance of given type
 
         Parameter

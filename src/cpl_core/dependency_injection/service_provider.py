@@ -157,12 +157,12 @@ class ServiceProvider(ServiceProviderABC):
 
         return implementation
 
-    def get_services(self, service_type: typing.Type[T], *args, **kwargs) -> list[Optional[T]]:
+    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[T]]:
         implementations = []
 
-        if typing.get_origin(service_type) != list:
-            raise Exception(f"Invalid type {service_type}! Expected list of type")
+        if typing.get_origin(service_type) == list:
+            raise Exception(f"Invalid type {service_type}! Expected single type not list of type")
 
-        implementations.extend(self._get_services(typing.get_args(service_type)[0]))
+        implementations.extend(self._get_services(service_type))
 
         return implementations

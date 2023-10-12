@@ -4,11 +4,12 @@ from typing import Optional, Sequence, Union, Type
 import discord
 from discord import RawReactionActionEvent
 from discord.ext import commands
-from discord.ext.commands import Context, CommandError, Cog, Command
+from discord.ext.commands import Context, CommandError, Cog
 
 from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging import LoggerABC
 from cpl_core.utils import String
+from cpl_discord.command import DiscordCommandABC
 from cpl_discord.command.discord_commands_meta import DiscordCogMeta
 from cpl_discord.events.on_bulk_message_delete_abc import OnBulkMessageDeleteABC
 from cpl_discord.events.on_command_abc import OnCommandABC
@@ -66,25 +67,17 @@ from cpl_discord.events.on_typing_abc import OnTypingABC
 from cpl_discord.events.on_user_update_abc import OnUserUpdateABC
 from cpl_discord.events.on_voice_state_update_abc import OnVoiceStateUpdateABC
 from cpl_discord.events.on_webhooks_update_abc import OnWebhooksUpdateABC
-from cpl_discord.service.discord_collection_abc import DiscordCollectionABC
 from cpl_discord.service.discord_service_abc import DiscordServiceABC
 
 
 class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
-    def __init__(self, logger: LoggerABC, dc_collection: DiscordCollectionABC, services: ServiceProviderABC):
+    def __init__(self, logger: LoggerABC, services: ServiceProviderABC):
         DiscordServiceABC.__init__(self)
         self._logger = logger
-        self._collection = dc_collection
         self._services = services
 
     async def _handle_event(self, event: Type, *args, **kwargs):
-        event_collection = self._collection.get_events_by_base(event)
-        if event_collection is None:
-            return
-
-        for event_type in event_collection:
-            event_instance = self._services.get_service(event_type)
-
+        for event_instance in self._services.get_services(event):
             func_name = event.__name__
             if func_name.endswith("ABC"):
                 func_name = func_name.replace("ABC", "")
@@ -104,11 +97,11 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
             self._logger.error(__name__, f"{type(self).__name__} initialization failed", e)
 
         try:
-            for command_type in self._collection.get_commands():
-                self._logger.trace(__name__, f"Register command {command_type.__name__}")
-                command: Cog = self._services.get_service(command_type)
+            for command in self._services.get_services(DiscordCommandABC):
+                self._logger.trace(__name__, f"Register command {type(command).__name__}")
+                command: Cog = command
                 if command is None:
-                    self._logger.warn(__name__, f"Instance of {command_type.__name__} not found")
+                    self._logger.warn(__name__, f"Instance of {type(command).__name__} not found")
                     continue
                 await bot.add_cog(command)
         except Exception as e:
