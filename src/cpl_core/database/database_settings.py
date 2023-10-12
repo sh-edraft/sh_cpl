@@ -13,10 +13,10 @@ class DatabaseSettings(ConfigurationModelABC):
         user: str = None,
         password: str = None,
         database: str = None,
-        charset: str = None,
-        use_unicode: bool = None,
-        buffered: bool = None,
-        auth_plugin: str = None,
+        charset: str = "utf8mb4",
+        use_unicode: bool = False,
+        buffered: bool = False,
+        auth_plugin: str = "caching_sha2_password",
     ):
         ConfigurationModelABC.__init__(self)
 
