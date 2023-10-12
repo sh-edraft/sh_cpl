@@ -296,7 +296,7 @@ class Configuration(ConfigurationABC):
 
                 self.add_configuration(sub, configuration)
 
-    def add_configuration(self, key_type: Type[T], value: any):
+    def add_configuration(self, key_type: T, value: any):
         self._config[key_type] = value
 
     def create_console_argument(
