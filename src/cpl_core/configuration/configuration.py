@@ -24,7 +24,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
-from cpl_core.type import T
+from cpl_core.type import T, R
 from cpl_core.utils.json_processor import JSONProcessor
 
 
@@ -316,7 +316,7 @@ class Configuration(ConfigurationABC):
         for arg in self._argument_types:
             call(arg)
 
-    def get_configuration(self, search_type: T) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[R]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name
@@ -357,7 +357,7 @@ class Configuration(ConfigurationABC):
                 if exe.validators is not None:
                     abort = False
                     for validator_type in exe.validators:
-                        validator: ValidatorABC = services.get_service(validator_type)
+                        validator = services.get_service(validator_type)
                         result = validator.validate()
                         abort = not result
                         if abort:
@@ -366,7 +366,7 @@ class Configuration(ConfigurationABC):
                     if abort:
                         sys.exit()
 
-                cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
+                cmd = services.get_service(exe.executable_type)
                 self._handle_pre_or_post_executables(True, exe, services)
                 self._set_variable("ACTIVE_EXECUTABLE", exe.name)
                 args = self.get_configuration("ARGS")

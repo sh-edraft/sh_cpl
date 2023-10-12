@@ -12,7 +12,7 @@ from cpl_core.dependency_injection.service_descriptor import ServiceDescriptor
 from cpl_core.dependency_injection.service_lifetime_enum import ServiceLifetimeEnum
 from cpl_core.dependency_injection.service_provider_abc import ServiceProviderABC
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl_core.type import T
+from cpl_core.type import T, R
 
 
 class ServiceProvider(ServiceProviderABC):
@@ -80,7 +80,7 @@ class ServiceProvider(ServiceProviderABC):
 
         return implementations
 
-    def build_by_signature(self, sig: Signature) -> list[T]:
+    def build_by_signature(self, sig: Signature) -> list[R]:
         params = []
         for param in sig.parameters.items():
             parameter = param[1]
@@ -138,7 +138,7 @@ class ServiceProvider(ServiceProviderABC):
         sb = ScopeBuilder(ServiceProvider(descriptors, self._configuration, self._database_context))
         return sb.build()
 
-    def get_service(self, service_type: T, *args, **kwargs) -> Optional[T]:
+    def get_service(self, service_type: T, *args, **kwargs) -> Optional[R]:
         result = self._find_service(service_type)
 
         if result is None:
@@ -157,7 +157,7 @@ class ServiceProvider(ServiceProviderABC):
 
         return implementation
 
-    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[T]]:
+    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[R]]:
         implementations = []
 
         if typing.get_origin(service_type) == list:

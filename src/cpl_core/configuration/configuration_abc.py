@@ -6,7 +6,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl_core.type import T
+from cpl_core.type import T, R
 
 
 class ConfigurationABC(ABC):
@@ -124,7 +124,7 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: T) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[R]:
         r"""Returns value from configuration by given type
 
         Parameter:
