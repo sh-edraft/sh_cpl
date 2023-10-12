@@ -61,7 +61,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: Type[T], *args, **kwargs) -> Optional[T]:
+    def get_service(self, instance_type: T, *args, **kwargs) -> Optional[T]:
         r"""Returns instance of given type
 
         Parameter
@@ -81,7 +81,7 @@ class ServiceProviderABC(ABC):
 
         Parameter
         ---------
-            instance_type: :class:`cpl_core.type.T`
+            service_type: :class:`cpl_core.type.T`
                 The type of the searched instance
 
         Returns

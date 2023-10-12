@@ -138,7 +138,7 @@ class ServiceProvider(ServiceProviderABC):
         sb = ScopeBuilder(ServiceProvider(descriptors, self._configuration, self._database_context))
         return sb.build()
 
-    def get_service(self, service_type: typing.Type[T], *args, **kwargs) -> Optional[T]:
+    def get_service(self, service_type: T, *args, **kwargs) -> Optional[T]:
         result = self._find_service(service_type)
 
         if result is None:

@@ -99,7 +99,6 @@ class DiscordService(DiscordServiceABC, commands.Cog, metaclass=DiscordCogMeta):
         try:
             for command in self._services.get_services(DiscordCommandABC):
                 self._logger.trace(__name__, f"Register command {type(command).__name__}")
-                command: Cog = command
                 if command is None:
                     self._logger.warn(__name__, f"Instance of {type(command).__name__} not found")
                     continue
