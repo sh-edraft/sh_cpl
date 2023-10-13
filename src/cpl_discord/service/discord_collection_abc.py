@@ -14,13 +14,5 @@ class DiscordCollectionABC(ABC):
         pass
 
     @abstractmethod
-    def get_commands(self) -> List[DiscordCommandABC]:
-        pass
-
-    @abstractmethod
     def add_event(self, _t_event: Type, _t: Type):
-        pass
-
-    @abstractmethod
-    def get_events_by_base(self, _t_event: Type):
         pass

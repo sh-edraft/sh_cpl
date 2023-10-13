@@ -61,15 +61,15 @@ class ServiceCollection(ServiceCollectionABC):
             self.add_transient(PipeABC, pipe)
         return self
 
-    def add_singleton(self, service_type: Type[T], service: T = None):
+    def add_singleton(self, service_type: T, service: T = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.singleton, service)
         return self
 
-    def add_scoped(self, service_type: Type[T], service: Callable = None):
+    def add_scoped(self, service_type: T, service: T = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.scoped, service)
         return self
 
-    def add_transient(self, service_type: Type[T], service: T = None):
+    def add_transient(self, service_type: T, service: T = None):
         self._add_descriptor_by_lifetime(service_type, ServiceLifetimeEnum.transient, service)
         return self
 

@@ -3,8 +3,8 @@
     "Name": "cpl-core",
     "Version": {
       "Major": "2023",
-      "Minor": "4",
-      "Micro": "0.post5"
+      "Minor": "10",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -18,7 +18,6 @@
     "Dependencies": [
       "art>=5.9",
       "colorama>=0.4.6",
-      "mysql-connector>=2.2.9",
       "psutil>=5.9.4",
       "packaging>=23.0",
       "pynput>=1.7.6",
@@ -26,7 +25,8 @@
       "tabulate>=0.9.0",
       "termcolor>=2.2.0",
       "watchdog>=3.0.0",
-      "wheel>=0.40.0"
+      "wheel>=0.40.0",
+      "mysql-connector-python==8.1.0"
     ],
     "DevDependencies": [
       "Sphinx==5.0.2",
