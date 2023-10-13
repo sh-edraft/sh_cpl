@@ -15,7 +15,7 @@ __title__ = "cpl_discord.container"
 __author__ = "Sven Heidemann"
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2022 - 2023 sh-edraft.de"
-__version__ = "2023.10.0"
+__version__ = "2023.10.0.post1"
 
 from collections import namedtuple
 
@@ -31,4 +31,4 @@ from .thread import Thread
 from .voice_channel import VoiceChannel
 
 VersionInfo = namedtuple("VersionInfo", "major minor micro")
-version_info = VersionInfo(major="2023", minor="10", micro="0")
+version_info = VersionInfo(major="2023", minor="10", micro="0.post1")

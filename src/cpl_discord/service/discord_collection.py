@@ -14,7 +14,7 @@ class DiscordCollection(DiscordCollectionABC):
 
         self._services = service_collection
 
-        self.add_event(DiscordEventTypesEnum.on_command_error.value, CommandErrorHandlerService)
+        self._services.add_transient(DiscordEventTypesEnum.on_command_error.value, CommandErrorHandlerService)
 
     def add_command(self, _t: Type[DiscordCommandABC]):
         Console.set_foreground_color(ForegroundColorEnum.yellow)
