@@ -11,11 +11,11 @@ CPL core package
 
 """
 
-__title__ = "cpl_core.environment"
-__author__ = "Sven Heidemann"
-__license__ = "MIT"
-__copyright__ = "Copyright (c) 2020 - 2023 sh-edraft.de"
-__version__ = "2023.10.0"
+__title__ = 'cpl_core.environment'
+__author__ = 'Sven Heidemann'
+__license__ = 'MIT'
+__copyright__ = 'Copyright (c) 2020 - 2023 sh-edraft.de'
+__version__ = '2023.10.1'
 
 from collections import namedtuple
 
@@ -25,5 +25,5 @@ from .application_environment_abc import ApplicationEnvironmentABC
 from .environment_name_enum import EnvironmentNameEnum
 from .application_environment import ApplicationEnvironment
 
-VersionInfo = namedtuple("VersionInfo", "major minor micro")
-version_info = VersionInfo(major="2023", minor="10", micro="0")
+VersionInfo = namedtuple('VersionInfo', 'major minor micro')
+version_info = VersionInfo(major='2023', minor='10', micro='1')

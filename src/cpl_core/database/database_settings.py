@@ -17,6 +17,7 @@ class DatabaseSettings(ConfigurationModelABC):
         use_unicode: bool = False,
         buffered: bool = False,
         auth_plugin: str = "caching_sha2_password",
+        ssl_disabled: bool = False,
     ):
         ConfigurationModelABC.__init__(self)
 
@@ -24,11 +25,12 @@ class DatabaseSettings(ConfigurationModelABC):
         self._port: Optional[int] = port
         self._user: Optional[str] = user
         self._password: Optional[str] = password
-        self._databse: Optional[str] = database
+        self._database: Optional[str] = database
         self._charset: Optional[str] = charset
         self._use_unicode: Optional[bool] = use_unicode
         self._buffered: Optional[bool] = buffered
         self._auth_plugin: Optional[str] = auth_plugin
+        self._ssl_disabled: Optional[bool] = ssl_disabled
 
     @property
     def host(self) -> Optional[str]:
@@ -48,7 +50,7 @@ class DatabaseSettings(ConfigurationModelABC):
 
     @property
     def database(self) -> Optional[str]:
-        return self._databse
+        return self._database
 
     @property
     def charset(self) -> Optional[str]:
@@ -65,3 +67,7 @@ class DatabaseSettings(ConfigurationModelABC):
     @property
     def auth_plugin(self) -> Optional[str]:
         return self._auth_plugin
+
+    @property
+    def ssl_disabled(self) -> Optional[bool]:
+        return self._ssl_disabled
