@@ -4,14 +4,14 @@
     "Version": {
       "Major": "2023",
       "Minor": "10",
-      "Micro": "1"
+      "Micro": "2"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
     "Description": "CPL core",
     "LongDescription": "CPL core package",
     "URL": "https://www.sh-edraft.de",
-    "CopyrightDate": "2020 - 2023",
+    "CopyrightDate": "2020 - 2024",
     "CopyrightName": "sh-edraft.de",
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",

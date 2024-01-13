@@ -21,7 +21,6 @@ class DatabaseContext(DatabaseContextABC):
         DatabaseContextABC.__init__(self)
 
         self._db: DatabaseConnectionABC = DatabaseConnection()
-        self._tables: list[TableABC] = TableABC.__subclasses__()
         self._settings: Optional[DatabaseSettings] = None
 
     @property
@@ -32,7 +31,7 @@ class DatabaseContext(DatabaseContextABC):
     def _ping_and_reconnect(self):
         try:
             self._db.server.ping(reconnect=True, attempts=3, delay=5)
-        except mysql.connector.Error as err:
+        except Exception as err:
             # reconnect your cursor as you did in __init__ or wherever
             if self._settings is None:
                 raise Exception("Call DatabaseContext.connect first")
@@ -42,8 +41,6 @@ class DatabaseContext(DatabaseContextABC):
         if self._settings is None:
             self._settings = database_settings
         self._db.connect(database_settings)
-        for table in self._tables:
-            self._db.cursor.execute(table.get_create_string())
 
         self.save_changes()
 
