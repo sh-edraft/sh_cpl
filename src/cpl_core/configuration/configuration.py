@@ -24,7 +24,7 @@ from cpl_core.dependency_injection.service_provider_abc import ServiceProviderAB
 from cpl_core.environment.application_environment import ApplicationEnvironment
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
 from cpl_core.environment.environment_name_enum import EnvironmentNameEnum
-from cpl_core.type import T
+from cpl_core.type import T, R
 from cpl_core.utils.json_processor import JSONProcessor
 
 
@@ -278,23 +278,25 @@ class Configuration(ConfigurationABC):
         config_from_file = self._load_json_file(file_path, output)
         for sub in ConfigurationModelABC.__subclasses__():
             for key, value in config_from_file.items():
-                if sub.__name__ == key or sub.__name__.replace("Settings", "") == key:
-                    configuration = sub()
-                    from_dict = getattr(configuration, "from_dict", None)
+                if sub.__name__ != key and sub.__name__.replace("Settings", "") != key:
+                    continue
 
-                    if from_dict is not None and not hasattr(from_dict, "is_base_func"):
-                        Console.set_foreground_color(ForegroundColorEnum.yellow)
-                        Console.write_line(
-                            f"{sub.__name__}.from_dict is deprecated. Instead, set attributes as typed arguments in __init__. They can be None by default!"
-                        )
-                        Console.color_reset()
-                        configuration.from_dict(value)
-                    else:
-                        configuration = JSONProcessor.process(sub, value)
+                configuration = sub()
+                from_dict = getattr(configuration, "from_dict", None)
 
-                    self.add_configuration(sub, configuration)
+                if from_dict is not None and not hasattr(from_dict, "is_base_func"):
+                    Console.set_foreground_color(ForegroundColorEnum.yellow)
+                    Console.write_line(
+                        f"{sub.__name__}.from_dict is deprecated. Instead, set attributes as typed arguments in __init__. They can be None by default!"
+                    )
+                    Console.color_reset()
+                    configuration.from_dict(value)
+                else:
+                    configuration = JSONProcessor.process(sub, value)
 
-    def add_configuration(self, key_type: Type[T], value: any):
+                self.add_configuration(sub, configuration)
+
+    def add_configuration(self, key_type: T, value: any):
         self._config[key_type] = value
 
     def create_console_argument(
@@ -314,7 +316,7 @@ class Configuration(ConfigurationABC):
         for arg in self._argument_types:
             call(arg)
 
-    def get_configuration(self, search_type: T) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[R]:
         if type(search_type) is str:
             if search_type == ConfigurationVariableNameEnum.environment.value:
                 return self._application_environment.environment_name
@@ -355,7 +357,7 @@ class Configuration(ConfigurationABC):
                 if exe.validators is not None:
                     abort = False
                     for validator_type in exe.validators:
-                        validator: ValidatorABC = services.get_service(validator_type)
+                        validator = services.get_service(validator_type)
                         result = validator.validate()
                         abort = not result
                         if abort:
@@ -364,7 +366,7 @@ class Configuration(ConfigurationABC):
                     if abort:
                         sys.exit()
 
-                cmd: ArgumentExecutableABC = services.get_service(exe.executable_type)
+                cmd = services.get_service(exe.executable_type)
                 self._handle_pre_or_post_executables(True, exe, services)
                 self._set_variable("ACTIVE_EXECUTABLE", exe.name)
                 args = self.get_configuration("ARGS")

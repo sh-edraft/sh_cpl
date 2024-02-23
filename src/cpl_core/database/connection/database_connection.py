@@ -25,27 +25,27 @@ class DatabaseConnection(DatabaseConnectionABC):
     def cursor(self) -> MySQLCursorBuffered:
         return self._cursor
 
-    def connect(self, database_settings: DatabaseSettings):
+    def connect(self, settings: DatabaseSettings):
         connection = sql.connect(
-            host=database_settings.host,
-            port=database_settings.port,
-            user=database_settings.user,
-            passwd=CredentialManager.decrypt(database_settings.password),
-            charset=database_settings.charset,
-            use_unicode=database_settings.use_unicode,
-            buffered=database_settings.buffered,
-            auth_plugin=database_settings.auth_plugin,
+            host=settings.host,
+            port=settings.port,
+            user=settings.user,
+            passwd=CredentialManager.decrypt(settings.password),
+            charset=settings.charset,
+            use_unicode=settings.use_unicode,
+            buffered=settings.buffered,
+            auth_plugin=settings.auth_plugin,
         )
-        connection.cursor().execute(f"CREATE DATABASE IF NOT EXISTS `{database_settings.database}`;")
+        connection.cursor().execute(f"CREATE DATABASE IF NOT EXISTS `{settings.database}`;")
         self._database = sql.connect(
-            host=database_settings.host,
-            port=database_settings.port,
-            user=database_settings.user,
-            passwd=CredentialManager.decrypt(database_settings.password),
-            db=database_settings.database,
-            charset=database_settings.charset,
-            use_unicode=database_settings.use_unicode,
-            buffered=database_settings.buffered,
-            auth_plugin=database_settings.auth_plugin,
+            host=settings.host,
+            port=settings.port,
+            user=settings.user,
+            passwd=CredentialManager.decrypt(settings.password),
+            db=settings.database,
+            charset=settings.charset,
+            use_unicode=settings.use_unicode,
+            buffered=settings.buffered,
+            auth_plugin=settings.auth_plugin,
         )
         self._cursor = self._database.cursor()

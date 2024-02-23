@@ -15,7 +15,7 @@ __title__ = "cpl_query.enumerable"
 __author__ = "Sven Heidemann"
 __license__ = "MIT"
 __copyright__ = "Copyright (c) 2021 - 2023 sh-edraft.de"
-__version__ = "2023.4.0.post1"
+__version__ = "2023.10.0"
 
 from collections import namedtuple
 
@@ -25,4 +25,4 @@ from .enumerable import Enumerable
 from .enumerable_abc import EnumerableABC
 
 VersionInfo = namedtuple("VersionInfo", "major minor micro")
-version_info = VersionInfo(major="2023", minor="4", micro="0.post1")
+version_info = VersionInfo(major="2023", minor="10", micro="0")

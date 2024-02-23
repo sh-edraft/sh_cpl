@@ -8,6 +8,7 @@ class JSONProcessor:
     @staticmethod
     def process(_t: type, values: dict) -> object:
         args = []
+        kwargs = {}
 
         sig = signature(_t.__init__)
         for param in sig.parameters.items():
@@ -21,10 +22,13 @@ class JSONProcessor:
                 value = ""
                 if name in values:
                     value = values[name]
+                    values.pop(name)
                 elif name_first_lower in values:
                     value = values[name_first_lower]
+                    values.pop(name_first_lower)
                 else:
                     value = values[name.upper()]
+                    values.pop(name.upper())
 
                 if isinstance(value, dict) and not issubclass(parameter.annotation, dict):
                     value = JSONProcessor.process(parameter.annotation, value)
@@ -37,10 +41,13 @@ class JSONProcessor:
 
                 args.append(value)
 
+            elif parameter.name == "kwargs" and parameter.annotation == dict:
+                kwargs = values
+
             elif parameter.default != Parameter.empty:
                 args.append(parameter.default)
 
             else:
                 args.append(None)
 
-        return _t(*args)
+        return _t(*args, **kwargs)

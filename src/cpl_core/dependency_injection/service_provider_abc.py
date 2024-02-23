@@ -4,7 +4,7 @@ from inspect import Signature, signature
 from typing import Optional, Type
 
 from cpl_core.dependency_injection.scope_abc import ScopeABC
-from cpl_core.type import T
+from cpl_core.type import T, R
 
 
 class ServiceProviderABC(ABC):
@@ -21,7 +21,7 @@ class ServiceProviderABC(ABC):
         cls._provider = provider
 
     @abstractmethod
-    def build_by_signature(self, sig: Signature) -> list[T]:
+    def build_by_signature(self, sig: Signature) -> list[R]:
         pass
 
     @abstractmethod
@@ -61,7 +61,7 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_service(self, instance_type: Type[T], *args, **kwargs) -> Optional[T]:
+    def get_service(self, instance_type: T, *args, **kwargs) -> Optional[R]:
         r"""Returns instance of given type
 
         Parameter
@@ -76,12 +76,12 @@ class ServiceProviderABC(ABC):
         pass
 
     @abstractmethod
-    def get_services(self, service_type: Type[T], *args, **kwargs) -> list[Optional[T]]:
+    def get_services(self, service_type: T, *args, **kwargs) -> list[Optional[R]]:
         r"""Returns instance of given type
 
         Parameter
         ---------
-            instance_type: :class:`cpl_core.type.T`
+            service_type: :class:`cpl_core.type.T`
                 The type of the searched instance
 
         Returns

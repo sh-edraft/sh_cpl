@@ -6,7 +6,7 @@ from cpl_core.configuration.configuration_model_abc import ConfigurationModelABC
 from cpl_core.configuration.argument_abc import ArgumentABC
 from cpl_core.configuration.argument_type_enum import ArgumentTypeEnum
 from cpl_core.environment.application_environment_abc import ApplicationEnvironmentABC
-from cpl_core.type import T
+from cpl_core.type import T, R
 
 
 class ConfigurationABC(ABC):
@@ -77,11 +77,11 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def add_configuration(self, key_type: Type[T], value: any):
+    def add_configuration(self, key_type: T, value: any):
         r"""Add configuration object
 
         Parameter:
-            key_type: Union[:class:`str`, :class:`type`]
+            key_type: :class:`cpl_core.type.T`
                 Type of the value
             value: any
                 Object of the value
@@ -124,11 +124,11 @@ class ConfigurationABC(ABC):
         pass
 
     @abstractmethod
-    def get_configuration(self, search_type: Type[T]) -> Optional[T]:
+    def get_configuration(self, search_type: T) -> Optional[R]:
         r"""Returns value from configuration by given type
 
         Parameter:
-            search_type: Union[:class:`str`, Type[:class:`cpl_core.configuration.configuration_model_abc.ConfigurationModelABC`]]
+            search_type: :class:`cpl_core.type.T`
                 Type to search for
 
         Returns:
