@@ -2,9 +2,9 @@
   "ProjectSettings": {
     "Name": "cpl-discord",
     "Version": {
-      "Major": "2023",
-      "Minor": "10",
-      "Micro": "0.post1"
+      "Major": "2024",
+      "Minor": "7",
+      "Micro": "0"
     },
     "Author": "Sven Heidemann",
     "AuthorEmail": "sven.heidemann@sh-edraft.de",
@@ -16,12 +16,12 @@
     "LicenseName": "MIT",
     "LicenseDescription": "MIT, see LICENSE for more details.",
     "Dependencies": [
-      "cpl-core>=2023.10.0",
+      "cpl-core>=2024.6.2024.07.0",
       "discord.py>=2.3.2",
-      "cpl-query>=2023.10.0"
+      "cpl-query>=2024.6.2024.07.0"
     ],
     "DevDependencies": [
-      "cpl-cli>=2023.10.0"
+      "cpl-cli>=2024.6.2024.07.0"
     ],
     "PythonVersion": ">=3.10",
     "PythonPath": {},

@@ -2,8 +2,8 @@
   "ProjectSettings": {
     "Name": "set-pip-urls",
     "Version": {
-      "Major": "2022",
-      "Minor": "12",
+      "Major": "2024",
+      "Minor": "7",
       "Micro": "0"
     },
     "Author": "Sven Heidemann",
