@@ -7,6 +7,7 @@
       "cpl-discord": "src/cpl_discord/cpl-discord.json",
       "cpl-query": "src/cpl_query/cpl-query.json",
       "cpl-translation": "src/cpl_translation/cpl-translation.json",
+      "cpl-bundle": "src/cpl_bundle/cpl-bundle.json",
       "set-version": "tools/set_version/set-version.json",
       "set-pip-urls": "tools/set_pip_urls/set-pip-urls.json",
       "unittests": "unittests/unittests/unittests.json",

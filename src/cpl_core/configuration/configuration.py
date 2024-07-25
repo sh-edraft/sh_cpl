@@ -345,7 +345,7 @@ class Configuration(ConfigurationABC):
             executables: list[ExecutableArgument] = []
             self._parse_arguments(executables, arg_list, self._argument_types)
         except Exception as e:
-            Console.error("An error occurred while parsing arguments.")
+            Console.error("An error occurred while parsing arguments.", traceback.format_exc())
             sys.exit()
 
         try:

@@ -28,10 +28,13 @@ class StartupArgumentExtension(StartupExtensionABC):
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "add", ["a", "A"], AddService, True, validators=[WorkspaceValidator]
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "simulate", ["s", "S"])
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "build", ["b", "B"], BuildService, True, validators=[ProjectValidator]
         )
+
         config.create_console_argument(ArgumentTypeEnum.Executable, "", "generate", ["g", "G"], GenerateService, True)
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "install", ["i", "I"], InstallService, True, validators=[ProjectValidator]
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "dev", ["d", "D"]).add_console_argument(
@@ -45,6 +48,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         ).add_console_argument(
             ArgumentTypeEnum.Flag, "--", "cpl-dev", ["cd", "CD"]
         )
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "new", ["n", "N"], NewService, True
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "async", ["a", "A"]).add_console_argument(
@@ -60,18 +64,23 @@ class StartupArgumentExtension(StartupExtensionABC):
         ).add_console_argument(
             ArgumentTypeEnum.Flag, "--", "base", ["b", "B"]
         )
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "publish", ["p", "P"], PublishService, True, validators=[ProjectValidator]
         )
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "remove", ["r", "R"], RemoveService, True, validators=[WorkspaceValidator]
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "simulate", ["s", "S"])
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "run", [], RunService, True, validators=[ProjectValidator]
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "dev", ["d", "D"])
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "start", ["s", "S"], StartService, True, validators=[ProjectValidator]
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "dev", ["d", "D"])
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable,
             "",
@@ -85,6 +94,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         ).add_console_argument(
             ArgumentTypeEnum.Flag, "--", "simulate", ["s", "S"]
         )
+
         config.create_console_argument(
             ArgumentTypeEnum.Executable, "", "update", ["u", "U"], UpdateService, True, validators=[ProjectValidator]
         ).add_console_argument(ArgumentTypeEnum.Flag, "--", "simulate", ["s", "S"]).add_console_argument(
@@ -94,6 +104,7 @@ class StartupArgumentExtension(StartupExtensionABC):
         ).add_console_argument(
             ArgumentTypeEnum.Flag, "--", "cpl-dev", ["cd", "CD"]
         )
+
         config.create_console_argument(ArgumentTypeEnum.Executable, "", "version", ["v", "V"], VersionService, True)
 
         config.for_each_argument(lambda a: a.add_console_argument(ArgumentTypeEnum.Flag, "--", "help", ["h", "H"]))

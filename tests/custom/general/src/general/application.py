@@ -8,7 +8,7 @@ from cpl_core.dependency_injection import ServiceProviderABC
 from cpl_core.logging import LoggerABC
 from cpl_core.mailing import EMailClientABC, EMail
 from cpl_core.pipes import IPAddressPipe
-from general.test_settings import TestSettings
+from test_settings import TestSettings
 from test_service import TestService
 
 

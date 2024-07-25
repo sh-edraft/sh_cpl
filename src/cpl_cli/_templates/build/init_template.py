@@ -19,19 +19,19 @@ class InitTemplate:
             
             \"\"\"
             
-            __title__ = '$Title'
-            __author__ = '$Author'
-            __license__ = '$LicenseName'
-            __copyright__ = 'Copyright (c) $CopyrightDate $CopyrightName'
-            __version__ = '$Version'
+            __title__ = "$Title"
+            __author__ = "$Author"
+            __license__ = "$LicenseName"
+            __copyright__ = "Copyright (c) $CopyrightDate $CopyrightName"
+            __version__ = "$Version"
             
             from collections import namedtuple
             
             
             $Imports
             
-            VersionInfo = namedtuple('VersionInfo', 'major minor micro')
-            version_info = VersionInfo(major='$Major', minor='$Minor', micro='$Micro')
+            VersionInfo = namedtuple("VersionInfo", "major minor micro")
+            version_info = VersionInfo(major="$Major", minor="$Minor", micro="$Micro")
         """
         )
 
