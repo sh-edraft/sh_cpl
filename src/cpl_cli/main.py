@@ -1,6 +1,5 @@
+import importlib.metadata
 from typing import Type
-
-import pkg_resources
 
 from cpl_cli.cli import CLI
 from cpl_cli.startup import Startup
@@ -16,13 +15,12 @@ def get_startup_extensions() -> list[Type[StartupExtensionABC]]:
     blacklisted_packages = ["cpl-cli"]
     startup_extensions = []
 
-    installed_packages = pkg_resources.working_set
+    installed_packages = importlib.metadata.distributions()
     for p in installed_packages:
-        package = str(p).split(" ")[0]
-        if not package.startswith("cpl-") or package in blacklisted_packages:
+        if not p.name.startswith("cpl-") or p.name in blacklisted_packages:
             continue
 
-        package = package.replace("-", "_")
+        package = p.name.replace("-", "_")
         loaded_package = __import__(package)
         if "__cli_startup_extension__" not in dir(loaded_package):
             continue
